@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=8 format=3 uid="uid://bs48lirfn2fp2"]
 
+[ext_resource type="Texture2D" uid="uid://cuayuul3kllsa" path="res://assets/grey_sliderRight.png" id="1_dv5c2"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/demo/energy_bar.tscn" id="3_fm1y6"]
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/demo/BarInfo.tscn" id="4_67rbh"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/demo/shock.tscn" id="5_tj765"]
@@ -52,6 +53,7 @@ offset_top = -17.0
 offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 2
+texture = ExtResource("1_dv5c2")
 region_rect = Rect2(-0.0526352, 0.0447845, 39.5526, 28.9552)
 patch_margin_left = 4
 patch_margin_top = 5
@@ -78,6 +80,10 @@ offset_bottom = -12.0
 
 [node name="EnergyBar" parent="Bottom/EnergyBarWinter" index="1"]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 62.0
+offset_bottom = 26.0
 text = "Energy ❄️"
 
 [node name="Info" parent="Bottom/EnergyBarWinter" instance=ExtResource("4_67rbh")]
@@ -97,6 +103,10 @@ metadata/_edit_group_ = true
 
 [node name="EnergyBar" parent="Bottom/EnergyBarSummer" index="1"]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 62.0
+offset_bottom = 26.0
 text = "Energy ☀️"
 
 [node name="Info" parent="Bottom/EnergyBarSummer" instance=ExtResource("4_67rbh")]
