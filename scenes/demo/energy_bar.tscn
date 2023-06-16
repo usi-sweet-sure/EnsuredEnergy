@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2hyunjbx7qb7"]
+
+[ext_resource type="StyleBox" uid="uid://phji31i5dkkd" path="res://scenes/demo/energy_low.tres" id="2_0gu0e"]
+
+[node name="Energy" type="ProgressBar"]
+offset_left = 86.0
+offset_top = -2.0
+offset_right = 224.0
+offset_bottom = 25.0
+theme_override_styles/fill = ExtResource("2_0gu0e")
+max_value = 1000.0
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-262, -616.5)
+points = PackedVector2Array(332, 646, 332, 614)
+width = 1.0
+
+[node name="EnergyBar" type="Label" parent="."]
+offset_left = -102.0
+offset_top = -4.0
+offset_right = -40.0
+offset_bottom = 22.0
+scale = Vector2(1.2, 1.2)
+size_flags_horizontal = 0
+text = "Energy :"
+
+[node name="Label" type="Label" parent="EnergyBar"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Energy :"
+
+[connection signal="value_changed" from="." to="EnergyBar" method="_on_energy_value_changed"]

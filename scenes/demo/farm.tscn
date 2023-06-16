@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b1ipgesi102nc"]
+
+[node name="Farm" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(68, 36)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1.33333
+offset_top = 50.3333
+offset_right = 145.333
+offset_bottom = 78.3333
+color = Color(0.109804, 0.0705882, 0.25098, 0.74902)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 86.0
+offset_bottom = 26.0
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 1.33333
+offset_top = 77.3333
+offset_right = 145.333
+offset_bottom = 107.333
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "⚡        💰         "
+vertical_alignment = 1
+
+[node name="Total" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 112.0
+offset_right = 144.0
+offset_bottom = 31.0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 98.6667
+offset_right = 130.667
+offset_bottom = 31.0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Energy" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 18.6667
+offset_top = 3.0
+offset_right = 46.6667
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 99.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 53.3334
+offset_top = 17.0
+offset_right = 81.3334
+offset_bottom = 48.0
+text = "+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

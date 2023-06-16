@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://u1nvhv5ceok"]
+
+[node name="BarInfo" type="Control"]
+layout_mode = 3
+anchor_right = 0.166
+anchor_bottom = 0.315
+offset_right = 4.76801
+offset_bottom = 3.88
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.219608, 0.360784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.000138142
+anchor_top = 0.0247346
+anchor_right = 0.753596
+anchor_bottom = 0.198189
+offset_left = 18.9738
+offset_top = 14.8552
+offset_right = 28.8167
+offset_bottom = 150.777
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Texte"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Texte"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Texte"
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0209145
+anchor_top = 0.0151192
+anchor_right = 0.711491
+anchor_bottom = 0.181032
+offset_left = 18.9738
+offset_top = 14.8552
+offset_right = 43.8167
+offset_bottom = 152.345
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "n"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "n"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = " n"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "n / max"
+horizontal_alignment = 2
+vertical_alignment = 1

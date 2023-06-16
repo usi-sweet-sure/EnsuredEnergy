@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba56oxmvcxpos"]
+
+[ext_resource type="Texture2D" uid="uid://cy80yqth2kk8r" path="res://assets/230601_CH_SUREgame_SKETCHES-MAP.png" id="1_a32ik"]
+[ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/demo/power_plant.tscn" id="7_6x5m2"]
+[ext_resource type="PackedScene" uid="uid://banvqdghwoj3p" path="res://scenes/demo/build_button.tscn" id="16_pnu0i"]
+
+[sub_resource type="Theme" id="Theme_mklkc"]
+
+[node name="World" type="Node2D"]
+
+[node name="Map" type="Sprite2D" parent="."]
+position = Vector2(-978, -283)
+scale = Vector2(2, 2)
+texture = ExtResource("1_a32ik")
+centered = false
+
+[node name="Nuclear" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(998, 269)
+metadata/_edit_group_ = true
+
+[node name="Label" parent="Nuclear/ColorRect" index="0"]
+text = "Nuclear"
+
+[node name="Coal" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(923, 505)
+metadata/_edit_group_ = true
+
+[node name="Label" parent="Coal/ColorRect" index="0"]
+text = "Coal"
+
+[node name="BuildButton" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 472.0
+offset_top = 567.0
+offset_right = 564.0
+offset_bottom = 617.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_mklkc")
+theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
+
+[node name="BuildButton2" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 1298.0
+offset_top = 433.0
+offset_right = 1390.0
+offset_bottom = 483.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
+
+[node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 1087.0
+offset_top = 695.0
+offset_right = 1179.0
+offset_bottom = 745.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
+
+[node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 585.0
+offset_top = 371.0
+offset_right = 674.0
+offset_bottom = 414.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[editable path="Nuclear"]
+[editable path="Coal"]

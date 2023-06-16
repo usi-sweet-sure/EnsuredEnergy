@@ -1,0 +1,352 @@
+[gd_scene load_steps=7 format=3 uid="uid://bs48lirfn2fp2"]
+
+[ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/demo/energy_bar.tscn" id="3_fm1y6"]
+[ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/demo/BarInfo.tscn" id="4_67rbh"]
+[ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/demo/shock.tscn" id="5_tj765"]
+[ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/demo/window.tscn" id="7_yu7g8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldrdn"]
+bg_color = Color(0.152941, 0.658824, 0.152941, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mru71"]
+bg_color = Color(0.137255, 0.470588, 0.760784, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="UI" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="Bottom" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.231373, 0.290196, 0.372549, 0.643137)
+
+[node name="ColorRect" type="ColorRect" parent="Bottom"]
+layout_mode = 0
+offset_left = 816.0
+offset_top = -56.0
+offset_right = 1136.0
+color = Color(0.231373, 0.290196, 0.372549, 0.643137)
+
+[node name="NextTurn" type="NinePatchRect" parent="Bottom"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_top = -17.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+region_rect = Rect2(-0.0526352, 0.0447845, 39.5526, 28.9552)
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 15
+patch_margin_bottom = 6
+metadata/_edit_group_ = true
+
+[node name="NextTurn" type="Button" parent="Bottom/NextTurn"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 127.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Next Turn"
+flat = true
+
+[node name="EnergyBarWinter" parent="Bottom" instance=ExtResource("3_fm1y6")]
+layout_mode = 0
+offset_left = 947.0
+offset_top = -38.0
+offset_right = 1088.0
+offset_bottom = -12.0
+
+[node name="EnergyBar" parent="Bottom/EnergyBarWinter" index="1"]
+layout_mode = 0
+text = "Energy ❄️"
+
+[node name="Info" parent="Bottom/EnergyBarWinter" instance=ExtResource("4_67rbh")]
+layout_mode = 1
+offset_left = -49.0
+offset_top = -208.0
+offset_right = 116.708
+offset_bottom = -27.19
+
+[node name="EnergyBarSummer" parent="Bottom" instance=ExtResource("3_fm1y6")]
+layout_mode = 0
+offset_left = 946.0
+offset_top = 16.0
+offset_right = 1088.0
+offset_bottom = 42.0
+metadata/_edit_group_ = true
+
+[node name="EnergyBar" parent="Bottom/EnergyBarSummer" index="1"]
+layout_mode = 0
+text = "Energy ☀️"
+
+[node name="Info" parent="Bottom/EnergyBarSummer" instance=ExtResource("4_67rbh")]
+visible = false
+layout_mode = 1
+offset_left = 19.0
+offset_top = -198.0
+offset_right = 184.708
+offset_bottom = -17.19
+
+[node name="Env" type="ProgressBar" parent="Bottom"]
+layout_mode = 0
+offset_left = 1379.0
+offset_top = 15.0
+offset_right = 1517.0
+offset_bottom = 42.0
+tooltip_text = "Reach the goal by 2050 to attain net zero"
+theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
+value = 50.0
+show_percentage = false
+
+[node name="Line2D2" type="Line2D" parent="Bottom/Env"]
+position = Vector2(-210, -615)
+points = PackedVector2Array(332, 646, 332, 614)
+width = 1.0
+
+[node name="Label2" type="Label" parent="Bottom/Env"]
+layout_mode = 2
+offset_left = -134.0
+offset_top = 1.0
+offset_right = -3.0
+offset_bottom = 27.0
+size_flags_horizontal = 0
+text = "Environment 🍃"
+
+[node name="BarInfo" parent="Bottom/Env/Label2" instance=ExtResource("4_67rbh")]
+layout_mode = 1
+offset_left = 76.0
+offset_top = -204.0
+offset_right = 238.242
+offset_bottom = -25.19
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Trust" type="ProgressBar" parent="Bottom"]
+layout_mode = 0
+offset_left = 556.0
+offset_top = 17.0
+offset_right = 694.0
+offset_bottom = 44.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
+value = 60.0
+
+[node name="Line2D3" type="Line2D" parent="Bottom/Trust"]
+position = Vector2(-263, -615)
+points = PackedVector2Array(332, 646, 332, 614)
+width = 1.0
+
+[node name="Label3" type="Label" parent="Bottom/Trust"]
+layout_mode = 2
+offset_left = -95.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = 27.0
+size_flags_horizontal = 0
+text = "Support 👆"
+
+[node name="BarInfo" parent="Bottom/Trust/Label3" instance=ExtResource("4_67rbh")]
+layout_mode = 1
+offset_left = 50.0
+offset_top = -204.0
+offset_right = 220.562
+offset_bottom = -27.19
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PolicyButton" type="Button" parent="Bottom"]
+layout_mode = 0
+offset_left = 754.0
+offset_top = -56.0
+offset_right = 877.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 70
+text = "📥"
+
+[node name="Stats" type="Button" parent="Bottom"]
+layout_mode = 0
+offset_left = 1136.0
+offset_top = -56.0
+offset_right = 1259.0
+offset_bottom = 56.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 70
+text = "📈"
+
+[node name="Top" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.062
+offset_bottom = -18.96
+grow_horizontal = 2
+color = Color(0.231373, 0.290196, 0.372549, 0.643137)
+
+[node name="MoneyInfo" type="ColorRect" parent="Top"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_bottom = 142.0
+grow_horizontal = 0
+color = Color(0.121569, 0.219608, 0.360784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Top/MoneyInfo"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 44.0
+offset_right = 131.0
+offset_bottom = 131.0
+
+[node name="Label3" type="Label" parent="Top/MoneyInfo/VBoxContainer"]
+layout_mode = 2
+text = "  Budget:"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Top/MoneyInfo/VBoxContainer"]
+layout_mode = 2
+text = "  Production: "
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Top/MoneyInfo/VBoxContainer"]
+layout_mode = 2
+text = "  Building: "
+vertical_alignment = 1
+
+[node name="prod" type="Label" parent="Top/MoneyInfo"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 66.0
+offset_right = 191.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Build" type="Label" parent="Top/MoneyInfo"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 97.0
+offset_right = 191.0
+offset_bottom = 137.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="budget" type="Label" parent="Top/MoneyInfo"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 38.0
+offset_right = 191.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Money" type="ColorRect" parent="Top"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_bottom = 48.0
+grow_horizontal = 0
+color = Color(0.121569, 0.219608, 0.360784, 1)
+
+[node name="Label" type="Label" parent="Top/Money"]
+layout_mode = 2
+offset_left = 29.0
+offset_top = 13.0
+offset_right = 132.0
+offset_bottom = 39.0
+text = "  Money:"
+vertical_alignment = 1
+
+[node name="money" type="Label" parent="Top/Money"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 6.0
+offset_right = 192.0
+offset_bottom = 50.0
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Timeline" type="HSlider" parent="Top"]
+layout_mode = 0
+offset_left = 653.0
+offset_top = 18.0
+offset_right = 1395.0
+offset_bottom = 34.0
+editable = false
+scrollable = false
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Top/Timeline"]
+layout_mode = 0
+offset_left = -44.0
+offset_top = -3.0
+offset_right = -4.0
+offset_bottom = 23.0
+text = "2020"
+
+[node name="Label2" type="Label" parent="Top/Timeline"]
+layout_mode = 0
+offset_left = 759.0
+offset_top = -4.0
+offset_right = 799.0
+offset_bottom = 22.0
+text = "2050"
+
+[node name="MoneyUI" type="Button" parent="Top"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_bottom = 50.0
+grow_horizontal = 0
+focus_mode = 0
+text = "  >"
+flat = true
+alignment = 0
+
+[node name="Shock" parent="." instance=ExtResource("5_tj765")]
+visible = false
+
+[node name="Window" parent="." instance=ExtResource("7_yu7g8")]
+visible = false
+
+[connection signal="pressed" from="Bottom/NextTurn/NextTurn" to="." method="_on_label_pressed"]
+[connection signal="pressed" from="Bottom/PolicyButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Bottom/Stats" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Top/MoneyUI" to="." method="_on_money_ui_pressed"]
+
+[editable path="Bottom/EnergyBarWinter"]
+[editable path="Bottom/EnergyBarSummer"]

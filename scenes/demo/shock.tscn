@@ -1,0 +1,167 @@
+[gd_scene load_steps=4 format=3 uid="uid://885lty3v1qbq"]
+
+[ext_resource type="Texture2D" uid="uid://ds6oui8od52pt" path="res://icon.svg" id="1_ug2c3"]
+[ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/demo/energy_bar.tscn" id="2_i1jhu"]
+
+[sub_resource type="Theme" id="Theme_jkqh0"]
+
+[node name="Shock" type="CanvasLayer"]
+
+[node name="ColorRect2" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -180.0
+offset_right = 271.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jkqh0")
+color = Color(0.760784, 0.721569, 0.721569, 0.921569)
+
+[node name="Image" type="Sprite2D" parent="ColorRect"]
+position = Vector2(110, 144)
+texture = ExtResource("1_ug2c3")
+
+[node name="Title" type="Label" parent="ColorRect"]
+layout_mode = 1
+offset_right = 174.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Cold Spell"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Result" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_top = -120.0
+offset_right = -37.0
+offset_bottom = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "..."
+autowrap_mode = 3
+
+[node name="Continue" type="Button" parent="ColorRect/Result"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.5
+offset_top = -15.0
+offset_right = 30.5
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="EnergyBar" parent="ColorRect/Result" instance=ExtResource("2_i1jhu")]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -48.0
+offset_right = 54.0
+offset_bottom = -22.0
+script = null
+
+[node name="Line2D" parent="ColorRect/Result/EnergyBar/Energy" index="0"]
+position = Vector2(-257, -614)
+
+[node name="Text" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 2.0
+offset_right = -32.0
+offset_bottom = 160.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "The past few winters have been colder than usual, increasing the energy demand in winter by 
+50 ⚡."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Reactions" type="Control" parent="ColorRect"]
+visible = false
+anchors_preset = 0
+offset_left = 241.0
+offset_top = 2.0
+offset_right = 281.0
+offset_bottom = 42.0
+
+[node name="Button" type="Button" parent="ColorRect/Reactions"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = 102.0
+offset_right = 238.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "Ask the population to lower their energy consumption.
+- 50 Support 😡"
+
+[node name="Button2" type="Button" parent="ColorRect/Reactions"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = 142.0
+offset_right = 238.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "Turn on the spare coal plant.
+- 50 Environment 🏭"
+
+[node name="Button3" type="Button" parent="ColorRect/Reactions"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = 183.0
+offset_right = 238.0
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "Import electricity from neighbouring countries.
+- 50 💰"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ColorRect/Result/Continue" to="." method="_on_continue_pressed"]
+
+[editable path="ColorRect/Result/EnergyBar"]

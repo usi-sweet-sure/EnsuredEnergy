@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct4blqwh4y6ab"]
+
+[ext_resource type="Texture2D" uid="uid://bpnyng7q0id2q" path="res://assets/230601_CH_SUREgame_SKETCHES-POWERPLANT.png" id="3_4a6uo"]
+
+[sub_resource type="Theme" id="Theme_f6ssq"]
+
+[node name="PowerPlant" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4a6uo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -68.0
+offset_top = 67.0
+offset_right = 76.0
+offset_bottom = 95.0
+color = Color(0.109804, 0.0705882, 0.25098, 0.74902)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 86.0
+offset_bottom = 26.0
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -68.0
+offset_top = 94.0
+offset_right = 76.0
+offset_bottom = 124.0
+metadata/_edit_group_ = true
+
+[node name="Icons" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "⚡          💰         "
+vertical_alignment = 1
+
+[node name="Poll" type="Label" parent="ColorRect2"]
+visible = false
+layout_mode = 0
+offset_left = 112.0
+offset_right = 144.0
+offset_bottom = 31.0
+tooltip_text = "This plant produces CO2"
+mouse_filter = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "🏭"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Energy" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 3.0
+offset_right = 52.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 4.0
+offset_right = 107.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+
+[node name="Switch" type="CheckButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 19.0
+offset_top = 69.0
+offset_right = 63.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_f6ssq")
+button_pressed = true
+action_mode = 0
+keep_pressed_outside = true
+flat = true
+alignment = 1
+icon_alignment = 1
+
+[connection signal="toggled" from="Switch" to="." method="_on_switch_toggled"]
