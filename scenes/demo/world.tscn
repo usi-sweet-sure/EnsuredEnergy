@@ -17,10 +17,13 @@ centered = false
 
 [node name="Nuclear" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(998, 269)
+PlantName = "Nuclear"
+PlantType = 4
 metadata/_edit_group_ = true
 
 [node name="Coal" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(923, 505)
+PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="BuildButton" parent="." instance=ExtResource("16_pnu0i")]
@@ -40,6 +43,8 @@ offset_right = 1390.0
 offset_bottom = 483.0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
+script = ExtResource("4_mo62v")
+AllowHydro = true
 
 [node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 1087.0
@@ -48,12 +53,14 @@ offset_right = 1179.0
 offset_bottom = 745.0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
+script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 585.0
 offset_top = 371.0
 offset_right = 674.0
 offset_bottom = 414.0
+script = ExtResource("4_mo62v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

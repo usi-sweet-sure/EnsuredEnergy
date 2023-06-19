@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 // Represents a Power Plant object in the game
 public partial class PowerPlant : Node2D {
@@ -49,9 +50,13 @@ public partial class PowerPlant : Node2D {
 		MoneyL = GetNode<Label>("ResRect/Money");
 		Switch = GetNode<CheckButton>("Switch");
 
+		// Hide unnecessary fields if we are in preview mode
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+		} else {
+			PollL.Show();
+			Switch.Show();
 		}
 
 		// Set the labels correctly
@@ -62,5 +67,34 @@ public partial class PowerPlant : Node2D {
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
+	}
+
+	// Forces the update of the isPreview state of the plant
+	public void _UpdateIsPreview(bool n) {
+		IsPreview = n;
+		if(IsPreview) {
+			PollL.Hide();
+			Switch.Hide();
+		} else {
+			PollL.Show();
+			Switch.Show();
+		}
+	}
+
+	// Updates the UI to match the internal state of the plant
+	public void _UpdatePlantData() {
+		// Update the preview state of the plant
+		if(IsPreview) {
+			PollL.Hide();
+			Switch.Hide();
+		} else {
+			PollL.Show();
+			Switch.Show();
+		}
+
+		// Set the labels correctly
+		NameL.Text = PlantName;
+		EnergyL.Text = EnergyProduction.ToString();
+		MoneyL.Text = BuildCost.ToString();
 	}
 }
