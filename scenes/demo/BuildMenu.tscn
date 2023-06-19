@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://i802aa7uc538"]
 
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/demo/power_plant.tscn" id="1_4h4qv"]
-[ext_resource type="Script" path="res://src/BuildMenu.cs" id="1_wlqbu"]
+[ext_resource type="Script" path="res://src/cs/building/BuildMenu.cs" id="1_t6egc"]
 
 [node name="BuildMenu" type="CanvasLayer"]
-script = ExtResource("1_wlqbu")
+script = ExtResource("1_t6egc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 40)
