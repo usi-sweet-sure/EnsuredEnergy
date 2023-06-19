@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://i802aa7uc538"]
+
+[ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/demo/power_plant.tscn" id="1_4h4qv"]
+[ext_resource type="Script" path="res://src/BuildMenu.cs" id="1_wlqbu"]
+
+[node name="BuildMenu" type="CanvasLayer"]
+script = ExtResource("1_wlqbu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 40)
+offset_left = -2.0
+offset_top = 783.0
+offset_right = 1918.0
+offset_bottom = 1077.0
+color = Color(0.231373, 0.290196, 0.372549, 0.643137)
+
+[node name="Solar" parent="ColorRect" instance=ExtResource("1_4h4qv")]
+position = Vector2(650, 100)
+scale = Vector2(1.3, 1.3)
+
+[node name="SolarButton" type="Button" parent="ColorRect/Solar"]
+offset_left = -72.0
+offset_top = -70.0
+offset_right = 80.0
+offset_bottom = 129.0
+flat = true
+
+[node name="Hydro" parent="ColorRect" instance=ExtResource("1_4h4qv")]
+position = Vector2(400, 100)
+scale = Vector2(1.3, 1.3)
+
+[node name="HydroButton" type="Button" parent="ColorRect/Hydro"]
+offset_left = -68.0
+offset_top = -70.0
+offset_right = 77.0
+offset_bottom = 125.0
+flat = true
+
+[node name="Gas" parent="ColorRect" instance=ExtResource("1_4h4qv")]
+position = Vector2(150, 100)
+scale = Vector2(1.3, 1.3)
+
+[node name="GasButton" type="Button" parent="ColorRect/Gas"]
+offset_left = -70.8462
+offset_top = -70.0
+offset_right = 78.1538
+offset_bottom = 126.0
+flat = true
+
+[node name="Tree" parent="ColorRect" instance=ExtResource("1_4h4qv")]
+position = Vector2(900, 100)
+scale = Vector2(1.3, 1.3)
+
+[node name="TreeButton" type="Button" parent="ColorRect/Tree"]
+offset_left = -72.0
+offset_top = -76.0
+offset_right = 78.0
+offset_bottom = 126.0
+flat = true
