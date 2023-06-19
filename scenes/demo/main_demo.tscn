@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=5 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/demo/world.tscn" id="1_prp6q"]
+[ext_resource type="PackedScene" uid="uid://bs48lirfn2fp2" path="res://scenes/demo/ui.tscn" id="2_d60f5"]
 [ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/demo/BuildMenu.tscn" id="2_wrh8p"]
+[ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
 
 [node name="MainDemo" type="Node2D"]
 
 [node name="World" parent="." instance=ExtResource("1_prp6q")]
 
+[node name="UI" parent="." instance=ExtResource("2_d60f5")]
+script = ExtResource("3_l6dyd")
+
 [node name="BuildMenu" parent="." instance=ExtResource("2_wrh8p")]
+visible = false

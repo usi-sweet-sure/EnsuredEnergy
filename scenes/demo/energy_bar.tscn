@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2hyunjbx7qb7"]
+[gd_scene load_steps=4 format=3 uid="uid://d2hyunjbx7qb7"]
 
 [ext_resource type="StyleBox" uid="uid://phji31i5dkkd" path="res://scenes/demo/energy_low.tres" id="2_0gu0e"]
+[ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="2_otguq"]
+[ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/demo/BarInfo.tscn" id="3_an05x"]
 
 [node name="Energy" type="ProgressBar"]
 offset_left = 86.0
@@ -12,13 +14,15 @@ max_value = 1000.0
 step = 1.0
 value = 50.0
 show_percentage = false
+script = ExtResource("2_otguq")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Target" type="Line2D" parent="."]
 position = Vector2(-262, -616.5)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
-[node name="EnergyBar" type="Label" parent="."]
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
 offset_left = -102.0
 offset_top = -4.0
 offset_right = -40.0
@@ -27,11 +31,19 @@ scale = Vector2(1.2, 1.2)
 size_flags_horizontal = 0
 text = "Energy :"
 
-[node name="Label" type="Label" parent="EnergyBar"]
+[node name="Label" type="Label" parent="Name"]
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Energy :"
 
-[connection signal="value_changed" from="." to="EnergyBar" method="_on_energy_value_changed"]
+[node name="BarInfo" parent="Name" instance=ExtResource("3_an05x")]
+visible = false
+layout_mode = 1
+offset_left = 19.0
+offset_top = -198.0
+offset_right = 184.708
+offset_bottom = -17.19
+
+[connection signal="value_changed" from="." to="Name" method="_on_energy_value_changed"]

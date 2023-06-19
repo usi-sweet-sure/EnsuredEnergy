@@ -1,6 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jj476u8yn2g8"]
-
-[ext_resource type="Script" path="res://Scenes/window.gd" id="1_y1ckm"]
+[gd_scene load_steps=7 format=3 uid="uid://jj476u8yn2g8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oju76"]
 bg_color = Color(0.301961, 0.584314, 0.309804, 1)
@@ -21,7 +19,6 @@ bg_color = Color(0.513726, 0.588235, 0.839216, 1)
 bg_color = Color(0.196078, 0.545098, 0.968627, 1)
 
 [node name="Policy" type="CanvasLayer"]
-script = ExtResource("1_y1ckm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
