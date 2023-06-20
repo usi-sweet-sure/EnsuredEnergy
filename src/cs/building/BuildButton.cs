@@ -2,8 +2,10 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+// Represents the different types of power plants
 public enum BuildingType { HYDRO, GAS, SOLAR, TREE, NUCLEAR };
 
+// Models a Build Slot
 public struct BuildLocation {
 	// Contains the Position at which the build wild take place
 	public Vector2 Position;
@@ -33,6 +35,9 @@ public partial class BuildButton : Button {
 	// Signal used to trigger the showing of the build menu
 	[Signal]
 	public delegate void ShowBuildMenuEventHandler(BuildButton bb);
+
+	[Signal]
+	public delegate void UpdateBuildSlotEventHandler(BuildButton bb, PowerPlant pp, bool remove);
 
 	// The only special plant for the time being is Hydro
 	// This flag tells us whether or not it is permitted to build a hydro plant at this location.
@@ -183,6 +188,9 @@ public partial class BuildButton : Button {
 		// Make sure that the data is propagated to the UI
 		PP._UpdatePlantData();
 		PP.Show();
+
+		// Notify the Game Loop
+		EmitSignal(SignalName.UpdateBuildSlot, this, PP, false);
 	}
 
 	// Receives the power plant selected by the user and now we need to place it
