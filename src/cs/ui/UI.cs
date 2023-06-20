@@ -1,3 +1,20 @@
+/**
+	Sustainable Energy Development game modeling the Swiss energy Grid.
+	Copyright (C) 2023 Università della Svizzera Italiana
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 using Godot;
 using System;
 using System.Diagnostics;
@@ -9,9 +26,8 @@ public struct InfoData {
 	public const int N_S_ENERGY_FIELDS = 2;
 	public const int N_ENV_FIELDS = 3;
 	public const int N_SUPPORT_FIELDS = 2;
-	public const int N_MONEY_FIELDS = 3;
+	public const int N_MONEY_FIELDS = 4;
 
-	
 	// === Energy metrics ===
 	public int W_EnergyDemand; // Energy demand for the winter season
 	public int W_EnergySupply; // Energy supply for the winter season
@@ -31,6 +47,7 @@ public struct InfoData {
 	public int Budget; // The amount of money you are generating this turn
 	public int Production; // The amount of money used for production this turn
 	public int Building; // The amount of money spent on building this turn
+	public int Money; // The total amount of money you have
 
 	// Constructor for the Data
 	public InfoData() {
@@ -49,13 +66,25 @@ public struct InfoData {
 		Budget = 0;
 		Production = 0;
 		Building = 0;
+		Money = 0; 
 	}
 }
 
 // General controller for the UI
 public partial class UI : CanvasLayer {
+
 	// Describes the type of bar that contains information about certain metrics
 	public enum InfoType { W_ENGERGY, S_ENGERGY, SUPPORT, ENVIRONMENT, MONEY };
+
+	// Signals to the game loop that the turn must be passed
+	[Signal]
+	public delegate void NextTurnEventHandler();
+
+	// Timeline update values
+	[Export]
+	public int TIMELINE_STEP_SIZE = 10;
+	[Export]
+	public int TIMELINE_MAX_VALUE = 100;
 
 	// Contains the data displayed in the UI
 	private InfoData Data;
@@ -81,6 +110,8 @@ public partial class UI : CanvasLayer {
 	private Label BudgetL;
 	private Label BuildL;
 	private Label ProdL;
+
+	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
@@ -151,7 +182,7 @@ public partial class UI : CanvasLayer {
 	// Energy: demand, supply
 	// Support: energy_affordability, env_aesthetic
 	// Environment: land_use, pollution, biodiversity
-	// Money: budget, production, building
+	// Money: budget, production, building, money
 	public void _UpdateData(InfoType t, params int[] d) {
 		switch (t) {
 			case InfoType.W_ENGERGY:
@@ -161,6 +192,8 @@ public partial class UI : CanvasLayer {
 				// Set the fields in order, for energy it's demand, supply
 				Data.W_EnergyDemand = d[0];
 				Data.W_EnergySupply = d[1];
+
+				SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -169,6 +202,9 @@ public partial class UI : CanvasLayer {
 				// Set the fields in order, for energy it's demand, supply
 				Data.S_EnergyDemand = d[0];
 				Data.S_EnergySupply = d[1];
+
+				// Update the UI
+				SetEnergyInfo(ref SummerEnergy, InfoType.S_ENGERGY);
 				break;
 			case InfoType.SUPPORT:
 				// Sanity check, make sure that you were given enough fields
@@ -177,6 +213,9 @@ public partial class UI : CanvasLayer {
 				// Set the fields in order, for support it's affordability, aesthetic
 				Data.EnergyAffordability = d[0];
 				Data.EnvAesthetic = d[1];
+
+				// Update the UI
+				SetSupportInfo();
 				break;
 			case InfoType.ENVIRONMENT:
 				// Sanity check, make sure that you were given enough fields
@@ -186,6 +225,9 @@ public partial class UI : CanvasLayer {
 				Data.LandUse = d[0];
 				Data.Pollution = d[1];
 				Data.Biodiversity = d[2];
+
+				// Update the UI
+				SetEnvironmentInfo();
 				break;
 			case InfoType.MONEY:
 				// Sanity check, make sure that there are enough fields
@@ -195,6 +237,10 @@ public partial class UI : CanvasLayer {
 				Data.Budget = d[0];
 				Data.Production = d[1];
 				Data.Building = d[2];
+				Data.Money = d[3];
+
+				// Update the UI 
+				SetMoneyInfo();
 				break;
 			default:
 				break;
@@ -244,6 +290,7 @@ public partial class UI : CanvasLayer {
 		BudgetL.Text = Data.Budget.ToString();
 		BuildL.Text = Data.Building.ToString();
 		ProdL.Text = Data.Production.ToString();
+		MoneyL.Text = Data.Money.ToString();
 	}
 
 	// ==================== Interaction Callbacks ====================
@@ -264,7 +311,11 @@ public partial class UI : CanvasLayer {
 
 	// Updates the timelines and propagates the request up to the game loop
 	public void _OnNextTurnPressed() {
-		//TODO: Requires functioning game loop
+		// Trigger the next turn
+		EmitSignal(SignalName.NextTurn);
+
+		// Update the Timeline
+		Timeline.Value = Math.Min((Timeline.Value + TIMELINE_STEP_SIZE), TIMELINE_MAX_VALUE); 
 	}
 
 	// Displays the information box related to the winter energy
