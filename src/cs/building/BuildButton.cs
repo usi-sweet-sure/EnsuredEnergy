@@ -24,6 +24,12 @@ public struct BuildLocation {
 }
 
 public partial class BuildButton : Button {
+	// Names for the various power plants
+	public const string GAS_NAME = "Gas";
+	public const string SOLAR_NAME = "Solar";
+	public const string HYDRO_NAME = "Hydro";
+	public const string TREE_NAME = "Tree";
+
 	// Signal used to trigger the showing of the build menu
 	[Signal]
 	public delegate void ShowBuildMenuEventHandler(BuildButton bb);
@@ -48,10 +54,10 @@ public partial class BuildButton : Button {
 		BM = GetNode<BuildMenu>("../../BuildMenu");
 
 		// Fetch Power plants
-		GasPlant = GetNode<PowerPlant>("Gas");
-		SolarPlant = GetNode<PowerPlant>("Solar");
-		HydroPlant = GetNode<PowerPlant>("Hydro");
-		TreePlant = GetNode<PowerPlant>("Tree");
+		GasPlant = GetNode<PowerPlant>(GAS_NAME);
+		SolarPlant = GetNode<PowerPlant>(SOLAR_NAME);
+		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
+		TreePlant = GetNode<PowerPlant>(TREE_NAME);
 
 		// Initially hide all of the plants
 		HideAllPlants();
@@ -123,19 +129,19 @@ public partial class BuildButton : Button {
 		// Force name to be consistent with type
 		switch(Bt) {
 			case BuildingType.GAS:
-				newPP.PlantName = "Gas Plant";
+				newPP.PlantName = GAS_NAME;
 				break;
 			
 			case BuildingType.HYDRO:
-				newPP.PlantName = "Hydro Plant";
+				newPP.PlantName = HYDRO_NAME;
 				break;
 
 			case BuildingType.SOLAR:
-				newPP.PlantName = "Solar Plant";
+				newPP.PlantName = SOLAR_NAME;
 				break;
 			
 			case BuildingType.TREE:
-				newPP.PlantName = "Trees";
+				newPP.PlantName = TREE_NAME;
 				break;
 		}
 
@@ -158,19 +164,19 @@ public partial class BuildButton : Button {
 		// Force name to be consistent with type
 		switch(PP.PlantType) {
 			case BuildingType.GAS:
-				PP.PlantName = "Gas Plant";
+				PP.PlantName = GAS_NAME;
 				break;
 			
 			case BuildingType.HYDRO:
-				PP.PlantName = "Hydro Plant";
+				PP.PlantName = HYDRO_NAME;
 				break;
 
 			case BuildingType.SOLAR:
-				PP.PlantName = "Solar Plant";
+				PP.PlantName = SOLAR_NAME;
 				break;
 			
 			case BuildingType.TREE:
-				PP.PlantName = "Trees";
+				PP.PlantName = TREE_NAME;
 				break;
 		}
 

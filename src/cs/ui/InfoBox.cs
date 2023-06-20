@@ -21,6 +21,8 @@ public partial class InfoBox : Control {
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
+		labels = new Label[N_LABELS];
+		
 		// Create label array by fetching nodes
 		labels[0] = GetNode<Label>("Control/nContainer/n_ov_max");
 		labels[1] = GetNode<Label>("Control/TextContainer/Text0");
@@ -57,11 +59,11 @@ public partial class InfoBox : Control {
 		int l = ts.Length;
 		// Set fields if they exist
 		int i = 0;
-		for(i = 0; i < l || i < N_LABELS; ++i) {
+		for(i = 0; i < l && i < labels.Length; ++i) {
 			labels[i].Text = ts[i];
 		}
 		// Fill in what's left with empty strings
-		for(; i < N_LABELS; ++i) {
+		for(; i < labels.Length; ++i) {
 			labels[i].Text = "";
 		}
 	}

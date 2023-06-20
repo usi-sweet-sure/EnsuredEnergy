@@ -28,6 +28,7 @@ public partial class InfoBar : ProgressBar {
 	public override void _Process(double delta) {
 	}
 
+	// Updates the progress value of this information bar
 	public void _UpdateProgress(int v) {
 		// Sanity Check
 		Debug.Assert(MinValue <= v && v <= MaxValue);

@@ -99,6 +99,11 @@ public partial class BuildMenu : CanvasLayer {
 			SelectBuilding -= RegisteredBuildButton._OnSelectBuilding;
 		}
 
+		// Make sure that the previous registered button is deregistered
+		if(RegisteredBuildButton != null) {
+			SelectBuilding -= RegisteredBuildButton._OnSelectBuilding;
+		}
+
 		// Update open flag
 		IsOpen = true;
 

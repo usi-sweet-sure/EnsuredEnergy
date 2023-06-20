@@ -228,7 +228,7 @@ text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Build" type="Label" parent="Top/MoneyInfo"]
+[node name="build" type="Label" parent="Top/MoneyInfo"]
 layout_mode = 0
 offset_left = 51.0
 offset_top = 97.0
@@ -328,7 +328,6 @@ visible = false
 [connection signal="pressed" from="Bottom/NextTurn/NextTurn" to="." method="_on_label_pressed"]
 [connection signal="pressed" from="Bottom/PolicyButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Bottom/Stats" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Top/MoneyUI" to="." method="_on_money_ui_pressed"]
 
 [editable path="Bottom/EnergyBarWinter"]
 [editable path="Bottom/EnergyBarSummer"]
