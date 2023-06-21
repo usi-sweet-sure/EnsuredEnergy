@@ -89,6 +89,9 @@ public partial class UI : CanvasLayer {
 	// Contains the data displayed in the UI
 	private InfoData Data;
 
+	// TextController reference set by the game loop
+	private TextController TC;
+
 	// Button that triggers the passage to a next turn
 	private Button NextTurnButton;
 
@@ -124,6 +127,7 @@ public partial class UI : CanvasLayer {
 	public override void _Ready() {
 		// Fetch Nodes
 		NextTurnButton = GetNode<Button>("Bottom/NextTurn/NextTurn");
+		TC = GetNode<TextController>("../TextController");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("Bottom/EnergyBarWinter");
@@ -163,6 +167,9 @@ public partial class UI : CanvasLayer {
 
 		// Initialize data
 		Data = new InfoData();
+
+		// Set the language
+		TC._UpdateLanguage(Language.Type.EN);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
