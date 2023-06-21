@@ -76,6 +76,12 @@ public partial class UI : CanvasLayer {
 	// Describes the type of bar that contains information about certain metrics
 	public enum InfoType { W_ENGERGY, S_ENGERGY, SUPPORT, ENVIRONMENT, MONEY };
 
+	// XML querying strings
+	private const string LABEL_FILENAME = "labels.xml";
+	private const string INFOBAR_GROUP = "infobar";
+	private const string RES_GROUP = "resources";
+	private const string POWERPLANT_GROUP = "powerplants";
+
 	// Signals to the game loop that the turn must be passed
 	[Signal]
 	public delegate void NextTurnEventHandler();
@@ -108,6 +114,10 @@ public partial class UI : CanvasLayer {
 
 	// Money related nodes
 	private Label MoneyL;
+	private Label MoneyNameL;
+	private Label BudgetNameL;
+	private Label BuildNameL;
+	private Label ProdNameL;
 	private Button MoneyButton;
 	private ColorRect MoneyInfo;
 	private Label BudgetL;
@@ -145,6 +155,12 @@ public partial class UI : CanvasLayer {
 		BudgetL = GetNode<Label>("Top/MoneyInfo/budget");
 		BuildL = GetNode<Label>("Top/MoneyInfo/build");
 		ProdL = GetNode<Label>("Top/MoneyInfo/prod");
+
+		// Name labels
+		MoneyNameL = GetNode<Label>("Top/Money/Label");
+		BudgetNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label3");
+		BuildNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label4");
+		ProdNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label2");
 
 		// Window buttons
 		PolicyButton = GetNode<Button>("Bottom/PolicyButton");
@@ -279,35 +295,61 @@ public partial class UI : CanvasLayer {
 		int demand = t == InfoType.W_ENGERGY ? Data.W_EnergyDemand : Data.S_EnergyDemand;
 		int supply = t == InfoType.W_ENGERGY ? Data.W_EnergySupply : Data.S_EnergySupply;
 
+		// Get the labels from the XML file
+		string demand_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_demand");
+		string supply_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_supply");
+
 		// Set the info
 		eng._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
-			"Demand", demand.ToString(), // T0, N0
-			"Supply", supply.ToString() // T1, N1
+			demand_label, demand.ToString(), // T0, N0
+			supply_label, supply.ToString() // T1, N1
 		);
 	}
 
 	// Sets the information fields for the support bar
 	private void SetSupportInfo() {
+		// Get the labels from the XML file
+		string afford_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_afford");
+		string aesth_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_aesth");
+
 		SupportBar._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
-			"Affordability", Data.EnergyAffordability.ToString(), // T0, N0
-			"Aesthetic", Data.EnvAesthetic.ToString() // T1, N1
+			afford_label, Data.EnergyAffordability.ToString(), // T0, N0
+			aesth_label, Data.EnvAesthetic.ToString() // T1, N1
 		);
 	}
 
 	// Sets the information fields for the environment bar
 	private void SetEnvironmentInfo() {
+		// Get the labels from the XML file
+		string land_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_land");
+		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
+		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
+
 		EnvironmentBar._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
-			"Land Use", Data.LandUse.ToString(), // T0, N0
-			"Pollution", Data.Pollution.ToString(), // T1, N1
-			"Biodiversity", Data.Biodiversity.ToString() // T2, N2
+			land_label, Data.LandUse.ToString(), // T0, N0
+			poll_label, Data.Pollution.ToString(), // T1, N1
+			buidiv_label, Data.Biodiversity.ToString() // T2, N2
 		);
 	}
 
 	// Sets the information related to the money metric
 	private void SetMoneyInfo() {
+		// Query the label xml to get the names
+		string money_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_money");
+		string budget_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_budget");
+		string prod_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_production");
+		string build_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_building");
+
+		// Set Names
+		MoneyNameL.Text = money_label;
+		BudgetNameL.Text = budget_label;
+		ProdNameL.Text = prod_label;
+		BuildNameL.Text = build_label;
+		
+		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
 		BuildL.Text = Data.Building.ToString();
 		ProdL.Text = Data.Production.ToString();

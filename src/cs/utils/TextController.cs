@@ -116,7 +116,7 @@ public partial class TextController : Node {
 		}
 		
 		//Load XML file into a XDocument for querying
-		string loadedXML = File.ReadAllText(Path.Combine(DB_PATH, Lang.ToString() + "/" + filename));
+		string loadedXML = File.ReadAllText(DB_PATH + Lang.ToString() + "/" + filename);
 		XDocument xml = XDocument.Parse(loadedXML);
 		
 		//Sanity check
