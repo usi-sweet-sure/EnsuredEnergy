@@ -156,6 +156,7 @@ public partial class UI : CanvasLayer {
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
 		NextTurnButton.Pressed += _OnNextTurnPressed;
+		PolicyButton.Pressed += _OnPolicyButtonPressed;
 		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
 		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
 		SummerEnergy.MouseEntered += _OnSummerEnergyMouseEntered;
