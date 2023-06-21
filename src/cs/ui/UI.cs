@@ -111,6 +111,13 @@ public partial class UI : CanvasLayer {
 	private Label BuildL;
 	private Label ProdL;
 
+	// Window buttons
+	private Button PolicyButton;
+	private Button StatsButton;
+
+	// Windows
+	private PolicyWindow PW;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -134,6 +141,13 @@ public partial class UI : CanvasLayer {
 		BudgetL = GetNode<Label>("Top/MoneyInfo/budget");
 		BuildL = GetNode<Label>("Top/MoneyInfo/build");
 		ProdL = GetNode<Label>("Top/MoneyInfo/prod");
+
+		// Window buttons
+		PolicyButton = GetNode<Button>("Bottom/PolicyButton");
+		StatsButton = GetNode<Button>("Bottom/Stats");
+
+		// Windows
+		PW = GetNode<PolicyWindow>("Window");
 
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
@@ -366,5 +380,15 @@ public partial class UI : CanvasLayer {
 	// Hides the information box related to the Support bar
 	public void _OnSupportMouseExited() {
 		SupportBar._HideInfo();
+	}
+
+	// Shows the policy window
+	public void _OnPolicyButtonPressed() {
+		// Toggle the window visibility  
+		if(PW.Visible) {
+			PW.Hide();
+		} else {
+			PW.Show();
+		}
 	}
 }

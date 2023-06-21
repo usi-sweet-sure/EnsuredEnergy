@@ -215,6 +215,11 @@ public partial class GameLoop : Node2D {
 	private void EndGame() {
 		// Update the game state 
 		GS = GameState.ENDED;
+
+		// Deactivate all buttons
+		foreach(var bb in BBs) {
+			bb._Disable();
+		}
 	}
 
 	// ==================== Interaction Callbacks ====================

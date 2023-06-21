@@ -139,9 +139,17 @@ public partial class BuildButton : Button {
 			if(--TurnsToBuild <= 0) {
 				// Finish the current build
 				FinishBuild();
+			} else {
+				// Update the button to show the number of remaining turns
+				SetToBuild();
 			}
 		}
 	}	
+
+	// Public accessor which disables the current build button
+	public void _Disable() {
+		Disabled = true;
+	}
 
 	// ==================== Internal Helpers ====================
 
@@ -194,8 +202,8 @@ public partial class BuildButton : Button {
 	// Sets the button to the build state
 	private void SetToBuild() {
 		Text = "🕐 : " + TurnsToBuild.ToString();
-		Disabled = false;
-		Flat = true;
+		Disabled = true;
+		Flat = false;
 	}
 
 	// Hides all of the plants related to this button
