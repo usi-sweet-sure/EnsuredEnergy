@@ -69,7 +69,7 @@ public readonly struct Language {
 										 "it";
 
 	// Performs the same check as the == operator, but with a run-time check on the type
-    public override bool Equals(object obj) {
+	public override bool Equals(object obj) {
 		// Check for null and compare run-time types.
 		if ((obj == null) || ! this.GetType().Equals(obj.GetType())) {
 			return false;
@@ -79,7 +79,7 @@ public readonly struct Language {
 	}
 
 	// Override of the get hashcode method (needed to overload == and !=)
-    public override int GetHashCode() => HashCode.Combine(lang);
+	public override int GetHashCode() => HashCode.Combine(lang);
 }
 
 // Utility class used to access XML db files.
@@ -87,7 +87,7 @@ public readonly struct Language {
 public partial class TextController : Node {
 
 	// The path to the base of the db 
-	private const string DB_PATH = "res://db/";
+	private string DB_PATH = Path.Combine("db/");
 
 	// The currently loaded xml document
 	private XDocument LoadedXML;
@@ -116,8 +116,16 @@ public partial class TextController : Node {
 		}
 		
 		//Load XML file into a XDocument for querying
-		string loadedXML = File.ReadAllText(DB_PATH + Lang.ToString() + "/" + filename);
-		XDocument xml = XDocument.Parse(loadedXML);
+		string loadedXML;
+		XDocument xml;
+		string path = DB_PATH + Lang.ToString() + "/" + filename;
+		try { 
+			loadedXML = File.ReadAllText(path);
+			xml = XDocument.Parse(loadedXML);
+		} catch(Exception e) {
+			// Control what error is displayed for better debugging
+			throw new Exception("File not found: " + path);
+		}
 		
 		//Sanity check
 		if(xml != null) {
