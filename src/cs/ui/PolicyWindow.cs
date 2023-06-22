@@ -21,11 +21,26 @@ using System;
 // Represents the policy window containing all policy choices
 // TODO: This requires implementing policies, which is a tricky task that will require a ton of work.
 public partial class PolicyWindow : CanvasLayer {
+
+	private Panel P;
+
+	// ==================== GODOT Method Overrides ====================
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
+		P = GetNode<Panel>("MarginContainer/Panel");
+		P.GuiInput += _OnPanelGuiInput;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
 	}
+
+	// ==================== Interaction Callbacks ====================
+
+	// Hides the window if the panel is pressed
+	public void _OnPanelGuiInput(InputEvent input) {
+		if(input.GetType() == (new InputEventMouseButton().GetType()))
+			Hide();
+	} 
 }
