@@ -76,6 +76,13 @@ public partial class UI : CanvasLayer {
 	// Describes the type of bar that contains information about certain metrics
 	public enum InfoType { W_ENGERGY, S_ENGERGY, SUPPORT, ENVIRONMENT, MONEY };
 
+	// XML querying strings
+	private const string LABEL_FILENAME = "labels.xml";
+	private const string INFOBAR_GROUP = "infobar";
+	private const string RES_GROUP = "resources";
+	private const string POWERPLANT_GROUP = "powerplants";	
+	private const string UI_GROUP = "ui";
+
 	// Signals to the game loop that the turn must be passed
 	[Signal]
 	public delegate void NextTurnEventHandler();
@@ -108,6 +115,10 @@ public partial class UI : CanvasLayer {
 
 	// Money related nodes
 	private Label MoneyL;
+	private Label MoneyNameL;
+	private Label BudgetNameL;
+	private Label BuildNameL;
+	private Label ProdNameL;
 	private Button MoneyButton;
 	private ColorRect MoneyInfo;
 	private Label BudgetL;
@@ -121,6 +132,17 @@ public partial class UI : CanvasLayer {
 	// Windows
 	private PolicyWindow PW;
 
+	// Build Menu
+	private BuildMenu BM;
+
+	// Settings
+	private Button SettingsButton;
+	private ColorRect SettingsBox;
+	private Button LanguageButton;
+
+	// Game Loop
+	private GameLoop GL;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -128,6 +150,13 @@ public partial class UI : CanvasLayer {
 		// Fetch Nodes
 		NextTurnButton = GetNode<Button>("Bottom/NextTurn/NextTurn");
 		TC = GetNode<TextController>("../TextController");
+		BM = GetNode<BuildMenu>("../BuildMenu");
+		GL = GetOwner<GameLoop>();
+
+		// Settings
+		SettingsButton = GetNode<Button>("Top/SettingsButton");
+		SettingsBox = GetNode<ColorRect>("Top/SettingsButton/SettingsBox");
+		LanguageButton = GetNode<Button>("Top/SettingsButton/SettingsBox/VBoxContainer/Language");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("Bottom/EnergyBarWinter");
@@ -146,6 +175,12 @@ public partial class UI : CanvasLayer {
 		BuildL = GetNode<Label>("Top/MoneyInfo/build");
 		ProdL = GetNode<Label>("Top/MoneyInfo/prod");
 
+		// Name labels
+		MoneyNameL = GetNode<Label>("Top/Money/Label");
+		BudgetNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label3");
+		BuildNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label4");
+		ProdNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label2");
+
 		// Window buttons
 		PolicyButton = GetNode<Button>("Bottom/PolicyButton");
 		StatsButton = GetNode<Button>("Bottom/Stats");
@@ -156,6 +191,8 @@ public partial class UI : CanvasLayer {
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
 		NextTurnButton.Pressed += _OnNextTurnPressed;
+		SettingsButton.Pressed += _OnSettingsButtonPressed;
+		LanguageButton.Pressed += _OnLanguageButtonPressed;
 		PolicyButton.Pressed += _OnPolicyButtonPressed;
 		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
 		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
@@ -178,6 +215,66 @@ public partial class UI : CanvasLayer {
 	}
 
 	// ==================== UI Update API ====================
+
+	// Updates the various labels across the UI
+	public void _UpdateUI() {
+		// Updates the displayed language to match the selected one
+		LanguageButton.Text = TC._GetLanguageName();
+
+		// Fetch the build menu names
+		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
+		string hydro_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_hydro");
+		string solar_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_solar");
+		string tree_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_tree");
+		string nuclear_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_nuclear");
+
+		// Fetch the energy bar names
+		string WinterEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_w");
+		string SummerEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_s");
+		string EnvironmentBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_environment");
+		string SupportBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_support");
+
+		// UI buttons
+		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
+
+		// Update the various plants
+		BM._UpdatePlantName(BuildingType.GAS, gas_name);
+		BM._UpdatePlantName(BuildingType.HYDRO, hydro_name);
+		BM._UpdatePlantName(BuildingType.SOLAR, solar_name);
+		BM._UpdatePlantName(BuildingType.TREE, tree_name);
+
+		// Update the placed plants
+		foreach(PowerPlant pp in GL._GetPowerPlants()) {
+			switch(pp.PlantType) {
+				case BuildingType.GAS:
+					pp._UpdatePlantName(gas_name);
+					break;
+				case BuildingType.HYDRO:
+					pp._UpdatePlantName(hydro_name);
+					break;
+				case BuildingType.SOLAR:
+					pp._UpdatePlantName(solar_name);
+					break;
+				case BuildingType.TREE:
+					pp._UpdatePlantName(tree_name);
+					break;
+				case BuildingType.NUCLEAR:
+					pp._UpdatePlantName(nuclear_name);
+					break;
+				default:
+					break;
+			}
+		}
+
+		// Update the energy bar names
+		WinterEnergy._UpdateBarName(WinterEnergy_name);
+		SummerEnergy._UpdateBarName(SummerEnergy_name);
+		EnvironmentBar._UpdateBarName(EnvironmentBar_name);
+		SupportBar._UpdateBarName(SupportBar_name);
+
+		// Update UI buttons
+		NextTurnButton.Text = next_turn_name;
+	}
 
 	// Updates the value of the a given bar
 	public void _UpdateBarValue(InfoType t, int val) {
@@ -280,35 +377,61 @@ public partial class UI : CanvasLayer {
 		int demand = t == InfoType.W_ENGERGY ? Data.W_EnergyDemand : Data.S_EnergyDemand;
 		int supply = t == InfoType.W_ENGERGY ? Data.W_EnergySupply : Data.S_EnergySupply;
 
+		// Get the labels from the XML file
+		string demand_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_demand");
+		string supply_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_supply");
+
 		// Set the info
 		eng._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
-			"Demand", demand.ToString(), // T0, N0
-			"Supply", supply.ToString() // T1, N1
+			demand_label, demand.ToString(), // T0, N0
+			supply_label, supply.ToString() // T1, N1
 		);
 	}
 
 	// Sets the information fields for the support bar
 	private void SetSupportInfo() {
+		// Get the labels from the XML file
+		string afford_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_afford");
+		string aesth_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_aesth");
+
 		SupportBar._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
-			"Affordability", Data.EnergyAffordability.ToString(), // T0, N0
-			"Aesthetic", Data.EnvAesthetic.ToString() // T1, N1
+			afford_label, Data.EnergyAffordability.ToString(), // T0, N0
+			aesth_label, Data.EnvAesthetic.ToString() // T1, N1
 		);
 	}
 
 	// Sets the information fields for the environment bar
 	private void SetEnvironmentInfo() {
+		// Get the labels from the XML file
+		string land_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_land");
+		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
+		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
+
 		EnvironmentBar._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
-			"Land Use", Data.LandUse.ToString(), // T0, N0
-			"Pollution", Data.Pollution.ToString(), // T1, N1
-			"Biodiversity", Data.Biodiversity.ToString() // T2, N2
+			land_label, Data.LandUse.ToString(), // T0, N0
+			poll_label, Data.Pollution.ToString(), // T1, N1
+			buidiv_label, Data.Biodiversity.ToString() // T2, N2
 		);
 	}
 
 	// Sets the information related to the money metric
 	private void SetMoneyInfo() {
+		// Query the label xml to get the names
+		string money_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_money");
+		string budget_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_budget");
+		string prod_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_production");
+		string build_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_building");
+
+		// Set Names
+		MoneyNameL.Text = money_label;
+		BudgetNameL.Text = budget_label;
+		ProdNameL.Text = prod_label;
+		BuildNameL.Text = build_label;
+		
+		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
 		BuildL.Text = Data.Building.ToString();
 		ProdL.Text = Data.Production.ToString();
@@ -398,5 +521,24 @@ public partial class UI : CanvasLayer {
 		} else {
 			PW.Show();
 		}
+	}
+
+	// Toggles the settings box
+	public void _OnSettingsButtonPressed() {
+		// Check the current visibility of the box and act accordingly
+		if(SettingsBox.Visible) {
+			SettingsBox.Hide();
+		} else {
+			SettingsBox.Show();
+		}
+	}
+
+	// Propagates the language update to the game loop
+	public void _OnLanguageButtonPressed() {
+		// Move to the next language
+		TC._NextLanguage();
+
+		// Update the ui
+		_UpdateUI();
 	}
 }

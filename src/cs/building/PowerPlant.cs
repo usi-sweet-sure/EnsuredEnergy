@@ -131,6 +131,10 @@ public partial class PowerPlant : Node2D {
 		}
 	}
 
+	public void _UpdatePlantName(string name) {
+		NameL.Text = name;
+	}
+
 	// Updates the UI to match the internal state of the plant
 	public void _UpdatePlantData() {
 		// Update the preview state of the plant

@@ -40,11 +40,17 @@
         <text id="label_environment">Environment</text>
     </group>
 
+     <!-- Labels for general UI buttons -->
+    <group id="ui">
+        <text id="label_next_turn">Next Turn</text>
+    </group>
+
     <!-- Labels for the different power plants -->
     <group id="powerplants">
         <text id="label_gas">Gas</text>
-        <text id="lagel_hydro">Hydro</text>
+        <text id="label_hydro">Hydro</text>
         <text id="label_solar">Solar</text>
         <text id="label_tree">Tree</text>
+        <text id="label_nuclear">Nuclear</text>
     </group>
 </db>

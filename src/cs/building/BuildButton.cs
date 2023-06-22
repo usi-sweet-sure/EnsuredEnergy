@@ -238,47 +238,6 @@ public partial class BuildButton : Button {
 		}
 	}
 
-	// Creates a new power plant on the current build spot
-	private void _SpawnPowerPlant(BuildingType Bt, int buildC, int prodC, int eng) {
-		// Create a new power plant that will be places at our current button's location
-		PowerPlant newPP = new PowerPlant();
-
-		// Connect it to our parent
-		Owner.AddChild(newPP);
-
-		// Set it up to display at our button's location
-		newPP.Position = Vector2.Zero;
-		newPP.Scale = new Vector2(1, 1);
-		newPP.IsPreview = false;
-		newPP.BuildCost = buildC;
-		newPP.ProductionCost = prodC;
-		newPP.EnergyProduction = eng;
-		newPP.PlantType = Bt;
-
-		// Force name to be consistent with type
-		switch(Bt) {
-			case BuildingType.GAS:
-				newPP.PlantName = GAS_NAME;
-				break;
-			
-			case BuildingType.HYDRO:
-				newPP.PlantName = HYDRO_NAME;
-				break;
-
-			case BuildingType.SOLAR:
-				newPP.PlantName = SOLAR_NAME;
-				break;
-			
-			case BuildingType.TREE:
-				newPP.PlantName = TREE_NAME;
-				break;
-		}
-
-		// Show the new power plant
-		newPP._Ready();
-		newPP.Show();
-	}
-
 	// Updates a given power plant to match the received power plant
 	private void UpdatePowerPlant(ref PowerPlant PP, PowerPlant PPRec) {
 		// Set it up to display at our button's location
@@ -291,23 +250,7 @@ public partial class BuildButton : Button {
 		PP.PlantType = PPRec.PlantType;
 
 		// Force name to be consistent with type
-		switch(PP.PlantType) {
-			case BuildingType.GAS:
-				PP.PlantName = GAS_NAME;
-				break;
-			
-			case BuildingType.HYDRO:
-				PP.PlantName = HYDRO_NAME;
-				break;
-
-			case BuildingType.SOLAR:
-				PP.PlantName = SOLAR_NAME;
-				break;
-			
-			case BuildingType.TREE:
-				PP.PlantName = TREE_NAME;
-				break;
-		}
+		PP.PlantName = PPRec.PlantName;
 
 		// Make sure that the data is propagated to the UI
 		PP._UpdatePlantData();

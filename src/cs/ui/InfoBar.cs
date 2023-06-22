@@ -58,6 +58,11 @@ public partial class InfoBar : ProgressBar {
 		Value = v;
 	}
 
+	// Updates the bar name (for localization)
+	public void _UpdateBarName(string name) {
+		BarName.Text = name;
+	}
+
 	// Updates the information of the associated info box 
 	// Follows the same calling semantics as the info box:
 	// params: varargs in the form of N/Max, T0, N0, T1, N1, T2, N2
