@@ -125,8 +125,9 @@ public partial class GameLoop : Node2D {
 			bb._RecordGameLoopRef(this);
 		}
 
-		// Connect to the UI's next turn signal
+		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
+
 
 		// Start the game
 		StartGame();
@@ -165,6 +166,8 @@ public partial class GameLoop : Node2D {
 			Money.Build,
 			Money.Money
 		);
+
+		_UI._UpdateUI();
 	}
 
 	// Propagates the new turn to each build button and building
@@ -187,6 +190,9 @@ public partial class GameLoop : Node2D {
 
 		// Perform initial Resouce update
 		UpdateResources();
+
+		// Update the UI
+		_UI._UpdateUI();
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn

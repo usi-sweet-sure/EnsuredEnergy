@@ -40,6 +40,10 @@ public readonly struct Language {
 	public static bool operator ==(Language l, Language other) => l.lang == other.lang;
 	public static bool operator !=(Language l, Language other) => l.lang != other.lang;
 
+	// Override the incrementation and decrementation operators
+	public static Language operator ++(Language l) => new Language((Type)((int)(l.lang + 1) % (int)(Type.IT + 1)));
+	public static Language operator --(Language l) => new Language((Type)((int)(l.lang - 1) % (int)(Type.IT + 1)));
+
 	// Implicit conversion from the enum to the struct
 	public static implicit operator Language(Type lt) => new Language(lt);
 
@@ -68,6 +72,11 @@ public readonly struct Language {
 										 lang == Type.DE ? "de" :
 										 "it";
 
+	public string ToName() => lang == Type.EN ? "Language: English" : 
+							  lang == Type.FR ? "Langue: Français" :
+							  lang == Type.DE ? "Sprache: Deutsch" :
+							  "Lingua: Italiano";
+
 	// Performs the same check as the == operator, but with a run-time check on the type
 	public override bool Equals(object obj) {
 		// Check for null and compare run-time types.
@@ -92,10 +101,10 @@ public partial class TextController : Node {
 	// The currently loaded xml document
 	private XDocument LoadedXML;
 	private string LoadedFileName;
+	private Language LoadedLanguage;
 
 	// The current language
 	private Language Lang = Language.Type.EN;
-
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -149,12 +158,21 @@ public partial class TextController : Node {
 		// Don't do anything if the languages are the same
 	}
 
+	// Increments the language
+	public void _NextLanguage() {
+		Lang = ++Lang;
+	}
+
+	// Retrieve the language name
+	public string _GetLanguageName() => Lang.ToName();
+
 	// Queries the given xml file to retrieve the wanted text
 	public string _GetText(string filename, string groupid, string id) {
 		// Start by checking if the file is loaded in or not
-		if(LoadedFileName != filename) {
+		if(LoadedFileName != filename || LoadedLanguage != Lang) {
 			ParseXML(ref LoadedXML, filename);
 			LoadedFileName = filename;
+			LoadedLanguage = Lang;
 		}
 
 		// Query the file

@@ -320,6 +320,33 @@ text = "  >"
 flat = true
 alignment = 0
 
+[node name="SettingsButton" type="Button" parent="Top"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 9.0
+offset_right = 58.0
+offset_bottom = 40.0
+text = "⚙️"
+
+[node name="SettingsBox" type="ColorRect" parent="Top/SettingsButton"]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = 33.0
+offset_right = 192.0
+offset_bottom = 81.0
+color = Color(0.121569, 0.219608, 0.360784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Top/SettingsButton/SettingsBox"]
+layout_mode = 0
+offset_right = 188.0
+offset_bottom = 40.0
+
+[node name="Language" type="Button" parent="Top/SettingsButton/SettingsBox/VBoxContainer"]
+layout_mode = 2
+text = "Language: English"
+flat = true
+
 [node name="Shock" parent="." instance=ExtResource("5_tj765")]
 visible = false
 

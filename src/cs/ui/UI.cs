@@ -131,6 +131,14 @@ public partial class UI : CanvasLayer {
 	// Windows
 	private PolicyWindow PW;
 
+	// Build Menu
+	private BuildMenu BM;
+
+	// Settings
+	private Button SettingsButton;
+	private ColorRect SettingsBox;
+	private Button LanguageButton;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -138,6 +146,12 @@ public partial class UI : CanvasLayer {
 		// Fetch Nodes
 		NextTurnButton = GetNode<Button>("Bottom/NextTurn/NextTurn");
 		TC = GetNode<TextController>("../TextController");
+		BM = GetNode<BuildMenu>("../BuildMenu");
+
+		// Settings
+		SettingsButton = GetNode<Button>("Top/SettingsButton");
+		SettingsBox = GetNode<ColorRect>("Top/SettingsButton/SettingsBox");
+		LanguageButton = GetNode<Button>("Top/SettingsButton/SettingsBox/VBoxContainer/Language");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("Bottom/EnergyBarWinter");
@@ -172,6 +186,8 @@ public partial class UI : CanvasLayer {
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
 		NextTurnButton.Pressed += _OnNextTurnPressed;
+		SettingsButton.Pressed += _OnSettingsButtonPressed;
+		LanguageButton.Pressed += _OnLanguageButtonPressed;
 		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
 		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
 		SummerEnergy.MouseEntered += _OnSummerEnergyMouseEntered;
@@ -193,6 +209,37 @@ public partial class UI : CanvasLayer {
 	}
 
 	// ==================== UI Update API ====================
+
+	// Updates the various labels across the UI
+	public void _UpdateUI() {
+		// Updates the displayed language to match the selected one
+		LanguageButton.Text = TC._GetLanguageName();
+		
+		// Fetch the build menu names
+		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
+		string hydro_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_hydro");
+		string solar_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_solar");
+		string tree_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_tree");
+
+		// Fetch the energy bar names
+		string WinterEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_w");
+		string SummerEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_s");
+		string EnvironmentBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_environment");
+		string SupportBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_support");
+
+		// Update the various plants
+		BM._UpdatePlantName(BuildingType.GAS, gas_name);
+		BM._UpdatePlantName(BuildingType.HYDRO, hydro_name);
+		BM._UpdatePlantName(BuildingType.SOLAR, solar_name);
+		BM._UpdatePlantName(BuildingType.TREE, tree_name);
+
+		// Update the energy bar names
+		WinterEnergy._UpdateBarName(WinterEnergy_name);
+		SummerEnergy._UpdateBarName(SummerEnergy_name);
+		EnvironmentBar._UpdateBarName(EnvironmentBar_name);
+		SupportBar._UpdateBarName(SupportBar_name);
+
+	}
 
 	// Updates the value of the a given bar
 	public void _UpdateBarValue(InfoType t, int val) {
@@ -439,5 +486,24 @@ public partial class UI : CanvasLayer {
 		} else {
 			PW.Show();
 		}
+	}
+
+	// Toggles the settings box
+	public void _OnSettingsButtonPressed() {
+		// Check the current visibility of the box and act accordingly
+		if(SettingsBox.Visible) {
+			SettingsBox.Hide();
+		} else {
+			SettingsBox.Show();
+		}
+	}
+
+	// Propagates the language update to the game loop
+	public void _OnLanguageButtonPressed() {
+		// Move to the next language
+		TC._NextLanguage();
+
+		// Update the ui
+		_UpdateUI();
 	}
 }

@@ -82,8 +82,42 @@ public partial class BuildMenu : CanvasLayer {
 	public override void _Process(double delta) {
 	}
 
+	// ==================== Public API ====================
+
+	// Updates the name of the associate building type (for localization)
+	public void _UpdatePlantName(BuildingType Bt, string newName) {
+		// Find which building to update
+		switch (Bt) {
+			case BuildingType.GAS:
+				// Position the plant correctly
+				SetPlantName(ref GasPlant, newName);
+				break;
+
+			case BuildingType.HYDRO:
+				SetPlantName(ref HydroPlant, newName);
+				break;
+
+			case BuildingType.SOLAR:
+				SetPlantName(ref SolarPlant, newName);
+				break;
+
+			case BuildingType.TREE:
+				SetPlantName(ref TreePlant, newName);
+				break;
+			
+			default:
+				break;
+		}
+	}
+
 	// ==================== Internal Helpers ====================
 
+	// Sets the plants name and propagates info to ui
+	private void SetPlantName(ref PowerPlant PP, string name) {
+		PP.PlantName = name;
+		PP._UpdatePlantData();
+	}
+	
 	// Hides all of the plants related to this button
 	private void HideAllPlants() {
 		// Hide all plants
