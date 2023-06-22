@@ -72,8 +72,8 @@ public partial class GameLoop : Node2D {
 	// Internal game state
 	private GameState GS;
 
-	// Contains all of the buildings in the scene
-	private List<PowerPlant> Buildings;
+	// Contains all of the PowerPlants in the scene
+	private List<PowerPlant> PowerPlants;
 	
 	// Contains all of the BuildButtons in the scene
 	private List<BuildButton> BBs;
@@ -99,13 +99,13 @@ public partial class GameLoop : Node2D {
 		GS = GameState.NOT_STARTED;
 		RemainingTurns = N_TURNS;
 		Money = new MoneyData(START_MONEY);
-		Buildings = new List<PowerPlant>();
+		PowerPlants = new List<PowerPlant>();
 		BBs = new List<BuildButton>();
 
 		// Fetch initial nodes
-		// Start with buildings, in the begining there are only 2 buildings Nuclear and Coal
-		Buildings.Add(GetNode<PowerPlant>("World/Nuclear"));
-		Buildings.Add(GetNode<PowerPlant>("World/Coal"));
+		// Start with PowerPlants, in the begining there are only 2 PowerPlants Nuclear and Coal
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Coal"));
 
 		// Fill in build buttons
 		BBs.Add(GetNode<BuildButton>("World/BuildButton"));
@@ -154,6 +154,10 @@ public partial class GameLoop : Node2D {
 		return false;
 	}
 
+	public List<PowerPlant> _GetPowerPlants() {
+		return PowerPlants;
+	}
+
 	// ==================== Internal Helpers ====================
 	
 	// Propagates resource updates to the UI
@@ -175,7 +179,7 @@ public partial class GameLoop : Node2D {
 		foreach(var bb in BBs) {
 			bb._NextTurn();
 		}
-		foreach(var pp in Buildings) {
+		foreach(var pp in PowerPlants) {
 			pp._NewTurn();
 		}
 	}
@@ -207,7 +211,7 @@ public partial class GameLoop : Node2D {
 			// Update Resources 
 			UpdateResources();
 
-			// Update the buildings and build buttons
+			// Update the PowerPlants and build buttons
 			UpdateBuilds();
 
 		} else if(RemainingTurns <= 0) {
@@ -235,10 +239,10 @@ public partial class GameLoop : Node2D {
 		// Check if the update was a power plant addition or removal
 		if(remove) {
 			//Sanity Check
-			Debug.Assert(Buildings.Contains(pp));
+			Debug.Assert(PowerPlants.Contains(pp));
 
 			// Destroy the power plant
-			Buildings.Remove(pp);
+			PowerPlants.Remove(pp);
 
 			// Connect the new build button to our signal
 			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
@@ -256,7 +260,7 @@ public partial class GameLoop : Node2D {
 			BBs.Remove(bb);
 
 			// Replace it with the new power plant
-			Buildings.Add(pp);
+			PowerPlants.Add(pp);
 		}
 	}
 

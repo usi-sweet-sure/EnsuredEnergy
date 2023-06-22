@@ -80,7 +80,8 @@ public partial class UI : CanvasLayer {
 	private const string LABEL_FILENAME = "labels.xml";
 	private const string INFOBAR_GROUP = "infobar";
 	private const string RES_GROUP = "resources";
-	private const string POWERPLANT_GROUP = "powerplants";
+	private const string POWERPLANT_GROUP = "powerplants";	
+	private const string UI_GROUP = "ui";
 
 	// Signals to the game loop that the turn must be passed
 	[Signal]
@@ -139,6 +140,9 @@ public partial class UI : CanvasLayer {
 	private ColorRect SettingsBox;
 	private Button LanguageButton;
 
+	// Game Loop
+	private GameLoop GL;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -147,6 +151,7 @@ public partial class UI : CanvasLayer {
 		NextTurnButton = GetNode<Button>("Bottom/NextTurn/NextTurn");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
+		GL = GetOwner<GameLoop>();
 
 		// Settings
 		SettingsButton = GetNode<Button>("Top/SettingsButton");
@@ -214,12 +219,13 @@ public partial class UI : CanvasLayer {
 	public void _UpdateUI() {
 		// Updates the displayed language to match the selected one
 		LanguageButton.Text = TC._GetLanguageName();
-		
+
 		// Fetch the build menu names
 		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
 		string hydro_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_hydro");
 		string solar_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_solar");
 		string tree_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_tree");
+		string nuclear_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_nuclear");
 
 		// Fetch the energy bar names
 		string WinterEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_w");
@@ -227,11 +233,37 @@ public partial class UI : CanvasLayer {
 		string EnvironmentBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_environment");
 		string SupportBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_support");
 
+		// UI buttons
+		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
+
 		// Update the various plants
 		BM._UpdatePlantName(BuildingType.GAS, gas_name);
 		BM._UpdatePlantName(BuildingType.HYDRO, hydro_name);
 		BM._UpdatePlantName(BuildingType.SOLAR, solar_name);
 		BM._UpdatePlantName(BuildingType.TREE, tree_name);
+
+		// Update the placed plants
+		foreach(PowerPlant pp in GL._GetPowerPlants()) {
+			switch(pp.PlantType) {
+				case BuildingType.GAS:
+					pp._UpdatePlantName(gas_name);
+					break;
+				case BuildingType.HYDRO:
+					pp._UpdatePlantName(hydro_name);
+					break;
+				case BuildingType.SOLAR:
+					pp._UpdatePlantName(solar_name);
+					break;
+				case BuildingType.TREE:
+					pp._UpdatePlantName(tree_name);
+					break;
+				case BuildingType.NUCLEAR:
+					pp._UpdatePlantName(nuclear_name);
+					break;
+				default:
+					break;
+			}
+		}
 
 		// Update the energy bar names
 		WinterEnergy._UpdateBarName(WinterEnergy_name);
@@ -239,6 +271,8 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar._UpdateBarName(EnvironmentBar_name);
 		SupportBar._UpdateBarName(SupportBar_name);
 
+		// Update UI buttons
+		NextTurnButton.Text = next_turn_name;
 	}
 
 	// Updates the value of the a given bar

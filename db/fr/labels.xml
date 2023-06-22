@@ -21,7 +21,7 @@
     <group id="infobar">
         <text id="label_demand">Demande</text>
         <text id="label_supply">Apport</text>
-        <text id="label_afford">Affordability</text>
+        <text id="label_afford">Abordabilité</text>
         <text id="label_aesth">Aesthetique</text>
         <text id="label_land">Terrain</text>
         <text id="label_pollution">Pollution</text>
@@ -40,11 +40,17 @@
         <text id="label_environment">Environment</text>
     </group>
 
+    <!-- Labels for general UI buttons -->
+    <group id="ui">
+        <text id="label_next_turn">Prochain Tour</text>
+    </group>
+
     <!-- Labels for the different power plants -->
     <group id="powerplants">
         <text id="label_gas">Gaz</text>
-        <text id="lagel_hydro">Hydrolique</text>
+        <text id="label_hydro">Hydrolique</text>
         <text id="label_solar">Solaire</text>
         <text id="label_tree">Arbre</text>
+        <text id="label_nuclear">Nucléaire</text>
     </group>
 </db>

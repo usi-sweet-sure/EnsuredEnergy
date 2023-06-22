@@ -14,37 +14,43 @@
 
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
--->   
+-->    
 <!-- Contains all of the static labels present in the main UI -->
-<db id="labels" lang="de">
+<db id="labels" lang="en">
     <!-- Labels for the info bars -->
     <group id="infobar">
-        <text id="label_demand">Demand</text>
-        <text id="label_supply">Supply</text>
-        <text id="label_afford">Affordability</text>
-        <text id="label_aesth">Aesthetic</text>
-        <text id="label_land">Land Use</text>
-        <text id="label_pollution">Pollution</text>
-        <text id="label_biodiversity">Biodiversity</text>
-        <text id="label_money">Money</text>
+        <text id="label_demand">Energiebedarf</text>
+        <text id="label_supply">Energieversorgung</text>
+        <text id="label_afford">Erschwinglichkeit</text>
+        <text id="label_aesth">Ästhetik</text>
+        <text id="label_land">Bodennutzung</text>
+        <text id="label_pollution">Verschmutzung</text>
+        <text id="label_biodiversity">Biodiversität</text>
+        <text id="label_money">Geld</text>
         <text id="label_budget">Budget</text>
-        <text id="label_building">Building</text>
-        <text id="label_production">Production</text>
+        <text id="label_building">Konstruktion</text>
+        <text id="label_production">Produktion</text>
     </group>
     
     <!-- Labels for the resource bars -->
     <group id="resources">
-        <text id="label_energy_w">Energy ❄</text>
-        <text id="label_energy_s">Energy 🔆</text>
-        <text id="label_support">Support</text>
-        <text id="label_environment">Environment</text>
+        <text id="label_energy_w">Energie ❄</text>
+        <text id="label_energy_s">Energie 🔆</text>
+        <text id="label_support">Unterstützung</text>
+        <text id="label_environment">Umfeld</text>
+    </group>
+
+     <!-- Labels for general UI buttons -->
+    <group id="ui">
+        <text id="label_next_turn">Nächste Runde</text>
     </group>
 
     <!-- Labels for the different power plants -->
     <group id="powerplants">
         <text id="label_gas">Gas</text>
-        <text id="lagel_hydro">Hydro</text>
+        <text id="label_hydro">Wasserkraft</text>
         <text id="label_solar">Solar</text>
-        <text id="label_tree">Tree</text>
+        <text id="label_tree">Baum</text>
+        <text id="label_nuclear">Atomwerk</text>
     </group>
 </db>

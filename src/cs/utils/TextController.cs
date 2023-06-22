@@ -131,7 +131,7 @@ public partial class TextController : Node {
 		try { 
 			loadedXML = File.ReadAllText(path);
 			xml = XDocument.Parse(loadedXML);
-		} catch(Exception e) {
+		} catch(Exception) {
 			// Control what error is displayed for better debugging
 			throw new Exception("File not found: " + path);
 		}
