@@ -188,6 +188,7 @@ public partial class UI : CanvasLayer {
 		NextTurnButton.Pressed += _OnNextTurnPressed;
 		SettingsButton.Pressed += _OnSettingsButtonPressed;
 		LanguageButton.Pressed += _OnLanguageButtonPressed;
+		PolicyButton.Pressed += _OnPolicyButtonPressed;
 		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
 		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
 		SummerEnergy.MouseEntered += _OnSummerEnergyMouseEntered;
