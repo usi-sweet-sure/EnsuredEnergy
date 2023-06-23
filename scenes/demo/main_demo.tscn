@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=11 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/demo/world.tscn" id="1_prp6q"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/demo/BuildMenu.tscn" id="2_wrh8p"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
 [ext_resource type="Script" path="res://src/cs/utils/TextController.cs" id="6_wtjaw"]
+[ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
+[ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
+[ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
+[ext_resource type="Script" path="res://src/cs/resources/EnvironmentManager.cs" id="10_7fban"]
 
 [node name="MainDemo" type="Node2D"]
 script = ExtResource("1_4jam2")
@@ -20,6 +24,18 @@ visible = false
 
 [node name="TextController" type="Node" parent="."]
 script = ExtResource("6_wtjaw")
+
+[node name="ResourceManager" type="Node" parent="."]
+script = ExtResource("7_u5qtv")
+
+[node name="EnergyManager" type="Node" parent="ResourceManager"]
+script = ExtResource("8_axsc3")
+
+[node name="SupportManager" type="Node" parent="ResourceManager"]
+script = ExtResource("9_44b4k")
+
+[node name="EnvironmentManager" type="Node" parent="ResourceManager"]
+script = ExtResource("10_7fban")
 
 [editable path="World"]
 [editable path="World/Nuclear"]

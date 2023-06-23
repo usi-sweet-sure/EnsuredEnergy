@@ -89,6 +89,8 @@ public partial class GameLoop : Node2D {
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
 
+	private ResourceManager RM;
+
 	//TODO: Add Shocks once they are implemented
 
 	// ==================== GODOT Method Overrides ====================
@@ -116,6 +118,9 @@ public partial class GameLoop : Node2D {
 		// Fetch UI and BuildMenu
 		_UI = GetNode<UI>("UI");
 		BM = GetNode<BuildMenu>("BuildMenu");
+		
+		// Fetch resource manager
+		RM = GetNode<ResourceManager>("ResourceManager");
 
 		// Connect Callback to each build button and give them a reference to the loop
 		foreach(BuildButton bb in BBs) {
@@ -194,6 +199,9 @@ public partial class GameLoop : Node2D {
 
 		// Perform initial Resouce update
 		UpdateResources();
+
+		// Set the initial power plants
+		RM._UpdatePowerPlants(PowerPlants);
 
 		// Update the UI
 		_UI._UpdateUI();
