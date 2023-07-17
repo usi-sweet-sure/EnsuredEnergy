@@ -169,7 +169,7 @@ public partial class GameLoop : Node2D {
 	private void UpdateResources() {
 		// Update the ressource manager
 		RM._NextTurn();
-		
+
 		// Update Money UI
 		_UI._UpdateData(
 			UI.InfoType.MONEY,
@@ -208,6 +208,9 @@ public partial class GameLoop : Node2D {
 
 		// Update the UI
 		_UI._UpdateUI();
+
+		// Initialize resources
+		RM._InitResources();
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
