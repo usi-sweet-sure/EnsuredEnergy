@@ -19,7 +19,6 @@ position = Vector2(650, 100)
 scale = Vector2(1.3, 1.3)
 BuildTime = 1
 BuildCost = 500
-ProductionCost = 50
 PlantName = "Solar Plant"
 PlantType = 2
 
@@ -49,7 +48,6 @@ flat = true
 position = Vector2(150, 100)
 scale = Vector2(1.3, 1.3)
 BuildCost = 300
-ProductionCost = 150
 PlantName = "Gas Plant"
 
 [node name="GasButton" type="Button" parent="ColorRect/Gas"]

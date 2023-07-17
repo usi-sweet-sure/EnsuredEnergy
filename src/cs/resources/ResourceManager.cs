@@ -54,6 +54,12 @@ public partial class ResourceManager : Node {
 
 	// ==================== Public API ====================
 
+	// Progresses to the next turn
+	public void NextTurn() {
+		// Update the internal managers
+		Energy E = EngM._NextTurn();
+	}
+
 	// Updates the current list of power plants via a deep copy
 	public void _UpdatePowerPlants(List<PowerPlant> lPP) {
 		// Clear the current list to be safe

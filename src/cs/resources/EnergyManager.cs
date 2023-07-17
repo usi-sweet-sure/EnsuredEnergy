@@ -22,21 +22,29 @@ using System.Linq;
 
 // Models the resource managed by the EnergyManager
 public struct Energy {
-	int SupplySummer; // Total Supply for the next turn for the summer months
-	int SupplyWinter; // Total Supply for the next turn for the winter months
-	int DemandSummer; // Total Demand for the next turn for the summer months
-	int DemandWinter; // Total Demand for the next turn for the winter months
+	float SupplySummer; // Total Supply for the next turn for the summer months
+	float SupplyWinter; // Total Supply for the next turn for the winter months
+	float DemandSummer; // Total Demand for the next turn for the summer months
+	float DemandWinter; // Total Demand for the next turn for the winter months
+	float SurplusSummer; // Amount of excess energy produced in the summer months (represents an underproduction if negative)
+	float SurplusWinter; // Amount of excess energy produced in the winter months (represents an underproduction if negative)
+
 
 	// Basic constructor for the Energy Ressource
-	public Energy(int SS=0, int SW=0, int DS=0, int DW=0) {
+	public Energy(float SS=0, float SW=0, float DS=0, float DW=0, float SurS=0, float SurW=0) {
 		SupplySummer = SS;
 		SupplyWinter = SW;
 		DemandSummer = DS;
 		DemandWinter = DW;
+		SurplusSummer = SurS;
+		SurplusWinter = SurW;
 	}
 }
 
 public partial class EnergyManager : Node {
+
+	// Max value allowed by the UI
+	private const int MAX_ENERGY_BAR_VAL = 1000;
 
 	// Keep track of all of the placed power plants
 	private List<PowerPlant> PowerPlants;
@@ -71,18 +79,43 @@ public partial class EnergyManager : Node {
 		}
 	}
 
-	// Computes the energy 
-	public Energy NextTurn() {
-		// TODO: Update the Energy by aggregating the capacity from the new power plants
+	// Computes the energy levels that will be present for the next turn
+	public Energy _NextTurn() {
+		// Update all plants
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._NewTurn();
+		}
+
+		// TODO: Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
-		return new Energy();
+		E = EstimateEnergy();
+		return E;
 	}
 
 	// ==================== Helper Methods ====================  
 
+	// Aggregate the current supply into a single value
+	private float AggregateSupply() =>
+		// Sum all capacities for each active power plant
+		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability()).Sum();
+
 	// Aggregate the current capacities into a single value
 	private int AggregateCapacity() =>
-		// Sum all capacities for each active power plant
 		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity()).Sum();
+
+	// Estimate the values for the next turn (in case of no network or demo)
+	private Energy EstimateEnergy() {
+		// Aggregate supply
+		float supply = AggregateSupply();
+
+		// Compute the Excess and store it in a separate field
+		float excess = supply - MAX_ENERGY_BAR_VAL;
+		
+		// Normalize the supply 
+		supply = Math.Min(supply, MAX_ENERGY_BAR_VAL);
+
+		float demandEstimate = MAX_ENERGY_BAR_VAL * 0.5f;
+		return new Energy(supply, supply, demandEstimate, demandEstimate, excess, excess);
+	}
 
 }

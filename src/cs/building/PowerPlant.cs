@@ -52,7 +52,7 @@ public partial class PowerPlant : Node2D {
 
 	// This is the amount of energy that the plant is able to produce given environmental factors
 	[Export]
-	public int InitialEnergyAvailability = 100;
+	public float InitialEnergyAvailability = 1.0f; // This is a percentage
 
 	// The name of the power plant that will be displayed in the game
 	// This should align with the plant's type
@@ -69,7 +69,7 @@ public partial class PowerPlant : Node2D {
 	// Internal metrics
 	private int ProductionCost = 0;
 	private int EnergyCapacity = 100;
-	private int EnergyAvailability = 100;
+	private float EnergyAvailability = 1.0f;
 
 	// Life flag: Whether or not the plant is on
 	private bool IsAlive = true;
@@ -137,11 +137,11 @@ public partial class PowerPlant : Node2D {
 	}
 
 	// Update API for the private fields of the plant
-	public void _UdpatePowerPlantFields(int PC=-1, int EC=-1, int EA=-1) {
+	public void _UdpatePowerPlantFields(int PC=-1, int EC=-1, float EA=-1.0f) {
 		// Only update internal fields that where given a proper value
 		ProductionCost = PC == -1 ? ProductionCost : PC;
 		EnergyCapacity = EC == -1 ? EnergyCapacity : EC;
-		EnergyAvailability = EA == -1 ? EnergyAvailability : EA;
+		EnergyAvailability = EA <= -1.0f ? EnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
 	}
 
 	// Getter for the powerplant's current capacity
@@ -152,6 +152,11 @@ public partial class PowerPlant : Node2D {
 	// Getter for the plant's production cost
 	public int _GetProductionCost() {
 		return ProductionCost;
+	}
+
+	// Getter for the current availability EA in [0.0, 1.0]
+	public float _GetAvailability() {
+		return Math.Max(Math.Min(EnergyAvailability, 1.0f), 0.0f);
 	}
 
 	// Getter for the powerplant's liveness status
