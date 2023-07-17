@@ -59,9 +59,12 @@ public partial class ResourceManager : Node {
 		// Clear the current list to be safe
 		PowerPlants.Clear();
 
-		// FIll in the contents of the list with those of the given one
+		// Fill in the contents of the list with those of the given one
 		foreach(PowerPlant pp in lPP) {
 			PowerPlants.Add(pp);
 		}
+
+		// Propagate the update to the energy manager
+		EngM._UpdatePowerPlants(PowerPlants);
 	}
 }
