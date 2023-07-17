@@ -22,6 +22,11 @@ using System.Diagnostics;
 // Represents a resource bar, specifically used for the environment status and the support status
 public partial class InfoBar : ProgressBar {
 
+	// Slider initial positions
+	private const int SLIDER_BEG_X = -330;
+	private const int SLIDER_END_X = -195;
+	private int SLIDER_RANGE = Math.Abs(SLIDER_BEG_X - SLIDER_END_X);
+
 	// Line showing the target amount to reach
 	private Line2D Target;
 
@@ -56,6 +61,19 @@ public partial class InfoBar : ProgressBar {
 
 		// Update the progress bar's value
 		Value = v;
+	}
+
+	// Updates the position of the slider based on a given value
+	// The given value is a percentage in [0, 1]
+	public void _UpdateSlider(float v) {
+		// Sanity check
+		v = Math.Max(0.0f, Math.Min(1.0f, v));
+
+		// Update the position such that it matches the given percentage
+		Target.Position = new Vector2(
+			SLIDER_BEG_X + (SLIDER_RANGE * v),
+			Target.Position.Y
+		);
 	}
 
 	// Updates the bar name (for localization)

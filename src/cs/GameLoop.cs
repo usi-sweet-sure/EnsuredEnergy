@@ -167,6 +167,9 @@ public partial class GameLoop : Node2D {
 	
 	// Propagates resource updates to the UI
 	private void UpdateResources() {
+		// Update the ressource manager
+		RM._NextTurn();
+		
 		// Update Money UI
 		_UI._UpdateData(
 			UI.InfoType.MONEY,

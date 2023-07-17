@@ -32,6 +32,9 @@ public partial class ResourceManager : Node {
 	private EnergyManager EngM;
 	private EnvironmentManager EnvM;
 
+	// Reference to the UI object
+	private UI _UI;
+
 	// Contains all of the PowerPlants in the scene
 	private List<PowerPlant> PowerPlants;
 
@@ -43,6 +46,7 @@ public partial class ResourceManager : Node {
 		SM = GetNode<SupportManager>("SupportManager");
 		EngM = GetNode<EnergyManager>("EnergyManager");
 		EnvM = GetNode<EnvironmentManager>("EnvironmentManager");
+		_UI = GetNode<UI>("../UI");
 
 		// Initialize the powerplant list
 		PowerPlants = new List<PowerPlant>();
@@ -55,9 +59,21 @@ public partial class ResourceManager : Node {
 	// ==================== Public API ====================
 
 	// Progresses to the next turn
-	public void NextTurn() {
+	public void _NextTurn() {
 		// Update the internal managers
 		Energy E = EngM._NextTurn();
+
+		// Update the energy UI
+		UpdateEnergyUI(E);
+	}
+
+	// Initializes all of the resource managers
+	public void _InitResources() {
+		// Initialize the energy
+		Energy E = EngM._InitValues();
+
+		// Update the energy UI
+		UpdateEnergyUI(E);
 	}
 
 	// Updates the current list of power plants via a deep copy
@@ -72,5 +88,22 @@ public partial class ResourceManager : Node {
 
 		// Propagate the update to the energy manager
 		EngM._UpdatePowerPlants(PowerPlants);
+	}
+
+	// ==================== Helper Methods ====================  
+	
+	// Updates the UI fields related to the energy resource
+	private void UpdateEnergyUI(Energy E) {
+		// Update the UI
+		_UI._UpdateData(
+			UI.InfoType.W_ENGERGY,
+			(int)Math.Floor(E.DemandWinter), 
+			(int)Math.Floor(E.SupplyWinter)
+		);
+		_UI._UpdateData(
+			UI.InfoType.S_ENGERGY, 
+			(int)Math.Floor(E.DemandSummer), 
+			(int)Math.Floor(E.SupplySummer)
+		);
 	}
 }

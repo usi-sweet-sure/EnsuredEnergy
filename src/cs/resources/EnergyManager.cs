@@ -22,12 +22,12 @@ using System.Linq;
 
 // Models the resource managed by the EnergyManager
 public struct Energy {
-	float SupplySummer; // Total Supply for the next turn for the summer months
-	float SupplyWinter; // Total Supply for the next turn for the winter months
-	float DemandSummer; // Total Demand for the next turn for the summer months
-	float DemandWinter; // Total Demand for the next turn for the winter months
-	float SurplusSummer; // Amount of excess energy produced in the summer months (represents an underproduction if negative)
-	float SurplusWinter; // Amount of excess energy produced in the winter months (represents an underproduction if negative)
+	public float SupplySummer; // Total Supply for the next turn for the summer months
+	public float SupplyWinter; // Total Supply for the next turn for the winter months
+	public float DemandSummer; // Total Demand for the next turn for the summer months
+	public float DemandWinter; // Total Demand for the next turn for the winter months
+	public float SurplusSummer; // Amount of excess energy produced in the summer months (represents an underproduction if negative)
+	public float SurplusWinter; // Amount of excess energy produced in the winter months (represents an underproduction if negative)
 
 
 	// Basic constructor for the Energy Ressource
@@ -44,7 +44,7 @@ public struct Energy {
 public partial class EnergyManager : Node {
 
 	// Max value allowed by the UI
-	private const int MAX_ENERGY_BAR_VAL = 1000;
+	public const int MAX_ENERGY_BAR_VAL = 1000;
 
 	// Keep track of all of the placed power plants
 	private List<PowerPlant> PowerPlants;
@@ -86,6 +86,14 @@ public partial class EnergyManager : Node {
 			pp._NewTurn();
 		}
 
+		// TODO: Update the Energy by aggregating the capacity from the model's power plants
+		// and updating the model
+		E = EstimateEnergy();
+		return E;
+	}
+
+	// Computes the initial values for the energy resource
+	public Energy _InitValues() {
 		// TODO: Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
 		E = EstimateEnergy();

@@ -114,6 +114,9 @@ public partial class PowerPlant : Node2D {
 		// Activate the plant
 		ActivatePowerPlant();
 
+		// Propagate to UI
+		_UpdatePlantData();
+
 		// Connect the switch signal
 		Switch.Toggled += _OnSwitchToggled;
 	}
