@@ -296,6 +296,28 @@ public partial class UI : CanvasLayer {
 		}
 	}
 
+	// Updates the slider in the middle of the a given bar
+	public void _UpdateBarSlider(InfoType t, float val) {
+		switch (t) {
+			// For the energy sliders, the value represents the percentage of the total allowed capacity
+			// that is allowed on the grid that the demand takes up
+			case InfoType.W_ENGERGY:
+				WinterEnergy._UpdateSlider(val);
+				break;
+			case InfoType.S_ENGERGY:
+				SummerEnergy._UpdateSlider(val);
+				break;
+			case InfoType.SUPPORT:
+				SupportBar._UpdateSlider(val);
+				break;
+			case InfoType.ENVIRONMENT:
+				EnvironmentBar._UpdateSlider(val);
+				break;
+			default:
+				break;
+		}
+	}
+
 	// Update the internal UI data
 	// This is done following the ordering of the fields in the InfoData struct
 	// Energy: demand, supply
@@ -312,7 +334,17 @@ public partial class UI : CanvasLayer {
 				Data.W_EnergyDemand = d[0];
 				Data.W_EnergySupply = d[1];
 
+				// Set the text fields
 				SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
+
+				// Update the bar value
+				_UpdateBarValue(InfoType.W_ENGERGY, Data.W_EnergySupply);
+
+				// Update the bar slider
+				_UpdateBarSlider(
+					InfoType.W_ENGERGY, 
+					(float)Data.W_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
+				);
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -324,6 +356,15 @@ public partial class UI : CanvasLayer {
 
 				// Update the UI
 				SetEnergyInfo(ref SummerEnergy, InfoType.S_ENGERGY);
+
+				// Update the bar value
+				_UpdateBarValue(InfoType.S_ENGERGY, Data.S_EnergySupply);
+
+				// Update the bar slider
+				_UpdateBarSlider(
+					InfoType.S_ENGERGY, 
+					(float)Data.S_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
+				);
 				break;
 			case InfoType.SUPPORT:
 				// Sanity check, make sure that you were given enough fields

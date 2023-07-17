@@ -17,12 +17,14 @@ centered = false
 
 [node name="Nuclear" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(998, 269)
+InitialEnergyCapacity = 300
 PlantName = "Nuclear"
 PlantType = 4
 metadata/_edit_group_ = true
 
 [node name="Coal" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(923, 505)
+InitialEnergyCapacity = 200
 PlantName = "Gas"
 metadata/_edit_group_ = true
 

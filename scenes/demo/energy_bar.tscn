@@ -17,7 +17,7 @@ show_percentage = false
 script = ExtResource("2_otguq")
 
 [node name="Target" type="Line2D" parent="."]
-position = Vector2(-262, -616.5)
+position = Vector2(-195, -616.5)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 

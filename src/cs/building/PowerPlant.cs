@@ -44,11 +44,15 @@ public partial class PowerPlant : Node2D {
 
 	// The cost that the power plant will require each turn to function
 	[Export] 
-	public int ProductionCost = 0;
+	public int InitialProductionCost = 0;
 
-	// This is the amount of energy that the plant will produce per turn
+	// This is the amount of energy that the plant can produce per turn
 	[Export] 
-	public int EnergyProduction = 100;
+	public int InitialEnergyCapacity = 100;
+
+	// This is the amount of energy that the plant is able to produce given environmental factors
+	[Export]
+	public float InitialEnergyAvailability = 1.0f; // This is a percentage
 
 	// The name of the power plant that will be displayed in the game
 	// This should align with the plant's type
@@ -60,7 +64,12 @@ public partial class PowerPlant : Node2D {
 
 	// The number of turns the plant stays usable for
 	[Export]
-	public int LifeCycle;
+	public int LifeCycle = 10;
+
+	// Internal metrics
+	private int ProductionCost = 0;
+	private int EnergyCapacity = 100;
+	private float EnergyAvailability = 1.0f;
 
 	// Life flag: Whether or not the plant is on
 	private bool IsAlive = true;
@@ -96,11 +105,20 @@ public partial class PowerPlant : Node2D {
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyL.Text = EnergyProduction.ToString();
+		EnergyL.Text = EnergyCapacity.ToString();
 		MoneyL.Text = BuildCost.ToString();
 
 		// Set plant life cycle
 		LifeCycle = (PlantType == BuildingType.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
+
+		// Activate the plant
+		ActivatePowerPlant();
+
+		// Propagate to UI
+		_UpdatePlantData();
+
+		// Connect the switch signal
+		Switch.Toggled += _OnSwitchToggled;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -113,10 +131,40 @@ public partial class PowerPlant : Node2D {
 	public void _NewTurn() {
 		if(LifeCycle-- <= 0) {
 			// Deactivate the plant
-			IsAlive = false;
-			EnergyProduction = 0;
-			ProductionCost = 0;
+			KillPowerPlant();
+
+			// Disable the switch
+			Switch.ButtonPressed = false;
+			Switch.Disabled = true;
 		}
+	}
+
+	// Update API for the private fields of the plant
+	public void _UdpatePowerPlantFields(int PC=-1, int EC=-1, float EA=-1.0f) {
+		// Only update internal fields that where given a proper value
+		ProductionCost = PC == -1 ? ProductionCost : PC;
+		EnergyCapacity = EC == -1 ? EnergyCapacity : EC;
+		EnergyAvailability = EA <= -1.0f ? EnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
+	}
+
+	// Getter for the powerplant's current capacity
+	public int _GetCapacity() {
+		return EnergyCapacity;
+	}
+
+	// Getter for the plant's production cost
+	public int _GetProductionCost() {
+		return ProductionCost;
+	}
+
+	// Getter for the current availability EA in [0.0, 1.0]
+	public float _GetAvailability() {
+		return Math.Max(Math.Min(EnergyAvailability, 1.0f), 0.0f);
+	}
+
+	// Getter for the powerplant's liveness status
+	public bool _GetLiveness() {
+		return IsAlive;
 	}
 
 	// Forces the update of the isPreview state of the plant
@@ -148,7 +196,45 @@ public partial class PowerPlant : Node2D {
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyL.Text = EnergyProduction.ToString();
+		EnergyL.Text = EnergyCapacity.ToString();
 		MoneyL.Text = BuildCost.ToString();
+	}
+
+	// ==================== Helper Methods ====================    
+
+	// Deactivates the current power plant
+	private void KillPowerPlant() {
+		IsAlive = false;
+		EnergyCapacity = 0;
+		EnergyAvailability = 0;
+		ProductionCost = 0;
+	}
+
+	// Activates the power plant
+	private void ActivatePowerPlant() {
+		IsAlive = true;
+
+		// Reset the internal metrics to their initial values
+		EnergyCapacity = InitialEnergyCapacity;
+		EnergyAvailability = InitialEnergyAvailability;
+		ProductionCost = InitialProductionCost;
+	}
+
+	// ==================== Button Callbacks ====================  
+	
+	// Reacts to the power switch being toggled
+	// We chose to ignore the state of the toggle as it should be identical to the IsAlive field
+	public void _OnSwitchToggled(bool pressed) {
+		// Check the liveness of the current plant
+		if(IsAlive) {
+			// If the plant is currently alive, then kill it
+			KillPowerPlant();
+		} else {
+			// If the plant is currently dead, then activate it
+			ActivatePowerPlant();
+		}
+
+		// Update the UI
+		_UpdatePlantData();
 	}
 }

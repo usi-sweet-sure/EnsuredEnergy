@@ -12,7 +12,7 @@ config_version=5
 
 config/name="sure_energy_tycoon"
 run/main_scene="res://scenes/demo/main_demo.tscn"
-config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [debug]

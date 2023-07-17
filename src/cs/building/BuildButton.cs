@@ -245,8 +245,7 @@ public partial class BuildButton : Button {
 		PP.Scale = new Vector2(1, 1);
 		PP.IsPreview = false;
 		PP.BuildCost = PPRec.BuildCost;
-		PP.ProductionCost = PPRec.ProductionCost;
-		PP.EnergyProduction = PPRec.EnergyProduction;
+		PP._UdpatePowerPlantFields(PPRec._GetProductionCost(), PPRec._GetCapacity());
 		PP.PlantType = PPRec.PlantType;
 
 		// Force name to be consistent with type
