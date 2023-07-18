@@ -77,4 +77,33 @@ public partial class EnvironmentManager : Node {
 			PowerPlants.Add(pp);
 		}
 	}
+
+	// ==================== Helper Methods ====================  
+
+	// Aggregate the biodiverstiy contributions
+	private float AggregateBiodiversity() => Math.Max(0.0f, Math.Min(
+		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp.BiodiversityImpact)
+			.Aggregate(1.0f, (acc, bd) => acc - bd),
+		1.0f)
+	);
+
+	// Aggregate the land use contributions
+	private float AggregateLandUse() => Math.Max(0.0f, Math.Min(
+		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp.LandUse).Sum(),
+		1.0f)
+	);
+
+	// Aggregate the pollution contributions from all power plants
+	private int AggregatePollution() =>
+		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp.Pollution).Sum();
+
+	// Estimates the environmental impact the various power plants have
+	private Environment EstimateEnvironment() {
+		// Compute the various contributions
+		float biodiv = AggregateBiodiversity();
+		float lu = AggregateLandUse();
+		int pol = AggregatePollution();
+
+		return new Environment(pol, lu, biodiv);
+	}
 }
