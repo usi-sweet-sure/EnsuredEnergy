@@ -80,7 +80,7 @@ public partial class PowerPlant : Node2D {
 	private Label PollL;
 	private Label EnergyL;
 	private Label MoneyL;
-	private CheckButton Switch;
+	public CheckButton Switch;
 
 	// ==================== GODOT Method Overrides ====================
 	
