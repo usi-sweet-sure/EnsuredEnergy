@@ -50,6 +50,9 @@ public partial class BuildMenu : CanvasLayer {
 	private Button HydroButton;
 	private Button TreeButton;
 
+	// Close button
+	private Button CloseButton;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -69,11 +72,15 @@ public partial class BuildMenu : CanvasLayer {
 		HydroButton = GetNode<Button>("ColorRect/Hydro/HydroButton");
 		TreeButton = GetNode<Button>("ColorRect/Tree/TreeButton");
 
+		// Fetch Close button
+		CloseButton = GetNode<Button>("CloseButton");
+
 		// Connect the associated button callbacks
 		GasButton.Pressed += _OnGasButtonPressed;
 		SolarButton.Pressed += _OnSolarButtonPressed;
 		HydroButton.Pressed += _OnHydroButtonPressed;
 		TreeButton.Pressed += _OnTreeButtonPressed;
+		CloseButton.Pressed += _OnCloseButtonPressed;
 
 		HideAllPlants();
 	}
@@ -223,5 +230,12 @@ public partial class BuildMenu : CanvasLayer {
 
 		// Close the menu
 		IsOpen = false;
+	}
+
+	// Closes the menu
+	public void _OnCloseButtonPressed() {
+		// Hide and close the menu
+		IsOpen = false;
+		Hide();
 	}
 }

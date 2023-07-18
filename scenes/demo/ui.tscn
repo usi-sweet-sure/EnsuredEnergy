@@ -354,9 +354,5 @@ visible = false
 visible = false
 script = ExtResource("7_u64y1")
 
-[connection signal="pressed" from="Bottom/NextTurn/NextTurn" to="." method="_on_label_pressed"]
-[connection signal="pressed" from="Bottom/PolicyButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Bottom/Stats" to="." method="_on_button_pressed"]
-
 [editable path="Bottom/EnergyBarWinter"]
 [editable path="Bottom/EnergyBarSummer"]

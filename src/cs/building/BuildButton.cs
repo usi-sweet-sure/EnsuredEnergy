@@ -254,6 +254,9 @@ public partial class BuildButton : Button {
 		// Make sure that the data is propagated to the UI
 		PP._UpdatePlantData();
 		PP.Show();
+
+		// Add the building to the power plant list
+		EmitSignal(SignalName.UpdateBuildSlot, this, PP, false);
 	}
 
 	// ==================== Interaction Callbacks ====================

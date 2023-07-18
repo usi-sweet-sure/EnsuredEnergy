@@ -35,8 +35,9 @@ public partial class ResourceManager : Node {
 	// Reference to the UI object
 	private UI _UI;
 
-	// Contains all of the PowerPlants in the scene
+	// Contains all of the PowerPlants and BuildButtons in the scene
 	private List<PowerPlant> PowerPlants;
+	private List<BuildButton> BBs;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -48,8 +49,9 @@ public partial class ResourceManager : Node {
 		EnvM = GetNode<EnvironmentManager>("EnvironmentManager");
 		_UI = GetNode<UI>("../UI");
 
-		// Initialize the powerplant list
+		// Initialize the powerplant and Buildbutton lists
 		PowerPlants = new List<PowerPlant>();
+		BBs = new List<BuildButton>();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,9 +70,9 @@ public partial class ResourceManager : Node {
 	}
 
 	// Initializes all of the resource managers
-	public void _InitResources() {
+	public void _UpdateResourcesUI() {
 		// Initialize the energy
-		Energy E = EngM._InitValues();
+		Energy E = EngM._GetEnergyValues();
 
 		// Update the energy UI
 		UpdateEnergyUI(E);
@@ -88,7 +90,24 @@ public partial class ResourceManager : Node {
 
 		// Propagate the update to the energy manager
 		EngM._UpdatePowerPlants(PowerPlants);
+
+		// Connect the powerplants signals to propagate changes to the UI
+		foreach(PowerPlant pp in PowerPlants) {
+			pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
+		}
 	}
+
+	// Updates the current list of build buttons
+	public void _UpdateBuildButtons(List<BuildButton> lBB) {
+		// Clear the current list to be safe
+		BBs.Clear();
+
+		// Fill in the contents of the list with those of the given one
+		foreach(BuildButton bb in lBB) {
+			BBs.Add(bb);
+			bb.Pressed += _UpdateResourcesUI;
+		}
+	} 
 
 	// ==================== Helper Methods ====================  
 	
@@ -106,4 +125,12 @@ public partial class ResourceManager : Node {
 			(int)Math.Floor(E.SupplySummer)
 		);
 	}
+
+	// ==================== Callbacks ====================  
+
+	// Simply reacts to a power plant toggle by updating the UI
+	// The parameter is only used for signal interface compatibility
+	private void _OnPowerPlantSwitchToggle(bool b) => 
+		_UpdateResourcesUI();
+	
 }

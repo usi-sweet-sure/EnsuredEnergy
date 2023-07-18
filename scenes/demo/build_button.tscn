@@ -20,5 +20,3 @@ text = "🔨"
 [node name="Solar" parent="." instance=ExtResource("1_uv4jr")]
 
 [node name="Tree" parent="." instance=ExtResource("1_uv4jr")]
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

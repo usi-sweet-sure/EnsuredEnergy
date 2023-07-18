@@ -203,14 +203,15 @@ public partial class GameLoop : Node2D {
 		// Perform initial Resouce update
 		UpdateResources();
 
-		// Set the initial power plants
+		// Set the initial power plants and build buttons
 		RM._UpdatePowerPlants(PowerPlants);
+		RM._UpdateBuildButtons(BBs);
 
 		// Update the UI
 		_UI._UpdateUI();
 
 		// Initialize resources
-		RM._InitResources();
+		RM._UpdateResourcesUI();
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
@@ -276,6 +277,11 @@ public partial class GameLoop : Node2D {
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
 		}
+
+		// Propagate the updates to the resource manager
+		RM._UpdatePowerPlants(PowerPlants);
+		RM._UpdateBuildButtons(BBs);
+		RM._UpdateResourcesUI();
 	}
 
 	// Triggers a new turn if the game is currently acitve

@@ -97,5 +97,3 @@ keep_pressed_outside = true
 flat = true
 alignment = 1
 icon_alignment = 1
-
-[connection signal="toggled" from="Switch" to="." method="_on_switch_toggled"]

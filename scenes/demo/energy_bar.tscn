@@ -45,5 +45,3 @@ offset_left = 19.0
 offset_top = -198.0
 offset_right = 184.708
 offset_bottom = -17.19
-
-[connection signal="value_changed" from="." to="Name" method="_on_energy_value_changed"]

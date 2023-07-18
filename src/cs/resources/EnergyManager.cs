@@ -93,7 +93,7 @@ public partial class EnergyManager : Node {
 	}
 
 	// Computes the initial values for the energy resource
-	public Energy _InitValues() {
+	public Energy _GetEnergyValues() {
 		// TODO: Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
 		E = EstimateEnergy();
