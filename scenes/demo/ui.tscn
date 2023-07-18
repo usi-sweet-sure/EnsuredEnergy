@@ -128,7 +128,7 @@ offset_bottom = -25.19
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Env2" type="ProgressBar" parent="Bottom"]
+[node name="Poll" type="ProgressBar" parent="Bottom"]
 layout_mode = 0
 offset_left = 288.0
 offset_top = 16.0
@@ -141,12 +141,12 @@ show_percentage = false
 script = ExtResource("4_e5tgv")
 metadata/_edit_group_ = true
 
-[node name="Target" type="Line2D" parent="Bottom/Env2"]
+[node name="Target" type="Line2D" parent="Bottom/Poll"]
 position = Vector2(-210, -615)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
-[node name="Name" type="Label" parent="Bottom/Env2"]
+[node name="Name" type="Label" parent="Bottom/Poll"]
 layout_mode = 2
 offset_left = -141.0
 offset_top = 1.0
@@ -156,7 +156,7 @@ size_flags_horizontal = 0
 text = "Pollution"
 horizontal_alignment = 2
 
-[node name="BarInfo" parent="Bottom/Env2/Name" instance=ExtResource("4_67rbh")]
+[node name="BarInfo" parent="Bottom/Poll/Name" instance=ExtResource("4_67rbh")]
 layout_mode = 1
 offset_left = 76.0
 offset_top = -204.0
