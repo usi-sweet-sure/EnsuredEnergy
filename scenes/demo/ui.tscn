@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=11 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://cuayuul3kllsa" path="res://assets/grey_sliderRight.png" id="1_dv5c2"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/demo/energy_bar.tscn" id="3_fm1y6"]
@@ -14,6 +14,9 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvfnp"]
+bg_color = Color(0.419608, 0.419608, 0.419608, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mru71"]
 bg_color = Color(0.137255, 0.470588, 0.760784, 1)
@@ -90,15 +93,16 @@ metadata/_edit_group_ = true
 
 [node name="Env" type="ProgressBar" parent="Bottom"]
 layout_mode = 0
-offset_left = 1379.0
-offset_top = 15.0
-offset_right = 1517.0
-offset_bottom = 42.0
+offset_left = 592.0
+offset_top = 16.0
+offset_right = 730.0
+offset_bottom = 43.0
 tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
 show_percentage = false
 script = ExtResource("4_e5tgv")
+metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Bottom/Env"]
 position = Vector2(-210, -615)
@@ -107,12 +111,13 @@ width = 1.0
 
 [node name="Name" type="Label" parent="Bottom/Env"]
 layout_mode = 2
-offset_left = -134.0
+offset_left = -136.0
 offset_top = 1.0
-offset_right = -3.0
+offset_right = -5.0
 offset_bottom = 27.0
 size_flags_horizontal = 0
 text = "Environment 🍃"
+horizontal_alignment = 2
 
 [node name="BarInfo" parent="Bottom/Env/Name" instance=ExtResource("4_67rbh")]
 layout_mode = 1
@@ -123,15 +128,53 @@ offset_bottom = -25.19
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="Env2" type="ProgressBar" parent="Bottom"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 16.0
+offset_right = 426.0
+offset_bottom = 43.0
+tooltip_text = "Reach the goal by 2050 to attain net zero"
+theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
+value = 50.0
+show_percentage = false
+script = ExtResource("4_e5tgv")
+metadata/_edit_group_ = true
+
+[node name="Target" type="Line2D" parent="Bottom/Env2"]
+position = Vector2(-210, -615)
+points = PackedVector2Array(332, 646, 332, 614)
+width = 1.0
+
+[node name="Name" type="Label" parent="Bottom/Env2"]
+layout_mode = 2
+offset_left = -141.0
+offset_top = 1.0
+offset_right = -10.0
+offset_bottom = 27.0
+size_flags_horizontal = 0
+text = "Pollution"
+horizontal_alignment = 2
+
+[node name="BarInfo" parent="Bottom/Env2/Name" instance=ExtResource("4_67rbh")]
+layout_mode = 1
+offset_left = 76.0
+offset_top = -204.0
+offset_right = 238.242
+offset_bottom = -25.19
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="Trust" type="ProgressBar" parent="Bottom"]
 layout_mode = 0
-offset_left = 556.0
-offset_top = 17.0
-offset_right = 694.0
-offset_bottom = 44.0
+offset_left = 1334.0
+offset_top = 15.0
+offset_right = 1472.0
+offset_bottom = 42.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
+metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Bottom/Trust"]
 position = Vector2(-263, -615)
@@ -140,27 +183,28 @@ width = 1.0
 
 [node name="Name" type="Label" parent="Bottom/Trust"]
 layout_mode = 2
-offset_left = -95.0
+offset_left = -101.0
 offset_top = 1.0
-offset_right = -2.0
+offset_right = -8.0
 offset_bottom = 27.0
 size_flags_horizontal = 0
 text = "Support 👆"
+horizontal_alignment = 2
 
 [node name="BarInfo" parent="Bottom/Trust/Name" instance=ExtResource("4_67rbh")]
 layout_mode = 1
 offset_left = 50.0
-offset_top = -204.0
+offset_top = -202.0
 offset_right = 220.562
-offset_bottom = -27.19
+offset_bottom = -25.19
 grow_horizontal = 1
 grow_vertical = 1
 
 [node name="PolicyButton" type="Button" parent="Bottom"]
 layout_mode = 0
-offset_left = 754.0
+offset_left = 1136.0
 offset_top = -56.0
-offset_right = 877.0
+offset_right = 1259.0
 offset_bottom = 56.0
 scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 70
@@ -168,9 +212,9 @@ text = "📥"
 
 [node name="Stats" type="Button" parent="Bottom"]
 layout_mode = 0
-offset_left = 1136.0
+offset_left = 760.0
 offset_top = -56.0
-offset_right = 1259.0
+offset_right = 883.0
 offset_bottom = 56.0
 scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 70
