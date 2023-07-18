@@ -22,49 +22,68 @@ using System.Diagnostics;
 // Represents a Power Plant object in the game
 public partial class PowerPlant : Node2D {
 
-	// Life cycle of a nuclear power plant
-	[Export]
-	public int NUCLEAR_LIFE_SPAN = 5; 
-	public int DEFAULT_LIFE_SPAN = 10;
 
-	// Defines whether or not the building is a preview
-	// This is true when the building is being shown in the build menu
-	// and is used to know when to hide certain fields
-	[Export]
-	public bool IsPreview = false; 
-
-	// The number of turns it takes to build this plant
-	[Export]
-	public int BuildTime = 0;
-
-	// The initial cost of creating the power plant
-	// This is what will be displayed in the build menu
-	[Export]
-	public int BuildCost = 0;
-
-	// The cost that the power plant will require each turn to function
+	[ExportGroup("Meta Parameters")]
 	[Export] 
-	public int InitialProductionCost = 0;
-
-	// This is the amount of energy that the plant can produce per turn
-	[Export] 
-	public int InitialEnergyCapacity = 100;
-
-	// This is the amount of energy that the plant is able to produce given environmental factors
-	[Export]
-	public float InitialEnergyAvailability = 1.0f; // This is a percentage
-
 	// The name of the power plant that will be displayed in the game
 	// This should align with the plant's type
-	[Export] 
 	public string PlantName = "Power Plant";
 
 	[Export] 
+	// The type of the power plant, this is for internal use, other fields have to be 
+	// updated to match the type of the building
 	public BuildingType PlantType = BuildingType.GAS;
 
-	// The number of turns the plant stays usable for
 	[Export]
+	// Life cycle of a nuclear power plant
+	public int NUCLEAR_LIFE_SPAN = 5; 
+	public int DEFAULT_LIFE_SPAN = 10;
+
+	[Export]
+	// Defines whether or not the building is a preview
+	// This is true when the building is being shown in the build menu
+	// and is used to know when to hide certain fields
+	public bool IsPreview = false; 
+
+	[Export]
+	// The number of turns it takes to build this plant
+	public int BuildTime = 0;
+
+	[Export]
+	// The initial cost of creating the power plant
+	// This is what will be displayed in the build menu
+	public int BuildCost = 0;
+
+	[Export]
+	// The number of turns the plant stays usable for
 	public int LifeCycle = 10;
+
+	[ExportGroup("Energy Parameters")]
+	[Export] 
+	// The cost that the power plant will require each turn to function
+	public int InitialProductionCost = 0;
+
+	[Export] 
+	// This is the amount of energy that the plant can produce per turn
+	public int InitialEnergyCapacity = 100;
+
+	[Export]
+	// This is the amount of energy that the plant is able to produce given environmental factors
+	public float InitialEnergyAvailability = 1.0f; // This is a percentage
+
+	[ExportGroup("Environment Parameters")]
+	[Export]
+	// Amount of pollution caused by the power plant (can be negative in the tree case)
+	public int Pollution = 10;
+
+	[Export]
+	// Percentage of the total land used up by this power plant
+	public float LandUse = 0.1f;
+
+	[Export]
+	// Percentage by which this plant reduces the biodiversity in the country
+	// If negative, this will increase the total biodiversity
+	public float BiodiversityImpact = 0.1f;
 
 	// Internal metrics
 	private int ProductionCost = 0;
