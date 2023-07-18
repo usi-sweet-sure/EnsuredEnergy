@@ -6,6 +6,11 @@
 [node name="BuildMenu" type="CanvasLayer"]
 script = ExtResource("1_t6egc")
 
+[node name="CloseButton" type="Button" parent="."]
+offset_right = 1921.0
+offset_bottom = 769.0
+flat = true
+
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 40)
 offset_left = -2.0
