@@ -26,6 +26,10 @@ public struct Environment {
 	public float LandUse; // Aggregate space taken up by all of the power plants
 	public float Biodiversity; // Level of biodiversity remaining on the map
 
+	// Computes the value used to update the environment bar
+	public float EnvBarValue() =>
+		2.0f * (0.5f * Biodiversity - 0.5f * LandUse);
+
 	// Basic constructor for the environment struct
 	public Environment(int p=0, float lu=0.0f, float bd=0.0f) {
 		Pollution = p;
@@ -76,6 +80,18 @@ public partial class EnvironmentManager : Node {
 		foreach(PowerPlant pp in lP) {
 			PowerPlants.Add(pp);
 		}
+	}
+
+	// Progresses the environment resources to the next turn
+	public Environment _NextTurn() {
+		// Estimate the values for the next turn
+		return _GetEnvValues();
+	}
+
+	// Estimates and retrieves the environment values
+	public Environment _GetEnvValues() {
+		Env = EstimateEnvironment();
+		return Env;
 	}
 
 	// ==================== Helper Methods ====================  

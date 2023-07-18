@@ -75,18 +75,22 @@ public partial class ResourceManager : Node {
 
 		// Update the internal managers
 		Energy E = EngM._NextTurn();
+		Environment Env = EnvM._NextTurn();
 
 		// Update the energy UI
 		UpdateEnergyUI(E);
+		UpdateEnvironmentUI(Env);
 	}
 
 	// Initializes all of the resource managers
 	public void _UpdateResourcesUI() {
-		// Initialize the energy
+		// Initialize the internal managers
 		Energy E = EngM._GetEnergyValues();
+		Environment Env = EnvM._NextTurn();
 
-		// Update the energy UI
+		// Update the UI
 		UpdateEnergyUI(E);
+		UpdateEnvironmentUI(Env);
 	}
 
 	// Updates the current list of power plants via a deep copy
@@ -134,6 +138,18 @@ public partial class ResourceManager : Node {
 			UI.InfoType.S_ENGERGY, 
 			(int)Math.Floor(E.DemandSummer), 
 			(int)Math.Floor(E.SupplySummer)
+		);
+	}
+
+	// Updates the UI fields related to the environment resource
+	private void UpdateEnvironmentUI(Environment Env) {
+		// Update the UI
+		_UI._UpdateData(
+			UI.InfoType.ENVIRONMENT,
+			(int)(Env.LandUse * 100), // Convert floating point to integer percentage
+			Env.Pollution,
+			(int)(Env.Biodiversity * 100),
+			(int)(Env.EnvBarValue() * 100)
 		);
 	}
 
