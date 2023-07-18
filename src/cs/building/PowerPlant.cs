@@ -128,7 +128,7 @@ public partial class PowerPlant : Node2D {
 	// ==================== Power Plant Update API ====================
 
 	// Reacts to a new turn taking place
-	public void _NewTurn() {
+	public void _NextTurn() {
 		if(LifeCycle-- <= 0) {
 			// Deactivate the plant
 			KillPowerPlant();
@@ -136,6 +136,12 @@ public partial class PowerPlant : Node2D {
 			// Disable the switch
 			Switch.ButtonPressed = false;
 			Switch.Disabled = true;
+			
+			// Workaround to allow for an immediate update
+			IsAlive = true;
+		} 
+		if(LifeCycle < 0) {
+			IsAlive = false;
 		}
 	}
 
@@ -208,6 +214,7 @@ public partial class PowerPlant : Node2D {
 		EnergyCapacity = 0;
 		EnergyAvailability = 0;
 		ProductionCost = 0;
+		_UpdatePlantData();
 	}
 
 	// Activates the power plant
@@ -218,6 +225,7 @@ public partial class PowerPlant : Node2D {
 		EnergyCapacity = InitialEnergyCapacity;
 		EnergyAvailability = InitialEnergyAvailability;
 		ProductionCost = InitialProductionCost;
+		_UpdatePlantData();
 	}
 
 	// ==================== Button Callbacks ====================  

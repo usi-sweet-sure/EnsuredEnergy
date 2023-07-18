@@ -17,16 +17,26 @@
 */
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-public partial class EnvironmentManager : Node
-{
+// @brief: Manages all of the resources related to the environment bar.
+// This inlcudes land use, pollution, and biodiversity.
+// These metrics are all encoded directly in each power plant.
+// Some plants reduce them, some increase them, this class aggregates those
+// metrics and propagates the information across the game to the UI and GameLoop.
+public partial class EnvironmentManager : Node {
+
+	// List of all of the power plants currently in the game
+	private List<PowerPlant> PowerPlants;
+
+	// ==================== GODOT Method Overrides ====================
+
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+	public override void _Ready() {
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	public override void _Process(double delta) {
 	}
 }

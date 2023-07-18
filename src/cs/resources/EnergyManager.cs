@@ -81,11 +81,6 @@ public partial class EnergyManager : Node {
 
 	// Computes the energy levels that will be present for the next turn
 	public Energy _NextTurn() {
-		// Update all plants
-		foreach(PowerPlant pp in PowerPlants) {
-			pp._NewTurn();
-		}
-
 		// TODO: Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
 		E = EstimateEnergy();
@@ -119,8 +114,8 @@ public partial class EnergyManager : Node {
 		// Compute the Excess and store it in a separate field
 		float excess = supply - MAX_ENERGY_BAR_VAL;
 		
-		// Normalize the supply 
-		supply = Math.Min(supply, MAX_ENERGY_BAR_VAL);
+		// Normalize the supply
+		supply = Math.Max(0, Math.Min(supply, MAX_ENERGY_BAR_VAL));
 
 		float demandEstimate = MAX_ENERGY_BAR_VAL * 0.5f;
 		return new Energy(supply, supply, demandEstimate, demandEstimate, excess, excess);

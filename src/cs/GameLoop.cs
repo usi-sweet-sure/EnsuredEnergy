@@ -182,16 +182,6 @@ public partial class GameLoop : Node2D {
 		_UI._UpdateUI();
 	}
 
-	// Propagates the new turn to each build button and building
-	private void UpdateBuilds() {
-		foreach(var bb in BBs) {
-			bb._NextTurn();
-		}
-		foreach(var pp in PowerPlants) {
-			pp._NewTurn();
-		}
-	}
-
 	// ==================== Main Game Loop Methods ====================  
 
 	// Initializes all of the data that is propagated across the game
@@ -225,9 +215,6 @@ public partial class GameLoop : Node2D {
 
 			// Update Resources 
 			UpdateResources();
-
-			// Update the PowerPlants and build buttons
-			UpdateBuilds();
 
 		} else if(RemainingTurns <= 0) {
 			// End the game if all turns have been spent

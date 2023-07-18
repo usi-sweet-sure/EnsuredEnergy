@@ -62,6 +62,17 @@ public partial class ResourceManager : Node {
 
 	// Progresses to the next turn
 	public void _NextTurn() {
+
+		// Update all build buttons
+		foreach(BuildButton bb in BBs) {
+			bb._NextTurn();
+		}
+
+		// Update all plants
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._NextTurn();
+		}
+
 		// Update the internal managers
 		Energy E = EngM._NextTurn();
 
@@ -126,11 +137,17 @@ public partial class ResourceManager : Node {
 		);
 	}
 
+	// Wrapper for interface compatibility reasons
+	private void _UpdateResourcesUIWrapper(bool b) {
+		_UpdateResourcesUI();
+	}
+
 	// ==================== Callbacks ====================  
 
 	// Simply reacts to a power plant toggle by updating the UI
 	// The parameter is only used for signal interface compatibility
-	private void _OnPowerPlantSwitchToggle(bool b) => 
+	private void _OnPowerPlantSwitchToggle(bool b=false) { 
 		_UpdateResourcesUI();
+	}
 	
 }
