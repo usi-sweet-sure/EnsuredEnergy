@@ -178,11 +178,27 @@ public partial class PowerPlant : Node2D {
 	}
 
 	// Update API for the private fields of the plant
-	public void _UdpatePowerPlantFields(int PC=-1, int EC=-1, float EA=-1.0f) {
+	public void _UdpatePowerPlantFields(
+		bool updateInit=false, // Whether or not to update the initial values as well
+		int pol=-1, // pollution amount
+		int PC=-1, // Production cost
+		int EC=-1, // Energy capacity
+		float EA=-1.0f // Energy availability
+	) {
 		// Only update internal fields that where given a proper value
+		Pollution = pol == -1 ? Pollution : pol;
 		ProductionCost = PC == -1 ? ProductionCost : PC;
 		EnergyCapacity = EC == -1 ? EnergyCapacity : EC;
-		EnergyAvailability = EA <= -1.0f ? EnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
+		// Percentages are clamped to [0, 1]
+		EnergyAvailability = EA <= -0.1f ? EnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
+
+		// Check for initial value updates
+		if(updateInit) {
+			InitialPollution = pol == -1 ? InitialPollution : pol;
+			InitialProductionCost = PC == -1 ? InitialProductionCost : PC;
+			InitialEnergyCapacity = EC == -1 ? InitialEnergyCapacity : EC;
+			InitialEnergyAvailability = EA <= -0.1f ? InitialEnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
+		}
 	}
 
 	// Forces the update of the isPreview state of the plant

@@ -26,7 +26,6 @@ PlantName = "Solar Plant"
 PlantType = 2
 BuildTime = 1
 BuildCost = 500
-Pollution = 0
 LandUse = 0.3
 
 [node name="SolarButton" type="Button" parent="ColorRect/Solar"]
@@ -44,7 +43,6 @@ PlantType = 0
 BuildTime = 3
 BuildCost = 1500
 InitialEnergyCapacity = 300
-Pollution = 0
 LandUse = 0.2
 BiodiversityImpact = 0.2
 
@@ -62,7 +60,6 @@ PlantName = "Gas Plant"
 BuildCost = 300
 InitialProductionCost = 100
 InitialEnergyCapacity = 200
-Pollution = 30
 LandUse = 0.2
 BiodiversityImpact = 0.2
 
@@ -79,7 +76,6 @@ scale = Vector2(1.3, 1.3)
 PlantName = "Trees"
 PlantType = 3
 InitialEnergyCapacity = 0
-Pollution = -10
 BiodiversityImpact = -0.1
 
 [node name="TreeButton" type="Button" parent="ColorRect/Tree"]

@@ -241,8 +241,18 @@ public partial class BuildButton : Button {
 		PP.Scale = new Vector2(1, 1);
 		PP.IsPreview = false;
 		PP.BuildCost = PPRec.BuildCost;
-		PP._UdpatePowerPlantFields(PPRec._GetProductionCost(), PPRec._GetCapacity());
 		PP.PlantType = PPRec.PlantType;
+		PP.BiodiversityImpact = PPRec.BiodiversityImpact;
+		PP.LandUse = PPRec.LandUse;
+
+		// Update the plant's internal private fields
+		PP._UdpatePowerPlantFields(
+			true, // Update the initial values as well
+			PPRec._GetPollution(),
+			PPRec._GetProductionCost(), 
+			PPRec._GetCapacity(),
+			PPRec._GetAvailability()
+		);
 
 		// Force name to be consistent with type
 		PP.PlantName = PPRec.PlantName;
