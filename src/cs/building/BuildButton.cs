@@ -121,10 +121,6 @@ public partial class BuildButton : Button {
 		this.Pressed += _OnPressed;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== Public API ====================
 	// Records a reference to the game loop (triggered by the game loop itself)
 	public void _RecordGameLoopRef(GameLoop _GL) {

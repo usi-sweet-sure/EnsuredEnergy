@@ -212,10 +212,6 @@ public partial class UI : CanvasLayer {
 		TC._UpdateLanguage(Language.Type.EN);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== UI Update API ====================
 
 	// Updates the various labels across the UI

@@ -62,10 +62,6 @@ public partial class EnergyManager : Node {
 		E = new Energy();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== Public API ====================
 
 	// Updates the current internal power plant list

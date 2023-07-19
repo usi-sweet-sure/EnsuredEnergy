@@ -85,10 +85,6 @@ public partial class BuildMenu : CanvasLayer {
 		HideAllPlants();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== Public API ====================
 
 	// Updates the name of the associate building type (for localization)
@@ -119,12 +115,6 @@ public partial class BuildMenu : CanvasLayer {
 
 	// ==================== Internal Helpers ====================
 
-	// Sets the plants name and propagates info to ui
-	private void SetPlantName(ref PowerPlant PP, string name) {
-		PP.PlantName = name;
-		PP._UpdatePlantData();
-	}
-	
 	// Hides all of the plants related to this button
 	private void HideAllPlants() {
 		// Hide all plants
@@ -132,6 +122,12 @@ public partial class BuildMenu : CanvasLayer {
 		HydroPlant.Hide();
 		SolarPlant.Hide();
 		TreePlant.Hide();
+	}
+
+	// Sets the plants name and propagates info to ui
+	private void SetPlantName(ref PowerPlant PP, string name) {
+		PP.PlantName = name;
+		PP._UpdatePlantData();
 	}
 	
 	// Sets the position of the given plant according to its position in the list

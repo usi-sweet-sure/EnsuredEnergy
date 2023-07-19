@@ -54,10 +54,6 @@ public partial class ResourceManager : Node {
 		BBs = new List<BuildButton>();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== Public API ====================
 
 	// Progresses to the next turn
@@ -105,6 +101,7 @@ public partial class ResourceManager : Node {
 
 		// Propagate the update to the energy manager
 		EngM._UpdatePowerPlants(PowerPlants);
+		EnvM._UpdatePowerPlants(PowerPlants);
 
 		// Connect the powerplants signals to propagate changes to the UI
 		foreach(PowerPlant pp in PowerPlants) {

@@ -65,10 +65,6 @@ public partial class EnvironmentManager : Node {
 		PowerPlants = new List<PowerPlant>();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== Public API ====================
 
 	// Updates the current internal power plant list
@@ -111,7 +107,7 @@ public partial class EnvironmentManager : Node {
 
 	// Aggregate the pollution contributions from all power plants
 	private int AggregatePollution() =>
-		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp.Pollution).Sum();
+		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetPollution()).Sum();
 
 	// Estimates the environmental impact the various power plants have
 	private Environment EstimateEnvironment() {

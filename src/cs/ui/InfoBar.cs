@@ -48,10 +48,6 @@ public partial class InfoBar : ProgressBar {
 		Box.Hide();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== InfoBar Update API ====================
 
 	// Updates the progress value of this information bar

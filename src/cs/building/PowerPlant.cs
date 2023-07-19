@@ -74,7 +74,7 @@ public partial class PowerPlant : Node2D {
 	[ExportGroup("Environment Parameters")]
 	[Export]
 	// Amount of pollution caused by the power plant (can be negative in the tree case)
-	public int Pollution = 10;
+	public int InitialPollution = 10;
 
 	[Export]
 	// Percentage of the total land used up by this power plant
@@ -89,6 +89,7 @@ public partial class PowerPlant : Node2D {
 	private int ProductionCost = 0;
 	private int EnergyCapacity = 100;
 	private float EnergyAvailability = 1.0f;
+	private int Pollution = 10;
 
 	// Life flag: Whether or not the plant is on
 	private bool IsAlive = true;
@@ -140,11 +141,23 @@ public partial class PowerPlant : Node2D {
 		Switch.Toggled += _OnSwitchToggled;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== Power Plant Update API ====================
+
+	// Getter for the powerplant's current capacity
+	public int _GetCapacity() => EnergyCapacity;
+
+	// Getter for the Pollution amount
+	public int _GetPollution() => Pollution;
+
+	// Getter for the plant's production cost
+	public int _GetProductionCost() => ProductionCost;
+
+	// Getter for the current availability EA in [0.0, 1.0]
+	public float _GetAvailability() => 
+		Math.Max(Math.Min(EnergyAvailability, 1.0f), 0.0f);
+
+	// Getter for the powerplant's liveness status
+	public bool _GetLiveness() => IsAlive;
 
 	// Reacts to a new turn taking place
 	public void _NextTurn() {
@@ -172,45 +185,30 @@ public partial class PowerPlant : Node2D {
 		EnergyAvailability = EA <= -1.0f ? EnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
 	}
 
-	// Getter for the powerplant's current capacity
-	public int _GetCapacity() {
-		return EnergyCapacity;
-	}
-
-	// Getter for the plant's production cost
-	public int _GetProductionCost() {
-		return ProductionCost;
-	}
-
-	// Getter for the current availability EA in [0.0, 1.0]
-	public float _GetAvailability() {
-		return Math.Max(Math.Min(EnergyAvailability, 1.0f), 0.0f);
-	}
-
-	// Getter for the powerplant's liveness status
-	public bool _GetLiveness() {
-		return IsAlive;
-	}
-
 	// Forces the update of the isPreview state of the plant
 	public void _UpdateIsPreview(bool n) {
 		IsPreview = n;
+		// If the plant is in preview mode, then it's being shown in the build menu
+		// and thus should not have any visible interactive elements.
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
-		} else {
+		} 
+		// When not in preview mode, the interactive elements should be visible
+		else {
 			PollL.Show();
 			Switch.Show();
 		}
 	}
 
+	// Updates the UI label for the plant to the given name
 	public void _UpdatePlantName(string name) {
 		NameL.Text = name;
 	}
 
 	// Updates the UI to match the internal state of the plant
 	public void _UpdatePlantData() {
-		// Update the preview state of the plant
+		// Update the preview state of the plant (in case this happens during a build menu selection)
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
@@ -233,6 +231,11 @@ public partial class PowerPlant : Node2D {
 		EnergyCapacity = 0;
 		EnergyAvailability = 0;
 		ProductionCost = 0;
+
+		// Plant no longer pollutes when it's powered off
+		Pollution = 0;
+
+		// Propagate the new values to the UI
 		_UpdatePlantData();
 	}
 
@@ -244,6 +247,9 @@ public partial class PowerPlant : Node2D {
 		EnergyCapacity = InitialEnergyCapacity;
 		EnergyAvailability = InitialEnergyAvailability;
 		ProductionCost = InitialProductionCost;
+		Pollution = InitialPollution;
+
+		// Propagate the new values to the UI
 		_UpdatePlantData();
 	}
 
