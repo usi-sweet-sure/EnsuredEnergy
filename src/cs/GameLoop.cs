@@ -133,13 +133,8 @@ public partial class GameLoop : Node2D {
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
 
-
 		// Start the game
 		StartGame();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
 	}
 
 	// ==================== Resource access API ====================
@@ -159,9 +154,8 @@ public partial class GameLoop : Node2D {
 		return false;
 	}
 
-	public List<PowerPlant> _GetPowerPlants() {
-		return PowerPlants;
-	}
+	// Getter for the internal list of built powerplants
+	public List<PowerPlant> _GetPowerPlants() => PowerPlants;
 
 	// ==================== Internal Helpers ====================
 	
@@ -179,17 +173,8 @@ public partial class GameLoop : Node2D {
 			Money.Money
 		);
 
+		// Propagate the update to the UI
 		_UI._UpdateUI();
-	}
-
-	// Propagates the new turn to each build button and building
-	private void UpdateBuilds() {
-		foreach(var bb in BBs) {
-			bb._NextTurn();
-		}
-		foreach(var pp in PowerPlants) {
-			pp._NewTurn();
-		}
 	}
 
 	// ==================== Main Game Loop Methods ====================  
@@ -225,9 +210,6 @@ public partial class GameLoop : Node2D {
 
 			// Update Resources 
 			UpdateResources();
-
-			// Update the PowerPlants and build buttons
-			UpdateBuilds();
 
 		} else if(RemainingTurns <= 0) {
 			// End the game if all turns have been spent

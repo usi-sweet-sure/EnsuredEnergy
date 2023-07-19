@@ -24,7 +24,7 @@ public struct InfoData {
 	// === Field Numbers for each type ===
 	public const int N_W_ENERGY_FIELDS = 2;
 	public const int N_S_ENERGY_FIELDS = 2;
-	public const int N_ENV_FIELDS = 3;
+	public const int N_ENV_FIELDS = 4;
 	public const int N_SUPPORT_FIELDS = 2;
 	public const int N_MONEY_FIELDS = 4;
 
@@ -74,7 +74,7 @@ public struct InfoData {
 public partial class UI : CanvasLayer {
 
 	// Describes the type of bar that contains information about certain metrics
-	public enum InfoType { W_ENGERGY, S_ENGERGY, SUPPORT, ENVIRONMENT, MONEY };
+	public enum InfoType { W_ENGERGY, S_ENGERGY, SUPPORT, ENVIRONMENT, POLLUTION, MONEY };
 
 	// XML querying strings
 	private const string LABEL_FILENAME = "labels.xml";
@@ -109,6 +109,7 @@ public partial class UI : CanvasLayer {
 	// The two information bars
 	private InfoBar EnvironmentBar;
 	private InfoBar SupportBar;
+	private InfoBar PollutionBar;
 
 	// Date progression
 	private HSlider Timeline;
@@ -163,6 +164,7 @@ public partial class UI : CanvasLayer {
 		SummerEnergy = GetNode<InfoBar>("Bottom/EnergyBarSummer");
 		EnvironmentBar = GetNode<InfoBar>("Bottom/Env");
 		SupportBar = GetNode<InfoBar>("Bottom/Trust");
+		PollutionBar = GetNode<InfoBar>("Bottom/Poll");
 
 		// Timeline
 		Timeline = GetNode<HSlider>("Top/Timeline");
@@ -210,10 +212,6 @@ public partial class UI : CanvasLayer {
 		TC._UpdateLanguage(Language.Type.EN);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== UI Update API ====================
 
 	// Updates the various labels across the UI
@@ -233,6 +231,7 @@ public partial class UI : CanvasLayer {
 		string SummerEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_s");
 		string EnvironmentBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_environment");
 		string SupportBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_support");
+		string PollutionBar_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_pollution");
 
 		// UI buttons
 		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
@@ -266,11 +265,12 @@ public partial class UI : CanvasLayer {
 			}
 		}
 
-		// Update the energy bar names
+		// Update the resource bar names
 		WinterEnergy._UpdateBarName(WinterEnergy_name);
 		SummerEnergy._UpdateBarName(SummerEnergy_name);
 		EnvironmentBar._UpdateBarName(EnvironmentBar_name);
 		SupportBar._UpdateBarName(SupportBar_name);
+		PollutionBar._UpdateBarName(PollutionBar_name);
 
 		// Update UI buttons
 		NextTurnButton.Text = next_turn_name;
@@ -290,6 +290,9 @@ public partial class UI : CanvasLayer {
 				break;
 			case InfoType.ENVIRONMENT:
 				EnvironmentBar._UpdateProgress(val);
+				break;
+			case InfoType.POLLUTION:
+				PollutionBar._UpdateProgress(val);
 				break;
 			default:
 				break;
@@ -313,6 +316,9 @@ public partial class UI : CanvasLayer {
 			case InfoType.ENVIRONMENT:
 				EnvironmentBar._UpdateSlider(val);
 				break;
+			case InfoType.POLLUTION:
+				PollutionBar._UpdateSlider(val);
+				break;
 			default:
 				break;
 		}
@@ -322,7 +328,7 @@ public partial class UI : CanvasLayer {
 	// This is done following the ordering of the fields in the InfoData struct
 	// Energy: demand, supply
 	// Support: energy_affordability, env_aesthetic
-	// Environment: land_use, pollution, biodiversity
+	// Environment: land_use, pollution, biodiversity, envbarval
 	// Money: budget, production, building, money
 	public void _UpdateData(InfoType t, params int[] d) {
 		switch (t) {
@@ -388,6 +394,20 @@ public partial class UI : CanvasLayer {
 
 				// Update the UI
 				SetEnvironmentInfo();
+
+				// Update the bar value
+				_UpdateBarValue(InfoType.ENVIRONMENT, d[3]);
+				_UpdateBarValue(InfoType.POLLUTION, Data.Pollution);
+
+				// Update the bar slider
+				_UpdateBarSlider(
+					InfoType.ENVIRONMENT, 
+					0.75f
+				);
+				_UpdateBarSlider(
+					InfoType.POLLUTION,
+					0.0f
+				);
 				break;
 			case InfoType.MONEY:
 				// Sanity check, make sure that there are enough fields
@@ -452,9 +472,9 @@ public partial class UI : CanvasLayer {
 
 		EnvironmentBar._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
-			land_label, Data.LandUse.ToString(), // T0, N0
+			land_label, Data.LandUse.ToString() + "%", // T0, N0
 			poll_label, Data.Pollution.ToString(), // T1, N1
-			buidiv_label, Data.Biodiversity.ToString() // T2, N2
+			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
 		);
 	}
 

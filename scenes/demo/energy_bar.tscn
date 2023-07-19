@@ -23,13 +23,14 @@ width = 1.0
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
-offset_left = -102.0
+offset_left = -129.0
 offset_top = -4.0
-offset_right = -40.0
+offset_right = -44.0
 offset_bottom = 22.0
 scale = Vector2(1.2, 1.2)
 size_flags_horizontal = 0
 text = "Energy :"
+horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="Name"]
 visible = false

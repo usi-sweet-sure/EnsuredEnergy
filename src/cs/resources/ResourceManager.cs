@@ -54,28 +54,39 @@ public partial class ResourceManager : Node {
 		BBs = new List<BuildButton>();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
 	// ==================== Public API ====================
 
 	// Progresses to the next turn
 	public void _NextTurn() {
+
+		// Update all build buttons
+		foreach(BuildButton bb in BBs) {
+			bb._NextTurn();
+		}
+
+		// Update all plants
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._NextTurn();
+		}
+
 		// Update the internal managers
 		Energy E = EngM._NextTurn();
+		Environment Env = EnvM._NextTurn();
 
 		// Update the energy UI
 		UpdateEnergyUI(E);
+		UpdateEnvironmentUI(Env);
 	}
 
 	// Initializes all of the resource managers
 	public void _UpdateResourcesUI() {
-		// Initialize the energy
+		// Initialize the internal managers
 		Energy E = EngM._GetEnergyValues();
+		Environment Env = EnvM._NextTurn();
 
-		// Update the energy UI
+		// Update the UI
 		UpdateEnergyUI(E);
+		UpdateEnvironmentUI(Env);
 	}
 
 	// Updates the current list of power plants via a deep copy
@@ -90,6 +101,7 @@ public partial class ResourceManager : Node {
 
 		// Propagate the update to the energy manager
 		EngM._UpdatePowerPlants(PowerPlants);
+		EnvM._UpdatePowerPlants(PowerPlants);
 
 		// Connect the powerplants signals to propagate changes to the UI
 		foreach(PowerPlant pp in PowerPlants) {
@@ -126,11 +138,29 @@ public partial class ResourceManager : Node {
 		);
 	}
 
+	// Updates the UI fields related to the environment resource
+	private void UpdateEnvironmentUI(Environment Env) {
+		// Update the UI
+		_UI._UpdateData(
+			UI.InfoType.ENVIRONMENT,
+			(int)(Env.LandUse * 100), // Convert floating point to integer percentage
+			Env.Pollution,
+			(int)(Env.Biodiversity * 100),
+			(int)(Env.EnvBarValue() * 100)
+		);
+	}
+
+	// Wrapper for interface compatibility reasons
+	private void _UpdateResourcesUIWrapper(bool b) {
+		_UpdateResourcesUI();
+	}
+
 	// ==================== Callbacks ====================  
 
 	// Simply reacts to a power plant toggle by updating the UI
 	// The parameter is only used for signal interface compatibility
-	private void _OnPowerPlantSwitchToggle(bool b) => 
+	private void _OnPowerPlantSwitchToggle(bool b=false) { 
 		_UpdateResourcesUI();
+	}
 	
 }

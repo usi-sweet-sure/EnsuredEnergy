@@ -38,6 +38,7 @@
         <text id="label_energy_s">Energie 🔆</text>
         <text id="label_support">Support</text>
         <text id="label_environment">Environment</text>
+        <text id="label_pollution">Pollution</text>
     </group>
 
     <!-- Labels for general UI buttons -->
