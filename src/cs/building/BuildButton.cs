@@ -213,6 +213,10 @@ public partial class BuildButton : Button {
 
 	// Wrapper for a more specific call depending on the selected plant type
 	private void UpdateGenericPlant(PowerPlant PP) {
+		// Make sure that the selected plant is setup correctly
+		PP._SetPlantFromConfig(PP.PlantType);
+
+		// Pick which plant to show and update
 		switch(PP.PlantType) {
 			case BuildingType.GAS:
 				UpdatePowerPlant(ref GasPlant, PP);

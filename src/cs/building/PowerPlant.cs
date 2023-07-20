@@ -45,42 +45,31 @@ public partial class PowerPlant : Node2D {
 	// and is used to know when to hide certain fields
 	public bool IsPreview = false; 
 
-	[Export]
 	// The number of turns it takes to build this plant
 	public int BuildTime = 0;
 
-	[Export]
 	// The initial cost of creating the power plant
 	// This is what will be displayed in the build menu
 	public int BuildCost = 0;
 
-	[Export]
 	// The number of turns the plant stays usable for
 	public int LifeCycle = 10;
 
-	[ExportGroup("Energy Parameters")]
-	[Export] 
 	// The cost that the power plant will require each turn to function
 	public int InitialProductionCost = 0;
 
-	[Export] 
 	// This is the amount of energy that the plant can produce per turn
 	public int InitialEnergyCapacity = 100;
 
-	[Export]
 	// This is the amount of energy that the plant is able to produce given environmental factors
 	public float InitialEnergyAvailability = 1.0f; // This is a percentage
 
-	[ExportGroup("Environment Parameters")]
-	[Export]
 	// Amount of pollution caused by the power plant (can be negative in the tree case)
 	public int InitialPollution = 10;
 
-	[Export]
 	// Percentage of the total land used up by this power plant
 	public float LandUse = 0.1f;
 
-	[Export]
 	// Percentage by which this plant reduces the biodiversity in the country
 	// If negative, this will increase the total biodiversity
 	public float BiodiversityImpact = 0.1f;
@@ -102,6 +91,9 @@ public partial class PowerPlant : Node2D {
 	private Label MoneyL;
 	public CheckButton Switch;
 
+	// Configuration controller
+	private ConfigController CC;
+
 	// ==================== GODOT Method Overrides ====================
 	
 	// Called when the node enters the scene tree for the first time.
@@ -113,6 +105,7 @@ public partial class PowerPlant : Node2D {
 		EnergyL = GetNode<Label>("ResRect/Energy");
 		MoneyL = GetNode<Label>("ResRect/Money");
 		Switch = GetNode<CheckButton>("Switch");
+		CC = GetNode<ConfigController>("ConfigController");
 
 		// Hide unnecessary fields if we are in preview mode
 		if(IsPreview) {
@@ -158,6 +151,38 @@ public partial class PowerPlant : Node2D {
 
 	// Getter for the powerplant's liveness status
 	public bool _GetLiveness() => IsAlive;
+
+	// Sets the values of the plant from a given config
+	public void _SetPlantFromConfig(BuildingType bt) {
+		PowerPlantConfigData PPCD = new PowerPlantConfigData();
+
+		// Figure out which type was given and read out its config
+		switch(bt) {
+			case BuildingType.GAS:
+				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "gas");
+				break;
+			case BuildingType.HYDRO:
+				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "hydro");
+				break;
+			case BuildingType.NUCLEAR:
+				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "nuclear");
+				break;
+			case BuildingType.SOLAR:
+				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "solar");
+				break;
+			case BuildingType.TREE:
+				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "tree");
+				break;
+			default:
+				break;
+		}
+
+		// Copy over the data to our plant
+		CopyFrom(PPCD);
+
+		// Propagate change to the UI
+		_UpdatePlantData();
+	}
 
 	// Reacts to a new turn taking place
 	public void _NextTurn() {
@@ -240,6 +265,25 @@ public partial class PowerPlant : Node2D {
 	}
 
 	// ==================== Helper Methods ====================    
+
+	// Sets the internal fields of a powerplant from a given config data
+	private void CopyFrom(PowerPlantConfigData PPCD) {
+		// Copy in the public fields
+		BuildCost = PPCD.BuildCost;
+		BuildTime = PPCD.BuildTime;
+		LifeCycle = PPCD.LifeCycle;
+		LandUse = PPCD.LandUse;
+		BiodiversityImpact = PPCD.Biodiversity;
+
+		// Copy in the private fields
+		_UdpatePowerPlantFields(
+			true, 
+			PPCD.Pollution,
+			PPCD.ProductionCost,
+			PPCD.Capacity,
+			PPCD.Availability
+		);
+	}
 
 	// Deactivates the current power plant
 	private void KillPowerPlant() {

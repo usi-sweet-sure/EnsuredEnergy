@@ -122,6 +122,11 @@ public partial class GameLoop : Node2D {
 		// Fetch resource manager
 		RM = GetNode<ResourceManager>("ResourceManager");
 
+		// Initially set all plants form their configs
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._SetPlantFromConfig(pp.PlantType);
+		}
+
 		// Connect Callback to each build button and give them a reference to the loop
 		foreach(BuildButton bb in BBs) {
 			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
