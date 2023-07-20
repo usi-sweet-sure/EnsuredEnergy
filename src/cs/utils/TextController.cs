@@ -23,80 +23,9 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 
-// Models a language
-public readonly struct Language {
-	// Represents the different types of languages
-	public enum Type { EN, FR, DE, IT };
-
-	// Internal storage of a language
-	public readonly Type lang;
-
-	// Basic constructor for the language
-	public Language(Type l)  {
-		lang = l;
-	}
-
-	// Override equality and inequality operators
-	public static bool operator ==(Language l, Language other) => l.lang == other.lang;
-	public static bool operator !=(Language l, Language other) => l.lang != other.lang;
-
-	// Override the incrementation and decrementation operators
-	public static Language operator ++(Language l) => new Language((Type)((int)(l.lang + 1) % (int)(Type.IT + 1)));
-	public static Language operator --(Language l) => new Language((Type)((int)(l.lang - 1) % (int)(Type.IT + 1)));
-
-	// Implicit conversion from the enum to the struct
-	public static implicit operator Language(Type lt) => new Language(lt);
-
-	// Implicit conversion from the struct to the enum
-	public static implicit operator Type(Language l) => l.lang;
-
-	// Implicit conversion from a string to a language
-	public static implicit operator Language(string s) {
-		// Make it as easy to parse as possible
-		string s_ = s.ToLower().StripEdges();
-		if(s == "en" || s == "english") {
-			return new Language(Type.EN);
-		} 
-		if (s == "fr" || s == "french" || s == "français") {
-			return new Language(Type.FR);
-		} 
-		if(s == "de" || s == "german" || s == "deutsch") {
-			return new Language(Type.DE);
-		} 
-		return new Language(Type.IT);
-	}
-	
-	// Implicit conversion to a string
-	public override string ToString() => lang == Type.EN ? "en" : 
-										 lang == Type.FR ? "fr" :
-										 lang == Type.DE ? "de" :
-										 "it";
-
-	public string ToName() => lang == Type.EN ? "Language: English" : 
-							  lang == Type.FR ? "Langue: Français" :
-							  lang == Type.DE ? "Sprache: Deutsch" :
-							  "Lingua: Italiano";
-
-	// Performs the same check as the == operator, but with a run-time check on the type
-	public override bool Equals(object obj) {
-		// Check for null and compare run-time types.
-		if ((obj == null) || ! this.GetType().Equals(obj.GetType())) {
-			return false;
-		}
-		// Perform actual equality check
-		return lang == ((Language)obj).lang;
-	}
-
-	// Override of the get hashcode method (needed to overload == and !=)
-	public override int GetHashCode() => HashCode.Combine(lang);
-}
-
 // Utility class used to access XML db files.
 // This is usually done to display text in a way that is linguistically dynamic .
-public partial class TextController : Node {
-
-	// The path to the base of the db 
-	private string DB_PATH = Path.Combine("db/");
+public partial class TextController : XMLController {
 
 	// The currently loaded xml document
 	private XDocument LoadedXML;
@@ -105,44 +34,6 @@ public partial class TextController : Node {
 
 	// The current language
 	private Language Lang = Language.Type.EN;
-
-	// ==================== GODOT Method Overrides ====================
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready() {
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-	}
-
-	// ==================== Internal Helpers ====================
-
-	// Parses a given xml file and stores in in a target XDocument object
-	private void ParseXML(ref XDocument targetXML, string filename) {
-		if(filename == null) {
-			throw new Exception("No xml file was input for the scene!");
-		}
-		
-		//Load XML file into a XDocument for querying
-		string loadedXML;
-		XDocument xml;
-		string path = DB_PATH + Lang.ToString() + "/" + filename;
-		try { 
-			loadedXML = File.ReadAllText(path);
-			xml = XDocument.Parse(loadedXML);
-		} catch(Exception) {
-			// Control what error is displayed for better debugging
-			throw new Exception("File not found: " + path);
-		}
-		
-		//Sanity check
-		if(xml != null) {
-			targetXML = xml;
-		} else {
-			throw new Exception("Unable to load xml file: " + Lang.ToString() + "/" + filename);
-		}
-	}
 
 	// ==================== Public API ====================
 	
@@ -153,7 +44,7 @@ public partial class TextController : Node {
 			Lang = l;
 			
 			// Update the loaded xml
-			ParseXML(ref LoadedXML, LoadedFileName);
+			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + LoadedFileName));
 		}
 		// Don't do anything if the languages are the same
 	}
@@ -170,7 +61,7 @@ public partial class TextController : Node {
 	public string _GetText(string filename, string groupid, string id) {
 		// Start by checking if the file is loaded in or not
 		if(LoadedFileName != filename || LoadedLanguage != Lang) {
-			ParseXML(ref LoadedXML, filename);
+			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + filename));
 			LoadedFileName = filename;
 			LoadedLanguage = Lang;
 		}

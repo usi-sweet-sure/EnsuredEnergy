@@ -20,6 +20,3 @@ text = "🔨"
 [node name="Solar" parent="." instance=ExtResource("1_uv4jr")]
 
 [node name="Tree" parent="." instance=ExtResource("1_uv4jr")]
-InitialEnergyCapacity = 0
-InitialPollution = -10
-BiodiversityImpact = -0.1

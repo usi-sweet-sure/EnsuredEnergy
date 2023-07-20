@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=5 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://bpnyng7q0id2q" path="res://assets/230601_CH_SUREgame_SKETCHES-POWERPLANT.png" id="3_4a6uo"]
+[ext_resource type="Script" path="res://src/cs/utils/ConfigController.cs" id="3_runxt"]
 
 [sub_resource type="Theme" id="Theme_f6ssq"]
 
@@ -97,3 +98,6 @@ keep_pressed_outside = true
 flat = true
 alignment = 1
 icon_alignment = 1
+
+[node name="ConfigController" type="Node" parent="."]
+script = ExtResource("3_runxt")

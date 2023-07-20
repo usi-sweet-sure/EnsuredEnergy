@@ -24,9 +24,6 @@ position = Vector2(650, 100)
 scale = Vector2(1.3, 1.3)
 PlantName = "Solar Plant"
 PlantType = 2
-BuildTime = 1
-BuildCost = 500
-LandUse = 0.3
 
 [node name="SolarButton" type="Button" parent="ColorRect/Solar"]
 offset_left = -72.0
@@ -40,11 +37,6 @@ position = Vector2(400, 100)
 scale = Vector2(1.3, 1.3)
 PlantName = "Hydro Plant"
 PlantType = 0
-BuildTime = 3
-BuildCost = 1500
-InitialEnergyCapacity = 300
-LandUse = 0.2
-BiodiversityImpact = 0.2
 
 [node name="HydroButton" type="Button" parent="ColorRect/Hydro"]
 offset_left = -68.0
@@ -57,11 +49,6 @@ flat = true
 position = Vector2(150, 100)
 scale = Vector2(1.3, 1.3)
 PlantName = "Gas Plant"
-BuildCost = 300
-InitialProductionCost = 100
-InitialEnergyCapacity = 200
-LandUse = 0.2
-BiodiversityImpact = 0.2
 
 [node name="GasButton" type="Button" parent="ColorRect/Gas"]
 offset_left = -70.8462
@@ -75,8 +62,6 @@ position = Vector2(900, 100)
 scale = Vector2(1.3, 1.3)
 PlantName = "Trees"
 PlantType = 3
-InitialEnergyCapacity = 0
-BiodiversityImpact = -0.1
 
 [node name="TreeButton" type="Button" parent="ColorRect/Tree"]
 offset_left = -72.0
