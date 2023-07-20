@@ -11,24 +11,24 @@
         <param groupid="energy" id="availability" type="float">1.0</param> <!-- The percentage of the total capacity the plant can produce this turn -->
 
         <param groupid="environment" id="pollution" type="int">10</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.2</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.2</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.1</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
     </config>
 
     <config id="solar">
         <!-- Contains all of the parameters related to the powerplant -->
         <!-- Such that they are grouped by parameter type -->
-        <param groupid="meta" id="build_cost" type="int">300</param> <!-- The cost of building this plant -->
+        <param groupid="meta" id="build_cost" type="int">100</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
         <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
 
-        <param groupid="energy" id="production_cost" type="int">100</param> <!-- The cost of maintaining this plant active every turn -->
-        <param groupid="energy" id="capacity" type="int">200</param> <!-- The capacity this plant has w.r.t. energy production -->
+        <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
+        <param groupid="energy" id="capacity" type="int">20</param> <!-- The capacity this plant has w.r.t. energy production -->
         <param groupid="energy" id="availability" type="float">1.0</param> <!-- The percentage of the total capacity the plant can produce this turn -->
 
-        <param groupid="environment" id="pollution" type="int">10</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.2</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.2</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
+        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
     </config>
 
     <config id="nuclear">
@@ -36,46 +36,46 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">300</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">5</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">100</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">200</param> <!-- The capacity this plant has w.r.t. energy production -->
         <param groupid="energy" id="availability" type="float">1.0</param> <!-- The percentage of the total capacity the plant can produce this turn -->
 
-        <param groupid="environment" id="pollution" type="int">10</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.2</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.2</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
+        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.05</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
     </config>
 
     <config id="hydro">
         <!-- Contains all of the parameters related to the powerplant -->
         <!-- Such that they are grouped by parameter type -->
-        <param groupid="meta" id="build_cost" type="int">300</param> <!-- The cost of building this plant -->
-        <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
+        <param groupid="meta" id="build_cost" type="int">1000</param> <!-- The cost of building this plant -->
+        <param groupid="meta" id="build_time" type="int">3</param> <!-- The number of turns the plant takes to be constructed -->
         <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">100</param> <!-- The cost of maintaining this plant active every turn -->
-        <param groupid="energy" id="capacity" type="int">200</param> <!-- The capacity this plant has w.r.t. energy production -->
+        <param groupid="energy" id="capacity" type="int">300</param> <!-- The capacity this plant has w.r.t. energy production -->
         <param groupid="energy" id="availability" type="float">1.0</param> <!-- The percentage of the total capacity the plant can produce this turn -->
 
-        <param groupid="environment" id="pollution" type="int">10</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.2</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.2</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
+        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
     </config>
 
     <config id="tree">
         <!-- Contains all of the parameters related to the powerplant -->
         <!-- Such that they are grouped by parameter type -->
-        <param groupid="meta" id="build_cost" type="int">300</param> <!-- The cost of building this plant -->
+        <param groupid="meta" id="build_cost" type="int">0</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
         <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
 
-        <param groupid="energy" id="production_cost" type="int">100</param> <!-- The cost of maintaining this plant active every turn -->
-        <param groupid="energy" id="capacity" type="int">200</param> <!-- The capacity this plant has w.r.t. energy production -->
+        <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
+        <param groupid="energy" id="capacity" type="int">0</param> <!-- The capacity this plant has w.r.t. energy production -->
         <param groupid="energy" id="availability" type="float">1.0</param> <!-- The percentage of the total capacity the plant can produce this turn -->
 
-        <param groupid="environment" id="pollution" type="int">10</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.2</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.2</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="pollution" type="int">-2</param> <!-- The amount this plant pollutes -->
+        <param groupid="environment" id="land_use" type="float">-0.05</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">-0.05</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
     </config>
 </db>
