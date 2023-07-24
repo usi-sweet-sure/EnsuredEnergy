@@ -56,11 +56,11 @@ public partial class InfoBar : ProgressBar {
 		Debug.Assert(MinValue <= v && v <= MaxValue);
 
 		// Update the progress bar's value
-		double oldVal = Value;
 		//Value = v;
+		// Animates the value going to v in n seconds
 		Tween tween = CreateTween();
-		tween.TweenProperty(this, "value", v, 1.0f);
-		//Value = v;
+		tween.TweenProperty(this, "value", v, 0.8f);
+
 	}
 
 	// Updates the position of the slider based on a given value
