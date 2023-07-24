@@ -165,9 +165,11 @@ public partial class GameLoop : Node2D {
 	// ==================== Internal Helpers ====================
 	
 	// Propagates resource updates to the UI
-	private void UpdateResources() {
+	private void UpdateResources(bool newturn=false) {
 		// Update the ressource manager
-		RM._NextTurn();
+		if(newturn) {
+			RM._NextTurn();
+		}
 
 		// Update Money UI
 		_UI._UpdateData(
@@ -191,7 +193,7 @@ public partial class GameLoop : Node2D {
 		GS = GameState.PLAYING;
 
 		// Perform initial Resouce update
-		UpdateResources();
+		UpdateResources(true);
 
 		// Set the initial power plants and build buttons
 		RM._UpdatePowerPlants(PowerPlants);
@@ -214,7 +216,7 @@ public partial class GameLoop : Node2D {
 			Money.NextTurn(BUDGET_PER_TURN);
 
 			// Update Resources 
-			UpdateResources();
+			UpdateResources(true);
 
 		} else if(RemainingTurns <= 0) {
 			// End the game if all turns have been spent

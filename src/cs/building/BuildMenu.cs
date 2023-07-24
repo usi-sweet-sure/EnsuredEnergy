@@ -184,6 +184,8 @@ public partial class BuildMenu : CanvasLayer {
 				case BuildingType.GAS:
 					// Position the plant correctly
 					SetPlantPosition(ref GasPlant, idx++);
+
+					// Make sure that its fields are set correctly before displaying anything
 					GasPlant._SetPlantFromConfig(BuildingType.GAS);
 					GasPlant.PlantType = BuildingType.GAS;
 					break;
