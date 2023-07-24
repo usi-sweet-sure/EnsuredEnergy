@@ -309,6 +309,8 @@ public partial class PowerPlant : Node2D {
 		ProductionCost = InitialProductionCost;
 		Pollution = InitialPollution;
 
+		_SetPlantFromConfig(PlantType);
+
 		// Propagate the new values to the UI
 		_UpdatePlantData();
 	}
