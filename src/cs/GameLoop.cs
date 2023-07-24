@@ -36,18 +36,17 @@ public struct MoneyData {
 	}
 
 	// Resets the spending statistics at the end of each round
-	public void NextTurn(int new_budget) {
-		Money += new_budget;
+	public void NextTurn(int new_budget, int production) {
+		Money += new_budget - production;
 		Budget = Money;
-		Production = 0;
+		Production = production;
 		Build = 0;
 	}
 
 	// Spends money by updating the data correctly
-	public void SpendMoney(int amountBuild, int amountProd=0) {
+	public void SpendMoney(int amountBuild) {
 		Build += amountBuild;
-		Production += amountProd;
-		Money = Budget - (Build + Production);
+		Money -= amountBuild;
 	}
 }
 
@@ -67,7 +66,7 @@ public partial class GameLoop : Node2D {
 	public int START_MONEY = 1000;
 
 	[Export]
-	public int BUDGET_PER_TURN = 1000;
+	public static int BUDGET_PER_TURN = 1000;
 
 	// Internal game state
 	private GameState GS;
@@ -168,7 +167,7 @@ public partial class GameLoop : Node2D {
 	private void UpdateResources(bool newturn=false) {
 		// Update the ressource manager
 		if(newturn) {
-			RM._NextTurn();
+			RM._NextTurn(ref Money);
 		}
 
 		// Update Money UI
@@ -211,9 +210,6 @@ public partial class GameLoop : Node2D {
 	private void NewTurn() {
 		// Decerement the remaining turns and check for game end
 		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
-			// TODO Regular game loop
-			// Start by reseting the money data for the new turn 
-			Money.NextTurn(BUDGET_PER_TURN);
 
 			// Update Resources 
 			UpdateResources(true);
