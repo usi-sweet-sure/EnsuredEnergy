@@ -181,18 +181,26 @@ public partial class BuildMenu : CanvasLayer {
 				case BuildingType.GAS:
 					// Position the plant correctly
 					SetPlantPosition(ref GasPlant, idx++);
+					GasPlant._SetPlantFromConfig(BuildingType.GAS);
+					GasPlant.PlantType = BuildingType.GAS;
 					break;
 
 				case BuildingType.HYDRO:
 					SetPlantPosition(ref HydroPlant, idx++);
+					HydroPlant._SetPlantFromConfig(BuildingType.HYDRO);
+					HydroPlant.PlantType = BuildingType.HYDRO;
 					break;
 
 				case BuildingType.SOLAR:
 					SetPlantPosition(ref SolarPlant, idx++);
+					SolarPlant._SetPlantFromConfig(BuildingType.SOLAR);
+					SolarPlant.PlantType = BuildingType.SOLAR;
 					break;
 
 				case BuildingType.TREE:
 					SetPlantPosition(ref TreePlant, idx++);
+					TreePlant._SetPlantFromConfig(BuildingType.TREE);
+					TreePlant.PlantType = BuildingType.TREE;
 					break;
 			}
 		}
