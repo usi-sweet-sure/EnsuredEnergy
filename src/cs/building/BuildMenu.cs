@@ -167,12 +167,15 @@ public partial class BuildMenu : CanvasLayer {
 		// Update open flag
 		IsOpen = true;
 
+		// Connect the build button to our return signal and register it
+		RegisteredBuildButton = bb;
+		SelectBuilding += bb._OnSelectBuilding;
+
 		// Sanity check: List must not contain duplicates
 		List<BuildingType> BTs = bb.BL.AvailableTypes.Distinct().ToList();
 
-		// Connect the build button to our return signal and register it
-		SelectBuilding += bb._OnSelectBuilding;
-		RegisteredBuildButton = bb;
+		// Clear the Menu
+		HideAllPlants();
 
 		// Display the buildings sent with the signal  
 		int idx = 0;

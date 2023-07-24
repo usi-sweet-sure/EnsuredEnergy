@@ -282,6 +282,11 @@ public partial class BuildButton : Button {
 
 	// Receives the power plant selected by the user and now we need to place it
 	public void _OnSelectBuilding(PowerPlant PP) {
+		// Sanity check: Check explicitly for hydro builds and dissallow illegal ones
+		if(PP.PlantType == BuildingType.HYDRO && !AllowHydro) {
+			return;
+		}
+
 		// Hide the build menu UI
 		BM.Hide();
 
