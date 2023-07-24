@@ -167,12 +167,15 @@ public partial class BuildMenu : CanvasLayer {
 		// Update open flag
 		IsOpen = true;
 
+		// Connect the build button to our return signal and register it
+		RegisteredBuildButton = bb;
+		SelectBuilding += bb._OnSelectBuilding;
+
 		// Sanity check: List must not contain duplicates
 		List<BuildingType> BTs = bb.BL.AvailableTypes.Distinct().ToList();
 
-		// Connect the build button to our return signal and register it
-		SelectBuilding += bb._OnSelectBuilding;
-		RegisteredBuildButton = bb;
+		// Clear the Menu
+		HideAllPlants();
 
 		// Display the buildings sent with the signal  
 		int idx = 0;
@@ -181,18 +184,28 @@ public partial class BuildMenu : CanvasLayer {
 				case BuildingType.GAS:
 					// Position the plant correctly
 					SetPlantPosition(ref GasPlant, idx++);
+
+					// Make sure that its fields are set correctly before displaying anything
+					GasPlant._SetPlantFromConfig(BuildingType.GAS);
+					GasPlant.PlantType = BuildingType.GAS;
 					break;
 
 				case BuildingType.HYDRO:
 					SetPlantPosition(ref HydroPlant, idx++);
+					HydroPlant._SetPlantFromConfig(BuildingType.HYDRO);
+					HydroPlant.PlantType = BuildingType.HYDRO;
 					break;
 
 				case BuildingType.SOLAR:
 					SetPlantPosition(ref SolarPlant, idx++);
+					SolarPlant._SetPlantFromConfig(BuildingType.SOLAR);
+					SolarPlant.PlantType = BuildingType.SOLAR;
 					break;
 
 				case BuildingType.TREE:
 					SetPlantPosition(ref TreePlant, idx++);
+					TreePlant._SetPlantFromConfig(BuildingType.TREE);
+					TreePlant.PlantType = BuildingType.TREE;
 					break;
 			}
 		}
