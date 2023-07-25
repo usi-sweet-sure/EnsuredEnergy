@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
-[ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/demo/world.tscn" id="1_prp6q"]
-[ext_resource type="PackedScene" uid="uid://bs48lirfn2fp2" path="res://scenes/demo/ui.tscn" id="2_d60f5"]
-[ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/demo/BuildMenu.tscn" id="2_wrh8p"]
+[ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
+[ext_resource type="PackedScene" uid="uid://bs48lirfn2fp2" path="res://scenes/hud/ui.tscn" id="2_d60f5"]
+[ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/building/BuildMenu.tscn" id="2_wrh8p"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
-[ext_resource type="Script" path="res://src/cs/utils/TextController.cs" id="6_wtjaw"]
+[ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
 [ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
@@ -15,16 +15,6 @@
 script = ExtResource("1_4jam2")
 
 [node name="World" parent="." instance=ExtResource("1_prp6q")]
-
-[node name="Nuclear" parent="World" index="1"]
-LandUse = 0.2
-BiodiversityImpact = 0.3
-
-[node name="Coal" parent="World" index="2"]
-InitialProductionCost = 100
-Pollution = 30
-LandUse = 0.2
-BiodiversityImpact = 0.2
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 script = ExtResource("3_l6dyd")

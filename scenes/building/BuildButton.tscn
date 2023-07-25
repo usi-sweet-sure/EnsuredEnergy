@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://banvqdghwoj3p"]
 
-[ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/demo/power_plant.tscn" id="1_uv4jr"]
+[ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
 
 [node name="BuildButton" type="Button"]
 anchors_preset = -1
@@ -13,10 +13,10 @@ theme_override_colors/font_hover_color = Color(0.203922, 0.203922, 0.203922, 1)
 theme_override_font_sizes/font_size = 25
 text = "🔨"
 
-[node name="Gas" parent="." instance=ExtResource("1_uv4jr")]
+[node name="Gas" parent="." instance=ExtResource("1_wi5q3")]
 
-[node name="Hydro" parent="." instance=ExtResource("1_uv4jr")]
+[node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
 
-[node name="Solar" parent="." instance=ExtResource("1_uv4jr")]
+[node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
 
-[node name="Tree" parent="." instance=ExtResource("1_uv4jr")]
+[node name="Tree" parent="." instance=ExtResource("1_wi5q3")]

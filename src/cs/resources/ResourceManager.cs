@@ -28,6 +28,18 @@ using System.Linq;
 // - Environment: How are the energy management decisions impacting the environment
 public partial class ResourceManager : Node {
 
+	[Export]
+	/* Whether or not we import in the summer */
+	public bool ImportInSummer = false;
+
+	[Export]
+	/* The base cost of a kWh imported from abroad */
+	public float ImportCost = 0.1f;
+
+	[Export]
+	/* The base pollution of a kWh imported from abroad */
+	public float ImportPollution = 0.1f;
+
 	// Children resource managers
 	private SupportManager SM;
 	private EnergyManager EngM;
@@ -71,12 +83,24 @@ public partial class ResourceManager : Node {
 			pp._NextTurn();
 		}
 
-		// Update the internal managers
-		Energy E = EngM._NextTurn();
+		// Update the energy managers
+		Energy E = EngM._NextTurn(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Compute the total import cost
+		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the amount of pollution caused by imports
+		EnvM._UpdateImportPollution(imported, ImportPollution);
+
+		// Update the environment manager
 		Environment Env = EnvM._NextTurn();
 
 		// Compute the production cost for this turn and update the money
-		Money.NextTurn(GameLoop.BUDGET_PER_TURN, AggregateProductionCost());
+		Money.NextTurn(
+			GameLoop.BUDGET_PER_TURN, 
+			AggregateProductionCost(),
+			_GetTotalImportCost(_UI._GetImportSliderPercentage())
+		);
 
 		// Update the energy UI
 		UpdateEnergyUI(E);
@@ -85,9 +109,18 @@ public partial class ResourceManager : Node {
 
 	// Initializes all of the resource managers
 	public void _UpdateResourcesUI() {
-		// Initialize the internal managers
-		Energy E = EngM._GetEnergyValues();
-		Environment Env = EnvM._NextTurn();
+
+		// Get the energy manager data
+		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Compute the total import cost
+		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the amount of pollution caused by imports
+		EnvM._UpdateImportPollution(imported, ImportPollution);
+
+		// Get the environment manager data
+		Environment Env = EnvM._GetEnvValues();
 
 		// Update the UI
 		UpdateEnergyUI(E);
@@ -126,6 +159,16 @@ public partial class ResourceManager : Node {
 		}
 	} 
 
+	// Computes the cost of the current import amount
+	// Given the percentage selected by the player
+	public int _GetTotalImportCost(float import_perc) {
+		// Retrieve the import amounts
+		var (import_amount_w, import_amount_s) = EngM._ComputeImportAmount(import_perc, ImportInSummer);
+
+		// Compute the final cost
+		return (int)((import_amount_w + (!import_amount_s.HasValue ? 0 : import_amount_s.Value)) * ImportCost);
+	}
+
 	// ==================== Helper Methods ====================  
 	
 	// Updates the UI fields related to the energy resource
@@ -151,7 +194,8 @@ public partial class ResourceManager : Node {
 			(int)(Env.LandUse * 100), // Convert floating point to integer percentage
 			Env.Pollution,
 			(int)(Env.Biodiversity * 100),
-			(int)(Env.EnvBarValue() * 100)
+			(int)(Env.EnvBarValue() * 100),
+			Env.ImportedPollution
 		);
 	}
 

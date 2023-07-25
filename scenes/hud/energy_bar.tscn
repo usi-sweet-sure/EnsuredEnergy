@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2hyunjbx7qb7"]
 
-[ext_resource type="StyleBox" uid="uid://phji31i5dkkd" path="res://scenes/demo/energy_low.tres" id="2_0gu0e"]
+[ext_resource type="StyleBox" uid="uid://phji31i5dkkd" path="res://scenes/hud/energy_low.tres" id="2_0gu0e"]
 [ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="2_otguq"]
-[ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/demo/BarInfo.tscn" id="3_an05x"]
+[ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="3_an05x"]
 
 [node name="Energy" type="ProgressBar"]
 offset_left = 86.0

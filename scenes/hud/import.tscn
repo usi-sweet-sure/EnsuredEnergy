@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://c81iji81uc4g7"]
+
+[ext_resource type="Script" path="res://src/cs/ui/ImportSlider.cs" id="1_3r6om"]
+
+[node name="Import" type="HSlider"]
+anchors_preset = -1
+anchor_right = 0.133
+anchor_bottom = 0.03
+offset_right = 0.639999
+offset_bottom = -16.4
+tick_count = 2
+ticks_on_borders = true
+script = ExtResource("1_3r6om")
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.707
+anchor_bottom = 1.0
+offset_left = 3.992
+offset_top = -5.0
+offset_right = -12.0
+offset_bottom = 5.0
+text = "Imports"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Target" type="Line2D" parent="."]
+position = Vector2(-120, -8)
+points = PackedVector2Array(128, 8, 128, 24)
+width = 2.0
+
+[node name="Range" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 21.0
+offset_right = 266.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 10
+text = " 0                                                                                        100"
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 266.0
+offset_top = -4.0
+offset_right = 306.0
+offset_bottom = 22.0
+text = "0 %"
+
+[node name="Apply" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 306.0
+offset_top = -7.0
+offset_right = 337.0
+offset_bottom = 23.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "OK"
+
+[node name="Cancel" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 344.0
+offset_top = -8.0
+offset_right = 362.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "X"

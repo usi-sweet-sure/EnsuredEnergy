@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://cuayuul3kllsa" path="res://assets/grey_sliderRight.png" id="1_dv5c2"]
-[ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/demo/energy_bar.tscn" id="3_fm1y6"]
-[ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/demo/BarInfo.tscn" id="4_67rbh"]
+[ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
+[ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="4_67rbh"]
 [ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="4_e5tgv"]
-[ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/demo/import.tscn" id="5_ps4b6"]
-[ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/demo/shock.tscn" id="5_tj765"]
+[ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/hud/import.tscn" id="5_ps4b6"]
+[ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
 [ext_resource type="Script" path="res://src/cs/ui/PolicyWindow.cs" id="7_u64y1"]
-[ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/demo/window.tscn" id="7_yu7g8"]
+[ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldrdn"]
 bg_color = Color(0.152941, 0.658824, 0.152941, 1)
@@ -237,7 +237,7 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -232.0
-offset_bottom = 142.0
+offset_bottom = 174.0
 grow_horizontal = 0
 color = Color(0.121569, 0.219608, 0.360784, 1)
 
@@ -262,6 +262,10 @@ vertical_alignment = 1
 layout_mode = 2
 text = "  Building: "
 vertical_alignment = 1
+
+[node name="Import" type="Label" parent="Top/MoneyInfo/VBoxContainer"]
+layout_mode = 2
+text = "  Import:"
 
 [node name="prod" type="Label" parent="Top/MoneyInfo"]
 layout_mode = 0
@@ -295,6 +299,15 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="importamounts" type="Label" parent="Top/MoneyInfo"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 137.0
+offset_right = 203.0
+offset_bottom = 163.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "000"
 
 [node name="Money" type="ColorRect" parent="Top"]
 layout_mode = 1
@@ -394,17 +407,11 @@ flat = true
 
 [node name="Import" parent="Top" instance=ExtResource("5_ps4b6")]
 layout_mode = 1
-offset_left = 240.0
-offset_top = 10.0
-offset_right = 240.64
-offset_bottom = 24.56
+offset_left = 209.0
+offset_top = 16.0
+offset_right = 209.64
+offset_bottom = 30.56
 metadata/_edit_group_ = true
-
-[node name="Label" parent="Top/Import" index="0"]
-offset_left = 1.992
-offset_top = 1.0
-offset_right = -14.0
-offset_bottom = 11.0
 
 [node name="Shock" parent="." instance=ExtResource("5_tj765")]
 visible = false

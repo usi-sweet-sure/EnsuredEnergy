@@ -19,57 +19,6 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-// Data structure for the information displayed in the info boxes
-public struct InfoData {
-	// === Field Numbers for each type ===
-	public const int N_W_ENERGY_FIELDS = 2;
-	public const int N_S_ENERGY_FIELDS = 2;
-	public const int N_ENV_FIELDS = 4;
-	public const int N_SUPPORT_FIELDS = 2;
-	public const int N_MONEY_FIELDS = 4;
-
-	// === Energy metrics ===
-	public int W_EnergyDemand; // Energy demand for the winter season
-	public int W_EnergySupply; // Energy supply for the winter season
-	public int S_EnergyDemand; // Energy demand for the summer season
-	public int S_EnergySupply; // Energy supply for the summer season
-
-	// === Support metrics ===
-	public int EnergyAffordability; // Used in the support bar
-	public int EnvAesthetic; // Also used in the support bar
-
-	// === Environment metrics ===
-	public int LandUse; // Used in the environment bar
-	public int Pollution; // Also for the environment bar
-	public int Biodiversity; // For the environment bar
-
-	// === Money Metrics ===
-	public int Budget; // The amount of money you are generating this turn
-	public int Production; // The amount of money used for production this turn
-	public int Building; // The amount of money spent on building this turn
-	public int Money; // The total amount of money you have
-
-	// Constructor for the Data
-	public InfoData() {
-		W_EnergyDemand = 0; 
-		W_EnergySupply = 0; 
-		S_EnergyDemand = 0; 
-		S_EnergySupply = 0; 
-
-		EnergyAffordability = 0; 
-		EnvAesthetic = 0; 
-
-		LandUse = 0;
-		Pollution = 0;
-		Biodiversity = 0; 
-
-		Budget = 0;
-		Production = 0;
-		Building = 0;
-		Money = 0; 
-	}
-}
-
 // General controller for the UI
 public partial class UI : CanvasLayer {
 
@@ -114,17 +63,23 @@ public partial class UI : CanvasLayer {
 	// Date progression
 	private HSlider Timeline;
 
+	// Imports
+	private ImportSlider Imports;
+	
+
 	// Money related nodes
 	private Label MoneyL;
 	private Label MoneyNameL;
 	private Label BudgetNameL;
 	private Label BuildNameL;
 	private Label ProdNameL;
+	private Label ImportCostNameL;
 	private Button MoneyButton;
 	private ColorRect MoneyInfo;
 	private Label BudgetL;
 	private Label BuildL;
 	private Label ProdL;
+	private Label ImportCostL;
 
 	// Window buttons
 	private Button PolicyButton;
@@ -166,8 +121,9 @@ public partial class UI : CanvasLayer {
 		SupportBar = GetNode<InfoBar>("Bottom/Trust");
 		PollutionBar = GetNode<InfoBar>("Bottom/Poll");
 
-		// Timeline
+		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
+		Imports = GetNode<ImportSlider>("Top/Import");
 
 		// Money Nodes
 		MoneyL = GetNode<Label>("Top/Money/money");
@@ -176,12 +132,14 @@ public partial class UI : CanvasLayer {
 		BudgetL = GetNode<Label>("Top/MoneyInfo/budget");
 		BuildL = GetNode<Label>("Top/MoneyInfo/build");
 		ProdL = GetNode<Label>("Top/MoneyInfo/prod");
+		ImportCostL = GetNode<Label>("Top/MoneyInfo/importamounts");
 
 		// Name labels
 		MoneyNameL = GetNode<Label>("Top/Money/Label");
 		BudgetNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label3");
 		BuildNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label4");
 		ProdNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label2");
+		ImportCostNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
 		PolicyButton = GetNode<Button>("Bottom/PolicyButton");
@@ -204,6 +162,9 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar.MouseExited += _OnEnvironmentMouseExited;
 		SupportBar.MouseEntered += _OnSupportMouseEntered;
 		SupportBar.MouseExited += _OnSupportMouseExited;
+		PollutionBar.MouseEntered += _OnPollutionMouseEntered;
+		PollutionBar.MouseExited += _OnPollutionMouseExited;
+		Imports.ImportUpdate += _OnImportUpdate;
 
 		// Initialize data
 		Data = new InfoData();
@@ -235,6 +196,7 @@ public partial class UI : CanvasLayer {
 
 		// UI buttons
 		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
+		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
 
 		// Update the various plants
 		BM._UpdatePlantName(BuildingType.GAS, gas_name);
@@ -274,6 +236,9 @@ public partial class UI : CanvasLayer {
 
 		// Update UI buttons
 		NextTurnButton.Text = next_turn_name;
+
+		// Update the import slider
+		Imports._UpdateLabel(import_name);
 	}
 
 	// Updates the value of the a given bar
@@ -328,8 +293,8 @@ public partial class UI : CanvasLayer {
 	// This is done following the ordering of the fields in the InfoData struct
 	// Energy: demand, supply
 	// Support: energy_affordability, env_aesthetic
-	// Environment: land_use, pollution, biodiversity, envbarval
-	// Money: budget, production, building, money
+	// Environment: land_use, pollution, biodiversity, envbarval, import pollution
+	// Money: budget, production, building, money, import cost
 	public void _UpdateData(InfoType t, params int[] d) {
 		switch (t) {
 			case InfoType.W_ENGERGY:
@@ -351,6 +316,9 @@ public partial class UI : CanvasLayer {
 					InfoType.W_ENGERGY, 
 					(float)Data.W_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
 				);
+
+				// Update the required import target (only in winter due to conservative estimates)
+				SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -391,13 +359,14 @@ public partial class UI : CanvasLayer {
 				Data.LandUse = d[0];
 				Data.Pollution = d[1];
 				Data.Biodiversity = d[2];
+				Data.ImportPollution = d[4];
 
 				// Update the UI
 				SetEnvironmentInfo();
 
 				// Update the bar value
 				_UpdateBarValue(InfoType.ENVIRONMENT, d[3]);
-				_UpdateBarValue(InfoType.POLLUTION, Data.Pollution);
+				_UpdateBarValue(InfoType.POLLUTION, Data.Pollution + Data.ImportPollution);
 
 				// Update the bar slider
 				_UpdateBarSlider(
@@ -418,6 +387,7 @@ public partial class UI : CanvasLayer {
 				Data.Production = d[1];
 				Data.Building = d[2];
 				Data.Money = d[3];
+				Data.Imports = d[4];
 
 				// Update the UI 
 				SetMoneyInfo();
@@ -427,7 +397,27 @@ public partial class UI : CanvasLayer {
 		}
 	}
 
+	// Retrieves the import percentage selected by the user
+	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 100.0f;
+
 	// ==================== Internal Helpers ====================
+
+	// Sets the required imports based on the demand
+	private void SetTargetImport() {
+		// Fetch the demand and supply
+		int demand  = Data.W_EnergyDemand;
+		int supply = Data.W_EnergySupply;
+
+		// Compute the different, clamped to 0 as no imports are required
+		// when the supply meets the demand
+		int diff = Math.Max(0, demand - supply); 
+
+		// Compute the percentage of the total demand tha the diff represents
+		float diff_perc = (float)diff / (float)demand;
+
+		// Set the import target to that percentage
+		Imports._UpdateTargetImport(diff_perc);
+	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
@@ -467,14 +457,24 @@ public partial class UI : CanvasLayer {
 	private void SetEnvironmentInfo() {
 		// Get the labels from the XML file
 		string land_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_land");
-		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
 		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
 
 		EnvironmentBar._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
 			land_label, Data.LandUse.ToString() + "%", // T0, N0
-			poll_label, Data.Pollution.ToString(), // T1, N1
 			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
+		);
+	}
+
+	// Sets the information fields for the pollution bar
+	private void SetPollutionInfo() {
+		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
+		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
+
+		PollutionBar._UpdateInfo(
+			"n/max", // N/Max TODO: Figure out what to use here
+			poll_label, Data.Pollution.ToString(), // T0, N0
+			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
 	}
 
@@ -485,18 +485,22 @@ public partial class UI : CanvasLayer {
 		string budget_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_budget");
 		string prod_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_production");
 		string build_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_building");
+		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
+
 
 		// Set Names
 		MoneyNameL.Text = money_label;
 		BudgetNameL.Text = budget_label;
 		ProdNameL.Text = prod_label;
 		BuildNameL.Text = build_label;
+		ImportCostNameL.Text = import_name;
 		
 		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
 		BuildL.Text = Data.Building.ToString();
 		ProdL.Text = Data.Production.ToString();
 		MoneyL.Text = Data.Money.ToString();
+		ImportCostL.Text = Data.Imports.ToString();
 	}
 
 	// ==================== Interaction Callbacks ====================
@@ -574,6 +578,20 @@ public partial class UI : CanvasLayer {
 		SupportBar._HideInfo();
 	}
 
+	// Displays the information box related to the pollution bar
+	public void _OnPollutionMouseEntered() {
+		// Make sure that the pollution info is up to date
+		SetPollutionInfo();
+
+		// Show the new info
+		PollutionBar._DisplayInfo();
+	}
+
+	// Hides the information box related to the Pollution bar
+	public void _OnPollutionMouseExited() {
+		PollutionBar._HideInfo();
+	}
+
 	// Shows the policy window
 	public void _OnPolicyButtonPressed() {
 		// Toggle the window visibility  
@@ -601,5 +619,11 @@ public partial class UI : CanvasLayer {
 
 		// Update the ui
 		_UpdateUI();
+	}
+
+	// Propagates an import update to the rest of the system
+	public void _OnImportUpdate() {
+		// Propagate the request of a resource update to the game loop
+		GL._UpdateResourcesUI();
 	}
 }

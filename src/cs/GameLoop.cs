@@ -20,36 +20,6 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-// Contains all of the fields related to money
-public struct MoneyData {
-	public int Money; // Total amount of available money
-	public int Budget; // Total budget for this round
-	public int Production; // Money spent on production costs this round
-	public int Build; // Money spent on build costs this round
-
-	// Default constructor for the MoneyData
-	public MoneyData(int start_money) {
-		Money = start_money;
-		Budget = start_money;
-		Production = 0;
-		Build = 0;
-	}
-
-	// Resets the spending statistics at the end of each round
-	public void NextTurn(int new_budget, int production) {
-		Money += new_budget - production;
-		Budget = Money;
-		Production = production;
-		Build = 0;
-	}
-
-	// Spends money by updating the data correctly
-	public void SpendMoney(int amountBuild) {
-		Build += amountBuild;
-		Money -= amountBuild;
-	}
-}
-
 // Models the overarching game loop, which controls every aspect of the game
 // and makes sure that things are synchronized across game objects
 public partial class GameLoop : Node2D {
@@ -161,6 +131,12 @@ public partial class GameLoop : Node2D {
 	// Getter for the internal list of built powerplants
 	public List<PowerPlant> _GetPowerPlants() => PowerPlants;
 
+	// Enable public access to a resource update request
+	public void _UpdateResourcesUI() {
+		// Request a non-new turn update of the UI
+		UpdateResources();
+	}
+
 	// ==================== Internal Helpers ====================
 	
 	// Propagates resource updates to the UI
@@ -168,6 +144,8 @@ public partial class GameLoop : Node2D {
 		// Update the ressource manager
 		if(newturn) {
 			RM._NextTurn(ref Money);
+		} else {
+			RM._UpdateResourcesUI();
 		}
 
 		// Update Money UI
@@ -176,7 +154,8 @@ public partial class GameLoop : Node2D {
 			Money.Budget, 
 			Money.Production,
 			Money.Build,
-			Money.Money
+			Money.Money,
+			Money.Imports
 		);
 
 		// Propagate the update to the UI
