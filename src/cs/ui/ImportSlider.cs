@@ -66,7 +66,7 @@ public partial class ImportSlider : HSlider {
     }
 
     // Getter for the current value selected with the slider
-    public int _GetImportValue() => (int) Value;
+    public int _GetImportValue() => Math.Max(0, Math.Min((int) Value, 100));
 
     // ==================== Signal Callbacks ====================
 

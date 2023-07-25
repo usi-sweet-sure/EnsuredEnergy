@@ -82,8 +82,8 @@ public partial class EnergyManager : Node {
 	// The given amount is the percentage of the total demand that is imported
 	// The importSummer flag reprensents whether or not we import in the summer
 	public (int, int?) _ComputeImportAmount(float import_perc, bool importSummer=false) => (
-		(int)Math.Ceiling(import_perc * E.DemandWinter),
-		importSummer ? (int)Math.Ceiling(import_perc * E.DemandSummer) : null
+		(int)(import_perc * E.DemandWinter),
+		importSummer ? (int)(import_perc * E.DemandSummer) : null
 	);
 
 	// Computes the energy levels that will be present for the next turn

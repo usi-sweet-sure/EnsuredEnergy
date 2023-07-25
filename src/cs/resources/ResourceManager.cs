@@ -34,7 +34,7 @@ public partial class ResourceManager : Node {
 
 	[Export]
 	/* The base cost of a kWh imported from abroad */
-	public int ImportCost = 100;
+	public float ImportCost = 0.1f;
 
 	// Children resource managers
 	private SupportManager SM;
@@ -80,14 +80,14 @@ public partial class ResourceManager : Node {
 		}
 
 		// Update the internal managers
-		Energy E = EngM._NextTurn(_UI._GetImportSliderValue(), ImportInSummer);
+		Energy E = EngM._NextTurn(_UI._GetImportSliderPercentage(), ImportInSummer);
 		Environment Env = EnvM._NextTurn();
 
 		// Compute the production cost for this turn and update the money
 		Money.NextTurn(
 			GameLoop.BUDGET_PER_TURN, 
 			AggregateProductionCost(),
-			_GetTotalImportCost(_UI._GetImportSliderValue())
+			_GetTotalImportCost(_UI._GetImportSliderPercentage())
 		);
 
 		// Update the energy UI
@@ -98,7 +98,7 @@ public partial class ResourceManager : Node {
 	// Initializes all of the resource managers
 	public void _UpdateResourcesUI() {
 		// Initialize the internal managers
-		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderValue(), ImportInSummer);
+		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 		Environment Env = EnvM._NextTurn();
 
 		// Update the UI
@@ -145,7 +145,7 @@ public partial class ResourceManager : Node {
 		var (import_amount_w, import_amount_s) = EngM._ComputeImportAmount(import_perc, ImportInSummer);
 
 		// Compute the final cost
-		return (import_amount_w + (!import_amount_s.HasValue ? 0 : import_amount_s.Value)) * ImportCost;
+		return (int)((import_amount_w + (!import_amount_s.HasValue ? 0 : import_amount_s.Value)) * ImportCost);
 	}
 
 	// ==================== Helper Methods ====================  

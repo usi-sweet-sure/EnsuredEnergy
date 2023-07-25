@@ -447,7 +447,7 @@ public partial class UI : CanvasLayer {
 	}
 
 	// Retrieves the import percentage selected by the user
-	public int _GetImportSliderValue() => Imports._GetImportValue();
+	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 100.0f;
 
 	// ==================== Internal Helpers ====================
 
