@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bho2104p5e0rx"]
 
-[ext_resource type="PackedScene" uid="uid://qnw77bjuu8jw" path="res://scenes/demo/char_select.tscn" id="1_3ecar"]
+[ext_resource type="PackedScene" uid="uid://qnw77bjuu8jw" path="res://scenes/avatars/char_select.tscn" id="1_3ecar"]
 [ext_resource type="Texture2D" uid="uid://cuw1crsi88u68" path="res://assets/230601_CH_SUREgame_SKETCHES-AVATAR2.png" id="2_naya8"]
 [ext_resource type="Texture2D" uid="uid://cqlo5qcqfen30" path="res://assets/slicedParty.png" id="3_vwc4n"]
 

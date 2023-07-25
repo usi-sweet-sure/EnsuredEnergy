@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cy80yqth2kk8r" path="res://assets/230601_CH_SUREgame_SKETCHES-MAP.png" id="1_a32ik"]
 [ext_resource type="Script" path="res://src/cs/building/BuildButton.cs" id="4_mo62v"]
-[ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/demo/power_plant.tscn" id="7_6x5m2"]
-[ext_resource type="PackedScene" uid="uid://banvqdghwoj3p" path="res://scenes/demo/build_button.tscn" id="16_pnu0i"]
+[ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="7_6x5m2"]
+[ext_resource type="PackedScene" uid="uid://banvqdghwoj3p" path="res://scenes/building/BuildButton.tscn" id="16_pnu0i"]
 
 [sub_resource type="Theme" id="Theme_mklkc"]
 

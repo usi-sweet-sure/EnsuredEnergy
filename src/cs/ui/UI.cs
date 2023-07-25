@@ -114,6 +114,10 @@ public partial class UI : CanvasLayer {
 	// Date progression
 	private HSlider Timeline;
 
+	// Imports
+	private ImportSlider Imports;
+	
+
 	// Money related nodes
 	private Label MoneyL;
 	private Label MoneyNameL;

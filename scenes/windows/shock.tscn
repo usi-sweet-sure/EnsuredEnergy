@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://885lty3v1qbq"]
 
 [ext_resource type="Texture2D" uid="uid://p4gnyqepthsu" path="res://assets/glacier.jpg" id="1_bd76c"]
-[ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/demo/energy_bar.tscn" id="2_i1jhu"]
+[ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="2_i1jhu"]
 
 [sub_resource type="Theme" id="Theme_jkqh0"]
 

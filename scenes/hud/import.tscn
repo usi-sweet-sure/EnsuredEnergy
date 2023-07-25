@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c81iji81uc4g7"]
+[gd_scene load_steps=2 format=3 uid="uid://c81iji81uc4g7"]
+
+[ext_resource type="Script" path="res://src/cs/ui/ImportSlider.cs" id="1_3r6om"]
 
 [node name="Import" type="HSlider"]
 anchors_preset = -1
@@ -8,8 +10,9 @@ offset_right = 0.639999
 offset_bottom = -16.4
 tick_count = 2
 ticks_on_borders = true
+script = ExtResource("1_3r6om")
 
-[node name="Label" type="Label" parent="."]
+[node name="Text" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.707
@@ -22,12 +25,12 @@ text = "Imports"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Target" type="Line2D" parent="."]
 position = Vector2(120, -8)
 points = PackedVector2Array(128, 8, 128, 24)
 width = 2.0
 
-[node name="Label2" type="Label" parent="."]
+[node name="Range" type="Label" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 21.0
@@ -35,3 +38,11 @@ offset_right = 266.0
 offset_bottom = 47.0
 theme_override_font_sizes/font_size = 10
 text = " 0                                                                                        100"
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 266.0
+offset_top = -4.0
+offset_right = 306.0
+offset_bottom = 22.0
+text = "0 %"
