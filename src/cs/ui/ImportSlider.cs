@@ -20,6 +20,10 @@ using System;
 
 // UI Script for the import controlling slider
 public partial class ImportSlider : HSlider {
+	
+	[Signal]
+	/* Propagates a value update to the rest of the system */
+	public delegate void ImportUpdateEventHandler();
 
 	// Constants for target bar positions
 	private const int TARGET_100_X_POS = 120;
@@ -102,6 +106,9 @@ public partial class ImportSlider : HSlider {
 		// Hide the apply selection button
 		ApplySelection.Hide();
 		Cancel.Hide();
+
+		// Propagate the value update to the rest of the system
+		EmitSignal(SignalName.ImportUpdate);
 	}
 
 	// Cancels any modifications made to the import slider

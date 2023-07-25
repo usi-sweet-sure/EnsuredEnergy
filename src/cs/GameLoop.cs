@@ -131,6 +131,12 @@ public partial class GameLoop : Node2D {
 	// Getter for the internal list of built powerplants
 	public List<PowerPlant> _GetPowerPlants() => PowerPlants;
 
+	// Enable public access to a resource update request
+	public void _UpdateResourcesUI() {
+		// Request a non-new turn update of the UI
+		UpdateResources();
+	}
+
 	// ==================== Internal Helpers ====================
 	
 	// Propagates resource updates to the UI
@@ -138,6 +144,8 @@ public partial class GameLoop : Node2D {
 		// Update the ressource manager
 		if(newturn) {
 			RM._NextTurn(ref Money);
+		} else {
+			RM._UpdateResourcesUI();
 		}
 
 		// Update Money UI

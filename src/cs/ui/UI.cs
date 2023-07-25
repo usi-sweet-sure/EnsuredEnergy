@@ -162,6 +162,7 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar.MouseExited += _OnEnvironmentMouseExited;
 		SupportBar.MouseEntered += _OnSupportMouseEntered;
 		SupportBar.MouseExited += _OnSupportMouseExited;
+		Imports.ImportUpdate += _OnImportUpdate;
 
 		// Initialize data
 		Data = new InfoData();
@@ -591,5 +592,11 @@ public partial class UI : CanvasLayer {
 
 		// Update the ui
 		_UpdateUI();
+	}
+
+	// Propagates an import update to the rest of the system
+	public void _OnImportUpdate() {
+		// Propagate the request of a resource update to the game loop
+		GL._UpdateResourcesUI();
 	}
 }

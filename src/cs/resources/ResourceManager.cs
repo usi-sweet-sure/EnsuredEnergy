@@ -99,7 +99,7 @@ public partial class ResourceManager : Node {
 	public void _UpdateResourcesUI() {
 		// Initialize the internal managers
 		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
-		Environment Env = EnvM._NextTurn();
+		Environment Env = EnvM._GetEnvValues();
 
 		// Update the UI
 		UpdateEnergyUI(E);
