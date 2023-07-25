@@ -34,11 +34,11 @@ public partial class ResourceManager : Node {
 
 	[Export]
 	/* The base cost of a kWh imported from abroad */
-	public float ImportCost = 0.1f;
+	public float ImportCost = 8.0f;
 
 	[Export]
 	/* The base pollution of a kWh imported from abroad */
-	public float ImportPollution = 0.1f;
+	public float ImportPollution = 0.2f;
 
 	// Children resource managers
 	private SupportManager SM;

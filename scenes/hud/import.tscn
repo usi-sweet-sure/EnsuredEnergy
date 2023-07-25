@@ -13,6 +13,7 @@ ticks_on_borders = true
 script = ExtResource("1_3r6om")
 
 [node name="Text" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.707
@@ -32,12 +33,13 @@ width = 2.0
 
 [node name="Range" type="Label" parent="."]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 21.0
-offset_right = 266.0
-offset_bottom = 47.0
+offset_left = 3.0
+offset_top = -24.0
+offset_right = 267.0
+offset_bottom = 2.0
 theme_override_font_sizes/font_size = 10
 text = " 0                                                                                        100"
+vertical_alignment = 2
 
 [node name="Amount" type="Label" parent="."]
 layout_mode = 0

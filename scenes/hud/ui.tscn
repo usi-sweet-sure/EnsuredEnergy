@@ -302,12 +302,13 @@ vertical_alignment = 1
 
 [node name="importamounts" type="Label" parent="Top/MoneyInfo"]
 layout_mode = 0
-offset_left = 163.0
+offset_left = 92.0
 offset_top = 137.0
-offset_right = 203.0
+offset_right = 191.0
 offset_bottom = 163.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "000"
+horizontal_alignment = 2
 
 [node name="Money" type="ColorRect" parent="Top"]
 layout_mode = 1
@@ -340,9 +341,9 @@ vertical_alignment = 1
 
 [node name="Timeline" type="HSlider" parent="Top"]
 layout_mode = 0
-offset_left = 653.0
+offset_left = 719.0
 offset_top = 18.0
-offset_right = 1395.0
+offset_right = 1330.0
 offset_bottom = 34.0
 editable = false
 scrollable = false
@@ -359,9 +360,9 @@ text = "2020"
 
 [node name="Label2" type="Label" parent="Top/Timeline"]
 layout_mode = 0
-offset_left = 759.0
+offset_left = 624.0
 offset_top = -4.0
-offset_right = 799.0
+offset_right = 664.0
 offset_bottom = 22.0
 text = "2050"
 
@@ -406,12 +407,22 @@ text = "Language: English"
 flat = true
 
 [node name="Import" parent="Top" instance=ExtResource("5_ps4b6")]
+visible = false
 layout_mode = 1
-offset_left = 209.0
-offset_top = 16.0
-offset_right = 209.64
-offset_bottom = 30.56
+offset_left = 292.0
+offset_top = 19.0
+offset_right = 292.64
+offset_bottom = 34.07
 metadata/_edit_group_ = true
+
+[node name="ImportsB" type="Button" parent="Top"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 8.0
+offset_right = 278.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Import ⚡"
 
 [node name="Shock" parent="." instance=ExtResource("5_tj765")]
 visible = false
@@ -419,6 +430,8 @@ visible = false
 [node name="Window" parent="." instance=ExtResource("7_yu7g8")]
 visible = false
 script = ExtResource("7_u64y1")
+
+[connection signal="pressed" from="Top/ImportsB" to="Top/Import" method="_on_imports_b_pressed"]
 
 [editable path="Bottom/EnergyBarWinter"]
 [editable path="Bottom/EnergyBarSummer"]
