@@ -231,6 +231,7 @@ grow_horizontal = 2
 color = Color(0.231373, 0.290196, 0.372549, 0.643137)
 
 [node name="MoneyInfo" type="ColorRect" parent="Top"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
