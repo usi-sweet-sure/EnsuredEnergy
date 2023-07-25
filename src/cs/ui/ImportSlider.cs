@@ -28,6 +28,7 @@ public partial class ImportSlider : HSlider {
 	// Various labels that need to be dynamic
     private Label Amount; // Current selected import percentage
     private Label Text; // The text label describing the slider
+	private Button Bttn;
 
     // Target import required to meet demand
     private Line2D Target;
@@ -40,6 +41,7 @@ public partial class ImportSlider : HSlider {
         Amount = GetNode<Label>("Amount");
         Text = GetNode<Label>("Text");
         Target = GetNode<Line2D>("Target");
+		Bttn = GetNode<Button>("Button");
 
         // Connect the slider to the amount label
         ValueChanged += OnSliderRangeValueChanged;
@@ -75,5 +77,5 @@ public partial class ImportSlider : HSlider {
     private void OnSliderRangeValueChanged(double value) {
         // Update the amount label to reflect the selected amount
         Amount.Text = value.ToString() + " %";
-    }  
+		Bttn.Show();
 }

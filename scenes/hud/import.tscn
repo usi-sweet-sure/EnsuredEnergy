@@ -46,3 +46,14 @@ offset_top = -4.0
 offset_right = 306.0
 offset_bottom = 22.0
 text = "0 %"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 306.0
+offset_top = -7.0
+offset_right = 337.0
+offset_bottom = 23.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+text = "OK"
