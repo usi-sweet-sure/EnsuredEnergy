@@ -407,9 +407,9 @@ flat = true
 
 [node name="Import" parent="Top" instance=ExtResource("5_ps4b6")]
 layout_mode = 1
-offset_left = 241.0
+offset_left = 209.0
 offset_top = 16.0
-offset_right = 241.64
+offset_right = 209.64
 offset_bottom = 30.56
 metadata/_edit_group_ = true
 

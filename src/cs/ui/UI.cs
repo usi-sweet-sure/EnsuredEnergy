@@ -19,59 +19,6 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-// Data structure for the information displayed in the info boxes
-public struct InfoData {
-	// === Field Numbers for each type ===
-	public const int N_W_ENERGY_FIELDS = 2;
-	public const int N_S_ENERGY_FIELDS = 2;
-	public const int N_ENV_FIELDS = 4;
-	public const int N_SUPPORT_FIELDS = 2;
-	public const int N_MONEY_FIELDS = 5;
-
-	// === Energy metrics ===
-	public int W_EnergyDemand; // Energy demand for the winter season
-	public int W_EnergySupply; // Energy supply for the winter season
-	public int S_EnergyDemand; // Energy demand for the summer season
-	public int S_EnergySupply; // Energy supply for the summer season
-
-	// === Support metrics ===
-	public int EnergyAffordability; // Used in the support bar
-	public int EnvAesthetic; // Also used in the support bar
-
-	// === Environment metrics ===
-	public int LandUse; // Used in the environment bar
-	public int Pollution; // Also for the environment bar
-	public int Biodiversity; // For the environment bar
-
-	// === Money Metrics ===
-	public int Budget; // The amount of money you are generating this turn
-	public int Production; // The amount of money used for production this turn
-	public int Building; // The amount of money spent on building this turn
-	public int Money; // The total amount of money you have
-	public int Imports; // The total amount spent on imports last turn
-
-	// Constructor for the Data
-	public InfoData() {
-		W_EnergyDemand = 0; 
-		W_EnergySupply = 0; 
-		S_EnergyDemand = 0; 
-		S_EnergySupply = 0; 
-
-		EnergyAffordability = 0; 
-		EnvAesthetic = 0; 
-
-		LandUse = 0;
-		Pollution = 0;
-		Biodiversity = 0; 
-
-		Budget = 0;
-		Production = 0;
-		Building = 0;
-		Money = 0; 
-		Imports = 0;
-	}
-}
-
 // General controller for the UI
 public partial class UI : CanvasLayer {
 

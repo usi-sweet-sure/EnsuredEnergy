@@ -20,27 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-// Models the resource managed by the EnergyManager
-public struct Energy {
-	public float SupplySummer; // Total Supply for the next turn for the summer months
-	public float SupplyWinter; // Total Supply for the next turn for the winter months
-	public float DemandSummer; // Total Demand for the next turn for the summer months
-	public float DemandWinter; // Total Demand for the next turn for the winter months
-	public float SurplusSummer; // Amount of excess energy produced in the summer months (represents an underproduction if negative)
-	public float SurplusWinter; // Amount of excess energy produced in the winter months (represents an underproduction if negative)
-
-
-	// Basic constructor for the Energy Ressource
-	public Energy(float SS=0, float SW=0, float DS=0, float DW=0, float SurS=0, float SurW=0) {
-		SupplySummer = SS;
-		SupplyWinter = SW;
-		DemandSummer = DS;
-		DemandWinter = DW;
-		SurplusSummer = SurS;
-		SurplusWinter = SurW;
-	}
-}
-
+// Handles all of the computation and logic related to the Energy resource
 public partial class EnergyManager : Node {
 
 	// Max value allowed by the UI
@@ -143,6 +123,7 @@ public partial class EnergyManager : Node {
 		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
 		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
 
+		// The current demand is a fixed value
 		float demandEstimate = MAX_ENERGY_BAR_VAL * 0.5f;
 		return new Energy(supply_s, supply_w, demandEstimate, demandEstimate, excess_s, excess_w);
 	}

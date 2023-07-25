@@ -20,39 +20,6 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-// Contains all of the fields related to money
-public struct MoneyData {
-	public int Money; // Total amount of available money
-	public int Budget; // Total budget for this round
-	public int Production; // Money spent on production costs this round
-	public int Build; // Money spent on build costs this round
-	public int Imports; // Money spent on imports this turn
-
-	// Default constructor for the MoneyData
-	public MoneyData(int start_money) {
-		Money = start_money;
-		Budget = start_money;
-		Production = 0;
-		Build = 0;
-		Imports = 0;
-	}
-
-	// Resets the spending statistics at the end of each round
-	public void NextTurn(int new_budget, int production, int ImportCost) {
-		Money += new_budget - production - ImportCost;
-		Budget = Money;
-		Production = production;
-		Build = 0;
-		Imports = ImportCost;
-	}
-
-	// Spends money by updating the data correctly
-	public void SpendMoney(int amountBuild) {
-		Build += amountBuild;
-		Money -= amountBuild;
-	}
-}
-
 // Models the overarching game loop, which controls every aspect of the game
 // and makes sure that things are synchronized across game objects
 public partial class GameLoop : Node2D {
