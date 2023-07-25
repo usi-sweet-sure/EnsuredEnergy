@@ -87,7 +87,8 @@ public partial class PowerPlant : Node2D {
 	private Sprite2D Sprite;
 	private Label NameL;
 	private Label PollL;
-	private Label EnergyL;
+	private Label EnergyS;
+	private Label EnergyW;
 	private Label MoneyL;
 	public CheckButton Switch;
 	private Label Price;
@@ -103,7 +104,8 @@ public partial class PowerPlant : Node2D {
 		Sprite = GetNode<Sprite2D>("Sprite");
 		NameL = GetNode<Label>("NameRect/Name");
 		PollL = GetNode<Label>("ResRect/Poll");
-		EnergyL = GetNode<Label>("ResRect/Energy");
+		EnergyS = GetNode<Label>("ResRect/EnergyS");
+		EnergyW = GetNode<Label>("ResRect/EnergyW");
 		MoneyL = GetNode<Label>("ResRect/Money");
 		Switch = GetNode<CheckButton>("Switch");
 		CC = GetNode<ConfigController>("ConfigController");
@@ -115,14 +117,15 @@ public partial class PowerPlant : Node2D {
 			Switch.Hide();
 			Price.Show();
 		} else {
-			PollL.Show();
+			//PollL.Show();
 			Switch.Show();
 			Price.Hide();
 		}
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyL.Text = EnergyCapacity.ToString();
+		EnergyS.Text = EnergyCapacity.ToString();
+		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 
@@ -245,7 +248,7 @@ public partial class PowerPlant : Node2D {
 		} 
 		// When not in preview mode, the interactive elements should be visible
 		else {
-			PollL.Show();
+			//PollL.Show();
 			Switch.Show();
 			Price.Hide();
 		}
@@ -263,13 +266,14 @@ public partial class PowerPlant : Node2D {
 			PollL.Hide();
 			Switch.Hide();
 		} else {
-			PollL.Show();
+			//PollL.Show();
 			Switch.Show();
 		}
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyL.Text = EnergyCapacity.ToString();
+		EnergyS.Text = EnergyCapacity.ToString();
+		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 	}
