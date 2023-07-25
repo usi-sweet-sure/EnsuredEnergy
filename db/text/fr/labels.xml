@@ -44,6 +44,7 @@
     <!-- Labels for general UI buttons -->
     <group id="ui">
         <text id="label_next_turn">Prochain Tour</text>
+        <text id="label_import">Imports</text>
     </group>
 
     <!-- Labels for the different power plants -->

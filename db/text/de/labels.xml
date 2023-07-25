@@ -44,6 +44,7 @@
      <!-- Labels for general UI buttons -->
     <group id="ui">
         <text id="label_next_turn">Nächste Runde</text>
+        <text id="label_import">Einfuhren</text>
     </group>
 
     <!-- Labels for the different power plants -->
