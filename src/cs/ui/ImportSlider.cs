@@ -106,6 +106,7 @@ public partial class ImportSlider : HSlider {
 		// Hide the apply selection button
 		ApplySelection.Hide();
 		Cancel.Hide();
+		this.Hide();
 
 		// Propagate the value update to the rest of the system
 		EmitSignal(SignalName.ImportUpdate);
@@ -119,7 +120,11 @@ public partial class ImportSlider : HSlider {
 		// Hide all buttons
 		ApplySelection.Hide();
 		Cancel.Hide();
+		this.Hide();
+	}
+	
+	private void _on_imports_b_pressed() {
+	this.Visible = !this.Visible;
 	}
 }
-
 
