@@ -90,6 +90,7 @@ public partial class PowerPlant : Node2D {
 	private Label EnergyL;
 	private Label MoneyL;
 	public CheckButton Switch;
+	private Label Price;
 
 	// Configuration controller
 	private ConfigController CC;
@@ -106,20 +107,24 @@ public partial class PowerPlant : Node2D {
 		MoneyL = GetNode<Label>("ResRect/Money");
 		Switch = GetNode<CheckButton>("Switch");
 		CC = GetNode<ConfigController>("ConfigController");
+		Price = GetNode<Label>("Price");
 
 		// Hide unnecessary fields if we are in preview mode
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+			Price.Show();
 		} else {
 			PollL.Show();
 			Switch.Show();
+			Price.Hide();
 		}
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
 		EnergyL.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
+		Price.Text = BuildCost.ToString();
 
 		// Set plant life cycle
 		LifeCycle = (PlantType == BuildingType.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
@@ -234,11 +239,13 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+			Price.Show();
 		} 
 		// When not in preview mode, the interactive elements should be visible
 		else {
 			PollL.Show();
 			Switch.Show();
+			Price.Hide();
 		}
 	}
 
@@ -262,6 +269,7 @@ public partial class PowerPlant : Node2D {
 		NameL.Text = PlantName;
 		EnergyL.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
+		Price.Text = BuildCost.ToString();
 	}
 
 	// ==================== Helper Methods ====================    
