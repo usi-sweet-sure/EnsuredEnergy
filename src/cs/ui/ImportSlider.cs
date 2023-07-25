@@ -78,4 +78,5 @@ public partial class ImportSlider : HSlider {
         // Update the amount label to reflect the selected amount
         Amount.Text = value.ToString() + " %";
 		Bttn.Show();
+	}
 }
