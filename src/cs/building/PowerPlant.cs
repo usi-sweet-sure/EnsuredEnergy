@@ -239,6 +239,8 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+			//Price.AddThemeColorOverride("font_color", new Color(1,0,0,1)); red
+			//Price.AddThemeColorOverride("font_color", new Color(1,1,1,1)); white
 			Price.Show();
 		} 
 		// When not in preview mode, the interactive elements should be visible
