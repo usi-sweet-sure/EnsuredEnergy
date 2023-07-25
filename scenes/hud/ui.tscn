@@ -231,13 +231,12 @@ grow_horizontal = 2
 color = Color(0.231373, 0.290196, 0.372549, 0.643137)
 
 [node name="MoneyInfo" type="ColorRect" parent="Top"]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -232.0
-offset_bottom = 142.0
+offset_bottom = 174.0
 grow_horizontal = 0
 color = Color(0.121569, 0.219608, 0.360784, 1)
 
@@ -262,6 +261,10 @@ vertical_alignment = 1
 layout_mode = 2
 text = "  Building: "
 vertical_alignment = 1
+
+[node name="Import" type="Label" parent="Top/MoneyInfo/VBoxContainer"]
+layout_mode = 2
+text = "  Import:"
 
 [node name="prod" type="Label" parent="Top/MoneyInfo"]
 layout_mode = 0
@@ -295,6 +298,15 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="importamounts" type="Label" parent="Top/MoneyInfo"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 137.0
+offset_right = 203.0
+offset_bottom = 163.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "000"
 
 [node name="Money" type="ColorRect" parent="Top"]
 layout_mode = 1

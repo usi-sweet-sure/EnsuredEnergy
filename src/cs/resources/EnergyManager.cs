@@ -52,6 +52,9 @@ public partial class EnergyManager : Node {
 	// Keeps track of the current energy values
 	private Energy E;
 
+	// Previous turn's import amount
+	private int ImportAmount;
+
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -75,19 +78,27 @@ public partial class EnergyManager : Node {
 		}
 	}
 
+	// Retrieves the imported amount based on the value given by the import slider
+	// The given amount is the percentage of the total demand that is imported
+	// The importSummer flag reprensents whether or not we import in the summer
+	public (int, int?) _ComputeImportAmount(float import_perc, bool importSummer=false) => (
+		(int)Math.Ceiling(import_perc * E.DemandWinter),
+		importSummer ? (int)Math.Ceiling(import_perc * E.DemandSummer) : null
+	);
+
 	// Computes the energy levels that will be present for the next turn
-	public Energy _NextTurn() {
+	public Energy _NextTurn(float import_perc, bool importSummer=false) {
 		// TODO: Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
-		E = EstimateEnergy();
+		E = EstimateEnergy(import_perc, importSummer);
 		return E;
 	}
 
 	// Computes the initial values for the energy resource
-	public Energy _GetEnergyValues() {
+	public Energy _GetEnergyValues(float import_perc, bool importSummer=false) {
 		// TODO: Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
-		E = EstimateEnergy();
+		E = EstimateEnergy(import_perc, importSummer);
 		return E;
 	}
 
@@ -102,19 +113,38 @@ public partial class EnergyManager : Node {
 	private int AggregateCapacity() =>
 		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity()).Sum();
 
+	// Computes the total imported energy amount
+	// Given the percentage selected by the player
+	private int ComputeTotalImportAmount(float import_perc, bool importSummer=false) {
+		// Retrieve the import amounts
+		var (import_amount_w, import_amount_s) = _ComputeImportAmount(import_perc, importSummer);
+
+		// Compute the final amount
+		return (import_amount_w + (import_amount_s.HasValue ? import_amount_s.Value : 0));
+	}
+
 	// Estimate the values for the next turn (in case of no network or demo)
-	private Energy EstimateEnergy() {
+	private Energy EstimateEnergy(float import_perc, bool importSummer=false) {
+		// Compute the imported supply
+		int imported = ComputeTotalImportAmount(import_perc, importSummer);
+
 		// Aggregate supply
 		float supply = AggregateSupply();
 
+		// Take the imports into account
+		float supply_w = supply + imported;
+		float supply_s = supply + (importSummer ? imported : 0);
+
 		// Compute the Excess and store it in a separate field
-		float excess = supply - MAX_ENERGY_BAR_VAL;
+		float excess_w = supply_w - MAX_ENERGY_BAR_VAL;
+		float excess_s = supply_s - MAX_ENERGY_BAR_VAL;
 		
 		// Normalize the supply
-		supply = Math.Max(0, Math.Min(supply, MAX_ENERGY_BAR_VAL));
+		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
+		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
 
 		float demandEstimate = MAX_ENERGY_BAR_VAL * 0.5f;
-		return new Energy(supply, supply, demandEstimate, demandEstimate, excess, excess);
+		return new Energy(supply_s, supply_w, demandEstimate, demandEstimate, excess_s, excess_w);
 	}
 
 }

@@ -26,6 +26,7 @@ public struct MoneyData {
 	public int Budget; // Total budget for this round
 	public int Production; // Money spent on production costs this round
 	public int Build; // Money spent on build costs this round
+	public int Imports; // Money spent on imports this turn
 
 	// Default constructor for the MoneyData
 	public MoneyData(int start_money) {
@@ -33,14 +34,16 @@ public struct MoneyData {
 		Budget = start_money;
 		Production = 0;
 		Build = 0;
+		Imports = 0;
 	}
 
 	// Resets the spending statistics at the end of each round
-	public void NextTurn(int new_budget, int production) {
-		Money += new_budget - production;
+	public void NextTurn(int new_budget, int production, int ImportCost) {
+		Money += new_budget - production - ImportCost;
 		Budget = Money;
 		Production = production;
 		Build = 0;
+		Imports = ImportCost;
 	}
 
 	// Spends money by updating the data correctly
@@ -176,7 +179,8 @@ public partial class GameLoop : Node2D {
 			Money.Budget, 
 			Money.Production,
 			Money.Build,
-			Money.Money
+			Money.Money,
+			Money.Imports
 		);
 
 		// Propagate the update to the UI

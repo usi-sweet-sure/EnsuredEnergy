@@ -28,6 +28,14 @@ using System.Linq;
 // - Environment: How are the energy management decisions impacting the environment
 public partial class ResourceManager : Node {
 
+	[Export]
+	/* Whether or not we import in the summer */
+	public bool ImportInSummer = false;
+
+	[Export]
+	/* The base cost of a kWh imported from abroad */
+	public int ImportCost = 100;
+
 	// Children resource managers
 	private SupportManager SM;
 	private EnergyManager EngM;
@@ -72,11 +80,15 @@ public partial class ResourceManager : Node {
 		}
 
 		// Update the internal managers
-		Energy E = EngM._NextTurn();
+		Energy E = EngM._NextTurn(_UI._GetImportSliderValue(), ImportInSummer);
 		Environment Env = EnvM._NextTurn();
 
 		// Compute the production cost for this turn and update the money
-		Money.NextTurn(GameLoop.BUDGET_PER_TURN, AggregateProductionCost());
+		Money.NextTurn(
+			GameLoop.BUDGET_PER_TURN, 
+			AggregateProductionCost(),
+			_GetTotalImportCost(_UI._GetImportSliderValue())
+		);
 
 		// Update the energy UI
 		UpdateEnergyUI(E);
@@ -86,7 +98,7 @@ public partial class ResourceManager : Node {
 	// Initializes all of the resource managers
 	public void _UpdateResourcesUI() {
 		// Initialize the internal managers
-		Energy E = EngM._GetEnergyValues();
+		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderValue(), ImportInSummer);
 		Environment Env = EnvM._NextTurn();
 
 		// Update the UI
@@ -125,6 +137,16 @@ public partial class ResourceManager : Node {
 			bb.Pressed += _UpdateResourcesUI;
 		}
 	} 
+
+	// Computes the cost of the current import amount
+	// Given the percentage selected by the player
+	public int _GetTotalImportCost(float import_perc) {
+		// Retrieve the import amounts
+		var (import_amount_w, import_amount_s) = EngM._ComputeImportAmount(import_perc, ImportInSummer);
+
+		// Compute the final cost
+		return (import_amount_w + (!import_amount_s.HasValue ? 0 : import_amount_s.Value)) * ImportCost;
+	}
 
 	// ==================== Helper Methods ====================  
 	

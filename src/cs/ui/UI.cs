@@ -26,7 +26,7 @@ public struct InfoData {
 	public const int N_S_ENERGY_FIELDS = 2;
 	public const int N_ENV_FIELDS = 4;
 	public const int N_SUPPORT_FIELDS = 2;
-	public const int N_MONEY_FIELDS = 4;
+	public const int N_MONEY_FIELDS = 5;
 
 	// === Energy metrics ===
 	public int W_EnergyDemand; // Energy demand for the winter season
@@ -48,6 +48,7 @@ public struct InfoData {
 	public int Production; // The amount of money used for production this turn
 	public int Building; // The amount of money spent on building this turn
 	public int Money; // The total amount of money you have
+	public int Imports; // The total amount spent on imports last turn
 
 	// Constructor for the Data
 	public InfoData() {
@@ -67,6 +68,7 @@ public struct InfoData {
 		Production = 0;
 		Building = 0;
 		Money = 0; 
+		Imports = 0;
 	}
 }
 
@@ -124,11 +126,13 @@ public partial class UI : CanvasLayer {
 	private Label BudgetNameL;
 	private Label BuildNameL;
 	private Label ProdNameL;
+	private Label ImportCostNameL;
 	private Button MoneyButton;
 	private ColorRect MoneyInfo;
 	private Label BudgetL;
 	private Label BuildL;
 	private Label ProdL;
+	private Label ImportCostL;
 
 	// Window buttons
 	private Button PolicyButton;
@@ -181,12 +185,14 @@ public partial class UI : CanvasLayer {
 		BudgetL = GetNode<Label>("Top/MoneyInfo/budget");
 		BuildL = GetNode<Label>("Top/MoneyInfo/build");
 		ProdL = GetNode<Label>("Top/MoneyInfo/prod");
+		ImportCostL = GetNode<Label>("Top/MoneyInfo/importamounts");
 
 		// Name labels
 		MoneyNameL = GetNode<Label>("Top/Money/Label");
 		BudgetNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label3");
 		BuildNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label4");
 		ProdNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label2");
+		ImportCostNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
 		PolicyButton = GetNode<Button>("Bottom/PolicyButton");
@@ -430,6 +436,7 @@ public partial class UI : CanvasLayer {
 				Data.Production = d[1];
 				Data.Building = d[2];
 				Data.Money = d[3];
+				Data.Imports = d[4];
 
 				// Update the UI 
 				SetMoneyInfo();
@@ -438,6 +445,9 @@ public partial class UI : CanvasLayer {
 				break;
 		}
 	}
+
+	// Retrieves the import percentage selected by the user
+	public int _GetImportSliderValue() => Imports._GetImportValue();
 
 	// ==================== Internal Helpers ====================
 
@@ -514,18 +524,22 @@ public partial class UI : CanvasLayer {
 		string budget_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_budget");
 		string prod_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_production");
 		string build_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_building");
+		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
+
 
 		// Set Names
 		MoneyNameL.Text = money_label;
 		BudgetNameL.Text = budget_label;
 		ProdNameL.Text = prod_label;
 		BuildNameL.Text = build_label;
+		ImportCostNameL.Text = import_name;
 		
 		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
 		BuildL.Text = Data.Building.ToString();
 		ProdL.Text = Data.Production.ToString();
 		MoneyL.Text = Data.Money.ToString();
+		ImportCostL.Text = Data.Imports.ToString();
 	}
 
 	// ==================== Interaction Callbacks ====================
