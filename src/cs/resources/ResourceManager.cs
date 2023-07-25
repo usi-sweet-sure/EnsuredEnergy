@@ -18,6 +18,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // Encapsulates all of the resource management used throughout the game
 // A resource is any mesurable field that is actively used by the player to make decisions
@@ -57,7 +58,8 @@ public partial class ResourceManager : Node {
 	// ==================== Public API ====================
 
 	// Progresses to the next turn
-	public void _NextTurn() {
+	// The game loop must pass in the amount of money as a ref
+	public void _NextTurn(ref MoneyData Money) {
 
 		// Update all build buttons
 		foreach(BuildButton bb in BBs) {
@@ -72,6 +74,9 @@ public partial class ResourceManager : Node {
 		// Update the internal managers
 		Energy E = EngM._NextTurn();
 		Environment Env = EnvM._NextTurn();
+
+		// Compute the production cost for this turn and update the money
+		Money.NextTurn(GameLoop.BUDGET_PER_TURN, AggregateProductionCost());
 
 		// Update the energy UI
 		UpdateEnergyUI(E);
@@ -154,6 +159,10 @@ public partial class ResourceManager : Node {
 	private void _UpdateResourcesUIWrapper(bool b) {
 		_UpdateResourcesUI();
 	}
+
+	// Gets the production cost accumulated over every building
+	private int AggregateProductionCost() =>	
+		PowerPlants.Where(pp => pp._GetLiveness()).Aggregate(0, (acc, pp) => acc + pp._GetProductionCost());
 
 	// ==================== Callbacks ====================  
 
