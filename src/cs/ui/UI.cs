@@ -170,8 +170,9 @@ public partial class UI : CanvasLayer {
 		SupportBar = GetNode<InfoBar>("Bottom/Trust");
 		PollutionBar = GetNode<InfoBar>("Bottom/Poll");
 
-		// Timeline
+		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
+		Imports = GetNode<ImportSlider>("Top/Import");
 
 		// Money Nodes
 		MoneyL = GetNode<Label>("Top/Money/money");
@@ -239,6 +240,7 @@ public partial class UI : CanvasLayer {
 
 		// UI buttons
 		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
+		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
 
 		// Update the various plants
 		BM._UpdatePlantName(BuildingType.GAS, gas_name);
@@ -278,6 +280,9 @@ public partial class UI : CanvasLayer {
 
 		// Update UI buttons
 		NextTurnButton.Text = next_turn_name;
+
+		// Update the import slider
+		Imports._UpdateLabel(import_name);
 	}
 
 	// Updates the value of the a given bar
@@ -355,6 +360,9 @@ public partial class UI : CanvasLayer {
 					InfoType.W_ENGERGY, 
 					(float)Data.W_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
 				);
+
+				// Update the required import target (only in winter due to conservative estimates)
+				SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -432,6 +440,23 @@ public partial class UI : CanvasLayer {
 	}
 
 	// ==================== Internal Helpers ====================
+
+	// Sets the required imports based on the demand
+	private void SetTargetImport() {
+		// Fetch the demand and supply
+		int demand  = Data.W_EnergyDemand;
+		int supply = Data.W_EnergySupply;
+
+		// Compute the different, clamped to 0 as no imports are required
+		// when the supply meets the demand
+		int diff = Math.Max(0, demand - supply); 
+
+		// Compute the percentage of the total demand tha the diff represents
+		float diff_perc = (float)diff / (float)demand;
+
+		// Set the import target to that percentage
+		Imports._UpdateTargetImport(diff_perc);
+	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
