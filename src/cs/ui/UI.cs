@@ -162,6 +162,8 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar.MouseExited += _OnEnvironmentMouseExited;
 		SupportBar.MouseEntered += _OnSupportMouseEntered;
 		SupportBar.MouseExited += _OnSupportMouseExited;
+		PollutionBar.MouseEntered += _OnPollutionMouseEntered;
+		PollutionBar.MouseExited += _OnPollutionMouseExited;
 		Imports.ImportUpdate += _OnImportUpdate;
 
 		// Initialize data
@@ -291,8 +293,8 @@ public partial class UI : CanvasLayer {
 	// This is done following the ordering of the fields in the InfoData struct
 	// Energy: demand, supply
 	// Support: energy_affordability, env_aesthetic
-	// Environment: land_use, pollution, biodiversity, envbarval
-	// Money: budget, production, building, money
+	// Environment: land_use, pollution, biodiversity, envbarval, import pollution
+	// Money: budget, production, building, money, import cost
 	public void _UpdateData(InfoType t, params int[] d) {
 		switch (t) {
 			case InfoType.W_ENGERGY:
@@ -357,13 +359,14 @@ public partial class UI : CanvasLayer {
 				Data.LandUse = d[0];
 				Data.Pollution = d[1];
 				Data.Biodiversity = d[2];
+				Data.ImportPollution = d[4];
 
 				// Update the UI
 				SetEnvironmentInfo();
 
 				// Update the bar value
 				_UpdateBarValue(InfoType.ENVIRONMENT, d[3]);
-				_UpdateBarValue(InfoType.POLLUTION, Data.Pollution);
+				_UpdateBarValue(InfoType.POLLUTION, Data.Pollution + Data.ImportPollution);
 
 				// Update the bar slider
 				_UpdateBarSlider(
@@ -454,14 +457,24 @@ public partial class UI : CanvasLayer {
 	private void SetEnvironmentInfo() {
 		// Get the labels from the XML file
 		string land_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_land");
-		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
 		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
 
 		EnvironmentBar._UpdateInfo(
 			"n/max", // N/Max TODO: Figure out what to use here
 			land_label, Data.LandUse.ToString() + "%", // T0, N0
-			poll_label, Data.Pollution.ToString(), // T1, N1
 			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
+		);
+	}
+
+	// Sets the information fields for the pollution bar
+	private void SetPollutionInfo() {
+		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
+		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
+
+		PollutionBar._UpdateInfo(
+			"n/max", // N/Max TODO: Figure out what to use here
+			poll_label, Data.Pollution.ToString(), // T0, N0
+			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
 	}
 
@@ -563,6 +576,20 @@ public partial class UI : CanvasLayer {
 	// Hides the information box related to the Support bar
 	public void _OnSupportMouseExited() {
 		SupportBar._HideInfo();
+	}
+
+	// Displays the information box related to the pollution bar
+	public void _OnPollutionMouseEntered() {
+		// Make sure that the pollution info is up to date
+		SetPollutionInfo();
+
+		// Show the new info
+		PollutionBar._DisplayInfo();
+	}
+
+	// Hides the information box related to the Pollution bar
+	public void _OnPollutionMouseExited() {
+		PollutionBar._HideInfo();
 	}
 
 	// Shows the policy window

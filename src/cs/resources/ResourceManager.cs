@@ -36,6 +36,10 @@ public partial class ResourceManager : Node {
 	/* The base cost of a kWh imported from abroad */
 	public float ImportCost = 0.1f;
 
+	[Export]
+	/* The base pollution of a kWh imported from abroad */
+	public float ImportPollution = 0.1f;
+
 	// Children resource managers
 	private SupportManager SM;
 	private EnergyManager EngM;
@@ -79,8 +83,16 @@ public partial class ResourceManager : Node {
 			pp._NextTurn();
 		}
 
-		// Update the internal managers
+		// Update the energy managers
 		Energy E = EngM._NextTurn(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Compute the total import cost
+		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the amount of pollution caused by imports
+		EnvM._UpdateImportPollution(imported, ImportPollution);
+
+		// Update the environment manager
 		Environment Env = EnvM._NextTurn();
 
 		// Compute the production cost for this turn and update the money
@@ -97,8 +109,17 @@ public partial class ResourceManager : Node {
 
 	// Initializes all of the resource managers
 	public void _UpdateResourcesUI() {
-		// Initialize the internal managers
+
+		// Get the energy manager data
 		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Compute the total import cost
+		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the amount of pollution caused by imports
+		EnvM._UpdateImportPollution(imported, ImportPollution);
+
+		// Get the environment manager data
 		Environment Env = EnvM._GetEnvValues();
 
 		// Update the UI
@@ -173,7 +194,8 @@ public partial class ResourceManager : Node {
 			(int)(Env.LandUse * 100), // Convert floating point to integer percentage
 			Env.Pollution,
 			(int)(Env.Biodiversity * 100),
-			(int)(Env.EnvBarValue() * 100)
+			(int)(Env.EnvBarValue() * 100),
+			Env.ImportedPollution
 		);
 	}
 

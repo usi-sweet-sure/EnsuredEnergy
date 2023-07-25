@@ -66,6 +66,16 @@ public partial class EnergyManager : Node {
 		importSummer ? (int)(import_perc * E.DemandSummer) : null
 	);
 
+	// Computes the total imported energy amount
+	// Given the percentage selected by the player
+	public int _ComputeTotalImportAmount(float import_perc, bool importSummer=false) {
+		// Retrieve the import amounts
+		var (import_amount_w, import_amount_s) = _ComputeImportAmount(import_perc, importSummer);
+
+		// Compute the final amount
+		return (import_amount_w + (import_amount_s.HasValue ? import_amount_s.Value : 0));
+	}
+
 	// Computes the energy levels that will be present for the next turn
 	public Energy _NextTurn(float import_perc, bool importSummer=false) {
 		// TODO: Update the Energy by aggregating the capacity from the model's power plants
@@ -93,20 +103,10 @@ public partial class EnergyManager : Node {
 	private int AggregateCapacity() =>
 		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity()).Sum();
 
-	// Computes the total imported energy amount
-	// Given the percentage selected by the player
-	private int ComputeTotalImportAmount(float import_perc, bool importSummer=false) {
-		// Retrieve the import amounts
-		var (import_amount_w, import_amount_s) = _ComputeImportAmount(import_perc, importSummer);
-
-		// Compute the final amount
-		return (import_amount_w + (import_amount_s.HasValue ? import_amount_s.Value : 0));
-	}
-
 	// Estimate the values for the next turn (in case of no network or demo)
 	private Energy EstimateEnergy(float import_perc, bool importSummer=false) {
 		// Compute the imported supply
-		int imported = ComputeTotalImportAmount(import_perc, importSummer);
+		int imported = _ComputeTotalImportAmount(import_perc, importSummer);
 
 		// Aggregate supply
 		float supply = AggregateSupply();

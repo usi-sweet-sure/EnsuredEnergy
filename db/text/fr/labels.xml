@@ -30,6 +30,7 @@
         <text id="label_budget">Budget</text>
         <text id="label_building">Construction</text>
         <text id="label_production">Production</text>
+        <text id="label_import_pol">Pollution de l'importation</text>
     </group>
     
     <!-- Labels for the resource bars -->
