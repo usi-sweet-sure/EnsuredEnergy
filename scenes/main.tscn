@@ -16,6 +16,9 @@ script = ExtResource("1_4jam2")
 
 [node name="World" parent="." instance=ExtResource("1_prp6q")]
 
+[node name="Nuclear" parent="World" index="1"]
+_PlantType = 4
+
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 script = ExtResource("3_l6dyd")
 

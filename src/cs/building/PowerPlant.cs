@@ -32,7 +32,8 @@ public partial class PowerPlant : Node2D {
 	[Export] 
 	// The type of the power plant, this is for internal use, other fields have to be 
 	// updated to match the type of the building
-	public Building PlantType = Building.Type.GAS;
+	private Building.Type _PlantType = Building.Type.GAS;
+	public Building PlantType;
 
 	[Export]
 	// Life cycle of a nuclear power plant
@@ -108,6 +109,9 @@ public partial class PowerPlant : Node2D {
 		Switch = GetNode<CheckButton>("Switch");
 		CC = GetNode<ConfigController>("ConfigController");
 		Price = GetNode<Label>("Price");
+		
+		// Initialize plant type
+		PlantType = _PlantType;
 
 		// Hide unnecessary fields if we are in preview mode
 		if(IsPreview) {
@@ -159,34 +163,19 @@ public partial class PowerPlant : Node2D {
 
 	// Sets the values of the plant from a given config
 	public void _SetPlantFromConfig(Building bt) {
-		PowerPlantConfigData PPCD = new PowerPlantConfigData();
+		// Sanity check: only reset the plant if it's alive
+		if(IsAlive) {
+			PowerPlantConfigData PPCD = new PowerPlantConfigData();
 
-		// Figure out which type was given and read out its config
-		switch(bt.type) {
-			case Building.Type.GAS:
-				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "gas");
-				break;
-			case Building.Type.HYDRO:
-				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "hydro");
-				break;
-			case Building.Type.NUCLEAR:
-				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "nuclear");
-				break;
-			case Building.Type.SOLAR:
-				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "solar");
-				break;
-			case Building.Type.TREE:
-				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "tree");
-				break;
-			default:
-				break;
+			// Read out the given plant's config
+			PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, bt.ToString());
+
+			// Copy over the data to our plant
+			CopyFrom(PPCD);
+
+			// Propagate change to the UI
+			_UpdatePlantData();
 		}
-
-		// Copy over the data to our plant
-		CopyFrom(PPCD);
-
-		// Propagate change to the UI
-		_UpdatePlantData();
 	}
 
 	// Reacts to a new turn taking place
@@ -201,6 +190,7 @@ public partial class PowerPlant : Node2D {
 			
 			// Workaround to allow for an immediate update
 			IsAlive = true;
+			_OnSwitchToggled(false);
 		} 
 		if(LifeCycle < 0) {
 			IsAlive = false;
