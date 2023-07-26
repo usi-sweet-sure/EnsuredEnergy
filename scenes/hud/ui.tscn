@@ -98,7 +98,6 @@ offset_left = 592.0
 offset_top = 16.0
 offset_right = 730.0
 offset_bottom = 43.0
-tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
 show_percentage = false
