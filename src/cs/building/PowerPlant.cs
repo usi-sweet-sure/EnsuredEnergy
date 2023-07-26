@@ -32,7 +32,7 @@ public partial class PowerPlant : Node2D {
 	[Export] 
 	// The type of the power plant, this is for internal use, other fields have to be 
 	// updated to match the type of the building
-	public BuildingType PlantType = BuildingType.GAS;
+	public Building PlantType = Building.Type.GAS;
 
 	[Export]
 	// Life cycle of a nuclear power plant
@@ -127,7 +127,7 @@ public partial class PowerPlant : Node2D {
 		Price.Text = BuildCost.ToString();
 
 		// Set plant life cycle
-		LifeCycle = (PlantType == BuildingType.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
+		LifeCycle = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
 
 		// Activate the plant
 		ActivatePowerPlant();
@@ -158,24 +158,24 @@ public partial class PowerPlant : Node2D {
 	public bool _GetLiveness() => IsAlive;
 
 	// Sets the values of the plant from a given config
-	public void _SetPlantFromConfig(BuildingType bt) {
+	public void _SetPlantFromConfig(Building bt) {
 		PowerPlantConfigData PPCD = new PowerPlantConfigData();
 
 		// Figure out which type was given and read out its config
-		switch(bt) {
-			case BuildingType.GAS:
+		switch(bt.type) {
+			case Building.Type.GAS:
 				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "gas");
 				break;
-			case BuildingType.HYDRO:
+			case Building.Type.HYDRO:
 				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "hydro");
 				break;
-			case BuildingType.NUCLEAR:
+			case Building.Type.NUCLEAR:
 				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "nuclear");
 				break;
-			case BuildingType.SOLAR:
+			case Building.Type.SOLAR:
 				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "solar");
 				break;
-			case BuildingType.TREE:
+			case Building.Type.TREE:
 				PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, "tree");
 				break;
 			default:
