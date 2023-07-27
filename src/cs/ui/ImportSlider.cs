@@ -26,7 +26,7 @@ public partial class ImportSlider : HSlider {
 	public delegate void ImportUpdateEventHandler();
 
 	// Constants for target bar positions
-	private const int TARGET_100_X_POS = 120;
+	private const int TARGET_100_X_POS = 45;
 	private const int TARGET_0_X_POS = -120;
 
 	// Various labels that need to be dynamic

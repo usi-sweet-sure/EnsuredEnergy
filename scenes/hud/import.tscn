@@ -4,10 +4,10 @@
 
 [node name="Import" type="HSlider"]
 anchors_preset = -1
-anchor_right = 0.133
-anchor_bottom = 0.03
-offset_right = 0.639999
-offset_bottom = -16.4
+anchor_right = 0.094
+anchor_bottom = 0.015
+offset_right = -0.480011
+offset_bottom = -0.200001
 tick_count = 2
 ticks_on_borders = true
 script = ExtResource("1_3r6om")
@@ -38,23 +38,23 @@ offset_top = -24.0
 offset_right = 267.0
 offset_bottom = 2.0
 theme_override_font_sizes/font_size = 10
-text = " 0                                                                                        100"
+text = " 0                                                           100"
 vertical_alignment = 2
 
 [node name="Amount" type="Label" parent="."]
 layout_mode = 0
-offset_left = 266.0
+offset_left = 187.0
 offset_top = -4.0
-offset_right = 306.0
+offset_right = 227.0
 offset_bottom = 22.0
 text = "0 %"
 
 [node name="Apply" type="Button" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 306.0
+offset_left = 232.0
 offset_top = -7.0
-offset_right = 337.0
+offset_right = 263.0
 offset_bottom = 23.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 15
@@ -63,9 +63,9 @@ text = "OK"
 [node name="Cancel" type="Button" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 344.0
+offset_left = 270.0
 offset_top = -8.0
-offset_right = 362.0
+offset_right = 288.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "X"

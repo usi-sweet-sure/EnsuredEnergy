@@ -104,7 +104,7 @@ public partial class UI : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
-		NextTurnButton = GetNode<Button>("Bottom/NextTurn/NextTurn");
+		NextTurnButton = GetNode<Button>("NextTurn/NextTurn");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
@@ -115,15 +115,15 @@ public partial class UI : CanvasLayer {
 		LanguageButton = GetNode<Button>("Top/SettingsButton/SettingsBox/VBoxContainer/Language");
 
 		// Info Bars
-		WinterEnergy = GetNode<InfoBar>("Bottom/EnergyBarWinter");
-		SummerEnergy = GetNode<InfoBar>("Bottom/EnergyBarSummer");
-		EnvironmentBar = GetNode<InfoBar>("Bottom/Env");
-		SupportBar = GetNode<InfoBar>("Bottom/Trust");
-		PollutionBar = GetNode<InfoBar>("Bottom/Poll");
+		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
+		SummerEnergy = GetNode<InfoBar>("EnergyBarSummer");
+		EnvironmentBar = GetNode<InfoBar>("Env");
+		SupportBar = GetNode<InfoBar>("Trust");
+		PollutionBar = GetNode<InfoBar>("Poll");
 
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
-		Imports = GetNode<ImportSlider>("Top/Import");
+		Imports = GetNode<ImportSlider>("Import");
 
 		// Money Nodes
 		MoneyL = GetNode<Label>("Top/Money/money");
@@ -142,8 +142,8 @@ public partial class UI : CanvasLayer {
 		ImportCostNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
-		PolicyButton = GetNode<Button>("Bottom/PolicyButton");
-		StatsButton = GetNode<Button>("Bottom/Stats");
+		PolicyButton = GetNode<Button>("PolicyButton");
+		StatsButton = GetNode<Button>("Stats");
 
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
