@@ -199,27 +199,27 @@ public partial class UI : CanvasLayer {
 		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
 
 		// Update the various plants
-		BM._UpdatePlantName(BuildingType.GAS, gas_name);
-		BM._UpdatePlantName(BuildingType.HYDRO, hydro_name);
-		BM._UpdatePlantName(BuildingType.SOLAR, solar_name);
-		BM._UpdatePlantName(BuildingType.TREE, tree_name);
+		BM._UpdatePlantName(Building.Type.GAS, gas_name);
+		BM._UpdatePlantName(Building.Type.HYDRO, hydro_name);
+		BM._UpdatePlantName(Building.Type.SOLAR, solar_name);
+		BM._UpdatePlantName(Building.Type.TREE, tree_name);
 
 		// Update the placed plants
 		foreach(PowerPlant pp in GL._GetPowerPlants()) {
-			switch(pp.PlantType) {
-				case BuildingType.GAS:
+			switch(pp.PlantType.type) {
+				case Building.Type.GAS:
 					pp._UpdatePlantName(gas_name);
 					break;
-				case BuildingType.HYDRO:
+				case Building.Type.HYDRO:
 					pp._UpdatePlantName(hydro_name);
 					break;
-				case BuildingType.SOLAR:
+				case Building.Type.SOLAR:
 					pp._UpdatePlantName(solar_name);
 					break;
-				case BuildingType.TREE:
+				case Building.Type.TREE:
 					pp._UpdatePlantName(tree_name);
 					break;
-				case BuildingType.NUCLEAR:
+				case Building.Type.NUCLEAR:
 					pp._UpdatePlantName(nuclear_name);
 					break;
 				default:

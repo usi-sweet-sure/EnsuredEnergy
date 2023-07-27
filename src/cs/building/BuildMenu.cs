@@ -88,23 +88,23 @@ public partial class BuildMenu : CanvasLayer {
 	// ==================== Public API ====================
 
 	// Updates the name of the associate building type (for localization)
-	public void _UpdatePlantName(BuildingType Bt, string newName) {
+	public void _UpdatePlantName(Building Bt, string newName) {
 		// Find which building to update
-		switch (Bt) {
-			case BuildingType.GAS:
+		switch (Bt.type) {
+			case Building.Type.GAS:
 				// Position the plant correctly
 				SetPlantName(ref GasPlant, newName);
 				break;
 
-			case BuildingType.HYDRO:
+			case Building.Type.HYDRO:
 				SetPlantName(ref HydroPlant, newName);
 				break;
 
-			case BuildingType.SOLAR:
+			case Building.Type.SOLAR:
 				SetPlantName(ref SolarPlant, newName);
 				break;
 
-			case BuildingType.TREE:
+			case Building.Type.TREE:
 				SetPlantName(ref TreePlant, newName);
 				break;
 			
@@ -172,7 +172,7 @@ public partial class BuildMenu : CanvasLayer {
 		SelectBuilding += bb._OnSelectBuilding;
 
 		// Sanity check: List must not contain duplicates
-		List<BuildingType> BTs = bb.BL.AvailableTypes.Distinct().ToList();
+		List<Building> BTs = bb.BL.AvailableTypes.Distinct().ToList();
 
 		// Clear the Menu
 		HideAllPlants();
@@ -180,32 +180,32 @@ public partial class BuildMenu : CanvasLayer {
 		// Display the buildings sent with the signal  
 		int idx = 0;
 		foreach(var _bt in BTs) {
-			switch (_bt) {
-				case BuildingType.GAS:
+			switch (_bt.type) {
+				case Building.Type.GAS:
 					// Position the plant correctly
 					SetPlantPosition(ref GasPlant, idx++);
 
 					// Make sure that its fields are set correctly before displaying anything
-					GasPlant._SetPlantFromConfig(BuildingType.GAS);
-					GasPlant.PlantType = BuildingType.GAS;
+					GasPlant._SetPlantFromConfig(Building.Type.GAS);
+					GasPlant.PlantType = Building.Type.GAS;
 					break;
 
-				case BuildingType.HYDRO:
+				case Building.Type.HYDRO:
 					SetPlantPosition(ref HydroPlant, idx++);
-					HydroPlant._SetPlantFromConfig(BuildingType.HYDRO);
-					HydroPlant.PlantType = BuildingType.HYDRO;
+					HydroPlant._SetPlantFromConfig(Building.Type.HYDRO);
+					HydroPlant.PlantType = Building.Type.HYDRO;
 					break;
 
-				case BuildingType.SOLAR:
+				case Building.Type.SOLAR:
 					SetPlantPosition(ref SolarPlant, idx++);
-					SolarPlant._SetPlantFromConfig(BuildingType.SOLAR);
-					SolarPlant.PlantType = BuildingType.SOLAR;
+					SolarPlant._SetPlantFromConfig(Building.Type.SOLAR);
+					SolarPlant.PlantType = Building.Type.SOLAR;
 					break;
 
-				case BuildingType.TREE:
+				case Building.Type.TREE:
 					SetPlantPosition(ref TreePlant, idx++);
-					TreePlant._SetPlantFromConfig(BuildingType.TREE);
-					TreePlant.PlantType = BuildingType.TREE;
+					TreePlant._SetPlantFromConfig(Building.Type.TREE);
+					TreePlant.PlantType = Building.Type.TREE;
 					break;
 			}
 		}

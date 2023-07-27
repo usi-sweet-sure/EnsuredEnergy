@@ -17,6 +17,7 @@
 */
 using Godot;
 using System;
+using System.Collections.Generic;
 
 // ============================================================
 // ==================== RESOURCE DATATYPES ====================
@@ -111,6 +112,112 @@ public struct MoneyData {
 // ======================= FANCY ENUMS ========================
 // ============================================================
 
+// ==================== Building Type Enum ====================
+
+// Represents the different types of power plants
+public readonly struct Building {
+
+	public readonly Type type;
+
+	// The various types of power plants
+	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, NONE };
+
+	// Labels used as string representations of the types
+	public const string GAS_LABEL = "gas";
+	public const string HYDRO_LABEL = "hydro";
+	public const string SOLAR_LABEL = "solar";
+	public const string TREE_LABEL = "tree";
+	public const string NUCLEAR_LABEL = "nuclear";
+
+
+	// Basic constructor for the Building type
+	public Building(Type bt)  {
+		type = bt;
+	}
+
+	// Override equality and inequality operators
+	public static bool operator ==(Building b, Building other) => b.type == other.type;
+	public static bool operator !=(Building b, Building other) => b.type != other.type;
+
+	// Override the incrementation and decrementation operators
+	public static Building operator ++(Building b) => new Building((Type)((int)(b.type + 1) % (int)(Type.NONE)));
+	public static Building operator --(Building b) => new Building((Type)((int)(b.type - 1) % (int)(Type.NONE)));
+
+	// Implicit conversion from the enum to the struct
+	public static implicit operator Building(Type bt) => new Building(bt);
+
+	// Implicit conversion from the struct to the enum
+	public static implicit operator Type(Building b) => b.type;
+
+	// Implicit conversion from a string to a config type
+	public static implicit operator Building(string s) {
+		// Make it as easy to parse as possible
+		string s_ = s.ToLower().StripEdges();
+
+		// Check the given string against the labels
+		if(s_ == GAS_LABEL) {
+			return new Building(Type.GAS);
+		}
+		if(s_ == HYDRO_LABEL) {
+			return new Building(Type.HYDRO);
+		} 
+		if(s_ == SOLAR_LABEL) {
+			return new Building(Type.SOLAR);
+		} 
+		if(s_ == TREE_LABEL) {
+			return new Building(Type.TREE);
+		}
+		if(s_ == NUCLEAR_LABEL) {
+			return new Building(Type.NUCLEAR);
+		}
+
+		// The given string was invalid so we give it the impossible type
+		return new Building(Type.NONE);
+	}
+	
+	// Implicit conversion to a string
+	public override string ToString() => 
+		type == Type.GAS ? GAS_LABEL :
+		type == Type.HYDRO ? HYDRO_LABEL :
+		type == Type.SOLAR ? SOLAR_LABEL :
+		type == Type.TREE ? TREE_LABEL :
+		type == Type.NUCLEAR ? NUCLEAR_LABEL : 
+		"";
+
+	// Performs the same check as the == operator, but with a run-time check on the type
+	public override bool Equals(object obj) {
+		// Check for null and compare run-time types.
+		if ((obj == null) || ! this.GetType().Equals(obj.GetType())) {
+			return false;
+		}
+		// Perform actual equality check
+		return type == ((Building)obj).type;
+	}
+
+	// Override of the get hashcode method (needed to overload == and !=)
+	public override int GetHashCode() => HashCode.Combine(type);
+}
+
+// Models a Build Slot
+public struct BuildLocation {
+	// Contains the Position at which the build wild take place
+	public Vector2 Position;
+
+	// Contains the types we are allowed to build at this location
+	public List<Building> AvailableTypes; 
+
+	// Struct constructor using var-args for the available types
+	public BuildLocation(Vector2 _P, params Building[] _BT) {
+		Position = _P;
+		AvailableTypes = new List<Building>();
+
+		// Fill in the available types
+		foreach(var bt in _BT) {
+			AvailableTypes.Add(bt);
+		}
+	}
+}
+
 // ==================== Config Enum ====================
 
 // Models a config type
@@ -144,7 +251,7 @@ public readonly struct Config {
 	public static implicit operator Config(string s) {
 		// Make it as easy to parse as possible
 		string s_ = s.ToLower().StripEdges();
-		if(s == "powerplants") {
+		if(s_ == "powerplants") {
 			return new Config(Type.POWER_PLANT);
 		} 
 		return new Config(Type.NONE);

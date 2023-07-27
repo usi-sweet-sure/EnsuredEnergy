@@ -20,29 +20,6 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-// Represents the different types of power plants
-public enum BuildingType { HYDRO, GAS, SOLAR, TREE, NUCLEAR };
-
-// Models a Build Slot
-public struct BuildLocation {
-	// Contains the Position at which the build wild take place
-	public Vector2 Position;
-
-	// Contains the types we are allowed to build at this location
-	public List<BuildingType> AvailableTypes; 
-
-	// Struct constructor using var-args for the available types
-	public BuildLocation(Vector2 _P, params BuildingType[] _BT) {
-		Position = _P;
-		AvailableTypes = new List<BuildingType>();
-
-		// Fill in the available types
-		foreach(var bt in _BT) {
-			AvailableTypes.Add(bt);
-		}
-	}
-}
-
 // Models a button that can be used to create power plants
 public partial class BuildButton : Button {
 
@@ -112,9 +89,9 @@ public partial class BuildButton : Button {
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
-			BL = new BuildLocation(Position, BuildingType.GAS, BuildingType.SOLAR, BuildingType.TREE, BuildingType.HYDRO);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.HYDRO);
 		} else {
-			BL = new BuildLocation(Position, BuildingType.GAS, BuildingType.SOLAR, BuildingType.TREE);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE);
 		}
 
 		// Connect the button press callback
@@ -217,20 +194,20 @@ public partial class BuildButton : Button {
 		PP._SetPlantFromConfig(PP.PlantType);
 
 		// Pick which plant to show and update
-		switch(PP.PlantType) {
-			case BuildingType.GAS:
+		switch(PP.PlantType.type) {
+			case Building.Type.GAS:
 				UpdatePowerPlant(ref GasPlant, PP);
 				break;
 			
-			case BuildingType.HYDRO:
+			case Building.Type.HYDRO:
 				UpdatePowerPlant(ref HydroPlant, PP);
 				break;
 
-			case BuildingType.SOLAR:
+			case Building.Type.SOLAR:
 				UpdatePowerPlant(ref SolarPlant, PP);
 				break;
 			
-			case BuildingType.TREE:
+			case Building.Type.TREE:
 				UpdatePowerPlant(ref TreePlant, PP);
 				break;
 			default:
@@ -283,7 +260,7 @@ public partial class BuildButton : Button {
 	// Receives the power plant selected by the user and now we need to place it
 	public void _OnSelectBuilding(PowerPlant PP) {
 		// Sanity check: Check explicitly for hydro builds and dissallow illegal ones
-		if(PP.PlantType == BuildingType.HYDRO && !AllowHydro) {
+		if(PP.PlantType.type == Building.Type.HYDRO && !AllowHydro) {
 			return;
 		}
 
