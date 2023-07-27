@@ -110,9 +110,9 @@ public partial class UI : CanvasLayer {
 		GL = GetOwner<GameLoop>();
 
 		// Settings
-		SettingsButton = GetNode<Button>("Top/SettingsButton");
-		SettingsBox = GetNode<ColorRect>("Top/SettingsButton/SettingsBox");
-		LanguageButton = GetNode<Button>("Top/SettingsButton/SettingsBox/VBoxContainer/Language");
+		SettingsButton = GetNode<Button>("SettingsButton");
+		SettingsBox = GetNode<ColorRect>("SettingsButton/SettingsBox");
+		LanguageButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Language");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
@@ -126,20 +126,20 @@ public partial class UI : CanvasLayer {
 		Imports = GetNode<ImportSlider>("Import");
 
 		// Money Nodes
-		MoneyL = GetNode<Label>("Top/Money/money");
-		MoneyButton = GetNode<Button>("Top/MoneyUI");
-		MoneyInfo = GetNode<ColorRect>("Top/MoneyInfo");
-		BudgetL = GetNode<Label>("Top/MoneyInfo/budget");
-		BuildL = GetNode<Label>("Top/MoneyInfo/build");
-		ProdL = GetNode<Label>("Top/MoneyInfo/prod");
-		ImportCostL = GetNode<Label>("Top/MoneyInfo/importamounts");
+		MoneyL = GetNode<Label>("Money/money");
+		MoneyButton = GetNode<Button>("MoneyUI");
+		MoneyInfo = GetNode<ColorRect>("MoneyInfo");
+		BudgetL = GetNode<Label>("MoneyInfo/budget");
+		BuildL = GetNode<Label>("MoneyInfo/build");
+		ProdL = GetNode<Label>("MoneyInfo/prod");
+		ImportCostL = GetNode<Label>("MoneyInfo/importamounts");
 
 		// Name labels
-		MoneyNameL = GetNode<Label>("Top/Money/Label");
-		BudgetNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label3");
-		BuildNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label4");
-		ProdNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label2");
-		ImportCostNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Import");
+		MoneyNameL = GetNode<Label>("Money/Label");
+		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label3");
+		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label4");
+		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label2");
+		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
 		PolicyButton = GetNode<Button>("PolicyButton");

@@ -86,6 +86,7 @@ public partial class PowerPlant : Node2D {
 
 	// Children Nodes
 	private Sprite2D Sprite;
+	private ColorRect NameR;
 	private Label NameL;
 	private Label PollL;
 	private Label EnergyS;
@@ -104,6 +105,7 @@ public partial class PowerPlant : Node2D {
 		// Fetch all children nodes
 		Sprite = GetNode<Sprite2D>("Sprite");
 		NameL = GetNode<Label>("NameRect/Name");
+		NameR = GetNode<ColorRect>("NameRect");
 		PollL = GetNode<Label>("ResRect/Poll");
 		EnergyS = GetNode<Label>("ResRect/EnergyS");
 		EnergyW = GetNode<Label>("ResRect/EnergyW");
@@ -232,6 +234,7 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+			NameR.Show();
 			//Price.AddThemeColorOverride("font_color", new Color(1,0,0,1)); red
 			//Price.AddThemeColorOverride("font_color", new Color(1,1,1,1)); white
 			Price.Show();
@@ -241,6 +244,7 @@ public partial class PowerPlant : Node2D {
 			//PollL.Show();
 			Switch.Show();
 			Price.Hide();
+			NameR.Hide();
 		}
 	}
 
@@ -255,9 +259,11 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+			NameR.Show();
 		} else {
 			//PollL.Show();
 			Switch.Show();
+			NameR.Hide();
 		}
 
 		// Set the labels correctly
@@ -335,5 +341,17 @@ public partial class PowerPlant : Node2D {
 
 		// Update the UI
 		_UpdatePlantData();
+	}
+	
+	private void _on_area_2d_mouse_entered() {
+		if(!IsPreview) {
+			NameR.Show();
+		}
+		
+	}
+	private void _on_area_2d_mouse_exited() {
+		if(!IsPreview) {
+			NameR.Hide();
+		}
 	}
 }
