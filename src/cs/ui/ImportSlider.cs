@@ -41,6 +41,9 @@ public partial class ImportSlider : HSlider {
 	// The confirmed import amount
 	private int ImportAmount;
 
+	// The import display button
+	private Button ImportsButton;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -52,6 +55,7 @@ public partial class ImportSlider : HSlider {
 		Target = GetNode<Line2D>("Target");
 		ApplySelection = GetNode<Button>("Apply");
 		Cancel = GetNode<Button>("Cancel");
+		ImportsButton = GetNode<Button>("../ImportsB");
 
 		// Initialize the import amount
 		ImportAmount = 0;
@@ -60,6 +64,7 @@ public partial class ImportSlider : HSlider {
 		ValueChanged += OnSliderRangeValueChanged;
 		ApplySelection.Pressed += OnApplySelectionPressed;
 		Cancel.Pressed += OnCancelPressed;
+		ImportsButton.Pressed += OnImportsButtonPressed;
 	}
 
 	// ==================== Public API ====================
@@ -123,8 +128,9 @@ public partial class ImportSlider : HSlider {
 		this.Hide();
 	}
 	
-	private void _on_imports_b_pressed() {
-	this.Visible = !this.Visible;
+	// Toggles the import slider's visibility when the label button is pressed
+	private void OnImportsButtonPressed() {
+		Visible = !Visible;
 	}
 }
 

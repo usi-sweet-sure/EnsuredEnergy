@@ -98,6 +98,9 @@ public partial class PowerPlant : Node2D {
 	// Configuration controller
 	private ConfigController CC;
 
+	// The Area used to detect hovering
+	private Area2D HoverArea;
+
 	// ==================== GODOT Method Overrides ====================
 	
 	// Called when the node enters the scene tree for the first time.
@@ -113,6 +116,7 @@ public partial class PowerPlant : Node2D {
 		Switch = GetNode<CheckButton>("Switch");
 		CC = GetNode<ConfigController>("ConfigController");
 		Price = GetNode<Label>("Price");
+		HoverArea = GetNode<Area2D>("HoverArea");
 		
 		// Initialize plant type
 		PlantType = _PlantType;
@@ -127,6 +131,7 @@ public partial class PowerPlant : Node2D {
 			Switch.Show();
 			Price.Hide();
 		}
+
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
@@ -144,8 +149,13 @@ public partial class PowerPlant : Node2D {
 		// Propagate to UI
 		_UpdatePlantData();
 
-		// Connect the switch signal
+		// Initially show the name rectangle
+		NameR.Show();
+		
+		// Connect the various signals
 		Switch.Toggled += _OnSwitchToggled;
+		HoverArea.MouseEntered += OnArea2DMouseEntered;
+		HoverArea.MouseExited += OnArea2DMouseExited;
 	}
 
 	// ==================== Power Plant Update API ====================
@@ -343,13 +353,17 @@ public partial class PowerPlant : Node2D {
 		_UpdatePlantData();
 	}
 	
-	private void _on_area_2d_mouse_entered() {
+	// Hide the plant information when the mouse no longer hovers over the plant
+	private void OnArea2DMouseExited() {
+		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Show();
 		}
-		
 	}
-	private void _on_area_2d_mouse_exited() {
+
+	// Display the plant information when the mouse is hovering over the plant
+	private void OnArea2DMouseEntered() {
+		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Hide();
 		}

@@ -168,10 +168,7 @@ default_color = Color(0.109375, 0.0703125, 0.25, 1)
 [node name="ConfigController" type="Node" parent="."]
 script = ExtResource("3_runxt")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HoverArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 shape = SubResource("RectangleShape2D_wggy5")
-
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

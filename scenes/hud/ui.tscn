@@ -474,8 +474,6 @@ visible = false
 visible = false
 script = ExtResource("7_u64y1")
 
-[connection signal="pressed" from="ImportsB" to="Import" method="_on_imports_b_pressed"]
-
 [editable path="EnergyBarWinter"]
 [editable path="EnergyBarSummer"]
 [editable path="Import"]
