@@ -86,15 +86,20 @@ public partial class PowerPlant : Node2D {
 
 	// Children Nodes
 	private Sprite2D Sprite;
+	private ColorRect NameR;
 	private Label NameL;
 	private Label PollL;
-	private Label EnergyL;
+	private Label EnergyS;
+	private Label EnergyW;
 	private Label MoneyL;
 	public CheckButton Switch;
 	private Label Price;
 
 	// Configuration controller
 	private ConfigController CC;
+
+	// The Area used to detect hovering
+	private Area2D HoverArea;
 
 	// ==================== GODOT Method Overrides ====================
 	
@@ -103,12 +108,15 @@ public partial class PowerPlant : Node2D {
 		// Fetch all children nodes
 		Sprite = GetNode<Sprite2D>("Sprite");
 		NameL = GetNode<Label>("NameRect/Name");
+		NameR = GetNode<ColorRect>("NameRect");
 		PollL = GetNode<Label>("ResRect/Poll");
-		EnergyL = GetNode<Label>("ResRect/Energy");
+		EnergyS = GetNode<Label>("ResRect/EnergyS");
+		EnergyW = GetNode<Label>("ResRect/EnergyW");
 		MoneyL = GetNode<Label>("ResRect/Money");
 		Switch = GetNode<CheckButton>("Switch");
 		CC = GetNode<ConfigController>("ConfigController");
 		Price = GetNode<Label>("Price");
+		HoverArea = GetNode<Area2D>("HoverArea");
 		
 		// Initialize plant type
 		PlantType = _PlantType;
@@ -119,14 +127,16 @@ public partial class PowerPlant : Node2D {
 			Switch.Hide();
 			Price.Show();
 		} else {
-			PollL.Show();
+			//PollL.Show();
 			Switch.Show();
 			Price.Hide();
 		}
 
+
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyL.Text = EnergyCapacity.ToString();
+		EnergyS.Text = EnergyCapacity.ToString();
+		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 
@@ -139,8 +149,13 @@ public partial class PowerPlant : Node2D {
 		// Propagate to UI
 		_UpdatePlantData();
 
-		// Connect the switch signal
+		// Initially show the name rectangle
+		NameR.Show();
+
+		// Connect the various signals
 		Switch.Toggled += _OnSwitchToggled;
+		HoverArea.MouseEntered += OnArea2DMouseEntered;
+		HoverArea.MouseExited += OnArea2DMouseExited;
 	}
 
 	// ==================== Power Plant Update API ====================
@@ -229,15 +244,17 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+			NameR.Show();
 			//Price.AddThemeColorOverride("font_color", new Color(1,0,0,1)); red
 			//Price.AddThemeColorOverride("font_color", new Color(1,1,1,1)); white
 			Price.Show();
 		} 
 		// When not in preview mode, the interactive elements should be visible
 		else {
-			PollL.Show();
+			//PollL.Show();
 			Switch.Show();
 			Price.Hide();
+			NameR.Hide();
 		}
 	}
 
@@ -252,14 +269,17 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			PollL.Hide();
 			Switch.Hide();
+			NameR.Show();
 		} else {
-			PollL.Show();
+			//PollL.Show();
 			Switch.Show();
+			NameR.Hide();
 		}
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyL.Text = EnergyCapacity.ToString();
+		EnergyS.Text = EnergyCapacity.ToString();
+		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 	}
@@ -331,5 +351,21 @@ public partial class PowerPlant : Node2D {
 
 		// Update the UI
 		_UpdatePlantData();
+	}
+	
+	// Hide the plant information when the mouse no longer hovers over the plant
+	private void OnArea2DMouseEntered() {
+		// Make sure that the plant isn't in the build menu
+		if(!IsPreview) {
+			NameR.Show();
+		}
+	}
+
+	// Display the plant information when the mouse is hovering over the plant
+	private void OnArea2DMouseExited() {
+		// Make sure that the plant isn't in the build menu
+		if(!IsPreview) {
+			NameR.Hide();
+		}
 	}
 }

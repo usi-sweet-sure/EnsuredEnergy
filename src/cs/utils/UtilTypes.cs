@@ -56,8 +56,11 @@ public struct Environment {
 	public int ImportedPollution; // The amount of pollution caused by energy imports
 
 	// Computes the value used to update the environment bar
-	public float EnvBarValue() =>
-		2.0f * (0.5f * Biodiversity - 0.5f * LandUse);
+	public double EnvBarValue() {
+		// Use a basic signmoid to compute the mixture
+		double x = Math.Exp(6.0 * (Biodiversity - 1.1 * LandUse));
+		return x / (x + 1.0);
+	}
 
 	public int PollutionBarValue() => Pollution + ImportedPollution;
 

@@ -104,46 +104,46 @@ public partial class UI : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
-		NextTurnButton = GetNode<Button>("Bottom/NextTurn/NextTurn");
+		NextTurnButton = GetNode<Button>("NextTurn/NextTurn");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
 
 		// Settings
-		SettingsButton = GetNode<Button>("Top/SettingsButton");
-		SettingsBox = GetNode<ColorRect>("Top/SettingsButton/SettingsBox");
-		LanguageButton = GetNode<Button>("Top/SettingsButton/SettingsBox/VBoxContainer/Language");
+		SettingsButton = GetNode<Button>("SettingsButton");
+		SettingsBox = GetNode<ColorRect>("SettingsButton/SettingsBox");
+		LanguageButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Language");
 
 		// Info Bars
-		WinterEnergy = GetNode<InfoBar>("Bottom/EnergyBarWinter");
-		SummerEnergy = GetNode<InfoBar>("Bottom/EnergyBarSummer");
-		EnvironmentBar = GetNode<InfoBar>("Bottom/Env");
-		SupportBar = GetNode<InfoBar>("Bottom/Trust");
-		PollutionBar = GetNode<InfoBar>("Bottom/Poll");
+		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
+		SummerEnergy = GetNode<InfoBar>("EnergyBarSummer");
+		EnvironmentBar = GetNode<InfoBar>("Env");
+		SupportBar = GetNode<InfoBar>("Trust");
+		PollutionBar = GetNode<InfoBar>("Poll");
 
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
-		Imports = GetNode<ImportSlider>("Top/Import");
+		Imports = GetNode<ImportSlider>("Import");
 
 		// Money Nodes
-		MoneyL = GetNode<Label>("Top/Money/money");
-		MoneyButton = GetNode<Button>("Top/MoneyUI");
-		MoneyInfo = GetNode<ColorRect>("Top/MoneyInfo");
-		BudgetL = GetNode<Label>("Top/MoneyInfo/budget");
-		BuildL = GetNode<Label>("Top/MoneyInfo/build");
-		ProdL = GetNode<Label>("Top/MoneyInfo/prod");
-		ImportCostL = GetNode<Label>("Top/MoneyInfo/importamounts");
+		MoneyL = GetNode<Label>("Money/money");
+		MoneyButton = GetNode<Button>("MoneyUI");
+		MoneyInfo = GetNode<ColorRect>("MoneyInfo");
+		BudgetL = GetNode<Label>("MoneyInfo/budget");
+		BuildL = GetNode<Label>("MoneyInfo/build");
+		ProdL = GetNode<Label>("MoneyInfo/prod");
+		ImportCostL = GetNode<Label>("MoneyInfo/importamounts");
 
 		// Name labels
-		MoneyNameL = GetNode<Label>("Top/Money/Label");
-		BudgetNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label3");
-		BuildNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label4");
-		ProdNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Label2");
-		ImportCostNameL = GetNode<Label>("Top/MoneyInfo/VBoxContainer/Import");
+		MoneyNameL = GetNode<Label>("Money/Label");
+		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label3");
+		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label4");
+		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label2");
+		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
-		PolicyButton = GetNode<Button>("Bottom/PolicyButton");
-		StatsButton = GetNode<Button>("Bottom/Stats");
+		PolicyButton = GetNode<Button>("PolicyButton");
+		StatsButton = GetNode<Button>("Stats");
 
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
