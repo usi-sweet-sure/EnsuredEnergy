@@ -151,7 +151,7 @@ public partial class PowerPlant : Node2D {
 
 		// Initially show the name rectangle
 		NameR.Show();
-		
+
 		// Connect the various signals
 		Switch.Toggled += _OnSwitchToggled;
 		HoverArea.MouseEntered += OnArea2DMouseEntered;
@@ -354,7 +354,7 @@ public partial class PowerPlant : Node2D {
 	}
 	
 	// Hide the plant information when the mouse no longer hovers over the plant
-	private void OnArea2DMouseExited() {
+	private void OnArea2DMouseEntered() {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Show();
@@ -362,7 +362,7 @@ public partial class PowerPlant : Node2D {
 	}
 
 	// Display the plant information when the mouse is hovering over the plant
-	private void OnArea2DMouseEntered() {
+	private void OnArea2DMouseExited() {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Hide();
