@@ -34,7 +34,7 @@ public partial class ModelController : Node {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
         // Fetch the nodes
-        C = GetNode<Context>("/Context");
+        C = GetNode<Context>("/root/Context");
         HTTPC = GetNode<HttpRequest>("HTTPRequest");
 
         // Initialize the model's state
@@ -57,8 +57,8 @@ public partial class ModelController : Node {
 
         // Send the request to the model
         HTTPC.Request(
-            MODEL_BASE_URL, 
-            new string[] {"Location: " + RES_CREATE_METHOD}, 
+            MODEL_BASE_URL + "/" + RES_CREATE_METHOD,
+            null,
             HttpClient.Method.Post
         );
 
@@ -85,12 +85,13 @@ public partial class ModelController : Node {
     // Handles the response from an init model request
     private void OnInitModelRequestCompleted(long result, long responseCode, string[] headers, byte[] body) {
         // Check response code
-        if(result == 0) {
+        if(result == (long)HttpRequest.Result.Success) {
             // Extract xml from body response
-            var xml_resp = XDocument.Parse(body.GetStringFromUtf8());
+            var XmlResp = XDocument.Parse(body.GetStringFromUtf8());
 
-            // Retrive the id from the response and store it
-            
+            // Retrive the id from the response and store it in the context
+            int Id = XmlResp.Root.Descendants("row").Select(r => r.Attribute("res_id").Value.ToInt()).ElementAt(0);
+			C._UpdateGameID(Id);		
         } else {
             throw new Exception("Unable to connect to model, response = " + responseCode + ", result = " + result);
         }
