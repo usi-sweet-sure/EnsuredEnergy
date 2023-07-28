@@ -28,10 +28,32 @@ using System;
 public partial class Context : Node {
 
     // Current internal storage of the game instance's id
-    private int ResId;
+    private int ResId = -1;
+
 
     // Internal representation of the most recent data retrieved from the model
     private Model M;
 
+    // ==================== GODOT Method Overrides ====================
 
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready() {
+        // Initialize model
+        M = new Model(); 
+	}    
+
+    // ==================== Public API ====================
+
+    // Updates the current ID (should only be done once per game)
+    // Returns the internal value of the game id:
+    // - newId if the id wasn't set 
+    // - ResID if it already had a value (in this case the given id is ignored)
+    public int _UpdateGameID(int newId) {
+        // Check if the ID has been set yet
+        if(ResId == -1) {
+            // Set the game id only if it was not previously set
+            ResId = newId;
+        }
+        return ResId;
+    }
 }
