@@ -31,6 +31,11 @@ public partial class ModelController : Node {
     // Model URL Constants
     private const string MODEL_BASE_URL = "https://toby.euler.usi.ch";
     private const string RES_CREATE_METHOD = "res.php?mth=insert";
+    private const string RES_UPDATE_METHOD = "res.php?mth=update";
+    private const string RES_ID = "res_id";
+    private const string RES_NAME = "res_name";
+    private const string RES_V1 = "res_v1";
+    private const string RES_V2 = "res_v2";
 
     // Reference to the game context
     private Context C;
@@ -69,7 +74,7 @@ public partial class ModelController : Node {
     // Initializes a connection with the model by creating a new game instance
     // Returns whether or not the request was filed
     public async void _InitModel() {
-         // Check that the model is free
+        // Check that the model is free
         if(State != ModelState.IDLE) {
             // TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
             throw new Exception("Model is currently handling another request!");
@@ -134,6 +139,44 @@ public partial class ModelController : Node {
         State = ModelState.PENDING;
         
         return true;
+    }
+
+    // Updates the name of the current game instance in the model
+    public async void _UpdateModelName(string new_name) {
+        // Check that the model is free
+        if(State != ModelState.IDLE) {
+            // TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
+            throw new Exception("Model is currently handling another request!");
+        }
+        
+        // Update the Model's state
+        State = ModelState.PENDING;
+
+        // Create the data package
+        var Data = new Dictionary<string, string> {
+            { RES_ID, C._GetGameID().ToString() },
+            { RES_NAME, new_name }
+        };
+
+        // Encode it in a content header
+        var Payload = new FormUrlEncodedContent(Data);
+
+        // Create the POST request
+        var Res = await _HTTPC.PostAsync(MODEL_BASE_URL + "/" + RES_UPDATE_METHOD, Payload);
+
+        // Make sure that the connection succeeded
+        try {
+            Res.EnsureSuccessStatusCode();
+        } catch (HttpRequestException e) {
+            // Log the error data from the request
+            throw new Exception(
+                "Unable to connect to model, status code = " + Res.StatusCode.ToString() + 
+                " Error: " + e.Message.ToString()
+            );
+        }
+
+        // Update the Model's state
+        State = ModelState.IDLE;
     }
 
     // ==================== Internal Helper Methods ====================
