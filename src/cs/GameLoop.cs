@@ -172,6 +172,9 @@ public partial class GameLoop : Node2D {
 		_UI._UpdateUI();
 	}
 
+	// Computes which turn we are at
+	private int GetTurn() => N_TURNS - RemainingTurns;
+
 	// ==================== Main Game Loop Methods ====================  
 
 	// Initializes all of the data that is propagated across the game
@@ -182,6 +185,9 @@ public partial class GameLoop : Node2D {
 
 		// Initialize the model
 		MC._InitModel();
+
+		// Get the initial data from the model
+		MC._FetchModelData(GetTurn());
 
 		// Perform initial Resouce update
 		UpdateResources(true);
@@ -202,6 +208,11 @@ public partial class GameLoop : Node2D {
 	private void NewTurn() {
 		// Decerement the remaining turns and check for game end
 		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
+
+			// TODO: Update model with our current data
+
+			// Get new data from model
+			MC._FetchModelData(GetTurn()); 
 
 			// Update Resources 
 			UpdateResources(true);
