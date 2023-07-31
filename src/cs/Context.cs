@@ -56,4 +56,15 @@ public partial class Context : Node {
         }
         return ResId;
     }
+
+    // Fetches the game ID and thorws an exception if it's not set
+    // Exception: NullReferenceException -> ID has not been set yet
+    public int _GetGameID() {
+        // Check if the ID has been set yet or not
+        if(ResId != -1) {
+            return ResId;
+        }
+        // Otherwise throw an exception
+        throw new NullReferenceException("Game ID has not been set yet!");
+    }
 }

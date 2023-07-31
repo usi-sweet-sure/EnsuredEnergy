@@ -17,6 +17,8 @@
 */
 using Godot;
 using System;
+using System.Net.Http;
+using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
@@ -34,7 +36,11 @@ public partial class ModelController : Node {
     private Context C;
     
     // HTTP Client: We are using godot's http client for easy interoperability with other nodes
-    private HttpRequest HTTPC;
+    // For use of Godot http client
+    private Godot.HttpRequest HTTPC;
+
+    // For use of c# standard library httpclient
+    private static readonly System.Net.Http.HttpClient _HTTPC = new System.Net.Http.HttpClient();
 
     // For random name generation
     private long NC = 0;
@@ -62,7 +68,52 @@ public partial class ModelController : Node {
 
     // Initializes a connection with the model by creating a new game instance
     // Returns whether or not the request was filed
-    public bool _InitModel() {
+    public async void _InitModel() {
+         // Check that the model is free
+        if(State != ModelState.IDLE) {
+            // TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
+            throw new Exception("Model is currently handling another request!");
+        }
+        
+        // Update the Model's state
+        State = ModelState.PENDING;
+
+        // Create the POST request
+        var Res = await _HTTPC.PostAsync(MODEL_BASE_URL + "/" + RES_CREATE_METHOD, null);
+
+        // Make sure that the connection succeeded
+        try {
+            Res.EnsureSuccessStatusCode();
+        } catch (HttpRequestException e) {
+            // Log the error data from the request
+            throw new Exception(
+                "Unable to connect to model, status code = " + Res.StatusCode.ToString() + 
+                " Error: " + e.Message.ToString()
+            );
+        }
+
+        // Retrieve the response from the model
+        var SRes = await Res.Content.ReadAsStringAsync();
+
+        // Parse the resceived data to an XML tree
+        XDocument XmlResp = XDocument.Parse(SRes);
+
+        // Retrive the id from the response and store it in the context
+        int Id = XmlResp.Root.Descendants("row").Select(r => r.Attribute("res_id").Value.ToInt()).ElementAt(0);
+        C._UpdateGameID(Id);
+
+        // DEBUG: Check that the id was set correctly
+        Debug.Print("Game ID Updated to: " + C._GetGameID());
+
+        // Update the Model's state
+        State = ModelState.IDLE;
+    }
+
+
+    // Initializes a connection with the model by creating a new game instance
+    // Returns whether or not the request was filed
+    // This uses the godot httpclient which doesn't work well with the model's url
+    public bool _InitModelGodot() {
         // Check that the model is free
         if(State != ModelState.IDLE) {
             // TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
@@ -76,7 +127,7 @@ public partial class ModelController : Node {
         HTTPC.Request(
             MODEL_BASE_URL + "/" + RES_CREATE_METHOD,
             null,
-            HttpClient.Method.Post
+            Godot.HttpClient.Method.Post
         );
 
         // Update the Model's state

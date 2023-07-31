@@ -26,13 +26,13 @@ script = ExtResource("3_l6dyd")
 [node name="BuildMenu" parent="." instance=ExtResource("2_wrh8p")]
 visible = false
 
+[node name="TextController" type="Node" parent="."]
+script = ExtResource("6_wtjaw")
+
 [node name="ModelController" type="Node" parent="."]
 script = ExtResource("6_hyuox")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="ModelController"]
-
-[node name="TextController" type="Node" parent="."]
-script = ExtResource("6_wtjaw")
 
 [node name="ResourceManager" type="Node" parent="."]
 script = ExtResource("7_u5qtv")
