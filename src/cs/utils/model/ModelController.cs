@@ -70,6 +70,10 @@ public partial class ModelController : Node {
 
 	// Initializes a connection with the model by creating a new game instance
 	// Returns whether or not the request was filed
+    // This method will generate the following POST request :
+    // - URL: https://toby.euler.usi.ch/res.php?mth=insert&res_id=Content.ResId 
+    // - HEADER: Null
+    // - DATA: Null
 	public async void _InitModel() {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
@@ -101,7 +105,12 @@ public partial class ModelController : Node {
 		XDocument XmlResp = XDocument.Parse(SRes);
 
 		// Retrive the id from the response and store it in the context
-		int Id = XmlResp.Root.Descendants("row").Select(r => r.Attribute(RES_ID).Value.ToInt()).ElementAt(0);
+		int Id = (
+            from r in XmlResp.Root.Descendants("row")
+            select r.Attribute(RES_ID).Value.ToInt()
+        ).ElementAt(0);
+
+        // Update the context
 		C._UpdateGameID(Id);
 
 		// DEBUG: Check that the id was set correctly
@@ -116,6 +125,11 @@ public partial class ModelController : Node {
 
 	// Updates the name of the current game instance in the model
 	// Given a new name to use for the instance (usually randomly generated)
+    // This method will generate the following POST request :
+    // - URL: https://toby.euler.usi.ch/res.php?mth=update  
+    // - HEADER: Content-Type: application/x-www-form-urlencoded
+    // - DATA: res_id = Context.ResId & res_name = @param{new_name} &
+    //         res_v1 = 42 & res_v2 = 9001 (arbitrary meme values)
 	public async void _UpdateModelName(string new_name) {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
@@ -158,10 +172,11 @@ public partial class ModelController : Node {
 		XDocument XmlResp = XDocument.Parse(SRes);
 
 		// Retrive the name from the response and store it in the context
-		string name = XmlResp.Root.Descendants("row")
-            .Where(r => r.Attribute(RES_ID).Value.ToInt() == C._GetGameID())
-            .Select(r => r.Attribute(RES_NAME).Value.ToString())
-            .ElementAt(0);
+		string name = (
+            from r in XmlResp.Root.Descendants("row")
+            where r.Attribute(RES_ID).Value.ToInt() == C._GetGameID()
+            select r.Attribute(RES_NAME).Value.ToString()
+        ).ElementAt(0);
 
         // Update the context
         C._UpdateGameName(name);
