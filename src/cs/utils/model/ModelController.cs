@@ -104,7 +104,7 @@ public partial class ModelController : Node {
         XDocument XmlResp = XDocument.Parse(SRes);
 
         // Retrive the id from the response and store it in the context
-        int Id = XmlResp.Root.Descendants("row").Select(r => r.Attribute("res_id").Value.ToInt()).ElementAt(0);
+        int Id = XmlResp.Root.Descendants("row").Select(r => r.Attribute(RES_ID).Value.ToInt()).ElementAt(0);
         C._UpdateGameID(Id);
 
         // DEBUG: Check that the id was set correctly
@@ -112,6 +112,9 @@ public partial class ModelController : Node {
 
         // Update the Model's state
         State = ModelState.IDLE;
+
+        // Update the name to something random
+        _UpdateModelName(GenerateName());
     }
 
 
@@ -174,6 +177,18 @@ public partial class ModelController : Node {
                 " Error: " + e.Message.ToString()
             );
         }
+
+        // Retrieve the response from the model
+        var SRes = await Res.Content.ReadAsStringAsync();
+
+        // Parse the resceived data to an XML tree
+        XDocument XmlResp = XDocument.Parse(SRes);
+
+        // Retrive the id from the response and store it in the context
+        string name = XmlResp.Root.Descendants("row").Select(r => r.Attribute(RES_NAME).Value.ToString()).ElementAt(0);
+
+        // DEBUG: Check that the id was set correctly
+        Debug.Print("Game name updated to: " + name);
 
         // Update the Model's state
         State = ModelState.IDLE;
