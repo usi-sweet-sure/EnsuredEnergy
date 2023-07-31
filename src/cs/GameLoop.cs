@@ -27,6 +27,9 @@ public partial class GameLoop : Node2D {
 	// Represents the various states that the game can be in
 	public enum GameState { NOT_STARTED, PLAYING, ENDED };
 
+	// Context of the game
+	private Context C;
+
 	// The total number of turns in the game
 	[Export]
 	public int N_TURNS = 10;
@@ -60,12 +63,19 @@ public partial class GameLoop : Node2D {
 
 	private ResourceManager RM;
 
+	// Model controller
+	private ModelController MC;
+
 	//TODO: Add Shocks once they are implemented
 
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
+		// Fetch context and model controller
+		C = GetNode<Context>("/root/Context");
+		MC = GetNode<ModelController>("ModelController");
+
 		// Init Data
 		GS = GameState.NOT_STARTED;
 		RemainingTurns = N_TURNS;
@@ -169,6 +179,9 @@ public partial class GameLoop : Node2D {
 	private void StartGame() {
 		// Update the game state
 		GS = GameState.PLAYING;
+
+		// Initialize the model
+		MC._InitModel();
 
 		// Perform initial Resouce update
 		UpdateResources(true);

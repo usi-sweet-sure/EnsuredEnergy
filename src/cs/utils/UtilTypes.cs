@@ -327,6 +327,7 @@ public readonly struct Language {
 										 lang == Type.DE ? "de" :
 										 "it";
 
+	// Converts the language to a human-readable format
 	public string ToName() => lang == Type.EN ? "Language: English" : 
 							  lang == Type.FR ? "Langue: Français" :
 							  lang == Type.DE ? "Sprache: Deutsch" :
