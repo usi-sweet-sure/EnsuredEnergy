@@ -24,6 +24,18 @@ using System;
 // from the remote energy grid model
 // ========================================================
 
+// Coherency state of the Model
+// Follows a simple MSI model
+// MODIFIED = client data is more recent than server data
+// SHARED = server data is up to date with client
+// INVALID = client data is useless
+// This state is only valid for fields that the player can modify, i.e. capacity
+public enum ModelCoherencyState { MODIFIED, SHARED, INVALID };
+
+// Models which "season" the model data belongs to
+// This allows us to group the data into WINTER and SUMMER
+public enum ModelSeason { WINTER, SUMMER };
+
 // Internal datastructure containing the fields that are obtained through Toby's Model
 public struct Model {
     // Different categories of data retrieved from the model
@@ -31,16 +43,34 @@ public struct Model {
     public Capacity _Capacity;
     public Demand _Demand;
 
+    // Current coherency state of the model
+    public ModelCoherencyState _MCS;
+
+    // The season the data is correlated to
+    public ModelSeason _Season;
+
     // Base Constructor for the model
     public Model(
-        Availability A=new Availability(), 
-        Capacity C=new Capacity(), 
-        Demand D=new Demand()
+        Availability A = new Availability(), 
+        Capacity C = new Capacity(), 
+        Demand D = new Demand(),
+        ModelCoherencyState MCS = ModelCoherencyState.INVALID,
+        ModelSeason Season = ModelSeason.WINTER 
     ) {
+        // Set the fields to new fields
         _Availability = A;
         _Capacity = C;
         _Demand = D;
+
+        // Set the model state
+        _MCS = MCS;
+
+        // Set the seasonality of the data
+        _Season = Season;
     }
+
+    // Checks the validity of the model data
+    public bool _IsValid() => _MCS != ModelCoherencyState.INVALID;
 }
 
 // Represents the data retrieved from the availability columns of the model
@@ -62,6 +92,10 @@ public struct Availability {
         Solar = s;
         Wind = w;
     }
+
+    // Checks whether the internal values are all 0 or not
+    public bool _IsEmpty() => 
+        Gas == Nuclear && Nuclear == River && River == Solar && Solar == Wind && Wind == 0.0f;
 }
 
 // Represents the data retrieved from the Capacity columns of the model
@@ -83,6 +117,10 @@ public struct Capacity {
         Solar = s;
         Wind = w;
     }
+
+    // Checks whether the internal values are all 0 or not
+    public bool _IsEmpty() => 
+        Gas == Nuclear && Nuclear == River && River == Solar && Solar == Wind && Wind == 0.0f;
 }
 
 // Represents the data retrived from the Demand columns of the model
@@ -96,4 +134,7 @@ public struct Demand {
     public Demand(int b=0) {
         Base = 0;
     }
+
+    // Checks whether the internal values are all 0 or not
+    public bool _IsEmpty() => Base == 0;
 } 

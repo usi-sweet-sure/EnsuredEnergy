@@ -24,18 +24,31 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 
+// Alias for the super long type name
+using SGC = System.Collections.Generic;
+
+
 // HTTP Client for the server-based energy grid model
 // This model can be found at https://toby.euler.usi.ch
 public partial class ModelController : Node {
 
 	// Model URL Constants
 	private const string MODEL_BASE_URL = "https://toby.euler.usi.ch";
-	private const string RES_CREATE_METHOD = "res.php?mth=insert";
-	private const string RES_UPDATE_METHOD = "res.php?mth=update";
+	private const string RES_FILE = "res.php";
+    private const string BAL_FILE = "bal.php";
+    private const string INSERT_METHOD = "mth=insert";
+	private const string UPDATE_METHOD = "mth=update";
+    private const string DISP_METHOD = "mth=disp";
 	private const string RES_ID = "res_id";
 	private const string RES_NAME = "res_name";
 	private const string RES_V1 = "res_v1";
 	private const string RES_V2 = "res_v2";
+    private const string N = "n"; // The current week we are requesting
+    private const string SEASON = "s"; // The season related to the data (s < 0.5 -> WINTER, s >= 0.5 -> SUMMER)
+
+    // Game value constants
+    private const int YEARS_PER_TURN = 3;
+    private const int WEEKS_PER_YEAR = 52;
 
 	// Reference to the game context
 	private Context C;
@@ -66,6 +79,12 @@ public partial class ModelController : Node {
 		State = ModelState.IDLE;
 	}    
 
+    // ==================== Public API (For General Checks) ====================
+
+    // Checks whether or not the model is currently free
+    // Returns true if the model can handle a new request, false otherwise
+    public bool _CheckState() => State == ModelState.IDLE;
+
 	// ==================== Server Interaction Methods ====================
 
 	// Initializes a connection with the model by creating a new game instance
@@ -85,7 +104,7 @@ public partial class ModelController : Node {
 		State = ModelState.PENDING;
 
 		// Create the POST request
-		var Res = await _HTTPC.PostAsync(MODEL_BASE_URL + "/" + RES_CREATE_METHOD, null);
+		var Res = await _HTTPC.PostAsync(ModelURL(RES_FILE, INSERT_METHOD), null);
 
 		// Make sure that the connection succeeded
 		try {
@@ -152,7 +171,7 @@ public partial class ModelController : Node {
 		var Payload = new FormUrlEncodedContent(Data);
 
 		// Create the POST request
-		var Res = await _HTTPC.PostAsync(MODEL_BASE_URL + "/" + RES_UPDATE_METHOD, Payload);
+		var Res = await _HTTPC.PostAsync(ModelURL(RES_FILE, UPDATE_METHOD), Payload);
 
 		// Make sure that the connection succeeded
 		try {
@@ -189,6 +208,51 @@ public partial class ModelController : Node {
 		State = ModelState.IDLE;
 	}
 
+    // Retrieves all of the data from the model and stores it in the context
+    // Warning: This will override all of the data in the context with the data 
+    // in the model. A coherency protocol should be used to avoid any mistakes.
+    // The given current turn is used to compute the timestep in the model
+    // The given turn is in batches of 3 year so it will be converted to weeks for the model.
+    // This method will generate the following GET request:
+    // URL = https://toby.euler.usi.ch/bal.php
+    // GET_PARAMS: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52}
+    public async void _FetchModelData(int current_turn) {
+        // Check that the model is free
+		if(State != ModelState.IDLE) {
+			// TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
+			throw new Exception("Model is currently handling another request!");
+		}
+		
+		// Update the Model's state
+		State = ModelState.PENDING;
+
+        // Create the parameters
+        string resid = GetParam(RES_ID, C._GetGameID());
+        string n = GetParam(N, TurnToWeek(current_turn));
+
+        // Make the request and make sure it works
+        try {
+            // Send GET request
+            var Res = await _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, n));
+
+            // Parse the received data to an XML tree
+		    XDocument XmlResp = XDocument.Parse(Res);
+
+            // Convert the given xml into a model struct
+            Model new_M = ModelFromXML(XmlResp);
+
+            // Update the internal state of the context
+            C._UdpateModelFromServer(new_M);
+
+        } catch(HttpRequestException e) {
+            // Log the error data from the request
+			throw new Exception(
+				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
+				" Error: " + e.Message.ToString()
+			);
+        }
+    }
+
 	// ==================== Internal Helper Methods ====================
 
 	// Generate a random name for the model
@@ -200,6 +264,62 @@ public partial class ModelController : Node {
 		Random rnd = new Random();
 		return words[rnd.Next(100) % 100] + "_" + (rnd.Next()).ToString();
 	}
+
+    // Groups the URL bits into a usable URL string
+    private string ModelURL(string file, string method, params string[] getparams) {
+        // Group the file and method into url
+        string url = MODEL_BASE_URL + "/" + file + "?" + method;
+        
+        // Concatenate all get parameters
+        foreach(string p in getparams) {
+            url = url + "&" + p;
+        }
+
+        return url;
+    }
+
+    // Creates a valid string for individual get parametes
+    private string GetParam(string name, string value) => name + "=" + value;
+    private string GetParam<T>(string name, T value) => name + "=" + value.ToString();
+
+    // Converts a turn number into a week number
+    private int TurnToWeek(int turn) => turn * YEARS_PER_TURN * WEEKS_PER_YEAR;
+
+    // Converts a model XML into a Model Struct
+    // The given xml is expected to be the response from the bal.disp() server method
+    private Model ModelFromXML(XDocument xml) {
+        // Start by extracting the row
+        SGC.IEnumerable<XElement> row = from r in xml.Root.Descendants("row")
+                  where r.Attribute(RES_ID).Value.ToInt() == C._GetGameID()
+                  select r;
+
+        // Retrieve the season
+        int s_val = (from s in row select s.Attribute(SEASON).Value.ToInt()).ElementAt(0);
+        ModelSeason MS = s_val < 0.5f ? ModelSeason.WINTER : ModelSeason.SUMMER;
+
+        // Retrieve the subgroups of the model and return it
+        return new Model(
+            AvailabilityFromRow(row),
+            CapacityFromRow(row),
+            DemandFromRow(row),
+            ModelCoherencyState.SHARED,
+            MS
+        );
+    }
+
+    // Extracts the availability columns from a given row query
+    private Availability AvailabilityFromRow(SGC.IEnumerable<XElement> row) {
+        return new Availability();
+    }
+
+    // Extracts the availability columns from a given row query
+    private Capacity CapacityFromRow(SGC.IEnumerable<XElement> row) {
+        return new Capacity();
+    }
+
+    private Demand DemandFromRow(SGC.IEnumerable<XElement> row) {
+        return new Demand();
+    }
 
 	// ==================== Server Interaction Methods (GODOT Client) ====================
 
@@ -218,7 +338,7 @@ public partial class ModelController : Node {
 
 		// Send the request to the model
 		HTTPC.Request(
-			MODEL_BASE_URL + "/" + RES_CREATE_METHOD,
+            ModelURL(RES_FILE, INSERT_METHOD),
 			null,
 			Godot.HttpClient.Method.Post
 		);

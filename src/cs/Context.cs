@@ -46,6 +46,23 @@ public partial class Context : Node {
 
     // ==================== Public API ====================
 
+    // Updates the internal model using data retrieved from the server
+    // This method should only be called from the ModelController directly
+    public void _UdpateModelFromServer(Availability A, Capacity C, Demand D) {
+        // Update the model's fields
+        M._Availability = A;
+        M._Capacity = C;
+        M._Demand = D;
+
+        // Update the model's coherency state to shared as the data is from the server
+        M._MCS = ModelCoherencyState.SHARED;
+    }
+
+    // Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method
+    public void _UdpateModelFromServer(Model new_M) {
+        _UdpateModelFromServer(new_M._Availability, new_M._Capacity, new_M._Demand);
+    }
+
     // Updates the current ID (should only be done once per game)
     // Returns the internal value of the game id:
     // - newId if the id wasn't set 
