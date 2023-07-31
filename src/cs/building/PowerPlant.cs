@@ -94,6 +94,8 @@ public partial class PowerPlant : Node2D {
 	private Label MoneyL;
 	public CheckButton Switch;
 	private Label Price;
+	private Label BTime;
+	private Control Info;
 
 	// Configuration controller
 	private ConfigController CC;
@@ -109,21 +111,22 @@ public partial class PowerPlant : Node2D {
 		Sprite = GetNode<Sprite2D>("Sprite");
 		NameL = GetNode<Label>("NameRect/Name");
 		NameR = GetNode<ColorRect>("NameRect");
-		PollL = GetNode<Label>("ResRect/Poll");
+		PollL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll");
 		EnergyS = GetNode<Label>("ResRect/EnergyS");
 		EnergyW = GetNode<Label>("ResRect/EnergyW");
-		MoneyL = GetNode<Label>("ResRect/Money");
+		MoneyL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
 		Switch = GetNode<CheckButton>("Switch");
 		CC = GetNode<ConfigController>("ConfigController");
 		Price = GetNode<Label>("Price");
 		HoverArea = GetNode<Area2D>("HoverArea");
+		Info = GetNode<Control>("BuildInfo");
+		BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
 		
 		// Initialize plant type
 		PlantType = _PlantType;
 
 		// Hide unnecessary fields if we are in preview mode
 		if(IsPreview) {
-			PollL.Hide();
 			Switch.Hide();
 			Price.Show();
 		} else {
@@ -132,13 +135,15 @@ public partial class PowerPlant : Node2D {
 			Price.Hide();
 		}
 
-
+		GD.Print(Pollution);
 		// Set the labels correctly
 		NameL.Text = PlantName;
 		EnergyS.Text = EnergyCapacity.ToString();
 		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
+		PollL.Text = Pollution.ToString();
+		BTime.Text = BuildTime.ToString() + " turn(s)";
 
 		// Set plant life cycle
 		LifeCycle = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
@@ -242,7 +247,6 @@ public partial class PowerPlant : Node2D {
 		// If the plant is in preview mode, then it's being shown in the build menu
 		// and thus should not have any visible interactive elements.
 		if(IsPreview) {
-			PollL.Hide();
 			Switch.Hide();
 			NameR.Show();
 			//Price.AddThemeColorOverride("font_color", new Color(1,0,0,1)); red
@@ -267,7 +271,6 @@ public partial class PowerPlant : Node2D {
 	public void _UpdatePlantData() {
 		// Update the preview state of the plant (in case this happens during a build menu selection)
 		if(IsPreview) {
-			PollL.Hide();
 			Switch.Hide();
 			NameR.Show();
 		} else {
@@ -282,6 +285,8 @@ public partial class PowerPlant : Node2D {
 		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
+		PollL.Text = Pollution.ToString();
+		BTime.Text = BuildTime.ToString() + " turn(s)";
 	}
 
 	// ==================== Helper Methods ====================    
@@ -358,6 +363,8 @@ public partial class PowerPlant : Node2D {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Show();
+		} else {
+			Info.Show();
 		}
 	}
 
@@ -366,6 +373,8 @@ public partial class PowerPlant : Node2D {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Hide();
+		} else {
+			Info.Hide();
 		}
 	}
 }
