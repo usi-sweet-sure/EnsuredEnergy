@@ -24,9 +24,6 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 
-// Alias for the super long type name
-using SGC = System.Collections.Generic;
-
 
 // HTTP Client for the server-based energy grid model
 // This model can be found at https://toby.euler.usi.ch
@@ -45,6 +42,17 @@ public partial class ModelController : Node {
 	private const string RES_V2 = "res_v2";
     private const string N = "n"; // The current week we are requesting
     private const string SEASON = "s"; // The season related to the data (s < 0.5 -> WINTER, s >= 0.5 -> SUMMER)
+    private const string A_GAS = "avl_gas";
+    private const string A_NUCLEAR = "avl_nuc";
+    private const string A_RIVER = "avl_riv";
+    private const string A_SOLAR = "avl_sol";
+    private const string A_WIND = "avl_win";
+    private const string C_GAS = "cap_ele_gas";
+    private const string C_NUCLEAR = "cap_ele_nuc";
+    private const string C_RIVER = "cap_ele_riv";
+    private const string C_SOLAR = "cap_ele_sol";
+    private const string C_WIND = "cap_ele_win";
+    private const string D_BASE = "dem_base";
 
     // Game value constants
     private const int YEARS_PER_TURN = 3;
@@ -285,11 +293,19 @@ public partial class ModelController : Node {
     // Converts a turn number into a week number
     private int TurnToWeek(int turn) => turn * YEARS_PER_TURN * WEEKS_PER_YEAR;
 
+    // Retrieves a float attribute from a specific xml row
+    private float GetFloatAttr(IEnumerable<XElement> row, string attr) => 
+        (from r in row select r.Attribute(attr).Value.ToFloat()).ElementAt(0);
+
+    // Retrieves an int attribute from a specific xml row
+    private int GetIntAttr(IEnumerable<XElement> row, string attr) => 
+        (from r in row select r.Attribute(attr).Value.ToInt()).ElementAt(0);
+
     // Converts a model XML into a Model Struct
     // The given xml is expected to be the response from the bal.disp() server method
     private Model ModelFromXML(XDocument xml) {
         // Start by extracting the row
-        SGC.IEnumerable<XElement> row = from r in xml.Root.Descendants("row")
+        IEnumerable<XElement> row = from r in xml.Root.Descendants("row")
                   where r.Attribute(RES_ID).Value.ToInt() == C._GetGameID()
                   select r;
 
@@ -308,18 +324,26 @@ public partial class ModelController : Node {
     }
 
     // Extracts the availability columns from a given row query
-    private Availability AvailabilityFromRow(SGC.IEnumerable<XElement> row) {
-        return new Availability();
-    }
+    private Availability AvailabilityFromRow(IEnumerable<XElement> row) => new Availability(
+        GetFloatAttr(row, A_GAS), 
+        GetFloatAttr(row, A_NUCLEAR), 
+        GetFloatAttr(row, A_RIVER), 
+        GetFloatAttr(row, A_SOLAR), 
+        GetFloatAttr(row, A_WIND)
+    );
 
     // Extracts the availability columns from a given row query
-    private Capacity CapacityFromRow(SGC.IEnumerable<XElement> row) {
-        return new Capacity();
-    }
+    private Capacity CapacityFromRow(IEnumerable<XElement> row) => new Capacity(
+        GetIntAttr(row, C_GAS), 
+        GetIntAttr(row, C_NUCLEAR), 
+        GetIntAttr(row, C_RIVER), 
+        GetIntAttr(row, C_SOLAR), 
+        GetIntAttr(row, C_WIND)
+    );
 
-    private Demand DemandFromRow(SGC.IEnumerable<XElement> row) {
-        return new Demand();
-    }
+    // Extracts the demand columns from a given row query
+    private Demand DemandFromRow(IEnumerable<XElement> row) => 
+        new Demand(GetIntAttr(row, D_BASE));
 
 	// ==================== Server Interaction Methods (GODOT Client) ====================
 
