@@ -30,6 +30,8 @@ public partial class Context : Node {
     // Current internal storage of the game instance's id
     private int ResId = -1;
 
+    // Current internal storage of the game instance's name
+    private string ResName = "";
 
     // Internal representation of the most recent data retrieved from the model
     private Model M;
@@ -57,6 +59,11 @@ public partial class Context : Node {
         return ResId;
     }
 
+    // Updates the current name (can be done multiple times per game)
+    public void _UpdateGameName(string name) {
+        ResName = name;
+    }
+
     // Fetches the game ID and thorws an exception if it's not set
     // Exception: NullReferenceException -> ID has not been set yet
     public int _GetGameID() {
@@ -67,4 +74,7 @@ public partial class Context : Node {
         // Otherwise throw an exception
         throw new NullReferenceException("Game ID has not been set yet!");
     }
+
+    // Fetches the game name and returns an empty string if not set
+    public string _GetGameName() => ResName;
 }

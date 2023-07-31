@@ -47,9 +47,6 @@ public partial class ModelController : Node {
 	// For use of c# standard library httpclient
 	private static readonly System.Net.Http.HttpClient _HTTPC = new System.Net.Http.HttpClient();
 
-	// For random name generation
-	private long NC = 0;
-
 	// ModelController state
 	// IDLE: Model is free to handle new requests
 	// PENDING: Model is currently handling a request
@@ -118,7 +115,7 @@ public partial class ModelController : Node {
 	}
 
 	// Updates the name of the current game instance in the model
-    // Given a new name to use for the instance (usually randomly generated)
+	// Given a new name to use for the instance (usually randomly generated)
 	public async void _UpdateModelName(string new_name) {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
@@ -132,7 +129,9 @@ public partial class ModelController : Node {
 		// Create the data package
 		var Data = new Dictionary<string, string> {
 			{ RES_ID, C._GetGameID().ToString() },
-			{ RES_NAME, new_name }
+			{ RES_NAME, new_name },
+			{ RES_V1, 42.ToString() }, // Arbitrary values for now
+			{ RES_V2, 9001.ToString() } // Arbitrary values for now
 		};
 
 		// Encode it in a content header
@@ -158,10 +157,17 @@ public partial class ModelController : Node {
 		// Parse the resceived data to an XML tree
 		XDocument XmlResp = XDocument.Parse(SRes);
 
-		// Retrive the id from the response and store it in the context
-		string name = XmlResp.Root.Descendants("row").Select(r => r.Attribute(RES_NAME).Value.ToString()).ElementAt(0);
+		// Retrive the name from the response and store it in the context
+		string name = XmlResp.Root.Descendants("row")
+            .Where(r => r.Attribute(RES_ID).Value.ToInt() == C._GetGameID())
+            .Select(r => r.Attribute(RES_NAME).Value.ToString())
+            .ElementAt(0);
+
+        // Update the context
+        C._UpdateGameName(name);
 
 		// DEBUG: Check that the id was set correctly
+		Debug.Assert(name == new_name);
 		Debug.Print("Game name updated to: " + name);
 
 		// Update the Model's state
@@ -177,12 +183,12 @@ public partial class ModelController : Node {
 
 		// Pick a word at random and concatenate an arbitrary number to it
 		Random rnd = new Random();
-		return words[rnd.Next(100) % 100] + "_" + (NC++).ToString();
+		return words[rnd.Next(100) % 100] + "_" + (rnd.Next()).ToString();
 	}
 
-    // ==================== Server Interaction Methods (GODOT Client) ====================
+	// ==================== Server Interaction Methods (GODOT Client) ====================
 
-    // Initializes a connection with the model by creating a new game instance
+	// Initializes a connection with the model by creating a new game instance
 	// Returns whether or not the request was filed
 	// This uses the godot httpclient which doesn't work well with the model's url
 	public bool _InitModelGodot() {
