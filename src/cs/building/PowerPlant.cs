@@ -135,7 +135,6 @@ public partial class PowerPlant : Node2D {
 			Price.Hide();
 		}
 
-		GD.Print(Pollution);
 		// Set the labels correctly
 		NameL.Text = PlantName;
 		EnergyS.Text = EnergyCapacity.ToString();
@@ -319,7 +318,10 @@ public partial class PowerPlant : Node2D {
 
 		// Plant no longer pollutes when it's powered off
 		Pollution = 0;
-
+		
+		// Changes the plant's color
+		this.Modulate = new Color(0.7f, 0.7f, 0.7f);
+		
 		// Propagate the new values to the UI
 		_UpdatePlantData();
 	}
@@ -335,7 +337,10 @@ public partial class PowerPlant : Node2D {
 		Pollution = InitialPollution;
 
 		_SetPlantFromConfig(PlantType);
-
+		
+		// Resets the plant's original color
+		this.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+		
 		// Propagate the new values to the UI
 		_UpdatePlantData();
 	}
