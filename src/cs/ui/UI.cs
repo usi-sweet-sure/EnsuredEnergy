@@ -82,8 +82,8 @@ public partial class UI : CanvasLayer {
 	private Label ImportCostL;
 
 	// Window buttons
-	private Button PolicyButton;
-	private Button StatsButton;
+	private TextureButton PolicyButton;
+	private TextureButton StatsButton;
 
 	// Windows
 	private PolicyWindow PW;
@@ -142,8 +142,8 @@ public partial class UI : CanvasLayer {
 		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
-		PolicyButton = GetNode<Button>("PolicyButton");
-		StatsButton = GetNode<Button>("Stats");
+		PolicyButton = GetNode<TextureButton>("PolicyButton");
+		StatsButton = GetNode<TextureButton>("Stats");
 
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");

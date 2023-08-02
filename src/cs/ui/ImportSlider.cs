@@ -19,15 +19,15 @@ using Godot;
 using System;
 
 // UI Script for the import controlling slider
-public partial class ImportSlider : HSlider {
+public partial class ImportSlider : VSlider {
 	
 	[Signal]
 	/* Propagates a value update to the rest of the system */
 	public delegate void ImportUpdateEventHandler();
 
 	// Constants for target bar positions
-	private const int TARGET_100_X_POS = 45;
-	private const int TARGET_0_X_POS = -120;
+	private const int TARGET_100_Y_POS = -8;
+	private const int TARGET_0_Y_POS = 128;
 
 	// Various labels that need to be dynamic
 	private Label Amount; // Current selected import percentage
@@ -77,8 +77,8 @@ public partial class ImportSlider : HSlider {
 		float _d = Math.Max(0.0f, Math.Min(demand, 1.0f));
 
 		// Set the bar position based on the given percentage
-		int x_pos = TARGET_0_X_POS + (int)(_d * (TARGET_100_X_POS - TARGET_0_X_POS));
-		Target.Position = new Vector2(x_pos, Target.Position.Y);
+		int y_pos = TARGET_0_Y_POS + (int)(_d * (TARGET_100_Y_POS - TARGET_0_Y_POS));
+		Target.Position = new Vector2(Target.Position.X, y_pos);
 	}
 
 	// Udpates the text to match the given string

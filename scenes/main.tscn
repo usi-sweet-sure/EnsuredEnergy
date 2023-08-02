@@ -16,6 +16,9 @@ script = ExtResource("1_4jam2")
 
 [node name="World" parent="." instance=ExtResource("1_prp6q")]
 
+[node name="Map" parent="World" index="0"]
+visible = false
+
 [node name="Nuclear" parent="World" index="1"]
 _PlantType = 4
 

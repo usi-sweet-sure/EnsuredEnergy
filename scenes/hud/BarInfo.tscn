@@ -1,88 +1,107 @@
-[gd_scene load_steps=2 format=3 uid="uid://u1nvhv5ceok"]
+[gd_scene load_steps=3 format=3 uid="uid://u1nvhv5ceok"]
 
 [ext_resource type="Script" path="res://src/cs/ui/InfoBox.cs" id="1_oefrc"]
+[ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="2_66uk2"]
 
 [node name="BarInfo" type="Control"]
 layout_mode = 3
-anchor_right = 0.166
-anchor_bottom = 0.315
-offset_right = 4.76801
-offset_bottom = 3.88
+anchor_right = 0.168
+anchor_bottom = 0.267
+offset_right = 0.439972
+offset_bottom = -0.360016
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oefrc")
 
+[node name="InfoMoney" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 328.0
+offset_bottom = 288.0
+texture = ExtResource("2_66uk2")
+region_rect = Rect2(24, 28, 300, 218)
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 19
+
 [node name="Control" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.972
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -19.0
+offset_bottom = -7.936
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.121569, 0.219608, 0.360784, 1)
+color = Color(0.597656, 0.597656, 0.597656, 1)
+metadata/_edit_group_ = true
 
 [node name="TextContainer" type="VBoxContainer" parent="Control"]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.000138142
-anchor_top = 0.0247346
-anchor_right = 0.753596
-anchor_bottom = 0.198189
-offset_left = 18.9738
-offset_top = 14.8552
-offset_right = 28.8167
-offset_bottom = 150.777
+anchor_left = 0.0661104
+anchor_top = 0.0273247
+anchor_right = 0.819568
+anchor_bottom = 0.297161
+offset_left = 18.9602
+offset_top = 4.00488
+offset_right = 28.8031
+offset_bottom = 160.927
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 22
 metadata/_edit_use_anchors_ = true
 
 [node name="Text0" type="Label" parent="Control/TextContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "Texte"
 vertical_alignment = 1
 
 [node name="Text1" type="Label" parent="Control/TextContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "Texte"
 vertical_alignment = 1
 
 [node name="Text2" type="Label" parent="Control/TextContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "Texte"
 vertical_alignment = 1
 
 [node name="space" type="Label" parent="Control/TextContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 vertical_alignment = 1
 
 [node name="nContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.0209145
-anchor_top = 0.0151192
-anchor_right = 0.711491
-anchor_bottom = 0.181032
-offset_left = 18.9738
-offset_top = 14.8552
-offset_right = 43.8167
-offset_bottom = 152.345
+anchor_left = -0.0174423
+anchor_top = -0.0122959
+anchor_right = 0.714963
+anchor_bottom = 0.333447
+offset_left = 19.0234
+offset_top = 15.1477
+offset_right = 43.8663
+offset_bottom = 152.638
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 22
 metadata/_edit_use_anchors_ = true
 
 [node name="n" type="Label" parent="Control/nContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "n"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -90,7 +109,7 @@ vertical_alignment = 1
 [node name="n1" type="Label" parent="Control/nContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "n"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -98,7 +117,7 @@ vertical_alignment = 1
 [node name="n2" type="Label" parent="Control/nContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = " n"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -106,7 +125,7 @@ vertical_alignment = 1
 [node name="n_ov_max" type="Label" parent="Control/nContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "n / max"
 horizontal_alignment = 2
 vertical_alignment = 1
