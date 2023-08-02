@@ -27,7 +27,7 @@ public partial class ImportSlider : VSlider {
 
 	// Constants for target bar positions
 	private const int TARGET_100_Y_POS = -8;
-	private const int TARGET_0_Y_POS = 128;
+	private const int TARGET_0_Y_POS = 124;
 
 	// Various labels that need to be dynamic
 	private Label Amount; // Current selected import percentage
@@ -111,7 +111,6 @@ public partial class ImportSlider : VSlider {
 		// Hide the apply selection button
 		ApplySelection.Hide();
 		Cancel.Hide();
-		this.Hide();
 
 		// Propagate the value update to the rest of the system
 		EmitSignal(SignalName.ImportUpdate);
@@ -125,7 +124,6 @@ public partial class ImportSlider : VSlider {
 		// Hide all buttons
 		ApplySelection.Hide();
 		Cancel.Hide();
-		this.Hide();
 	}
 	
 	// Toggles the import slider's visibility when the label button is pressed

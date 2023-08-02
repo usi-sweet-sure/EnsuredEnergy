@@ -43,7 +43,7 @@ public partial class InfoBar : ProgressBar {
 		// Fetch nodes
 		Target = GetNode<Line2D>("Target");
 		BarName = GetNode<Label>("Name");
-		Box = GetNode<InfoBox>("Name/BarInfo");
+		Box = GetNode<InfoBox>("BarInfo");
 
 		Box.Hide();
 	}

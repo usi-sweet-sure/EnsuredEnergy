@@ -22,6 +22,24 @@ visible = false
 [node name="Nuclear" parent="World" index="1"]
 _PlantType = 4
 
+[node name="BuildButton" parent="World" index="3"]
+offset_left = 548.0
+offset_top = 747.0
+offset_right = 640.0
+offset_bottom = 797.0
+
+[node name="BuildButton3" parent="World" index="5"]
+offset_left = 1299.0
+offset_top = 705.0
+offset_right = 1391.0
+offset_bottom = 755.0
+
+[node name="BuildButton4" parent="World" index="6"]
+offset_left = 584.0
+offset_top = 379.0
+offset_right = 673.0
+offset_bottom = 422.0
+
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 script = ExtResource("3_l6dyd")
 

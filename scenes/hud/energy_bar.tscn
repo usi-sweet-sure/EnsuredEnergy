@@ -36,6 +36,14 @@ position = Vector2(-195, -616.5)
 points = PackedVector2Array(332, 643.5, 332, 616.5)
 width = 2.0
 
+[node name="BarInfo" parent="." instance=ExtResource("3_an05x")]
+visible = false
+layout_mode = 1
+offset_left = -94.2
+offset_top = -240.6
+offset_right = 71.508
+offset_bottom = -59.79
+
 [node name="Name" type="Label" parent="."]
 visible = false
 layout_mode = 0
@@ -57,11 +65,3 @@ offset_right = 84.5
 offset_bottom = 26.0
 text = "Energy :"
 horizontal_alignment = 2
-
-[node name="BarInfo" parent="Name" instance=ExtResource("3_an05x")]
-visible = false
-layout_mode = 1
-offset_left = 19.0
-offset_top = -198.0
-offset_right = 184.708
-offset_bottom = -17.19

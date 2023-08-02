@@ -40,45 +40,33 @@ corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm6d8"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldrdn"]
 bg_color = Color(0.152941, 0.658824, 0.152941, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vvqt"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvfnp"]
 bg_color = Color(0.419608, 0.419608, 0.419608, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="UI" type="CanvasLayer"]
 follow_viewport_enabled = true
@@ -112,29 +100,79 @@ text = "Next Turn"
 flat = true
 
 [node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
-position = Vector2(976, 902)
+position = Vector2(976, 864)
 texture = ExtResource("2_hhj2t")
 
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
 offset_left = 939.0
-offset_top = 970.0
+offset_top = 932.0
 offset_right = 1113.0
-offset_bottom = 1011.0
+offset_bottom = 973.0
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
 
+[node name="BarInfo" parent="EnergyBarWinter" index="1"]
+offset_left = 489.0
+offset_top = -131.0
+offset_right = 794.768
+offset_bottom = 113.053
+rotation = 1.5708
+
+[node name="InfoMoney" parent="EnergyBarWinter/BarInfo" index="0"]
+offset_right = 335.0
+offset_bottom = 258.0
+
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
 offset_left = 869.0
-offset_top = 970.0
+offset_top = 932.0
 offset_right = 1043.0
-offset_bottom = 1012.0
+offset_bottom = 974.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-metadata/_edit_group_ = true
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-195, -609.5)
+
+[node name="BarInfo" parent="EnergyBarSummer" index="1"]
+offset_left = 490.0
+offset_top = -61.0
+offset_right = 792.768
+offset_bottom = 172.786
+rotation = 1.5708
+metadata/_edit_group_ = true
+
+[node name="InfoMoney" parent="EnergyBarSummer/BarInfo" index="0"]
+offset_right = 334.0
+offset_bottom = 261.0
+
+[node name="Import" parent="." instance=ExtResource("5_ps4b6")]
+offset_left = 1070.0
+offset_top = 950.28
+offset_right = 1070.96
+offset_bottom = 950.0
+ticks_on_borders = false
+
+[node name="Target" parent="Import" index="1"]
+position = Vector2(-120, -9)
+
+[node name="Amount" parent="Import" index="3"]
+offset_left = 0.0
+offset_top = 160.0
+offset_right = 40.0
+offset_bottom = 186.0
+
+[node name="Apply" parent="Import" index="4"]
+offset_left = -19.0
+offset_top = 187.0
+offset_right = 12.0
+offset_bottom = 217.0
+
+[node name="Cancel" parent="Import" index="5"]
+offset_left = 18.0
+offset_top = 187.0
+offset_right = 36.0
+offset_bottom = 218.0
 
 [node name="Trust" type="ProgressBar" parent="."]
 offset_left = 278.0
@@ -145,13 +183,25 @@ theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
-metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Trust"]
 visible = false
 position = Vector2(-263, -615)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
+
+[node name="BarInfo" parent="Trust" instance=ExtResource("4_67rbh")]
+visible = false
+layout_mode = 1
+offset_left = -173.0
+offset_top = 81.0
+offset_right = 140.728
+offset_bottom = 286.121
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="InfoMoney" parent="Trust/BarInfo" index="0"]
+offset_bottom = 255.0
 
 [node name="Name" type="Label" parent="Trust"]
 visible = false
@@ -166,33 +216,42 @@ theme_override_constants/outline_size = 1
 text = "Support 👆"
 horizontal_alignment = 2
 
-[node name="BarInfo" parent="Trust/Name" instance=ExtResource("4_67rbh")]
-layout_mode = 1
-offset_left = 73.0
-offset_top = -202.0
-offset_right = 243.562
-offset_bottom = -25.19
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="Env" type="ProgressBar" parent="."]
-offset_left = 1721.0
-offset_top = 293.0
-offset_right = 1859.0
-offset_bottom = 320.0
+offset_left = 1584.0
+offset_top = 40.0
+offset_right = 1694.0
+offset_bottom = 150.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nm6d8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
+fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Env"]
+visible = false
 position = Vector2(-210, -615)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
+[node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
+layout_mode = 1
+offset_left = -168.0
+offset_top = 128.0
+offset_right = 134.992
+offset_bottom = 373.058
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_group_ = true
+
+[node name="InfoMoney" parent="Env/BarInfo" index="0"]
+offset_bottom = 243.0
+
+[node name="Control" parent="Env/BarInfo" index="1"]
+offset_bottom = -56.944
+
 [node name="Name" type="Label" parent="Env"]
+visible = false
 layout_mode = 2
 offset_left = -136.0
 offset_top = 1.0
@@ -204,40 +263,45 @@ theme_override_constants/outline_size = 1
 text = "Environment 🍃"
 horizontal_alignment = 2
 
-[node name="BarInfo" parent="Env/Name" instance=ExtResource("4_67rbh")]
-layout_mode = 1
-offset_left = -26.0
-offset_top = 47.0
-offset_right = 276.992
-offset_bottom = 292.058
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="InfoMoney" parent="Env/Name/BarInfo" index="0"]
-offset_bottom = 243.0
-
-[node name="Control" parent="Env/Name/BarInfo" index="1"]
-offset_bottom = -56.944
-
 [node name="Poll" type="ProgressBar" parent="."]
-offset_left = 1697.0
-offset_top = 256.0
-offset_right = 1835.0
-offset_bottom = 283.0
+offset_left = 1720.0
+offset_top = 40.0
+offset_right = 1832.0
+offset_bottom = 152.0
 tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
 value = 50.0
+fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Poll"]
+visible = false
 position = Vector2(-210, -615)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
+[node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
+layout_mode = 1
+offset_left = -128.0
+offset_top = 128.0
+offset_right = -1.008
+offset_bottom = 257.058
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_group_ = true
+
+[node name="InfoMoney" parent="Poll/BarInfo" index="0"]
+offset_right = 305.0
+offset_bottom = 247.0
+
+[node name="Control" parent="Poll/BarInfo" index="1"]
+offset_right = 127.012
+offset_bottom = 72.0
+
 [node name="Name" type="Label" parent="Poll"]
+visible = false
 layout_mode = 2
 offset_left = -141.0
 offset_top = 1.0
@@ -248,24 +312,6 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 text = "Pollution"
 horizontal_alignment = 2
-
-[node name="BarInfo" parent="Poll/Name" instance=ExtResource("4_67rbh")]
-layout_mode = 1
-offset_left = 25.0
-offset_top = 40.0
-offset_right = 151.992
-offset_bottom = 169.058
-grow_horizontal = 1
-grow_vertical = 1
-metadata/_edit_group_ = true
-
-[node name="InfoMoney" parent="Poll/Name/BarInfo" index="0"]
-offset_right = 305.0
-offset_bottom = 247.0
-
-[node name="Control" parent="Poll/Name/BarInfo" index="1"]
-offset_right = 127.012
-offset_bottom = 72.0
 
 [node name="PolicyButton" type="TextureButton" parent="."]
 offset_left = 1176.0
@@ -282,31 +328,6 @@ offset_right = 852.0
 offset_bottom = 1116.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("7_7gbcu")
-
-[node name="Import" parent="." instance=ExtResource("5_ps4b6")]
-offset_left = 1072.0
-offset_top = 984.28
-offset_right = 1072.64
-offset_bottom = 999.56
-
-[node name="Target" parent="Import" index="1"]
-position = Vector2(-120, -1)
-
-[node name="Amount" parent="Import" index="3"]
-offset_left = 0.0
-offset_right = 40.0
-
-[node name="Apply" parent="Import" index="4"]
-offset_left = -24.0
-offset_top = 192.0
-offset_right = 7.0
-offset_bottom = 222.0
-
-[node name="Cancel" parent="Import" index="5"]
-offset_left = 16.0
-offset_top = 192.0
-offset_right = 34.0
-offset_bottom = 223.0
 
 [node name="ImportsB" type="Button" parent="."]
 visible = false
@@ -442,9 +463,9 @@ vertical_alignment = 1
 
 [node name="money" type="Label" parent="Money"]
 layout_mode = 0
-offset_left = -2.0
+offset_left = 2.0
 offset_top = 2.0
-offset_right = 89.0
+offset_right = 75.0
 offset_bottom = 46.0
 theme_override_font_sizes/font_size = 22
 text = "000"
@@ -469,6 +490,7 @@ offset_left = 48.0
 offset_top = 40.0
 offset_right = 136.0
 offset_bottom = 128.0
+focus_mode = 0
 icon = ExtResource("7_mnpcp")
 flat = true
 
@@ -537,7 +559,10 @@ visible = false
 script = ExtResource("7_u64y1")
 
 [editable path="EnergyBarWinter"]
+[editable path="EnergyBarWinter/BarInfo"]
 [editable path="EnergyBarSummer"]
-[editable path="Env/Name/BarInfo"]
-[editable path="Poll/Name/BarInfo"]
+[editable path="EnergyBarSummer/BarInfo"]
 [editable path="Import"]
+[editable path="Trust/BarInfo"]
+[editable path="Env/BarInfo"]
+[editable path="Poll/BarInfo"]
