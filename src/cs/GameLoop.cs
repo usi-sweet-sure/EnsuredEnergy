@@ -59,6 +59,8 @@ public partial class GameLoop : Node2D {
 	private int RemainingTurns; // The number of turns remaining until the end of the game
 
 	private ResourceManager RM;
+	
+	private Camera2D Camera;
 
 	//TODO: Add Shocks once they are implemented
 
@@ -90,6 +92,8 @@ public partial class GameLoop : Node2D {
 		
 		// Fetch resource manager
 		RM = GetNode<ResourceManager>("ResourceManager");
+		
+		Camera = GetNode<Camera2D>("World/Camera2D");
 
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
@@ -254,4 +258,9 @@ public partial class GameLoop : Node2D {
 			NewTurn();
 		}
 	}
+	public override void _UnhandledInput(InputEvent @event) {
+	if (@event is InputEventMouseMotion MouseMotion)
+		if (MouseMotion.ButtonMask == MouseButtonMask.Left)
+			Camera.Position -= MouseMotion.Relative;
+}
 }

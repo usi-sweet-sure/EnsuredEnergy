@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=25 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
@@ -8,12 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/hud/import.tscn" id="5_ps4b6"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
 [ext_resource type="Texture2D" uid="uid://dddt3hgvf20b6" path="res://assets/Elements/POLICIES BUTTON.png" id="6_ivien"]
+[ext_resource type="Texture2D" uid="uid://b5c8nhwhjb6rh" path="res://assets/Elements/TIME PANEL – BLANK.png" id="6_mfs1l"]
 [ext_resource type="Texture2D" uid="uid://yom48x87obxw" path="res://assets/Elements/CHARACTER INFORMATION – BLANK.png" id="6_vs2ug"]
 [ext_resource type="Texture2D" uid="uid://d01b6u4flcphj" path="res://assets/Elements/GRAPH BUTTON.png" id="7_7gbcu"]
 [ext_resource type="Texture2D" uid="uid://b8lwrin3nxbmj" path="res://assets/Elements/SETTINGS BUTTON.png" id="7_mnpcp"]
 [ext_resource type="Script" path="res://src/cs/ui/PolicyWindow.cs" id="7_u64y1"]
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
+[ext_resource type="Texture2D" uid="uid://djx386wryt8ab" path="res://assets/Elements/ENVIORMENT BUTTON.png" id="9_kqwrt"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
+[ext_resource type="Texture2D" uid="uid://dg30puyh0tvif" path="res://assets/Elements/POLUTION BUTTON.png" id="10_qvjob"]
+[ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
@@ -88,14 +92,15 @@ offset_bottom = 24.0
 color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="NextTurn" type="Button" parent="NextTurn"]
-offset_left = -78.0
+offset_left = -91.0
 offset_top = -24.0
-offset_right = 82.0
+offset_right = 89.0
 offset_bottom = 26.0
+focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.14902, 0.14902, 0.14902, 1)
 theme_override_colors/font_hover_color = Color(0.258824, 0.258824, 0.258824, 1)
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 22
 text = "Next Turn"
 flat = true
 
@@ -132,7 +137,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
-position = Vector2(-195, -609.5)
+position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummer" index="1"]
 offset_left = 490.0
@@ -174,6 +179,10 @@ offset_top = 187.0
 offset_right = 36.0
 offset_bottom = 218.0
 
+[node name="TimePanel–Blank" type="Sprite2D" parent="."]
+position = Vector2(1711, 156)
+texture = ExtResource("6_mfs1l")
+
 [node name="Trust" type="ProgressBar" parent="."]
 offset_left = 278.0
 offset_top = 200.0
@@ -183,6 +192,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
+NormalColor = Color(0.180392, 0.509804, 1, 1)
+LowColor = Color(0.435294, 0.282353, 1, 1)
 
 [node name="Target" type="Line2D" parent="Trust"]
 visible = false
@@ -218,15 +229,17 @@ horizontal_alignment = 2
 
 [node name="Env" type="ProgressBar" parent="."]
 offset_left = 1584.0
-offset_top = 40.0
+offset_top = 246.0
 offset_right = 1694.0
-offset_bottom = 150.0
+offset_bottom = 356.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nm6d8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
+NormalColor = Color(0.0313726, 0.67451, 0.2, 1)
+LowColor = Color(0.329412, 0.372549, 0, 1)
 
 [node name="Target" type="Line2D" parent="Env"]
 visible = false
@@ -236,9 +249,9 @@ width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
 layout_mode = 1
-offset_left = -168.0
+offset_left = -37.0
 offset_top = 128.0
-offset_right = 134.992
+offset_right = 265.992
 offset_bottom = 373.058
 grow_horizontal = 1
 grow_vertical = 1
@@ -263,11 +276,17 @@ theme_override_constants/outline_size = 1
 text = "Environment 🍃"
 horizontal_alignment = 2
 
+[node name="Temp" type="Sprite2D" parent="Env"]
+modulate = Color(1, 1, 1, 0.329412)
+position = Vector2(55, 55.5)
+scale = Vector2(1.01351, 1.00676)
+texture = ExtResource("9_kqwrt")
+
 [node name="Poll" type="ProgressBar" parent="."]
 offset_left = 1720.0
-offset_top = 40.0
+offset_top = 246.0
 offset_right = 1832.0
-offset_bottom = 152.0
+offset_bottom = 358.0
 tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
@@ -275,6 +294,8 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
+NormalColor = Color(0.415686, 0.415686, 0.415686, 1)
+LowColor = Color(0.74902, 0.74902, 0.74902, 1)
 
 [node name="Target" type="Line2D" parent="Poll"]
 visible = false
@@ -284,9 +305,9 @@ width = 1.0
 
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
 layout_mode = 1
-offset_left = -128.0
+offset_left = -171.0
 offset_top = 128.0
-offset_right = -1.008
+offset_right = -44.008
 offset_bottom = 257.058
 grow_horizontal = 1
 grow_vertical = 1
@@ -294,7 +315,7 @@ metadata/_edit_group_ = true
 
 [node name="InfoMoney" parent="Poll/BarInfo" index="0"]
 offset_right = 305.0
-offset_bottom = 247.0
+offset_bottom = 243.0
 
 [node name="Control" parent="Poll/BarInfo" index="1"]
 offset_right = 127.012
@@ -313,20 +334,24 @@ theme_override_constants/outline_size = 1
 text = "Pollution"
 horizontal_alignment = 2
 
+[node name="Temp" type="Sprite2D" parent="Poll"]
+modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(56, 55.5)
+scale = Vector2(1.02703, 1.02027)
+texture = ExtResource("10_qvjob")
+
 [node name="PolicyButton" type="TextureButton" parent="."]
-offset_left = 1176.0
-offset_top = 968.0
-offset_right = 1324.0
-offset_bottom = 1116.0
-scale = Vector2(0.5, 0.5)
+offset_left = 778.0
+offset_top = 611.0
+offset_right = 926.0
+offset_bottom = 759.0
 texture_normal = ExtResource("6_ivien")
 
 [node name="Stats" type="TextureButton" parent="."]
-offset_left = 704.0
-offset_top = 968.0
-offset_right = 852.0
-offset_bottom = 1116.0
-scale = Vector2(0.5, 0.5)
+offset_left = 1033.0
+offset_top = 610.0
+offset_right = 1181.0
+offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
 
 [node name="ImportsB" type="Button" parent="."]
@@ -497,18 +522,29 @@ flat = true
 [node name="SettingsBox" type="ColorRect" parent="SettingsButton"]
 visible = false
 layout_mode = 0
-offset_left = 1.0
-offset_top = 33.0
-offset_right = 192.0
-offset_bottom = 81.0
-color = Color(0.121569, 0.219608, 0.360784, 1)
+offset_left = 86.0
+offset_top = 19.0
+offset_right = 277.0
+offset_bottom = 67.0
+color = Color(0.398438, 0.398438, 0.398438, 1)
+metadata/_edit_group_ = true
+
+[node name="Close" type="Button" parent="SettingsButton/SettingsBox"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = -76.0
+offset_right = 1873.0
+offset_bottom = 1008.0
+focus_mode = 0
+flat = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsButton/SettingsBox"]
 layout_mode = 0
 offset_right = 188.0
-offset_bottom = 40.0
+offset_bottom = 48.0
 
 [node name="Language" type="Button" parent="SettingsButton/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "Language: English"
 flat = true
@@ -557,6 +593,10 @@ visible = false
 [node name="Window" parent="." instance=ExtResource("7_yu7g8")]
 visible = false
 script = ExtResource("7_u64y1")
+
+[node name="BuildingButton" type="Sprite2D" parent="."]
+position = Vector2(975, 650)
+texture = ExtResource("18_42ope")
 
 [editable path="EnergyBarWinter"]
 [editable path="EnergyBarWinter/BarInfo"]

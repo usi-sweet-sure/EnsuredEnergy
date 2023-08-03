@@ -5,6 +5,7 @@
 
 [node name="BuildMenu" type="CanvasLayer"]
 script = ExtResource("1_vbiqr")
+BuildingSpriteBase = Vector2(150, 160)
 
 [node name="CloseButton" type="Button" parent="."]
 offset_right = 1921.0
@@ -14,14 +15,13 @@ flat = true
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 40)
 offset_left = -2.0
-offset_top = 783.0
+offset_top = 768.0
 offset_right = 1918.0
 offset_bottom = 1077.0
 color = Color(0.231373, 0.290196, 0.372549, 0.643137)
 
 [node name="Solar" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(650, 100)
-scale = Vector2(1.3, 1.3)
+position = Vector2(650, 203)
 PlantName = "Solar Plant"
 
 [node name="SolarButton" type="Button" parent="ColorRect/Solar"]
@@ -32,8 +32,7 @@ offset_bottom = 129.0
 flat = true
 
 [node name="Hydro" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(400, 100)
-scale = Vector2(1.3, 1.3)
+position = Vector2(400, 203)
 PlantName = "Hydro Plant"
 
 [node name="HydroButton" type="Button" parent="ColorRect/Hydro"]
@@ -44,8 +43,7 @@ offset_bottom = 125.0
 flat = true
 
 [node name="Gas" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(150, 100)
-scale = Vector2(1.3, 1.3)
+position = Vector2(150, 203)
 PlantName = "Gas Plant"
 
 [node name="GasButton" type="Button" parent="ColorRect/Gas"]
@@ -56,8 +54,7 @@ offset_bottom = 126.0
 flat = true
 
 [node name="Tree" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(900, 100)
-scale = Vector2(1.3, 1.3)
+position = Vector2(900, 203)
 PlantName = "Trees"
 
 [node name="TreeButton" type="Button" parent="ColorRect/Tree"]

@@ -8,21 +8,20 @@
 [sub_resource type="Theme" id="Theme_f6ssq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wggy5"]
-size = Vector2(96, 144)
+size = Vector2(208, 288)
 
 [node name="PowerPlant" type="Node2D"]
 script = ExtResource("1_qsehc")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 2
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_nry78")
 
 [node name="Price" type="Label" parent="."]
-offset_left = -22.0
-offset_top = 72.0
-offset_right = 13.0
-offset_bottom = 97.0
+offset_left = -19.0
+offset_top = 36.0
+offset_right = 16.0
+offset_bottom = 61.0
 theme_override_font_sizes/font_size = 15
 text = "1000"
 horizontal_alignment = 1
@@ -55,10 +54,11 @@ text = "$"
 
 [node name="NameRect" type="ColorRect" parent="."]
 offset_left = -56.0
-offset_top = -144.0
+offset_top = -193.0
 offset_right = 56.0
-offset_bottom = -116.0
+offset_bottom = -165.0
 color = Color(0.597656, 0.597656, 0.597656, 1)
+metadata/_edit_group_ = true
 
 [node name="InfoHover" type="Sprite2D" parent="NameRect"]
 position = Vector2(59, 24)
@@ -89,9 +89,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -21.0
-offset_top = -8.0
+offset_top = 7.0
 offset_right = 23.0
-offset_bottom = 24.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -105,17 +105,17 @@ alignment = 1
 expand_icon = true
 
 [node name="ResRect" type="ColorRect" parent="."]
-offset_left = -19.0
-offset_top = 45.0
-offset_bottom = 56.0
+offset_left = -40.0
+offset_top = 88.0
+offset_right = -8.0
+offset_bottom = 117.0
 color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ResRect"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = -1.0
-offset_right = 56.0
-offset_bottom = 12.0
+offset_left = 72.0
+offset_right = 108.0
+offset_bottom = 25.0
 color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="Icons" type="Label" parent="ResRect"]
@@ -161,24 +161,24 @@ vertical_alignment = 1
 
 [node name="EnergyS" type="Label" parent="ResRect"]
 layout_mode = 0
-offset_left = -6.0
-offset_top = -6.0
-offset_right = 22.0
-offset_bottom = 17.0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 30.0
+offset_bottom = 25.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnergyW" type="Label" parent="ResRect"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = -6.0
-offset_right = 60.0
-offset_bottom = 17.0
+offset_left = 76.0
+offset_top = -1.0
+offset_right = 104.0
+offset_bottom = 25.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1

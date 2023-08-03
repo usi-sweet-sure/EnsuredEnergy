@@ -30,6 +30,8 @@ step = 1.0
 value = 50.0
 show_percentage = false
 script = ExtResource("2_otguq")
+NormalColor = Color(0.94902, 0.815686, 0.0666667, 1)
+LowColor = Color(0.94902, 0.533333, 0.0666667, 1)
 
 [node name="Target" type="Line2D" parent="."]
 position = Vector2(-195, -616.5)

@@ -50,6 +50,7 @@ public partial class UI : CanvasLayer {
 
 	// Button that triggers the passage to a next turn
 	private Button NextTurnButton;
+	private Sprite2D NT;
 
 	// The two energy bars, showing the availability and demand
 	private InfoBar WinterEnergy;
@@ -95,6 +96,7 @@ public partial class UI : CanvasLayer {
 	private Button SettingsButton;
 	private ColorRect SettingsBox;
 	private Button LanguageButton;
+	private Button SettingsClose;
 
 	// Game Loop
 	private GameLoop GL;
@@ -104,6 +106,7 @@ public partial class UI : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
+		NT = GetNode<Sprite2D>("NextTurn");
 		NextTurnButton = GetNode<Button>("NextTurn/NextTurn");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
@@ -113,6 +116,7 @@ public partial class UI : CanvasLayer {
 		SettingsButton = GetNode<Button>("SettingsButton");
 		SettingsBox = GetNode<ColorRect>("SettingsButton/SettingsBox");
 		LanguageButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Language");
+		SettingsClose = GetNode<Button>("SettingsButton/SettingsBox/Close");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
@@ -153,6 +157,7 @@ public partial class UI : CanvasLayer {
 		NextTurnButton.Pressed += _OnNextTurnPressed;
 		SettingsButton.Pressed += _OnSettingsButtonPressed;
 		LanguageButton.Pressed += _OnLanguageButtonPressed;
+		SettingsClose.Pressed += _OnSettingsClosePressed;
 		PolicyButton.Pressed += _OnPolicyButtonPressed;
 		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
 		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
@@ -239,6 +244,7 @@ public partial class UI : CanvasLayer {
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
+		
 	}
 
 	// Updates the value of the a given bar
@@ -316,6 +322,8 @@ public partial class UI : CanvasLayer {
 					InfoType.W_ENGERGY, 
 					(float)Data.W_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
 				);
+				
+				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
 				SetTargetImport();
@@ -339,6 +347,8 @@ public partial class UI : CanvasLayer {
 					InfoType.S_ENGERGY, 
 					(float)Data.S_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
 				);
+				
+				SummerEnergy._UpdateColor(Data.S_EnergySupply < Data.S_EnergyDemand);
 				break;
 			case InfoType.SUPPORT:
 				// Sanity check, make sure that you were given enough fields
@@ -619,6 +629,11 @@ public partial class UI : CanvasLayer {
 
 		// Update the ui
 		_UpdateUI();
+	}
+	
+	// Closes the language settings by clicking outside
+	public void _OnSettingsClosePressed() {
+		SettingsBox.Hide();
 	}
 
 	// Propagates an import update to the rest of the system
