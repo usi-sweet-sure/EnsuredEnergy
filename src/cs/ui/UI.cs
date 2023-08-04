@@ -606,9 +606,11 @@ public partial class UI : CanvasLayer {
 	public void _OnPolicyButtonPressed() {
 		// Toggle the window visibility  
 		if(PW.Visible) {
+			PW._PlayAnim("popup", false);
 			PW.Hide();
 		} else {
 			PW.Show();
+			PW._PlayAnim("popup");
 		}
 	}
 

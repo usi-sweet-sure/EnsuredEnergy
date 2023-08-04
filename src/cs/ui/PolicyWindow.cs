@@ -23,6 +23,7 @@ using System;
 public partial class PolicyWindow : CanvasLayer {
 
 	private Panel P;
+	private AnimationPlayer AP;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -30,6 +31,16 @@ public partial class PolicyWindow : CanvasLayer {
 	public override void _Ready() {
 		P = GetNode<Panel>("MarginContainer/Panel");
 		P.GuiInput += _OnPanelGuiInput;
+		AP = GetNode<AnimationPlayer>("AnimationPlayer");
+	}
+	
+	public void _PlayAnim(string Anim, bool forward = true) {
+		if (forward) {
+			AP.Play(Anim);
+		} else {
+			AP.PlayBackwards(Anim);
+		}
+			
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
