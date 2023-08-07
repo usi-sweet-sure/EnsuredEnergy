@@ -76,6 +76,7 @@ offset_right = 587.0
 offset_bottom = 2155.0
 
 [node name="Camera2D" parent="World" index="13"]
+anchor_mode = 1
 limit_left = -2800
 limit_top = -1000
 limit_right = 5000

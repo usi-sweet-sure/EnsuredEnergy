@@ -104,13 +104,13 @@ text = "Next Turn"
 flat = true
 
 [node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
-position = Vector2(976, 864)
+position = Vector2(236, 864)
 texture = ExtResource("2_hhj2t")
 
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 939.0
+offset_left = 199.0
 offset_top = 932.0
-offset_right = 1113.0
+offset_right = 373.0
 offset_bottom = 973.0
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
@@ -128,9 +128,9 @@ offset_right = 335.0
 offset_bottom = 258.0
 
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 869.0
+offset_left = 129.0
 offset_top = 932.0
-offset_right = 1043.0
+offset_right = 303.0
 offset_bottom = 974.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
@@ -151,9 +151,9 @@ offset_right = 334.0
 offset_bottom = 261.0
 
 [node name="Import" parent="." instance=ExtResource("5_ps4b6")]
-offset_left = 1070.0
+offset_left = 330.0
 offset_top = 950.28
-offset_right = 1070.96
+offset_right = 330.96
 offset_bottom = 950.0
 ticks_on_borders = false
 
@@ -340,16 +340,16 @@ scale = Vector2(1.02703, 1.02027)
 texture = ExtResource("10_qvjob")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
-offset_left = 778.0
+offset_left = 38.0
 offset_top = 611.0
-offset_right = 926.0
+offset_right = 186.0
 offset_bottom = 759.0
 texture_normal = ExtResource("6_ivien")
 
 [node name="Stats" type="TextureButton" parent="."]
-offset_left = 1033.0
+offset_left = 293.0
 offset_top = 610.0
-offset_right = 1181.0
+offset_right = 441.0
 offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
 
@@ -593,7 +593,7 @@ visible = false
 visible = false
 
 [node name="BuildingButton" type="Sprite2D" parent="."]
-position = Vector2(975, 650)
+position = Vector2(235, 650)
 texture = ExtResource("18_42ope")
 
 [editable path="EnergyBarWinter"]

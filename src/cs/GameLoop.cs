@@ -61,6 +61,11 @@ public partial class GameLoop : Node2D {
 	private ResourceManager RM;
 	
 	private Camera2D Camera;
+	private Vector2 ZOOM_MIN = new Vector2(0.5f,0.5f);
+	private Vector2 ZOOM_MAX = new Vector2(1f,1f);
+	private Vector2 ZOOM_SPEED = new Vector2(0.2f,0.2f);
+	private Vector2 ZoomVal = new Vector2(1.0f,1.0f);
+	
 
 	//TODO: Add Shocks once they are implemented
 
@@ -264,9 +269,28 @@ public partial class GameLoop : Node2D {
 			NewTurn();
 		}
 	}
+	
+	// Takes Input events that are not handled by nodes or controls
 	public override void _UnhandledInput(InputEvent @event) {
-	if (@event is InputEventMouseMotion MouseMotion)
-		if (MouseMotion.ButtonMask == MouseButtonMask.Left)
-			Camera.Position -= MouseMotion.Relative;
-}
+	// Camera can be moved by holding left click and dragging the mouse
+		if (@event is InputEventMouseMotion MouseMotion) {
+			if (MouseMotion.ButtonMask == MouseButtonMask.Left)
+				Camera.Position -= MouseMotion.Relative / Camera.Zoom;
+		}
+	// Can zoom the camera using the mouse wheel, smoothed with a tween animation
+		if (@event is InputEventMouseButton MouseBtn) {
+			if (MouseBtn.ButtonIndex == MouseButton.WheelDown)
+				if (Camera.Zoom > ZOOM_MIN) {
+					ZoomVal = Camera.Zoom - ZOOM_SPEED;
+					Tween TweenZoomIn = CreateTween();
+					TweenZoomIn.TweenProperty(Camera, "zoom", ZoomVal, 0.3f);
+				}
+			if (MouseBtn.ButtonIndex == MouseButton.WheelUp)
+				if (Camera.Zoom < ZOOM_MAX) {
+					ZoomVal = Camera.Zoom + ZOOM_SPEED;
+					Tween TweenZoomOut = CreateTween();
+					TweenZoomOut.TweenProperty(Camera, "zoom", ZoomVal, 0.3f);
+				}
+		}
+	}
 }
