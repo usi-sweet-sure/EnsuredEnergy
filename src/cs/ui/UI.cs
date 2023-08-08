@@ -524,8 +524,8 @@ public partial class UI : CanvasLayer {
 		var Anim = TimelineAP.GetAnimation("NextTurnAnim");
 		var Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
 		var NKeys = Anim.TrackGetKeyCount(Track);
-		for (int i = 0; i <= NKeys; i++)
-			Anim.TrackSetKeyValue(Track, i, Year + i);
+		for (int i = 0; i < NKeys; i++)
+			Anim.TrackSetKeyValue(Track, i, (Year + i).ToString());
 	}
 
 	// ==================== Interaction Callbacks ====================
