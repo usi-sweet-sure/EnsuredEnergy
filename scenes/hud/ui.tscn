@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=27 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
@@ -17,6 +17,93 @@
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
 [ext_resource type="Texture2D" uid="uid://dg30puyh0tvif" path="res://assets/Elements/POLUTION BUTTON.png" id="10_qvjob"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
+
+[sub_resource type="Animation" id="Animation_f32o7"]
+resource_name = "NextTurnAnim"
+length = 4.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 3.3, 3.4, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1711, 156), Vector2(1019, 577), Vector2(1024, 568), Vector2(1024, 568), Vector2(1019, 577), Vector2(1711, 156)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 3.3, 3.4, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3.2, 3.2), Vector2(3, 3), Vector2(3, 3), Vector2(3.2, 3.2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Year:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.25, 2, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["2020", "2021", "2022", "2023
+"]
+}
+
+[sub_resource type="Animation" id="Animation_lrye6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1711, 156)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Year:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["2020"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08hvt"]
+_data = {
+"NextTurnAnim": SubResource("Animation_f32o7"),
+"RESET": SubResource("Animation_lrye6")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
@@ -178,9 +265,24 @@ offset_top = 187.0
 offset_right = 36.0
 offset_bottom = 218.0
 
-[node name="TimePanel–Blank" type="Sprite2D" parent="."]
+[node name="TimePanelBlank" type="Sprite2D" parent="."]
 position = Vector2(1711, 156)
 texture = ExtResource("6_mfs1l")
+
+[node name="Year" type="Label" parent="TimePanelBlank"]
+offset_left = -81.0
+offset_top = -38.0
+offset_right = 82.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 48
+text = "2020"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimelineAnimation" type="AnimationPlayer" parent="TimePanelBlank"]
+libraries = {
+"": SubResource("AnimationLibrary_08hvt")
+}
 
 [node name="Trust" type="ProgressBar" parent="."]
 offset_left = 278.0
@@ -549,6 +651,7 @@ text = "Language: English"
 flat = true
 
 [node name="Top" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 anchors_preset = -1
 anchor_right = 1.0
@@ -565,6 +668,10 @@ offset_left = 63.0
 offset_top = 18.0
 offset_right = 674.0
 offset_bottom = 34.0
+min_value = 2020.0
+max_value = 2050.0
+step = 3.0
+value = 2020.0
 editable = false
 scrollable = false
 tick_count = 11

@@ -38,9 +38,10 @@ public partial class UI : CanvasLayer {
 
 	// Timeline update values
 	[Export]
-	public int TIMELINE_STEP_SIZE = 10;
+	public int TIMELINE_STEP_SIZE = 3;
 	[Export]
-	public int TIMELINE_MAX_VALUE = 100;
+	public int TIMELINE_MAX_VALUE = 2050;
+
 
 	// Contains the data displayed in the UI
 	private InfoData Data;
@@ -63,6 +64,8 @@ public partial class UI : CanvasLayer {
 
 	// Date progression
 	private HSlider Timeline;
+	private AnimationPlayer TimelineAP;
+	private double Year;
 
 	// Imports
 	private ImportSlider Imports;
@@ -128,6 +131,8 @@ public partial class UI : CanvasLayer {
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
 		Imports = GetNode<ImportSlider>("Import");
+		
+		TimelineAP = GetNode<AnimationPlayer>("TimePanelBlank/TimelineAnimation");
 
 		// Money Nodes
 		MoneyL = GetNode<Label>("Money/money");
@@ -512,6 +517,16 @@ public partial class UI : CanvasLayer {
 		MoneyL.Text = Data.Money.ToString();
 		ImportCostL.Text = Data.Imports.ToString();
 	}
+	
+	// Sets the correct years on the Next Turn Animation
+	public void SetNextYears() {
+		Year = Timeline.Value;
+		var Anim = TimelineAP.GetAnimation("NextTurnAnim");
+		var Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
+		var NKeys = Anim.TrackGetKeyCount(Track);
+		for (int i = 0; i <= NKeys; i++)
+			Anim.TrackSetKeyValue(Track, i, Year + i);
+	}
 
 	// ==================== Interaction Callbacks ====================
 
@@ -533,7 +548,11 @@ public partial class UI : CanvasLayer {
 	public void _OnNextTurnPressed() {
 		// Trigger the next turn
 		EmitSignal(SignalName.NextTurn);
-
+		
+		// Sets the correct years and plays the next turn animation
+		SetNextYears();
+		TimelineAP.Play("NextTurnAnim");
+		
 		// Update the Timeline
 		Timeline.Value = Math.Min((Timeline.Value + TIMELINE_STEP_SIZE), TIMELINE_MAX_VALUE); 
 	}
