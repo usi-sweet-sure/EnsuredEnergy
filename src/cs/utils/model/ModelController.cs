@@ -116,8 +116,12 @@ public partial class ModelController : Node {
 
 		// Make sure that the connection succeeded
 		try {
+            // Check the status code for success
 			Res.EnsureSuccessStatusCode();
 		} catch (HttpRequestException e) {
+            // Reset the model state in case of a crash
+            State = ModelState.IDLE;
+
 			// Log the error data from the request
 			throw new Exception(
 				"Unable to connect to model, status code = " + Res.StatusCode.ToString() + 
@@ -185,6 +189,10 @@ public partial class ModelController : Node {
 		try {
 			Res.EnsureSuccessStatusCode();
 		} catch (HttpRequestException e) {
+
+            // Reset the model state in case of a crash
+            State = ModelState.IDLE;
+
 			// Log the error data from the request
 			throw new Exception(
 				"Unable to connect to model, status code = " + Res.StatusCode.ToString() + 
@@ -225,14 +233,6 @@ public partial class ModelController : Node {
     // URL = https://toby.euler.usi.ch/bal.php
     // GET_PARAMS: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52}
     public async void _FetchModelData(int current_turn) {
-        // Check that the model is free
-		if(State != ModelState.IDLE) {
-			// TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
-			throw new Exception("Model is currently handling another request!");
-		}
-		
-		// Update the Model's state
-		State = ModelState.PENDING;
 
         // Create the parameters
         string resid = GetParam(RES_ID, C._GetGameID());
@@ -253,12 +253,13 @@ public partial class ModelController : Node {
             C._UdpateModelFromServer(new_M);
 
         } catch(HttpRequestException e) {
+
             // Log the error data from the request
 			throw new Exception(
 				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
 				" Error: " + e.Message.ToString()
 			);
-        }
+        } 
     }
 
 	// ==================== Internal Helper Methods ====================

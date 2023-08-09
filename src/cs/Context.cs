@@ -94,4 +94,7 @@ public partial class Context : Node {
 
     // Fetches the game name and returns an empty string if not set
     public string _GetGameName() => ResName;
+
+    // Returns whether or not the model is valid
+    public bool _GetModelValidity() => M._IsValid();
 }

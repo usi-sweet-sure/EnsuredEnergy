@@ -186,8 +186,6 @@ public partial class GameLoop : Node2D {
 		// Initialize the model
 		MC._InitModel();
 
-		// Get the initial data from the model
-		MC._FetchModelData(GetTurn());
 
 		// Perform initial Resouce update
 		UpdateResources(true);
@@ -201,6 +199,11 @@ public partial class GameLoop : Node2D {
 
 		// Initialize resources
 		RM._UpdateResourcesUI();
+		
+		// Get the initial data from the model
+		MC._FetchModelData(GetTurn());
+
+		Debug.Print("MODEL VALIDITY: " + C._GetModelValidity());
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
