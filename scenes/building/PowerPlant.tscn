@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=8 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="2_nry78"]
+[ext_resource type="Texture2D" uid="uid://c7wjxue882i0r" path="res://assets/Elements/INFO ENVIORMENT.png" id="3_jv8ie"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/ConfigController.cs" id="3_runxt"]
 [ext_resource type="Texture2D" uid="uid://bvjrf5k45j5m0" path="res://assets/Elements/ENERGY PLANT - INFO HOVER.png" id="3_sgdtt"]
 
@@ -51,6 +52,81 @@ offset_top = -1.0
 offset_right = 45.0
 offset_bottom = 25.0
 text = "$"
+
+[node name="BuildInfo" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -65.0
+offset_top = -276.0
+offset_right = -25.0
+offset_bottom = -236.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BuildInfo"]
+layout_mode = 0
+offset_left = -39.0
+offset_top = -10.0
+offset_right = 169.0
+offset_bottom = 126.0
+texture = ExtResource("3_jv8ie")
+region_rect = Rect2(24, 32, 254, 152)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="ColorRect" type="ColorRect" parent="BuildInfo"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -3.0
+offset_right = 153.0
+offset_bottom = 108.0
+color = Color(0.597656, 0.597656, 0.597656, 1)
+
+[node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 98.0
+offset_bottom = 96.0
+
+[node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "$ / turn"
+
+[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Pollution"
+
+[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Building time"
+
+[node name="ContainerN" type="VBoxContainer" parent="BuildInfo/ColorRect"]
+layout_mode = 0
+offset_left = 111.0
+offset_right = 176.0
+offset_bottom = 96.0
+
+[node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "100"
+horizontal_alignment = 2
+
+[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Yes"
+horizontal_alignment = 2
+
+[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "3 turn(s)"
+horizontal_alignment = 2
 
 [node name="NameRect" type="ColorRect" parent="."]
 offset_left = -56.0
@@ -207,78 +283,3 @@ script = ExtResource("3_runxt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 shape = SubResource("RectangleShape2D_wggy5")
-
-[node name="BuildInfo" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = -65.0
-offset_top = -138.0
-offset_right = -25.0
-offset_bottom = -98.0
-
-[node name="ColorRect" type="ColorRect" parent="BuildInfo"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -3.0
-offset_right = 129.0
-offset_bottom = 69.0
-
-[node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 87.0
-offset_bottom = 104.0
-
-[node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "$ / turn"
-
-[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "Pollution"
-
-[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "Building time"
-
-[node name="ContainerN" type="VBoxContainer" parent="BuildInfo/ColorRect"]
-layout_mode = 0
-offset_left = 59.0
-offset_top = 8.0
-offset_right = 124.0
-offset_bottom = 104.0
-
-[node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "100"
-horizontal_alignment = 2
-
-[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "Yes"
-horizontal_alignment = 2
-
-[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "3 turn(s)"
-horizontal_alignment = 2
-
-[node name="Line2D2" type="Line2D" parent="BuildInfo/ColorRect"]
-position = Vector2(0, -1)
-points = PackedVector2Array(0, 72, 0, 2, 128, 2, 128, 72, 0, 72)
-width = 2.0
-default_color = Color(0.109375, 0.0703125, 0.25, 1)
