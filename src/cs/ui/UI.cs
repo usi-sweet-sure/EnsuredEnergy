@@ -449,7 +449,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the info
 		eng._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			" ", // N/Max TODO: Figure out what to use here
 			demand_label, demand.ToString(), // T0, N0
 			supply_label, supply.ToString() // T1, N1
 		);
@@ -462,7 +462,7 @@ public partial class UI : CanvasLayer {
 		string aesth_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_aesth");
 
 		SupportBar._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			" ", // N/Max TODO: Figure out what to use here
 			afford_label, Data.EnergyAffordability.ToString(), // T0, N0
 			aesth_label, Data.EnvAesthetic.ToString() // T1, N1
 		);
@@ -475,7 +475,7 @@ public partial class UI : CanvasLayer {
 		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
 
 		EnvironmentBar._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			" ", // N/Max TODO: Figure out what to use here
 			land_label, Data.LandUse.ToString() + "%", // T0, N0
 			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
 		);
@@ -487,7 +487,8 @@ public partial class UI : CanvasLayer {
 		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
 
 		PollutionBar._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			// N/Max TODO: Figure out what to use here
+			" ",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);

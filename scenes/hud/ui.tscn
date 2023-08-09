@@ -204,6 +204,7 @@ offset_bottom = 973.0
 position = Vector2(-195, -609.5)
 
 [node name="BarInfo" parent="EnergyBarWinter" index="1"]
+z_index = 1
 offset_left = 489.0
 offset_top = -131.0
 offset_right = 794.768
@@ -226,6 +227,7 @@ theme_override_constants/outline_size = 1
 position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummer" index="1"]
+z_index = 1
 offset_left = 490.0
 offset_top = -61.0
 offset_right = 792.768
@@ -349,20 +351,48 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
+visible = false
 layout_mode = 1
 offset_left = -37.0
 offset_top = 128.0
-offset_right = 265.992
-offset_bottom = 373.058
+offset_right = 265.52
+offset_bottom = 284.63
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
 
 [node name="InfoMoney" parent="Env/BarInfo" index="0"]
-offset_bottom = 243.0
+offset_bottom = 146.0
 
 [node name="Control" parent="Env/BarInfo" index="1"]
-offset_bottom = -56.944
+offset_left = 20.0
+offset_top = 18.0
+offset_right = -15.0
+offset_bottom = -54.792
+
+[node name="TextContainer" parent="Env/BarInfo/Control" index="0"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 13.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 226.0
+grow_vertical = 1
+
+[node name="nContainer" parent="Env/BarInfo/Control" index="1"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = -17.0
+offset_bottom = 226.0
+grow_vertical = 1
 
 [node name="Name" type="Label" parent="Env"]
 visible = false
@@ -408,19 +438,44 @@ width = 1.0
 layout_mode = 1
 offset_left = -171.0
 offset_top = 128.0
-offset_right = -44.008
-offset_bottom = 257.058
+offset_right = -26.816
+offset_bottom = 148.096
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
 
 [node name="InfoMoney" parent="Poll/BarInfo" index="0"]
-offset_right = 305.0
-offset_bottom = 243.0
+offset_bottom = 146.0
 
 [node name="Control" parent="Poll/BarInfo" index="1"]
-offset_right = 127.012
-offset_bottom = 72.0
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 143.0
+offset_bottom = 77.4
+
+[node name="TextContainer" parent="Poll/BarInfo/Control" index="0"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 11.0
+offset_top = 0.0
+offset_right = -0.0119934
+offset_bottom = 226.0
+grow_vertical = 1
+
+[node name="nContainer" parent="Poll/BarInfo/Control" index="1"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 19.0
+offset_top = 0.0
+offset_right = -15.0
+offset_bottom = 226.0
+grow_vertical = 1
 
 [node name="Name" type="Label" parent="Poll"]
 visible = false

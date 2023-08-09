@@ -5,61 +5,65 @@
 
 [node name="BuildMenu" type="CanvasLayer"]
 script = ExtResource("1_vbiqr")
-BuildingSpriteBase = Vector2(150, 160)
+BuildingSpriteBase = Vector2(150, 190)
 
 [node name="CloseButton" type="Button" parent="."]
 offset_right = 1921.0
-offset_bottom = 769.0
+offset_bottom = 712.0
 flat = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 40)
 offset_left = -2.0
-offset_top = 768.0
+offset_top = 712.0
 offset_right = 1918.0
 offset_bottom = 1077.0
-color = Color(0.231373, 0.290196, 0.372549, 0.643137)
+color = Color(0.321569, 0.321569, 0.321569, 0.768627)
 
 [node name="Solar" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(650, 203)
+position = Vector2(650, 161)
+scale = Vector2(0.9, 0.9)
 PlantName = "Solar Plant"
 
 [node name="SolarButton" type="Button" parent="ColorRect/Solar"]
-offset_left = -72.0
-offset_top = -70.0
-offset_right = 80.0
-offset_bottom = 129.0
+offset_left = -104.0
+offset_top = -139.0
+offset_right = 104.0
+offset_bottom = 141.0
 flat = true
 
 [node name="Hydro" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(400, 203)
+position = Vector2(400, 161)
+scale = Vector2(0.9, 0.9)
 PlantName = "Hydro Plant"
 
 [node name="HydroButton" type="Button" parent="ColorRect/Hydro"]
-offset_left = -68.0
-offset_top = -70.0
-offset_right = 77.0
-offset_bottom = 125.0
+offset_left = -104.0
+offset_top = -143.0
+offset_right = 100.0
+offset_bottom = 141.0
 flat = true
 
 [node name="Gas" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(150, 203)
+position = Vector2(150, 161)
+scale = Vector2(0.9, 0.9)
 PlantName = "Gas Plant"
 
 [node name="GasButton" type="Button" parent="ColorRect/Gas"]
-offset_left = -70.8462
-offset_top = -70.0
-offset_right = 78.1538
-offset_bottom = 126.0
+offset_left = -102.0
+offset_top = -143.0
+offset_right = 102.0
+offset_bottom = 141.0
 flat = true
 
 [node name="Tree" parent="ColorRect" instance=ExtResource("2_236y8")]
-position = Vector2(900, 203)
+position = Vector2(900, 161)
+scale = Vector2(0.9, 0.9)
 PlantName = "Trees"
 
 [node name="TreeButton" type="Button" parent="ColorRect/Tree"]
-offset_left = -72.0
-offset_top = -76.0
-offset_right = 78.0
-offset_bottom = 126.0
+offset_left = -109.0
+offset_top = -143.0
+offset_right = 104.0
+offset_bottom = 141.0
 flat = true

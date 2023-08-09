@@ -96,8 +96,8 @@ public struct MoneyData {
 
 	// Resets the spending statistics at the end of each round
 	public void NextTurn(int new_budget, int production, int ImportCost) {
+		Budget = Money + new_budget;
 		Money += new_budget - production - ImportCost;
-		Budget = Money;
 		Production = production;
 		Build = 0;
 		Imports = ImportCost;
