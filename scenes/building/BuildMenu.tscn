@@ -1,11 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://i802aa7uc538"]
+[gd_scene load_steps=6 format=3 uid="uid://i802aa7uc538"]
 
 [ext_resource type="Script" path="res://src/cs/building/BuildMenu.cs" id="1_vbiqr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="2_236y8"]
 
+[sub_resource type="Animation" id="Animation_kodya"]
+resource_name = "SlideUp"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2, 1080), Vector2(-2, 712)]
+}
+
+[sub_resource type="Animation" id="Animation_j4va7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 712)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cqvg1"]
+_data = {
+"RESET": SubResource("Animation_j4va7"),
+"SlideUp": SubResource("Animation_kodya")
+}
+
 [node name="BuildMenu" type="CanvasLayer"]
 script = ExtResource("1_vbiqr")
-BuildingSpriteBase = Vector2(150, 190)
+BuildingSpriteBase = Vector2(550, 190)
 
 [node name="CloseButton" type="Button" parent="."]
 offset_right = 1921.0
@@ -14,10 +51,17 @@ flat = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(0, 40)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -2.0
 offset_top = 712.0
-offset_right = 1918.0
+offset_right = 1974.0
 offset_bottom = 1077.0
+grow_horizontal = 0
+grow_vertical = 0
 color = Color(0.321569, 0.321569, 0.321569, 0.768627)
 
 [node name="Solar" parent="ColorRect" instance=ExtResource("2_236y8")]
@@ -67,3 +111,8 @@ offset_top = -143.0
 offset_right = 104.0
 offset_bottom = 141.0
 flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cqvg1")
+}
