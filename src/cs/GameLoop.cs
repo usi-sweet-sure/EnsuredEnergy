@@ -191,7 +191,7 @@ public partial class GameLoop : Node2D {
 
 		// Initialize the model
 		MC._InitModel();
-
+		MC._FetchModelData();
 
 		// Perform initial Resouce update
 		UpdateResources(true);

@@ -23,6 +23,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 // HTTP Client for the server-based energy grid model
@@ -101,7 +102,7 @@ public partial class ModelController : Node {
     // - URL: https://toby.euler.usi.ch/res.php?mth=insert&res_id=Content.ResId 
     // - HEADER: Null
     // - DATA: Null
-	public async void _InitModel() {
+	public void _InitModel() {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
 			// TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
@@ -112,46 +113,53 @@ public partial class ModelController : Node {
 		State = ModelState.PENDING;
 
 		// Create the POST request
-		var Res = await _HTTPC.PostAsync(ModelURL(RES_FILE, INSERT_METHOD), null);
+		Task<HttpResponseMessage> Request = _HTTPC.PostAsync(ModelURL(RES_FILE, INSERT_METHOD), null);
 
 		// Make sure that the connection succeeded
 		try {
-            // Check the status code for success
-			Res.EnsureSuccessStatusCode();
+            // Wait on the request's success (initialization must be done synchronously)
+			Request.Wait();
+			HttpResponseMessage Res = Request.Result;
+
+			// Request the response from the model
+			Task<string> SReq = Res.Content.ReadAsStringAsync();
+
+			// Wait for the request to complete
+			SReq.Wait();
+			
+			// Get the Serialized result
+			string SRes = SReq.Result; 
+
+			// Parse the resceived data to an XML tree
+			XDocument XmlResp = XDocument.Parse(SRes);
+
+			// Retrive the id from the response and store it in the context
+			int Id = (
+				from r in XmlResp.Root.Descendants("row")
+				select r.Attribute(RES_ID).Value.ToInt()
+			).ElementAt(0);
+
+			// Update the context
+			C._UpdateGameID(Id);
+
+			// DEBUG: Check that the id was set correctly
+			Debug.Print("Game ID Updated to: " + C._GetGameID());
+
+			// Update the Model's state
+			State = ModelState.IDLE;
+
+			// Update the name to something random
+			_UpdateModelName(GenerateName());
 		} catch (HttpRequestException e) {
             // Reset the model state in case of a crash
             State = ModelState.IDLE;
 
 			// Log the error data from the request
 			throw new Exception(
-				"Unable to connect to model, status code = " + Res.StatusCode.ToString() + 
+				"Unable to connect to model, status code = " + Request.Status + 
 				" Error: " + e.Message.ToString()
 			);
 		}
-
-		// Retrieve the response from the model
-		var SRes = await Res.Content.ReadAsStringAsync();
-
-		// Parse the resceived data to an XML tree
-		XDocument XmlResp = XDocument.Parse(SRes);
-
-		// Retrive the id from the response and store it in the context
-		int Id = (
-            from r in XmlResp.Root.Descendants("row")
-            select r.Attribute(RES_ID).Value.ToInt()
-        ).ElementAt(0);
-
-        // Update the context
-		C._UpdateGameID(Id);
-
-		// DEBUG: Check that the id was set correctly
-		Debug.Print("Game ID Updated to: " + C._GetGameID());
-
-		// Update the Model's state
-		State = ModelState.IDLE;
-
-		// Update the name to something random
-		_UpdateModelName(GenerateName());
 	}
 
 	// Updates the name of the current game instance in the model
