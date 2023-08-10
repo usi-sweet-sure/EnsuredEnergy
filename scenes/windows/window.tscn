@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://jj476u8yn2g8"]
+[gd_scene load_steps=10 format=3 uid="uid://jj476u8yn2g8"]
+
+[ext_resource type="Script" path="res://src/cs/ui/PolicyWindow.cs" id="1_is3ep"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oju76"]
 bg_color = Color(0.301961, 0.584314, 0.309804, 1)
@@ -18,7 +20,30 @@ bg_color = Color(0.513726, 0.588235, 0.839216, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vk0"]
 bg_color = Color(0.196078, 0.545098, 0.968627, 1)
 
+[sub_resource type="Animation" id="Animation_k75ra"]
+resource_name = "popup"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Panel/ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dlcw"]
+_data = {
+"popup": SubResource("Animation_k75ra")
+}
+
 [node name="Policy" type="CanvasLayer"]
+script = ExtResource("1_is3ep")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -39,10 +64,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -552.0
 offset_top = -300.0
-offset_right = 552.0
-offset_bottom = 300.0
+offset_right = 556.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(554, 302)
 color = Color(0.823529, 0.823529, 0.870588, 1)
 metadata/_edit_group_ = true
 
@@ -618,3 +645,8 @@ focus_mode = 0
 toggle_mode = true
 keep_pressed_outside = true
 text = "LVL 3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8dlcw")
+}

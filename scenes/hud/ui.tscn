@@ -1,13 +1,133 @@
-[gd_scene load_steps=15 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=27 format=3 uid="uid://bs48lirfn2fp2"]
 
-[ext_resource type="Texture2D" uid="uid://cuayuul3kllsa" path="res://assets/grey_sliderRight.png" id="1_dv5c2"]
+[ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
+[ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="4_67rbh"]
 [ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="4_e5tgv"]
 [ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/hud/import.tscn" id="5_ps4b6"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
-[ext_resource type="Script" path="res://src/cs/ui/PolicyWindow.cs" id="7_u64y1"]
+[ext_resource type="Texture2D" uid="uid://dddt3hgvf20b6" path="res://assets/Elements/POLICIES BUTTON.png" id="6_ivien"]
+[ext_resource type="Texture2D" uid="uid://b5c8nhwhjb6rh" path="res://assets/Elements/TIME PANEL – BLANK.png" id="6_mfs1l"]
+[ext_resource type="Texture2D" uid="uid://yom48x87obxw" path="res://assets/Elements/CHARACTER INFORMATION – BLANK.png" id="6_vs2ug"]
+[ext_resource type="Texture2D" uid="uid://d01b6u4flcphj" path="res://assets/Elements/GRAPH BUTTON.png" id="7_7gbcu"]
+[ext_resource type="Texture2D" uid="uid://b8lwrin3nxbmj" path="res://assets/Elements/SETTINGS BUTTON.png" id="7_mnpcp"]
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
+[ext_resource type="Texture2D" uid="uid://djx386wryt8ab" path="res://assets/Elements/ENVIORMENT BUTTON.png" id="9_kqwrt"]
+[ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
+[ext_resource type="Texture2D" uid="uid://dg30puyh0tvif" path="res://assets/Elements/POLUTION BUTTON.png" id="10_qvjob"]
+[ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
+
+[sub_resource type="Animation" id="Animation_f32o7"]
+resource_name = "NextTurnAnim"
+length = 4.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 3.3, 3.4, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1711, 156), Vector2(1019, 577), Vector2(1024, 568), Vector2(1024, 568), Vector2(1019, 577), Vector2(1711, 156)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8, 3.3, 3.4, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3.2, 3.2), Vector2(3, 3), Vector2(3, 3), Vector2(3.2, 3.2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Year:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.25, 2, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["2020", "2021", "2022", "2023
+"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MouseBlock:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_lrye6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1711, 156)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Year:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["2020"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MouseBlock:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08hvt"]
+_data = {
+"NextTurnAnim": SubResource("Animation_f32o7"),
+"RESET": SubResource("Animation_lrye6")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
@@ -17,10 +137,10 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mru71"]
 bg_color = Color(0.137255, 0.470588, 0.760784, 1)
@@ -29,116 +149,201 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 14
+corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm6d8"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldrdn"]
 bg_color = Color(0.152941, 0.658824, 0.152941, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vvqt"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvfnp"]
 bg_color = Color(0.419608, 0.419608, 0.419608, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="UI" type="CanvasLayer"]
 follow_viewport_enabled = true
 
-[node name="NextTurn" type="NinePatchRect" parent="."]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = 452.0
-offset_right = -55.0
-offset_bottom = 486.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("1_dv5c2")
-region_rect = Rect2(-0.0526352, 0.0447845, 39.5526, 28.9552)
-patch_margin_left = 4
-patch_margin_top = 5
-patch_margin_right = 15
-patch_margin_bottom = 6
-metadata/_edit_group_ = true
+[node name="CharacterInformation–Blank" type="Sprite2D" parent="."]
+position = Vector2(264, 168)
+texture = ExtResource("6_vs2ug")
+
+[node name="NextTurn" type="Sprite2D" parent="."]
+position = Vector2(1728, 968)
+texture = ExtResource("1_kbgc4")
+region_rect = Rect2(42, 37, 199, 65)
+
+[node name="ColorRect" type="ColorRect" parent="NextTurn"]
+offset_left = -72.0
+offset_top = -16.0
+offset_right = 72.0
+offset_bottom = 24.0
+color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="NextTurn" type="Button" parent="NextTurn"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 2.0
-offset_right = 127.0
-offset_bottom = 33.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_left = -91.0
+offset_top = -24.0
+offset_right = 89.0
+offset_bottom = 26.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.14902, 0.14902, 0.14902, 1)
 theme_override_colors/font_hover_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_font_sizes/font_size = 22
 text = "Next Turn"
 flat = true
 
+[node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
+position = Vector2(236, 864)
+texture = ExtResource("2_hhj2t")
+
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 947.0
-offset_top = 946.0
-offset_right = 1088.0
-offset_bottom = 972.0
+offset_left = 199.0
+offset_top = 932.0
+offset_right = 373.0
+offset_bottom = 973.0
+
+[node name="Target" parent="EnergyBarWinter" index="0"]
+position = Vector2(-195, -609.5)
+
+[node name="BarInfo" parent="EnergyBarWinter" index="1"]
+z_index = 1
+offset_left = 489.0
+offset_top = -131.0
+offset_right = 794.768
+offset_bottom = 113.053
+rotation = 1.5708
+
+[node name="InfoMoney" parent="EnergyBarWinter/BarInfo" index="0"]
+offset_right = 335.0
+offset_bottom = 258.0
 
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 946.0
-offset_top = 1000.0
-offset_right = 1088.0
-offset_bottom = 1026.0
+offset_left = 129.0
+offset_top = 932.0
+offset_right = 303.0
+offset_bottom = 974.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
+
+[node name="Target" parent="EnergyBarSummer" index="0"]
+position = Vector2(-331, -609.5)
+
+[node name="BarInfo" parent="EnergyBarSummer" index="1"]
+z_index = 1
+offset_left = 490.0
+offset_top = -61.0
+offset_right = 792.768
+offset_bottom = 172.786
+rotation = 1.5708
 metadata/_edit_group_ = true
 
+[node name="InfoMoney" parent="EnergyBarSummer/BarInfo" index="0"]
+offset_right = 334.0
+offset_bottom = 261.0
+
+[node name="Import" parent="." instance=ExtResource("5_ps4b6")]
+offset_left = 330.0
+offset_top = 950.28
+offset_right = 330.96
+offset_bottom = 950.0
+ticks_on_borders = false
+
+[node name="Target" parent="Import" index="1"]
+position = Vector2(-120, -9)
+
+[node name="Amount" parent="Import" index="3"]
+offset_left = 0.0
+offset_top = 160.0
+offset_right = 40.0
+offset_bottom = 186.0
+
+[node name="Apply" parent="Import" index="4"]
+offset_left = -19.0
+offset_top = 187.0
+offset_right = 12.0
+offset_bottom = 217.0
+
+[node name="Cancel" parent="Import" index="5"]
+offset_left = 18.0
+offset_top = 187.0
+offset_right = 36.0
+offset_bottom = 218.0
+
+[node name="TimePanelBlank" type="Sprite2D" parent="."]
+position = Vector2(1711, 156)
+texture = ExtResource("6_mfs1l")
+
+[node name="Year" type="Label" parent="TimePanelBlank"]
+offset_left = -81.0
+offset_top = -38.0
+offset_right = 82.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 48
+text = "2023
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimelineAnimation" type="AnimationPlayer" parent="TimePanelBlank"]
+libraries = {
+"": SubResource("AnimationLibrary_08hvt")
+}
+
 [node name="Trust" type="ProgressBar" parent="."]
-offset_left = 206.0
-offset_top = 866.0
-offset_right = 344.0
-offset_bottom = 893.0
+offset_left = 278.0
+offset_top = 200.0
+offset_right = 357.0
+offset_bottom = 237.0
 theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
-metadata/_edit_group_ = true
+NormalColor = Color(0.180392, 0.509804, 1, 1)
+LowColor = Color(0.435294, 0.282353, 1, 1)
 
 [node name="Target" type="Line2D" parent="Trust"]
+visible = false
 position = Vector2(-263, -615)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
+[node name="BarInfo" parent="Trust" instance=ExtResource("4_67rbh")]
+visible = false
+layout_mode = 1
+offset_left = -173.0
+offset_top = 81.0
+offset_right = 140.728
+offset_bottom = 286.121
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="InfoMoney" parent="Trust/BarInfo" index="0"]
+offset_bottom = 255.0
+
 [node name="Name" type="Label" parent="Trust"]
+visible = false
 layout_mode = 2
 offset_left = -134.0
 offset_top = 1.0
@@ -150,33 +355,72 @@ theme_override_constants/outline_size = 1
 text = "Support 👆"
 horizontal_alignment = 2
 
-[node name="BarInfo" parent="Trust/Name" instance=ExtResource("4_67rbh")]
-layout_mode = 1
-offset_left = 73.0
-offset_top = -202.0
-offset_right = 243.562
-offset_bottom = -25.19
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="Env" type="ProgressBar" parent="."]
-offset_left = 206.0
-offset_top = 912.0
-offset_right = 344.0
-offset_bottom = 939.0
+offset_left = 1584.0
+offset_top = 246.0
+offset_right = 1694.0
+offset_bottom = 356.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nm6d8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
+fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-metadata/_edit_group_ = true
+NormalColor = Color(0.0313726, 0.67451, 0.2, 1)
+LowColor = Color(0.329412, 0.372549, 0, 1)
 
 [node name="Target" type="Line2D" parent="Env"]
+visible = false
 position = Vector2(-210, -615)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
+[node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
+visible = false
+layout_mode = 1
+offset_left = -37.0
+offset_top = 128.0
+offset_right = 265.52
+offset_bottom = 284.63
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_group_ = true
+
+[node name="InfoMoney" parent="Env/BarInfo" index="0"]
+offset_bottom = 146.0
+
+[node name="Control" parent="Env/BarInfo" index="1"]
+offset_left = 20.0
+offset_top = 18.0
+offset_right = -15.0
+offset_bottom = -54.792
+
+[node name="TextContainer" parent="Env/BarInfo/Control" index="0"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 13.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 226.0
+grow_vertical = 1
+
+[node name="nContainer" parent="Env/BarInfo/Control" index="1"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = -17.0
+offset_bottom = 226.0
+grow_vertical = 1
+
 [node name="Name" type="Label" parent="Env"]
+visible = false
 layout_mode = 2
 offset_left = -136.0
 offset_top = 1.0
@@ -188,34 +432,78 @@ theme_override_constants/outline_size = 1
 text = "Environment 🍃"
 horizontal_alignment = 2
 
-[node name="BarInfo" parent="Env/Name" instance=ExtResource("4_67rbh")]
-layout_mode = 1
-offset_left = 82.0
-offset_top = -201.0
-offset_right = 244.242
-offset_bottom = -22.19
-grow_horizontal = 1
-grow_vertical = 1
+[node name="Temp" type="Sprite2D" parent="Env"]
+modulate = Color(1, 1, 1, 0.329412)
+position = Vector2(55, 55.5)
+scale = Vector2(1.01351, 1.00676)
+texture = ExtResource("9_kqwrt")
 
 [node name="Poll" type="ProgressBar" parent="."]
-offset_left = 206.0
-offset_top = 958.0
-offset_right = 344.0
-offset_bottom = 985.0
+offset_left = 1720.0
+offset_top = 246.0
+offset_right = 1832.0
+offset_bottom = 358.0
 tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
 value = 50.0
+fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-metadata/_edit_group_ = true
+NormalColor = Color(0.415686, 0.415686, 0.415686, 1)
+LowColor = Color(0.74902, 0.74902, 0.74902, 1)
 
 [node name="Target" type="Line2D" parent="Poll"]
+visible = false
 position = Vector2(-210, -615)
 points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
+[node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
+layout_mode = 1
+offset_left = -171.0
+offset_top = 128.0
+offset_right = -26.816
+offset_bottom = 148.096
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_group_ = true
+
+[node name="InfoMoney" parent="Poll/BarInfo" index="0"]
+offset_bottom = 146.0
+
+[node name="Control" parent="Poll/BarInfo" index="1"]
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 143.0
+offset_bottom = 77.4
+
+[node name="TextContainer" parent="Poll/BarInfo/Control" index="0"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 11.0
+offset_top = 0.0
+offset_right = -0.0119934
+offset_bottom = 226.0
+grow_vertical = 1
+
+[node name="nContainer" parent="Poll/BarInfo/Control" index="1"]
+anchors_preset = 10
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 19.0
+offset_top = 0.0
+offset_right = -15.0
+offset_bottom = 226.0
+grow_vertical = 1
+
 [node name="Name" type="Label" parent="Poll"]
+visible = false
 layout_mode = 2
 offset_left = -141.0
 offset_top = 1.0
@@ -227,139 +515,134 @@ theme_override_constants/outline_size = 1
 text = "Pollution"
 horizontal_alignment = 2
 
-[node name="BarInfo" parent="Poll/Name" instance=ExtResource("4_67rbh")]
-layout_mode = 1
-offset_left = 86.0
-offset_top = -204.0
-offset_right = 248.242
-offset_bottom = -25.19
-grow_horizontal = 1
-grow_vertical = 1
+[node name="Temp" type="Sprite2D" parent="Poll"]
+modulate = Color(1, 1, 1, 0.313726)
+position = Vector2(56, 55.5)
+scale = Vector2(1.02703, 1.02027)
+texture = ExtResource("10_qvjob")
 
-[node name="PolicyButton" type="Button" parent="."]
-offset_left = 1120.0
-offset_top = 968.0
-offset_right = 1243.0
-offset_bottom = 1080.0
-scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 70
-text = "📥"
+[node name="PolicyButton" type="TextureButton" parent="."]
+offset_left = 38.0
+offset_top = 611.0
+offset_right = 186.0
+offset_bottom = 759.0
+texture_normal = ExtResource("6_ivien")
 
-[node name="Stats" type="Button" parent="."]
-offset_left = 752.0
-offset_top = 968.0
-offset_right = 875.0
-offset_bottom = 1080.0
-scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 70
-text = "📈"
-
-[node name="Import" parent="." instance=ExtResource("5_ps4b6")]
-offset_left = 928.0
-offset_top = 892.0
-offset_right = 928.64
-offset_bottom = 907.28
-metadata/_edit_group_ = true
-
-[node name="Target" parent="Import" index="1"]
-position = Vector2(-120, -1)
-
-[node name="Amount" parent="Import" index="3"]
-offset_top = 2.0
-offset_bottom = 28.0
-
-[node name="Apply" parent="Import" index="4"]
-offset_top = -3.0
-offset_bottom = 27.0
-
-[node name="Cancel" parent="Import" index="5"]
-offset_top = -4.0
-offset_bottom = 27.0
+[node name="Stats" type="TextureButton" parent="."]
+offset_left = 293.0
+offset_top = 610.0
+offset_right = 441.0
+offset_bottom = 758.0
+texture_normal = ExtResource("7_7gbcu")
 
 [node name="ImportsB" type="Button" parent="."]
-offset_left = 832.0
-offset_top = 889.0
-offset_right = 919.0
-offset_bottom = 920.0
+visible = false
+offset_left = 1136.0
+offset_top = 808.0
+offset_right = 1223.0
+offset_bottom = 839.0
 focus_mode = 0
 text = "Import ⚡"
 
 [node name="MoneyInfo" type="ColorRect" parent="."]
 visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -232.0
-offset_bottom = 174.0
+anchors_preset = -1
+anchor_left = 0.233
+anchor_top = 0.076
+anchor_right = 0.233
+anchor_bottom = 0.076
+offset_left = 33.64
+offset_top = -5.08
+offset_right = 265.64
+offset_bottom = 168.92
 grow_horizontal = 0
 color = Color(0.121569, 0.219608, 0.360784, 1)
 
+[node name="InfoMoney" type="Sprite2D" parent="MoneyInfo"]
+position = Vector2(141, 93)
+texture = ExtResource("10_2gyrf")
+
+[node name="ColorRect" type="ColorRect" parent="MoneyInfo"]
+layout_mode = 0
+offset_right = 227.0
+offset_bottom = 185.0
+color = Color(0.597656, 0.597656, 0.597656, 1)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 44.0
-offset_right = 131.0
-offset_bottom = 131.0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 138.0
+offset_bottom = 147.0
+theme_override_constants/separation = 14
 
 [node name="Label3" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "  Budget:"
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "  Production: "
 vertical_alignment = 1
 
 [node name="Label4" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "  Building: "
 vertical_alignment = 1
 
 [node name="Import" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "  Import:"
 
 [node name="prod" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 51.0
-offset_top = 66.0
-offset_right = 191.0
-offset_bottom = 106.0
+offset_left = 61.0
+offset_top = 51.0
+offset_right = 201.0
+offset_bottom = 91.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="build" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 51.0
+offset_left = 62.0
 offset_top = 97.0
-offset_right = 191.0
+offset_right = 202.0
 offset_bottom = 137.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="budget" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 38.0
-offset_right = 191.0
-offset_bottom = 78.0
+offset_left = 60.0
+offset_top = 8.0
+offset_right = 202.0
+offset_bottom = 48.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="importamounts" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 137.0
-offset_right = 191.0
-offset_bottom = 163.0
+offset_left = 102.0
+offset_top = 148.0
+offset_right = 201.0
+offset_bottom = 179.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 
@@ -367,12 +650,15 @@ horizontal_alignment = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -232.0
-offset_bottom = 48.0
+offset_left = -1650.0
+offset_top = 89.0
+offset_right = -1557.0
+offset_bottom = 137.0
 grow_horizontal = 0
-color = Color(0.121569, 0.219608, 0.360784, 1)
+color = Color(0.597656, 0.597656, 0.597656, 1)
 
 [node name="Label" type="Label" parent="Money"]
+visible = false
 layout_mode = 2
 offset_left = 29.0
 offset_top = 13.0
@@ -383,10 +669,12 @@ vertical_alignment = 1
 
 [node name="money" type="Label" parent="Money"]
 layout_mode = 0
-offset_left = 101.0
-offset_top = 6.0
-offset_right = 192.0
-offset_bottom = 50.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 75.0
+offset_bottom = 46.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -395,41 +683,56 @@ vertical_alignment = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -232.0
-offset_bottom = 50.0
+offset_left = -1650.0
+offset_top = 72.0
+offset_right = -1472.0
+offset_bottom = 152.0
 grow_horizontal = 0
 focus_mode = 0
-text = "  >"
 flat = true
 alignment = 0
 
 [node name="SettingsButton" type="Button" parent="."]
-offset_left = 26.0
-offset_top = 9.0
-offset_right = 58.0
-offset_bottom = 40.0
-text = "⚙️"
+offset_left = 48.0
+offset_top = 40.0
+offset_right = 136.0
+offset_bottom = 128.0
+focus_mode = 0
+icon = ExtResource("7_mnpcp")
+flat = true
 
 [node name="SettingsBox" type="ColorRect" parent="SettingsButton"]
 visible = false
 layout_mode = 0
-offset_left = 1.0
-offset_top = 33.0
-offset_right = 192.0
-offset_bottom = 81.0
-color = Color(0.121569, 0.219608, 0.360784, 1)
+offset_left = 86.0
+offset_top = 19.0
+offset_right = 277.0
+offset_bottom = 67.0
+color = Color(0.398438, 0.398438, 0.398438, 1)
+metadata/_edit_group_ = true
+
+[node name="Close" type="Button" parent="SettingsButton/SettingsBox"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = -76.0
+offset_right = 1873.0
+offset_bottom = 1008.0
+focus_mode = 0
+flat = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsButton/SettingsBox"]
 layout_mode = 0
 offset_right = 188.0
-offset_bottom = 40.0
+offset_bottom = 48.0
 
 [node name="Language" type="Button" parent="SettingsButton/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "Language: English"
 flat = true
 
 [node name="Top" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 anchors_preset = -1
 anchor_right = 1.0
@@ -446,6 +749,10 @@ offset_left = 63.0
 offset_top = 18.0
 offset_right = 674.0
 offset_bottom = 34.0
+min_value = 2020.0
+max_value = 2050.0
+step = 3.0
+value = 2020.0
 editable = false
 scrollable = false
 tick_count = 11
@@ -472,8 +779,24 @@ visible = false
 
 [node name="Window" parent="." instance=ExtResource("7_yu7g8")]
 visible = false
-script = ExtResource("7_u64y1")
+
+[node name="BuildingButton" type="Sprite2D" parent="."]
+position = Vector2(235, 650)
+texture = ExtResource("18_42ope")
+
+[node name="MouseBlock" type="ColorRect" parent="."]
+visible = false
+offset_left = -166.0
+offset_top = -113.0
+offset_right = 2121.0
+offset_bottom = 1225.0
+color = Color(1, 1, 1, 0)
 
 [editable path="EnergyBarWinter"]
+[editable path="EnergyBarWinter/BarInfo"]
 [editable path="EnergyBarSummer"]
+[editable path="EnergyBarSummer/BarInfo"]
 [editable path="Import"]
+[editable path="Trust/BarInfo"]
+[editable path="Env/BarInfo"]
+[editable path="Poll/BarInfo"]

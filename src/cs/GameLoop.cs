@@ -93,6 +93,12 @@ public partial class GameLoop : Node2D {
 		BBs.Add(GetNode<BuildButton>("World/BuildButton2"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton3"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton4"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton5"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton6"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton7"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton8"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton9"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton10"));
 
 		// Fetch UI and BuildMenu
 		_UI = GetNode<UI>("UI");
