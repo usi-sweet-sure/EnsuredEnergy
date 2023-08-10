@@ -24,7 +24,7 @@ public partial class InfoBar : ProgressBar {
 
 	// Slider initial positions
 	private const int SLIDER_BEG_X = -330;
-	private const int SLIDER_END_X = -195;
+	private const int SLIDER_END_X = -158;
 	private int SLIDER_RANGE = Math.Abs(SLIDER_BEG_X - SLIDER_END_X);
 
 	// Line showing the target amount to reach
@@ -35,6 +35,12 @@ public partial class InfoBar : ProgressBar {
 
 	// Info boc showing all of the relevant subfields of this resource
 	private InfoBox Box;
+	
+	// Colors for Bars
+	[Export]
+	private Color NormalColor;
+	[Export]
+	private Color LowColor;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -43,7 +49,7 @@ public partial class InfoBar : ProgressBar {
 		// Fetch nodes
 		Target = GetNode<Line2D>("Target");
 		BarName = GetNode<Label>("Name");
-		Box = GetNode<InfoBox>("Name/BarInfo");
+		Box = GetNode<InfoBox>("BarInfo");
 
 		Box.Hide();
 	}
@@ -97,5 +103,21 @@ public partial class InfoBar : ProgressBar {
 	// Hides the information realted to this progress bar
 	public void _HideInfo() {
 		Box.Hide();
+	}
+	
+	// The bar can have 2 colors, one when it's low and one normal
+	public void _UpdateColor(bool IsLow) {
+		if (IsLow) {
+			StyleBoxFlat Stylebox = GetThemeStylebox("fill").Duplicate() as StyleBoxFlat;
+			Tween tween = CreateTween();
+			tween.TweenProperty(Stylebox, "bg_color", LowColor, 0.8f);
+			this.AddThemeStyleboxOverride("fill", Stylebox);
+		} else {
+			StyleBoxFlat Stylebox = GetThemeStylebox("fill").Duplicate() as StyleBoxFlat;
+			Tween tween = CreateTween();
+			tween.TweenProperty(Stylebox, "bg_color", NormalColor, 0.8f);
+			this.AddThemeStyleboxOverride("fill", Stylebox);
+		}
+
 	}
 }

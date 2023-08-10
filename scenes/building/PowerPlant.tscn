@@ -1,36 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=8 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
-[ext_resource type="Texture2D" uid="uid://bpnyng7q0id2q" path="res://assets/230601_CH_SUREgame_SKETCHES-POWERPLANT.png" id="3_4a6uo"]
+[ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="2_nry78"]
+[ext_resource type="Texture2D" uid="uid://c7wjxue882i0r" path="res://assets/Elements/INFO ENVIORMENT.png" id="3_jv8ie"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/ConfigController.cs" id="3_runxt"]
+[ext_resource type="Texture2D" uid="uid://bvjrf5k45j5m0" path="res://assets/Elements/ENERGY PLANT - INFO HOVER.png" id="3_sgdtt"]
 
 [sub_resource type="Theme" id="Theme_f6ssq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wggy5"]
-size = Vector2(96, 128)
+size = Vector2(208, 288)
 
 [node name="PowerPlant" type="Node2D"]
 script = ExtResource("1_qsehc")
 
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 2
+texture = ExtResource("2_nry78")
+
 [node name="Price" type="Label" parent="."]
-offset_left = -65.0
-offset_top = -67.0
-offset_right = -30.0
-offset_bottom = -42.0
+offset_left = -19.0
+offset_top = 36.0
+offset_right = 16.0
+offset_bottom = 61.0
 theme_override_font_sizes/font_size = 15
 text = "1000"
 horizontal_alignment = 1
+metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Price"]
+visible = false
 show_behind_parent = true
 layout_mode = 0
-offset_left = 2.0
-offset_top = 4.0
+offset_left = -1.0
+offset_top = 3.0
 offset_right = 49.0
 offset_bottom = 21.0
 color = Color(0.498039, 0.498039, 0.498039, 0.580392)
 
 [node name="Line2D" type="Line2D" parent="Price"]
+visible = false
 position = Vector2(69, 68)
 points = PackedVector2Array(-68, 71, -68, -65, 60, -65, 60, 71)
 width = 2.0
@@ -44,26 +53,110 @@ offset_right = 45.0
 offset_bottom = 25.0
 text = "$"
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture_filter = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_4a6uo")
+[node name="BuildInfo" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -65.0
+offset_top = -276.0
+offset_right = -25.0
+offset_bottom = -236.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BuildInfo"]
+layout_mode = 0
+offset_left = -39.0
+offset_top = -10.0
+offset_right = 169.0
+offset_bottom = 126.0
+texture = ExtResource("3_jv8ie")
+region_rect = Rect2(24, 32, 254, 152)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="ColorRect" type="ColorRect" parent="BuildInfo"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -3.0
+offset_right = 153.0
+offset_bottom = 108.0
+color = Color(0.597656, 0.597656, 0.597656, 1)
+
+[node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 98.0
+offset_bottom = 96.0
+
+[node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "$ / turn"
+
+[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Pollution"
+
+[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Building time"
+
+[node name="ContainerN" type="VBoxContainer" parent="BuildInfo/ColorRect"]
+layout_mode = 0
+offset_left = 111.0
+offset_right = 176.0
+offset_bottom = 96.0
+
+[node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "100"
+horizontal_alignment = 2
+
+[node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Yes"
+horizontal_alignment = 2
+
+[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "3 turn(s)"
+horizontal_alignment = 2
 
 [node name="NameRect" type="ColorRect" parent="."]
-offset_left = -65.0
-offset_top = 44.0
-offset_right = 65.0
-offset_bottom = 72.0
-color = Color(0.109804, 0.0705882, 0.25098, 1)
+offset_left = -56.0
+offset_top = -193.0
+offset_right = 56.0
+offset_bottom = -165.0
+color = Color(0.597656, 0.597656, 0.597656, 1)
+metadata/_edit_group_ = true
+
+[node name="InfoHover" type="Sprite2D" parent="NameRect"]
+position = Vector2(59, 24)
+texture = ExtResource("3_sgdtt")
+
+[node name="ColorRect" type="ColorRect" parent="NameRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 108.0
+offset_bottom = 38.0
+color = Color(0.597656, 0.597656, 0.597656, 1)
 
 [node name="Name" type="Label" parent="NameRect"]
 layout_mode = 0
-offset_left = 8.0
-offset_right = 120.0
-offset_bottom = 26.0
+offset_top = 1.0
+offset_right = 112.0
+offset_bottom = 27.0
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="Switch" type="CheckButton" parent="."]
 anchors_preset = 8
@@ -72,9 +165,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -21.0
-offset_top = -8.0
+offset_top = 7.0
 offset_right = 23.0
-offset_bottom = 24.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -88,12 +181,21 @@ alignment = 1
 expand_icon = true
 
 [node name="ResRect" type="ColorRect" parent="."]
-offset_left = -64.0
-offset_top = 72.0
-offset_right = 64.0
-offset_bottom = 104.0
+offset_left = -40.0
+offset_top = 88.0
+offset_right = -8.0
+offset_bottom = 117.0
+color = Color(0.398438, 0.398438, 0.398438, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ResRect"]
+layout_mode = 0
+offset_left = 72.0
+offset_right = 108.0
+offset_bottom = 25.0
+color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="Icons" type="Label" parent="ResRect"]
+visible = false
 layout_mode = 0
 offset_left = 6.0
 offset_top = 1.0
@@ -135,19 +237,27 @@ vertical_alignment = 1
 
 [node name="EnergyS" type="Label" parent="ResRect"]
 layout_mode = 0
-offset_left = 85.0
-offset_top = 6.0
-offset_right = 113.0
-offset_bottom = 29.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 30.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EnergyW" type="Label" parent="ResRect"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 6.0
-offset_right = 56.0
-offset_bottom = 29.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_left = 76.0
+offset_top = -1.0
+offset_right = 104.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Money" type="Label" parent="ResRect"]
 visible = false
@@ -160,6 +270,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 
 [node name="Line2D" type="Line2D" parent="ResRect"]
+visible = false
 position = Vector2(0, -2)
 points = PackedVector2Array(0, 35, 0, 2, 128, 2, 128, 34, 0, 34)
 width = 2.0

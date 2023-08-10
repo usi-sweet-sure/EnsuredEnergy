@@ -38,9 +38,10 @@ public partial class UI : CanvasLayer {
 
 	// Timeline update values
 	[Export]
-	public int TIMELINE_STEP_SIZE = 10;
+	public int TIMELINE_STEP_SIZE = 3;
 	[Export]
-	public int TIMELINE_MAX_VALUE = 100;
+	public int TIMELINE_MAX_VALUE = 2050;
+
 
 	// Contains the data displayed in the UI
 	private InfoData Data;
@@ -50,6 +51,7 @@ public partial class UI : CanvasLayer {
 
 	// Button that triggers the passage to a next turn
 	private Button NextTurnButton;
+	private Sprite2D NT;
 
 	// The two energy bars, showing the availability and demand
 	private InfoBar WinterEnergy;
@@ -62,6 +64,7 @@ public partial class UI : CanvasLayer {
 
 	// Date progression
 	private HSlider Timeline;
+	private AnimationPlayer TimelineAP;
 
 	// Imports
 	private ImportSlider Imports;
@@ -82,8 +85,8 @@ public partial class UI : CanvasLayer {
 	private Label ImportCostL;
 
 	// Window buttons
-	private Button PolicyButton;
-	private Button StatsButton;
+	private TextureButton PolicyButton;
+	private TextureButton StatsButton;
 
 	// Windows
 	private PolicyWindow PW;
@@ -95,6 +98,7 @@ public partial class UI : CanvasLayer {
 	private Button SettingsButton;
 	private ColorRect SettingsBox;
 	private Button LanguageButton;
+	private Button SettingsClose;
 
 	// Game Loop
 	private GameLoop GL;
@@ -104,6 +108,7 @@ public partial class UI : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
+		NT = GetNode<Sprite2D>("NextTurn");
 		NextTurnButton = GetNode<Button>("NextTurn/NextTurn");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
@@ -113,6 +118,7 @@ public partial class UI : CanvasLayer {
 		SettingsButton = GetNode<Button>("SettingsButton");
 		SettingsBox = GetNode<ColorRect>("SettingsButton/SettingsBox");
 		LanguageButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Language");
+		SettingsClose = GetNode<Button>("SettingsButton/SettingsBox/Close");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
@@ -124,6 +130,8 @@ public partial class UI : CanvasLayer {
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
 		Imports = GetNode<ImportSlider>("Import");
+		
+		TimelineAP = GetNode<AnimationPlayer>("TimePanelBlank/TimelineAnimation");
 
 		// Money Nodes
 		MoneyL = GetNode<Label>("Money/money");
@@ -142,8 +150,8 @@ public partial class UI : CanvasLayer {
 		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
-		PolicyButton = GetNode<Button>("PolicyButton");
-		StatsButton = GetNode<Button>("Stats");
+		PolicyButton = GetNode<TextureButton>("PolicyButton");
+		StatsButton = GetNode<TextureButton>("Stats");
 
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
@@ -153,6 +161,7 @@ public partial class UI : CanvasLayer {
 		NextTurnButton.Pressed += _OnNextTurnPressed;
 		SettingsButton.Pressed += _OnSettingsButtonPressed;
 		LanguageButton.Pressed += _OnLanguageButtonPressed;
+		SettingsClose.Pressed += _OnSettingsClosePressed;
 		PolicyButton.Pressed += _OnPolicyButtonPressed;
 		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
 		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
@@ -239,6 +248,7 @@ public partial class UI : CanvasLayer {
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
+		
 	}
 
 	// Updates the value of the a given bar
@@ -316,6 +326,8 @@ public partial class UI : CanvasLayer {
 					InfoType.W_ENGERGY, 
 					(float)Data.W_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
 				);
+				
+				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
 				SetTargetImport();
@@ -339,6 +351,8 @@ public partial class UI : CanvasLayer {
 					InfoType.S_ENGERGY, 
 					(float)Data.S_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
 				);
+				
+				SummerEnergy._UpdateColor(Data.S_EnergySupply < Data.S_EnergyDemand);
 				break;
 			case InfoType.SUPPORT:
 				// Sanity check, make sure that you were given enough fields
@@ -434,7 +448,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the info
 		eng._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			" ", // N/Max TODO: Figure out what to use here
 			demand_label, demand.ToString(), // T0, N0
 			supply_label, supply.ToString() // T1, N1
 		);
@@ -447,7 +461,7 @@ public partial class UI : CanvasLayer {
 		string aesth_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_aesth");
 
 		SupportBar._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			" ", // N/Max TODO: Figure out what to use here
 			afford_label, Data.EnergyAffordability.ToString(), // T0, N0
 			aesth_label, Data.EnvAesthetic.ToString() // T1, N1
 		);
@@ -460,7 +474,7 @@ public partial class UI : CanvasLayer {
 		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
 
 		EnvironmentBar._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			" ", // N/Max TODO: Figure out what to use here
 			land_label, Data.LandUse.ToString() + "%", // T0, N0
 			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
 		);
@@ -472,7 +486,8 @@ public partial class UI : CanvasLayer {
 		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
 
 		PollutionBar._UpdateInfo(
-			"n/max", // N/Max TODO: Figure out what to use here
+			// N/Max TODO: Figure out what to use here
+			" ",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
@@ -502,6 +517,26 @@ public partial class UI : CanvasLayer {
 		MoneyL.Text = Data.Money.ToString();
 		ImportCostL.Text = Data.Imports.ToString();
 	}
+	
+	// Sets the correct years on the Next Turn Animation
+	public void SetNextYears() {
+		// Retrieve the current year
+		double Year = Timeline.Value;
+
+		// Set up the animation for the year progression
+		Animation Anim = TimelineAP.GetAnimation("NextTurnAnim");
+
+		// Retrieve the animation track related to our current turn progression
+		int Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
+
+		// Retrieve the number of animation keypoints in the current track
+		int NKeys = Anim.TrackGetKeyCount(Track);
+
+		// Update the year incrementally during the animation
+		for (int i = 0; i < NKeys; i++) {
+			Anim.TrackSetKeyValue(Track, i, (Year + i).ToString());
+		}
+	}
 
 	// ==================== Interaction Callbacks ====================
 
@@ -523,7 +558,11 @@ public partial class UI : CanvasLayer {
 	public void _OnNextTurnPressed() {
 		// Trigger the next turn
 		EmitSignal(SignalName.NextTurn);
-
+		
+		// Sets the correct years and plays the next turn animation
+		SetNextYears();
+		TimelineAP.Play("NextTurnAnim");
+		
 		// Update the Timeline
 		Timeline.Value = Math.Min((Timeline.Value + TIMELINE_STEP_SIZE), TIMELINE_MAX_VALUE); 
 	}
@@ -596,9 +635,11 @@ public partial class UI : CanvasLayer {
 	public void _OnPolicyButtonPressed() {
 		// Toggle the window visibility  
 		if(PW.Visible) {
+			PW._PlayAnim("popup", false);
 			PW.Hide();
 		} else {
 			PW.Show();
+			PW._PlayAnim("popup");
 		}
 	}
 
@@ -619,6 +660,11 @@ public partial class UI : CanvasLayer {
 
 		// Update the ui
 		_UpdateUI();
+	}
+	
+	// Closes the language settings by clicking outside
+	public void _OnSettingsClosePressed() {
+		SettingsBox.Hide();
 	}
 
 	// Propagates an import update to the rest of the system

@@ -52,6 +52,9 @@ public partial class BuildMenu : CanvasLayer {
 
 	// Close button
 	private Button CloseButton;
+	
+	// Animation Player
+	private AnimationPlayer BuildMenuAP;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -74,6 +77,9 @@ public partial class BuildMenu : CanvasLayer {
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");
+		
+		// Fetch Animation Player
+		BuildMenuAP = GetNode<AnimationPlayer>("AnimationPlayer");
 
 		// Connect the associated button callbacks
 		GasButton.Pressed += _OnGasButtonPressed;
@@ -149,6 +155,7 @@ public partial class BuildMenu : CanvasLayer {
 	// When the "ShowBuildMenu" signal is triggered, show the given powerplants 
 	// in the given order using the predefined base and offset.
 	public void _OnShowBuildMenu(BuildButton bb) {
+		BuildMenuAP.Play("SlideUp");
 		// What happens when we press another button when the menu is open
 		if(IsOpen) {
 			// Clear the Menu

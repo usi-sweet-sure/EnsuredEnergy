@@ -61,6 +61,48 @@ offset_right = 674.0
 offset_bottom = 414.0
 script = ExtResource("4_mo62v")
 
+[node name="BuildButton5" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = -125.0
+offset_top = 609.0
+offset_right = -36.0
+offset_bottom = 652.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton6" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = -5.0
+offset_top = 1090.0
+offset_right = 84.0
+offset_bottom = 1133.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton7" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 2232.0
+offset_top = 863.0
+offset_right = 2321.0
+offset_bottom = 906.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton8" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 1786.0
+offset_top = 220.0
+offset_right = 1875.0
+offset_bottom = 263.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton9" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 1511.0
+offset_top = 1218.0
+offset_right = 1600.0
+offset_bottom = 1261.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton10" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 651.0
+offset_top = 1258.0
+offset_right = 740.0
+offset_bottom = 1301.0
+script = ExtResource("4_mo62v")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
