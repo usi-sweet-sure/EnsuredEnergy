@@ -106,14 +106,14 @@ public partial class InfoBar : ProgressBar {
 	}
 	
 	// The bar can have 2 colors, one when it's low and one normal
-	public void _UpdateColor(bool l) {
-		if (l) {
-			StyleBoxFlat Stylebox = this.GetThemeStylebox("fill").Duplicate() as StyleBoxFlat;
+	public void _UpdateColor(bool IsLow) {
+		if (IsLow) {
+			StyleBoxFlat Stylebox = GetThemeStylebox("fill").Duplicate() as StyleBoxFlat;
 			Tween tween = CreateTween();
 			tween.TweenProperty(Stylebox, "bg_color", LowColor, 0.8f);
 			this.AddThemeStyleboxOverride("fill", Stylebox);
 		} else {
-			StyleBoxFlat Stylebox = this.GetThemeStylebox("fill").Duplicate() as StyleBoxFlat;
+			StyleBoxFlat Stylebox = GetThemeStylebox("fill").Duplicate() as StyleBoxFlat;
 			Tween tween = CreateTween();
 			tween.TweenProperty(Stylebox, "bg_color", NormalColor, 0.8f);
 			this.AddThemeStyleboxOverride("fill", Stylebox);

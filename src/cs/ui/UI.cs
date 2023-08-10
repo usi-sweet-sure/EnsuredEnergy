@@ -65,6 +65,9 @@ public partial class UI : CanvasLayer {
 	// Date progression
 	private HSlider Timeline;
 	private AnimationPlayer TimelineAP;
+	private Animation Anim;
+	private int Track;
+	private int NKeys;
 	private double Year;
 
 	// Imports
@@ -522,9 +525,9 @@ public partial class UI : CanvasLayer {
 	// Sets the correct years on the Next Turn Animation
 	public void SetNextYears() {
 		Year = Timeline.Value;
-		var Anim = TimelineAP.GetAnimation("NextTurnAnim");
-		var Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
-		var NKeys = Anim.TrackGetKeyCount(Track);
+		Anim = TimelineAP.GetAnimation("NextTurnAnim");
+		Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
+		NKeys = Anim.TrackGetKeyCount(Track);
 		for (int i = 0; i < NKeys; i++)
 			Anim.TrackSetKeyValue(Track, i, (Year + i).ToString());
 	}

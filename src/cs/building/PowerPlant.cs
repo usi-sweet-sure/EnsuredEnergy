@@ -83,6 +83,10 @@ public partial class PowerPlant : Node2D {
 
 	// Life flag: Whether or not the plant is on
 	private bool IsAlive = true;
+	
+	// Power off modulate color
+	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
+	private Color DEFAULT_COLOR = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
 	// Children Nodes
 	private Sprite2D Sprite;
@@ -320,7 +324,7 @@ public partial class PowerPlant : Node2D {
 		Pollution = 0;
 		
 		// Changes the plant's color
-		this.Modulate = new Color(0.7f, 0.7f, 0.7f);
+		Modulate = GRAY;
 		
 		// Propagate the new values to the UI
 		_UpdatePlantData();
@@ -339,7 +343,7 @@ public partial class PowerPlant : Node2D {
 		_SetPlantFromConfig(PlantType);
 		
 		// Resets the plant's original color
-		this.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+		Modulate = DEFAULT_COLOR;
 		
 		// Propagate the new values to the UI
 		_UpdatePlantData();
