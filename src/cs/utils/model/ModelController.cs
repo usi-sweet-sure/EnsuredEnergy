@@ -288,7 +288,7 @@ public partial class ModelController : Node {
 		State = ModelState.IDLE;
 	}
 
-    // Retrieves all of the data from the model and stores it in the context
+    // Retrieves all of the data from the model and stores it in the context in a synchronous manner
     // Warning: This will override all of the data in the context with the data 
     // in the model. A coherency protocol should be used to avoid any mistakes.
     // The given current turn is used to compute the timestep in the model
@@ -297,7 +297,74 @@ public partial class ModelController : Node {
     // URL = https://toby.euler.usi.ch/bal.php
     // GET_PARAMS_1: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52}
 	// GET_PARAMS_2: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52+26}
-    public async void _FetchModelData() {
+    public void _FetchModelData() {
+
+		// Check model availability
+		if(State != ModelState.IDLE) {
+			// Enqueue the request in case that the model is busy
+			RequestQ.Enqueue((RequestType.FETCH, new List<string>()));
+		}
+
+		// Claim the model
+		State = ModelState.PENDING;
+
+        // Create the parameters
+        string resid = GetParam(RES_ID, C._GetGameID());
+        string nWinter = GetParam(N, TurnToPeakWinter(C._GetTurn()));
+		string nSummer = GetParam(N, TurnToPeakSummer(C._GetTurn()));
+
+		try {
+			// Send GET requests for both peak winter and peak summer
+			Task<string> wres = _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, nWinter));
+			Task<string> sres = _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, nSummer));
+
+			// Wait for the response
+			Task.WaitAll(wres, sres);
+
+			// Sanity check
+			if(!(wres.IsCompletedSuccessfully && sres.IsCompletedSuccessfully)) {
+				throw new Exception(
+					"Model data requests failed with error: " + wres.Status.ToString() + ", and " + sres.Status.ToString()
+				);
+			}
+
+			// Parse the received data to an XML tree
+			XDocument XmlRespW = XDocument.Parse(wres.Result);
+			XDocument XmlRespS = XDocument.Parse(sres.Result);
+
+			// Convert the given xml into a model struct
+			Model new_MW = ModelFromXML(XmlRespW);
+			Model new_MS = ModelFromXML(XmlRespS);
+
+			// Update the internal state of the context
+			C._UdpateModelFromServer(new_MW);
+			C._UdpateModelFromServer(new_MS);
+
+			// Reset the model state in case of a crash
+            State = ModelState.IDLE;
+
+		} catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+            State = ModelState.IDLE;
+
+			// Log the error data from the request
+			throw new Exception(
+				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
+				" Error: " + e.Message.ToString()
+			);
+		}
+    }
+
+	// Retrieves all of the data from the model and stores it in the context in an asynchronous manner
+    // Warning: This will override all of the data in the context with the data 
+    // in the model. A coherency protocol should be used to avoid any mistakes.
+    // The given current turn is used to compute the timestep in the model
+    // The given turn is in batches of 3 year so it will be converted to weeks for the model.
+    // This method will generate the following two GET requests:
+    // URL = https://toby.euler.usi.ch/bal.php
+    // GET_PARAMS_1: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52}
+	// GET_PARAMS_2: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52+26}
+    public async void _FetchModelDataAsync() {
 
 		// Check model availability
 		if(State != ModelState.IDLE) {
@@ -379,8 +446,17 @@ public partial class ModelController : Node {
 	private int TurnToPeakSummer(int turn) => TurnToPeakWinter(turn) + (int)(WEEKS_PER_YEAR * 0.5);
 
     // Retrieves a float attribute from a specific xml row
-    private float GetFloatAttr(IEnumerable<XElement> row, string attr) => 
-        (from r in row select r.Attribute(attr).Value.ToFloat()).ElementAt(0);
+    private float GetFloatAttr(IEnumerable<XElement> row, string attr) {
+		// Attempt the query
+		try {
+       		return (from r in row select r.Attribute(attr).Value.ToFloat()).ElementAt(0);
+
+		} catch (NullReferenceException e) {
+			// In the case where the recieved data didn't match the query, simply print it to find out what's happening
+			Debug.Print("REIVED ROW: " + row.ToArray().ToString());
+			throw e;
+		}
+	} 
 
     // Retrieves an int attribute from a specific xml row
     private int GetIntAttr(IEnumerable<XElement> row, string attr) => 
