@@ -1,16 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=15 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
 [ext_resource type="PackedScene" uid="uid://bs48lirfn2fp2" path="res://scenes/hud/ui.tscn" id="2_d60f5"]
 [ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/building/BuildMenu.tscn" id="2_wrh8p"]
+[ext_resource type="Texture2D" uid="uid://cnp5jnw2xibl8" path="res://assets/temp_swiss_map.png" id="3_fsnjl"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
+[ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
 [ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
 [ext_resource type="Script" path="res://src/cs/resources/EnvironmentManager.cs" id="10_7fban"]
+[ext_resource type="PackedScene" uid="uid://tov4uqc2eich" path="res://scenes/hud/tutorial.tscn" id="11_uite1"]
 
 [node name="MainDemo" type="Node2D"]
 script = ExtResource("1_4jam2")
@@ -18,8 +21,11 @@ script = ExtResource("1_4jam2")
 [node name="World" parent="." instance=ExtResource("1_prp6q")]
 
 [node name="Map" parent="World" index="0"]
-position = Vector2(-2767, -1359)
-scale = Vector2(4, 4)
+visible = true
+texture_filter = 2
+position = Vector2(-2064, -872)
+scale = Vector2(6, 6)
+texture = ExtResource("3_fsnjl")
 
 [node name="Nuclear" parent="World" index="1"]
 position = Vector2(1088, 276)
@@ -39,6 +45,7 @@ offset_left = 1388.0
 offset_top = 631.0
 offset_right = 1480.0
 offset_bottom = 681.0
+metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton3" parent="World" index="5"]
 offset_left = 1410.0
@@ -47,41 +54,49 @@ offset_right = 1502.0
 offset_bottom = 1213.0
 
 [node name="BuildButton4" parent="World" index="6"]
-offset_left = -440.0
-offset_top = 311.0
-offset_right = -351.0
-offset_bottom = 354.0
+offset_left = -234.0
+offset_top = 496.0
+offset_right = -145.0
+offset_bottom = 539.0
 
 [node name="BuildButton5" parent="World" index="7"]
-offset_left = -1256.0
-offset_top = 999.0
-offset_right = -1167.0
-offset_bottom = 1042.0
+offset_left = -572.0
+offset_top = 949.0
+offset_right = -483.0
+offset_bottom = 992.0
 
 [node name="BuildButton6" parent="World" index="8"]
-offset_left = -644.0
-offset_top = 1893.0
-offset_right = -555.0
-offset_bottom = 1936.0
+offset_left = -252.0
+offset_top = 1651.0
+offset_right = -163.0
+offset_bottom = 1694.0
+
+[node name="BuildButton7" parent="World" index="9"]
+metadata/_edit_use_anchors_ = true
+
+[node name="BuildButton8" parent="World" index="10"]
+metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton9" parent="World" index="11"]
-offset_left = 2410.0
-offset_top = 1982.0
-offset_right = 2499.0
-offset_bottom = 2025.0
+offset_left = 1519.0
+offset_top = 1839.0
+offset_right = 1608.0
+offset_bottom = 1882.0
 
 [node name="BuildButton10" parent="World" index="12"]
-offset_left = 498.0
-offset_top = 2112.0
-offset_right = 587.0
-offset_bottom = 2155.0
+offset_left = 249.0
+offset_top = 1941.0
+offset_right = 338.0
+offset_bottom = 1984.0
 
 [node name="Camera2D" parent="World" index="13"]
+position = Vector2(958, 538)
 anchor_mode = 1
 limit_left = -2800
 limit_top = -1000
 limit_right = 5000
 limit_bottom = 3000
+script = ExtResource("3_s6ssk")
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false
@@ -109,6 +124,8 @@ script = ExtResource("9_44b4k")
 
 [node name="EnvironmentManager" type="Node" parent="ResourceManager"]
 script = ExtResource("10_7fban")
+
+[node name="Tutorial" parent="." instance=ExtResource("11_uite1")]
 
 [editable path="World"]
 [editable path="World/Nuclear"]

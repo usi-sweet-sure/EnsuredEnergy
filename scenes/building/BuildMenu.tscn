@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://src/cs/building/BuildMenu.cs" id="1_vbiqr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="2_236y8"]
 
+[sub_resource type="Animation" id="Animation_j4va7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 712)]
+}
+
 [sub_resource type="Animation" id="Animation_kodya"]
 resource_name = "SlideUp"
 length = 0.3
@@ -17,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-2, 1080), Vector2(-2, 712)]
-}
-
-[sub_resource type="Animation" id="Animation_j4va7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-2, 712)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cqvg1"]

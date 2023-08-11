@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
 [ext_resource type="Texture2D" uid="uid://djx386wryt8ab" path="res://assets/Elements/ENVIORMENT BUTTON.png" id="9_kqwrt"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
-[ext_resource type="Texture2D" uid="uid://dg30puyh0tvif" path="res://assets/Elements/POLUTION BUTTON.png" id="10_qvjob"]
+[ext_resource type="Texture2D" uid="uid://3ypqypyywx05" path="res://assets/temp_pollution_icon.png" id="10_vhysx"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
 
 [sub_resource type="Animation" id="Animation_f32o7"]
@@ -301,8 +301,7 @@ offset_top = -38.0
 offset_right = 82.0
 offset_bottom = 32.0
 theme_override_font_sizes/font_size = 48
-text = "2023
-"
+text = "2020"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -516,10 +515,9 @@ text = "Pollution"
 horizontal_alignment = 2
 
 [node name="Temp" type="Sprite2D" parent="Poll"]
-modulate = Color(1, 1, 1, 0.313726)
-position = Vector2(56, 55.5)
-scale = Vector2(1.02703, 1.02027)
-texture = ExtResource("10_qvjob")
+position = Vector2(63, 52.73)
+scale = Vector2(0.0802083, 0.0752813)
+texture = ExtResource("10_vhysx")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
 offset_left = 38.0
