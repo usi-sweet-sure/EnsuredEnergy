@@ -49,6 +49,20 @@ public struct Model {
     // The season the data is correlated to
     public ModelSeason _Season;
 
+    // Constructor using only the season
+    public Model(ModelSeason Season) {
+        // Initialize the internal fields
+        _Availability = new Availability();
+        _Capacity = new Capacity();
+        _Demand = new Demand();
+
+        // The original state will always be invalid
+        _MCS = ModelCoherencyState.INVALID;
+
+        // Set the season to the given season
+        _Season = Season;
+    }
+
     // Base Constructor for the model
     public Model(
         Availability A = new Availability(), 
@@ -71,6 +85,17 @@ public struct Model {
 
     // Checks the validity of the model data
     public bool _IsValid() => _MCS != ModelCoherencyState.INVALID;
+
+    // Updates the internal fields of a given model
+    public void _UpdateFields(Availability A, Capacity C, Demand D, ModelCoherencyState MCS) {
+        // Update the model's fields
+        _Availability = A;
+        _Capacity = C;
+        _Demand = D;
+
+        // Update the model's coherency state to shared as the data is from the server
+        _MCS = MCS;
+    }
 }
 
 // Represents the data retrieved from the availability columns of the model

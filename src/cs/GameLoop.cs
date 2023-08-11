@@ -191,6 +191,8 @@ public partial class GameLoop : Node2D {
 
 		// Initialize the model
 		MC._InitModel();
+
+		// Get the initial data from the model
 		MC._FetchModelData();
 
 		// Perform initial Resouce update
@@ -205,11 +207,6 @@ public partial class GameLoop : Node2D {
 
 		// Initialize resources
 		RM._UpdateResourcesUI();
-		
-		// Get the initial data from the model
-		MC._FetchModelData(GetTurn());
-
-		Debug.Print("MODEL VALIDITY: " + C._GetModelValidity());
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
@@ -218,15 +215,21 @@ public partial class GameLoop : Node2D {
 		// Decerement the remaining turns and check for game end
 		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
 
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
 			// TODO: Update model with our current data
 
 			// Get new data from model
-			MC._FetchModelData(GetTurn()); 
+			MC._FetchModelData(); 
 
 			// Update Resources 
 			UpdateResources(true);
 
 		} else if(RemainingTurns <= 0) {
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
 			// End the game if all turns have been spent
 			EndGame();
 		}

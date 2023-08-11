@@ -33,34 +33,38 @@ public partial class Context : Node {
     // Current internal storage of the game instance's name
     private string ResName = "";
 
+    // The Curent Turn
+    private int Turn = 0;
+
     // Internal representation of the most recent data retrieved from the model
-    private Model M;
+    private Model MSummer;
+    private Model MWinter;
 
     // ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-        // Initialize model
-        M = new Model(); 
+        // Initialize models
+        MSummer = new Model(ModelSeason.SUMMER); 
+        MWinter = new Model(ModelSeason.WINTER);
 	}    
 
     // ==================== Public API ====================
 
     // Updates the internal model using data retrieved from the server
     // This method should only be called from the ModelController directly
-    public void _UdpateModelFromServer(Availability A, Capacity C, Demand D) {
-        // Update the model's fields
-        M._Availability = A;
-        M._Capacity = C;
-        M._Demand = D;
-
-        // Update the model's coherency state to shared as the data is from the server
-        M._MCS = ModelCoherencyState.SHARED;
+    public void _UdpateModelFromServer(ModelSeason S, Availability A, Capacity C, Demand D) {
+        // Check which model needs to be updated using the given season
+        if(S == ModelSeason.WINTER) {
+            MWinter._UpdateFields(A, C, D, ModelCoherencyState.SHARED);
+        } else {
+            MSummer._UpdateFields(A, C, D, ModelCoherencyState.SHARED);
+        }
     }
 
     // Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method
     public void _UdpateModelFromServer(Model new_M) {
-        _UdpateModelFromServer(new_M._Availability, new_M._Capacity, new_M._Demand);
+        _UdpateModelFromServer(new_M._Season, new_M._Availability, new_M._Capacity, new_M._Demand);
     }
 
     // Updates the current ID (should only be done once per game)
@@ -81,6 +85,11 @@ public partial class Context : Node {
         ResName = name;
     }
 
+    // Updates the turn (should only be called by the GameLoop)
+    public void _UpdateTurn(int newTurn) {
+        Turn = newTurn;
+    }
+
     // Fetches the game ID and thorws an exception if it's not set
     // Exception: NullReferenceException -> ID has not been set yet
     public int _GetGameID() {
@@ -96,5 +105,10 @@ public partial class Context : Node {
     public string _GetGameName() => ResName;
 
     // Returns whether or not the model is valid
-    public bool _GetModelValidity() => M._IsValid();
+    public bool _GetModelValidity(ModelSeason S) => 
+        S == ModelSeason.WINTER ? MWinter._IsValid() : MSummer._IsValid();
+
+    // Returns the current turn
+    public int _GetTurn() => Turn;
+
 }

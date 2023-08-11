@@ -75,6 +75,15 @@ public partial class ModelController : Node {
 	private enum ModelState { IDLE, PENDING };
 	private ModelState State;
 
+	// ModelController Queue
+	// This is used to store pending requests from the model
+	private enum RequestType { INIT, FETCH, NAME };
+
+	// The request queue contains the following information:
+	// 1) The type of request being queued  
+	// 2) Any potential parameters needed for said request
+	private Queue<(RequestType, List<string>)> RequestQ;
+
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -86,7 +95,51 @@ public partial class ModelController : Node {
 
 		// Initialize the model's state
 		State = ModelState.IDLE;
-	}    
+
+		// Initialize the request queue
+		RequestQ = new Queue<(RequestType, List<string>)>();
+	}
+
+    // Called on every frame
+	// In our case, used to handle outstanding model requests
+    public override void _Process(double delta) {
+		// Call the base process function
+        base._Process(delta);  
+
+		// Check the model state
+		if(State == ModelState.IDLE) {
+			// Check for outstanding requests
+			if(RequestQ.Count > 0) {
+				// Handle the oldest request first
+				(RequestType RT, List<string> par) = RequestQ.Dequeue();
+
+				// Find which function is associated to the given request
+				switch(RT) {
+					// Call the initModel method
+					case RequestType.INIT:
+						_InitModel();
+						break;
+					
+					// Call the FetchModelData Method
+					case RequestType.FETCH:
+						_FetchModelData();
+						break;
+
+					// Call the UpdateModelName Method
+					case RequestType.NAME:
+						// Check that a new name was given
+						string name = par.Count == 0 ? GenerateName() : par.ElementAt(0);
+
+						// Rerun the update request
+						_UpdateModelName(name);
+						break;
+
+					default: 
+						return;
+				}
+			}
+		}
+    }
 
     // ==================== Public API (For General Checks) ====================
 
@@ -105,8 +158,9 @@ public partial class ModelController : Node {
 	public void _InitModel() {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
-			// TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
-			throw new Exception("Model is currently handling another request!");
+			// Enqueue our request and come back later
+			RequestQ.Enqueue((RequestType.INIT, new List<string>()));
+			return;
 		}
 		
 		// Update the Model's state
@@ -172,8 +226,10 @@ public partial class ModelController : Node {
 	public async void _UpdateModelName(string new_name) {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
-			// TODO: Allow for backlogging of requests, this requires abstract modeling of requests and storing them in a list
-			throw new Exception("Model is currently handling another request!");
+            // Enqueue our request and come back later
+            List<string> par = new() { new_name };
+            RequestQ.Enqueue((RequestType.NAME, par));
+			return;
 		}
 		
 		// Update the Model's state
@@ -188,10 +244,10 @@ public partial class ModelController : Node {
 		};
 
 		// Encode it in a content header
-		var Payload = new FormUrlEncodedContent(Data);
+		FormUrlEncodedContent Payload = new (Data);
 
 		// Create the POST request
-		var Res = await _HTTPC.PostAsync(ModelURL(RES_FILE, UPDATE_METHOD), Payload);
+		HttpResponseMessage Res = await _HTTPC.PostAsync(ModelURL(RES_FILE, UPDATE_METHOD), Payload);
 
 		// Make sure that the connection succeeded
 		try {
@@ -209,7 +265,7 @@ public partial class ModelController : Node {
 		}
 
 		// Retrieve the response from the model
-		var SRes = await Res.Content.ReadAsStringAsync();
+		string SRes = await Res.Content.ReadAsStringAsync();
 
 		// Parse the resceived data to an XML tree
 		XDocument XmlResp = XDocument.Parse(SRes);
@@ -237,37 +293,56 @@ public partial class ModelController : Node {
     // in the model. A coherency protocol should be used to avoid any mistakes.
     // The given current turn is used to compute the timestep in the model
     // The given turn is in batches of 3 year so it will be converted to weeks for the model.
-    // This method will generate the following GET request:
+    // This method will generate the following two GET requests:
     // URL = https://toby.euler.usi.ch/bal.php
-    // GET_PARAMS: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52}
-    public async void _FetchModelData(int current_turn) {
+    // GET_PARAMS_1: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52}
+	// GET_PARAMS_2: ?mth=disp&res_id=Context.ResId&n=${@param{current_turn}*3*52+26}
+    public async void _FetchModelData() {
+
+		// Check model availability
+		if(State != ModelState.IDLE) {
+			// Enqueue the request in case that the model is busy
+			RequestQ.Enqueue((RequestType.FETCH, new List<string>()));
+		}
+
+		// Claim the model
+		State = ModelState.PENDING;
 
         // Create the parameters
         string resid = GetParam(RES_ID, C._GetGameID());
-        string n = GetParam(N, TurnToWeek(current_turn));
+        string nWinter = GetParam(N, TurnToPeakWinter(C._GetTurn()));
+		string nSummer = GetParam(N, TurnToPeakSummer(C._GetTurn()));
 
-        // Make the request and make sure it works
-        try {
-            // Send GET request
-            var Res = await _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, n));
+		try {
+			// Send GET requests for both peak winter and peak summer
+			string wres = await _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, nWinter));
+			string sres = await _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, nSummer));
 
-            // Parse the received data to an XML tree
-		    XDocument XmlResp = XDocument.Parse(Res);
+			// Parse the received data to an XML tree
+			XDocument XmlRespW = XDocument.Parse(wres);
+			XDocument XmlRespS = XDocument.Parse(sres);
 
-            // Convert the given xml into a model struct
-            Model new_M = ModelFromXML(XmlResp);
+			// Convert the given xml into a model struct
+			Model new_MW = ModelFromXML(XmlRespW);
+			Model new_MS = ModelFromXML(XmlRespS);
 
-            // Update the internal state of the context
-            C._UdpateModelFromServer(new_M);
+			// Update the internal state of the context
+			C._UdpateModelFromServer(new_MW);
+			C._UdpateModelFromServer(new_MS);
 
-        } catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+            State = ModelState.IDLE;
 
-            // Log the error data from the request
+		} catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+            State = ModelState.IDLE;
+
+			// Log the error data from the request
 			throw new Exception(
 				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
 				" Error: " + e.Message.ToString()
 			);
-        } 
+		}
     }
 
 	// ==================== Internal Helper Methods ====================
@@ -299,8 +374,9 @@ public partial class ModelController : Node {
     private string GetParam(string name, string value) => name + "=" + value;
     private string GetParam<T>(string name, T value) => name + "=" + value.ToString();
 
-    // Converts a turn number into a week number
-    private int TurnToWeek(int turn) => turn * YEARS_PER_TURN * WEEKS_PER_YEAR;
+    // Converts a turn number into a week number: either peak winter or peak summer
+    private int TurnToPeakWinter(int turn) => turn * YEARS_PER_TURN * WEEKS_PER_YEAR;
+	private int TurnToPeakSummer(int turn) => TurnToPeakWinter(turn) + (int)(WEEKS_PER_YEAR * 0.5);
 
     // Retrieves a float attribute from a specific xml row
     private float GetFloatAttr(IEnumerable<XElement> row, string attr) => 
