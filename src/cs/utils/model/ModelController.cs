@@ -34,13 +34,17 @@ public partial class ModelController : Node {
 	private const string MODEL_BASE_URL = "https://toby.euler.usi.ch";
 	private const string RES_FILE = "res.php";
 	private const string BAL_FILE = "bal.php";
+	private const string EVT_FILE = "evt.php";
 	private const string INSERT_METHOD = "mth=insert";
 	private const string UPDATE_METHOD = "mth=update";
 	private const string DISP_METHOD = "mth=disp";
+	private const string UPSERT_METHOD = "mth=upsert";
 	private const string RES_ID = "res_id";
+	private const string COL_ID = "col_id";
 	private const string RES_NAME = "res_name";
 	private const string RES_V1 = "res_v1";
 	private const string RES_V2 = "res_v2";
+	private const string EVT_V1 = "v1"; // The value that is set for the col event
 	private const string N = "n"; // The current week we are requesting
 	private const string SEASON = "s"; // The season related to the data (s < 0.5 -> WINTER, s >= 0.5 -> SUMMER)
 	private const string A_GAS = "avl_gas";
@@ -54,6 +58,11 @@ public partial class ModelController : Node {
 	private const string C_SOLAR = "cap_ele_sol";
 	private const string C_WIND = "cap_ele_wnd";
 	private const string D_BASE = "dem_base";
+	private const string COL_CAP_GAS = "30";
+	private const string COL_CAP_NUC = "31";
+	private const string COL_CAP_RIV = "32";
+	private const string COL_CAP_SOL = "35";
+	private const string COL_CAP_WND = "36";
 
 	// Game value constants
 	private const int YEARS_PER_TURN = 3;
@@ -77,7 +86,7 @@ public partial class ModelController : Node {
 
 	// ModelController Queue
 	// This is used to store pending requests from the model
-	private enum RequestType { INIT, FETCH, NAME };
+	private enum RequestType { INIT, FETCH, NAME, EVENT };
 
 	// The request queue contains the following information:
 	// 1) The type of request being queued  
@@ -122,7 +131,7 @@ public partial class ModelController : Node {
 					
 					// Call the FetchModelData Method
 					case RequestType.FETCH:
-						_FetchModelData();
+						_FetchModelDataAsync();
 						break;
 
 					// Call the UpdateModelName Method
@@ -133,7 +142,21 @@ public partial class ModelController : Node {
 						// Rerun the update request
 						_UpdateModelName(name);
 						break;
+						
+					// Call the UpsertModelColumnData Method  
+					case RequestType.EVENT:
+						// Sanity check
+						if(par.Count == 0) {
+							throw new ArgumentException("No parameters were stored for an event request!");
+						}
 
+						// Decode the parameters using a forced implicit conversion
+						ModelCol mc = par[0];
+						Building b = par[1];
+
+						// Rerun the upsert request
+						_UpsertModelColumnDataAsync(mc, b);
+						break;
 					default: 
 						return;
 				}
@@ -159,7 +182,7 @@ public partial class ModelController : Node {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
 			// Enqueue our request and come back later
-			RequestQ.Enqueue((RequestType.INIT, new List<string>()));
+			RequestQ.Enqueue((RequestType.INIT, new ()));
 			return;
 		}
 		
@@ -226,9 +249,11 @@ public partial class ModelController : Node {
 	public async void _UpdateModelName(string new_name) {
 		// Check that the model is free
 		if(State != ModelState.IDLE) {
-			// Enqueue our request and come back later
-			List<string> par = new() { new_name };
-			RequestQ.Enqueue((RequestType.NAME, par));
+			// Enqueue our request and try again back later
+			RequestQ.Enqueue((
+				RequestType.NAME, 
+				new () { new_name }
+			));
 			return;
 		}
 		
@@ -302,7 +327,8 @@ public partial class ModelController : Node {
 		// Check model availability
 		if(State != ModelState.IDLE) {
 			// Enqueue the request in case that the model is busy
-			RequestQ.Enqueue((RequestType.FETCH, new List<string>()));
+			RequestQ.Enqueue((RequestType.FETCH, new ()));
+			return;
 		}
 
 		// Claim the model
@@ -373,6 +399,7 @@ public partial class ModelController : Node {
 		if(State != ModelState.IDLE) {
 			// Enqueue the request in case that the model is busy
 			RequestQ.Enqueue((RequestType.FETCH, new List<string>()));
+			return;
 		}
 
 		// Claim the model
@@ -421,6 +448,84 @@ public partial class ModelController : Node {
 		}
 	}
 
+	// Updates the model columns associated to the given column type and powerplant type
+	// This method checks the state of the model's coherency before making an update
+	// If the model is already shared, then no request is generated.
+	// A request is only generated if the model is in the Modified state.
+	// The generated GET requests are as follows:  
+	// URL = URL = https://toby.euler.usi.ch/evt.php
+	// GET_PARAMS_1 = ?mth=upsert&
+	//					res_id=Context.ResId&
+	//					col_id=${@param{col_type}~@param{PPType}}&
+	//					n=${{C.Turn}*3*52}&
+	//					v1=${C.MWinter.@param{col_type}.@param{PPType}}
+	public async void _UpsertModelColumnDataAsync(ModelCol mc, Building b) {
+		// Sanity check: Trees aren't recorded in the model
+		if(b.type == Building.Type.TREE) {
+			// Ignore trees
+			return;
+		}
+
+		// Check model availability
+		if(State != ModelState.IDLE) {
+			// Enqueue request and try again later
+			RequestQ.Enqueue((
+				RequestType.EVENT, 
+				new () { mc.ToString(), b.ToString() } // Encode request parameters for easier storage
+			));
+			return;
+		}
+
+		// Claim the model
+		State = ModelState.PENDING;
+
+		// Create the get parameters
+		string res_id = GetParam(RES_ID, C._GetGameID());
+		string col_id = GetParam(COL_ID, ColIdFromTypes(mc, b));
+		string n = GetParam(N, TurnToPeakWinter(C._GetTurn()));
+		string v1 = GetParam(EVT_V1, GetModelValue(mc, b));
+
+		try {
+			// Signal that the request was sent
+			Debug.Print("Event upsert request sent");  
+
+			// Send the GET request
+			string res = await _HTTPC.GetStringAsync(ModelURL(
+				EVT_FILE, 
+				UPSERT_METHOD, 
+				res_id, 
+				col_id,
+				n,
+				v1
+			));
+
+			// Check that the results aren't empty
+			Debug.Print("EVENT RES: " + res);
+
+			// Parse the received data to an XML tree
+			XDocument XmlResp = XDocument.Parse(res);
+
+			// Convert the given xml into a model struct
+			Model new_M = ModelFromXML(XmlResp);
+
+			// Update the internal state of the context
+			C._UdpateModelFromServer(new_M);
+
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+		} catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+			// Log the error data from the request
+			throw new Exception(
+				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
+				" Error: " + e.Message.ToString()
+			);
+		}
+	}
+
 	// ==================== Internal Helper Methods ====================
 
 	// Generate a random name for the model
@@ -430,7 +535,7 @@ public partial class ModelController : Node {
 
 		// Pick a word at random and concatenate an arbitrary number to it
 		Random rnd = new Random();
-		return words[rnd.Next(100) % 100] + "_" + (rnd.Next()).ToString();
+		return words[rnd.Next(100) % 100] + "_" + rnd.Next().ToString();
 	}
 
 	// Groups the URL bits into a usable URL string
@@ -471,6 +576,10 @@ public partial class ModelController : Node {
 	private int GetIntAttr(IEnumerable<XElement> row, string attr) => 
 		(from r in row select r.Attribute(attr).Value.ToInt()).ElementAt(0);
 
+	// Retrives the value associated to the given model column and building type
+	private string GetModelValue(ModelCol mc, Building b) => 
+		C._GetModel(ModelSeason.WINTER)._GetColumn(mc)._GetField(b);
+
 	// Converts a model XML into a Model Struct
 	// The given xml is expected to be the response from the bal.disp() server method
 	private Model ModelFromXML(XDocument xml) {
@@ -492,6 +601,9 @@ public partial class ModelController : Node {
 			MS
 		);
 	}
+
+	// Converts a given pair of model type and power plant type into its associated column id
+	private string ColIdFromTypes(ModelCol mc, Building b) => (mc + b).ToString();
 
 	// Extracts the availability columns from a given row query
 	private Availability AvailabilityFromRow(IEnumerable<XElement> row) => new Availability(

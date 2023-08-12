@@ -144,6 +144,9 @@ public partial class Context : Node {
     // Returns the current turn
     public int _GetTurn() => Turn;
 
+    // Returns the requested model
+    public Model _GetModel(ModelSeason S) => 
+        S == ModelSeason.WINTER ? MWinter : MSummer;
     // ==================== Internal Helpers ====================
 
     // Resets the internal PPStats to set all types to 0
