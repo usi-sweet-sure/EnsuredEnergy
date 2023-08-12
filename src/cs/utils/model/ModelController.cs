@@ -384,9 +384,15 @@ public partial class ModelController : Node {
 		string nSummer = GetParam(N, TurnToPeakSummer(C._GetTurn()));
 
 		try {
+			// Signal that the request was sent
+			Debug.Print("Fetch request sent");  
+
 			// Send GET requests for both peak winter and peak summer
 			string wres = await _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, nWinter));
 			string sres = await _HTTPC.GetStringAsync(ModelURL(BAL_FILE, DISP_METHOD, resid, nSummer));
+
+			// Check that the results aren't empty
+			Debug.Print(wres + "\n" + sres);
 
 			// Parse the received data to an XML tree
 			XDocument XmlRespW = XDocument.Parse(wres);

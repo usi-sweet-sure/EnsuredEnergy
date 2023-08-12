@@ -212,7 +212,7 @@ public partial class ResourceManager : Node {
 
 	// Simply reacts to a power plant toggle by updating the UI
 	// The parameter is only used for signal interface compatibility
-	private void _OnPowerPlantSwitchToggle(bool b=false) { 
+	private void _OnPowerPlantSwitchToggle(bool b) { 
 		_UpdateResourcesUI();
 	}
 	

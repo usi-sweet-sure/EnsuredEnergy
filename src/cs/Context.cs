@@ -17,6 +17,7 @@
 */
 using Godot;
 using System;
+using System.Collections.Generic;
 
 // Global state of the game
 // This will record all persistent data such as:
@@ -40,6 +41,9 @@ public partial class Context : Node {
     private Model MSummer;
     private Model MWinter;
 
+    // Dictionary to link power plant type to the number of plants
+    private Dictionary<Building.Type, int> PPStats; 
+
     // ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -47,9 +51,35 @@ public partial class Context : Node {
         // Initialize models
         MSummer = new Model(ModelSeason.SUMMER); 
         MWinter = new Model(ModelSeason.WINTER);
+
+        // Initialize the internal stats
+        ResetPPStats();
 	}    
 
     // ==================== Public API ====================
+
+    // Initialize the internal stats dictionary given a list of powerplants
+    public void _InitializePPStats(List<PowerPlant> PPs) {
+        // Reset the stats
+        ResetPPStats();
+
+        // Loop over all power plants and aggregate the data
+        foreach(PowerPlant pp in PPs) {
+            // Increment the number of plants of that type
+            PPStats[pp.PlantType]++;
+        }
+    }
+
+    // Updates the PPStats to modifiy the number of plants of a certain type
+    public void _UpdatePPStats(Building b, bool inc=true) {
+        // Sanity check
+        if(!inc && PPStats[b] == 0) {
+            // You can't decrement a type of building that wasn't build
+            throw new Exception(b + " can't be decremented as it is at 0 in PPStats!");
+        }
+        // Increment or decrement the given statistic
+        PPStats[b] = inc ? PPStats[b] + 1 : PPStats[b] - 1;
+    }
 
     // Updates the internal model using data retrieved from the server
     // This method should only be called from the ModelController directly
@@ -90,6 +120,9 @@ public partial class Context : Node {
         Turn = newTurn;
     }
 
+    // Retrieves the building statistics for a given building type
+    public int _GetPPStat(Building b) => PPStats[b];
+
     // Fetches the game ID and thorws an exception if it's not set
     // Exception: NullReferenceException -> ID has not been set yet
     public int _GetGameID() {
@@ -111,4 +144,22 @@ public partial class Context : Node {
     // Returns the current turn
     public int _GetTurn() => Turn;
 
+    // ==================== Internal Helpers ====================
+
+    // Resets the internal PPStats to set all types to 0
+    private void ResetPPStats() {
+        // Make sure that the stats are clear
+        if(PPStats != null) {
+            PPStats.Clear();
+        }
+
+        // Initialize the internal stats
+        PPStats = new() {
+            {Building.Type.GAS, 0},
+            {Building.Type.HYDRO, 0},
+            {Building.Type.NUCLEAR, 0},
+            {Building.Type.SOLAR, 0},
+            {Building.Type.TREE, 0}
+        };
+    }
 }

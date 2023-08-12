@@ -189,6 +189,9 @@ public partial class GameLoop : Node2D {
 		// Update the game state
 		GS = GameState.PLAYING;
 
+		// Initialize the context stats
+		C._InitializePPStats(PowerPlants);
+
 		// Initialize the model
 		MC._InitModel();
 
@@ -221,7 +224,7 @@ public partial class GameLoop : Node2D {
 			// TODO: Update model with our current data
 
 			// Get new data from model
-			MC._FetchModelData(); 
+			MC._FetchModelDataAsync(); 
 
 			// Update Resources 
 			UpdateResources(true);
@@ -259,6 +262,9 @@ public partial class GameLoop : Node2D {
 			// Destroy the power plant
 			PowerPlants.Remove(pp);
 
+			// Update the context stats
+			C._UpdatePPStats(pp.PlantType, false);
+
 			// Connect the new build button to our signal
 			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
 
@@ -276,6 +282,9 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
+
+			// Update the context stats
+			C._UpdatePPStats(pp.PlantType);
 		}
 
 		// Propagate the updates to the resource manager
