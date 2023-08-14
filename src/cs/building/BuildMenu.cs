@@ -66,18 +66,18 @@ public partial class BuildMenu : CanvasLayer {
 		Hide();
 
 		// Fetch Power plants
-		GasPlant = GetNode<PowerPlant>("ColorRect/Gas");
-		SolarPlant = GetNode<PowerPlant>("ColorRect/Solar");
-		HydroPlant = GetNode<PowerPlant>("ColorRect/Hydro");
-		TreePlant = GetNode<PowerPlant>("ColorRect/Tree");
-		WindPlant = GetNode<PowerPlant>("ColorRect/Wind");
+		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar2/Gas");
+		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/Solar");
+		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar2/Hydro");
+		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar2/Tree");
+		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/Wind");
 
 		// Fetch associated buttons
-		GasButton = GetNode<Button>("ColorRect/Gas/GasButton");
-		SolarButton = GetNode<Button>("ColorRect/Solar/SolarButton");
-		HydroButton = GetNode<Button>("ColorRect/Hydro/HydroButton");
-		TreeButton = GetNode<Button>("ColorRect/Tree/TreeButton");
-		WindButton = GetNode<Button>("ColorRect/Wind/WindButton");
+		GasButton = GetNode<Button>("TabContainer/TabBar2/Gas/GasButton");
+		SolarButton = GetNode<Button>("TabContainer/TabBar/Solar/SolarButton");
+		HydroButton = GetNode<Button>("TabContainer/TabBar2/Hydro/HydroButton");
+		TreeButton = GetNode<Button>("TabContainer/TabBar2/Tree/TreeButton");
+		WindButton = GetNode<Button>("TabContainer/TabBar/Wind/WindButton");
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");
@@ -148,10 +148,10 @@ public partial class BuildMenu : CanvasLayer {
 	
 	// Sets the position of the given plant according to its position in the list
 	private void SetPlantPosition(ref PowerPlant pp, int idx) {
-		pp.Position = new Vector2(
-			BuildingSpriteBase.X + (idx * BuildingSpriteOffset), 
-			BuildingSpriteBase.Y
-		);
+		//pp.Position = new Vector2(
+//			BuildingSpriteBase.X + (idx * BuildingSpriteOffset), 
+//			BuildingSpriteBase.Y
+//		);
 
 		// Make sure that these plants are in preview mode
 		pp._UpdateIsPreview(true);
