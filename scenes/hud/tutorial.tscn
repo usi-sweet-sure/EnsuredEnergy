@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tov4uqc2eich"]
+[gd_scene load_steps=7 format=3 uid="uid://ciphd0cmpslrn"]
 
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="1_ua11s"]
 [ext_resource type="Script" path="res://src/cs/ui/Tutorial.cs" id="1_xyv1m"]
@@ -10,7 +10,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Rect/Arrow:position")
+tracks/0/path = NodePath("TutoPopUp/Arrow:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Rect/Arrow:position")
+tracks/0/path = NodePath("TutoPopUp/Arrow:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -52,7 +52,7 @@ offset_bottom = 1129.0
 color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
 
-[node name="Rect" type="NinePatchRect" parent="."]
+[node name="TutoPopUp" type="NinePatchRect" parent="."]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 anchors_preset = 8
 anchor_left = 0.5
@@ -72,7 +72,7 @@ patch_margin_top = 18
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="ColorRect" type="ColorRect" parent="Rect"]
+[node name="ColorRect" type="ColorRect" parent="TutoPopUp"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -90,7 +90,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.596078, 0.596078, 0.596078, 1)
 
-[node name="Text" type="RichTextLabel" parent="Rect/ColorRect"]
+[node name="Text" type="RichTextLabel" parent="TutoPopUp/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -106,10 +106,9 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 29
 bbcode_enabled = true
-text = "You have been appointed to [b]manage the power grid[/b]
-and ensure a sustainable and resilient energy sector. "
+text = "Congratulations ! You have been designated to [b]manage the power grid[/b] and ensure a sustainable and resilient energy sector."
 
-[node name="Button" type="Button" parent="Rect/ColorRect"]
+[node name="Button" type="Button" parent="TutoPopUp/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,13 +122,13 @@ grow_vertical = 2
 focus_mode = 0
 flat = true
 
-[node name="Arrow" type="Sprite2D" parent="Rect"]
+[node name="Arrow" type="Sprite2D" parent="TutoPopUp"]
 position = Vector2(485, 267)
 rotation = 3.14159
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_xv1gs")
 
-[node name="Rect2" type="NinePatchRect" parent="."]
+[node name="InfoBubble" type="NinePatchRect" parent="."]
 visible = false
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 anchors_preset = 8
@@ -151,7 +150,7 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Rect2"]
+[node name="ColorRect" type="ColorRect" parent="InfoBubble"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -169,7 +168,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
-[node name="Text" type="RichTextLabel" parent="Rect2/ColorRect"]
+[node name="Text" type="RichTextLabel" parent="InfoBubble/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -185,15 +184,15 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
-text = "Each turn, you have to reach the demand for summer and winter"
+text = "Each turn, you have to reach the demand for summer and winter."
 
-[node name="Arrow" type="Sprite2D" parent="Rect2"]
+[node name="Arrow" type="Sprite2D" parent="InfoBubble"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(-12, 66)
 texture = ExtResource("3_xv1gs")
 region_rect = Rect2(24, 24, 30, 32)
 
-[node name="Rect3" type="NinePatchRect" parent="."]
+[node name="InfoBubble2" type="NinePatchRect" parent="."]
 visible = false
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 anchors_preset = 8
@@ -215,7 +214,7 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Rect3"]
+[node name="ColorRect" type="ColorRect" parent="InfoBubble2"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -233,7 +232,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
-[node name="Text" type="RichTextLabel" parent="Rect3/ColorRect"]
+[node name="Text" type="RichTextLabel" parent="InfoBubble2/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -251,13 +250,13 @@ theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "Import more energy"
 
-[node name="Arrow" type="Sprite2D" parent="Rect3"]
+[node name="Arrow" type="Sprite2D" parent="InfoBubble2"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(-12, 83)
 texture = ExtResource("3_xv1gs")
 region_rect = Rect2(24, 24, 30, 32)
 
-[node name="Rect4" type="NinePatchRect" parent="."]
+[node name="InfoBubble3" type="NinePatchRect" parent="."]
 visible = false
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 anchors_preset = 8
@@ -279,7 +278,7 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Rect4"]
+[node name="ColorRect" type="ColorRect" parent="InfoBubble3"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -297,7 +296,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
-[node name="Text" type="RichTextLabel" parent="Rect4/ColorRect"]
+[node name="Text" type="RichTextLabel" parent="InfoBubble3/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -315,7 +314,7 @@ theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "Build new power plants"
 
-[node name="Arrow" type="Sprite2D" parent="Rect4"]
+[node name="Arrow" type="Sprite2D" parent="InfoBubble3"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(-12, 66)
 texture = ExtResource("3_xv1gs")

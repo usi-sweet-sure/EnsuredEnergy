@@ -1,0 +1,10 @@
+<tutorial>
+    <text id="0">Congratulazioni! Siete stati incaricati di [b]gestire la rete energetica[/b] per garantire un settore sostenibile e resiliente.</text>
+	</text id="1">Dovete [b]fornire[/b] abbastanza [b]energia[/b] per tutta la popolazione. \Le persone hanno bisogno di caricare i loro telefoni e di giocare ai loro videogiochi preferiti.
+	</text id="2">È necessario [b]fornire[/b] abbastanza [b]energia[/b] per tutta la popolazione. \Le persone hanno bisogno di ricaricare i loro telefoni e di giocare ai loro videogiochi preferiti.
+	</text id="3">Ci sono diversi modi per fornire più energia: si può importare energia, ma questo inquina e può essere costoso.</text>
+	</text id="4">Ci sono diversi modi per fornire più energia: si possono costruire nuove centrali elettriche, ma questo costa tempo e denaro.</text>
+<tutorial>
+<infoBubble id="0">Ogni turno, bisogna soddisfare la domanda per l'estate e per l'inverno.</infoBubble>
+<infoBubble id="1">Importa più energia qui</infoBubble>
+<infoBubble id="2">Costruire nuove centrali elettriche</infoBubble>

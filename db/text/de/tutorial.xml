@@ -1,0 +1,10 @@
+<tutorial>
+    <text id="0">Glückwunsch !\n Sie wurden dazu bestimmt, [b]das Stromnetz[/b] zu verwalten und einen nachhaltigen und widerstandsfähigen Energiesektor sicherzustellen.</text>
+	</text id="1">Sie müssen [b]genügend [b]Energie[/b] für Ihre Bevölkerung bereitstellen. \Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
+	</text id="2">Sie müssen [b]genügend [b]Energie[/b] für Ihre Bevölkerung bereitstellen. \Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
+	</text id="3">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:\n- Man kann Energie importieren, aber das verschmutzt und kann teuer sein.</text>
+	</text id="4">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:\n- Man kann neue Kraftwerke bauen, aber das kostet Zeit und Geld.</text>
+<tutorial>
+<infoBubble id="0">Jede Runde muss man den Bedarf für Sommer und Winter erreichen.</infoBubble>
+<infoBubble id="1">Importiere hier mehr Energie</infoBubble>
+<infoBubble id="2">Neue Kraftwerke bauen</infoBubble>

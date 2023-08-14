@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
 [ext_resource type="Texture2D" uid="uid://djx386wryt8ab" path="res://assets/Elements/ENVIORMENT BUTTON.png" id="9_kqwrt"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
-[ext_resource type="Texture2D" uid="uid://3ypqypyywx05" path="res://assets/temp_pollution_icon.png" id="10_vhysx"]
+[ext_resource type="Texture2D" path="res://assets/temp_pollution_icon.png" id="10_vhysx"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
 
 [sub_resource type="Animation" id="Animation_f32o7"]
@@ -520,6 +520,7 @@ scale = Vector2(0.0802083, 0.0752813)
 texture = ExtResource("10_vhysx")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
+visible = false
 offset_left = 38.0
 offset_top = 611.0
 offset_right = 186.0
@@ -527,6 +528,7 @@ offset_bottom = 759.0
 texture_normal = ExtResource("6_ivien")
 
 [node name="Stats" type="TextureButton" parent="."]
+visible = false
 offset_left = 293.0
 offset_top = 610.0
 offset_right = 441.0
@@ -779,6 +781,7 @@ visible = false
 visible = false
 
 [node name="BuildingButton" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(235, 650)
 texture = ExtResource("18_42ope")
 
