@@ -20,3 +20,6 @@ text = "🔨"
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
 
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
+
+[node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
+_PlantType = 5

@@ -43,12 +43,14 @@ public partial class BuildMenu : CanvasLayer {
 	private PowerPlant SolarPlant;
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
+	private PowerPlant WindPlant;
 
 	// Buttons to select the power plants
 	private Button GasButton;
 	private Button SolarButton;
 	private Button HydroButton;
 	private Button TreeButton;
+	private Button WindButton;
 
 	// Close button
 	private Button CloseButton;
@@ -68,12 +70,14 @@ public partial class BuildMenu : CanvasLayer {
 		SolarPlant = GetNode<PowerPlant>("ColorRect/Solar");
 		HydroPlant = GetNode<PowerPlant>("ColorRect/Hydro");
 		TreePlant = GetNode<PowerPlant>("ColorRect/Tree");
+		WindPlant = GetNode<PowerPlant>("ColorRect/Wind");
 
 		// Fetch associated buttons
 		GasButton = GetNode<Button>("ColorRect/Gas/GasButton");
 		SolarButton = GetNode<Button>("ColorRect/Solar/SolarButton");
 		HydroButton = GetNode<Button>("ColorRect/Hydro/HydroButton");
 		TreeButton = GetNode<Button>("ColorRect/Tree/TreeButton");
+		WindButton = GetNode<Button>("ColorRect/Wind/WindButton");
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");
@@ -86,6 +90,7 @@ public partial class BuildMenu : CanvasLayer {
 		SolarButton.Pressed += _OnSolarButtonPressed;
 		HydroButton.Pressed += _OnHydroButtonPressed;
 		TreeButton.Pressed += _OnTreeButtonPressed;
+		WindButton.Pressed += _OnWindButtonPressed;
 		CloseButton.Pressed += _OnCloseButtonPressed;
 
 		HideAllPlants();
@@ -113,6 +118,10 @@ public partial class BuildMenu : CanvasLayer {
 			case Building.Type.TREE:
 				SetPlantName(ref TreePlant, newName);
 				break;
+				
+			case Building.Type.WIND:
+				SetPlantName(ref WindPlant, newName);
+				break;
 			
 			default:
 				break;
@@ -128,6 +137,7 @@ public partial class BuildMenu : CanvasLayer {
 		HydroPlant.Hide();
 		SolarPlant.Hide();
 		TreePlant.Hide();
+		WindPlant.Hide();
 	}
 
 	// Sets the plants name and propagates info to ui
@@ -214,6 +224,12 @@ public partial class BuildMenu : CanvasLayer {
 					TreePlant._SetPlantFromConfig(Building.Type.TREE);
 					TreePlant.PlantType = Building.Type.TREE;
 					break;
+					
+				case Building.Type.WIND:
+					SetPlantPosition(ref WindPlant, idx++);
+					WindPlant._SetPlantFromConfig(Building.Type.WIND);
+					WindPlant.PlantType = Building.Type.WIND;
+					break;
 			}
 		}
 	} 
@@ -247,7 +263,13 @@ public partial class BuildMenu : CanvasLayer {
 		// Close the menu
 		IsOpen = false;
 	}
+	public void _OnWindButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, WindPlant);
 
+		// Close the menu
+		IsOpen = false;
+	}
 	// Closes the menu
 	public void _OnCloseButtonPressed() {
 		// Hide and close the menu

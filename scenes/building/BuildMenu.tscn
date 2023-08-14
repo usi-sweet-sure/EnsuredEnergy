@@ -68,6 +68,7 @@ color = Color(0.321569, 0.321569, 0.321569, 0.768627)
 position = Vector2(650, 161)
 scale = Vector2(0.9, 0.9)
 PlantName = "Solar Plant"
+_PlantType = 2
 
 [node name="SolarButton" type="Button" parent="ColorRect/Solar"]
 offset_left = -104.0
@@ -80,6 +81,7 @@ flat = true
 position = Vector2(400, 161)
 scale = Vector2(0.9, 0.9)
 PlantName = "Hydro Plant"
+_PlantType = 0
 
 [node name="HydroButton" type="Button" parent="ColorRect/Hydro"]
 offset_left = -104.0
@@ -104,10 +106,24 @@ flat = true
 position = Vector2(900, 161)
 scale = Vector2(0.9, 0.9)
 PlantName = "Trees"
+_PlantType = 3
 
 [node name="TreeButton" type="Button" parent="ColorRect/Tree"]
 offset_left = -109.0
 offset_top = -143.0
+offset_right = 104.0
+offset_bottom = 141.0
+flat = true
+
+[node name="Wind" parent="ColorRect" instance=ExtResource("2_236y8")]
+position = Vector2(1161, 161)
+scale = Vector2(0.9, 0.9)
+PlantName = "Wind"
+_PlantType = 5
+
+[node name="WindButton" type="Button" parent="ColorRect/Wind"]
+offset_left = -104.0
+offset_top = -139.0
 offset_right = 104.0
 offset_bottom = 141.0
 flat = true

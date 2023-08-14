@@ -53,6 +53,7 @@
         <text id="label_gas">Gas</text>
         <text id="label_hydro">Hydro</text>
         <text id="label_solar">Solar</text>
+        <text id="label_wind">Wind</text>
         <text id="label_tree">Tree</text>
         <text id="label_nuclear">Nuclear</text>
     </group>

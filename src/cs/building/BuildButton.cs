@@ -31,6 +31,7 @@ public partial class BuildButton : Button {
 	public const string SOLAR_NAME = "Solar";
 	public const string HYDRO_NAME = "Hydro";
 	public const string TREE_NAME = "Tree";
+	public const string WIND_NAME = "Wind";
 
 	// Signal used to trigger the showing of the build menu
 	[Signal]
@@ -52,6 +53,7 @@ public partial class BuildButton : Button {
 	private PowerPlant SolarPlant;
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
+	private PowerPlant WindPlant;
 
 	// Reference to the game loop
 	private GameLoop GL;
@@ -80,6 +82,7 @@ public partial class BuildButton : Button {
 		SolarPlant = GetNode<PowerPlant>(SOLAR_NAME);
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
+		WindPlant = GetNode<PowerPlant>(WIND_NAME);
 
 		// Initially hide all of the plants
 		HideAllPlants();
@@ -89,9 +92,9 @@ public partial class BuildButton : Button {
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
-			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.HYDRO);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND, Building.Type.HYDRO);
 		} else {
-			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND);
 		}
 
 		// Connect the button press callback
@@ -186,6 +189,7 @@ public partial class BuildButton : Button {
 		HydroPlant.Hide();
 		SolarPlant.Hide();
 		TreePlant.Hide();
+		WindPlant.Hide();
 	}
 
 	// Wrapper for a more specific call depending on the selected plant type
@@ -210,6 +214,11 @@ public partial class BuildButton : Button {
 			case Building.Type.TREE:
 				UpdatePowerPlant(ref TreePlant, PP);
 				break;
+				
+			case Building.Type.WIND:
+				UpdatePowerPlant(ref WindPlant, PP);
+				break;
+				
 			default:
 				break;
 		}
