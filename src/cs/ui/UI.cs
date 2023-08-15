@@ -55,7 +55,9 @@ public partial class UI : CanvasLayer {
 
 	// The two energy bars, showing the availability and demand
 	private InfoBar WinterEnergy;
+	private InfoBar WinterEnergyPredict;
 	private InfoBar SummerEnergy;
+	private InfoBar SummerEnergyPredict;
 	
 	// The two information bars
 	private InfoBar EnvironmentBar;
@@ -103,6 +105,9 @@ public partial class UI : CanvasLayer {
 	// Game Loop
 	private GameLoop GL;
 
+	// Context
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -113,6 +118,7 @@ public partial class UI : CanvasLayer {
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
+		C = GetNode<Context>("/root/Context");
 
 		// Settings
 		SettingsButton = GetNode<Button>("SettingsButton");
@@ -122,7 +128,9 @@ public partial class UI : CanvasLayer {
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
+		WinterEnergyPredict = GetNode<InfoBar>("EnergyBarWinterPredict");
 		SummerEnergy = GetNode<InfoBar>("EnergyBarSummer");
+		SummerEnergyPredict = GetNode<InfoBar>("EnergyBarSummerPredict");
 		EnvironmentBar = GetNode<InfoBar>("Env");
 		SupportBar = GetNode<InfoBar>("Trust");
 		PollutionBar = GetNode<InfoBar>("Poll");
@@ -165,8 +173,12 @@ public partial class UI : CanvasLayer {
 		PolicyButton.Pressed += _OnPolicyButtonPressed;
 		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
 		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
+		WinterEnergyPredict.MouseEntered += _OnWinterEnergyMouseEntered;
+		WinterEnergyPredict.MouseExited += _OnWinterEnergyMouseExited;
 		SummerEnergy.MouseEntered += _OnSummerEnergyMouseEntered;
 		SummerEnergy.MouseExited += _OnSummerEnergyMouseExited;
+		SummerEnergyPredict.MouseEntered += _OnSummerEnergyMouseEntered;
+		SummerEnergyPredict.MouseExited += _OnSummerEnergyMouseExited;
 		EnvironmentBar.MouseEntered += _OnEnvironmentMouseEntered;
 		EnvironmentBar.MouseExited += _OnEnvironmentMouseExited;
 		SupportBar.MouseEntered += _OnSupportMouseEntered;
@@ -174,6 +186,9 @@ public partial class UI : CanvasLayer {
 		PollutionBar.MouseEntered += _OnPollutionMouseEntered;
 		PollutionBar.MouseExited += _OnPollutionMouseExited;
 		Imports.ImportUpdate += _OnImportUpdate;
+
+		// For predictive updates
+		C.UpdatePrediction += _OnUpdatePrediction;
 
 		// Initialize data
 		Data = new InfoData();
@@ -671,5 +686,16 @@ public partial class UI : CanvasLayer {
 	public void _OnImportUpdate() {
 		// Propagate the request of a resource update to the game loop
 		GL._UpdateResourcesUI();
+	}
+
+	// Propagates a predictive update to the UI
+	public void _OnUpdatePrediction() {
+		// Get predictive values
+		var (MW, MS) = C._GetModels();
+
+		// Update prediction bars
+		WinterEnergyPredict._UpdateProgress((int)MW._GetTotalSupply());
+		SummerEnergyPredict._UpdateProgress((int)MS._GetTotalSupply());
+
 	}
 }

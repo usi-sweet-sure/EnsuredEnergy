@@ -32,6 +32,10 @@ public partial class Context : Node {
     // Signals that the context has been updated by an external actor
     public delegate void UpdateContextEventHandler();
 
+    [Signal]
+    // Signals that the context has been updated by the player
+    public delegate void UpdatePredictionEventHandler();
+
     // Current internal storage of the game instance's id
     private int ResId = -1;
 
@@ -108,14 +112,20 @@ public partial class Context : Node {
     // This can only be done by adding or removing power plants
     public void _UpdateModelFromClient(PowerPlant pp, bool inc=true) {
         // Fetch the old value from the model
-        float cur_cap = MWinter._Capacity._GetField(pp.PlantType);
+        float cur_cap_w = MWinter._Capacity._GetField(pp.PlantType);
+        float cur_cap_s = MSummer._Capacity._GetField(pp.PlantType);
 
         // Compute the new capacity by suming the current one with the new addition
-        float new_cap = cur_cap + (inc ? 1.0f : -1.0f) * pp._GetCapacity();
+        float added_cap = (inc ? 1.0f : -1.0f) * pp._GetCapacity();
+        float new_cap_w = cur_cap_w + added_cap;
+        float new_cap_s = cur_cap_s + added_cap;
 
-        // Only the winter model is updated by the client  
         // Only the capacity can be updated by player action
-        MWinter._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap);
+        MWinter._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap_w);
+        MSummer._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap_w);
+
+        // Signal that the predictions need to be updated
+        EmitSignal(SignalName.UpdatePrediction);
     }
 
     // Updates the current ID (should only be done once per game)

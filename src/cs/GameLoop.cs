@@ -236,7 +236,8 @@ public partial class GameLoop : Node2D {
 		_UI._UpdateUI();
 
 		// Initialize resources
-		RM._UpdateResourcesUI();
+		_UI._OnUpdatePrediction();
+		RM._UpdateResourcesUI(false);
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
@@ -262,6 +263,7 @@ public partial class GameLoop : Node2D {
 
 			// Update Resources 
 			UpdateResources(true);
+			RM._UpdateResourcesUI();
 
 		} else if(RemainingTurns <= 0) {
 			// Update the Context's turn count
@@ -324,7 +326,7 @@ public partial class GameLoop : Node2D {
 		// Propagate the updates to the resource manager
 		RM._UpdatePowerPlants(PowerPlants);
 		RM._UpdateBuildButtons(BBs);
-		RM._UpdateResourcesUI();
+		RM._UpdateResourcesUI(true);
 	}
 
 	// Triggers a new turn if the game is currently acitve

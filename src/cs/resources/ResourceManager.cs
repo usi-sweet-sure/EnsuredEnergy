@@ -108,10 +108,13 @@ public partial class ResourceManager : Node {
 	}
 
 	// Initializes all of the resource managers
-	public void _UpdateResourcesUI() {
+	public void _UpdateResourcesUI(bool predict) {
 
 		// Get the energy manager data
-		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+		if(!predict) {
+			Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+			UpdateEnergyUI(E);
+		}
 
 		// Compute the total import cost
 		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
@@ -123,8 +126,12 @@ public partial class ResourceManager : Node {
 		Environment Env = EnvM._GetEnvValues();
 
 		// Update the UI
-		UpdateEnergyUI(E);
 		UpdateEnvironmentUI(Env);
+	}
+
+	// Wrapper used for signal compatibility
+	public void _UpdateResourcesUI() {
+		_UpdateResourcesUI(false);
 	}
 
 	// Updates the current list of power plants via a deep copy
@@ -155,7 +162,6 @@ public partial class ResourceManager : Node {
 		// Fill in the contents of the list with those of the given one
 		foreach(BuildButton bb in lBB) {
 			BBs.Add(bb);
-			bb.Pressed += _UpdateResourcesUI;
 		}
 	} 
 
@@ -199,11 +205,6 @@ public partial class ResourceManager : Node {
 		);
 	}
 
-	// Wrapper for interface compatibility reasons
-	private void _UpdateResourcesUIWrapper(bool b) {
-		_UpdateResourcesUI();
-	}
-
 	// Gets the production cost accumulated over every building
 	private int AggregateProductionCost() =>	
 		PowerPlants.Where(pp => pp._GetLiveness()).Aggregate(0, (acc, pp) => acc + pp._GetProductionCost());
@@ -213,7 +214,7 @@ public partial class ResourceManager : Node {
 	// Simply reacts to a power plant toggle by updating the UI
 	// The parameter is only used for signal interface compatibility
 	private void _OnPowerPlantSwitchToggle(bool b) { 
-		_UpdateResourcesUI();
+		_UpdateResourcesUI(true);
 	}
 	
 }

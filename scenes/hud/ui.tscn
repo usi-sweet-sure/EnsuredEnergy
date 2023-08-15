@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=29 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
@@ -17,6 +17,32 @@
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
 [ext_resource type="Texture2D" uid="uid://dg30puyh0tvif" path="res://assets/Elements/POLUTION BUTTON.png" id="10_qvjob"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mw3r"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opb6j"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="Animation" id="Animation_f32o7"]
 resource_name = "NextTurnAnim"
@@ -217,6 +243,49 @@ flat = true
 [node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
 position = Vector2(236, 864)
 texture = ExtResource("2_hhj2t")
+
+[node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
+offset_left = 129.0
+offset_top = 932.0
+offset_right = 303.0
+offset_bottom = 974.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
+NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.45098)
+LowColor = Color(0.94902, 0.533333, 0.0666667, 0.45098)
+
+[node name="Target" parent="EnergyBarSummerPredict" index="0"]
+position = Vector2(-331, -609.5)
+
+[node name="BarInfo" parent="EnergyBarSummerPredict" index="1"]
+z_index = 1
+offset_left = 490.0
+offset_top = -61.0
+offset_right = 792.768
+offset_bottom = 172.786
+rotation = 1.5708
+metadata/_edit_group_ = true
+
+[node name="EnergyBarWinterPredict" parent="." instance=ExtResource("3_fm1y6")]
+offset_left = 199.0
+offset_top = 932.0
+offset_right = 373.0
+offset_bottom = 973.0
+theme_override_styles/background = SubResource("StyleBoxFlat_opb6j")
+NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.784314)
+LowColor = Color(0.94902, 0.533333, 0.0666667, 0.521569)
+
+[node name="Target" parent="EnergyBarWinterPredict" index="0"]
+position = Vector2(-195, -609.5)
+
+[node name="BarInfo" parent="EnergyBarWinterPredict" index="1"]
+z_index = 1
+offset_left = 489.0
+offset_top = -131.0
+offset_right = 794.768
+offset_bottom = 113.053
+rotation = 1.5708
 
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
 offset_left = 199.0
@@ -792,6 +861,8 @@ offset_right = 2121.0
 offset_bottom = 1225.0
 color = Color(1, 1, 1, 0)
 
+[editable path="EnergyBarSummerPredict"]
+[editable path="EnergyBarWinterPredict"]
 [editable path="EnergyBarWinter"]
 [editable path="EnergyBarWinter/BarInfo"]
 [editable path="EnergyBarSummer"]
