@@ -86,7 +86,7 @@ public partial class ModelController : Node {
 
 	// ModelController Queue
 	// This is used to store pending requests from the model
-	private enum RequestType { INIT, FETCH, NAME, EVENT };
+	private enum RequestType { INIT, FETCH, FETCH_ASYNC, NAME, EVENT };
 
 	// The request queue contains the following information:
 	// 1) The type of request being queued  
@@ -130,8 +130,13 @@ public partial class ModelController : Node {
 						break;
 					
 					// Call the FetchModelData Method
-					case RequestType.FETCH:
+					case RequestType.FETCH_ASYNC:
 						_FetchModelDataAsync();
+						break;
+
+					// Synchronous fetch case
+					case RequestType.FETCH:
+						_FetchModelData();
 						break;
 
 					// Call the UpdateModelName Method
@@ -398,7 +403,7 @@ public partial class ModelController : Node {
 		// Check model availability
 		if(State != ModelState.IDLE) {
 			// Enqueue the request in case that the model is busy
-			RequestQ.Enqueue((RequestType.FETCH, new List<string>()));
+			RequestQ.Enqueue((RequestType.FETCH_ASYNC, new ()));
 			return;
 		}
 
@@ -616,16 +621,16 @@ public partial class ModelController : Node {
 
 	// Extracts the availability columns from a given row query
 	private Capacity CapacityFromRow(IEnumerable<XElement> row) => new Capacity(
-		GetIntAttr(row, C_GAS), 
-		GetIntAttr(row, C_NUCLEAR), 
-		GetIntAttr(row, C_RIVER), 
-		GetIntAttr(row, C_SOLAR), 
-		GetIntAttr(row, C_WIND)
+		GetFloatAttr(row, C_GAS), 
+		GetFloatAttr(row, C_NUCLEAR), 
+		GetFloatAttr(row, C_RIVER), 
+		GetFloatAttr(row, C_SOLAR), 
+		GetFloatAttr(row, C_WIND)
 	);
 
 	// Extracts the demand columns from a given row query
 	private Demand DemandFromRow(IEnumerable<XElement> row) => 
-		new Demand(GetIntAttr(row, D_BASE));
+		new Demand(GetFloatAttr(row, D_BASE));
 
 	// ==================== Server Interaction Methods (GODOT Client) ====================
 

@@ -199,9 +199,6 @@ public partial class GameLoop : Node2D {
 		// Initialize the model
 		MC._InitModel();
 
-		// Get the initial data from the model
-		MC._FetchModelData();
-
 		// Perform initial Resouce update
 		UpdateResources(true);
 
@@ -210,11 +207,22 @@ public partial class GameLoop : Node2D {
 			C._UpdateModelFromClient(pp);
 		}
 
+		// Update model with our current data
+		foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
+			// Create a new request for each modified filed in our model
+			MC._UpsertModelColumnDataAsync(mc, b);
+		}
+
+		// Create a fetch request to get the summer data
+		MC._FetchModelDataAsync();
+
+		// Clear the model's modified columns
+		C._ClearModified();
+
 		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		// All of the plants must be in the model for the availability to be set
 		// This is why we require two separate loops
 		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 		// Now that we have the initial model data, update the availability
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetAvailabilityFromContext();			
@@ -246,11 +254,11 @@ public partial class GameLoop : Node2D {
 				MC._UpsertModelColumnDataAsync(mc, b);
 			}
 
+			// Create a fetch request to get the summer data
+			MC._FetchModelDataAsync();
+
 			// Clear the model's modified columns
 			C._ClearModified();
-
-			// Get new data from model
-			MC._FetchModelDataAsync(); 
 
 			// Update Resources 
 			UpdateResources(true);

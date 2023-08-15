@@ -386,7 +386,7 @@ public struct Demand : IColumn {
 
     // Basic constructor for the Demand struct
     public Demand(float b=0) {
-        Base = 0;
+        Base = b;
     }
 
     // Only one value exists 
