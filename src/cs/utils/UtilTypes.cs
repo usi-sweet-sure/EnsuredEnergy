@@ -428,8 +428,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 			true, 
 			Pollution,
 			ProductionCost,
-			Capacity,
-			Availability
+			Capacity
 		);
 	}
 }

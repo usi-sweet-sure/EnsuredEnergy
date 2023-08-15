@@ -201,7 +201,7 @@ public struct Model {
     }
 
     // Modifies a field in the model
-    public void ModifyField(ModelCol mc, Building b, float value) {
+    public void _ModifyField(ModelCol mc, Building b, float value) {
         // Update the modified list
         ModifiedCols.Add((mc, b, value));
 
@@ -235,7 +235,15 @@ public struct Model {
         // Update the model's coherency state to shared as the data is from the server
         _MCS = MCS;
     }
-}
+
+    // Returns the aggregated supply across the model
+    public float _GetTotalSupply() =>
+        _Availability.Gas * _Capacity.Gas +
+        _Availability.Nuclear * _Capacity.Nuclear +
+        _Availability.River * _Capacity.River +
+        _Availability.Solar * _Capacity.Solar +
+        _Availability.Wind * _Capacity.Wind;
+}   
 
 // Used for a generic getter in the model struct
 public interface IColumn {

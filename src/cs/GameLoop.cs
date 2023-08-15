@@ -110,6 +110,9 @@ public partial class GameLoop : Node2D {
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
+
+			// Add the power plants to the stats
+			C._UpdatePPStats(pp.PlantType);
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
@@ -122,6 +125,7 @@ public partial class GameLoop : Node2D {
 
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
+		C.UpdateContext += _OnContextUpdate;
 
 		// Start the game
 		StartGame();
@@ -201,6 +205,21 @@ public partial class GameLoop : Node2D {
 		// Perform initial Resouce update
 		UpdateResources(true);
 
+		// Update the model to include all of the initial plants
+		foreach(PowerPlant pp in PowerPlants) {
+			C._UpdateModelFromClient(pp);
+		}
+
+		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// All of the plants must be in the model for the availability to be set
+		// This is why we require two separate loops
+		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+		// Now that we have the initial model data, update the availability
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._SetAvailabilityFromContext();			
+		}
+
 		// Set the initial power plants and build buttons
 		RM._UpdatePowerPlants(PowerPlants);
 		RM._UpdateBuildButtons(BBs);
@@ -221,7 +240,14 @@ public partial class GameLoop : Node2D {
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
 
-			// TODO: Update model with our current data
+			// Update model with our current data
+			foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
+				// Create a new request for each modified filed in our model
+				MC._UpsertModelColumnDataAsync(mc, b);
+			}
+
+			// Clear the model's modified columns
+			C._ClearModified();
 
 			// Get new data from model
 			MC._FetchModelDataAsync(); 
@@ -298,5 +324,12 @@ public partial class GameLoop : Node2D {
 		if(GS == GameState.PLAYING) {
 			NewTurn();
 		}
+	}
+
+	// Reacts to a context update
+	public void _OnContextUpdate() {
+		// Propate update to the UI
+		UpdateResources();
+		RM._UpdateResourcesUI();
 	}
 }

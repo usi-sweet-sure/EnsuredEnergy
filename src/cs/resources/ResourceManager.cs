@@ -84,7 +84,7 @@ public partial class ResourceManager : Node {
 		}
 
 		// Update the energy managers
-		Energy E = EngM._NextTurn(_UI._GetImportSliderPercentage(), ImportInSummer);
+		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 
 		// Compute the total import cost
 		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);

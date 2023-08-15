@@ -483,7 +483,7 @@ public partial class ModelController : Node {
 		string res_id = GetParam(RES_ID, C._GetGameID());
 		string col_id = GetParam(COL_ID, ColIdFromTypes(mc, b));
 		string n = GetParam(N, TurnToPeakWinter(C._GetTurn()));
-		string v1 = GetParam(EVT_V1, GetModelValue(mc, b));
+		string v1 = GetParam(EVT_V1, GetModelValue(mc, b).ToString());
 
 		try {
 			// Signal that the request was sent
@@ -577,7 +577,7 @@ public partial class ModelController : Node {
 		(from r in row select r.Attribute(attr).Value.ToInt()).ElementAt(0);
 
 	// Retrives the value associated to the given model column and building type
-	private string GetModelValue(ModelCol mc, Building b) => 
+	private float GetModelValue(ModelCol mc, Building b) => 
 		C._GetModel(ModelSeason.WINTER)._GetColumn(mc)._GetField(b);
 
 	// Converts a model XML into a Model Struct

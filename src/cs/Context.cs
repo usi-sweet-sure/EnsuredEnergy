@@ -28,6 +28,10 @@ using System.Collections.Generic;
 // ...
 public partial class Context : Node {
 
+    [Signal]
+    // Signals that the context has been updated by an external actor
+    public delegate void UpdateContextEventHandler();
+
     // Current internal storage of the game instance's id
     private int ResId = -1;
 
@@ -90,11 +94,28 @@ public partial class Context : Node {
         } else {
             MSummer._UpdateFields(A, C, D, ModelCoherencyState.SHARED);
         }
+
+        // Signal that the context has been updated 
+        EmitSignal(SignalName.UpdateContext);
     }
 
     // Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method
     public void _UdpateModelFromServer(Model new_M) {
         _UdpateModelFromServer(new_M._Season, new_M._Availability, new_M._Capacity, new_M._Demand);
+    }
+
+    // Sets a new value in the internal model struct and sets a modification to be sent to server
+    // This can only be done by adding or removing power plants
+    public void _UpdateModelFromClient(PowerPlant pp, bool inc=true) {
+        // Fetch the old value from the model
+        float cur_cap = MWinter._Capacity._GetField(pp.PlantType);
+
+        // Compute the new capacity by suming the current one with the new addition
+        float new_cap = cur_cap + (inc ? 1.0f : -1.0f) * pp._GetCapacity();
+
+        // Only the winter model is updated by the client  
+        // Only the capacity can be updated by player action
+        MWinter._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap);
     }
 
     // Updates the current ID (should only be done once per game)
@@ -118,6 +139,12 @@ public partial class Context : Node {
     // Updates the turn (should only be called by the GameLoop)
     public void _UpdateTurn(int newTurn) {
         Turn = newTurn;
+    }
+
+    // Clear the modified columns in each model
+    public void _ClearModified() {
+        MWinter._ClearModified();
+        MSummer._ClearModified();
     }
 
     // Retrieves the building statistics for a given building type

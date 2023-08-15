@@ -65,6 +65,9 @@ public partial class BuildButton : Button {
 	// Number of Turns remaining in current build
 	private int TurnsToBuild;
 
+	// Reference to the context 
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -80,6 +83,9 @@ public partial class BuildButton : Button {
 		SolarPlant = GetNode<PowerPlant>(SOLAR_NAME);
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
+
+		// Fetch the context
+		C = GetNode<Context>("/root/Context");
 
 		// Initially hide all of the plants
 		HideAllPlants();
@@ -146,6 +152,12 @@ public partial class BuildButton : Button {
 
 		// Reset number of turns
 		TurnsToBuild = 0;
+
+		// Propagate the newly built plant to the context
+		C._UpdatePPStats(PPInProgress.PlantType);
+
+		// Update the data stored in the model struct
+		C._UpdateModelFromClient(PPInProgress);
 		
 		// Update the current power plant placed at this slot
 		UpdateGenericPlant(PPInProgress);
@@ -193,6 +205,9 @@ public partial class BuildButton : Button {
 		// Make sure that the selected plant is setup correctly
 		PP._SetPlantFromConfig(PP.PlantType);
 
+		// Update the availability
+		PP._SetAvailabilityFromContext();
+
 		// Pick which plant to show and update
 		switch(PP.PlantType.type) {
 			case Building.Type.GAS:
@@ -212,7 +227,7 @@ public partial class BuildButton : Button {
 				break;
 			default:
 				break;
-		}
+		}		
 	}
 
 	// Updates a given power plant to match the received power plant
@@ -231,8 +246,7 @@ public partial class BuildButton : Button {
 			true, // Update the initial values as well
 			PPRec._GetPollution(),
 			PPRec._GetProductionCost(), 
-			PPRec._GetCapacity(),
-			PPRec._GetAvailability()
+			PPRec._GetCapacity()
 		);
 
 		// Force name to be consistent with type
@@ -276,6 +290,12 @@ public partial class BuildButton : Button {
 			if(PP.BuildTime >= 1) {
 				BeginBuild(PP);
 			} else {
+				// Propagate the newly built plant to the context
+				C._UpdatePPStats(PP.PlantType);
+
+				// Update the data stored in the model struct
+				C._UpdateModelFromClient(PP);
+
 				// Select which plant to show and update it's fields to match those that were given
 				UpdateGenericPlant(PP);
 
