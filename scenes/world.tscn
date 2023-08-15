@@ -33,7 +33,6 @@ offset_right = 564.0
 offset_bottom = 617.0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_mklkc")
-theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton2" parent="." instance=ExtResource("16_pnu0i")]
@@ -42,7 +41,6 @@ offset_top = 433.0
 offset_right = 1390.0
 offset_bottom = 483.0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
 script = ExtResource("4_mo62v")
 AllowHydro = true
 
@@ -52,7 +50,6 @@ offset_top = 695.0
 offset_right = 1179.0
 offset_bottom = 745.0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_pressed_color = Color(0.372549, 0.372549, 0.372549, 1)
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]

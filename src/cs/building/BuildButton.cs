@@ -21,7 +21,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 
 // Models a button that can be used to create power plants
-public partial class BuildButton : Button {
+public partial class BuildButton : TextureButton {
 
 	// The possible states the button can be in
 	public enum BuildState { IDLE, BUILDING, DONE };
@@ -170,25 +170,25 @@ public partial class BuildButton : Button {
 
 	// Hides the button but not its children
 	private void HideOnlyButton() {
-		Text = "";
+		//Text = "";
 		Disabled = true;
-		Flat = true;
+		//Flat = true;
 	}
 
 	// Resets the button to it's initial state
 	private void Reset() {
-		Text = "🔨";
+		//Text = "🔨";
 		Disabled = false;
-		Flat = false;
+		//Flat = false;
 	}
 
 	// Sets the button to the build state
 	private void SetToBuild() {
 		BuildSprite.Show();
 		TL.Text = TurnsToBuild.ToString() + " 🕐";
-		Text = "🕐 : " + TurnsToBuild.ToString();
+		//Text = "🕐 : " + TurnsToBuild.ToString();
 		Disabled = true;
-		Flat = false;
+		//Flat = false;
 	}
 
 	// Hides all of the plants related to this button
@@ -238,7 +238,7 @@ public partial class BuildButton : Button {
 	// Updates a given power plant to match the received power plant
 	private void UpdatePowerPlant(ref PowerPlant PP, PowerPlant PPRec) {
 		// Set it up to display at our button's location
-		PP.Position = Vector2.Zero;
+		PP.Position = new Vector2(112,88);
 		PP.Scale = new Vector2(1, 1);
 		PP.IsPreview = false;
 		PP.BuildCost = PPRec.BuildCost;
@@ -261,6 +261,7 @@ public partial class BuildButton : Button {
 		// Make sure that the data is propagated to the UI
 		PP._UpdatePlantData();
 		PP.Show();
+		BuildSprite.Hide();
 
 		// Add the building to the power plant list
 		EmitSignal(SignalName.UpdateBuildSlot, this, PP, false);
