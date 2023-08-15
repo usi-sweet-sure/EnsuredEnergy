@@ -30,6 +30,9 @@ public partial class Camera : Camera2D {
 
 	// ==================== GODOT Method Overrides ====================
 
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready() {}
+
 	// Adds control to inputs that otherwise would not have triggered any events  
 	// In our case, this includes 2 events:  
 	//     1) When the player clicks the screen, in which case we want to drag the camera around
@@ -44,9 +47,8 @@ public partial class Camera : Camera2D {
 		// Can zoom the camera using the mouse wheel, smoothed with a tween animation
 		if(E is InputEventMouseButton MouseBtn) {
 			// Check what type of scroll was done
-			switch(MouseBtn.ButtonIndex) {
-				// If we are scrolling down, then we want the view to zoom out
-				case MouseButton.WheelDown:
+			// If we are scrolling down, then we want the view to zoom out
+			if (MouseBtn.ButtonIndex == MouseButton.WheelDown) {
 					// Make sure that we clamp the zoom to avoid seeing out of the scene
 					if(Zoom > ZOOM_MIN) {
 						// Udpate the zoom using a fancy animation to smoothen the transition
@@ -54,9 +56,9 @@ public partial class Camera : Camera2D {
 						Tween TweenZoomIn = CreateTween();
 						TweenZoomIn.TweenProperty(this, "zoom", ZoomVal, 0.3f);
 					}
-				break;
-				// If we are scrolling up, the we want the view to zoom in
-				case MouseButton.WheelUp: 
+			}
+			// If we are scrolling up, the we want the view to zoom in
+			if (MouseBtn.ButtonIndex == MouseButton.WheelUp) {
 					// Make sure we can't over zoom
 					if(Zoom < ZOOM_MAX) {
 						// Update the zoom using a fancy animation
@@ -64,7 +66,6 @@ public partial class Camera : Camera2D {
 						Tween TweenZoomOut = CreateTween();
 						TweenZoomOut.TweenProperty(this, "zoom", ZoomVal, 0.3f);
 					}
-				break;
 			}
 		}
 	}

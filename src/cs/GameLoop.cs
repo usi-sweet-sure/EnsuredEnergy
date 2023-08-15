@@ -110,6 +110,9 @@ public partial class GameLoop : Node2D {
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
+
+			// Add the power plants to the stats
+			C._UpdatePPStats(pp.PlantType);
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
@@ -122,6 +125,7 @@ public partial class GameLoop : Node2D {
 
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
+		C.UpdateContext += _OnContextUpdate;
 
 		// Start the game
 		StartGame();
@@ -161,7 +165,7 @@ public partial class GameLoop : Node2D {
 		if(newturn) {
 			RM._NextTurn(ref Money);
 		} else {
-			RM._UpdateResourcesUI();
+			RM._UpdateResourcesUI(true);
 		}
 
 		// Update Money UI
@@ -178,6 +182,9 @@ public partial class GameLoop : Node2D {
 		_UI._UpdateUI();
 	}
 
+	// Computes which turn we are at
+	private int GetTurn() => N_TURNS - RemainingTurns;
+
 	// ==================== Main Game Loop Methods ====================  
 
 	// Initializes all of the data that is propagated across the game
@@ -186,11 +193,40 @@ public partial class GameLoop : Node2D {
 		// Update the game state
 		GS = GameState.PLAYING;
 
+		// Initialize the context stats
+		C._InitializePPStats(PowerPlants);
+
 		// Initialize the model
 		MC._InitModel();
 
 		// Perform initial Resouce update
 		UpdateResources(true);
+
+		// Update the model to include all of the initial plants
+		foreach(PowerPlant pp in PowerPlants) {
+			C._UpdateModelFromClient(pp);
+		}
+
+		// Update model with our current data
+		foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
+			// Create a new request for each modified filed in our model
+			MC._UpsertModelColumnDataAsync(mc, b);
+		}
+
+		// Create a fetch request to get the summer data
+		MC._FetchModelDataAsync();
+
+		// Clear the model's modified columns
+		C._ClearModified();
+
+		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// All of the plants must be in the model for the availability to be set
+		// This is why we require two separate loops
+		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// Now that we have the initial model data, update the availability
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._SetAvailabilityFromContext();			
+		}
 
 		// Set the initial power plants and build buttons
 		RM._UpdatePowerPlants(PowerPlants);
@@ -200,6 +236,7 @@ public partial class GameLoop : Node2D {
 		_UI._UpdateUI();
 
 		// Initialize resources
+		_UI._OnUpdatePrediction();
 		RM._UpdateResourcesUI();
 	}
 
@@ -209,10 +246,29 @@ public partial class GameLoop : Node2D {
 		// Decerement the remaining turns and check for game end
 		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
 
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
+			// Update model with our current data
+			foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
+				// Create a new request for each modified filed in our model
+				MC._UpsertModelColumnDataAsync(mc, b);
+			}
+
+			// Create a fetch request to get the summer data
+			MC._FetchModelDataAsync();
+
+			// Clear the model's modified columns
+			C._ClearModified();
+
 			// Update Resources 
 			UpdateResources(true);
+			RM._UpdateResourcesUI();
 
 		} else if(RemainingTurns <= 0) {
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
 			// End the game if all turns have been spent
 			EndGame();
 		}
@@ -242,6 +298,9 @@ public partial class GameLoop : Node2D {
 			// Destroy the power plant
 			PowerPlants.Remove(pp);
 
+			// Update the context stats
+			C._UpdatePPStats(pp.PlantType, false);
+
 			// Connect the new build button to our signal
 			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
 
@@ -259,12 +318,15 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
+
+			// Update the context stats
+			C._UpdatePPStats(pp.PlantType);
 		}
 
 		// Propagate the updates to the resource manager
 		RM._UpdatePowerPlants(PowerPlants);
 		RM._UpdateBuildButtons(BBs);
-		RM._UpdateResourcesUI();
+		RM._UpdateResourcesUI(true);
 	}
 
 	// Triggers a new turn if the game is currently acitve
@@ -272,5 +334,12 @@ public partial class GameLoop : Node2D {
 		if(GS == GameState.PLAYING) {
 			NewTurn();
 		}
+	}
+
+	// Reacts to a context update
+	public void _OnContextUpdate() {
+		// Propate update to the UI
+		UpdateResources();
+		RM._UpdateResourcesUI();
 	}
 }

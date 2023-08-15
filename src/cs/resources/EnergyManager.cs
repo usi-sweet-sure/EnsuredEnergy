@@ -18,6 +18,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 // Handles all of the computation and logic related to the Energy resource
@@ -35,6 +36,9 @@ public partial class EnergyManager : Node {
 	// Previous turn's import amount
 	private int ImportAmount;
 
+	// Context used to access persistent data like statistics and models
+	private Context C;
+
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -43,6 +47,9 @@ public partial class EnergyManager : Node {
 		// Initialize the fields
 		PowerPlants = new List<PowerPlant>();
 		E = new Energy();
+
+		// Fetch Context
+		C = GetNode<Context>("/root/Context");
 	}
 
 	// ==================== Public API ====================
@@ -76,20 +83,13 @@ public partial class EnergyManager : Node {
 		return (import_amount_w + (import_amount_s.HasValue ? import_amount_s.Value : 0));
 	}
 
-	// Computes the energy levels that will be present for the next turn
-	public Energy _NextTurn(float import_perc, bool importSummer=false) {
-		// TODO: Update the Energy by aggregating the capacity from the model's power plants
-		// and updating the model
-		E = EstimateEnergy(import_perc, importSummer);
-		return E;
-	}
-
 	// Computes the initial values for the energy resource
 	public Energy _GetEnergyValues(float import_perc, bool importSummer=false) {
-		// TODO: Update the Energy by aggregating the capacity from the model's power plants
+		// Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
-		E = EstimateEnergy(import_perc, importSummer);
-		return E;
+		// Start by fetching the current model data assuming it's coherent 
+		(Model MW, Model MS) = C._GetModels();
+		return ComputeEnergy(MW, MS, import_perc, importSummer);
 	}
 
 	// ==================== Helper Methods ====================  
@@ -126,6 +126,31 @@ public partial class EnergyManager : Node {
 		// The current demand is a fixed value
 		float demandEstimate = MAX_ENERGY_BAR_VAL * 0.5f;
 		return new Energy(supply_s, supply_w, demandEstimate, demandEstimate, excess_s, excess_w);
+	}
+
+	// Estimate the values for the next turn (in case of no network or demo)
+	private Energy ComputeEnergy(Model MW, Model MS, float import_perc, bool importSummer=false) {
+		// Compute the imported supply
+		int imported = _ComputeTotalImportAmount(import_perc, importSummer);
+
+		// Aggregate supply and take the imports into account
+		float supply_w = MW._GetTotalSupply() + imported;
+		float supply_s = MS._GetTotalSupply() + (importSummer ? imported : 0);
+
+		// Compute the Excess and store it in a separate field
+		float excess_w = supply_w - MAX_ENERGY_BAR_VAL;
+		float excess_s = supply_s - MAX_ENERGY_BAR_VAL;
+		
+		// Normalize the supply
+		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
+		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
+
+		// Extract the demand from the model
+		float demand_w = MW._Demand.Base;
+		float demand_s = MS._Demand.Base;
+
+		// The current demand is a fixed value
+		return new Energy(supply_s, supply_w, demand_s, demand_w, excess_s, excess_w);
 	}
 
 }

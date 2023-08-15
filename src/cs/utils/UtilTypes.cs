@@ -131,6 +131,12 @@ public readonly struct Building {
 	public const string TREE_LABEL = "tree";
 	public const string NUCLEAR_LABEL = "nuclear";
 
+	// Base values for the model's building types
+	private const int GAS_ID_BASE = 1;
+	private const int NUC_ID_BASE = 2;
+	private const int RIV_ID_BASE = 3;
+	private const int SOL_ID_BASE = 6;
+	private const int WND_ID_BASE = 7;
 
 	// Basic constructor for the Building type
 	public Building(Type bt)  {
@@ -185,6 +191,14 @@ public readonly struct Building {
 		type == Type.TREE ? TREE_LABEL :
 		type == Type.NUCLEAR ? NUCLEAR_LABEL : 
 		"";
+
+	// Explicit conversion to an int
+	public int ToInt() =>
+		type == Type.GAS ? GAS_ID_BASE :
+		type == Type.HYDRO ? RIV_ID_BASE :
+		type == Type.SOLAR ? SOL_ID_BASE :
+		type == Type.NUCLEAR ? NUC_ID_BASE : 
+		-1;
 
 	// Performs the same check as the == operator, but with a run-time check on the type
 	public override bool Equals(object obj) {
@@ -414,8 +428,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 			true, 
 			Pollution,
 			ProductionCost,
-			Capacity,
-			Availability
+			Capacity
 		);
 	}
 }
