@@ -147,6 +147,10 @@ public partial class Context : Node {
     // Returns the requested model
     public Model _GetModel(ModelSeason S) => 
         S == ModelSeason.WINTER ? MWinter : MSummer;
+
+    // Returns both models together (first winter then summer)
+    public (Model, Model) _GetModels() => (MWinter, MSummer);
+
     // ==================== Internal Helpers ====================
 
     // Resets the internal PPStats to set all types to 0

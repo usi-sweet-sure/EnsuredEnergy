@@ -35,6 +35,9 @@ public partial class EnergyManager : Node {
 	// Previous turn's import amount
 	private int ImportAmount;
 
+	// Context used to access persistent data like statistics and models
+	private Context C;
+
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -43,6 +46,9 @@ public partial class EnergyManager : Node {
 		// Initialize the fields
 		PowerPlants = new List<PowerPlant>();
 		E = new Energy();
+
+		// Fetch Context
+		C = GetNode<Context>("/root/Context");
 	}
 
 	// ==================== Public API ====================
@@ -86,9 +92,14 @@ public partial class EnergyManager : Node {
 
 	// Computes the initial values for the energy resource
 	public Energy _GetEnergyValues(float import_perc, bool importSummer=false) {
-		// TODO: Update the Energy by aggregating the capacity from the model's power plants
+		// Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
-		E = EstimateEnergy(import_perc, importSummer);
+		// Start by fetching the current model data assuming it's coherent 
+		(Model MW, Model MS) = C._GetModels();
+
+		
+		//E = EstimateEnergy(import_perc, importSummer);
+
 		return E;
 	}
 
@@ -98,6 +109,8 @@ public partial class EnergyManager : Node {
 	private float AggregateSupply() =>
 		// Sum all capacities for each active power plant
 		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability()).Sum();
+
+	private float AggregateSupply(Model M) => M._Capacity.Aggregate() * M._Availability.Aggregate();
 
 	// Aggregate the current capacities into a single value
 	private int AggregateCapacity() =>
