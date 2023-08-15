@@ -165,7 +165,7 @@ public partial class GameLoop : Node2D {
 		if(newturn) {
 			RM._NextTurn(ref Money);
 		} else {
-			RM._UpdateResourcesUI();
+			RM._UpdateResourcesUI(true);
 		}
 
 		// Update Money UI
@@ -237,7 +237,7 @@ public partial class GameLoop : Node2D {
 
 		// Initialize resources
 		_UI._OnUpdatePrediction();
-		RM._UpdateResourcesUI(false);
+		RM._UpdateResourcesUI();
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
