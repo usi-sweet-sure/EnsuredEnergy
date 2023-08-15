@@ -54,6 +54,10 @@ public partial class BuildButton : Button {
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
 	private PowerPlant WindPlant;
+	
+	// Building sprite
+	private Sprite2D BuildSprite;
+	private Label TL;
 
 	// Reference to the game loop
 	private GameLoop GL;
@@ -83,6 +87,9 @@ public partial class BuildButton : Button {
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
 		WindPlant = GetNode<PowerPlant>(WIND_NAME);
+		
+		BuildSprite = GetNode<Sprite2D>("Building");
+		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
 
 		// Initially hide all of the plants
 		HideAllPlants();
@@ -177,6 +184,8 @@ public partial class BuildButton : Button {
 
 	// Sets the button to the build state
 	private void SetToBuild() {
+		BuildSprite.Show();
+		TL.Text = TurnsToBuild.ToString() + " 🕐";
 		Text = "🕐 : " + TurnsToBuild.ToString();
 		Disabled = true;
 		Flat = false;
@@ -190,6 +199,8 @@ public partial class BuildButton : Button {
 		SolarPlant.Hide();
 		TreePlant.Hide();
 		WindPlant.Hide();
+		
+		BuildSprite.Hide();
 	}
 
 	// Wrapper for a more specific call depending on the selected plant type

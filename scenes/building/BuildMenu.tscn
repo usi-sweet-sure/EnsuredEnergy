@@ -93,6 +93,7 @@ offset_bottom = 141.0
 flat = true
 
 [node name="TabBar2" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Hydro" parent="TabContainer/TabBar2" instance=ExtResource("2_236y8")]
