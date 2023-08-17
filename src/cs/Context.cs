@@ -138,6 +138,21 @@ public partial class Context : Node {
         EmitSignal(SignalName.UpdatePrediction);
     }
 
+    // Updates the demand in the model manually
+    // Given a value, we either add or subtract said value to the current demand
+    public void _UpdateModelDemand(float v, bool inc=true, bool winter=true) {
+        // Check if it's winter or summer
+        if(winter) {
+            // Compute the new demand
+            float dem = MWinter._Demand.Base + ((inc ? -1 : 1) * v);
+            MWinter._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
+        } else {
+            // Compute the new demand
+            float dem = MSummer._Demand.Base + ((inc ? -1 : 1) * v);
+            MSummer._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
+        }
+    }
+
     // Updates the current ID (should only be done once per game)
     // Returns the internal value of the game id:
     // - newId if the id wasn't set 

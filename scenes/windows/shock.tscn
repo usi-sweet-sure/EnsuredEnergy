@@ -64,6 +64,16 @@ text = "The past few winters have been colder than usual, increasing the energy 
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Reward" type="Label" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 245.0
+offset_top = 151.0
+offset_right = 498.0
+offset_bottom = 267.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+autowrap_mode = 2
+
 [node name="Result" type="Label" parent="ColorRect"]
 visible = false
 layout_mode = 1

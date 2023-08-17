@@ -39,6 +39,9 @@ public partial class EnvironmentManager : Node {
 	// Keep track of the pollution caused by imports
 	private int ImportPollution;
 
+	// Models the impact a shock can have on the environment
+	private float ShockImpact;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -47,6 +50,7 @@ public partial class EnvironmentManager : Node {
 		// Initialize Power Plants and import pollution
 		PowerPlants = new List<PowerPlant>();
 		ImportPollution = 0;
+		ShockImpact = 0;
 	}
 
 	// ==================== Public API ====================
@@ -66,6 +70,9 @@ public partial class EnvironmentManager : Node {
 	// The total imported energy amount is given to be able to compute 
 	// the pollution caused by imports
 	public Environment _NextTurn() {
+		// Reset the shock impact 
+		ShockImpact = 0;
+
 		// Estimate the values for the next turn
 		return _GetEnvValues();
 	}
@@ -75,6 +82,12 @@ public partial class EnvironmentManager : Node {
 		Env = EstimateEnvironment();
 		return Env;
 	}
+
+	// Applies a shock's impact
+	public void _ApplyShockEffect(float v) {
+		ShockImpact = v;
+	} 
+
 
 	// The amount of energy covered by inputs, and the pollution/kWh are given
 	// This allows us to compute the amount of pollution caused by imports
@@ -113,6 +126,6 @@ public partial class EnvironmentManager : Node {
 		float lu = AggregateLandUse();
 		int pol = AggregatePollution();
 
-		return new Environment(pol, lu, biodiv, ImportPollution);
+		return new Environment(pol, lu, biodiv, ImportPollution, s: ShockImpact);
 	}
 }
