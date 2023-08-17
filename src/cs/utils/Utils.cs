@@ -18,6 +18,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
 
 // ============================================================
 // ==================== RESOURCE DATATYPES ====================
@@ -46,6 +48,17 @@ public struct Energy {
 	}
 }
 
+// ==================== Support DataType ====================
+
+// Models the public support resource
+public struct Support {
+	public float Value; // Basic support type for now.
+
+	public Support(float v=1.0f) {
+		Value = v;
+	}
+}
+
 // ==================== Environment DataType ====================
 
 // Models the environment resource
@@ -54,24 +67,27 @@ public struct Environment {
 	public float LandUse; // Aggregate space taken up by all of the power plants
 	public float Biodiversity; // Level of biodiversity remaining on the map
 	public int ImportedPollution; // The amount of pollution caused by energy imports
+	public float Shock;
 
 	// Computes the value used to update the environment bar
 	public double EnvBarValue() {
 		// Use a basic signmoid to compute the mixture
-		double x = Math.Exp(6.0 * (Biodiversity - 1.1 * LandUse));
+		double x = Math.Exp(6.0 * (Biodiversity - 1.1 * LandUse)) - Shock;
 		return x / (x + 1.0);
 	}
 
 	public int PollutionBarValue() => Pollution + ImportedPollution;
 
 	// Basic constructor for the environment struct
-	public Environment(int p=0, float lu=0.0f, float bd=0.0f, int ip=0) {
+	public Environment(int p=0, float lu=0.0f, float bd=0.0f, int ip=0, float s=0.0f) {
 		Pollution = p;
 		ImportedPollution = ip;
 
 		// Make sure that the following two metrics are percentages
 		LandUse = Math.Max(0.0f, Math.Min(lu, 1.0f)); 
 		Biodiversity = Math.Max(0.0f, Math.Min(bd, 1.0f));
+		
+		Shock = s;
 	}
 }
 
@@ -337,15 +353,15 @@ public readonly struct Language {
 	
 	// Implicit conversion to a string
 	public override string ToString() => lang == Type.EN ? "en" : 
-										 lang == Type.FR ? "fr" :
-										 lang == Type.DE ? "de" :
-										 "it";
+										lang == Type.FR ? "fr" :
+										lang == Type.DE ? "de" :
+										"it";
 
 	// Converts the language to a human-readable format
 	public string ToName() => lang == Type.EN ? "Language: English" : 
-							  lang == Type.FR ? "Langue: Français" :
-							  lang == Type.DE ? "Sprache: Deutsch" :
-							  "Lingua: Italiano";
+							lang == Type.FR ? "Langue: Français" :
+							lang == Type.DE ? "Sprache: Deutsch" :
+							"Lingua: Italiano";
 
 	// Performs the same check as the == operator, but with a run-time check on the type
 	public override bool Equals(object obj) {
@@ -433,6 +449,53 @@ public readonly struct PowerPlantConfigData : ConfigData {
 	}
 }
 
+// The different types of resources the player has access to
+public enum ResourceType { ENERGY_W, ENERGY_S, ENVIRONMENT, SUPPORT, MONEY };
+
+// Struct simply containing the couple of methods useful for the resource type enum
+// RTM = Resource Type Methods
+public readonly struct RTM {
+	// Converts a given string into a resource type enum field
+	public static ResourceType ResourceTypeFromString(string s) => s switch {
+		"energyW" => ResourceType.ENERGY_W,
+		"energyS" => ResourceType.ENERGY_S,
+		"env" => ResourceType.ENVIRONMENT,
+		"support" => ResourceType.SUPPORT,
+		"money" => ResourceType.MONEY,
+		_ => throw new ArgumentException("The given string can't be converted to a resource type")
+	};
+}
+
+// Represents the requirements of a given shock
+public struct ShockRequirement {
+	// The resource impacted by this requirement
+	public ResourceType RT;
+
+	// The value required by the requirement
+	public float Value; 
+
+	// Basic constructor 
+	public ShockRequirement(string s, float v) {
+		RT = RTM.ResourceTypeFromString(s);
+		Value = v;
+	}
+}
+
+// Represents the rewards of surviving a given shock
+public struct ShockEffect {
+	// The text show for the given reward
+	public string Text;
+
+	// The effects of the reward
+	public List<(ResourceType, float)> Effects;
+
+	// Basic Constructor
+	public ShockEffect(string t, List<(ResourceType, float)> es) {
+		Text = t;
+		Effects = es;
+	}
+}
+
 // ==================== UI Info Datatype ===================
 
 // Data structure for the information displayed in the info boxes
@@ -489,3 +552,4 @@ public struct InfoData {
 		Imports = 0;
 	}
 }
+

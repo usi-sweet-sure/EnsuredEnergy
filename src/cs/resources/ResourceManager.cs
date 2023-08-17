@@ -52,6 +52,9 @@ public partial class ResourceManager : Node {
 	private List<PowerPlant> PowerPlants;
 	private List<BuildButton> BBs;
 
+	// Context
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -61,6 +64,7 @@ public partial class ResourceManager : Node {
 		EngM = GetNode<EnergyManager>("EnergyManager");
 		EnvM = GetNode<EnvironmentManager>("EnvironmentManager");
 		_UI = GetNode<UI>("../UI");
+		C = GetNode<Context>("/root/Context");
 
 		// Initialize the powerplant and Buildbutton lists
 		PowerPlants = new List<PowerPlant>();
@@ -164,6 +168,37 @@ public partial class ResourceManager : Node {
 			BBs.Add(bb);
 		}
 	} 
+
+	// Returns the current resource values for all resources
+	public (Energy, Environment, Support) _GetResources() => (
+		EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer),
+		EnvM._GetEnvValues(),
+		new Support(1.0f)
+	);
+
+	// Applies a given shock effect
+	public void _ApplyShockEffect(ResourceType rt, float v) {
+		// Figure out which resource to affect
+		switch(rt) {
+			case ResourceType.ENERGY_S:
+				// Update the summer model's demand
+				C._UpdateModelDemand(v, winter: false);
+				break;
+			case ResourceType.ENERGY_W:
+				// Update the winter model's demand
+				C._UpdateModelDemand(v);
+				break;
+			case ResourceType.ENVIRONMENT:
+				EnvM._ApplyShockEffect(v);
+				break;
+			case ResourceType.SUPPORT:
+				// Naive update for support for now
+				SM.S.Value += v;
+				break;
+			default:
+			 return;
+		}
+	}
 
 	// Computes the cost of the current import amount
 	// Given the percentage selected by the player

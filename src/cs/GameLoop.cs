@@ -66,7 +66,8 @@ public partial class GameLoop : Node2D {
 	// Model controller
 	private ModelController MC;
 
-	//TODO: Add Shocks once they are implemented
+	// Shock Window
+	private Shock ShockWindow;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -75,6 +76,7 @@ public partial class GameLoop : Node2D {
 		// Fetch context and model controller
 		C = GetNode<Context>("/root/Context");
 		MC = GetNode<ModelController>("ModelController");
+		ShockWindow = GetNode<Shock>("Shock");
 
 		// Init Data
 		GS = GameState.NOT_STARTED;
@@ -126,6 +128,11 @@ public partial class GameLoop : Node2D {
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
 		C.UpdateContext += _OnContextUpdate;
+
+		// Connect the shock related callbacks
+		ShockWindow.Continue.Pressed += NewTurn; // If the continue button is pressed at the end of a shock it triggers a new turn
+		ShockWindow.SelectReaction += _OnShockSelectReaction;
+		ShockWindow.ApplyReward += _OnShockApplyReward;
 
 		// Start the game
 		StartGame();
@@ -185,6 +192,18 @@ public partial class GameLoop : Node2D {
 	// Computes which turn we are at
 	private int GetTurn() => N_TURNS - RemainingTurns;
 
+	// Triggers the selection and display of a new shock
+	private void DisplayShock() {
+		// Select a new shock
+		ShockWindow._SelectNewShock();
+
+		// Retrieve the resources
+		(Energy E, Environment Env, Support Sup) = RM._GetResources();
+
+		// Show the shock
+		ShockWindow._Show(Money, E, Env, Sup);
+	}
+
 	// ==================== Main Game Loop Methods ====================  
 
 	// Initializes all of the data that is propagated across the game
@@ -243,6 +262,9 @@ public partial class GameLoop : Node2D {
 	// Triggers all of the updates across the whole game at the beginnig of the turn
 	// A new turn is triggered when the player presses the next turn button in the UI.
 	private void NewTurn() {
+		// Hide the shock window
+		ShockWindow.Hide();
+
 		// Decerement the remaining turns and check for game end
 		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
 
@@ -283,6 +305,24 @@ public partial class GameLoop : Node2D {
 		// Deactivate all buttons
 		foreach(var bb in BBs) {
 			bb._Disable();
+		}
+	}
+
+	// Applies a given shock effect
+	private void ApplyShockEffect(ShockEffect SE) {
+		// Apply each individual effect
+		foreach((ResourceType rt, float v) in SE.Effects) {
+			// Figure out which resource to affect
+			switch(rt) {
+				// The game loop only handles money (for some reason lol)
+				case ResourceType.MONEY:
+					Money.Money += (int)v;
+					break;
+				// All other resources are handled by the resource manager
+				default:
+					RM._ApplyShockEffect(rt, v);
+					break;
+			}
 		}
 	}
 
@@ -332,7 +372,8 @@ public partial class GameLoop : Node2D {
 	// Triggers a new turn if the game is currently acitve
 	public void _OnNextTurn() {
 		if(GS == GameState.PLAYING) {
-			NewTurn();
+			// Display a shock
+			DisplayShock();
 		}
 	}
 
@@ -341,5 +382,31 @@ public partial class GameLoop : Node2D {
 		// Propate update to the UI
 		UpdateResources();
 		RM._UpdateResourcesUI();
+	}
+
+	// Updates the resources after a reaction to a shock has been selected
+	public void _OnShockSelectReaction(int id) {
+		// Fetch the reaction effect
+		List<ShockEffect> reactions = ShockWindow._GetReactions();
+
+		// Sanity check: make sure that the id is valid
+		if(reactions.Count <= id) {
+			throw new ArgumentException("Invalid ID was given to select a shock reaction: " + id + " >= " + reactions.Count);
+		}
+
+		// Apply the reaction
+		ApplyShockEffect(reactions[id]);
+
+		// Hide all reaction buttons and show the continue one
+		ShockWindow._HideReactions();
+	}
+
+	// Updates the resources to apply a given shock reward
+	public void _OnShockApplyReward() {
+		// Extract the reward
+		ShockEffect reward = ShockWindow._GetReward();
+
+		// Apply the reward
+		ApplyShockEffect(reward);
 	}
 }

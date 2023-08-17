@@ -80,7 +80,7 @@ public partial class EnergyManager : Node {
 		var (import_amount_w, import_amount_s) = _ComputeImportAmount(import_perc, importSummer);
 
 		// Compute the final amount
-		return (import_amount_w + (import_amount_s.HasValue ? import_amount_s.Value : 0));
+		return import_amount_w + (import_amount_s.HasValue ? import_amount_s.Value : 0);
 	}
 
 	// Computes the initial values for the energy resource

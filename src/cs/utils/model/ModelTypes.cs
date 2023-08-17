@@ -220,8 +220,9 @@ public struct Model {
                 _Demand._UpdateField(b, value);
                 break;
 
+            // Don't do anything if any other type is given
             default : 
-                throw new ArgumentException("No valid column type was given!!");
+                break;
         }
     }
 

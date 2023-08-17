@@ -19,6 +19,7 @@ using Godot;
 using System;
 
 public partial class SupportManager : Node {
+	public Support S;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 	}
