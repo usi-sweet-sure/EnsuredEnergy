@@ -50,8 +50,8 @@ public partial class UI : CanvasLayer {
 	private TextController TC;
 
 	// Button that triggers the passage to a next turn
-	private Button NextTurnButton;
-	private Sprite2D NT;
+	private TextureButton NextTurnButton;
+	private Label NextTurnL;
 
 	// The two energy bars, showing the availability and demand
 	private InfoBar WinterEnergy;
@@ -108,8 +108,8 @@ public partial class UI : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
-		NT = GetNode<Sprite2D>("NextTurn");
-		NextTurnButton = GetNode<Button>("NextTurn/NextTurn");
+		NextTurnButton = GetNode<TextureButton>("NextTurn");
+		NextTurnL = GetNode<Label>("NextTurn/Label");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
@@ -249,7 +249,7 @@ public partial class UI : CanvasLayer {
 		PollutionBar._UpdateBarName(PollutionBar_name);
 
 		// Update UI buttons
-		NextTurnButton.Text = next_turn_name;
+		NextTurnL.Text = next_turn_name;
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);

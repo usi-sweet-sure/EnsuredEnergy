@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=17 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cnp5jnw2xibl8" path="res://assets/temp_swiss_map.png" id="3_fsnjl"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
 [ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
+[ext_resource type="Texture2D" uid="uid://ceorbg7ik1atw" path="res://assets/Elements/230601_CH_SUREgame_Nuclear-Plant.png" id="4_fa5re"]
+[ext_resource type="Texture2D" uid="uid://lvf5eog6buhr" path="res://assets/Elements/230601_CH_SUREgame_Gas-Plant.png" id="5_blyni"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
@@ -31,8 +33,28 @@ texture = ExtResource("3_fsnjl")
 position = Vector2(1088, 276)
 _PlantType = 4
 
+[node name="Sprite" parent="World/Nuclear" index="0"]
+texture = ExtResource("4_fa5re")
+
+[node name="Switch" parent="World/Nuclear" index="4"]
+visible = false
+
+[node name="ResRect" parent="World/Nuclear" index="5"]
+visible = false
+
 [node name="Coal" parent="World" index="2"]
 position = Vector2(637, 385)
+
+[node name="Sprite" parent="World/Coal" index="0"]
+texture = ExtResource("5_blyni")
+
+[node name="Switch" parent="World/Coal" index="4"]
+visible = false
+
+[node name="ResRect" parent="World/Coal" index="5"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Coal" index="8"]
 
 [node name="BuildButton" parent="World" index="3"]
 offset_left = 497.0

@@ -1,12 +1,15 @@
-[gd_scene load_steps=27 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=30 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
+[ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="3_l43te"]
+[ext_resource type="Texture2D" uid="uid://sob7pstxhrp" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="4_6fg8a"]
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="4_67rbh"]
 [ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="4_e5tgv"]
 [ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/hud/import.tscn" id="5_ps4b6"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
+[ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_xpjuf"]
 [ext_resource type="Texture2D" uid="uid://dddt3hgvf20b6" path="res://assets/Elements/POLICIES BUTTON.png" id="6_ivien"]
 [ext_resource type="Texture2D" uid="uid://b5c8nhwhjb6rh" path="res://assets/Elements/TIME PANEL – BLANK.png" id="6_mfs1l"]
 [ext_resource type="Texture2D" uid="uid://yom48x87obxw" path="res://assets/Elements/CHARACTER INFORMATION – BLANK.png" id="6_vs2ug"]
@@ -177,7 +180,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvfnp"]
-bg_color = Color(0.419608, 0.419608, 0.419608, 1)
+bg_color = Color(0.627451, 0.627451, 0.627451, 1)
 border_color = Color(0, 0, 0, 1)
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
@@ -189,30 +192,39 @@ follow_viewport_enabled = true
 position = Vector2(264, 168)
 texture = ExtResource("6_vs2ug")
 
-[node name="NextTurn" type="Sprite2D" parent="."]
-position = Vector2(1728, 968)
-texture = ExtResource("1_kbgc4")
-region_rect = Rect2(42, 37, 199, 65)
+[node name="NextTurn" type="TextureButton" parent="."]
+offset_left = 1679.0
+offset_top = 929.0
+offset_right = 1879.0
+offset_bottom = 993.0
+focus_mode = 0
+texture_normal = ExtResource("1_kbgc4")
+texture_pressed = ExtResource("3_l43te")
+texture_hover = ExtResource("4_6fg8a")
+texture_disabled = ExtResource("5_xpjuf")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="NextTurn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="NextTurn"]
-offset_left = -72.0
-offset_top = -16.0
-offset_right = 72.0
-offset_bottom = 24.0
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 56.0
 color = Color(0.398438, 0.398438, 0.398438, 1)
-
-[node name="NextTurn" type="Button" parent="NextTurn"]
-offset_left = -91.0
-offset_top = -24.0
-offset_right = 89.0
-offset_bottom = 26.0
-focus_mode = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0.14902, 0.14902, 0.14902, 1)
-theme_override_colors/font_hover_color = Color(0.258824, 0.258824, 0.258824, 1)
-theme_override_font_sizes/font_size = 22
-text = "Next Turn"
-flat = true
 
 [node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
 position = Vector2(236, 864)
@@ -449,7 +461,7 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-NormalColor = Color(0.415686, 0.415686, 0.415686, 1)
+NormalColor = Color(0.239216, 0.239216, 0.239216, 1)
 LowColor = Color(0.74902, 0.74902, 0.74902, 1)
 
 [node name="Target" type="Line2D" parent="Poll"]

@@ -135,7 +135,7 @@ public partial class PowerPlant : Node2D {
 			Price.Show();
 		} else {
 			//PollL.Show();
-			Switch.Show();
+			//Switch.Show();
 			Price.Hide();
 		}
 
@@ -259,7 +259,7 @@ public partial class PowerPlant : Node2D {
 		// When not in preview mode, the interactive elements should be visible
 		else {
 			//PollL.Show();
-			Switch.Show();
+			//Switch.Show();
 			Price.Hide();
 			NameR.Hide();
 		}
@@ -278,7 +278,7 @@ public partial class PowerPlant : Node2D {
 			NameR.Show();
 		} else {
 			//PollL.Show();
-			Switch.Show();
+			//Switch.Show();
 			NameR.Hide();
 		}
 
