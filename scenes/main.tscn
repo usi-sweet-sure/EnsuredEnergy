@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=14 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
 [ext_resource type="Script" path="res://src/cs/resources/EnvironmentManager.cs" id="10_7fban"]
+[ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="12_sivce"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="12_vvejj"]
 
 [node name="MainDemo" type="Node2D"]
@@ -110,6 +111,9 @@ script = ExtResource("9_44b4k")
 
 [node name="EnvironmentManager" type="Node" parent="ResourceManager"]
 script = ExtResource("10_7fban")
+
+[node name="ShockController" type="Node" parent="."]
+script = ExtResource("12_sivce")
 
 [node name="Shock" parent="." instance=ExtResource("12_vvejj")]
 visible = false

@@ -7,19 +7,19 @@
         <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
         <!-- The requirements for said shock -->
         <!-- Here it means that the player needs to have a winter supply of at least 50 above the demand -->
-        <requirement field="energyW" value="50" bound="min"/>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
         <!-- The list of ways the player can react to said shock -->
-        <reaction id="1">
+        <reaction id="0">
             <!-- The text that will be displayed in the reaction button (verbatim) -->
             <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
             <!-- The effect selecting this reaction will have on the player's resources -->
             <effect field="support" value="-50"/>
         </reaction>
-        <reaction id="2">
+        <reaction id="1">
             <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
             <effect field="env" value="-50"/>
         </reaction>
-        <reaction id="3">
+        <reaction id="2">
             <text>Import electricity from neighbouring countries.\n- 50 💰</text>
             <effect field="money" value="-50"/>
         </reaction>
