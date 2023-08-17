@@ -48,6 +48,13 @@ public struct Energy {
 	}
 }
 
+// ==================== Support DataType ====================
+
+// Models the public support resource
+public struct Support {
+	public float Value; // Basic support type for now.
+}
+
 // ==================== Environment DataType ====================
 
 // Models the environment resource

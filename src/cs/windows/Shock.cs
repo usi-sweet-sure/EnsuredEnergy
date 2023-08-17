@@ -18,6 +18,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // Represents the generic window that will contain info about the current shock
 // These appear at the end of each turn and are described in shocks.xml
@@ -26,6 +27,10 @@ public partial class Shock : CanvasLayer {
     [Signal]
     // Signals that one of the reactions has been selected
     public delegate void SelectReactionEventHandler(int id);
+
+    [Signal]
+    // Signals that a reward must be applied
+    public delegate void ApplyRewardEventHandler();
 
     // Big list of shock ids
     private string[] SHOCKS = { 
@@ -43,6 +48,7 @@ public partial class Shock : CanvasLayer {
     private Label Title;
     private Label Text;
     private Label Result;
+    private Label Reward;
     
     // Control node containing the reactions
     private Control Reactions;
@@ -71,6 +77,7 @@ public partial class Shock : CanvasLayer {
         Title = GetNode<Label>("ColorRect/Title");
         Text = GetNode<Label>("ColorRect/Text");
         Result = GetNode<Label>("ColorRect/Result");
+        Reward = GetNode<Label>("ColorRect/Reward");
         Reactions = GetNode<Control>("ColorRect/Reactions");
         R1 = GetNode<Button>("ColorRect/Reactions/Button");
         R2 = GetNode<Button>("ColorRect/Reactions/Button2");
@@ -114,8 +121,43 @@ public partial class Shock : CanvasLayer {
         SetFields();
     }
 
-    // Getter for the shock's requirement
-    public List<ShockRequirement> _GetRequirements() => CurRequirements;
+    // Getter for the shock's reward effects
+    public ShockEffect _GetReward() => CurReward;
+
+    // Shows the shock
+    // Requires the current money, energy, environment, and support levels to check the requirements
+    public void _Show(MoneyData M, Energy E, Environment Env, Support S) {
+        // Start by checking the current requirements to see if a reward should be displayed
+        // We do this by verified that all requirements pass the checkrequirement test
+        bool req_met = CurRequirements.Select(sr => 
+            CheckRequirement(sr, M, E, Env, S)
+        ).Aggregate((acc, sr_met) => acc && sr_met);
+
+        // If the requirement is met, then we can show the reward and apply it
+        if(req_met) {
+            // Start by hiding the reaction buttons
+            HideReactions();
+
+            // Show the rewards
+            Reward.Show();
+
+            // Signal that a reward is applied
+            // This should cause the gameloop to retrieve the reward and 
+            // update the various related resources
+            EmitSignal(SignalName.ApplyReward);
+        }
+        // Otherwise the requirements are not met, and a reaction must be selected
+        else {
+            // Show the Reactions
+            ShowReactions();
+
+            // Hide the reward
+            Reward.Hide();
+        }
+
+        // Show the shock itself once everything is setup
+        Show();
+    }
 
     // ==================== Internal Helpers ====================
 
@@ -128,8 +170,11 @@ public partial class Shock : CanvasLayer {
         // Set the current requirement
         CurRequirements = SC._GetRequirements(CurShock);
 
-        // Set the current reward
+        // Retrieve the current reward
         CurReward = SC._GetReward(CurShock);
+
+        // Set the reward text
+        Reward.Text = CurReward.Text;
 
         // Retrieve the current reactions
         CurReactions = SC._GetReactions(CurShock);
@@ -150,6 +195,39 @@ public partial class Shock : CanvasLayer {
             R3.Text = CurReactions[2].Text;
             R3.Disabled = false;
         }
+    }
+
+    // Checks if a given requirement is met
+    private bool CheckRequirement(ShockRequirement SR, MoneyData M, Energy E, Environment Env, Support S) =>
+        SR.RT switch {
+            // For energy supply, we need to be ${value} above the demand
+            ResourceType.ENERGY_W => (E.SupplyWinter - E.DemandWinter) >= SR.Value,
+            ResourceType.ENERGY_S => (E.SupplySummer - E.DemandSummer) >= SR.Value,
+            // For environment, it's simply the environment bar that is checked
+            ResourceType.ENVIRONMENT => Env.EnvBarValue() >= SR.Value,
+            // Support and money are straightforward
+            ResourceType.SUPPORT => S.Value >= SR.Value,
+            ResourceType.MONEY => M.Money >= SR.Value,
+            // This should never happen
+            _ => throw new ArgumentException("Invalid Resource type was given !")
+        };
+
+    // Hides all of the reaction buttons
+    // Should be done in the case of a reward
+    private void HideReactions() {
+        R1.Hide();
+        R2.Hide();
+        R3.Hide();
+        Continue.Show();
+    }
+
+    // Shows all of the reaction buttons
+    // Should be done in the case of no reward
+    private void ShowReactions() {
+        R1.Show();
+        R2.Show();
+        R3.Show();
+        Continue.Hide();
     }
 
     // ==================== Button Callbacks ====================
