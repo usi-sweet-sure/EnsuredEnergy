@@ -57,6 +57,9 @@ public partial class BuildMenu : CanvasLayer {
 	
 	// Animation Player
 	private AnimationPlayer BuildMenuAP;
+	
+	// Tab Container
+	private TabContainer TabC;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -84,6 +87,11 @@ public partial class BuildMenu : CanvasLayer {
 		
 		// Fetch Animation Player
 		BuildMenuAP = GetNode<AnimationPlayer>("AnimationPlayer");
+		
+		// Fetch TabContainer and sets tab titles 
+		//TODO for all tabs in all lang
+		TabC = GetNode<TabContainer>("TabContainer");
+		TabC.SetTabTitle(0,"Renewables");
 
 		// Connect the associated button callbacks
 		GasButton.Pressed += _OnGasButtonPressed;
