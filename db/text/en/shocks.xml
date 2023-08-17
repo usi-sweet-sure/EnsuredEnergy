@@ -32,9 +32,9 @@
     </shock>
 
     <shock id="heat_wave" tag="env">
-        <name>Cold Spell</name>
-        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
-        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <name>Heat Wave</name>
+        <text>The summers have been hotter than usual, increasing the energy demand in summer by 50 ⚡.</text>
+        <requirement id="0" field="energyS" value="50" bound="min"/>
         <reaction id="0">
             <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
             <effect field="support" value="-50"/>
@@ -55,8 +55,8 @@
     </shock>
 
     <shock id="glaciers_melting" tag="env">
-        <name>Cold Spell</name>
-        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <name>Glaciers melting</name>
+        <text>The glaciers are melting which has increased the water supply of hydraulic plants by 50, but damages the environment.</text>
         <requirement id="0" field="energyW" value="50" bound="min"/>
         <reaction id="0">
             <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
@@ -78,8 +78,8 @@
     </shock>
 
     <shock id="severe_weather" tag="env">
-        <name>Cold Spell</name>
-        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <name>Severe Weather</name>
+        <text>Severe weather throughout the year have lowered the energy production of solar panels and wind turbines.</text>
         <requirement id="0" field="energyW" value="50" bound="min"/>
         <reaction id="0">
             <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
@@ -101,8 +101,8 @@
     </shock>
 
     <shock id="floods" tag="env">
-        <name>Cold Spell</name>
-        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <name>Floods</name>
+        <text>I don't know what floods affect, but it was on the SURE list of potential shocks...</text>
         <requirement id="0" field="energyW" value="50" bound="min"/>
         <reaction id="0">
             <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
@@ -124,8 +124,8 @@
     </shock>
 
     <shock id="earthquake" tag="env">
-        <name>Cold Spell</name>
-        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <name>Earthquake</name>
+        <text>An earthquake has hit the area near the geothermal plant in construction, resulting in a delay of 1 turn.</text>
         <requirement id="0" field="energyW" value="50" bound="min"/>
         <reaction id="0">
             <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
@@ -147,8 +147,8 @@
     </shock>
 
     <shock id="inc_raw_cost" tag="env">
-        <name>Cold Spell</name>
-        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <name>Rise of material costs</name>
+        <text>The prices of raw material have increased resulting in production costs going up by 10%.</text>
         <requirement id="0" field="energyW" value="50" bound="min"/>
         <reaction id="0">
             <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
