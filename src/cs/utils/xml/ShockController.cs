@@ -72,7 +72,7 @@ public partial class ShockController : XMLController {
     public string _GetShockText(string id) => GetField(id, "text");
 
     // Retrieves the text from a requirement given the id of the shock and that of the requirement
-    public ShockRequirement _GetRequirement(string shock_id, int req_id) {
+    public List<ShockRequirement> _GetRequirements(string shock_id) {
         // Start by checking if the file is loaded in or not
 		CheckXML();
 
@@ -85,16 +85,11 @@ public partial class ShockController : XMLController {
         // Find the correct requirement from the shock
         IEnumerable<XElement> requirements = shock.Descendants("requirement");
 
-        // Sanity check: Make sure that the given ID is in range
-        if(requirements.Count() <= req_id) {
-            throw new ArgumentException("Given requirement ID is out of range: " + req_id + " >= " + requirements.Count());
-        }
-
-        // Extract the requirement values and return them in a struct
-        return new (
-            requirements.ElementAt(req_id).Attribute("field").Value,
-            requirements.ElementAt(req_id).Attribute("value").Value.ToFloat()
-        );
+        // Extract the requirement values and return them in a struct list
+        return shock.Descendants("requirement").Select(r => new ShockRequirement(
+            r.Attribute("field").Value,
+            r.Attribute("value").Value.ToFloat()
+        )).ToList();
     }
 
     // Retrieves the reward from surviving a shock, given the shock id

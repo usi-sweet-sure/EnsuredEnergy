@@ -30,4 +30,303 @@
             <effect field="money" value="50"/>
         </reward>
     </shock>
+
+    <shock id="heat_wave" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="glaciers_melting" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="severe_weather" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="floods" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="earthquake" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="inc_raw_cost" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="protest" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="mass_immigration" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="blackout" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="pandemic" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="nuc_accident" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="nuc_reintro" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
+
+    <shock id="remote_jobs" tag="env">
+        <name>Cold Spell</name>
+        <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
+        <requirement id="0" field="energyW" value="50" bound="min"/>
+        <reaction id="0">
+            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reaction id="1">
+            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
+            <effect field="env" value="-50"/>
+        </reaction>
+        <reaction id="2">
+            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
+            <effect field="money" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
+        </reward>
+    </shock>
 </db>
