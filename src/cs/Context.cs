@@ -151,6 +151,9 @@ public partial class Context : Node {
             float dem = MSummer._Demand.Base + ((inc ? -1 : 1) * v);
             MSummer._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
         }
+
+        // Signal that the context has been updated 
+        EmitSignal(SignalName.UpdateContext);
     }
 
     // Updates the current ID (should only be done once per game)
