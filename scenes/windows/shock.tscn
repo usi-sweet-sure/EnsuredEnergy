@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://885lty3v1qbq"]
+[gd_scene load_steps=5 format=3 uid="uid://885lty3v1qbq"]
 
 [ext_resource type="Texture2D" uid="uid://p4gnyqepthsu" path="res://assets/glacier.jpg" id="1_bd76c"]
+[ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="2_i1jhu"]
 
 [sub_resource type="Theme" id="Theme_jkqh0"]
 
 [node name="Shock" type="CanvasLayer"]
+script = ExtResource("1_jq3nm")
 
 [node name="ColorRect2" type="Panel" parent="."]
 anchors_preset = 15
@@ -63,6 +65,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Result" type="Label" parent="ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -81,10 +84,10 @@ autowrap_mode = 3
 
 [node name="EnergyBar" parent="ColorRect/Result" instance=ExtResource("2_i1jhu")]
 layout_mode = 0
-offset_left = 104.0
-offset_top = -48.0
-offset_right = 240.0
-offset_bottom = -22.0
+offset_left = 136.0
+offset_top = 48.0
+offset_right = 272.0
+offset_bottom = 74.0
 
 [node name="Reactions" type="Control" parent="ColorRect"]
 visible = false

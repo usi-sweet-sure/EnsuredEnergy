@@ -36,6 +36,10 @@ public partial class Context : Node {
     // Signals that the context has been updated by the player
     public delegate void UpdatePredictionEventHandler();
 
+    [Signal] 
+    // Signals that the language has been updated
+    public delegate void UpdateLanguageEventHandler();
+
     // Current internal storage of the game instance's id
     private int ResId = -1;
 
@@ -52,6 +56,9 @@ public partial class Context : Node {
     // Dictionary to link power plant type to the number of plants
     private Dictionary<Building.Type, int> PPStats; 
 
+    // Current language
+    private Language Lang;
+
     // ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -59,6 +66,9 @@ public partial class Context : Node {
         // Initialize models
         MSummer = new Model(ModelSeason.SUMMER); 
         MWinter = new Model(ModelSeason.WINTER);
+
+        // Initialize the language
+        Lang = Language.Type.EN;
 
         // Initialize the internal stats
         ResetPPStats();
@@ -151,11 +161,37 @@ public partial class Context : Node {
         Turn = newTurn;
     }
 
+    // Updates the language the textcontroller is set to  
+	public void _UpdateLanguage(Language l) {
+		// Check that the given language is new
+		if(l != Lang) {
+			Lang = l;
+
+            // Signal to controllers that the language has changed
+            EmitSignal(SignalName.UpdateLanguage);
+		}
+		// Don't do anything if the languages are the same
+	}
+
     // Clear the modified columns in each model
     public void _ClearModified() {
         MWinter._ClearModified();
         MSummer._ClearModified();
     }
+
+	// Increments the language
+	public void _NextLanguage() {
+		Lang = ++Lang;
+
+        // Signal to controllers that the language has changed
+        EmitSignal(SignalName.UpdateLanguage);
+	}
+
+	// Retrieve the language name
+	public string _GetLanguageName() => Lang.ToName();
+
+    // Retrieve the language
+    public Language _GetLanguage() => Lang;
 
     // Retrieves the building statistics for a given building type
     public int _GetPPStat(Building b) => PPStats[b];

@@ -194,7 +194,7 @@ public partial class UI : CanvasLayer {
 		Data = new InfoData();
 
 		// Set the language
-		TC._UpdateLanguage(Language.Type.EN);
+		C._UpdateLanguage(Language.Type.EN);
 	}
 
 	// ==================== UI Update API ====================
@@ -202,7 +202,7 @@ public partial class UI : CanvasLayer {
 	// Updates the various labels across the UI
 	public void _UpdateUI() {
 		// Updates the displayed language to match the selected one
-		LanguageButton.Text = TC._GetLanguageName();
+		LanguageButton.Text = C._GetLanguageName();
 
 		// Fetch the build menu names
 		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
@@ -671,7 +671,7 @@ public partial class UI : CanvasLayer {
 	// Propagates the language update to the game loop
 	public void _OnLanguageButtonPressed() {
 		// Move to the next language
-		TC._NextLanguage();
+		C._NextLanguage();
 
 		// Update the ui
 		_UpdateUI();

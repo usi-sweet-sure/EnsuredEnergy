@@ -25,7 +25,7 @@
         </reaction>
         <!-- Reward to the player in case they met the requirements -->
         <reward>
-            <text>>Die Energieproduktion war hoch genug, um den Schock zu überstehen.\n + 50 Unterstützung + 50 💰</text>
+            <text>Die Energieproduktion war hoch genug, um den Schock zu überstehen.\n + 50 Unterstützung + 50 💰</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>

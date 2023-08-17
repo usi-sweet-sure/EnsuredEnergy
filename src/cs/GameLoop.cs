@@ -66,7 +66,8 @@ public partial class GameLoop : Node2D {
 	// Model controller
 	private ModelController MC;
 
-	//TODO: Add Shocks once they are implemented
+	// Shock Window
+	private Shock ShockWindow;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -75,6 +76,7 @@ public partial class GameLoop : Node2D {
 		// Fetch context and model controller
 		C = GetNode<Context>("/root/Context");
 		MC = GetNode<ModelController>("ModelController");
+		ShockWindow = GetNode<Shock>("Shock");
 
 		// Init Data
 		GS = GameState.NOT_STARTED;
