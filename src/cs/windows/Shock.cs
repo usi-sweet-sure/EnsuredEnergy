@@ -165,18 +165,14 @@ public partial class Shock : CanvasLayer {
 	  // Hides all of the reaction buttons
 	// Should be done in the case of a reward
 	public void _HideReactions() {
-		R1.Hide();
-		R2.Hide();
-		R3.Hide();
+		Reactions.Hide();
 		Continue.Show();
 	}
 
 	// Shows all of the reaction buttons
 	// Should be done in the case of no reward
 	public void _ShowReactions() {
-		R1.Show();
-		R2.Show();
-		R3.Show();
+		Reactions.Show();
 		Continue.Hide();
 	}
 
@@ -205,16 +201,22 @@ public partial class Shock : CanvasLayer {
 			// Set the button's text and enable it
 			R1.Text = CurReactions[0].Text;
 			R1.Disabled = false;
+			R1.Show();
+			R2.Hide();
+			R3.Hide();
 		}
 		if(CurReactions.Count > 1) {
 			// Set the button's text and enable it
 			R2.Text = CurReactions[1].Text;
 			R2.Disabled = false;
+			R2.Show();
+			R3.Hide();
 		}
 		if(CurReactions.Count > 2) {
 			// Set the button's text and enable it
 			R3.Text = CurReactions[2].Text;
 			R3.Disabled = false;
+			R3.Show();
 		}
 	}
 

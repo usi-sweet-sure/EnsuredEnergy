@@ -65,7 +65,6 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Reward" type="Label" parent="ColorRect"]
-visible = false
 layout_mode = 0
 offset_left = 245.0
 offset_top = 151.0
