@@ -645,19 +645,19 @@ offset_right = 138.0
 offset_bottom = 147.0
 theme_override_constants/separation = 14
 
-[node name="Label3" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="MoneyBudgetL" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Budget:"
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="MoneyProdL" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Production: "
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="MoneyBuildL" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Building: "

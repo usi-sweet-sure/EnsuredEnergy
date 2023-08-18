@@ -152,9 +152,9 @@ public partial class UI : CanvasLayer {
 
 		// Name labels
 		MoneyNameL = GetNode<Label>("Money/Label");
-		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label3");
-		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label4");
-		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label2");
+		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/MoneyBudgetL");
+		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/MoneyBuildL");
+		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/MoneyProdL");
 		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Import");
 
 		// Window buttons
@@ -222,6 +222,8 @@ public partial class UI : CanvasLayer {
 		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
 		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
 
+		// Fetch the money 
+
 		// Update the various plants
 		BM._UpdatePlantName(Building.Type.GAS, gas_name);
 		BM._UpdatePlantName(Building.Type.HYDRO, hydro_name);
@@ -268,6 +270,9 @@ public partial class UI : CanvasLayer {
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
+
+		// Upate the money labels
+		SetMoneyInfo();
 		
 	}
 
