@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=19 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
 [ext_resource type="Texture2D" uid="uid://ceorbg7ik1atw" path="res://assets/Elements/230601_CH_SUREgame_Nuclear-Plant.png" id="4_fa5re"]
 [ext_resource type="Texture2D" uid="uid://lvf5eog6buhr" path="res://assets/Elements/230601_CH_SUREgame_Gas-Plant.png" id="5_blyni"]
+[ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="5_ra246"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
@@ -16,6 +17,10 @@
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
 [ext_resource type="Script" path="res://src/cs/resources/EnvironmentManager.cs" id="10_7fban"]
 [ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="11_uite1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlpb2"]
+atlas = ExtResource("5_ra246")
+region = Rect2(58, 262, 162, 46)
 
 [node name="MainDemo" type="Node2D"]
 script = ExtResource("1_4jam2")
@@ -36,11 +41,23 @@ _PlantType = 4
 [node name="Sprite" parent="World/Nuclear" index="0"]
 texture = ExtResource("4_fa5re")
 
+[node name="NameRect" parent="World/Nuclear" index="3"]
+offset_top = -169.0
+offset_bottom = -141.0
+
 [node name="Switch" parent="World/Nuclear" index="4"]
 visible = false
 
-[node name="ResRect" parent="World/Nuclear" index="5"]
-visible = false
+[node name="InfoBG" type="Sprite2D" parent="World/Nuclear" index="5"]
+position = Vector2(1, 115)
+texture = SubResource("AtlasTexture_xlpb2")
+
+[node name="ResRect" parent="World/Nuclear" index="6"]
+offset_left = -39.0
+offset_top = 102.0
+offset_right = -7.0
+offset_bottom = 131.0
+metadata/_edit_group_ = true
 
 [node name="Coal" parent="World" index="2"]
 position = Vector2(637, 385)
@@ -48,13 +65,23 @@ position = Vector2(637, 385)
 [node name="Sprite" parent="World/Coal" index="0"]
 texture = ExtResource("5_blyni")
 
+[node name="NameRect" parent="World/Coal" index="3"]
+offset_top = -177.0
+offset_bottom = -149.0
+
 [node name="Switch" parent="World/Coal" index="4"]
 visible = false
 
-[node name="ResRect" parent="World/Coal" index="5"]
-visible = false
+[node name="InfoBG2" type="Sprite2D" parent="World/Coal" index="5"]
+position = Vector2(3, 119)
+texture = SubResource("AtlasTexture_xlpb2")
 
-[node name="Sprite2D" type="Sprite2D" parent="World/Coal" index="8"]
+[node name="ResRect" parent="World/Coal" index="6"]
+offset_left = -39.0
+offset_top = 106.0
+offset_right = -7.0
+offset_bottom = 135.0
+metadata/_edit_group_ = true
 
 [node name="BuildButton" parent="World" index="3"]
 offset_left = 497.0

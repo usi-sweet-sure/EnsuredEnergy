@@ -92,23 +92,37 @@ offset_right = 104.0
 offset_bottom = 141.0
 flat = true
 
-[node name="TabBar2" type="TabBar" parent="TabContainer"]
-visible = false
-layout_mode = 2
+[node name="Tree" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
+position = Vector2(650, 199)
+scale = Vector2(0.9, 0.9)
+PlantName = "Trees"
+_PlantType = 3
+metadata/_edit_group_ = true
 
-[node name="Hydro" parent="TabContainer/TabBar2" instance=ExtResource("2_236y8")]
-position = Vector2(648, 200)
+[node name="TreeButton" type="Button" parent="TabContainer/TabBar/Tree"]
+offset_left = -109.0
+offset_top = -143.0
+offset_right = 104.0
+offset_bottom = 141.0
+flat = true
+
+[node name="Hydro" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
+position = Vector2(903, 197)
 scale = Vector2(0.9, 0.9)
 PlantName = "Hydro Plant"
 _PlantType = 0
 metadata/_edit_group_ = true
 
-[node name="HydroButton" type="Button" parent="TabContainer/TabBar2/Hydro"]
+[node name="HydroButton" type="Button" parent="TabContainer/TabBar/Hydro"]
 offset_left = -104.0
 offset_top = -143.0
 offset_right = 100.0
 offset_bottom = 141.0
 flat = true
+
+[node name="TabBar2" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
 
 [node name="Gas" parent="TabContainer/TabBar2" instance=ExtResource("2_236y8")]
 position = Vector2(160, 200)
@@ -122,21 +136,3 @@ offset_top = -143.0
 offset_right = 102.0
 offset_bottom = 141.0
 flat = true
-
-[node name="Tree" parent="TabContainer/TabBar2" instance=ExtResource("2_236y8")]
-position = Vector2(400, 200)
-scale = Vector2(0.9, 0.9)
-PlantName = "Trees"
-_PlantType = 3
-metadata/_edit_group_ = true
-
-[node name="TreeButton" type="Button" parent="TabContainer/TabBar2/Tree"]
-offset_left = -109.0
-offset_top = -143.0
-offset_right = 104.0
-offset_bottom = 141.0
-flat = true
-
-[node name="TabBar3" type="TabBar" parent="TabContainer"]
-visible = false
-layout_mode = 2
