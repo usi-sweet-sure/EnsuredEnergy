@@ -22,6 +22,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 // XML Controller specifically tailored for reading the shock config files
 // These are particular, as they contain both translatable text and config data.
@@ -66,10 +67,14 @@ public partial class ShockController : XMLController {
 	}
 
     // Retrieves the shock's name from the shocks xml file given the shock's id
-    public string _GetShockName(string id) => GetField(id, "name");
+    public string _GetShockName(string id) =>
+        GetField(id, "name") ?? // null check 
+            throw new Exception("Unable to find name in given shock: " + id);
 
     // Retrieves the shock's description from the shocks xml given the shock's id
-    public string _GetShockText(string id) => GetField(id, "text");
+    public string _GetShockText(string id) => 
+        GetField(id, "text") ?? // null check
+            throw new Exception("Unable to find text in given shock: " + id);
 
     // Retrieves the text from a requirement given the id of the shock and that of the requirement
     public List<ShockRequirement> _GetRequirements(string shock_id) {

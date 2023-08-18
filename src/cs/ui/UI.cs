@@ -232,18 +232,23 @@ public partial class UI : CanvasLayer {
 		foreach(PowerPlant pp in GL._GetPowerPlants()) {
 			switch(pp.PlantType.type) {
 				case Building.Type.GAS:
+					pp.PlantName = gas_name;
 					pp._UpdatePlantName(gas_name);
 					break;
 				case Building.Type.HYDRO:
+					pp.PlantName = hydro_name;
 					pp._UpdatePlantName(hydro_name);
 					break;
 				case Building.Type.SOLAR:
+					pp.PlantName = solar_name;
 					pp._UpdatePlantName(solar_name);
 					break;
 				case Building.Type.TREE:
+					pp.PlantName = tree_name;
 					pp._UpdatePlantName(tree_name);
 					break;
 				case Building.Type.NUCLEAR:
+					pp.PlantName = nuclear_name;
 					pp._UpdatePlantName(nuclear_name);
 					break;
 				default:
