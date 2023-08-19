@@ -190,6 +190,15 @@ public partial class UI : CanvasLayer {
 		// For predictive updates
 		C.UpdatePrediction += _OnUpdatePrediction;
 
+		// For checking if the turn can be passed
+		SummerEnergy.ProgressUpdate += _OnProgressUpdate;
+		WinterEnergy.ProgressUpdate += _OnProgressUpdate;
+		SummerEnergyPredict.ProgressUpdate += _OnProgressUpdate;
+		WinterEnergyPredict.ProgressUpdate += _OnProgressUpdate;
+
+		// Initially disable the next turn button
+		NextTurnButton.Disabled = true;
+
 		// Initialize data
 		Data = new InfoData();
 
@@ -221,8 +230,6 @@ public partial class UI : CanvasLayer {
 		// UI buttons
 		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
 		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
-
-		// Fetch the money 
 
 		// Update the various plants
 		BM._UpdatePlantName(Building.Type.GAS, gas_name);
@@ -707,5 +714,21 @@ public partial class UI : CanvasLayer {
 		WinterEnergyPredict._UpdateProgress((int)MW._GetTotalSupply());
 		SummerEnergyPredict._UpdateProgress((int)MS._GetTotalSupply());
 
+	}
+
+	// Checks if the updated energy supply surpassed the demand
+	public void _OnProgressUpdate() {
+		// Retrieve the current values from the model
+		(Model MW, Model MS) = C._GetModels();
+
+		// Check if the current supply surpasses the demand
+		if((MW._GetTotalSupply() >= MW._Demand.Base) && (MS._GetTotalSupply() >=  MS._Demand.Base)) {
+			// In this case the supply meets the demand for both winter and summer
+			// So we can activate the next turn button
+			NextTurnButton.Disabled = false;
+		} else {
+			// In this case the demand is not yet met so the player can't progress to the next turn
+			NextTurnButton.Disabled = true;
+		}
 	}
 }

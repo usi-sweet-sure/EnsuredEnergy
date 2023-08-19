@@ -22,6 +22,11 @@ using System.Diagnostics;
 // Represents a resource bar, specifically used for the environment status and the support status
 public partial class InfoBar : ProgressBar {
 
+	[Signal]
+	// Signals the progress of this bar has been updated
+	// Sends the new value of the progress bar along with the signal
+	public delegate void ProgressUpdateEventHandler();
+
 	// Slider initial positions
 	private const int SLIDER_BEG_X = -330;
 	private const int SLIDER_END_X = -158;
@@ -67,6 +72,8 @@ public partial class InfoBar : ProgressBar {
 		Tween tween = CreateTween();
 		tween.TweenProperty(this, "value", v, 0.8f);
 
+		// Singal that the value has changed
+		EmitSignal(SignalName.ProgressUpdate);
 	}
 
 	// Updates the position of the slider based on a given value
