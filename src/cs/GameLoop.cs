@@ -271,6 +271,9 @@ public partial class GameLoop : Node2D {
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
 
+			// Update the demand
+			C._IncModelDemands();
+
 			// Update model with our current data
 			foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
 				// Create a new request for each modified filed in our model

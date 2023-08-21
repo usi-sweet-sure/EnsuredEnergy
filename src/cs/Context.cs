@@ -28,6 +28,12 @@ using System.Collections.Generic;
 // ...
 public partial class Context : Node {
 
+    // Contstants used for initializations
+    private const float INITIAL_DEMAND_S = 150;
+    private const float INITIAL_DEMAND_W = 250;
+    private const float DEMAND_INC_S = 20;
+    private const float DEMAND_INC_W = 30;
+
     [Signal]
     // Signals that the context has been updated by an external actor
     public delegate void UpdateContextEventHandler();
@@ -72,6 +78,9 @@ public partial class Context : Node {
 
         // Initialize the internal stats
         ResetPPStats();
+
+        // Initialize the internal models
+        InitModels();
 	}    
 
     // ==================== Public API ====================
@@ -191,6 +200,13 @@ public partial class Context : Node {
 		// Don't do anything if the languages are the same
 	}
 
+    // Increases the demand by the preset per-turn amount
+    public void _IncModelDemands() {
+        // Increase the demand for both winter and summer
+        _UpdateModelDemand(DEMAND_INC_W);
+        _UpdateModelDemand(DEMAND_INC_S, winter: false);
+    }
+
     // Clear the modified columns in each model
     public void _ClearModified() {
         MWinter._ClearModified();
@@ -260,4 +276,13 @@ public partial class Context : Node {
             {Building.Type.TREE, 0}
         };
     }
+
+    // Creates the initial events to set the model data to what we need
+    private void InitModels() {
+        // Set the model demands to our initial values
+        MSummer._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, INITIAL_DEMAND_S);
+        MWinter._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, INITIAL_DEMAND_W);
+
+
+    }       
 }
