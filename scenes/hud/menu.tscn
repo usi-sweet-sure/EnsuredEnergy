@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://pvoi2mcc3oc1"]
 
 [ext_resource type="Script" path="res://src/cs/ui/menu.cs" id="1_acmck"]
-[ext_resource type="FontFile" uid="uid://bshjp8ea8c2lx" path="res://assets/electric.ttf" id="1_gfmxs"]
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="2_tndym"]
+[ext_resource type="FontFile" uid="uid://dgb2xwp51s2cc" path="res://assets/Fonts/HeavyEquipment.otf" id="2_v5gom"]
 [ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="3_t8pt2"]
 [ext_resource type="Texture2D" uid="uid://sob7pstxhrp" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="4_ppdqc"]
 [ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_gh7te"]
@@ -19,14 +19,18 @@ grow_vertical = 2
 color = Color(0.596078, 0.596078, 0.596078, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 450.0
-offset_top = 194.0
-offset_right = 1526.0
-offset_bottom = 585.0
-theme_override_fonts/font = ExtResource("1_gfmxs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -366.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_v5gom")
 theme_override_font_sizes/font_size = 122
 text = "Ensured 
 Energy"
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="Play" type="TextureButton" parent="."]

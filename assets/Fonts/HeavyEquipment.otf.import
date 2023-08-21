@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bshjp8ea8c2lx"
-path="res://.godot/imported/electric.ttf-436a03c2a1ca85827e4467d28b1dfc7f.fontdata"
+uid="uid://dgb2xwp51s2cc"
+path="res://.godot/imported/HeavyEquipment.otf-7caf9d5d55c765b337c8c92323825068.fontdata"
 
 [deps]
 
-source_file="res://assets/electric.ttf"
-dest_files=["res://.godot/imported/electric.ttf-436a03c2a1ca85827e4467d28b1dfc7f.fontdata"]
+source_file="res://assets/Fonts/HeavyEquipment.otf"
+dest_files=["res://.godot/imported/HeavyEquipment.otf-7caf9d5d55c765b337c8c92323825068.fontdata"]
 
 [params]
 
