@@ -37,8 +37,8 @@ public partial class PowerPlant : Node2D {
 
 	[Export]
 	// Life cycle of a nuclear power plant
-	public int NUCLEAR_LIFE_SPAN = 5; 
-	public int DEFAULT_LIFE_SPAN = 10;
+	public int NUCLEAR_END_TURN = 5; 
+	public int DEFAULT_END_TURN = 11;
 
 	[Export]
 	// Defines whether or not the building is a preview
@@ -53,8 +53,8 @@ public partial class PowerPlant : Node2D {
 	// This is what will be displayed in the build menu
 	public int BuildCost = 0;
 
-	// The number of turns the plant stays usable for
-	public int LifeCycle = 10;
+	// The number of the turn at which this plant will die
+	public int LifeEndTurn = 11; // 11 means it will never die
 
 	// The cost that the power plant will require each turn to function
 	public int InitialProductionCost = 0;
@@ -153,7 +153,7 @@ public partial class PowerPlant : Node2D {
 		BTime.Text = BuildTime.ToString() + " turn(s)";
 
 		// Set plant life cycle
-		LifeCycle = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
+		LifeEndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_END_TURN : DEFAULT_END_TURN;
 
 		// Activate the plant
 		ActivatePowerPlant();
@@ -218,7 +218,7 @@ public partial class PowerPlant : Node2D {
 
 	// Reacts to a new turn taking place
 	public void _NextTurn() {
-		if(LifeCycle-- <= 0) {
+		if(LifeEndTurn >= C._GetTurn()) {
 			// Deactivate the plant
 			KillPowerPlant();
 
@@ -227,12 +227,9 @@ public partial class PowerPlant : Node2D {
 			Switch.Disabled = true;
 			
 			// Workaround to allow for an immediate update
-			IsAlive = true;
+			IsAlive = false;
 			_OnSwitchToggled(false);
 		} 
-		if(LifeCycle < 0) {
-			IsAlive = false;
-		}
 	}
 
 	// Update API for the private fields of the plant
@@ -308,7 +305,7 @@ public partial class PowerPlant : Node2D {
 		// Copy in the public fields
 		BuildCost = PPCD.BuildCost;
 		BuildTime = PPCD.BuildTime;
-		LifeCycle = PPCD.LifeCycle;
+		LifeEndTurn = PPCD.LifeEndTurn;
 		LandUse = PPCD.LandUse;
 		BiodiversityImpact = PPCD.Biodiversity;
 
