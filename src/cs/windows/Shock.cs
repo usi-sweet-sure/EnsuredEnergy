@@ -35,9 +35,9 @@ public partial class Shock : CanvasLayer {
 	// Big list of shock ids
 	private string[] SHOCKS = { 
 		"cold_spell", "heat_wave", "glaciers_melting", 
-		"severe_weather", "floods", "earthquake",
+		"severe_weather", "earthquake",
 		"inc_raw_cost", "protest", "mass_immigration",
-		"blackout", "pandemic", "nuc_accident",
+		 "pandemic", "nuc_accident",
 		"nuc_reintro", "remote_jobs"
 	};
 
