@@ -35,10 +35,10 @@ public partial class Shock : CanvasLayer {
 	// Big list of shock ids
 	private string[] SHOCKS = { 
 		"cold_spell", "heat_wave", "glaciers_melting", 
-		"severe_weather", "earthquake",
-		"inc_raw_cost", "protest", "mass_immigration",
+		"severe_weather",
+		"inc_raw_cost_10", "inc_raw_cost_20", "mass_immigration",
 		 "pandemic", "nuc_accident",
-		"nuc_reintro", "remote_jobs"
+		"nuc_reintro"
 	};
 
 	// The currently displayed shock's ID
@@ -183,7 +183,6 @@ public partial class Shock : CanvasLayer {
 		// Extract the name and the description and set the labels to match them
 		Title.Text = SC._GetShockName(CurShock);
 		Text.Text = SC._GetShockText(CurShock);
-
 		// Set the current requirement
 		CurRequirements = SC._GetRequirements(CurShock);
 
