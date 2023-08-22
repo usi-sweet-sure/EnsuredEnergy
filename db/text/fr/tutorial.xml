@@ -1,10 +1,14 @@
-<tutorial>
-    <text id="0">Félicitations ! Tu as été désigné pour [b]gérer le réseau énergétique[/b] afin de garantir un secteur durable et résilient.</text>
-	</text id="1">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population. \n Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.</text>
-	</text id="2">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population. \n Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.text>
-	</text id="3">Il existe différentes façons d'approvisionner plus d'énergie :\n- Tu peux importer de l'énergie, mais cela pollue et peut être coûteux.</text>
-	</text id="4">Il existe différentes façons d'approvisionner plus d'énergie :\n- Tu peux construire de nouvelles centrales électriques, mais cela coûte du temps et de l'argent.</text>
-<tutorial>
-<infoBubble id="0">Chaque tour, tu dois atteindre la demande pour l'été et l'hiver.</infoBubble>
-<infoBubble id="1">Importer plus d'énergie ici</infoBubble>
-<infoBubble id="2">Construire de nouvelles centrales électriques</infoBubble>
+<db id="tutorial" lang="fr">
+	<group id="tutorial_text">
+		<text id="0">Félicitations ! Tu as été désigné pour [b]gérer le réseau énergétique[/b] afin de garantir un secteur durable et résilient.</text>
+		<text id="1">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population. \n Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.</text>
+		<text id="2">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population. \n Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.</text>
+		<text id="3">Il existe différentes façons d'approvisionner plus d'énergie :\n- Tu peux importer de l'énergie, mais cela pollue et peut être coûteux.</text>
+		<text id="4">Il existe différentes façons d'approvisionner plus d'énergie :\n- Tu peux construire de nouvelles centrales électriques, mais cela coûte du temps et de l'argent.</text>
+	</group>
+	<group id="info_bubble">
+		<text id="0">Chaque tour, tu dois atteindre la demande pour l'été et l'hiver.</text>
+		<text id="1">Importer plus d'énergie ici</text>
+		<text id="2">Construire de nouvelles centrales électriques</text>
+	</group>
+</db>

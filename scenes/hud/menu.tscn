@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://pvoi2mcc3oc1"]
 
-[ext_resource type="Script" path="res://src/cs/ui/menu.cs" id="1_acmck"]
+[ext_resource type="Script" path="res://src/cs/ui/MainMenu.cs" id="1_acmck"]
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="2_tndym"]
 [ext_resource type="FontFile" uid="uid://dgb2xwp51s2cc" path="res://assets/Fonts/HeavyEquipment.otf" id="2_v5gom"]
 [ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="3_t8pt2"]

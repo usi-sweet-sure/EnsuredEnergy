@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-public partial class menu : CanvasLayer
-{
+public partial class MainMenu : CanvasLayer {
 	
 	private TextureButton Play;
 	private TextureButton Lang;
