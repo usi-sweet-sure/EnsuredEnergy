@@ -138,7 +138,7 @@ public readonly struct Building {
 	public readonly Type type;
 
 	// The various types of power plants
-	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, NONE };
+	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, WIND, NONE };
 
 	// Labels used as string representations of the types
 	public const string GAS_LABEL = "gas";
@@ -146,6 +146,7 @@ public readonly struct Building {
 	public const string SOLAR_LABEL = "solar";
 	public const string TREE_LABEL = "tree";
 	public const string NUCLEAR_LABEL = "nuclear";
+	public const string WIND_LABEL = "wind";
 
 	// Base values for the model's building types
 	private const int GAS_ID_BASE = 1;
@@ -191,6 +192,9 @@ public readonly struct Building {
 		if(s_ == TREE_LABEL) {
 			return new Building(Type.TREE);
 		}
+		if(s_ == WIND_LABEL) {
+			return new Building(Type.WIND);
+		}
 		if(s_ == NUCLEAR_LABEL) {
 			return new Building(Type.NUCLEAR);
 		}
@@ -205,6 +209,7 @@ public readonly struct Building {
 		type == Type.HYDRO ? HYDRO_LABEL :
 		type == Type.SOLAR ? SOLAR_LABEL :
 		type == Type.TREE ? TREE_LABEL :
+		type == Type.WIND ? WIND_LABEL :
 		type == Type.NUCLEAR ? NUCLEAR_LABEL : 
 		"";
 

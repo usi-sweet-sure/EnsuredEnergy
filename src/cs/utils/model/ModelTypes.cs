@@ -285,6 +285,7 @@ public struct Availability : IColumn {
         Building.Type.GAS     => Gas,
         Building.Type.SOLAR   => Solar,
         Building.Type.NUCLEAR => Nuclear,
+        Building.Type.WIND    => Wind,
         _ => throw new ArgumentException("No field is associated to the given type!")
     };
 
@@ -304,6 +305,9 @@ public struct Availability : IColumn {
                 break;
             case Building.Type.NUCLEAR:
                 Nuclear = new_value;
+                break;
+            case Building.Type.WIND:
+                Wind = new_value;
                 break;
             default: 
                 throw new ArgumentException("No field is associated to the given type!");
@@ -345,6 +349,7 @@ public struct Capacity : IColumn {
         Building.Type.GAS     => Gas,
         Building.Type.SOLAR   => Solar,
         Building.Type.NUCLEAR => Nuclear,
+        Building.Type.WIND    => Wind,
         _ => throw new ArgumentException("No field is associated to the given type!")
     };
 
@@ -364,6 +369,9 @@ public struct Capacity : IColumn {
                 break;
             case Building.Type.NUCLEAR:
                 Nuclear = new_value;
+                break;
+            case Building.Type.WIND:
+                Wind = new_value;
                 break;
             default: 
                 throw new ArgumentException("No field is associated to the given type!");

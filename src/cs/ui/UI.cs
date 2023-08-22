@@ -50,8 +50,8 @@ public partial class UI : CanvasLayer {
 	private TextController TC;
 
 	// Button that triggers the passage to a next turn
-	private Button NextTurnButton;
-	private Sprite2D NT;
+	private TextureButton NextTurnButton;
+	private Label NextTurnL;
 
 	// The two energy bars, showing the availability and demand
 	private InfoBar WinterEnergy;
@@ -113,8 +113,8 @@ public partial class UI : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
-		NT = GetNode<Sprite2D>("NextTurn");
-		NextTurnButton = GetNode<Button>("NextTurn/NextTurn");
+		NextTurnButton = GetNode<TextureButton>("NextTurn");
+		NextTurnL = GetNode<Label>("NextTurn/Label");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
@@ -189,6 +189,7 @@ public partial class UI : CanvasLayer {
 
 		// For predictive updates
 		C.UpdatePrediction += _OnUpdatePrediction;
+		TC.UpdateUI += _UpdateUI;
 
 		// Initialize data
 		Data = new InfoData();
@@ -208,6 +209,7 @@ public partial class UI : CanvasLayer {
 		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
 		string hydro_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_hydro");
 		string solar_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_solar");
+		string wind_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_wind");
 		string tree_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_tree");
 		string nuclear_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_nuclear");
 
@@ -227,6 +229,7 @@ public partial class UI : CanvasLayer {
 		BM._UpdatePlantName(Building.Type.HYDRO, hydro_name);
 		BM._UpdatePlantName(Building.Type.SOLAR, solar_name);
 		BM._UpdatePlantName(Building.Type.TREE, tree_name);
+		BM._UpdatePlantName(Building.Type.WIND, wind_name);
 
 		// Update the placed plants
 		foreach(PowerPlant pp in GL._GetPowerPlants()) {
@@ -246,6 +249,9 @@ public partial class UI : CanvasLayer {
 				case Building.Type.NUCLEAR:
 					pp._UpdatePlantName(nuclear_name);
 					break;
+				case Building.Type.WIND:
+					pp._UpdatePlantName(wind_name);
+					break;
 				default:
 					break;
 			}
@@ -259,7 +265,7 @@ public partial class UI : CanvasLayer {
 		PollutionBar._UpdateBarName(PollutionBar_name);
 
 		// Update UI buttons
-		NextTurnButton.Text = next_turn_name;
+		NextTurnL.Text = next_turn_name;
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);

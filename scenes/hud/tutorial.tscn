@@ -1,0 +1,327 @@
+[gd_scene load_steps=7 format=3 uid="uid://ciphd0cmpslrn"]
+
+[ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="1_ua11s"]
+[ext_resource type="Script" path="res://src/cs/ui/Tutorial.cs" id="1_xyv1m"]
+[ext_resource type="Texture2D" uid="uid://03lloca0uata" path="res://assets/Elements/ARROW INFO – 1.png" id="3_xv1gs"]
+
+[sub_resource type="Animation" id="Animation_b0nkl"]
+resource_name = "Float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TutoPopUp/Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(485, 328), Vector2(491, 328)]
+}
+
+[sub_resource type="Animation" id="Animation_kfxwr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TutoPopUp/Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(485, 267)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b6dub"]
+_data = {
+"Float": SubResource("Animation_b0nkl"),
+"RESET": SubResource("Animation_kfxwr")
+}
+
+[node name="Tutorial" type="CanvasLayer"]
+script = ExtResource("1_xyv1m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -57.0
+offset_top = -48.0
+offset_right = 1966.0
+offset_bottom = 1129.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="TutoPopUp" type="NinePatchRect" parent="."]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -148.0
+offset_right = 280.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ua11s")
+region_rect = Rect2(26, 28, 298, 216)
+patch_margin_left = 16
+patch_margin_top = 18
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="ColorRect" type="ColorRect" parent="TutoPopUp"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -172.0
+offset_right = 242.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.596078, 0.596078, 0.596078, 1)
+
+[node name="Text" type="RichTextLabel" parent="TutoPopUp/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -164.0
+offset_right = 242.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 29
+bbcode_enabled = true
+text = "Congratulations ! You have been designated to [b]manage the power grid[/b] and ensure a sustainable and resilient energy sector."
+
+[node name="Button" type="Button" parent="TutoPopUp/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -16.0
+offset_right = 34.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
+
+[node name="Arrow" type="Sprite2D" parent="TutoPopUp"]
+position = Vector2(485, 267)
+rotation = 3.14159
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_xv1gs")
+
+[node name="InfoBubble" type="NinePatchRect" parent="."]
+visible = false
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -657.0
+offset_top = 244.0
+offset_right = -303.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ua11s")
+region_rect = Rect2(26, 28, 298, 216)
+patch_margin_left = 16
+patch_margin_top = 18
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="InfoBubble"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -49.5
+offset_right = 161.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.597656, 0.597656, 0.597656, 1)
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -56.0
+offset_right = 163.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Each turn, you have to reach the demand for summer and winter."
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+position = Vector2(-12, 66)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="InfoBubble2" type="NinePatchRect" parent="."]
+visible = false
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -551.0
+offset_top = 326.0
+offset_right = -296.0
+offset_bottom = 457.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ua11s")
+region_rect = Rect2(26, 28, 298, 216)
+patch_margin_left = 16
+patch_margin_top = 18
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="InfoBubble2"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -48.5
+offset_right = 119.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.597656, 0.597656, 0.597656, 1)
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble2/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -41.0
+offset_right = 103.5
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+bbcode_enabled = true
+text = "Import more energy"
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble2"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+position = Vector2(-12, 83)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="InfoBubble3" type="NinePatchRect" parent="."]
+visible = false
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 656.0
+offset_top = 123.0
+offset_right = 920.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ua11s")
+region_rect = Rect2(26, 28, 298, 216)
+patch_margin_left = 16
+patch_margin_top = 18
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="InfoBubble3"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -48.5
+offset_right = 116.0
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.597656, 0.597656, 0.597656, 1)
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble3/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -41.0
+offset_right = 116.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+bbcode_enabled = true
+text = "Build new power plants"
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble3"]
+self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
+position = Vector2(-12, 66)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Float"
+libraries = {
+"": SubResource("AnimationLibrary_b6dub")
+}
