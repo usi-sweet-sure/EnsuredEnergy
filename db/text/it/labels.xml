@@ -50,7 +50,9 @@
 
      <!-- Labels for the main menu -->
      <group id="menu">
-        <text id="title">Ensured\nEnergy</text>
+        <text id="title">
+Ensured
+Energy</text>
         <text id="label_play">Giocare</text>
         <text id="label_lang">Lingua</text>
     </group>
