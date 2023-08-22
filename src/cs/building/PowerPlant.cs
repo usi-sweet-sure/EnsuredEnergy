@@ -138,8 +138,6 @@ public partial class PowerPlant : Node2D {
 			Switch.Hide();
 			Price.Show();
 		} else {
-			//PollL.Show();
-			Switch.Show();
 			Price.Hide();
 		}
 
@@ -283,8 +281,6 @@ public partial class PowerPlant : Node2D {
 			Switch.Hide();
 			NameR.Show();
 		} else {
-			//PollL.Show();
-			Switch.Show();
 			NameR.Hide();
 		}
 

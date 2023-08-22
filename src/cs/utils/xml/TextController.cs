@@ -22,10 +22,15 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 // Utility class used to access XML db files.
 // This is usually done to display text in a way that is linguistically dynamic .
 public partial class TextController : XMLController {
+
+	[Signal]
+	// Propagates a language update to the UI
+	public delegate void UpdateUIEventHandler();
 
 	// The currently loaded xml document
 	private XDocument LoadedXML;
@@ -61,16 +66,27 @@ public partial class TextController : XMLController {
 			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + LoadedFileName));
 		}
 		// Don't do anything if the languages are the same
+		EmitSignal(SignalName.UpdateUI);
+	}
+
+	// Retrieves the number of texts in a group
+	public int _GetNTexts(string filename, string groupid) {
+		// Start by checking if the file is loaded in or not
+		CheckXML(filename);
+
+		// retrieve the number of elements in the given group
+		IEnumerable<int> n_texts = from g in LoadedXML.Root.Descendants("group")
+					where g.Attribute("id").Value == groupid
+					select g.Descendants("text").Count();
+		
+		// Extract the result and return it
+		return n_texts.ElementAt(0);
 	}
 
 	// Queries the given xml file to retrieve the wanted text
 	public string _GetText(string filename, string groupid, string id) {
 		// Start by checking if the file is loaded in or not
-		if(LoadedFileName != filename || LoadedLanguage != Lang) {
-			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + filename));
-			LoadedFileName = filename;
-			LoadedLanguage = Lang;
-		}
+		CheckXML(filename);
 
 		// Query the file
 		var query = from g in LoadedXML.Root.Descendants("group")
@@ -82,13 +98,21 @@ public partial class TextController : XMLController {
 					);
 
 		// Extract query result
-		foreach(var g in query) {
-			foreach(var t in g) {
-				return t;
-			}
-		}
+		return query.ElementAt(0).ElementAt(0);
+	}
 
-		// If we reach this point in the method, then we failed somewhere
-		throw new Exception("No valid string matches the given query!!");
+	// ==================== Internal Helpers ====================
+
+	// Checks that the requested xml file is loaded
+	private void CheckXML(string filename) {
+		// Check if the file is loaded in or not
+		if(LoadedFileName != filename || LoadedLanguage != Lang) {
+			// If not parse the file
+			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + filename));
+
+			// Update the current loaded file data
+			LoadedFileName = filename;
+			LoadedLanguage = Lang;
+		}
 	}
 }
