@@ -49,6 +49,7 @@ public partial class Shock : CanvasLayer {
 	private Label Text;
 	private Label Result;
 	private Label Reward;
+	private Sprite2D Img;
 	
 	// Control node containing the reactions
 	private Control Reactions;
@@ -84,6 +85,7 @@ public partial class Shock : CanvasLayer {
 		R3 = GetNode<Button>("ColorRect/Reactions/Button3");
 		Continue = GetNode<Button>("ColorRect/Continue");
 		SC = GetNode<ShockController>("../ShockController");
+		Img = GetNode<Sprite2D>("ColorRect/Img");
 
 		// Set the button callbacks
 		R1.Pressed += _OnR1Pressed;
@@ -183,6 +185,8 @@ public partial class Shock : CanvasLayer {
 		// Extract the name and the description and set the labels to match them
 		Title.Text = SC._GetShockName(CurShock);
 		Text.Text = SC._GetShockText(CurShock);
+		Img.Texture = ResourceLoader.Load("res://assets/Icons/" + SC._GetShockImg(CurShock) + ".png") as Texture2D;
+		
 		// Set the current requirement
 		CurRequirements = SC._GetRequirements(CurShock);
 

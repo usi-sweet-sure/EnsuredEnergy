@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://885lty3v1qbq"]
 
-[ext_resource type="Texture2D" uid="uid://p4gnyqepthsu" path="res://assets/glacier.jpg" id="1_bd76c"]
 [ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="2_i1jhu"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="2_qaski"]
+[ext_resource type="Texture2D" uid="uid://dddi6bd53d7t" path="res://assets/Icons/ice.png" id="3_fweec"]
 
 [sub_resource type="Theme" id="Theme_jkqh0"]
 
@@ -44,22 +44,20 @@ grow_vertical = 2
 theme = SubResource("Theme_jkqh0")
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
-[node name="Image" type="Sprite2D" parent="ColorRect"]
-visible = false
-position = Vector2(116.1, 160.337)
-scale = Vector2(0.0450401, 0.0446285)
-texture = ExtResource("1_bd76c")
+[node name="Img" type="Sprite2D" parent="ColorRect"]
+position = Vector2(89, 129)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_fweec")
 
 [node name="Title" type="Label" parent="ColorRect"]
 layout_mode = 1
-offset_left = 26.0
-offset_top = 4.0
-offset_right = 200.0
-offset_bottom = 68.0
+offset_left = 30.0
+offset_top = -6.0
+offset_right = 204.0
+offset_bottom = 58.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Cold Spell"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Text" type="Label" parent="ColorRect"]
@@ -67,10 +65,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -196.0
-offset_top = 51.0
-offset_right = 196.0
-offset_bottom = 179.0
+offset_left = -40.5
+offset_top = 64.0
+offset_right = 207.5
+offset_bottom = 194.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "The past few winters have been colder than usual, increasing the energy demand in winter by 
@@ -86,12 +84,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -126.5
-offset_top = 2.0
+offset_top = 47.0
 offset_right = 126.5
-offset_bottom = 118.0
+offset_bottom = 151.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "+ 50 Money"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Result" type="Label" parent="ColorRect"]
@@ -126,9 +128,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -120.0
-offset_top = 22.0
+offset_top = 69.0
 offset_right = -80.0
-offset_bottom = 62.0
+offset_bottom = 109.0
 grow_horizontal = 2
 
 [node name="Button" type="Button" parent="ColorRect/Reactions"]
@@ -184,15 +186,14 @@ text = "Import electricity from neighbouring countries.
 
 [node name="Continue" type="Button" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -39.5
+offset_left = -79.0
 offset_top = -31.0
-offset_right = 39.5
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 0
 text = "Continue"
 

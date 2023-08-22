@@ -3,6 +3,7 @@
     <shock id="cold_spell" tag="env">
         <!-- The title that will be displayed at the top of the shock -->
         <name>Cold Spell</name>
+        <img>cold</img>
         <!-- The description text that will be displayed in the shock window -->
         <text>The past few winters have been colder than usual, increasing the energy demand in winter by 50 ⚡.</text>
         <!-- The requirements for said shock -->
@@ -16,7 +17,7 @@
             <effect field="support" value="-20"/>
         </reaction>
         <reaction id="1">
-            <text>Turn on the spare gas plant - 10 Environment 🏭</text>
+            <text>Turn on the spare gas plant + 10 Pollution 🏭</text>
             <effect field="env" value="-10"/>
         </reaction>
         <reaction id="2">
@@ -33,6 +34,7 @@
 
     <shock id="heat_wave" tag="env">
         <name>Heat Wave</name>
+        <img>hot</img>
         <text>The summers have been hotter than usual, increasing the energy demand in summer by 50 ⚡.</text>
         <requirement id="0" field="energyS" value="50" bound="min"/>
         <reaction id="0">
@@ -40,7 +42,7 @@
             <effect field="support" value="-20"/>
         </reaction>
         <reaction id="1">
-            <text>Turn on the spare gas plant - 10 Environment 🏭</text>
+            <text>Turn on the spare gas plant + 10 Pollution 🏭</text>
             <effect field="env" value="10"/>
         </reaction>
         <reaction id="2">
@@ -56,6 +58,7 @@
 
     <shock id="glaciers_melting" tag="env">
         <name>Glaciers melting</name>
+        <img>ice</img>
         <text>The glaciers are melting which has increased the water supply of hydraulic plants by 50, but damages the environment.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -71,6 +74,7 @@
 
     <shock id="severe_weather" tag="env">
         <name>Severe Weather</name>
+        <img>weather</img>
         <text>Severe weather throughout the year have lowered the energy production of solar panels and wind turbines.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -101,6 +105,7 @@
 -->
     <shock id="inc_raw_cost_10" tag="env">
         <name>Rise of material costs</name>
+        <img>money</img>
         <text>The prices of raw material have increased resulting in production costs going up by 10%.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -116,6 +121,7 @@
     
     <shock id="inc_raw_cost_20" tag="env">
         <name>Rise of material costs</name>
+        <img>money</img>
         <text>The prices of raw material have increased resulting in production costs going up by 20%.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -161,6 +167,7 @@
 -->
     <shock id="mass_immigration" tag="env">
         <name>Refugee Crisis</name>
+        <img>people</img>
         <text>The population has been increasing faster due to the climate refugee crisis.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -176,6 +183,7 @@
 
     <shock id="pandemic" tag="env">
         <name>Pandemic</name>
+        <img>virus</img>
         <text>A global pandemic has forced the population to stay home, lowering energy demand and contentment.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -191,22 +199,15 @@
 
     <shock id="nuc_accident" tag="env">
         <name>Nuclear accident</name>
-        <text>There was a nuclear accident in one of the nuclear plants. Your nuclear plants will switch off 1 turn earlier.</text>
-        <requirement id="0" field="energyW" value="5000" bound="min"/>
+        <img>nuclear</img>
+        <text>There was a nuclear accident in one of the nuclear plants.</text>
+        <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
-            <text>Ask the population to lower their energy consumption.\n- 50 Support 😡</text>
+            <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
-        <reaction id="1">
-            <text>Turn on the spare coal plant.\n- 50 Environment 🏭</text>
-            <effect field="env" value="10"/>
-        </reaction>
-        <reaction id="2">
-            <text>Import electricity from neighbouring countries.\n- 50 💰</text>
-            <effect field="money" value="-50"/>
-        </reaction>
         <reward>
-            <text>Energy production was high enough to wistand the shock.\n + 50 Support + 50 💰</text>
+            <text>Your nuclear plants will switch off 1 turn earlier.</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -214,6 +215,7 @@
 
     <shock id="nuc_reintro" tag="env">
         <name>Nuclear Re-introduction</name>
+        <img>vote</img>
         <text>The population has been wondering whether we should keep nuclear power going or switch it off.</text>
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
