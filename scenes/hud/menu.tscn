@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://pvoi2mcc3oc1"]
+[gd_scene load_steps=7 format=3 uid="uid://d1mvo5funquk4"]
 
 [ext_resource type="Script" path="res://src/cs/ui/MainMenu.cs" id="1_acmck"]
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="2_tndym"]
-[ext_resource type="FontFile" uid="uid://dgb2xwp51s2cc" path="res://assets/Fonts/HeavyEquipment.otf" id="2_v5gom"]
-[ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="3_t8pt2"]
-[ext_resource type="Texture2D" uid="uid://sob7pstxhrp" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="4_ppdqc"]
-[ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_gh7te"]
+[ext_resource type="FontFile" path="res://assets/Fonts/HeavyEquipment.otf" id="2_v5gom"]
+[ext_resource type="Texture2D" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="3_t8pt2"]
+[ext_resource type="Texture2D" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="4_ppdqc"]
+[ext_resource type="Texture2D" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_gh7te"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_acmck")
