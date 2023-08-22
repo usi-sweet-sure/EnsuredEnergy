@@ -157,11 +157,7 @@ public partial class BuildMenu : CanvasLayer {
 	
 	// Sets the position of the given plant according to its position in the list
 	private void SetPlantPosition(ref PowerPlant pp, int idx) {
-		//pp.Position = new Vector2(
-//			BuildingSpriteBase.X + (idx * BuildingSpriteOffset), 
-//			BuildingSpriteBase.Y
-//		);
-
+		
 		// Make sure that these plants are in preview mode
 		pp._UpdateIsPreview(true);
 
