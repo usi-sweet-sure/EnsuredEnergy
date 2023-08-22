@@ -107,6 +107,9 @@ public partial class PowerPlant : Node2D {
 	// The Area used to detect hovering
 	private Area2D HoverArea;
 
+	// Context
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 	
 	// Called when the node enters the scene tree for the first time.
@@ -125,6 +128,7 @@ public partial class PowerPlant : Node2D {
 		HoverArea = GetNode<Area2D>("HoverArea");
 		Info = GetNode<Control>("BuildInfo");
 		BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
+		C = GetNode<Context>("/root/Context");
 		
 		// Initialize plant type
 		PlantType = _PlantType;
@@ -188,10 +192,8 @@ public partial class PowerPlant : Node2D {
 	public void _SetPlantFromConfig(Building bt) {
 		// Sanity check: only reset the plant if it's alive
 		if(IsAlive) {
-			PowerPlantConfigData PPCD = new PowerPlantConfigData();
-
 			// Read out the given plant's config
-			PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, bt.ToString());
+			PowerPlantConfigData PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, bt.ToString());
 
 			// Copy over the data to our plant
 			CopyFrom(PPCD);
@@ -199,6 +201,19 @@ public partial class PowerPlant : Node2D {
 			// Propagate change to the UI
 			_UpdatePlantData();
 		}
+	}
+
+	// The availability of a plant is set from the data retrieved by the model
+	// This method does that set.
+	public void _SetAvailabilityFromContext() {
+		// Get the model from the context
+		Model M  = C._GetModel(ModelSeason.WINTER);
+		
+		// Extract the availability
+		float av = M._Availability._GetField(PlantType);
+
+		// Based on the number of built plants of this type, divide the availability
+		EnergyAvailability = av / C._GetPPStat(PlantType);
 	}
 
 	// Reacts to a new turn taking place
@@ -225,22 +240,18 @@ public partial class PowerPlant : Node2D {
 		bool updateInit=false, // Whether or not to update the initial values as well
 		int pol=-1, // pollution amount
 		int PC=-1, // Production cost
-		int EC=-1, // Energy capacity
-		float EA=-1.0f // Energy availability
+		int EC=-1 // Energy capacity
 	) {
 		// Only update internal fields that where given a proper value
 		Pollution = pol == -1 ? Pollution : pol;
 		ProductionCost = PC == -1 ? ProductionCost : PC;
 		EnergyCapacity = EC == -1 ? EnergyCapacity : EC;
-		// Percentages are clamped to [0, 1]
-		EnergyAvailability = EA <= -0.1f ? EnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
 
 		// Check for initial value updates
 		if(updateInit) {
 			InitialPollution = pol == -1 ? InitialPollution : pol;
 			InitialProductionCost = PC == -1 ? InitialProductionCost : PC;
 			InitialEnergyCapacity = EC == -1 ? InitialEnergyCapacity : EC;
-			InitialEnergyAvailability = EA <= -0.1f ? InitialEnergyAvailability : Math.Max(Math.Min(EA, 1.0f), 0.0f);
 		}
 	}
 
@@ -252,14 +263,12 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			Switch.Hide();
 			NameR.Show();
-			//Price.AddThemeColorOverride("font_color", new Color(1,0,0,1)); red
-			//Price.AddThemeColorOverride("font_color", new Color(1,1,1,1)); white
 			Price.Show();
 		} 
 		// When not in preview mode, the interactive elements should be visible
 		else {
-			//PollL.Show();
-			//Switch.Show();
+			
+			Switch.Show();
 			Price.Hide();
 			NameR.Hide();
 		}
@@ -308,8 +317,7 @@ public partial class PowerPlant : Node2D {
 			true, 
 			PPCD.Pollution,
 			PPCD.ProductionCost,
-			PPCD.Capacity,
-			PPCD.Availability
+			PPCD.Capacity
 		);
 	}
 

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="3_an05x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kaeus"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
+bg_color = Color(0.317647, 0.317647, 0.317647, 0)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1

@@ -66,7 +66,8 @@ public partial class GameLoop : Node2D {
 	// Model controller
 	private ModelController MC;
 
-	//TODO: Add Shocks once they are implemented
+	// Shock Window
+	private Shock ShockWindow;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -75,6 +76,7 @@ public partial class GameLoop : Node2D {
 		// Fetch context and model controller
 		C = GetNode<Context>("/root/Context");
 		MC = GetNode<ModelController>("ModelController");
+		ShockWindow = GetNode<Shock>("Shock");
 
 		// Init Data
 		GS = GameState.NOT_STARTED;
@@ -110,6 +112,9 @@ public partial class GameLoop : Node2D {
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
+
+			// Add the power plants to the stats
+			C._UpdatePPStats(pp.PlantType);
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
@@ -122,6 +127,12 @@ public partial class GameLoop : Node2D {
 
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
+		C.UpdateContext += _OnContextUpdate;
+
+		// Connect the shock related callbacks
+		ShockWindow.Continue.Pressed += NewTurn; // If the continue button is pressed at the end of a shock it triggers a new turn
+		ShockWindow.SelectReaction += _OnShockSelectReaction;
+		ShockWindow.ApplyReward += _OnShockApplyReward;
 
 		// Start the game
 		StartGame();
@@ -161,7 +172,7 @@ public partial class GameLoop : Node2D {
 		if(newturn) {
 			RM._NextTurn(ref Money);
 		} else {
-			RM._UpdateResourcesUI();
+			RM._UpdateResourcesUI(true);
 		}
 
 		// Update Money UI
@@ -178,6 +189,21 @@ public partial class GameLoop : Node2D {
 		_UI._UpdateUI();
 	}
 
+	// Computes which turn we are at
+	private int GetTurn() => N_TURNS - RemainingTurns;
+
+	// Triggers the selection and display of a new shock
+	private void DisplayShock() {
+		// Select a new shock
+		ShockWindow._SelectNewShock();
+
+		// Retrieve the resources
+		(Energy E, Environment Env, Support Sup) = RM._GetResources();
+
+		// Show the shock
+		ShockWindow._Show(Money, E, Env, Sup);
+	}
+
 	// ==================== Main Game Loop Methods ====================  
 
 	// Initializes all of the data that is propagated across the game
@@ -186,11 +212,40 @@ public partial class GameLoop : Node2D {
 		// Update the game state
 		GS = GameState.PLAYING;
 
+		// Initialize the context stats
+		C._InitializePPStats(PowerPlants);
+
 		// Initialize the model
 		MC._InitModel();
 
 		// Perform initial Resouce update
 		UpdateResources(true);
+
+		// Update the model to include all of the initial plants
+		foreach(PowerPlant pp in PowerPlants) {
+			C._UpdateModelFromClient(pp);
+		}
+
+		// Update model with our current data
+		foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
+			// Create a new request for each modified filed in our model
+			MC._UpsertModelColumnDataAsync(mc, b);
+		}
+
+		// Create a fetch request to get the summer data
+		MC._FetchModelDataAsync();
+
+		// Clear the model's modified columns
+		C._ClearModified();
+
+		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// All of the plants must be in the model for the availability to be set
+		// This is why we require two separate loops
+		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// Now that we have the initial model data, update the availability
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._SetAvailabilityFromContext();			
+		}
 
 		// Set the initial power plants and build buttons
 		RM._UpdatePowerPlants(PowerPlants);
@@ -200,19 +255,42 @@ public partial class GameLoop : Node2D {
 		_UI._UpdateUI();
 
 		// Initialize resources
+		_UI._OnUpdatePrediction();
 		RM._UpdateResourcesUI();
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
 	// A new turn is triggered when the player presses the next turn button in the UI.
 	private void NewTurn() {
+		// Hide the shock window
+		ShockWindow.Hide();
+
 		// Decerement the remaining turns and check for game end
 		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
 
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
+			// Update model with our current data
+			foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
+				// Create a new request for each modified filed in our model
+				MC._UpsertModelColumnDataAsync(mc, b);
+			}
+
+			// Create a fetch request to get the summer data
+			MC._FetchModelDataAsync();
+
+			// Clear the model's modified columns
+			C._ClearModified();
+
 			// Update Resources 
 			UpdateResources(true);
+			RM._UpdateResourcesUI();
 
 		} else if(RemainingTurns <= 0) {
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
 			// End the game if all turns have been spent
 			EndGame();
 		}
@@ -230,6 +308,24 @@ public partial class GameLoop : Node2D {
 		}
 	}
 
+	// Applies a given shock effect
+	private void ApplyShockEffect(ShockEffect SE) {
+		// Apply each individual effect
+		foreach((ResourceType rt, float v) in SE.Effects) {
+			// Figure out which resource to affect
+			switch(rt) {
+				// The game loop only handles money (for some reason lol)
+				case ResourceType.MONEY:
+					Money.Money += (int)v;
+					break;
+				// All other resources are handled by the resource manager
+				default:
+					RM._ApplyShockEffect(rt, v);
+					break;
+			}
+		}
+	}
+
 	// ==================== Interaction Callbacks ====================
 	
 	// Updates the internal lists on every build slot update
@@ -241,6 +337,9 @@ public partial class GameLoop : Node2D {
 
 			// Destroy the power plant
 			PowerPlants.Remove(pp);
+
+			// Update the context stats
+			C._UpdatePPStats(pp.PlantType, false);
 
 			// Connect the new build button to our signal
 			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
@@ -259,18 +358,55 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
+
+			// Update the context stats
+			C._UpdatePPStats(pp.PlantType);
 		}
 
 		// Propagate the updates to the resource manager
 		RM._UpdatePowerPlants(PowerPlants);
 		RM._UpdateBuildButtons(BBs);
-		RM._UpdateResourcesUI();
+		RM._UpdateResourcesUI(true);
 	}
 
 	// Triggers a new turn if the game is currently acitve
 	public void _OnNextTurn() {
 		if(GS == GameState.PLAYING) {
-			NewTurn();
+			// Display a shock
+			DisplayShock();
 		}
+	}
+
+	// Reacts to a context update
+	public void _OnContextUpdate() {
+		// Propate update to the UI
+		UpdateResources();
+		RM._UpdateResourcesUI();
+	}
+
+	// Updates the resources after a reaction to a shock has been selected
+	public void _OnShockSelectReaction(int id) {
+		// Fetch the reaction effect
+		List<ShockEffect> reactions = ShockWindow._GetReactions();
+
+		// Sanity check: make sure that the id is valid
+		if(reactions.Count <= id) {
+			throw new ArgumentException("Invalid ID was given to select a shock reaction: " + id + " >= " + reactions.Count);
+		}
+
+		// Apply the reaction
+		ApplyShockEffect(reactions[id]);
+
+		// Hide all reaction buttons and show the continue one
+		ShockWindow._HideReactions();
+	}
+
+	// Updates the resources to apply a given shock reward
+	public void _OnShockApplyReward() {
+		// Extract the reward
+		ShockEffect reward = ShockWindow._GetReward();
+
+		// Apply the reward
+		ApplyShockEffect(reward);
 	}
 }

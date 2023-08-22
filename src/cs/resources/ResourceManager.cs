@@ -52,6 +52,9 @@ public partial class ResourceManager : Node {
 	private List<PowerPlant> PowerPlants;
 	private List<BuildButton> BBs;
 
+	// Context
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -61,6 +64,7 @@ public partial class ResourceManager : Node {
 		EngM = GetNode<EnergyManager>("EnergyManager");
 		EnvM = GetNode<EnvironmentManager>("EnvironmentManager");
 		_UI = GetNode<UI>("../UI");
+		C = GetNode<Context>("/root/Context");
 
 		// Initialize the powerplant and Buildbutton lists
 		PowerPlants = new List<PowerPlant>();
@@ -84,7 +88,7 @@ public partial class ResourceManager : Node {
 		}
 
 		// Update the energy managers
-		Energy E = EngM._NextTurn(_UI._GetImportSliderPercentage(), ImportInSummer);
+		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 
 		// Compute the total import cost
 		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
@@ -108,10 +112,13 @@ public partial class ResourceManager : Node {
 	}
 
 	// Initializes all of the resource managers
-	public void _UpdateResourcesUI() {
+	public void _UpdateResourcesUI(bool predict) {
 
 		// Get the energy manager data
-		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+		if(!predict) {
+			Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+			UpdateEnergyUI(E);
+		}
 
 		// Compute the total import cost
 		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
@@ -123,8 +130,12 @@ public partial class ResourceManager : Node {
 		Environment Env = EnvM._GetEnvValues();
 
 		// Update the UI
-		UpdateEnergyUI(E);
 		UpdateEnvironmentUI(Env);
+	}
+
+	// Wrapper used for signal compatibility
+	public void _UpdateResourcesUI() {
+		_UpdateResourcesUI(false);
 	}
 
 	// Updates the current list of power plants via a deep copy
@@ -155,9 +166,39 @@ public partial class ResourceManager : Node {
 		// Fill in the contents of the list with those of the given one
 		foreach(BuildButton bb in lBB) {
 			BBs.Add(bb);
-			bb.Pressed += _UpdateResourcesUI;
 		}
 	} 
+
+	// Returns the current resource values for all resources
+	public (Energy, Environment, Support) _GetResources() => (
+		EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer),
+		EnvM._GetEnvValues(),
+		new Support(1.0f)
+	);
+
+	// Applies a given shock effect
+	public void _ApplyShockEffect(ResourceType rt, float v) {
+		// Figure out which resource to affect
+		switch(rt) {
+			case ResourceType.ENERGY_S:
+				// Update the summer model's demand
+				C._UpdateModelDemand(v, winter: false);
+				break;
+			case ResourceType.ENERGY_W:
+				// Update the winter model's demand
+				C._UpdateModelDemand(v);
+				break;
+			case ResourceType.ENVIRONMENT:
+				EnvM._ApplyShockEffect(v);
+				break;
+			case ResourceType.SUPPORT:
+				// Naive update for support for now
+				SM.S.Value += v;
+				break;
+			default:
+			 return;
+		}
+	}
 
 	// Computes the cost of the current import amount
 	// Given the percentage selected by the player
@@ -199,11 +240,6 @@ public partial class ResourceManager : Node {
 		);
 	}
 
-	// Wrapper for interface compatibility reasons
-	private void _UpdateResourcesUIWrapper(bool b) {
-		_UpdateResourcesUI();
-	}
-
 	// Gets the production cost accumulated over every building
 	private int AggregateProductionCost() =>	
 		PowerPlants.Where(pp => pp._GetLiveness()).Aggregate(0, (acc, pp) => acc + pp._GetProductionCost());
@@ -212,8 +248,8 @@ public partial class ResourceManager : Node {
 
 	// Simply reacts to a power plant toggle by updating the UI
 	// The parameter is only used for signal interface compatibility
-	private void _OnPowerPlantSwitchToggle(bool b=false) { 
-		_UpdateResourcesUI();
+	private void _OnPowerPlantSwitchToggle(bool b) { 
+		_UpdateResourcesUI(true);
 	}
 	
 }

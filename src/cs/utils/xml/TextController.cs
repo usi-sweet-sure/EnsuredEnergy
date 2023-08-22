@@ -35,27 +35,33 @@ public partial class TextController : XMLController {
 	// The current language
 	private Language Lang = Language.Type.EN;
 
+	// Context
+	private Context C;
+
+	// ==================== GODOT Method Overrides ====================
+
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready() {
+		// Fetch Context
+		C = GetNode<Context>("/root/Context");
+
+		// Connect to the context's update language signal
+		C.UpdateLanguage += _UpdateLanguage;
+	}
+
 	// ==================== Public API ====================
-	
-	// Updates the language the textcontroller is set to  
-	public void _UpdateLanguage(Language l) {
+
+	  // Updates the language the textcontroller is set to  
+	public void _UpdateLanguage() {
 		// Check that the given language is new
-		if(l != Lang) {
-			Lang = l;
+		if(C._GetLanguage() != Lang) {
+			Lang = C._GetLanguage();
 			
 			// Update the loaded xml
 			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + LoadedFileName));
 		}
 		// Don't do anything if the languages are the same
 	}
-
-	// Increments the language
-	public void _NextLanguage() {
-		Lang = ++Lang;
-	}
-
-	// Retrieve the language name
-	public string _GetLanguageName() => Lang.ToName();
 
 	// Queries the given xml file to retrieve the wanted text
 	public string _GetText(string filename, string groupid, string id) {

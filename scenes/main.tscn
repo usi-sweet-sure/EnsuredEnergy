@@ -22,6 +22,8 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlpb2"]
 atlas = ExtResource("5_ra246")
 region = Rect2(58, 262, 162, 46)
+[ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="12_sivce"]
+[ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="12_vvejj"]
 
 [node name="MainDemo" type="Node2D"]
 script = ExtResource("1_4jam2")
@@ -178,6 +180,11 @@ script = ExtResource("10_7fban")
 [node name="Tutorial" parent="." instance=ExtResource("11_uite1")]
 
 [node name="Menu" parent="." instance=ExtResource("18_h65u3")]
+[node name="ShockController" type="Node" parent="."]
+script = ExtResource("12_sivce")
+
+[node name="Shock" parent="." instance=ExtResource("12_vvejj")]
+visible = false
 
 [editable path="World"]
 [editable path="World/Nuclear"]

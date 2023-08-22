@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "normal"
-bg_color = Color(0.788235, 0.439216, 0.0313726, 1)
+bg_color = Color(0.94902, 0.815686, 0.0666667, 0.470588)
 border_width_left = 1
 border_width_top = 1
 border_width_bottom = 1
