@@ -12,21 +12,23 @@
         <!-- The list of ways the player can react to said shock -->
         <reaction id="0">
             <!-- The text that will be displayed in the reaction button (verbatim) -->
-            <text>Ask the population to lower their energy consumption. - 20 Support 😡</text>
+            <text>Ask the population to lower their energy consumption. -20 Support 😡</text>
             <!-- The effect selecting this reaction will have on the player's resources -->
             <effect field="support" value="-20"/>
         </reaction>
         <reaction id="1">
-            <text>Turn on the spare gas plant + 10 Pollution 🏭</text>
+            <text>Turn on the spare gas plant +10 Pollution 🏭</text>
             <effect field="env" value="-10"/>
         </reaction>
         <reaction id="2">
-            <text>Import electricity from neighbouring countries - 50 💰</text>
+            <text>Import electricity from neighbouring countries -50 $</text>
             <effect field="money" value="-100"/>
         </reaction>
         <!-- Reward to the player in case they met the requirements -->
         <reward>
-            <text>Energy production was high enough to wistand the shock + 10 Support + 50 💰</text>
+            <text>Energy production was high enough to wistand the shock 
++10 Support 
++50 $</text>
             <effect field="support" value="10"/>
             <effect field="money" value="50"/>
         </reward>
@@ -38,20 +40,22 @@
         <text>The summers have been hotter than usual, increasing the energy demand in summer by 50 ⚡.</text>
         <requirement id="0" field="energyS" value="50" bound="min"/>
         <reaction id="0">
-            <text>Ask the population to drink more water and turn down their A/C - 20 Support 😡</text>
+            <text>Ask the population to drink more water and turn down their A/C -20 Support 😡</text>
             <effect field="support" value="-20"/>
         </reaction>
         <reaction id="1">
-            <text>Turn on the spare gas plant + 10 Pollution 🏭</text>
+            <text>Turn on the spare gas plant +10 Pollution 🏭</text>
             <effect field="env" value="10"/>
         </reaction>
         <reaction id="2">
-            <text>Import electricity from neighbouring countries - 50 💰</text>
+            <text>Import electricity from neighbouring countries -50 $</text>
             <effect field="money" value="-50"/>
         </reaction>
         <reward>
-            <text>Energy production was high enough to wistand the shock + 50 Support + 50 💰</text>
-            <effect field="support" value="50"/>
+            <text>Energy production was high enough to wistand the shock 
++10 Support 
++50 $</text>
+            <effect field="support" value="10"/>
             <effect field="money" value="50"/>
         </reward>
     </shock>
@@ -66,7 +70,8 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>+ 50 ⚡ - 50 🍃</text>
+            <text>+50 ⚡ 
+-50 🍃</text>
             <effect field="money" value="50"/>
             <effect field="env" value="50"/>
         </reward>
@@ -82,7 +87,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Wind and Solar energy production -20%</text>
+            <text>Wind and Solar energy -20% ⚡</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -113,7 +118,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>+ 10% production $</text>
+            <text>+ 10% production costs $</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -129,7 +134,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>+ 20% production $</text>
+            <text>+ 20% production costs $</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -175,7 +180,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Energy demand in winter and summer</text>
+            <text>Energy demand in winter and summer +50 ⚡</text>
             <effect field="energyS" value="-50"/>
             <effect field="energyW" value="-50"/>
         </reward>
@@ -191,7 +196,8 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Energy demand -50 \nSupport -20</text>
+            <text>Energy demand -50 ⚡
+Support -20</text>
             <effect field="support" value="-20"/>
             <effect field="money" value="50"/>
         </reward>
@@ -219,11 +225,11 @@
         <text>The population has been wondering whether we should keep nuclear power going or switch it off.</text>
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
-            <text>Yes for reintroducig nuclear power</text>
+            <text>Yes for reintroducig nuclear power.</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reaction id="1">
-            <text>No, let's extend the nuclear plants we have now.</text>
+            <text>Yes, let's extend the nuclear plants we have now.</text>
             <effect field="env" value="-50"/>
         </reaction>
         <reaction id="2">
