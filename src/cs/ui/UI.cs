@@ -189,7 +189,7 @@ public partial class UI : CanvasLayer {
 
 		// For predictive updates
 		C.UpdatePrediction += _OnUpdatePrediction;
-		C.UpdateLanguage += _UpdateUI;
+		TC.UpdateUI += _UpdateUI;
 
 		// Initialize data
 		Data = new InfoData();

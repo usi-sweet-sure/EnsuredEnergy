@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://885lty3v1qbq"]
+[gd_scene load_steps=6 format=3 uid="uid://885lty3v1qbq"]
 
 [ext_resource type="Texture2D" uid="uid://p4gnyqepthsu" path="res://assets/glacier.jpg" id="1_bd76c"]
 [ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="2_i1jhu"]
+[ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="4_gcg7v"]
 
 [sub_resource type="Theme" id="Theme_jkqh0"]
 
@@ -171,5 +172,8 @@ offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Continue"
+
+[node name="ShockController" type="Node" parent="."]
+script = ExtResource("4_gcg7v")
 
 [editable path="ColorRect/Result/EnergyBar"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=21 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
 [ext_resource type="Script" path="res://src/cs/resources/EnvironmentManager.cs" id="10_7fban"]
 [ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="11_uite1"]
-[ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="12_sivce"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="12_vvejj"]
 [ext_resource type="PackedScene" uid="uid://pvoi2mcc3oc1" path="res://scenes/hud/menu.tscn" id="18_h65u3"]
 
@@ -180,9 +179,6 @@ script = ExtResource("10_7fban")
 [node name="Tutorial" parent="." instance=ExtResource("11_uite1")]
 
 [node name="Menu" parent="." instance=ExtResource("18_h65u3")]
-
-[node name="ShockController" type="Node" parent="."]
-script = ExtResource("12_sivce")
 
 [node name="Shock" parent="." instance=ExtResource("12_vvejj")]
 visible = false

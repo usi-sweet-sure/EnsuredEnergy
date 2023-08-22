@@ -22,10 +22,15 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 // Utility class used to access XML db files.
 // This is usually done to display text in a way that is linguistically dynamic .
 public partial class TextController : XMLController {
+
+	[Signal]
+	// Propagates a language update to the UI
+	public delegate void UpdateUIEventHandler();
 
 	// The currently loaded xml document
 	private XDocument LoadedXML;
@@ -61,6 +66,7 @@ public partial class TextController : XMLController {
 			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + LoadedFileName));
 		}
 		// Don't do anything if the languages are the same
+		EmitSignal(SignalName.UpdateUI);
 	}
 
 	// Retrieves the number of texts in a group
