@@ -244,7 +244,13 @@ public struct Model {
         _Availability.River * _Capacity.River +
         _Availability.Solar * _Capacity.Solar +
         _Availability.Wind * _Capacity.Wind;
-}   
+
+    // Converts the model to a string 
+    public override string ToString() =>
+        _Availability.ToString() + 
+        _Capacity.ToString() +
+        _Demand.ToString();
+}  
 
 // Used for a generic getter in the model struct
 public interface IColumn {
@@ -321,6 +327,14 @@ public struct Availability : IColumn {
     public bool _IsEmpty() => 
         Gas == Nuclear && Nuclear == River && River == Solar && Solar == Wind && Wind == 0.0f;
 
+    // Converts this column to a string
+    public override string ToString() => "Availability: \n" + 
+        "\tHydro: " + River +
+        "\n\tGas: " + Gas +
+        "\n\tSolar: " + Solar + 
+        "\n\tNuclear: " + Nuclear + 
+        "\n\tWind: " + Wind + "\n"; 
+
 }
 
 // Represents the data retrieved from the Capacity columns of the model
@@ -384,6 +398,14 @@ public struct Capacity : IColumn {
     // Checks whether the internal values are all 0 or not
     public bool _IsEmpty() => 
         Gas == Nuclear && Nuclear == River && River == Solar && Solar == Wind && Wind == 0.0f;
+
+    // Converts this column to a string
+    public override string ToString() => "Capacity: \n" + 
+        "\tHydro: " + River +
+        "\n\tGas: " + Gas +
+        "\n\tSolar: " + Solar + 
+        "\n\tNuclear: " + Nuclear + 
+        "\n\tWind: " + Wind + "\n"; 
 }
 
 // Represents the data retrived from the Demand columns of the model
@@ -413,4 +435,8 @@ public struct Demand : IColumn {
 
     // Checks whether the internal values are all 0 or not
     public bool _IsEmpty() => Base == 0;
+
+     // Converts this column to a string
+    public override string ToString() => "Demand: \n" + 
+        "\tBase: " + Base + "\n"; 
 } 

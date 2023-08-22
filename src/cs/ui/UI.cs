@@ -189,6 +189,7 @@ public partial class UI : CanvasLayer {
 
 		// For predictive updates
 		C.UpdatePrediction += _OnUpdatePrediction;
+		C.UpdateContext += _OnImportUpdate;
 		TC.UpdateUI += _UpdateUI;
 
 		// For checking if the turn can be passed

@@ -257,6 +257,9 @@ public partial class GameLoop : Node2D {
 		// Initialize resources
 		_UI._OnUpdatePrediction();
 		RM._UpdateResourcesUI();
+
+		var Ms = C._GetModels();
+		Debug.Print("Model Winter: " + Ms.Item1.ToString() + "\nModel Summer: " + Ms.Item2.ToString());
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
