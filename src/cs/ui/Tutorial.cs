@@ -1,58 +1,122 @@
+/**
+	Sustainable Energy Development game modeling the Swiss energy Grid.
+	Copyright (C) 2023 Università della Svizzera Italiana
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 using Godot;
 using System;
+using System.Collections.Generic;
 
-public partial class Tutorial : CanvasLayer
-{
-	private string[] TutoText = new string[]{
-		"Congratulations ! \nYou have been designated to [b]manage the power grid[/b] and ensure a sustainable and resilient energy sector.", 
-		"You need to [b]supply[/b] enough [b]energy[/b] for your population. \nThey need it to charge their phones and play their favourite video games.",
-		"You need to [b]supply[/b] enough [b]energy[/b] for your population. \nThey need it to charge their phones and play their favourite video games.", 
-		"There are different ways to supply more energy :\n- You can import energy, but it pollutes and can be expensive.",
-		"There are different ways to supply more energy :\n- You can build new power plants, but it costs time and money.",
-	};
-	//There are different ways to supply more energy:\n- You can implement different policies, but your population needs to approve."
+// Models the tutorial that is played at the begining of the game
+public partial class Tutorial : CanvasLayer {
+
+	// Text XML constants
+	private const string TUTO_FILENAME = "tutorial.xml";
+	private const string TUTO_TEXT_GROUP = "tutorial_text";
+	private const string INFO_BUBBLE_GROUP = "info_bubble";
+	private const int INFO_BUBBLE_START_IDX = 2;
+
+	// TextController reference set by the game loop
+	private TextController TC;
 	
+	// Continuation button: advances the tutorial
 	private Button B;
+
+	// Contains the current tutorial text
 	private RichTextLabel L;
-	private int i = 0;
+
+	// The index of the current tutorial text
+	private int TutoIdx = 0;
+	private int MaxTutoIdx = 0;
+	
+	// Animation player
 	private AnimationPlayer AP;
-	private NinePatchRect IB;
-	private NinePatchRect IB2;
-	private NinePatchRect IB3;
+
+	// Array containing the various info bubbles and their texts
+	private List<(NinePatchRect, RichTextLabel)> IBs;
+
+	// ==================== GODOT Method Overrides ====================
 	
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+	public override void _Ready() {
+		// Fetch the text controller
+		TC = GetNode<TextController>("../TextController");
+
+		// Fetch other nodes
 		B = GetNode<Button>("TutoPopUp/ColorRect/Button");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 		L = GetNode<RichTextLabel>("TutoPopUp/ColorRect/Text");
-		IB = GetNode<NinePatchRect>("InfoBubble");
-		IB2 = GetNode<NinePatchRect>("InfoBubble2");
-		IB3 = GetNode<NinePatchRect>("InfoBubble3");
+
+		// Build out the info bubble list
+		IBs = new () {
+			(GetNode<NinePatchRect>("InfoBubble"), GetNode<RichTextLabel>("InfoBubble/ColorRect/Text")),
+			(GetNode<NinePatchRect>("InfoBubble2"), GetNode<RichTextLabel>("InfoBubble2/ColorRect/Text")),
+			(GetNode<NinePatchRect>("InfoBubble3"), GetNode<RichTextLabel>("InfoBubble3/ColorRect/Text"))
+		};
+
+		// Initialize the tutorial text
+		L.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, TutoIdx.ToString());
 		
-		L.Text = TutoText[i];
-		
-		B.Pressed += _OnButtonPressed;
-		
+		// Connect Button Callback
+		B.Pressed += _OnButtonPressed;	
+
+		// Set the max tutorial idx
+		MaxTutoIdx = TC._GetNTexts(TUTO_FILENAME, TUTO_TEXT_GROUP);
 	}
-	
+
+	// ==================== Interaction Callbacks ====================
+
+	// When the continuation button is pressed, advance the tutorial
+	// If the current tutorial index is out of range, then our tutorial is done
 	public void _OnButtonPressed() {
-		if (i < TutoText.Length - 1) {
-			i++;
-			L.Text = TutoText[i];
-			if (i == 2) {
-				IB.Show();
-			}
-			if (i == 3) {
-				IB.Hide();
-				IB2.Show();
-			}
-			if (i == 4) {
-				IB2.Hide();
-				IB3.Show();
+		// Update the tutorial index
+		if(++TutoIdx < MaxTutoIdx) {
+			// Update the tutorial text
+			L.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, TutoIdx.ToString());
+
+			// Check for info bubbles
+			if(TutoIdx >= INFO_BUBBLE_START_IDX) {
+				// Compute the info bubble's idx
+				int bubble_idx = TutoIdx - INFO_BUBBLE_START_IDX;
+
+				// Set the bubble's text
+				SetInfoBubbleText(IBs[bubble_idx].Item2, bubble_idx);
+
+				// Show the bubble and hide all others
+				foreach(var bb in IBs) {
+					bb.Item1.Hide();
+				}
+				IBs[bubble_idx].Item1.Show();
 			}
 		} else {
+			// If we are out of range, we can hide the tutorial
 			Hide();
 		}
+	}
+
+	// ==================== Internal Helpers ====================
+
+	// Sets the text of a given info bubble to what's present in the xml file
+	// Requires a reference to the infobubble text and it's id
+	private void SetInfoBubbleText(RichTextLabel _ibt, int id) {
+		// Sanity check: given id is in range
+		if(id >= TC._GetNTexts(TUTO_FILENAME, INFO_BUBBLE_GROUP)) {
+			throw new ArgumentException("Given ID is out of range!!");
+		}
+
+		// Fetch the text and set in the bubble's label
+		_ibt.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, id.ToString());
 	}
 }

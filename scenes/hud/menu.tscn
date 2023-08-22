@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.596078, 0.596078, 0.596078, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -52,7 +52,7 @@ texture_disabled = ExtResource("5_gh7te")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="Play"]
+[node name="PlayL" type="Label" parent="Play"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +83,7 @@ ignore_texture_size = true
 stretch_mode = 3
 metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="Lang"]
+[node name="LangL" type="Label" parent="Lang"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
