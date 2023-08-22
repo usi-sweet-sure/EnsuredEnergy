@@ -232,8 +232,8 @@ public partial class GameLoop : Node2D {
 			MC._UpsertModelColumnDataAsync(mc, b);
 		}
 
-		// Create a fetch request to get the summer data
-		MC._FetchModelDataAsync();
+		// Create a fetch request to get the data
+		MC._FetchModelData();
 
 		// Clear the model's modified columns
 		C._ClearModified();

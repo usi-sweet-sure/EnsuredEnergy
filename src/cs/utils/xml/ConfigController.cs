@@ -54,13 +54,13 @@ public partial class ConfigController : XMLController {
 
 	// Retrieves an integer parameter from a given group
 	private int GetIntParam(IEnumerable<XElement> group, string id) =>
-		Int32.Parse(group
+		int.Parse(group
 			.Where(g => (g.Attribute("id").Value == id) && (g.Attribute("type").Value == "int"))
 			.Select(p => p.Value).ElementAt(0));
 
 	// Retrieves a float parameter from a given group
 	private float GetFloatParam(IEnumerable<XElement> group, string id) =>
-		(float)Double.Parse(group
+		float.Parse(group
 			.Where(g => (g.Attribute("id").Value == id) && (g.Attribute("type").Value == "float"))
 			.Select(p => p.Value).ElementAt(0));
 

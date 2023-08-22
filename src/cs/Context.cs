@@ -257,7 +257,8 @@ public partial class Context : Node {
             {Building.Type.HYDRO, 0},
             {Building.Type.NUCLEAR, 0},
             {Building.Type.SOLAR, 0},
-            {Building.Type.TREE, 0}
+            {Building.Type.TREE, 0},
+            {Building.Type.WIND, 0}
         };
     }
 }
