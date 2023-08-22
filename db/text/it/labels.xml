@@ -48,6 +48,13 @@
         <text id="label_import">Importazioni</text>
     </group>
 
+     <!-- Labels for the main menu -->
+     <group id="menu">
+        <text id="title">Ensured\nEnergy</text>
+        <text id="label_play">Giocare</text>
+        <text id="label_lang">Lingua</text>
+    </group>
+
     <!-- Labels for the different power plants -->
     <group id="powerplants">
         <text id="label_gas">Gas</text>

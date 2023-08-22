@@ -30,6 +30,9 @@ public partial class Tutorial : CanvasLayer {
 
 	// TextController reference set by the game loop
 	private TextController TC;
+
+	// Context for language updates
+	private Context C;
 	
 	// Continuation button: advances the tutorial
 	private Button B;
@@ -51,8 +54,9 @@ public partial class Tutorial : CanvasLayer {
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		// Fetch the text controller
+		// Fetch the text controller and context
 		TC = GetNode<TextController>("../TextController");
+		C = GetNode<Context>("/root/Context");
 
 		// Fetch other nodes
 		B = GetNode<Button>("TutoPopUp/ColorRect/Button");
@@ -71,12 +75,18 @@ public partial class Tutorial : CanvasLayer {
 		
 		// Connect Button Callback
 		B.Pressed += _OnButtonPressed;	
+		C.UpdateLanguage += _OnLanguageUpdate;
 
 		// Set the max tutorial idx
 		MaxTutoIdx = TC._GetNTexts(TUTO_FILENAME, TUTO_TEXT_GROUP);
 	}
 
 	// ==================== Interaction Callbacks ====================
+
+	// Updates labels when the language changes
+	public void _OnLanguageUpdate() {
+		L.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, TutoIdx.ToString());
+	}
 
 	// When the continuation button is pressed, advance the tutorial
 	// If the current tutorial index is out of range, then our tutorial is done
@@ -117,6 +127,6 @@ public partial class Tutorial : CanvasLayer {
 		}
 
 		// Fetch the text and set in the bubble's label
-		_ibt.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, id.ToString());
+		_ibt.Text = TC._GetText(TUTO_FILENAME, INFO_BUBBLE_GROUP, id.ToString());
 	}
 }

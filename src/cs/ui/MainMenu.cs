@@ -20,6 +20,13 @@ using System;
 
 // Models the behavior of the main menu screen shown above the game at the start
 public partial class MainMenu : CanvasLayer {
+
+	// IDs for accessing XML text fields
+	private const string MENU_FILE = "labels.xml";
+	private const string MENU_GROUP = "menu";
+	private const string TITLE_ID = "title";
+	private const string PLAY_ID = "label_play";
+	private const string LANG_ID = "label_lang";
 	
 	// Buttons on the main menu
 	private TextureButton Play;
@@ -33,11 +40,15 @@ public partial class MainMenu : CanvasLayer {
 	// Text Controller for dynamic localization
 	private TextController TC;
 
+	// Context, used to update the language
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
+		C = GetNode<Context>("/root/Context");
 		TC = GetNode<TextController>("../TextController");
 		Play = GetNode<TextureButton>("Play");
 		Lang = GetNode<TextureButton>("Lang");
@@ -48,16 +59,34 @@ public partial class MainMenu : CanvasLayer {
 		// Connect button callbacks
 		Play.Pressed += _OnPlayPressed;
 		Lang.Pressed += _OnLangPressed;
+
+		// Initialize the various labels
+		SetLabels();
 	}
 	
 	// ==================== Interaction Callbacks ====================
 
+	// Starts the game 
 	private void _OnPlayPressed() {
+		// Our main menu is simply an overlay
 		Hide();
 	}
 	
+	// Updates the language
 	private void _OnLangPressed() {
-		// TODO
+		// Update the language 
+		C._NextLanguage();
+
+		// Update the labels
+		SetLabels();
 	}
 
+	// ==================== Internal Helpers ====================
+
+	// Sets all of the text fields based on the current state of the text controller
+	private void SetLabels() {
+		Title.Text = TC._GetText(MENU_FILE, MENU_GROUP, TITLE_ID);
+		PlayL.Text = TC._GetText(MENU_FILE, MENU_GROUP, PLAY_ID);
+		LangL.Text = C._GetLanguageName();
+	}
 }
