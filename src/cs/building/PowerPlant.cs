@@ -23,6 +23,9 @@ using System.Diagnostics;
 public partial class PowerPlant : Node2D {
 
 
+	[Signal]
+	public delegate void UpdatePlantEventHandler();
+
 	[ExportGroup("Meta Parameters")]
 	[Export] 
 	// The name of the power plant that will be displayed in the game
@@ -381,6 +384,9 @@ public partial class PowerPlant : Node2D {
 
 		// Update the UI
 		_UpdatePlantData();
+
+		// Singal that the plant was updated
+		EmitSignal(SignalName.UpdatePlant);
 	}
 	
 	// Hide the plant information when the mouse no longer hovers over the plant

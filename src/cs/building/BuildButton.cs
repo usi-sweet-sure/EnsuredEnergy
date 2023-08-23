@@ -40,6 +40,9 @@ public partial class BuildButton : TextureButton {
 	[Signal]
 	public delegate void UpdateBuildSlotEventHandler(BuildButton bb, PowerPlant pp, bool remove);
 
+	[Signal]
+	public delegate void BuildDoneEventHandler();
+
 	// The only special plant for the time being is Hydro
 	// This flag tells us whether or not it is permitted to build a hydro plant at this location.
 	[Export]
@@ -166,8 +169,10 @@ public partial class BuildButton : TextureButton {
 		// Propagate the newly built plant to the context
 		C._UpdatePPStats(PPInProgress.PlantType);
 
-		// Update the data stored in the model struct
-		C._UpdateModelFromClient(PPInProgress);
+		// Update the data stored in the model struct if online
+		if(C._GetOffline()) {
+			C._UpdateModelFromClient(PPInProgress);
+		} 
 		
 		// Update the current power plant placed at this slot
 		UpdateGenericPlant(PPInProgress);
@@ -178,6 +183,9 @@ public partial class BuildButton : TextureButton {
 		// Update the requested build fields
 		PPInProgress = null;
 		BS = BuildState.DONE;
+
+		// Signal that the build is complete
+		EmitSignal(SignalName.BuildDone);
 	}
 
 	// Hides the button but not its children
@@ -310,8 +318,10 @@ public partial class BuildButton : TextureButton {
 				// Propagate the newly built plant to the context
 				C._UpdatePPStats(PP.PlantType);
 
-				// Update the data stored in the model struct
-				C._UpdateModelFromClient(PP);
+				// Update the data stored in the model struct if online
+				if(C._GetOffline()) {
+					C._UpdateModelFromClient(PP);
+				}
 
 				// Select which plant to show and update it's fields to match those that were given
 				UpdateGenericPlant(PP);
@@ -321,6 +331,9 @@ public partial class BuildButton : TextureButton {
 
 				// Update Build State
 				BS = BuildState.DONE;
+
+				// Signal that the build is complete
+				EmitSignal(SignalName.BuildDone);
 			}
 		}		
 	}

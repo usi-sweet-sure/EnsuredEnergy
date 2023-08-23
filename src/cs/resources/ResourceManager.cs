@@ -155,6 +155,7 @@ public partial class ResourceManager : Node {
 		// Connect the powerplants signals to propagate changes to the UI
 		foreach(PowerPlant pp in PowerPlants) {
 			pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
+			pp.UpdatePlant += _OnBuildDone;
 		}
 	}
 
@@ -166,6 +167,9 @@ public partial class ResourceManager : Node {
 		// Fill in the contents of the list with those of the given one
 		foreach(BuildButton bb in lBB) {
 			BBs.Add(bb);
+		}
+		foreach(BuildButton bb in BBs) {
+			bb.BuildDone += _OnBuildDone;
 		}
 	} 
 
@@ -250,6 +254,11 @@ public partial class ResourceManager : Node {
 	// The parameter is only used for signal interface compatibility
 	private void _OnPowerPlantSwitchToggle(bool b) { 
 		_UpdateResourcesUI(true);
+	}
+
+	// Reacts to a new power plant being built
+	public void _OnBuildDone() {
+		_UpdateResourcesUI(false);
 	}
 	
 }

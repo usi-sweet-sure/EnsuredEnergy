@@ -75,6 +75,15 @@ public partial class MainMenu : CanvasLayer {
 
 		// Initialize the various labels
 		SetLabels();
+
+		//////////////////////////////////////////
+		//////////For Demo, remove later//////////
+		Mode.Disabled = true;
+		bool off = C._ToggleOffline();
+		if(!off) C._ToggleOffline();
+		SetLabels();
+		//////////////////////////////////////////
+		//////////////////////////////////////////
 	}
 	
 	// ==================== Interaction Callbacks ====================
