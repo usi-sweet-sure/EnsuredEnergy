@@ -288,6 +288,7 @@ public partial class PowerPlant : Node2D {
 	// Updates the UI label for the plant to the given name
 	public void _UpdatePlantName(string name) {
 		NameL.Text = name;
+		PlantName = name;
 	}
 
 	// Updates the UI to match the internal state of the plant
