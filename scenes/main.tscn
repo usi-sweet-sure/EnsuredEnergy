@@ -50,15 +50,9 @@ offset_bottom = -141.0
 [node name="Switch" parent="World/Nuclear" index="4"]
 visible = false
 
-[node name="InfoBG" type="Sprite2D" parent="World/Nuclear" index="5"]
-position = Vector2(1, 115)
-texture = SubResource("AtlasTexture_xlpb2")
-
-[node name="ResRect" parent="World/Nuclear" index="7"]
-offset_left = -39.0
-offset_top = 102.0
-offset_right = -7.0
-offset_bottom = 131.0
+[node name="ResRect" parent="World/Nuclear" index="6"]
+offset_top = 104.0
+offset_bottom = 133.0
 metadata/_edit_group_ = true
 
 [node name="Coal" parent="World" index="2"]

@@ -194,7 +194,7 @@ public partial class BuildButton : TextureButton {
 	// Sets the button to the build state
 	private void SetToBuild() {
 		BuildSprite.Show();
-		TL.Text = TurnsToBuild.ToString() + " 🕐";
+		TL.Text = TurnsToBuild.ToString() + " ⌛";
 		Disabled = true;
 	}
 

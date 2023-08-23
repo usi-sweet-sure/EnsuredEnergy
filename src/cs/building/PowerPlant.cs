@@ -148,7 +148,7 @@ public partial class PowerPlant : Node2D {
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 		PollL.Text = Pollution.ToString();
-		BTime.Text = BuildTime.ToString() + " turn(s)";
+		BTime.Text = BuildTime.ToString() + " ⌛";
 
 		// Set plant life cycle
 		LifeCycle = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;

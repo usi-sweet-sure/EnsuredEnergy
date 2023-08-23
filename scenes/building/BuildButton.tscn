@@ -67,6 +67,9 @@ position = Vector2(112, 88)
 [node name="Sprite" parent="Gas" index="0"]
 texture = ExtResource("5_d0hik")
 
+[node name="Switch" parent="Gas" index="4"]
+visible = false
+
 [node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -74,6 +77,9 @@ position = Vector2(112, 88)
 [node name="Sprite" parent="Hydro" index="0"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_lruly")
+
+[node name="Switch" parent="Hydro" index="4"]
+visible = false
 
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
@@ -83,6 +89,9 @@ position = Vector2(112, 88)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_mt0mh")
 
+[node name="Switch" parent="Solar" index="4"]
+visible = false
+
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -91,6 +100,9 @@ position = Vector2(112, 88)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_wp0io")
 
+[node name="Switch" parent="Tree" index="4"]
+visible = false
+
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 position = Vector2(112, 88)
 _PlantType = 5
@@ -98,6 +110,9 @@ _PlantType = 5
 [node name="Sprite" parent="Wind" index="0"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_lgc8d")
+
+[node name="Switch" parent="Wind" index="4"]
+visible = false
 
 [node name="Turbine" type="Sprite2D" parent="Wind"]
 position = Vector2(2, -32)
