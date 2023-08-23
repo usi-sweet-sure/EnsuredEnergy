@@ -3,6 +3,7 @@
     <shock id="cold_spell" tag="env">
         <!-- The title that will be displayed at the top of the shock -->
         <name>Hiver Glacial</name>
+        <img>cold</img>
         <!-- The description text that will be displayed in the shock window -->
         <text>Ces derniers hivers ont été plus froids que d'habitude. Ceci a augmenté la demande d'énergie en hiver de 50 ⚡.</text>
         <!-- The requirements for said shock -->
@@ -12,26 +13,26 @@
         <reaction id="1">
             <!-- The text that will be displayed in the reaction button (verbatim) -->
             <text>Demander à la population de diminuer leur consomation d'énergie.
--50 Soutien 😡</text>
+-10 👍</text>
             <!-- The effect selecting this reaction will have on the player's resources -->
-            <effect field="support" value="-50"/>
+            <effect field="support" value="-10"/>
         </reaction>
         <reaction id="2">
             <text>Activer l'usine à gaz de réserve.
 +10 pollution 🏭</text>
-            <effect field="env" value="-50"/>
+            <effect field="env" value="10"/>
         </reaction>
         <reaction id="3">
             <text>Importer de l'électricité des pays voisins.
--50 $</text>
-            <effect field="money" value="-50"/>
+-150 $</text>
+            <effect field="money" value="-150"/>
         </reaction>
         <!-- Reward to the player in case they met the requirements -->
         <reward>
             <text>La production d'énergie était assez élevée pour amortir l'imprévu'.
-+ 50 Soutien 
++ 5 👍 
 + 50 $</text>
-            <effect field="support" value="50"/>
+            <effect field="support" value="5"/>
             <effect field="money" value="50"/>
         </reward>
     </shock>
@@ -44,24 +45,23 @@
         <text>Les étés sont de plus en plus chaud. La demande en énergie a augmenté de 50 ⚡.</text>
         <requirement id="0" field="energyS" value="50" bound="min"/>
         <reaction id="0">
-            <text>Demander à la population de boire plus d'eau et de baisser leur climatisation. -20 Soutien 😡</text>
+            <text>Demander à la population de boire plus d'eau et de baisser leur climatisation.
+-20 👍</text>
             <effect field="support" value="-20"/>
         </reaction>
         <reaction id="1">
-            <text>Activer l'usine à gaz de réserve.
-+10 pollution 🏭</text>
+            <text>Activer l'usine à gaz de réserve. +10 pollution 🏭</text>
             <effect field="env" value="10"/>
         </reaction>
         <reaction id="2">
-            <text>Importer de l'électricité des pays voisins.
--50 $</text>
+            <text>Importer de l'électricité des pays voisins. -50 $</text>
             <effect field="money" value="-50"/>
         </reaction>
         <reward>
-            <text>La production d'énergie était assez élevée pour amortir l'imprévu'.
-+ 50 Soutien 
+            <text>La production d'énergie était assez élevée pour amortir l'imprévu.
++ 5 👍 
 + 50 $</text>
-            <effect field="support" value="50"/>
+            <effect field="support" value="5"/>
             <effect field="money" value="50"/>
         </reward>
     </shock>
@@ -69,15 +69,14 @@
     <shock id="glaciers_melting" tag="env">
         <name>La fonte des glaciers</name>
         <img>ice</img>
-        <text>La fonte des glaciers a augmenté la production hydraulique de 50, mais nuit au climat.</text>
+        <text>Les centrales hydrauliques dépendent de l'état des glaciers. Tant que la pollution continuera a affecter la fonte des glaciers, la disponibilité en eau baissera pour les centrales hydrauliques.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>+ 50 ⚡ 
--50 🍃</text>
+            <text>Production hydraulique -1% par tour</text>
             <effect field="money" value="50"/>
             <effect field="env" value="50"/>
         </reward>
@@ -93,9 +92,9 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Energie solaire et éolienne -20%</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <text>Energie solaire et éolienne -20% ⚡</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
 <!-- Need geothermal
@@ -115,34 +114,34 @@
     </shock>
 -->
     <shock id="inc_raw_cost_10" tag="env">
-        <name>Rise of material costs</name>
+        <name>Augmentation des prix</name>
         <img>money</img>
-        <text>The prices of raw material have increased resulting in production costs going up by 10%.</text>
+        <text>Le prix des matières premières ont augmenté. Les centrales qui en utilise coûtent plus chères à faire tourner.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>+ 10% production $</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <text>Coûts de production +10%</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
     
     <shock id="inc_raw_cost_20" tag="env">
-        <name>Rise of material costs</name>
+        <name>Augmentation des prix</name>
         <img>money</img>
-        <text>The prices of raw material have increased resulting in production costs going up by 20%.</text>
+        <text>Le prix des matières premières ont augmenté. Les centrales qui en utilise coûtent plus chères à faire tourner.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>+ 20% production $</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <text>Coûts de production +20%</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
 <!-- Need policies
@@ -177,74 +176,86 @@
     </shock>
 -->
     <shock id="mass_immigration" tag="env">
-        <name>Refugee Crisis</name>
+        <name>Réfugiés climatiques</name>
         <img>people</img>
-        <text>The population has been increasing faster due to the climate refugee crisis.</text>
+        <text>La population a augmenté plus rapidement que prévu à cause de la crise climatique.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Energy demand in winter and summer</text>
+            <text>Augmentation de la demande en énergie +50⚡</text>
             <effect field="energyS" value="-50"/>
             <effect field="energyW" value="-50"/>
         </reward>
     </shock>
 
     <shock id="pandemic" tag="env">
-        <name>Pandemic</name>
+        <name>Pandémie</name>
         <img>virus</img>
-        <text>A global pandemic has forced the population to stay home, lowering energy demand and contentment.</text>
-        <requirement id="0" field="energyW" value="0" bound="min"/>
+        <text>Un nouveau virus se répend rapidement dans le monde. Que faire?</text>
+        <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
-            <text>OK</text>
-            <effect field="support" value="-50"/>
+            <text>Confiner la population. 
+-10 👍 +50 ⚡</text>
+            <effect field="support" value="-10"/>
+            <effect field="support" value="-20"/>
+        </reaction>
+        <reaction id="1">
+            <text>Mettre en place un plan de vaccination. 
+-20 👍 -100$</text>
+            <effect field="support" value="-20"/>
+            <effect field="money" value="-100"/>
+        </reaction>
+        <reaction id="2">
+            <text>Attendre l'immunité collective.</text>
+            <effect field="money" value="0"/>
         </reaction>
         <reward>
-            <text>Energy demand -50 \nSupport -20</text>
-            <effect field="support" value="-20"/>
-            <effect field="money" value="50"/>
+            <text>...</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
 
     <shock id="nuc_accident" tag="env">
         <name>Nuclear accident</name>
         <img>nuclear</img>
-        <text>There was a nuclear accident in one of the nuclear plants.</text>
+        <text>Un accident s'est produit dans une des centrales nucléaires. La centrale devra fermer plus tôt que prévu.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
-            <effect field="support" value="-50"/>
+            <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Your nuclear plants will switch off 1 turn earlier.</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <text>Fermeture de la centrale nucléaire -1 Tour</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
 
     <shock id="nuc_reintro" tag="env">
-        <name>Nuclear Re-introduction</name>
+        <name>Ré-introduction du nucléaire</name>
         <img>vote</img>
-        <text>The population has been wondering whether we should keep nuclear power going or switch it off.</text>
+        <text>La population souhaite voter sur la question du nucléaire. Que faire?</text>
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
-            <text>Yes for reintroducig nuclear power</text>
-            <effect field="support" value="-50"/>
+            <text>Oui pour la ré-introduction du nucléaire.</text>
+            <effect field="support" value="0"/>
         </reaction>
         <reaction id="1">
-            <text>No, let's extend the nuclear plants we have now.</text>
-            <effect field="env" value="-50"/>
+            <text>Oui pour étendre la durée de vie des centrales encore actives.</text>
+            <effect field="env" value="0"/>
         </reaction>
         <reaction id="2">
-            <text>No, it's time to de-transition from nuclear.</text>
-            <effect field="money" value="-50"/>
+            <text>Non, il est temps de dé-transitioner du nucléaire.</text>
+            <effect field="money" value="0"/>
         </reaction>
         <reward>
             <text>If you can read this, there is a problem.</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
 <!--

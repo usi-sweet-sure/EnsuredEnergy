@@ -45,7 +45,7 @@ theme = SubResource("Theme_jkqh0")
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
 [node name="Img" type="Sprite2D" parent="ColorRect"]
-position = Vector2(89, 129)
+position = Vector2(89, 117)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_fweec")
 
@@ -65,10 +65,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -40.5
-offset_top = 64.0
-offset_right = 207.5
-offset_bottom = 194.0
+offset_left = -59.5
+offset_top = 59.0
+offset_right = 228.5
+offset_bottom = 189.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "The past few winters have been colder than usual, increasing the energy demand in winter by 
@@ -84,7 +84,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -187.5
-offset_top = 47.0
+offset_top = 44.0
 offset_right = 188.5
 offset_bottom = 151.0
 grow_horizontal = 2
@@ -140,13 +140,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -34.0
-offset_top = 102.0
-offset_right = 238.0
-offset_bottom = 138.0
+offset_left = -87.0
+offset_top = 82.0
+offset_right = 293.0
+offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "Ask the population to lower their energy consumption.
 - 50 Support 😡"
 
@@ -157,13 +157,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -34.0
-offset_top = 142.0
-offset_right = 238.0
-offset_bottom = 178.0
+offset_left = -87.0
+offset_top = 134.0
+offset_right = 293.0
+offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "Turn on the spare coal plant.
 - 50 Environment 🏭"
 
@@ -174,13 +174,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -34.0
-offset_top = 183.0
-offset_right = 238.0
-offset_bottom = 219.0
+offset_left = -87.0
+offset_top = 186.0
+offset_right = 293.0
+offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "Import electricity from neighbouring countries.
 - 50 💰"
 
