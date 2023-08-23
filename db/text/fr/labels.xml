@@ -56,6 +56,9 @@ Energy
         </text>
         <text id="label_play">Jouer</text>
         <text id="label_lang">Langue</text>
+        <text id="label_mode">Mode</text>
+        <text id="mode_offline">Hors Ligne</text>
+        <text id="mode_online">En Ligne</text>
     </group>
 
     <!-- Labels for the different power plants -->

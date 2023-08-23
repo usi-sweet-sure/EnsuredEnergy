@@ -27,15 +27,20 @@ public partial class MainMenu : CanvasLayer {
 	private const string TITLE_ID = "title";
 	private const string PLAY_ID = "label_play";
 	private const string LANG_ID = "label_lang";
+	private const string MODE_ID = "label_mode";
+	private const string OFFLINE_ID = "mode_offline";
+	private const string ONLINE_ID = "mode_online";
 	
 	// Buttons on the main menu
 	private TextureButton Play;
 	private TextureButton Lang;
+	private TextureButton Mode;
 
 	// Labels used to disaply the text
 	private Label Title;
 	private Label PlayL;
 	private Label LangL;
+	private Label OfflineL;
 
 	// Text Controller for dynamic localization
 	private TextController TC;
@@ -43,22 +48,30 @@ public partial class MainMenu : CanvasLayer {
 	// Context, used to update the language
 	private Context C;
 
+	// Game loop to start the game
+	private GameLoop GL;
+
 	// ==================== GODOT Method Overrides ====================
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch Nodes
 		C = GetNode<Context>("/root/Context");
+		GL = GetOwner<GameLoop>();
 		TC = GetNode<TextController>("../TextController");
 		Play = GetNode<TextureButton>("Play");
 		Lang = GetNode<TextureButton>("Lang");
+		Mode = GetNode<TextureButton>("Offline");
 		Title = GetNode<Label>("Title");
 		PlayL = GetNode<Label>("Play/PlayL");
 		LangL = GetNode<Label>("Lang/LangL");
+		OfflineL = GetNode<Label>("Offline/OfflineL");
 		
 		// Connect button callbacks
 		Play.Pressed += _OnPlayPressed;
+		Play.Pressed += GL._OnPlayPressed;
 		Lang.Pressed += _OnLangPressed;
+		Mode.Pressed += _OnModePressed;
 
 		// Initialize the various labels
 		SetLabels();
@@ -81,6 +94,15 @@ public partial class MainMenu : CanvasLayer {
 		SetLabels();
 	}
 
+	// Toggles the offline/online modes
+	private void _OnModePressed() {
+		// Update the offline mode
+		C._ToggleOffline();
+
+		// Update the labels
+		SetLabels();
+	}
+
 	// ==================== Internal Helpers ====================
 
 	// Sets all of the text fields based on the current state of the text controller
@@ -88,5 +110,9 @@ public partial class MainMenu : CanvasLayer {
 		Title.Text = TC._GetText(MENU_FILE, MENU_GROUP, TITLE_ID);
 		PlayL.Text = TC._GetText(MENU_FILE, MENU_GROUP, PLAY_ID);
 		LangL.Text = C._GetLanguageName();
+		OfflineL.Text = TC._GetText(MENU_FILE, MENU_GROUP, MODE_ID) + ": " +
+			(C._GetOffline() ? TC._GetText(MENU_FILE, MENU_GROUP, OFFLINE_ID) :
+							   TC._GetText(MENU_FILE, MENU_GROUP, ONLINE_ID)
+			);
 	}
 }

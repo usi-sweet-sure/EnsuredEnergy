@@ -89,7 +89,8 @@ public partial class ConfigController : XMLController {
 			GetIntParam(metaParams, "life_cycle"),
 			GetIntParam(energyParams, "production_cost"),
 			GetIntParam(energyParams, "capacity"),
-			GetFloatParam(energyParams, "availability"),
+			GetFloatParam(energyParams, "availability_w"),
+			GetFloatParam(energyParams, "availability_s"),
 			GetIntParam(environmentParams, "pollution"),
 			GetFloatParam(environmentParams, "land_use"),
 			GetFloatParam(environmentParams, "biodiversity")

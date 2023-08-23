@@ -28,6 +28,11 @@ using System.Collections.Generic;
 // ...
 public partial class Context : Node {
 
+    private const float DEMAND_INC_S = 15;
+    private const float DEMAND_INC_W = 30;
+    private const float DEMAND_INIT_S = 150;
+    private const float DEMAND_INIT_W = 250;
+
     [Signal]
     // Signals that the context has been updated by an external actor
     public delegate void UpdateContextEventHandler();
@@ -39,6 +44,9 @@ public partial class Context : Node {
     [Signal] 
     // Signals that the language has been updated
     public delegate void UpdateLanguageEventHandler();
+
+    // Whether or not the current instance is offline
+    private bool Offline;
 
     // Current internal storage of the game instance's id
     private int ResId = -1;
@@ -52,6 +60,9 @@ public partial class Context : Node {
     // Internal representation of the most recent data retrieved from the model
     private Model MSummer;
     private Model MWinter;
+
+    // To estimate the demand
+    private (float, float) DemandEstimate; // (DemandWinter, DemandSummer)
 
     // Dictionary to link power plant type to the number of plants
     private Dictionary<Building.Type, int> PPStats; 
@@ -241,6 +252,37 @@ public partial class Context : Node {
 
     // Returns both models together (first winter then summer)
     public (Model, Model) _GetModels() => (MWinter, MSummer);
+
+    // Toggles the online/offline modes
+    public bool _ToggleOffline() {
+        Offline = !Offline;
+        return Offline;
+    }
+
+    // Retrieves the offline status of the game
+    public bool _GetOffline() => Offline;
+
+    // Increments the demand at the end of each turn
+    public (float, float) _IncDemand() {
+        DemandEstimate = (
+            DemandEstimate.Item1 + DEMAND_INC_W, 
+            DemandEstimate.Item2 + DEMAND_INC_S
+        );
+        return DemandEstimate;
+    }
+
+    // Initializes the demand
+    public (float, float) _InitDemand() {
+        DemandEstimate = (
+            DEMAND_INIT_W, 
+            DEMAND_INIT_S
+        );
+        return DemandEstimate;
+    }
+
+    // Getter for the demand
+    public (float, float) _GetDemand() => DemandEstimate;
+    
 
     // ==================== Internal Helpers ====================
 

@@ -302,9 +302,11 @@ public partial class UI : CanvasLayer {
 			// that is allowed on the grid that the demand takes up
 			case InfoType.W_ENGERGY:
 				WinterEnergy._UpdateSlider(val);
+				WinterEnergyPredict._UpdateSlider(val);
 				break;
 			case InfoType.S_ENGERGY:
 				SummerEnergy._UpdateSlider(val);
+				SummerEnergyPredict._UpdateSlider(val);
 				break;
 			case InfoType.SUPPORT:
 				SupportBar._UpdateSlider(val);

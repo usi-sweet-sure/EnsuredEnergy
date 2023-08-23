@@ -87,7 +87,12 @@ public partial class EnergyManager : Node {
 	public Energy _GetEnergyValues(float import_perc, bool importSummer=false) {
 		// Update the Energy by aggregating the capacity from the model's power plants
 		// and updating the model
-		// Start by fetching the current model data assuming it's coherent 
+		// Check if the model is online before doing so
+		if(C._GetOffline()) {
+			return EstimateEnergy(import_perc, importSummer);
+		} 
+
+		// If online, fetch the current model data assuming it's coherent 
 		(Model MW, Model MS) = C._GetModels();
 		return ComputeEnergy(MW, MS, import_perc, importSummer);
 	}
@@ -95,9 +100,12 @@ public partial class EnergyManager : Node {
 	// ==================== Helper Methods ====================  
 
 	// Aggregate the current supply into a single value
-	private float AggregateSupply() =>
+	// Returns a pair of (SupplyWinter, SupplySummer)
+	private (float, float) AggregateSupply() => (
 		// Sum all capacities for each active power plant
-		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability()).Sum();
+		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability().Item1).Sum(),
+		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability().Item2).Sum()
+	);
 
 	// Aggregate the current capacities into a single value
 	private int AggregateCapacity() =>
@@ -109,11 +117,11 @@ public partial class EnergyManager : Node {
 		int imported = _ComputeTotalImportAmount(import_perc, importSummer);
 
 		// Aggregate supply
-		float supply = AggregateSupply();
+		(float supplyW, float supplyS) = AggregateSupply();
 
 		// Take the imports into account
-		float supply_w = supply + imported;
-		float supply_s = supply + (importSummer ? imported : 0);
+		float supply_w = supplyW + imported;
+		float supply_s = supplyS + (importSummer ? imported : 0);
 
 		// Compute the Excess and store it in a separate field
 		float excess_w = supply_w - MAX_ENERGY_BAR_VAL;
@@ -123,9 +131,15 @@ public partial class EnergyManager : Node {
 		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
 		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
 
-		// The current demand is a fixed value
-		float demandEstimate = MAX_ENERGY_BAR_VAL * 0.5f;
-		return new Energy(supply_s, supply_w, demandEstimate, demandEstimate, excess_s, excess_w);
+		// Retrieve the demands
+		(float, float) Ds = C._GetDemand();
+
+		// Clamp the demands to fit int the bar
+		(float demandw, float demands) =  (
+			Math.Max(0.0f, Math.Min(Ds.Item1, MAX_ENERGY_BAR_VAL)),
+			Math.Max(0.0f, Math.Min(Ds.Item2, MAX_ENERGY_BAR_VAL))
+		);
+		return new Energy(supply_s, supply_w, demandw, demands, excess_s, excess_w);
 	}
 
 	// Estimate the values for the next turn (in case of no network or demo)

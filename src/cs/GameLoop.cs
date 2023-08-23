@@ -130,12 +130,9 @@ public partial class GameLoop : Node2D {
 		C.UpdateContext += _OnContextUpdate;
 
 		// Connect the shock related callbacks
-		ShockWindow.Continue.Pressed += NewTurn; // If the continue button is pressed at the end of a shock it triggers a new turn
+		ShockWindow.Continue.Pressed += _OnShockWindowContinuePressed; // If the continue button is pressed at the end of a shock it triggers a new turn
 		ShockWindow.SelectReaction += _OnShockSelectReaction;
 		ShockWindow.ApplyReward += _OnShockApplyReward;
-
-		// Start the game
-		StartGame();
 	}
 
 	// ==================== Resource access API ====================
@@ -208,6 +205,34 @@ public partial class GameLoop : Node2D {
 
 	// Initializes all of the data that is propagated across the game
 	// This only happens once at the begining of the playthrough
+	// This is done in a way that does not interact with the model
+	private void StartGameOffline() {
+		// Update the game state
+		GS = GameState.PLAYING;
+
+		// Initialize the context stats
+		C._InitializePPStats(PowerPlants);
+
+		// Initialize the demand
+		C._InitDemand();
+
+		// Perform initial Resouce update
+		UpdateResources(true);
+
+		// Set the initial power plants and build buttons
+		RM._UpdatePowerPlants(PowerPlants);
+		RM._UpdateBuildButtons(BBs);
+
+		// Update the UI
+		_UI._UpdateUI();
+
+		// Initialize resources
+		_UI._OnUpdatePrediction();
+		RM._UpdateResourcesUI();
+	}
+
+	// Initializes all of the data that is propagated across the game
+	// This only happens once at the begining of the playthrough
 	private void StartGame() {
 		// Update the game state
 		GS = GameState.PLAYING;
@@ -257,6 +282,35 @@ public partial class GameLoop : Node2D {
 		// Initialize resources
 		_UI._OnUpdatePrediction();
 		RM._UpdateResourcesUI();
+	}
+
+	// Triggers all of the updates across the whole game at the beginnig of the turn
+	// A new turn is triggered when the player presses the next turn button in the UI.
+	// This is done in a way that does not interact with the model
+	private void NewTurnOffline() {
+		// Hide the shock window
+		ShockWindow.Hide();
+
+		// Decerement the remaining turns and check for game end
+		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
+
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
+			// Update the demand
+			C._IncDemand();
+
+			// Update Resources 
+			UpdateResources(true);
+			RM._UpdateResourcesUI();
+
+		} else if(RemainingTurns <= 0) {
+			// Update the Context's turn count
+			C._UpdateTurn(GetTurn());
+
+			// End the game if all turns have been spent
+			EndGame();
+		}
 	}
 
 	// Triggers all of the updates across the whole game at the beginnig of the turn
@@ -408,5 +462,24 @@ public partial class GameLoop : Node2D {
 
 		// Apply the reward
 		ApplyShockEffect(reward);
+	}
+
+	// Reacts to the play button being pressed
+	public void _OnPlayPressed() {
+		if(C._GetOffline()) {
+			StartGameOffline();
+		} else {
+			StartGame();
+		}
+	}
+
+	// Reacts to the shock window's continue button being pressed
+	public void _OnShockWindowContinuePressed() {
+		// Check wether or not offline mode is active
+		if(C._GetOffline()) {
+			NewTurnOffline();
+		} else {
+			NewTurn();
+		}
 	}
 }

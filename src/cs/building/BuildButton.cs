@@ -214,8 +214,10 @@ public partial class BuildButton : TextureButton {
 		// Make sure that the selected plant is setup correctly
 		PP._SetPlantFromConfig(PP.PlantType);
 
-		// Update the availability
-		PP._SetAvailabilityFromContext();
+		// Update the availability if online mode is active
+		if(!C._GetOffline()) {
+			PP._SetAvailabilityFromContext();
+		}
 
 		// Pick which plant to show and update
 		switch(PP.PlantType.type) {
