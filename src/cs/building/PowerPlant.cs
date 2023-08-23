@@ -294,7 +294,7 @@ public partial class PowerPlant : Node2D {
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 		PollL.Text = Pollution.ToString();
-		BTime.Text = BuildTime.ToString() + " turn(s)";
+		BTime.Text = BuildTime.ToString() + " ⌛";
 	}
 
 	// ==================== Helper Methods ====================    
