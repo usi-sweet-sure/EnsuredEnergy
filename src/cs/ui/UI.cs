@@ -269,7 +269,9 @@ public partial class UI : CanvasLayer {
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
-		
+
+		// Upate the money labels
+		SetMoneyInfo();
 	}
 
 	// Updates the value of the a given bar
