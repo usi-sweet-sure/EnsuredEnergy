@@ -153,11 +153,11 @@ public partial class Context : Node {
         // Check if it's winter or summer
         if(winter) {
             // Compute the new demand
-            float dem = MWinter._Demand.Base + ((inc ? -1 : 1) * v);
+            float dem = MWinter._Demand.Base + ((inc ? 1 : -1) * v);
             MWinter._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
         } else {
             // Compute the new demand
-            float dem = MSummer._Demand.Base + ((inc ? -1 : 1) * v);
+            float dem = MSummer._Demand.Base + ((inc ? 1 : -1) * v);
             MSummer._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
         }
 
@@ -258,6 +258,10 @@ public partial class Context : Node {
     // Returns both models together (first winter then summer)
     public (Model, Model) _GetModels() => (MWinter, MSummer);
 
+    // Retrieves all modified columns
+    public List<(ModelCol, Building, float)> _GetModifiedCols(ModelSeason S) =>
+        S == ModelSeason.WINTER ? MWinter.ModifiedCols : MSummer.ModifiedCols;
+
     // ==================== Internal Helpers ====================
 
     // Resets the internal PPStats to set all types to 0
@@ -284,6 +288,7 @@ public partial class Context : Node {
         MSummer._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, INITIAL_DEMAND_S);
         MWinter._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, INITIAL_DEMAND_W);
 
-
+        // Signal that the context has been updated 
+        EmitSignal(SignalName.UpdateContext);
     }       
 }

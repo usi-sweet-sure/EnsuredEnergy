@@ -204,6 +204,25 @@ public partial class GameLoop : Node2D {
 		ShockWindow._Show(Money, E, Env, Sup);
 	}
 
+	private void CommitModifiedColumns() {
+		// Update model with our current data
+		foreach((ModelCol mc, Building b, float val) in C._GetModifiedCols(ModelSeason.WINTER)) {
+			// Create a new request for each modified filed in our model
+			MC._UpsertModelColumnDataAsync(mc, b);
+		}
+
+		// Update model with our current data
+		foreach((ModelCol mc, Building b, float val) in C._GetModifiedCols(ModelSeason.SUMMER)) {
+			// Create a new request for each modified filed in our model
+			MC._UpsertModelColumnDataAsync(mc, b);
+		}
+
+		// Clear the commited columns
+		(Model MW, Model MS) = C._GetModels();
+		MW._ClearModified();
+		MS._ClearModified();
+	}
+
 	// ==================== Main Game Loop Methods ====================  
 
 	// Initializes all of the data that is propagated across the game
@@ -226,18 +245,11 @@ public partial class GameLoop : Node2D {
 			C._UpdateModelFromClient(pp);
 		}
 
-		// Update model with our current data
-		foreach((ModelCol mc, Building b, float val) in C._GetModel(ModelSeason.WINTER).ModifiedCols) {
-			// Create a new request for each modified filed in our model
-			MC._UpsertModelColumnDataAsync(mc, b);
-		}
+		CommitModifiedColumns();
 
 		// Create a fetch request to get the data
 		MC._FetchModelData();
-
-		// Clear the model's modified columns
-		C._ClearModified();
-
+		
 		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		// All of the plants must be in the model for the availability to be set
 		// This is why we require two separate loops
@@ -292,6 +304,9 @@ public partial class GameLoop : Node2D {
 			// Update Resources 
 			UpdateResources(true);
 			RM._UpdateResourcesUI();
+
+			var Ms = C._GetModels();
+			Debug.Print("Model Winter: " + Ms.Item1.ToString() + "\nModel Summer: " + Ms.Item2.ToString());
 
 		} else if(RemainingTurns <= 0) {
 			// Update the Context's turn count

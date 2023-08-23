@@ -225,7 +225,7 @@ public partial class PowerPlant : Node2D {
 			Switch.Disabled = true;
 			
 			// Workaround to allow for an immediate update
-			IsAlive = false;
+			IsAlive = true;
 			_OnSwitchToggled(false);
 		} 
 	}
