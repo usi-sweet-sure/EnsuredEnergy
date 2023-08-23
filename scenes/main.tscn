@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cnp5jnw2xibl8" path="res://assets/temp_swiss_map.png" id="3_fsnjl"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
 [ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
-[ext_resource type="Texture2D" uid="uid://ceorbg7ik1atw" path="res://assets/Elements/230601_CH_SUREgame_Nuclear-Plant.png" id="4_fa5re"]
+[ext_resource type="Texture2D" uid="uid://ceorbg7ik1atw" path="res://assets/Plants/230601_CH_SUREgame_Nuclear-Plant.png" id="4_g6tj0"]
 [ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="5_ra246"]
 [ext_resource type="Texture2D" uid="uid://6nhylpws0rhg" path="res://assets/Plants/Dam.png" id="6_hyjri"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
@@ -41,7 +41,7 @@ position = Vector2(1088, 276)
 _PlantType = 4
 
 [node name="Sprite" parent="World/Nuclear" index="0"]
-texture = ExtResource("4_fa5re")
+texture = ExtResource("4_g6tj0")
 
 [node name="NameRect" parent="World/Nuclear" index="3"]
 offset_top = -169.0

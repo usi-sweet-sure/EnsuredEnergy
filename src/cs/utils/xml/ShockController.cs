@@ -26,7 +26,7 @@ using System.Collections.Generic;
 // XML Controller specifically tailored for reading the shock config files
 // These are particular, as they contain both translatable text and config data.
 public partial class ShockController : XMLController {
-    // The currently loaded xml document
+	// The currently loaded xml document
 	private XDocument LoadedXML;
 	private string LoadedFileName;
 	private Language LoadedLanguage;
@@ -37,8 +37,8 @@ public partial class ShockController : XMLController {
 	// Context
 	private Context C;
 
-    // Shock xml file name (always the same)
-    private const string SHOCK_FILENAME = "shocks.xml";
+	// Shock xml file name (always the same)
+	private const string SHOCK_FILENAME = "shocks.xml";
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -51,7 +51,7 @@ public partial class ShockController : XMLController {
 		C.UpdateLanguage += _UpdateLanguage;
 	}
 
-    // ==================== Public API ====================
+	// ==================== Public API ====================
 
 	// Updates the language the textcontroller is set to  
 	public void _UpdateLanguage() {
@@ -65,110 +65,110 @@ public partial class ShockController : XMLController {
 		// Don't do anything if the languages are the same
 	}
 
-    // Retrieves the shock's name from the shocks xml file given the shock's id
-    public string _GetShockName(string id) => GetField(id, "name");
+	// Retrieves the shock's name from the shocks xml file given the shock's id
+	public string _GetShockName(string id) => GetField(id, "name");
 
-    // Retrieves the shock's description from the shocks xml given the shock's id
-    public string _GetShockText(string id) => GetField(id, "text");
+	// Retrieves the shock's description from the shocks xml given the shock's id
+	public string _GetShockText(string id) => GetField(id, "text");
 
-    // Retrieves the text from a requirement given the id of the shock and that of the requirement
-    public List<ShockRequirement> _GetRequirements(string shock_id) {
-        // Start by checking if the file is loaded in or not
+	// Retrieves the text from a requirement given the id of the shock and that of the requirement
+	public List<ShockRequirement> _GetRequirements(string shock_id) {
+		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-        // Retrieve the shock from the currently parsed xml file
-        IEnumerable<XElement> shock = 
-            from s in LoadedXML.Root.Descendants("shock")
-            where s.Attribute("id").Value == shock_id
-            select s;
+		// Retrieve the shock from the currently parsed xml file
+		IEnumerable<XElement> shock = 
+			from s in LoadedXML.Root.Descendants("shock")
+			where s.Attribute("id").Value == shock_id
+			select s;
 
-        // Find the correct requirement from the shock
-        IEnumerable<XElement> requirements = shock.Descendants("requirement");
+		// Find the correct requirement from the shock
+		IEnumerable<XElement> requirements = shock.Descendants("requirement");
 
-        // Extract the requirement values and return them in a struct list
-        return shock.Descendants("requirement").Select(r => new ShockRequirement(
-            r.Attribute("field").Value,
-            r.Attribute("value").Value.ToFloat()
-        )).ToList();
-    }
+		// Extract the requirement values and return them in a struct list
+		return shock.Descendants("requirement").Select(r => new ShockRequirement(
+			r.Attribute("field").Value,
+			r.Attribute("value").Value.ToFloat()
+		)).ToList();
+	}
 
-    // Retrieves the reward from surviving a shock, given the shock id
-    public ShockEffect _GetReward(string id) {
-        // Start by checking if the file is loaded in or not
+	// Retrieves the reward from surviving a shock, given the shock id
+	public ShockEffect _GetReward(string id) {
+		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-        // Retrieve the shock from the currently parsed xml file
-        IEnumerable<XElement> shock = 
-            from s in LoadedXML.Root.Descendants("shock")
-            where s.Attribute("id").Value == id
-            select s;
+		// Retrieve the shock from the currently parsed xml file
+		IEnumerable<XElement> shock = 
+			from s in LoadedXML.Root.Descendants("shock")
+			where s.Attribute("id").Value == id
+			select s;
 
-        // Extract the different fields
-        string t = shock.Descendants("reward").ElementAt(0)
-                        .Descendants("text").ElementAt(0).Value;
+		// Extract the different fields
+		string t = shock.Descendants("reward").ElementAt(0)
+						.Descendants("text").ElementAt(0).Value;
 
-        // Extract all of the effects
-        IEnumerable<XElement> effects_xml = 
-            shock.Descendants("reward").ElementAt(0)
-                 .Descendants("effect");
-        
-        // Build out the effects list
-        List<(ResourceType, float)> effects = effects_xml.Select(e => (
-            RTM.ResourceTypeFromString(e.Attribute("field").Value),
-            e.Attribute("value").Value.ToFloat()
-        )).ToList();
+		// Extract all of the effects
+		IEnumerable<XElement> effects_xml = 
+			shock.Descendants("reward").ElementAt(0)
+				 .Descendants("effect");
+		
+		// Build out the effects list
+		List<(ResourceType, float)> effects = effects_xml.Select(e => (
+			RTM.ResourceTypeFromString(e.Attribute("field").Value),
+			e.Attribute("value").Value.ToFloat()
+		)).ToList();
 
-        // Return the reward as a struct
-        return new (t, effects);
-    }
+		// Return the reward as a struct
+		return new (t, effects);
+	}
 
-    // Retrieves all of the reactions associated to the given shock
-    public List<ShockEffect> _GetReactions(string id) {
-        // Start by checking if the file is loaded in or not
+	// Retrieves all of the reactions associated to the given shock
+	public List<ShockEffect> _GetReactions(string id) {
+		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-        // Retrieve the shock from the currently parsed xml file
-        IEnumerable<XElement> shock = 
-            from s in LoadedXML.Root.Descendants("shock")
-            where s.Attribute("id").Value == id
-            select s;
+		// Retrieve the shock from the currently parsed xml file
+		IEnumerable<XElement> shock = 
+			from s in LoadedXML.Root.Descendants("shock")
+			where s.Attribute("id").Value == id
+			select s;
 
-        // Extract all of the rewards
-        IEnumerable<XElement> reacts_xml = shock.Descendants("reaction");
+		// Extract all of the rewards
+		IEnumerable<XElement> reacts_xml = shock.Descendants("reaction");
 
-        // Build out the shock effect list and return it
-        return reacts_xml.Select(r => new ShockEffect(
-            r.Descendants("text").ElementAt(0).Value,
-            r.Descendants("effect").Select(e => ( // Build out the effects list
-                RTM.ResourceTypeFromString(e.Attribute("field").Value),
-                e.Attribute("value").Value.ToFloat()
-            )).ToList()
-        )).ToList();
-    }
+		// Build out the shock effect list and return it
+		return reacts_xml.Select(r => new ShockEffect(
+			r.Descendants("text").ElementAt(0).Value,
+			r.Descendants("effect").Select(e => ( // Build out the effects list
+				RTM.ResourceTypeFromString(e.Attribute("field").Value),
+				e.Attribute("value").Value.ToFloat()
+			)).ToList()
+		)).ToList();
+	}
 
 
-    // ==================== Internal Helpers ====================
+	// ==================== Internal Helpers ====================
 
-    // Retrives a first-level field's content given an id and the field string
-    private string GetField(string id, string field) {
-        // Start by checking if the file is loaded in or not
+	// Retrives a first-level field's content given an id and the field string
+	private string GetField(string id, string field) {
+		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-        // Retrieve the shock from the currently parsed xml file
-        return (
-            from s in LoadedXML.Root.Descendants("shock")
-            where s.Attribute("id").Value == id
-            select s.Descendants(field).ElementAt(0).Value // Only the first field in the xml is considered
-        ).ElementAt(0);
-    }
+		// Retrieve the shock from the currently parsed xml file
+		return (
+			from s in LoadedXML.Root.Descendants("shock")
+			where s.Attribute("id").Value == id
+			select s.Descendants(field).ElementAt(0).Value // Only the first field in the xml is considered
+		).ElementAt(0);
+	}
 
-    // Checks if the currently loaded xml is up to date
-    private void CheckXML() {
-        // Check if the file is loaded in or not
+	// Checks if the currently loaded xml is up to date
+	private void CheckXML() {
+		// Check if the file is loaded in or not
 		if(LoadedFileName != SHOCK_FILENAME || LoadedLanguage != Lang) {
 			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + SHOCK_FILENAME));
 			LoadedFileName = SHOCK_FILENAME;
 			LoadedLanguage = Lang;
 		}
-    }
+	}
 }
