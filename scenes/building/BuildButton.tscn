@@ -1,10 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=15 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="1_dqrnt"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
 [ext_resource type="Texture2D" uid="uid://duoo8yelpa3l4" path="res://assets/Elements/ENERGY PLANT - BUILDING.png" id="2_0x6r5"]
 [ext_resource type="Texture2D" uid="uid://cvm4lopnmbupy" path="res://assets/Elements/BUILDINGBUTTONPressed.png" id="2_e5byc"]
 [ext_resource type="Texture2D" uid="uid://747hpnocr8yq" path="res://assets/Elements/BUILDINGBUTTONHover.png" id="3_6vldy"]
+[ext_resource type="Texture2D" uid="uid://lvf5eog6buhr" path="res://assets/Plants/230601_CH_SUREgame_Gas-Plant.png" id="5_d0hik"]
+[ext_resource type="Texture2D" uid="uid://6nhylpws0rhg" path="res://assets/Plants/Dam.png" id="6_lruly"]
+[ext_resource type="Texture2D" uid="uid://c0sb3kncaf7uc" path="res://assets/Plants/Solar.png" id="7_mt0mh"]
+[ext_resource type="Texture2D" uid="uid://ujeuwa2ehsay" path="res://assets/Plants/Forest.png" id="8_wp0io"]
+[ext_resource type="Texture2D" uid="uid://bftiushevl5aj" path="res://assets/Plants/Wind.png" id="9_lgc8d"]
+[ext_resource type="Texture2D" uid="uid://d2ijw7avf37la" path="res://assets/Plants/Turbine.png" id="10_1u3s0"]
+
+[sub_resource type="Animation" id="Animation_7lfvt"]
+resource_name = "spin"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turbine:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_s3im0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turbine:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dcpmn"]
+_data = {
+"RESET": SubResource("Animation_s3im0"),
+"spin": SubResource("Animation_7lfvt")
+}
 
 [node name="BuildButton" type="TextureButton"]
 offset_left = -112.0
@@ -17,22 +61,57 @@ texture_pressed = ExtResource("2_e5byc")
 texture_hover = ExtResource("3_6vldy")
 
 [node name="Gas" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
 position = Vector2(112, 88)
+
+[node name="Sprite" parent="Gas" index="0"]
+texture = ExtResource("5_d0hik")
 
 [node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
 position = Vector2(112, 88)
+
+[node name="Sprite" parent="Hydro" index="0"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_lruly")
 
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
 position = Vector2(112, 88)
 
+[node name="Sprite" parent="Solar" index="0"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7_mt0mh")
+
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
 position = Vector2(112, 88)
+
+[node name="Sprite" parent="Tree" index="0"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_wp0io")
 
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 position = Vector2(112, 88)
 _PlantType = 5
 
+[node name="Sprite" parent="Wind" index="0"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_lgc8d")
+
+[node name="Turbine" type="Sprite2D" parent="Wind"]
+position = Vector2(2, -32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_1u3s0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wind"]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_dcpmn")
+}
+
 [node name="Building" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(112, 88)
 texture = ExtResource("2_0x6r5")
 
@@ -53,3 +132,9 @@ theme_override_font_sizes/font_size = 24
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[editable path="Gas"]
+[editable path="Hydro"]
+[editable path="Solar"]
+[editable path="Tree"]
+[editable path="Wind"]
