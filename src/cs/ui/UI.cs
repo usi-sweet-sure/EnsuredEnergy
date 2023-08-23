@@ -708,4 +708,9 @@ public partial class UI : CanvasLayer {
 		SummerEnergyPredict._UpdateProgress((int)MS._GetTotalSupply());
 
 	}
+
+	// Updates the state of the next turn button
+	public void _OnNextTurnStateUpdate(bool state) {
+		NextTurnButton.Disabled = state;
+	}
 }

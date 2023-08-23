@@ -133,6 +133,7 @@ public partial class GameLoop : Node2D {
 		ShockWindow.Continue.Pressed += _OnShockWindowContinuePressed; // If the continue button is pressed at the end of a shock it triggers a new turn
 		ShockWindow.SelectReaction += _OnShockSelectReaction;
 		ShockWindow.ApplyReward += _OnShockApplyReward;
+		RM.UpdateNextTurnState += _UI._OnNextTurnStateUpdate;
 	}
 
 	// ==================== Resource access API ====================
@@ -229,6 +230,8 @@ public partial class GameLoop : Node2D {
 		// Initialize resources
 		_UI._OnUpdatePrediction();
 		RM._UpdateResourcesUI();
+
+		RM._StartGame();
 	}
 
 	// Initializes all of the data that is propagated across the game
