@@ -21,12 +21,15 @@ position = Vector2(112, 88)
 
 [node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
 position = Vector2(112, 88)
+_PlantType = 0
 
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
 position = Vector2(112, 88)
+_PlantType = 2
 
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
 position = Vector2(112, 88)
+_PlantType = 3
 
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 position = Vector2(112, 88)
