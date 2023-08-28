@@ -400,7 +400,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 	// Metadata fields
 	public readonly int BuildCost;
 	public readonly int BuildTime;
-	public readonly int LifeCycle;
+	public readonly int EndTurn;
 
 	// Energy fields
 	public readonly int ProductionCost;
@@ -422,7 +422,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 		// Simply fill in the fields
 		BuildCost = bc;
 		BuildTime = bt;
-		LifeCycle = lc;
+		EndTurn = lc;
 		ProductionCost = pc;
 		Capacity = cap;
 		Availability_W = Math.Max(0.0f, Math.Min(avw, 1.0f));
@@ -442,7 +442,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 		// Copy in the public fields
 		PP.BuildCost = BuildCost;
 		PP.BuildTime = BuildTime;
-		PP.LifeCycle = LifeCycle;
+		PP.EndTurn = EndTurn;
 		PP.LandUse = LandUse;
 		PP.BiodiversityImpact = Biodiversity;
 

@@ -83,7 +83,7 @@ public partial class Shock : CanvasLayer {
 		R2 = GetNode<Button>("ColorRect/Reactions/Button2");
 		R3 = GetNode<Button>("ColorRect/Reactions/Button3");
 		Continue = GetNode<Button>("ColorRect/Continue");
-		SC = GetNode<ShockController>("../ShockController");
+		SC = GetNode<ShockController>("ShockController");
 		Img = GetNode<Sprite2D>("ColorRect/Img");
 
 		// Set the button callbacks
