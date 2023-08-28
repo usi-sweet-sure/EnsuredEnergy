@@ -269,7 +269,9 @@ public partial class UI : CanvasLayer {
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
-		
+
+		// Upate the money labels
+		SetMoneyInfo();
 	}
 
 	// Updates the value of the a given bar
@@ -302,9 +304,11 @@ public partial class UI : CanvasLayer {
 			// that is allowed on the grid that the demand takes up
 			case InfoType.W_ENGERGY:
 				WinterEnergy._UpdateSlider(val);
+				WinterEnergyPredict._UpdateSlider(val);
 				break;
 			case InfoType.S_ENGERGY:
 				SummerEnergy._UpdateSlider(val);
+				SummerEnergyPredict._UpdateSlider(val);
 				break;
 			case InfoType.SUPPORT:
 				SupportBar._UpdateSlider(val);
@@ -703,5 +707,10 @@ public partial class UI : CanvasLayer {
 		WinterEnergyPredict._UpdateProgress((int)MW._GetTotalSupply());
 		SummerEnergyPredict._UpdateProgress((int)MS._GetTotalSupply());
 
+	}
+
+	// Updates the state of the next turn button
+	public void _OnNextTurnStateUpdate(bool state) {
+		NextTurnButton.Disabled = state;
 	}
 }

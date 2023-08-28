@@ -442,6 +442,7 @@ texture = ExtResource("7_owsdt")
 [node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
+_PlantType = 0
 
 [node name="Sprite" parent="Hydro" index="0"]
 scale = Vector2(0.5, 0.5)
@@ -453,6 +454,7 @@ visible = false
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
+_PlantType = 2
 
 [node name="Sprite" parent="Solar" index="0"]
 scale = Vector2(0.8, 0.8)
@@ -464,6 +466,7 @@ visible = false
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
+_PlantType = 3
 
 [node name="Sprite" parent="Tree" index="0"]
 scale = Vector2(0.8, 0.8)

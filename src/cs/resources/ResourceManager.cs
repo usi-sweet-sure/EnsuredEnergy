@@ -18,6 +18,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 // Encapsulates all of the resource management used throughout the game
@@ -27,6 +28,9 @@ using System.Linq;
 // - Energy: The core resource of the game, are the people getting enough energy to meet their demand
 // - Environment: How are the energy management decisions impacting the environment
 public partial class ResourceManager : Node {
+
+	[Signal]
+	public delegate void UpdateNextTurnStateEventHandler(bool state);
 
 	[Export]
 	/* Whether or not we import in the summer */
@@ -73,6 +77,19 @@ public partial class ResourceManager : Node {
 
 	// ==================== Public API ====================
 
+	// Starts the game for the resource manager
+	public void _StartGame() {
+		// Check the current state of the next turn button
+		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+		UpdateEnergyUI(E);
+
+		// Check if the demand has been reached
+		EmitSignal(
+			SignalName.UpdateNextTurnState,
+			E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
+		);
+	}
+
 	// Progresses to the next turn
 	// The game loop must pass in the amount of money as a ref
 	public void _NextTurn(ref MoneyData Money) {
@@ -118,6 +135,12 @@ public partial class ResourceManager : Node {
 		if(!predict) {
 			Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 			UpdateEnergyUI(E);
+
+			// Check if the demand has been reached
+			EmitSignal(
+				SignalName.UpdateNextTurnState,
+				E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
+			);
 		}
 
 		// Compute the total import cost
@@ -155,6 +178,7 @@ public partial class ResourceManager : Node {
 		// Connect the powerplants signals to propagate changes to the UI
 		foreach(PowerPlant pp in PowerPlants) {
 			pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
+			pp.UpdatePlant += _OnBuildDone;
 		}
 	}
 
@@ -166,6 +190,9 @@ public partial class ResourceManager : Node {
 		// Fill in the contents of the list with those of the given one
 		foreach(BuildButton bb in lBB) {
 			BBs.Add(bb);
+		}
+		foreach(BuildButton bb in BBs) {
+			bb.BuildDone += _OnBuildDone;
 		}
 	} 
 
@@ -250,6 +277,11 @@ public partial class ResourceManager : Node {
 	// The parameter is only used for signal interface compatibility
 	private void _OnPowerPlantSwitchToggle(bool b) { 
 		_UpdateResourcesUI(true);
+	}
+
+	// Reacts to a new power plant being built
+	public void _OnBuildDone() {
+		_UpdateResourcesUI(false);
 	}
 	
 }

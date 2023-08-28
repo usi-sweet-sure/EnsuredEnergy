@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mw3r"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -35,7 +35,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opb6j"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -289,6 +289,7 @@ NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.784314)
 LowColor = Color(0.94902, 0.533333, 0.0666667, 0.521569)
 
 [node name="Target" parent="EnergyBarWinterPredict" index="0"]
+visible = false
 position = Vector2(-195, -609.5)
 
 [node name="BarInfo" parent="EnergyBarWinterPredict" index="1"]
