@@ -35,10 +35,9 @@ public partial class Shock : CanvasLayer {
 	// Big list of shock ids
 	private string[] SHOCKS = { 
 		"cold_spell", "heat_wave", "glaciers_melting", 
-		"severe_weather", "floods", "earthquake",
-		"inc_raw_cost", "protest", "mass_immigration",
-		"blackout", "pandemic", "nuc_accident",
-		"nuc_reintro", "remote_jobs"
+		"severe_weather",
+		"inc_raw_cost_10", "inc_raw_cost_20", "mass_immigration",
+		 "pandemic", "nuc_accident"
 	};
 
 	// The currently displayed shock's ID
@@ -49,6 +48,7 @@ public partial class Shock : CanvasLayer {
 	private Label Text;
 	private Label Result;
 	private Label Reward;
+	private Sprite2D Img;
 	
 	// Control node containing the reactions
 	private Control Reactions;
@@ -83,7 +83,8 @@ public partial class Shock : CanvasLayer {
 		R2 = GetNode<Button>("ColorRect/Reactions/Button2");
 		R3 = GetNode<Button>("ColorRect/Reactions/Button3");
 		Continue = GetNode<Button>("ColorRect/Continue");
-		SC = GetNode<ShockController>("ShockController");
+		SC = GetNode<ShockController>("../ShockController");
+		Img = GetNode<Sprite2D>("ColorRect/Img");
 
 		// Set the button callbacks
 		R1.Pressed += _OnR1Pressed;
@@ -181,6 +182,8 @@ public partial class Shock : CanvasLayer {
 	// Sets all of the fields for the shock once a new one is selected
 	private void SetFields() {
 		// Extract the name and the description and set the labels to match them
+		Img.Texture = ResourceLoader.Load("res://assets/Icons/" + SC._GetShockImg(CurShock) + ".png") as Texture2D;
+		
 		Title.Text = SC._GetShockName(CurShock) 
 			?? throw new Exception("Unable to fetch name for id: " + CurShock.ToString());
 		Text.Text = SC._GetShockText(CurShock) 
