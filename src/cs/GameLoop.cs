@@ -170,7 +170,7 @@ public partial class GameLoop : Node2D {
 		if(newturn) {
 			RM._NextTurn(ref Money);
 		} else {
-			RM._UpdateResourcesUI(true);
+			RM._UpdateResourcesUI(false);
 		}
 
 		// Update Money UI

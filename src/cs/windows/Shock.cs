@@ -182,7 +182,12 @@ public partial class Shock : CanvasLayer {
 	// Sets all of the fields for the shock once a new one is selected
 	private void SetFields() {
 		// Extract the name and the description and set the labels to match them
-		Img.Texture = ResourceLoader.Load("res://assets/Icons/" + SC._GetShockImg(CurShock) + ".png") as Texture2D;
+		string res_path = "res://assets/Icons/" + SC._GetShockImg(CurShock) + ".png"
+			?? throw new Exception("Unable to fetch image path: " + CurShock.ToString());
+		Img.Texture = (
+			ResourceLoader.Load(res_path)
+			?? throw new Exception("Unable to load resource: " + res_path)
+		) as Texture2D;
 		
 		Title.Text = SC._GetShockName(CurShock) 
 			?? throw new Exception("Unable to fetch name for id: " + CurShock.ToString());
