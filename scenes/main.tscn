@@ -1,34 +1,89 @@
-[gd_scene load_steps=14 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=21 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
 [ext_resource type="PackedScene" uid="uid://bs48lirfn2fp2" path="res://scenes/hud/ui.tscn" id="2_d60f5"]
 [ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/building/BuildMenu.tscn" id="2_wrh8p"]
+[ext_resource type="Texture2D" uid="uid://cnp5jnw2xibl8" path="res://assets/temp_swiss_map.png" id="3_fsnjl"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
+[ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
+[ext_resource type="Texture2D" uid="uid://ceorbg7ik1atw" path="res://assets/Elements/230601_CH_SUREgame_Nuclear-Plant.png" id="4_fa5re"]
+[ext_resource type="Texture2D" uid="uid://lvf5eog6buhr" path="res://assets/Elements/230601_CH_SUREgame_Gas-Plant.png" id="5_blyni"]
+[ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="5_ra246"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
 [ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
 [ext_resource type="Script" path="res://src/cs/resources/EnvironmentManager.cs" id="10_7fban"]
-[ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="12_sivce"]
+[ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="11_uite1"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="12_vvejj"]
+[ext_resource type="PackedScene" uid="uid://pvoi2mcc3oc1" path="res://scenes/hud/menu.tscn" id="18_h65u3"]
 
-[node name="MainDemo" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlpb2"]
+atlas = ExtResource("5_ra246")
+region = Rect2(58, 262, 162, 46)
+
+[node name="Main" type="Node2D"]
 script = ExtResource("1_4jam2")
 
 [node name="World" parent="." instance=ExtResource("1_prp6q")]
 
 [node name="Map" parent="World" index="0"]
-position = Vector2(-2767, -1359)
-scale = Vector2(4, 4)
+visible = true
+texture_filter = 2
+position = Vector2(-2064, -872)
+scale = Vector2(6, 6)
+texture = ExtResource("3_fsnjl")
 
 [node name="Nuclear" parent="World" index="1"]
 position = Vector2(1088, 276)
 _PlantType = 4
 
+[node name="Sprite" parent="World/Nuclear" index="0"]
+texture = ExtResource("4_fa5re")
+
+[node name="NameRect" parent="World/Nuclear" index="3"]
+offset_top = -169.0
+offset_bottom = -141.0
+
+[node name="Switch" parent="World/Nuclear" index="4"]
+visible = false
+
+[node name="InfoBG" type="Sprite2D" parent="World/Nuclear" index="5"]
+position = Vector2(1, 115)
+texture = SubResource("AtlasTexture_xlpb2")
+
+[node name="ResRect" parent="World/Nuclear" index="6"]
+offset_left = -39.0
+offset_top = 102.0
+offset_right = -7.0
+offset_bottom = 131.0
+metadata/_edit_group_ = true
+
 [node name="Coal" parent="World" index="2"]
 position = Vector2(637, 385)
+
+[node name="Sprite" parent="World/Coal" index="0"]
+texture = ExtResource("5_blyni")
+
+[node name="NameRect" parent="World/Coal" index="3"]
+offset_top = -177.0
+offset_bottom = -149.0
+
+[node name="Switch" parent="World/Coal" index="4"]
+visible = false
+
+[node name="InfoBG2" type="Sprite2D" parent="World/Coal" index="5"]
+position = Vector2(3, 119)
+texture = SubResource("AtlasTexture_xlpb2")
+
+[node name="ResRect" parent="World/Coal" index="6"]
+offset_left = -39.0
+offset_top = 106.0
+offset_right = -7.0
+offset_bottom = 135.0
+metadata/_edit_group_ = true
 
 [node name="BuildButton" parent="World" index="3"]
 offset_left = 497.0
@@ -41,6 +96,7 @@ offset_left = 1388.0
 offset_top = 631.0
 offset_right = 1480.0
 offset_bottom = 681.0
+metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton3" parent="World" index="5"]
 offset_left = 1410.0
@@ -49,41 +105,49 @@ offset_right = 1502.0
 offset_bottom = 1213.0
 
 [node name="BuildButton4" parent="World" index="6"]
-offset_left = -440.0
-offset_top = 311.0
-offset_right = -351.0
-offset_bottom = 354.0
+offset_left = -234.0
+offset_top = 496.0
+offset_right = -145.0
+offset_bottom = 539.0
 
 [node name="BuildButton5" parent="World" index="7"]
-offset_left = -1256.0
-offset_top = 999.0
-offset_right = -1167.0
-offset_bottom = 1042.0
+offset_left = -572.0
+offset_top = 949.0
+offset_right = -483.0
+offset_bottom = 992.0
 
 [node name="BuildButton6" parent="World" index="8"]
-offset_left = -644.0
-offset_top = 1893.0
-offset_right = -555.0
-offset_bottom = 1936.0
+offset_left = -252.0
+offset_top = 1651.0
+offset_right = -163.0
+offset_bottom = 1694.0
+
+[node name="BuildButton7" parent="World" index="9"]
+metadata/_edit_use_anchors_ = true
+
+[node name="BuildButton8" parent="World" index="10"]
+metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton9" parent="World" index="11"]
-offset_left = 2410.0
-offset_top = 1982.0
-offset_right = 2499.0
-offset_bottom = 2025.0
+offset_left = 1519.0
+offset_top = 1839.0
+offset_right = 1608.0
+offset_bottom = 1882.0
 
 [node name="BuildButton10" parent="World" index="12"]
-offset_left = 498.0
-offset_top = 2112.0
-offset_right = 587.0
-offset_bottom = 2155.0
+offset_left = 249.0
+offset_top = 1941.0
+offset_right = 338.0
+offset_bottom = 1984.0
 
 [node name="Camera2D" parent="World" index="13"]
+position = Vector2(958, 538)
 anchor_mode = 1
 limit_left = -2800
 limit_top = -1000
 limit_right = 5000
 limit_bottom = 3000
+script = ExtResource("3_s6ssk")
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false
@@ -112,8 +176,9 @@ script = ExtResource("9_44b4k")
 [node name="EnvironmentManager" type="Node" parent="ResourceManager"]
 script = ExtResource("10_7fban")
 
-[node name="ShockController" type="Node" parent="."]
-script = ExtResource("12_sivce")
+[node name="Tutorial" parent="." instance=ExtResource("11_uite1")]
+
+[node name="Menu" parent="." instance=ExtResource("18_h65u3")]
 
 [node name="Shock" parent="." instance=ExtResource("12_vvejj")]
 visible = false

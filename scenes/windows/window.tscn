@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://jj476u8yn2g8"]
 
-[ext_resource type="Script" path="res://src/cs/ui/PolicyWindow.cs" id="1_is3ep"]
+[ext_resource type="Script" path="res://src/cs/windows/PolicyWindow.cs" id="1_is3ep"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oju76"]
 bg_color = Color(0.301961, 0.584314, 0.309804, 1)

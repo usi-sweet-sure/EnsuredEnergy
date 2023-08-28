@@ -1,0 +1,38 @@
+<!-- 
+    Sustainable Energy Development game modeling the Swiss energy Grid.
+	Copyright (C) 2023 Università della Svizzera Italiana
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->    
+<db id="tutorial" lang="de">
+	<group id="tutorial_text">
+		<text id="0">Glückwunsch !
+Sie wurden dazu bestimmt, [b]das Stromnetz[/b] zu verwalten und einen nachhaltigen und widerstandsfähigen Energiesektor sicherzustellen.</text>
+		<text id="1">Sie müssen genügend [b]Energie[/b] für Ihre Bevölkerung bereitstellen.
+Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
+		<text id="2">Sie müssen genügend [b]Energie[/b] für Ihre Bevölkerung bereitstellen.
+Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
+		<text id="3">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:
+
+- Man kann Energie importieren, aber das verschmutzt und kann teuer sein.</text>
+		<text id="4">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:
+
+- Man kann neue Kraftwerke bauen, aber das kostet Zeit und Geld.</text>
+	</group>
+	<group id="info_bubble">
+		<text id="0">Jede Runde muss man den Bedarf für Sommer und Winter erreichen.</text>
+		<text id="1">Importiere hier mehr Energie</text>
+		<text id="2">Neue Kraftwerke bauen</text>
+	</group>
+</db>

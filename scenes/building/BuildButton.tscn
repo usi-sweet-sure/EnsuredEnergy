@@ -1,22 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=6 format=3 uid="uid://banvqdghwoj3p"]
 
+[ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="1_dqrnt"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
+[ext_resource type="Texture2D" uid="uid://duoo8yelpa3l4" path="res://assets/Elements/ENERGY PLANT - BUILDING.png" id="2_0x6r5"]
+[ext_resource type="Texture2D" uid="uid://cvm4lopnmbupy" path="res://assets/Elements/BUILDINGBUTTONPressed.png" id="2_e5byc"]
+[ext_resource type="Texture2D" uid="uid://747hpnocr8yq" path="res://assets/Elements/BUILDINGBUTTONHover.png" id="3_6vldy"]
 
-[node name="BuildButton" type="Button"]
-anchors_preset = -1
-anchor_right = 0.0364583
-anchor_bottom = 0.066358
+[node name="BuildButton" type="TextureButton"]
+offset_left = -112.0
+offset_top = -88.0
+offset_right = 115.0
+offset_bottom = 97.0
 focus_mode = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.203922, 0.203922, 0.203922, 1)
-theme_override_font_sizes/font_size = 25
-text = "🔨"
+texture_normal = ExtResource("1_dqrnt")
+texture_pressed = ExtResource("2_e5byc")
+texture_hover = ExtResource("3_6vldy")
 
 [node name="Gas" parent="." instance=ExtResource("1_wi5q3")]
+position = Vector2(112, 88)
 
 [node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
+position = Vector2(112, 88)
+_PlantType = 0
 
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
+position = Vector2(112, 88)
+_PlantType = 2
 
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
+position = Vector2(112, 88)
+_PlantType = 3
+
+[node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
+position = Vector2(112, 88)
+_PlantType = 5
+
+[node name="Building" type="Sprite2D" parent="."]
+position = Vector2(112, 88)
+texture = ExtResource("2_0x6r5")
+
+[node name="ColorRect" type="ColorRect" parent="Building"]
+offset_left = -72.0
+offset_top = 80.0
+offset_right = 64.0
+offset_bottom = 112.0
+color = Color(0.847656, 0.847656, 0.847656, 1)
+
+[node name="TurnsLeft" type="Label" parent="Building/ColorRect"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 144.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.398438, 0.398438, 0.398438, 1)
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

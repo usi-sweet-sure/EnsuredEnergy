@@ -21,7 +21,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 
 // Models a button that can be used to create power plants
-public partial class BuildButton : Button {
+public partial class BuildButton : TextureButton {
 
 	// The possible states the button can be in
 	public enum BuildState { IDLE, BUILDING, DONE };
@@ -31,6 +31,7 @@ public partial class BuildButton : Button {
 	public const string SOLAR_NAME = "Solar";
 	public const string HYDRO_NAME = "Hydro";
 	public const string TREE_NAME = "Tree";
+	public const string WIND_NAME = "Wind";
 
 	// Signal used to trigger the showing of the build menu
 	[Signal]
@@ -38,6 +39,9 @@ public partial class BuildButton : Button {
 
 	[Signal]
 	public delegate void UpdateBuildSlotEventHandler(BuildButton bb, PowerPlant pp, bool remove);
+
+	[Signal]
+	public delegate void BuildDoneEventHandler();
 
 	// The only special plant for the time being is Hydro
 	// This flag tells us whether or not it is permitted to build a hydro plant at this location.
@@ -52,6 +56,11 @@ public partial class BuildButton : Button {
 	private PowerPlant SolarPlant;
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
+	private PowerPlant WindPlant;
+	
+	// Building sprite
+	private Sprite2D BuildSprite;
+	private Label TL;
 
 	// Reference to the game loop
 	private GameLoop GL;
@@ -83,6 +92,10 @@ public partial class BuildButton : Button {
 		SolarPlant = GetNode<PowerPlant>(SOLAR_NAME);
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
+		WindPlant = GetNode<PowerPlant>(WIND_NAME);
+		
+		BuildSprite = GetNode<Sprite2D>("Building");
+		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -95,13 +108,13 @@ public partial class BuildButton : Button {
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
-			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.HYDRO);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND, Building.Type.HYDRO);
 		} else {
-			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND);
 		}
 
 		// Connect the button press callback
-		this.Pressed += _OnPressed;
+		Pressed += _OnPressed;
 	}
 
 	// ==================== Public API ====================
@@ -156,8 +169,10 @@ public partial class BuildButton : Button {
 		// Propagate the newly built plant to the context
 		C._UpdatePPStats(PPInProgress.PlantType);
 
-		// Update the data stored in the model struct
-		C._UpdateModelFromClient(PPInProgress);
+		// Update the data stored in the model struct if online
+		if(C._GetOffline()) {
+			C._UpdateModelFromClient(PPInProgress);
+		} 
 		
 		// Update the current power plant placed at this slot
 		UpdateGenericPlant(PPInProgress);
@@ -168,27 +183,26 @@ public partial class BuildButton : Button {
 		// Update the requested build fields
 		PPInProgress = null;
 		BS = BuildState.DONE;
+
+		// Signal that the build is complete
+		EmitSignal(SignalName.BuildDone);
 	}
 
 	// Hides the button but not its children
 	private void HideOnlyButton() {
-		Text = "";
 		Disabled = true;
-		Flat = true;
 	}
 
 	// Resets the button to it's initial state
 	private void Reset() {
-		Text = "🔨";
 		Disabled = false;
-		Flat = false;
 	}
 
 	// Sets the button to the build state
 	private void SetToBuild() {
-		Text = "🕐 : " + TurnsToBuild.ToString();
+		BuildSprite.Show();
+		TL.Text = TurnsToBuild.ToString() + " 🕐";
 		Disabled = true;
-		Flat = false;
 	}
 
 	// Hides all of the plants related to this button
@@ -198,6 +212,9 @@ public partial class BuildButton : Button {
 		HydroPlant.Hide();
 		SolarPlant.Hide();
 		TreePlant.Hide();
+		WindPlant.Hide();
+		
+		BuildSprite.Hide();
 	}
 
 	// Wrapper for a more specific call depending on the selected plant type
@@ -205,8 +222,10 @@ public partial class BuildButton : Button {
 		// Make sure that the selected plant is setup correctly
 		PP._SetPlantFromConfig(PP.PlantType);
 
-		// Update the availability
-		PP._SetAvailabilityFromContext();
+		// Update the availability if online mode is active
+		if(!C._GetOffline()) {
+			PP._SetAvailabilityFromContext();
+		}
 
 		// Pick which plant to show and update
 		switch(PP.PlantType.type) {
@@ -225,6 +244,11 @@ public partial class BuildButton : Button {
 			case Building.Type.TREE:
 				UpdatePowerPlant(ref TreePlant, PP);
 				break;
+				
+			case Building.Type.WIND:
+				UpdatePowerPlant(ref WindPlant, PP);
+				break;
+				
 			default:
 				break;
 		}		
@@ -233,7 +257,7 @@ public partial class BuildButton : Button {
 	// Updates a given power plant to match the received power plant
 	private void UpdatePowerPlant(ref PowerPlant PP, PowerPlant PPRec) {
 		// Set it up to display at our button's location
-		PP.Position = Vector2.Zero;
+		PP.Position = new Vector2(112,88);
 		PP.Scale = new Vector2(1, 1);
 		PP.IsPreview = false;
 		PP.BuildCost = PPRec.BuildCost;
@@ -255,6 +279,7 @@ public partial class BuildButton : Button {
 		// Make sure that the data is propagated to the UI
 		PP._UpdatePlantData();
 		PP.Show();
+		BuildSprite.Hide();
 
 		// Add the building to the power plant list
 		EmitSignal(SignalName.UpdateBuildSlot, this, PP, false);
@@ -293,8 +318,10 @@ public partial class BuildButton : Button {
 				// Propagate the newly built plant to the context
 				C._UpdatePPStats(PP.PlantType);
 
-				// Update the data stored in the model struct
-				C._UpdateModelFromClient(PP);
+				// Update the data stored in the model struct if online
+				if(C._GetOffline()) {
+					C._UpdateModelFromClient(PP);
+				}
 
 				// Select which plant to show and update it's fields to match those that were given
 				UpdateGenericPlant(PP);
@@ -304,6 +331,9 @@ public partial class BuildButton : Button {
 
 				// Update Build State
 				BS = BuildState.DONE;
+
+				// Signal that the build is complete
+				EmitSignal(SignalName.BuildDone);
 			}
 		}		
 	}

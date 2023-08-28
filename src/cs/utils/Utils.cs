@@ -138,7 +138,7 @@ public readonly struct Building {
 	public readonly Type type;
 
 	// The various types of power plants
-	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, NONE };
+	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, WIND, NONE };
 
 	// Labels used as string representations of the types
 	public const string GAS_LABEL = "gas";
@@ -146,6 +146,7 @@ public readonly struct Building {
 	public const string SOLAR_LABEL = "solar";
 	public const string TREE_LABEL = "tree";
 	public const string NUCLEAR_LABEL = "nuclear";
+	public const string WIND_LABEL = "wind";
 
 	// Base values for the model's building types
 	private const int GAS_ID_BASE = 1;
@@ -191,6 +192,9 @@ public readonly struct Building {
 		if(s_ == TREE_LABEL) {
 			return new Building(Type.TREE);
 		}
+		if(s_ == WIND_LABEL) {
+			return new Building(Type.WIND);
+		}
 		if(s_ == NUCLEAR_LABEL) {
 			return new Building(Type.NUCLEAR);
 		}
@@ -205,6 +209,7 @@ public readonly struct Building {
 		type == Type.HYDRO ? HYDRO_LABEL :
 		type == Type.SOLAR ? SOLAR_LABEL :
 		type == Type.TREE ? TREE_LABEL :
+		type == Type.WIND ? WIND_LABEL :
 		type == Type.NUCLEAR ? NUCLEAR_LABEL : 
 		"";
 
@@ -400,7 +405,8 @@ public readonly struct PowerPlantConfigData : ConfigData {
 	// Energy fields
 	public readonly int ProductionCost;
 	public readonly int Capacity;
-	public readonly float Availability;
+	public readonly float Availability_W;
+	public readonly float Availability_S;
 
 	// Environment fields
 	public readonly int Pollution;
@@ -410,7 +416,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 	// Basic constructor for the datatype
 	public PowerPlantConfigData(
 		int bc=0, int bt=0, int lc=0,
-		int pc=0, int cap=0, float av=0,
+		int pc=0, int cap=0, float avw=0, float avs=0,
 		int pol=0, float lu=0, float bd=0
 	) {
 		// Simply fill in the fields
@@ -419,7 +425,8 @@ public readonly struct PowerPlantConfigData : ConfigData {
 		LifeCycle = lc;
 		ProductionCost = pc;
 		Capacity = cap;
-		Availability = Math.Max(0.0f, Math.Min(av, 1.0f));
+		Availability_W = Math.Max(0.0f, Math.Min(avw, 1.0f));
+		Availability_S = Math.Max(0.0f, Math.Min(avs, 1.0f));
 		Pollution = pol;
 		LandUse = lu;
 		Biodiversity = bd;

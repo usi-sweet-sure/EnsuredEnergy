@@ -43,18 +43,23 @@ public partial class BuildMenu : CanvasLayer {
 	private PowerPlant SolarPlant;
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
+	private PowerPlant WindPlant;
 
 	// Buttons to select the power plants
 	private Button GasButton;
 	private Button SolarButton;
 	private Button HydroButton;
 	private Button TreeButton;
+	private Button WindButton;
 
 	// Close button
 	private Button CloseButton;
 	
 	// Animation Player
 	private AnimationPlayer BuildMenuAP;
+	
+	// Tab Container
+	private TabContainer TabC;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -64,28 +69,37 @@ public partial class BuildMenu : CanvasLayer {
 		Hide();
 
 		// Fetch Power plants
-		GasPlant = GetNode<PowerPlant>("ColorRect/Gas");
-		SolarPlant = GetNode<PowerPlant>("ColorRect/Solar");
-		HydroPlant = GetNode<PowerPlant>("ColorRect/Hydro");
-		TreePlant = GetNode<PowerPlant>("ColorRect/Tree");
+		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar2/Gas");
+		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/Solar");
+		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/Hydro");
+		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/Tree");
+		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/Wind");
 
 		// Fetch associated buttons
-		GasButton = GetNode<Button>("ColorRect/Gas/GasButton");
-		SolarButton = GetNode<Button>("ColorRect/Solar/SolarButton");
-		HydroButton = GetNode<Button>("ColorRect/Hydro/HydroButton");
-		TreeButton = GetNode<Button>("ColorRect/Tree/TreeButton");
+		GasButton = GetNode<Button>("TabContainer/TabBar2/Gas/GasButton");
+		SolarButton = GetNode<Button>("TabContainer/TabBar/Solar/SolarButton");
+		HydroButton = GetNode<Button>("TabContainer/TabBar/Hydro/HydroButton");
+		TreeButton = GetNode<Button>("TabContainer/TabBar/Tree/TreeButton");
+		WindButton = GetNode<Button>("TabContainer/TabBar/Wind/WindButton");
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");
 		
 		// Fetch Animation Player
 		BuildMenuAP = GetNode<AnimationPlayer>("AnimationPlayer");
+		
+		// Fetch TabContainer and sets tab titles 
+		//TODO for all tabs in all lang
+		TabC = GetNode<TabContainer>("TabContainer");
+		TabC.SetTabTitle(0,"Green");
+		TabC.SetTabTitle(1,"Fossil");
 
 		// Connect the associated button callbacks
 		GasButton.Pressed += _OnGasButtonPressed;
 		SolarButton.Pressed += _OnSolarButtonPressed;
 		HydroButton.Pressed += _OnHydroButtonPressed;
 		TreeButton.Pressed += _OnTreeButtonPressed;
+		WindButton.Pressed += _OnWindButtonPressed;
 		CloseButton.Pressed += _OnCloseButtonPressed;
 
 		HideAllPlants();
@@ -113,6 +127,10 @@ public partial class BuildMenu : CanvasLayer {
 			case Building.Type.TREE:
 				SetPlantName(ref TreePlant, newName);
 				break;
+				
+			case Building.Type.WIND:
+				SetPlantName(ref WindPlant, newName);
+				break;
 			
 			default:
 				break;
@@ -128,6 +146,7 @@ public partial class BuildMenu : CanvasLayer {
 		HydroPlant.Hide();
 		SolarPlant.Hide();
 		TreePlant.Hide();
+		WindPlant.Hide();
 	}
 
 	// Sets the plants name and propagates info to ui
@@ -138,11 +157,7 @@ public partial class BuildMenu : CanvasLayer {
 	
 	// Sets the position of the given plant according to its position in the list
 	private void SetPlantPosition(ref PowerPlant pp, int idx) {
-		pp.Position = new Vector2(
-			BuildingSpriteBase.X + (idx * BuildingSpriteOffset), 
-			BuildingSpriteBase.Y
-		);
-
+		
 		// Make sure that these plants are in preview mode
 		pp._UpdateIsPreview(true);
 
@@ -214,6 +229,12 @@ public partial class BuildMenu : CanvasLayer {
 					TreePlant._SetPlantFromConfig(Building.Type.TREE);
 					TreePlant.PlantType = Building.Type.TREE;
 					break;
+					
+				case Building.Type.WIND:
+					SetPlantPosition(ref WindPlant, idx++);
+					WindPlant._SetPlantFromConfig(Building.Type.WIND);
+					WindPlant.PlantType = Building.Type.WIND;
+					break;
 			}
 		}
 	} 
@@ -247,7 +268,13 @@ public partial class BuildMenu : CanvasLayer {
 		// Close the menu
 		IsOpen = false;
 	}
+	public void _OnWindButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, WindPlant);
 
+		// Close the menu
+		IsOpen = false;
+	}
 	// Closes the menu
 	public void _OnCloseButtonPressed() {
 		// Hide and close the menu
