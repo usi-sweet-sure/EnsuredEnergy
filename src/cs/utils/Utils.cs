@@ -405,7 +405,8 @@ public readonly struct PowerPlantConfigData : ConfigData {
 	// Energy fields
 	public readonly int ProductionCost;
 	public readonly int Capacity;
-	public readonly float Availability;
+	public readonly float Availability_W;
+	public readonly float Availability_S;
 
 	// Environment fields
 	public readonly int Pollution;
@@ -415,7 +416,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 	// Basic constructor for the datatype
 	public PowerPlantConfigData(
 		int bc=0, int bt=0, int lc=0,
-		int pc=0, int cap=0, float av=0,
+		int pc=0, int cap=0, float avw=0, float avs=0,
 		int pol=0, float lu=0, float bd=0
 	) {
 		// Simply fill in the fields
@@ -424,7 +425,8 @@ public readonly struct PowerPlantConfigData : ConfigData {
 		LifeCycle = lc;
 		ProductionCost = pc;
 		Capacity = cap;
-		Availability = Math.Max(0.0f, Math.Min(av, 1.0f));
+		Availability_W = Math.Max(0.0f, Math.Min(avw, 1.0f));
+		Availability_S = Math.Max(0.0f, Math.Min(avs, 1.0f));
 		Pollution = pol;
 		LandUse = lu;
 		Biodiversity = bd;

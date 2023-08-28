@@ -23,6 +23,9 @@ using System.Diagnostics;
 public partial class PowerPlant : Node2D {
 
 
+	[Signal]
+	public delegate void UpdatePlantEventHandler();
+
 	[ExportGroup("Meta Parameters")]
 	[Export] 
 	// The name of the power plant that will be displayed in the game
@@ -63,7 +66,7 @@ public partial class PowerPlant : Node2D {
 	public int InitialEnergyCapacity = 100;
 
 	// This is the amount of energy that the plant is able to produce given environmental factors
-	public float InitialEnergyAvailability = 1.0f; // This is a percentage
+	public (float, float) InitialEnergyAvailability = (1.0f, 1.0f); // This is a percentage
 
 	// Amount of pollution caused by the power plant (can be negative in the tree case)
 	public int InitialPollution = 10;
@@ -78,7 +81,7 @@ public partial class PowerPlant : Node2D {
 	// Internal metrics
 	private int ProductionCost = 0;
 	private int EnergyCapacity = 100;
-	private float EnergyAvailability = 1.0f;
+	private (float, float) EnergyAvailability = (1.0f, 1.0f); // (Winter, Summer)
 	private int Pollution = 10;
 
 	// Life flag: Whether or not the plant is on
@@ -180,8 +183,7 @@ public partial class PowerPlant : Node2D {
 	public int _GetProductionCost() => ProductionCost;
 
 	// Getter for the current availability EA in [0.0, 1.0]
-	public float _GetAvailability() => 
-		Math.Max(Math.Min(EnergyAvailability, 1.0f), 0.0f);
+	public (float, float) _GetAvailability() => EnergyAvailability;
 
 	// Getter for the powerplant's liveness status
 	public bool _GetLiveness() => IsAlive;
@@ -205,13 +207,14 @@ public partial class PowerPlant : Node2D {
 	// This method does that set.
 	public void _SetAvailabilityFromContext() {
 		// Get the model from the context
-		Model M  = C._GetModel(ModelSeason.WINTER);
+		(Model MW, Model MS)  = C._GetModels();
 		
 		// Extract the availability
-		float av = M._Availability._GetField(PlantType);
+		float avw = MW._Availability._GetField(PlantType);
+		float avs = MS._Availability._GetField(PlantType);
 
 		// Based on the number of built plants of this type, divide the availability
-		EnergyAvailability = av / C._GetPPStat(PlantType);
+		EnergyAvailability = (avw / C._GetPPStat(PlantType), avs / C._GetPPStat(PlantType));
 	}
 
 	// Reacts to a new turn taking place
@@ -238,18 +241,28 @@ public partial class PowerPlant : Node2D {
 		bool updateInit=false, // Whether or not to update the initial values as well
 		int pol=-1, // pollution amount
 		int PC=-1, // Production cost
-		int EC=-1 // Energy capacity
+		int EC=-1, // Energy capacity
+		float AV_W=-1, // Winter availability
+		float AV_S=-1 // Summer availability
 	) {
 		// Only update internal fields that where given a proper value
 		Pollution = pol == -1 ? Pollution : pol;
 		ProductionCost = PC == -1 ? ProductionCost : PC;
 		EnergyCapacity = EC == -1 ? EnergyCapacity : EC;
+		EnergyAvailability = (
+			AV_W == -1 ? EnergyAvailability.Item1 : AV_W,
+			AV_S == -1 ? EnergyAvailability.Item2 : AV_S
+		);
 
 		// Check for initial value updates
 		if(updateInit) {
 			InitialPollution = pol == -1 ? InitialPollution : pol;
 			InitialProductionCost = PC == -1 ? InitialProductionCost : PC;
 			InitialEnergyCapacity = EC == -1 ? InitialEnergyCapacity : EC;
+			InitialEnergyAvailability = (
+				AV_W == -1 ? InitialEnergyAvailability.Item1 : AV_W,
+				AV_S == -1 ? InitialEnergyAvailability.Item2 : AV_S
+			);
 		}
 	}
 
@@ -275,6 +288,7 @@ public partial class PowerPlant : Node2D {
 	// Updates the UI label for the plant to the given name
 	public void _UpdatePlantName(string name) {
 		NameL.Text = name;
+		PlantName = name;
 	}
 
 	// Updates the UI to match the internal state of the plant
@@ -313,7 +327,9 @@ public partial class PowerPlant : Node2D {
 			true, 
 			PPCD.Pollution,
 			PPCD.ProductionCost,
-			PPCD.Capacity
+			PPCD.Capacity,
+			PPCD.Availability_W,
+			PPCD.Availability_S
 		);
 	}
 
@@ -321,7 +337,7 @@ public partial class PowerPlant : Node2D {
 	private void KillPowerPlant() {
 		IsAlive = false;
 		EnergyCapacity = 0;
-		EnergyAvailability = 0;
+		EnergyAvailability = (0.0f, 0.0f);
 		ProductionCost = 0;
 
 		// Plant no longer pollutes when it's powered off
@@ -369,6 +385,9 @@ public partial class PowerPlant : Node2D {
 
 		// Update the UI
 		_UpdatePlantData();
+
+		// Singal that the plant was updated
+		EmitSignal(SignalName.UpdatePlant);
 	}
 	
 	// Hide the plant information when the mouse no longer hovers over the plant
