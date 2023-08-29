@@ -219,7 +219,10 @@ public partial class PowerPlant : Node2D {
 
 	// Reacts to a new turn taking place
 	public void _NextTurn() {
-		if(EndTurn >= C._GetTurn()) {
+		Debug.Print("ENDTURN: " + EndTurn);
+		Debug.Print("Current turn: " + C._GetTurn());
+
+		if(EndTurn <= C._GetTurn()) {
 			// Deactivate the plant
 			KillPowerPlant();
 
