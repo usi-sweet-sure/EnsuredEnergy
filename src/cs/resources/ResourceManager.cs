@@ -128,6 +128,11 @@ public partial class ResourceManager : Node {
 		// Update the energy UI
 		UpdateEnergyUI(E);
 		UpdateEnvironmentUI(Env);
+
+		EmitSignal(
+			SignalName.UpdateNextTurnState,
+			E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
+		);
 	}
 
 	// Initializes all of the resource managers

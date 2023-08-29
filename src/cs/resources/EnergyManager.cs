@@ -140,7 +140,7 @@ public partial class EnergyManager : Node {
 		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
 		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
 
-		return new Energy(supply_s, supply_w, demandw, demands, excess_s, excess_w);
+		return new Energy(supply_s, supply_w, demands, demandw, excess_s, excess_w);
 	}
 
 	// Estimate the values for the next turn (in case of no network or demo)
