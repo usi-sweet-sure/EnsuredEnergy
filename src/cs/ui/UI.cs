@@ -349,8 +349,8 @@ public partial class UI : CanvasLayer {
 				// Update the bar slider
 				_UpdateBarSlider(
 					InfoType.W_ENGERGY, 
-					(float)Data.W_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
-				);
+					(float)Data.W_EnergyDemand / EnergyManager.MAX_ENERGY_BAR_VAL
+                );
 				
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
@@ -444,15 +444,15 @@ public partial class UI : CanvasLayer {
 	// Sets the required imports based on the demand
 	private void SetTargetImport() {
 		// Fetch the demand and supply
-		int demand  = Data.W_EnergyDemand;
+		float demand  = C._GetDemand().Item1;
 		int supply = Data.W_EnergySupply;
 
 		// Compute the different, clamped to 0 as no imports are required
 		// when the supply meets the demand
-		int diff = Math.Max(0, demand - supply); 
+		float diff = Math.Max(0.0f, demand - supply); 
 
 		// Compute the percentage of the total demand tha the diff represents
-		float diff_perc = (float)diff / (float)demand;
+		float diff_perc = diff / demand;
 
 		// Set the import target to that percentage
 		Imports._UpdateTargetImport(diff_perc);

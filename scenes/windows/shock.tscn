@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://885lty3v1qbq"]
+[gd_scene load_steps=7 format=3 uid="uid://885lty3v1qbq"]
 
 [ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="2_i1jhu"]
