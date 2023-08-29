@@ -349,8 +349,8 @@ public partial class UI : CanvasLayer {
 				// Update the bar slider
 				_UpdateBarSlider(
 					InfoType.W_ENGERGY, 
-					(float)Data.W_EnergyDemand / (float)EnergyManager.MAX_ENERGY_BAR_VAL
-				);
+					(float)Data.W_EnergyDemand / EnergyManager.MAX_ENERGY_BAR_VAL
+                );
 				
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
@@ -444,15 +444,19 @@ public partial class UI : CanvasLayer {
 	// Sets the required imports based on the demand
 	private void SetTargetImport() {
 		// Fetch the demand and supply
-		int demand  = Data.W_EnergyDemand;
-		int supply = Data.W_EnergySupply;
+		float demand  = C._GetDemand().Item1;
+		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
 
 		// Compute the different, clamped to 0 as no imports are required
 		// when the supply meets the demand
-		int diff = Math.Max(0, demand - supply); 
+		float diff = Math.Max(0.0f, demand - supply); 
+
+		Debug.Print("SUPPLY = " + supply + ", DEMAND = " + demand);
 
 		// Compute the percentage of the total demand tha the diff represents
-		float diff_perc = (float)diff / (float)demand;
+		float diff_perc = diff / demand;
+
+		Debug.Print("DIFF_PERC = " + diff_perc);
 
 		// Set the import target to that percentage
 		Imports._UpdateTargetImport(diff_perc);
@@ -585,11 +589,16 @@ public partial class UI : CanvasLayer {
 		EmitSignal(SignalName.NextTurn);
 		
 		// Sets the correct years and plays the next turn animation
-		SetNextYears();
-		TimelineAP.Play("NextTurnAnim");
+		if(C._GetRemainingTurns() > 0) {
+			SetNextYears();
+			TimelineAP.Play("NextTurnAnim");
+		}
+
+		// Update the required import target (only in winter due to conservative estimates)
+		SetTargetImport();
 		
 		// Update the Timeline
-		Timeline.Value = Math.Min((Timeline.Value + TIMELINE_STEP_SIZE), TIMELINE_MAX_VALUE); 
+		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 
 	}
 
 	// Displays the information box related to the winter energy

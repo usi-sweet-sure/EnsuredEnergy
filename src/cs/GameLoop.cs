@@ -109,6 +109,12 @@ public partial class GameLoop : Node2D {
 		// Fetch resource manager
 		RM = GetNode<ResourceManager>("ResourceManager");
 
+		// Set the number of turns in the context
+		C._SetNTurns(N_TURNS);
+
+		// Set the game loop reference
+		C._SetGLRef(this);
+
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
@@ -156,6 +162,9 @@ public partial class GameLoop : Node2D {
 	// Getter for the internal list of built powerplants
 	public List<PowerPlant> _GetPowerPlants() => PowerPlants;
 
+	// Retrieves the current resource estimates from the resource manager
+	public (Energy, Environment, Support) _GetResources() => RM._GetResources();
+
 	// Enable public access to a resource update request
 	public void _UpdateResourcesUI() {
 		// Request a non-new turn update of the UI
@@ -170,7 +179,7 @@ public partial class GameLoop : Node2D {
 		if(newturn) {
 			RM._NextTurn(ref Money);
 		} else {
-			RM._UpdateResourcesUI(true);
+			RM._UpdateResourcesUI(false);
 		}
 
 		// Update Money UI
