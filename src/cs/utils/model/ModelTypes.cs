@@ -350,6 +350,7 @@ public struct Capacity : IColumn {
         Building.Type.SOLAR   => Solar,
         Building.Type.NUCLEAR => Nuclear,
         Building.Type.WIND    => Wind,
+        Building.Type.TREE    => 0.0f,
         _ => throw new ArgumentException("No field is associated to the given type!")
     };
 
@@ -374,7 +375,7 @@ public struct Capacity : IColumn {
                 Wind = new_value;
                 break;
             default: 
-                throw new ArgumentException("No field is associated to the given type!");
+                break;
         }
     }
 
