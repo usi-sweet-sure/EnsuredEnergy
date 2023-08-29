@@ -128,6 +128,11 @@ public partial class ResourceManager : Node {
 		// Update the energy UI
 		UpdateEnergyUI(E);
 		UpdateEnvironmentUI(Env);
+
+		EmitSignal(
+			SignalName.UpdateNextTurnState,
+			E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
+		);
 	}
 
 	// Initializes all of the resource managers
@@ -160,7 +165,7 @@ public partial class ResourceManager : Node {
 
 	// Wrapper used for signal compatibility
 	public void _UpdateResourcesUI() {
-		_UpdateResourcesUI(false);
+		_UpdateResourcesUI(true);
 	}
 
 	// Updates the current list of power plants via a deep copy
@@ -233,10 +238,10 @@ public partial class ResourceManager : Node {
 	// Given the percentage selected by the player
 	public int _GetTotalImportCost(float import_perc) {
 		// Retrieve the import amounts
-		var (import_amount_w, import_amount_s) = EngM._ComputeImportAmount(import_perc, ImportInSummer);
+		var (import_amount_w, import_amount_s) = EngM._ComputeImportAmount(C._GetDemand(), import_perc, ImportInSummer);
 
 		// Compute the final cost
-		return (int)((import_amount_w + (!import_amount_s.HasValue ? 0 : import_amount_s.Value)) * ImportCost);
+		return (int)(import_amount_w + import_amount_s * ImportCost);
 	}
 
 	// ==================== Helper Methods ====================  

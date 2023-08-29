@@ -30,8 +30,8 @@ public partial class Context : Node {
 
 	private const float DEMAND_INC_S = 60;
 	private const float DEMAND_INC_W = 30;
-	private const float DEMAND_INIT_S = 300;
-	private const float DEMAND_INIT_W = 200;
+	private const float DEMAND_INIT_S = 200;
+	private const float DEMAND_INIT_W = 300;
 
     [Signal]
     // Signals that the context has been updated by an external actor
@@ -57,6 +57,9 @@ public partial class Context : Node {
     // The Curent Turn
     private int Turn = 0;
 
+    // The total number of turns
+    private int N_TURNS = 10;
+
     // Internal representation of the most recent data retrieved from the model
     private Model MSummer;
     private Model MWinter;
@@ -69,6 +72,9 @@ public partial class Context : Node {
 
     // Current language
     private Language Lang;
+
+    // Reference to the game loop
+    private GameLoop GL;
 
     // ==================== GODOT Method Overrides ====================
 
@@ -97,6 +103,18 @@ public partial class Context : Node {
             // Increment the number of plants of that type
             PPStats[pp.PlantType]++;
         }
+    }
+
+    // Sets the reference to the game loop
+    public void _SetGLRef(GameLoop gl) {
+        // Only assign if not null
+        GL ??= gl;
+    }
+
+    // Sets the number of turns the game has
+    // This should only be called by the game loop
+    public void _SetNTurns(int nt) {
+        N_TURNS = nt;
     }
 
     // Updates the PPStats to modifiy the number of plants of a certain type
@@ -245,6 +263,12 @@ public partial class Context : Node {
 
     // Returns the current turn
     public int _GetTurn() => Turn;
+
+    // Returns the number of remaining turns
+    public int _GetRemainingTurns() => N_TURNS - Turn;
+
+    // Returns a reference to the game loop
+    public GameLoop _GetGL() => GL;
 
     // Returns the requested model
     public Model _GetModel(ModelSeason S) => 
