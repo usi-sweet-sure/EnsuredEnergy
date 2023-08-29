@@ -95,8 +95,10 @@ public partial class ResourceManager : Node {
 	public void _NextTurn(ref MoneyData Money) {
 
 		// Update all build buttons
-		foreach(BuildButton bb in BBs) {
-			bb._NextTurn();
+		if(BBs.Count() > 0) {
+			foreach(BuildButton bb in BBs) {
+				bb._NextTurn();
+			}
 		}
 
 		// Update all plants

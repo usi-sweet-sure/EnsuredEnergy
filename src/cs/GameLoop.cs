@@ -210,6 +210,7 @@ public partial class GameLoop : Node2D {
 	private void StartGameOffline() {
 		// Update the game state
 		GS = GameState.PLAYING;
+		Debug.Print("Starting Game");
 
 		// Initialize the context stats
 		C._InitializePPStats(PowerPlants);
@@ -428,10 +429,10 @@ public partial class GameLoop : Node2D {
 
 	// Triggers a new turn if the game is currently acitve
 	public void _OnNextTurn() {
-		if(GS == GameState.PLAYING) {
-			// Display a shock
-			DisplayShock();
-		}
+		Debug.Print("NEXT TURN: " + GS);
+		// Display a shock
+		DisplayShock();
+		Debug.Print("NEXT TURN");
 	}
 
 	// Reacts to a context update
