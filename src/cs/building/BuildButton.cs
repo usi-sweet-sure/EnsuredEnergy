@@ -93,6 +93,13 @@ public partial class BuildButton : TextureButton {
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
 		WindPlant = GetNode<PowerPlant>(WIND_NAME);
+
+		// Set their bb reference
+		GasPlant._SetBuildButton(this);
+		SolarPlant._SetBuildButton(this);
+		HydroPlant._SetBuildButton(this);
+		TreePlant._SetBuildButton(this);
+		WindPlant._SetBuildButton(this);
 		
 		BuildSprite = GetNode<Sprite2D>("Building");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");

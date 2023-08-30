@@ -416,6 +416,12 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new build button
 			BBs.Add(bb);
+
+			// Reimburse the price 
+			Money.SpendMoney(-pp.BuildCost);
+
+			// Notify the UI of the resource update
+			UpdateResources();
 		} else {
 			// Sanity Check
 			Debug.Assert(BBs.Contains(bb));
@@ -425,6 +431,9 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
+
+			// Connect to the delete signal
+			pp.DeletePlant += _OnUpdateBuildSlot;
 
 			// Update the context stats
 			C._UpdatePPStats(pp.PlantType);

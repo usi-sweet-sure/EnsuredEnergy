@@ -26,6 +26,11 @@ public partial class PowerPlant : Node2D {
 	[Signal]
 	public delegate void UpdatePlantEventHandler();
 
+	[Signal]
+	/* Signals that the plant should be deleted and replaced by a buildbutton */
+	public delegate void DeletePlantEventHandler(BuildButton bb, PowerPlant pp, bool remove);
+
+
 	[ExportGroup("Meta Parameters")]
 	[Export] 
 	// The name of the power plant that will be displayed in the game
@@ -103,6 +108,7 @@ public partial class PowerPlant : Node2D {
 	private Label Price;
 	private Label BTime;
 	private Control Info;
+	private Button Delete;
 
 	// Configuration controller
 	private ConfigController CC;
@@ -112,6 +118,9 @@ public partial class PowerPlant : Node2D {
 
 	// Context
 	private Context C;
+
+	// Build Button associated to this plant
+	private BuildButton BB;
 
 	// ==================== GODOT Method Overrides ====================
 	
@@ -132,6 +141,7 @@ public partial class PowerPlant : Node2D {
 		Info = GetNode<Control>("BuildInfo");
 		BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
 		C = GetNode<Context>("/root/Context");
+		Delete = GetNode<Button>("Delete");
 		
 		// Initialize plant type
 		PlantType = _PlantType;
@@ -169,6 +179,7 @@ public partial class PowerPlant : Node2D {
 		Switch.Toggled += _OnSwitchToggled;
 		HoverArea.MouseEntered += OnArea2DMouseEntered;
 		HoverArea.MouseExited += OnArea2DMouseExited;
+		Delete.Pressed += OnDeletePressed;
 	}
 
 	// ==================== Power Plant Update API ====================
@@ -187,6 +198,12 @@ public partial class PowerPlant : Node2D {
 
 	// Getter for the powerplant's liveness status
 	public bool _GetLiveness() => IsAlive;
+
+	// Sets the reference to the buildbutton that created this plant
+	public void _SetBuildButton(BuildButton bb) {
+		// Only set the reference if no reference was already present
+		BB ??= bb;
+	}
 
 	// Sets the values of the plant from a given config
 	public void _SetPlantFromConfig(Building bt) {
@@ -222,6 +239,12 @@ public partial class PowerPlant : Node2D {
 		Debug.Print("ENDTURN: " + EndTurn);
 		Debug.Print("Current turn: " + C._GetTurn());
 
+		// Only allow the delete button to be pressed during the turn the plant was built in
+		if(Delete.Visible) {
+			Delete.Hide();
+		}
+
+		// Check if the plant should be deactivated
 		if(EndTurn <= C._GetTurn()) {
 			// Deactivate the plant
 			KillPowerPlant();
@@ -408,5 +431,18 @@ public partial class PowerPlant : Node2D {
 		} else {
 			Info.Hide();
 		}
+	}
+
+	// Requests a deletion of the powerplant
+	private void OnDeletePressed() {
+		// Hide the current plant
+		Hide();
+
+		// Show the associated plant
+		BB?.Show();
+
+		// Signal that the plant was deleted
+		EmitSignal(SignalName.DeletePlant, BB, this, true);
+
 	}
 }
