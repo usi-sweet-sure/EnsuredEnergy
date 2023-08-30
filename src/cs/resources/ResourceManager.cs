@@ -184,8 +184,14 @@ public partial class ResourceManager : Node {
 
 		// Connect the powerplants signals to propagate changes to the UI
 		foreach(PowerPlant pp in PowerPlants) {
-			pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
-			pp.UpdatePlant += _OnBuildDone;
+			// Check that the signal isn't already connected
+			// Check that the signal isn't already connected
+			if(!pp.IsConnected(PowerPlant.SignalName.UpdatePlant, Callable.From(_OnBuildDone))) {
+				pp.UpdatePlant += _OnBuildDone;
+			}
+			if(!pp.Switch.IsConnected(BaseButton.SignalName.Toggled, Callable.From<bool>(_OnPowerPlantSwitchToggle))) {
+				pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
+			}
 		}
 	}
 
