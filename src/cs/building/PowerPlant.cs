@@ -122,6 +122,11 @@ public partial class PowerPlant : Node2D {
 	// Build Button associated to this plant
 	private BuildButton BB;
 
+	// Refund from a build deletion
+	private int RefundAmount = -1;
+
+	private bool DeleteSignalConnected = false;
+
 	// ==================== GODOT Method Overrides ====================
 	
 	// Called when the node enters the scene tree for the first time.
@@ -142,6 +147,9 @@ public partial class PowerPlant : Node2D {
 		BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
 		C = GetNode<Context>("/root/Context");
 		Delete = GetNode<Button>("Delete");
+
+		// the delete button should only be shown on new constructions
+		Delete.Hide();
 		
 		// Initialize plant type
 		PlantType = _PlantType;
@@ -184,6 +192,11 @@ public partial class PowerPlant : Node2D {
 
 	// ==================== Power Plant Update API ====================
 
+	// Shows the delete button
+	public void _ShowDelete() {
+		Delete.Show();
+	}
+
 	// Getter for the powerplant's current capacity
 	public int _GetCapacity() => EnergyCapacity;
 
@@ -198,6 +211,17 @@ public partial class PowerPlant : Node2D {
 
 	// Getter for the powerplant's liveness status
 	public bool _GetLiveness() => IsAlive;
+
+	// Getter for the refund amount
+	public int _GetRefund() => RefundAmount;
+
+	// Getter for the delete signal connection flag
+	public bool _GetDeleteConnectFlag() => DeleteSignalConnected;
+
+	// Sets the delete signal connection flag
+	public void _SetDeleteConnectFlag() {
+		DeleteSignalConnected = true;
+	}
 
 	// Sets the reference to the buildbutton that created this plant
 	public void _SetBuildButton(BuildButton bb) {
@@ -438,11 +462,17 @@ public partial class PowerPlant : Node2D {
 		// Hide the current plant
 		Hide();
 
-		// Show the associated plant
-		BB?.Show();
+		// Reset the button
+		BB._Reset();
+
+		// Set the refund amount
+		if(RefundAmount == -1) {
+			RefundAmount = BuildCost;
+		}
 
 		// Signal that the plant was deleted
 		EmitSignal(SignalName.DeletePlant, BB, this, true);
+		Debug.Print("EMITTED DELETE PLANT");
 
 	}
 }

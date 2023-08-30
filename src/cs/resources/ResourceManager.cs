@@ -96,7 +96,7 @@ public partial class ResourceManager : Node {
 
 		// Update all build buttons
 		if(BBs.Count() > 0) {
-			foreach(BuildButton bb in BBs) {
+			foreach(var bb in BBs) {
 				bb._NextTurn();
 			}
 		}
@@ -190,7 +190,9 @@ public partial class ResourceManager : Node {
 				pp.UpdatePlant += _OnBuildDone;
 			}
 			if(!pp.Switch.IsConnected(BaseButton.SignalName.Toggled, Callable.From<bool>(_OnPowerPlantSwitchToggle))) {
-				pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
+				/*try {
+					pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
+				} catch (Exception) { }*/
 			}
 		}
 	}

@@ -150,6 +150,18 @@ public partial class BuildButton : TextureButton {
 		Disabled = true;
 	}
 
+	// Resets the build button
+	public void _Reset() {
+		// Hide all associated plants
+		HideAllPlants();
+
+		// Show the button
+		ShowOnlyButton();
+
+		// Reset state
+		BS = BuildState.IDLE;
+	}
+
 	// ==================== Internal Helpers ====================
 
 	// Begins the mutli-turn build of the given power plant
@@ -199,6 +211,12 @@ public partial class BuildButton : TextureButton {
 	private void HideOnlyButton() {
 		Disabled = true;
 		SelfModulate = new Color(1,1,1,0);
+	}
+
+	// Show only the button
+	private void ShowOnlyButton() {
+		Disabled = false;
+		SelfModulate = new Color(1,1,1,1);
 	}
 
 	// Resets the button to it's initial state
