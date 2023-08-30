@@ -151,7 +151,7 @@ public partial class PowerPlant : Node2D {
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 		PollL.Text = Pollution.ToString();
-		BTime.Text = BuildTime.ToString() + " ⌛";
+		BTime.Text = "⌛ " + BuildTime.ToString();
 
 		// Set plant life cycle
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
@@ -303,12 +303,12 @@ public partial class PowerPlant : Node2D {
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyS.Text = EnergyCapacity.ToString();
-		EnergyW.Text = EnergyCapacity.ToString();
+		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
+		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 		PollL.Text = Pollution.ToString();
-		BTime.Text = BuildTime.ToString() + " ⌛";
+		BTime.Text = "⌛ " + BuildTime.ToString();
 	}
 
 	// ==================== Helper Methods ====================    
