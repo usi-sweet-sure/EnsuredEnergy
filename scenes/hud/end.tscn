@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cej4dlw11su6f"]
+[gd_scene load_steps=3 format=3 uid="uid://cej4dlw11su6f"]
 
 [ext_resource type="FontFile" uid="uid://dgb2xwp51s2cc" path="res://assets/Fonts/HeavyEquipment.otf" id="1_rfnjf"]
+
+[sub_resource type="Theme" id="Theme_yg7sq"]
 
 [node name="End" type="CanvasLayer"]
 
@@ -53,71 +55,143 @@ anchor_bottom = 1.0
 offset_top = -488.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 9
+theme_override_constants/separation = 22
 alignment = 1
 
 [node name="Shock" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(310, 350)
+custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "You resisted _ shocks
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer/Shock"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yg7sq")
+color = Color(1, 0.305882, 0.176471, 1)
+
 [node name="Energy" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(310, 350)
+custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "Your energy supply is _ and _
+text = "Your energy supply was _ and _
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
+[node name="ColorRect3" type="ColorRect" parent="HBoxContainer/Energy"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yg7sq")
+color = Color(1, 0.470588, 0.180392, 1)
+
 [node name="Money" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(310, 350)
+custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "You avoided an economical crisis
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
+[node name="ColorRect4" type="ColorRect" parent="HBoxContainer/Money"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yg7sq")
+color = Color(0.827451, 0.819608, 0.0313726, 1)
+
 [node name="Support" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(310, 350)
+custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "Your popularity is _ %
+text = "Your support was _ %
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
+[node name="ColorRect5" type="ColorRect" parent="HBoxContainer/Support"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yg7sq")
+color = Color(0.466667, 0.607843, 0.917647, 1)
+
 [node name="Poll" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(310, 350)
+custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "You (did not) reached net zero by 2050
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
+[node name="ColorRect6" type="ColorRect" parent="HBoxContainer/Poll"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yg7sq")
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
 [node name="Env" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(310, 350)
+custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "Your environmental score is _
+text = "Your environmental score was _ %
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
+
+[node name="ColorRect7" type="ColorRect" parent="HBoxContainer/Env"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yg7sq")
+color = Color(0.317647, 0.721569, 0.294118, 1)
