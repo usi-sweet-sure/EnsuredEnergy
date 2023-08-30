@@ -69,14 +69,14 @@ public partial class BuildMenu : CanvasLayer {
 		Hide();
 
 		// Fetch Power plants
-		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar2/Gas");
+		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar/Gas");
 		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/Solar");
 		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/Hydro");
 		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/Tree");
 		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/Wind");
 
 		// Fetch associated buttons
-		GasButton = GetNode<Button>("TabContainer/TabBar2/Gas/GasButton");
+		GasButton = GetNode<Button>("TabContainer/TabBar/Gas/GasButton");
 		SolarButton = GetNode<Button>("TabContainer/TabBar/Solar/SolarButton");
 		HydroButton = GetNode<Button>("TabContainer/TabBar/Hydro/HydroButton");
 		TreeButton = GetNode<Button>("TabContainer/TabBar/Tree/TreeButton");
@@ -91,8 +91,7 @@ public partial class BuildMenu : CanvasLayer {
 		// Fetch TabContainer and sets tab titles 
 		//TODO for all tabs in all lang
 		TabC = GetNode<TabContainer>("TabContainer");
-		TabC.SetTabTitle(0,"Green");
-		TabC.SetTabTitle(1,"Fossil");
+		TabC.SetTabTitle(0,"_");
 
 		// Connect the associated button callbacks
 		GasButton.Pressed += _OnGasButtonPressed;

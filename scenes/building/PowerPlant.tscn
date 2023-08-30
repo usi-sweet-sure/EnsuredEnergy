@@ -68,7 +68,7 @@ offset_bottom = -236.0
 [node name="NinePatchRect" type="NinePatchRect" parent="BuildInfo"]
 layout_mode = 0
 offset_left = -79.0
-offset_top = -68.0
+offset_top = 12.0
 offset_right = 209.0
 offset_bottom = 126.0
 texture = ExtResource("3_jv8ie")
@@ -81,12 +81,13 @@ patch_margin_bottom = 12
 [node name="ColorRect" type="ColorRect" parent="BuildInfo"]
 layout_mode = 0
 offset_left = -55.0
-offset_top = -44.0
+offset_top = 28.0
 offset_right = 185.0
-offset_bottom = 108.0
+offset_bottom = 92.0
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
 [node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
+visible = false
 layout_mode = 0
 offset_left = 1.0
 offset_right = 120.0
@@ -95,23 +96,29 @@ offset_bottom = 120.0
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "$ / turn"
+text = "$ / ⌛"
 
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Pollution"
+text = "🏭"
 
 [node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Building time"
 
-[node name="ContainerN" type="VBoxContainer" parent="BuildInfo/ColorRect"]
-layout_mode = 0
-offset_left = 111.0
-offset_right = 240.0
-offset_bottom = 128.0
+[node name="ContainerN" type="HBoxContainer" parent="BuildInfo/ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 29
+alignment = 1
 
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
@@ -122,13 +129,13 @@ horizontal_alignment = 2
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Yes"
+text = "10"
 horizontal_alignment = 2
 
 [node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "3 turn(s)"
+text = "3 ⌛🔨"
 horizontal_alignment = 2
 
 [node name="NameRect" type="ColorRect" parent="."]
