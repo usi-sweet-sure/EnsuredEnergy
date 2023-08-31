@@ -470,9 +470,17 @@ public partial class PowerPlant : Node2D {
 			RefundAmount = BuildCost;
 		}
 
+		// Kill the deleted power plant
+		KillPowerPlant();
+
+		// Update the UI
+		_UpdatePlantData();
+
+		// Singal that the plant was updated
+		EmitSignal(SignalName.UpdatePlant);
+
 		// Signal that the plant was deleted
 		EmitSignal(SignalName.DeletePlant, BB, this, true);
-		Debug.Print("EMITTED DELETE PLANT");
 
 	}
 }
