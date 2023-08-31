@@ -63,7 +63,8 @@ custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "You resisted _ shocks
+text = "Resisted shocks
+
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -86,7 +87,8 @@ custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "Your energy supply was _ and _
+text = "Final Energy Supply
+&
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -132,7 +134,9 @@ custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "Your support was _ %
+text = "Final 
+Support
+
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -178,7 +182,8 @@ custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "Your environmental score was _ %
+text = "Environmental Score
+
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -195,3 +200,116 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(0.317647, 0.721569, 0.294118, 1)
+
+[node name="Stats" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shocks" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = 325.0
+offset_right = -761.0
+offset_bottom = 408.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_rfnjf")
+theme_override_font_sizes/font_size = 80
+text = "3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="EnergyW" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -453.0
+offset_top = 306.0
+offset_right = -341.0
+offset_bottom = 389.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_rfnjf")
+theme_override_font_sizes/font_size = 67
+text = "700
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="EnergyS" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -604.0
+offset_top = 307.0
+offset_right = -492.0
+offset_bottom = 390.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_rfnjf")
+theme_override_font_sizes/font_size = 67
+text = "900
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Support" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = 298.0
+offset_right = 228.0
+offset_bottom = 409.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_rfnjf")
+theme_override_font_sizes/font_size = 80
+text = "60%
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Env" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 714.0
+offset_top = 297.0
+offset_right = 853.0
+offset_bottom = 408.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_rfnjf")
+theme_override_font_sizes/font_size = 80
+text = "50%
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
