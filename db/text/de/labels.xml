@@ -70,4 +70,30 @@ Energy
         <text id="label_tree">Baum</text>
         <text id="label_nuclear">Atomwerk</text>
     </group>
+
+        <!-- Labels for the main menu -->
+        <group id="end">
+            <text id="title">
+    BRAVO !
+            </text>
+            <text id="subtitle">
+    Du hast bis 2050 ausreichend Energie garantiert.
+            </text>
+            <text id="shock">Unvorhergesehenes vermieden
+    
+            </text>
+            <text id="energy">Zufuhr von Endenergie
+                und
+            </text>
+            <text id="money_good">Du hast eine Wirtschaftskrise verhindert</text>
+            <text id="money_bad">Du hast die Wirtschaft zerstört</text>
+            <text id="support">Endgültige Unterstützung
+    
+            </text>
+            <text id="pollution_good">Du hast im Jahr 2050 Net Zero erreicht</text>
+            <text id="pollution_bad">Du hast im Jahr 2050 nicht Net Zero erreicht</text>
+            <text id="env">Punktzahl Umwelt
+                
+            </text>
+        </group>
 </db>

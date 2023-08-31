@@ -21,7 +21,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">150</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">50</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">75</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -38,7 +38,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">75</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">50</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -55,7 +55,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">300</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">2</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">5</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">100</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">150</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -72,7 +72,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">400</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">6</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">200</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -89,7 +89,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">0</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">1</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">0</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -106,7 +106,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">100</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">35</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -123,7 +123,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">100</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">35</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -140,7 +140,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">100</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">35</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -157,7 +157,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">100</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">35</param> <!-- The capacity this plant has w.r.t. energy production -->
@@ -174,7 +174,7 @@
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">100</param> <!-- The cost of building this plant -->
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
-        <param groupid="meta" id="life_cycle" type="int">10</param> <!-- The number of turns the plant will survive -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">35</param> <!-- The capacity this plant has w.r.t. energy production -->

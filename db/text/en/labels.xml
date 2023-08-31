@@ -70,4 +70,30 @@ Energy
         <text id="label_tree">Tree</text>
         <text id="label_nuclear">Nuclear</text>
     </group>
+
+    <!-- Labels for the main menu -->
+    <group id="end">
+        <text id="title">
+WELL DONE !
+        </text>
+        <text id="subtitle">
+You ensured enough energy for 30 years.
+        </text>
+        <text id="shock">Resisted shocks
+
+        </text>
+        <text id="energy">Final Energy Supply
+            and
+        </text>
+        <text id="money_good">You avoided an economical crisis</text>
+        <text id="money_bad">You destroyed the economy</text>
+        <text id="support">Final Support
+
+        </text>
+        <text id="pollution_good">You reached net zero by 2050</text>
+        <text id="pollution_bad">You did not reach net zero by 2050</text>
+        <text id="env">Environmental score
+            
+        </text>
+    </group>
 </db>
