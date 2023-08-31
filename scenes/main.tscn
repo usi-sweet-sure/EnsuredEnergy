@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=26 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -9,9 +9,11 @@
 [ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
 [ext_resource type="Texture2D" uid="uid://ceorbg7ik1atw" path="res://assets/Plants/230601_CH_SUREgame_Nuclear-Plant.png" id="4_g6tj0"]
 [ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="5_ra246"]
-[ext_resource type="Texture2D" uid="uid://6nhylpws0rhg" path="res://assets/Plants/Dam.png" id="6_hyjri"]
+[ext_resource type="Texture2D" uid="uid://dwrbbqyb3cnr3" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0019_Nuclear.png" id="5_rukoo"]
+[ext_resource type="Texture2D" uid="uid://bo6k72jvotqtp" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0013_Hydrolic-Reservoir.png" id="5_wuw88"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
+[ext_resource type="Texture2D" uid="uid://om5c5ygqgwa1" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0012_Hydrolic-Reservoir-water.png" id="6_yjuog"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
 [ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
@@ -23,6 +25,67 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlpb2"]
 atlas = ExtResource("5_ra246")
 region = Rect2(58, 262, 162, 46)
+
+[sub_resource type="Animation" id="Animation_m0xv2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("water:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("water:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0349066]
+}
+
+[sub_resource type="Animation" id="Animation_3b8yy"]
+resource_name = "water"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("water:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 80), Vector2(1, 78), Vector2(-1, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("water:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0349066, -0.0349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnymk"]
+_data = {
+"RESET": SubResource("Animation_m0xv2"),
+"water": SubResource("Animation_3b8yy")
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4jam2")
@@ -38,7 +101,6 @@ texture = ExtResource("3_fsnjl")
 
 [node name="Nuclear" parent="World" index="1"]
 position = Vector2(1088, 276)
-_PlantType = 4
 
 [node name="Sprite" parent="World/Nuclear" index="0"]
 texture = ExtResource("4_g6tj0")
@@ -55,87 +117,111 @@ offset_top = 104.0
 offset_bottom = 133.0
 metadata/_edit_group_ = true
 
-[node name="Coal" parent="World" index="2"]
+[node name="TimeLeft" type="Label" parent="World/Nuclear" index="9"]
+offset_left = -13.0
+offset_top = -201.0
+offset_right = 27.0
+offset_bottom = -178.0
+text = "⌛"
+
+[node name="Sprite" parent="World/Nuclear2" index="0"]
+texture = ExtResource("5_rukoo")
+
+[node name="Sprite" parent="World/Nuclear3" index="0"]
+texture = ExtResource("5_rukoo")
+
+[node name="Coal" parent="World" index="4"]
 position = Vector2(637, 385)
+HasAnimation = true
 PlantName = "Hydro"
 _PlantType = 0
 
 [node name="Sprite" parent="World/Coal" index="0"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_hyjri")
+texture = ExtResource("5_wuw88")
 
-[node name="NameRect" parent="World/Coal" index="3"]
+[node name="water" type="Sprite2D" parent="World/Coal" index="1"]
+position = Vector2(-1, 80)
+skew = -0.0349066
+texture = ExtResource("6_yjuog")
+
+[node name="NameRect" parent="World/Coal" index="4"]
 offset_top = -177.0
 offset_bottom = -149.0
 
-[node name="Switch" parent="World/Coal" index="4"]
+[node name="Switch" parent="World/Coal" index="5"]
 visible = false
 
-[node name="InfoBG3" type="Sprite2D" parent="World/Coal" index="5"]
+[node name="InfoBG3" type="Sprite2D" parent="World/Coal" index="6"]
 position = Vector2(3, 119)
 texture = SubResource("AtlasTexture_xlpb2")
 
-[node name="ResRect" parent="World/Coal" index="7"]
+[node name="ResRect" parent="World/Coal" index="8"]
 offset_left = -39.0
 offset_right = -7.0
 metadata/_edit_group_ = true
 
-[node name="BuildButton" parent="World" index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/Coal" index="11"]
+autoplay = "water"
+libraries = {
+"": SubResource("AnimationLibrary_bnymk")
+}
+
+[node name="BuildButton" parent="World" index="5"]
 offset_left = 497.0
 offset_top = 1080.0
 offset_right = 589.0
 offset_bottom = 1130.0
 
-[node name="BuildButton2" parent="World" index="4"]
+[node name="BuildButton2" parent="World" index="6"]
 offset_left = 1388.0
 offset_top = 631.0
 offset_right = 1480.0
 offset_bottom = 681.0
 metadata/_edit_use_anchors_ = true
 
-[node name="BuildButton3" parent="World" index="5"]
+[node name="BuildButton3" parent="World" index="7"]
 offset_left = 1410.0
 offset_top = 1163.0
 offset_right = 1502.0
 offset_bottom = 1213.0
 
-[node name="BuildButton4" parent="World" index="6"]
+[node name="BuildButton4" parent="World" index="8"]
 offset_left = -234.0
 offset_top = 496.0
 offset_right = -145.0
 offset_bottom = 539.0
 
-[node name="BuildButton5" parent="World" index="7"]
+[node name="BuildButton5" parent="World" index="9"]
 offset_left = -572.0
 offset_top = 949.0
 offset_right = -483.0
 offset_bottom = 992.0
 
-[node name="BuildButton6" parent="World" index="8"]
+[node name="BuildButton6" parent="World" index="10"]
 offset_left = -252.0
 offset_top = 1651.0
 offset_right = -163.0
 offset_bottom = 1694.0
 
-[node name="BuildButton7" parent="World" index="9"]
+[node name="BuildButton7" parent="World" index="11"]
 metadata/_edit_use_anchors_ = true
 
-[node name="BuildButton8" parent="World" index="10"]
+[node name="BuildButton8" parent="World" index="12"]
 metadata/_edit_use_anchors_ = true
 
-[node name="BuildButton9" parent="World" index="11"]
+[node name="BuildButton9" parent="World" index="13"]
 offset_left = 1519.0
 offset_top = 1839.0
 offset_right = 1608.0
 offset_bottom = 1882.0
 
-[node name="BuildButton10" parent="World" index="12"]
+[node name="BuildButton10" parent="World" index="14"]
 offset_left = 249.0
 offset_top = 1941.0
 offset_right = 338.0
 offset_bottom = 1984.0
 
-[node name="Camera2D" parent="World" index="13"]
+[node name="Camera2D" parent="World" index="15"]
 position = Vector2(958, 538)
 anchor_mode = 1
 limit_left = -2800
@@ -180,4 +266,6 @@ visible = false
 
 [editable path="World"]
 [editable path="World/Nuclear"]
+[editable path="World/Nuclear2"]
+[editable path="World/Nuclear3"]
 [editable path="World/Coal"]
