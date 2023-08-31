@@ -484,5 +484,7 @@ public partial class PowerPlant : Node2D {
 		// Signal that the plant was deleted
 		EmitSignal(SignalName.DeletePlant, BB, this, true);
 
+		// Reactivate the plant for future construction
+		ActivatePowerPlant();
 	}
 }
