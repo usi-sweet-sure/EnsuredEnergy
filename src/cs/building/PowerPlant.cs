@@ -194,7 +194,9 @@ public partial class PowerPlant : Node2D {
 
 	// Shows the delete button
 	public void _ShowDelete() {
-		Delete.Show();
+		if(BuildTime < 1) {
+			Delete.Show();
+		}
 	}
 
 	// Getter for the powerplant's current capacity
