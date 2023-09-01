@@ -584,15 +584,18 @@ public partial class UI : CanvasLayer {
 	}
 
 	// Updates the timelines and propagates the request up to the game loop
-	public void _OnNextTurnPressed() {
-		// Trigger the next turn
-		EmitSignal(SignalName.NextTurn);
+	public async void _OnNextTurnPressed() {
 		
 		// Sets the correct years and plays the next turn animation
 		if(C._GetRemainingTurns() > 0) {
 			SetNextYears();
 			TimelineAP.Play("NextTurnAnim");
 		}
+		
+		// Waits for the next turn animation before sending the next turn signal
+		await ToSignal(TimelineAP, "animation_finished");
+		// Trigger the next turn
+		EmitSignal(SignalName.NextTurn);
 
 		// Update the required import target (only in winter due to conservative estimates)
 		SetTargetImport();
