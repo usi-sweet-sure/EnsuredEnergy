@@ -44,6 +44,8 @@ public partial class ResourceManager : Node {
 	/* The base pollution of a kWh imported from abroad */
 	public float ImportPollution = 0.2f;
 
+	private float InitImportCost, InitImportPollution;
+
 	// Children resource managers
 	private SupportManager SM;
 	private EnergyManager EngM;
@@ -73,6 +75,9 @@ public partial class ResourceManager : Node {
 		// Initialize the powerplant and Buildbutton lists
 		PowerPlants = new List<PowerPlant>();
 		BBs = new List<BuildButton>();
+
+		// Connect the reset signal
+		_UI.ResetGame += _OnResetGame;
 	}
 
 	// ==================== Public API ====================
@@ -82,6 +87,11 @@ public partial class ResourceManager : Node {
 		// Check the current state of the next turn button
 		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 		UpdateEnergyUI(E);
+
+		// Set initial fields for future reset
+		InitImportCost = ImportCost;
+		InitImportPollution = ImportPollution;
+
 
 		// Check if the demand has been reached
 		EmitSignal(
@@ -189,11 +199,6 @@ public partial class ResourceManager : Node {
 			if(!pp.IsConnected(PowerPlant.SignalName.UpdatePlant, Callable.From(_OnBuildDone))) {
 				pp.UpdatePlant += _OnBuildDone;
 			}
-			if(!pp.Switch.IsConnected(BaseButton.SignalName.Toggled, Callable.From<bool>(_OnPowerPlantSwitchToggle))) {
-				/*try {
-					pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
-				} catch (Exception) { }*/
-			}
 		}
 	}
 
@@ -297,6 +302,12 @@ public partial class ResourceManager : Node {
 	// Reacts to a new power plant being built
 	public void _OnBuildDone() {
 		_UpdateResourcesUI(false);
+	}
+
+	// Resets the game to its initial state
+	public void _OnResetGame() {
+		ImportCost = InitImportCost;
+		ImportPollution = InitImportPollution;
 	}
 	
 }

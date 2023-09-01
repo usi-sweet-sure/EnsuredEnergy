@@ -460,7 +460,7 @@ public partial class PowerPlant : Node2D {
 	}
 
 	// Requests a deletion of the powerplant
-	private void OnDeletePressed() {
+	public void OnDeletePressed() {
 		// Hide the current plant
 		Hide();
 

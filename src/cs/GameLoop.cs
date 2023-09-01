@@ -141,6 +141,7 @@ public partial class GameLoop : Node2D {
 		ShockWindow.SelectReaction += _OnShockSelectReaction;
 		ShockWindow.ApplyReward += _OnShockApplyReward;
 		RM.UpdateNextTurnState += _UI._OnNextTurnStateUpdate;
+		_UI.ResetGame += _OnResetGame;
 	}
 
 	// ==================== Resource access API ====================
@@ -517,6 +518,60 @@ public partial class GameLoop : Node2D {
 			NewTurnOffline();
 		} else {
 			NewTurn();
+		}
+	}
+
+	// Resets the game's state
+	public void _OnResetGame() {
+
+		// Delete all plants
+		foreach(var pp in PowerPlants) {
+			pp.OnDeletePressed();
+		}
+
+		// reinit Data
+		GS = GameState.NOT_STARTED;
+		RemainingTurns = N_TURNS;
+		Money = new MoneyData(START_MONEY);
+		PowerPlants.Clear();
+		BBs.Clear();
+
+		// Start with PowerPlants, in the begining there are only 2 PowerPlants Nuclear and Coal
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Coal"));
+
+		// Fill in build buttons
+		BBs.Add(GetNode<BuildButton>("World/BuildButton"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton2"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton3"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton4"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton5"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton6"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton7"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton8"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton9"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton10"));
+
+		// Set the number of turns in the context
+		C._SetNTurns(N_TURNS);
+
+		// Set the game loop reference
+		C._SetGLRef(this);
+
+		// Initially set all plants form their configs
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._SetPlantFromConfig(pp.PlantType);
+
+			// Add the power plants to the stats
+			C._UpdatePPStats(pp.PlantType);
+		}
+
+		// Connect Callback to each build button and give them a reference to the loop
+		foreach(BuildButton bb in BBs) {
+			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
+
+			// Record a reference to the game loop
+			bb._RecordGameLoopRef(this);
 		}
 	}
 }

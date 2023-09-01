@@ -54,6 +54,13 @@ public partial class EnergyManager : Node {
 
 	// ==================== Public API ====================
 
+	// Resets the energy manager
+	public void _Reset() {
+		// reset the fields
+		PowerPlants.Clear();
+		E = new Energy();
+	}
+
 	// Updates the current internal power plant list
 	public void _UpdatePowerPlants(List<PowerPlant> lP) {
 		// Clear the current list to be safe
