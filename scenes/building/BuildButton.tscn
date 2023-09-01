@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bnyqsfndjikdn" path="res://assets/Plants/230601_CH_SUREgame_Gas-PlantClouds8.png" id="8_tkxxi"]
 [ext_resource type="Texture2D" uid="uid://ujeuwa2ehsay" path="res://assets/Plants/Forest.png" id="8_wp0io"]
 [ext_resource type="Texture2D" uid="uid://dsoyr833nrhyj" path="res://assets/Plants/230601_CH_SUREgame_Gas-PlantClouds2.png" id="9_4162j"]
-[ext_resource type="Texture2D" uid="uid://bo6k72jvotqtp" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0013_Hydrolic-Reservoir.png" id="10_x504c"]
+[ext_resource type="Texture2D" uid="uid://btk3fbtu5m5ua" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0014_Hydrolic-Reservoir.png" id="10_wly2t"]
 [ext_resource type="Texture2D" uid="uid://drc6pwawtjjqu" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0001_Solar.png" id="11_4r262"]
-[ext_resource type="Texture2D" uid="uid://om5c5ygqgwa1" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0012_Hydrolic-Reservoir-water.png" id="11_il8s8"]
+[ext_resource type="Texture2D" uid="uid://b0wao2oeami4x" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0013_Hydrolic-Reservoir-water.png" id="11_y5juj"]
 [ext_resource type="Texture2D" uid="uid://bajeyuq7feqxr" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0004_Wind.png" id="13_uoixp"]
 [ext_resource type="Texture2D" uid="uid://cmeajgdmtv4xn" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0002_Wind-propeller.png" id="14_n41d3"]
 
@@ -513,8 +513,8 @@ texture_pressed = ExtResource("2_e5byc")
 texture_hover = ExtResource("3_6vldy")
 
 [node name="Gas" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
 position = Vector2(112, 88)
-HasAnimation = true
 
 [node name="Sprite" parent="Gas" index="0"]
 texture = ExtResource("5_kuv5l")
@@ -557,11 +557,12 @@ scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("7_owsdt")
 
 [node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
 position = Vector2(112, 88)
 _PlantType = 0
 
 [node name="Sprite" parent="Hydro" index="0"]
-texture = ExtResource("10_x504c")
+texture = ExtResource("10_wly2t")
 
 [node name="Switch" parent="Hydro" index="4"]
 visible = false
@@ -569,7 +570,7 @@ visible = false
 [node name="Water" type="Sprite2D" parent="Hydro"]
 position = Vector2(-1, 82)
 skew = -0.0349066
-texture = ExtResource("11_il8s8")
+texture = ExtResource("11_y5juj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hydro"]
 autoplay = "water"
@@ -603,7 +604,6 @@ visible = false
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
-HasAnimation = true
 _PlantType = 5
 
 [node name="Sprite" parent="Wind" index="0"]

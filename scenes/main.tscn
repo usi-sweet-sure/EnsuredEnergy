@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=25 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -7,13 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cnp5jnw2xibl8" path="res://assets/temp_swiss_map.png" id="3_fsnjl"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
 [ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
-[ext_resource type="Texture2D" uid="uid://ceorbg7ik1atw" path="res://assets/Plants/230601_CH_SUREgame_Nuclear-Plant.png" id="4_g6tj0"]
+[ext_resource type="Texture2D" uid="uid://tkvsvedhf6x4" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0020_Nuclear.png" id="4_wlqc3"]
+[ext_resource type="Texture2D" uid="uid://btk3fbtu5m5ua" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0014_Hydrolic-Reservoir.png" id="5_i2doc"]
 [ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="5_ra246"]
-[ext_resource type="Texture2D" uid="uid://dwrbbqyb3cnr3" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0019_Nuclear.png" id="5_rukoo"]
-[ext_resource type="Texture2D" uid="uid://bo6k72jvotqtp" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0013_Hydrolic-Reservoir.png" id="5_wuw88"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
-[ext_resource type="Texture2D" uid="uid://om5c5ygqgwa1" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0012_Hydrolic-Reservoir-water.png" id="6_yjuog"]
+[ext_resource type="Texture2D" uid="uid://b0wao2oeami4x" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0013_Hydrolic-Reservoir-water.png" id="6_wxnjx"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
 [ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
@@ -103,7 +102,7 @@ texture = ExtResource("3_fsnjl")
 position = Vector2(1088, 276)
 
 [node name="Sprite" parent="World/Nuclear" index="0"]
-texture = ExtResource("4_g6tj0")
+texture = ExtResource("4_wlqc3")
 
 [node name="NameRect" parent="World/Nuclear" index="3"]
 offset_top = -169.0
@@ -124,25 +123,30 @@ offset_right = 27.0
 offset_bottom = -178.0
 text = "⌛"
 
+[node name="Nuclear2" parent="World" index="2"]
+visible = false
+
 [node name="Sprite" parent="World/Nuclear2" index="0"]
-texture = ExtResource("5_rukoo")
+texture = ExtResource("4_wlqc3")
+
+[node name="Nuclear3" parent="World" index="3"]
+visible = false
 
 [node name="Sprite" parent="World/Nuclear3" index="0"]
-texture = ExtResource("5_rukoo")
+texture = ExtResource("4_wlqc3")
 
 [node name="Coal" parent="World" index="4"]
 position = Vector2(637, 385)
-HasAnimation = true
 PlantName = "Hydro"
 _PlantType = 0
 
 [node name="Sprite" parent="World/Coal" index="0"]
-texture = ExtResource("5_wuw88")
+texture = ExtResource("5_i2doc")
 
 [node name="water" type="Sprite2D" parent="World/Coal" index="1"]
 position = Vector2(-1, 80)
 skew = -0.0349066
-texture = ExtResource("6_yjuog")
+texture = ExtResource("6_wxnjx")
 
 [node name="NameRect" parent="World/Coal" index="4"]
 offset_top = -177.0
