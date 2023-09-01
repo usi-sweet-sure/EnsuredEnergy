@@ -69,6 +69,10 @@ Energy
         <text id="label_wind">Wind</text>
         <text id="label_tree">Tree</text>
         <text id="label_nuclear">Nuclear</text>
+        <text id="label_waste">Waste</text>
+        <text id="label_biomass">Biomass</text>
+        <text id="label_river">River</text>
+        <text id="label_pump">Pump</text>
     </group>
 
     <!-- Labels for the main menu -->

@@ -69,18 +69,18 @@ public partial class BuildMenu : CanvasLayer {
 		Hide();
 
 		// Fetch Power plants
-		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar/Gas");
-		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/Solar");
-		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/Hydro");
-		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/Tree");
-		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/Wind");
+		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Gas");
+		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Solar");
+		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Hydro");
+		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Tree");
+		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Wind");
 
 		// Fetch associated buttons
-		GasButton = GetNode<Button>("TabContainer/TabBar/Gas/GasButton");
-		SolarButton = GetNode<Button>("TabContainer/TabBar/Solar/SolarButton");
-		HydroButton = GetNode<Button>("TabContainer/TabBar/Hydro/HydroButton");
-		TreeButton = GetNode<Button>("TabContainer/TabBar/Tree/TreeButton");
-		WindButton = GetNode<Button>("TabContainer/TabBar/Wind/WindButton");
+		GasButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Gas/GasButton");
+		SolarButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Solar/SolarButton");
+		HydroButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Hydro/HydroButton");
+		TreeButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Tree/TreeButton");
+		WindButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Wind/WindButton");
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");

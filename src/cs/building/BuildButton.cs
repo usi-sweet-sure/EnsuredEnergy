@@ -32,6 +32,10 @@ public partial class BuildButton : TextureButton {
 	public const string HYDRO_NAME = "Hydro";
 	public const string TREE_NAME = "Tree";
 	public const string WIND_NAME = "Wind";
+	public const string WASTE_NAME = "Waste";
+	public const string BIOMASS_NAME = "Biomass";
+	public const string RIVER_NAME = "River";
+	public const string PUMP_NAME = "Pump";
 
 	// Signal used to trigger the showing of the build menu
 	[Signal]
@@ -57,6 +61,10 @@ public partial class BuildButton : TextureButton {
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
 	private PowerPlant WindPlant;
+	private PowerPlant WastePlant;
+	private PowerPlant BiomassPlant;
+	private PowerPlant RiverPlant;
+	private PowerPlant PumpPlant;
 	
 	// Building sprite
 	private Sprite2D BuildSprite;
@@ -93,6 +101,10 @@ public partial class BuildButton : TextureButton {
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
 		WindPlant = GetNode<PowerPlant>(WIND_NAME);
+		WindPlant = GetNode<PowerPlant>(WASTE_NAME);
+		WindPlant = GetNode<PowerPlant>(BIOMASS_NAME);
+		WindPlant = GetNode<PowerPlant>(RIVER_NAME);
+		WindPlant = GetNode<PowerPlant>(PUMP_NAME);
 		
 		BuildSprite = GetNode<Sprite2D>("Building");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
@@ -108,9 +120,9 @@ public partial class BuildButton : TextureButton {
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
-			BL = new BuildLocation(Position, Building.Type.HYDRO);
+			BL = new BuildLocation(Position, Building.Type.HYDRO, Building.Type.RIVER, Building.Type.PUMP);
 		} else {
-			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND, Building.Type.WASTE, Building.Type.BIOMASS);
 		}
 
 		// Connect the button press callback
@@ -248,6 +260,22 @@ public partial class BuildButton : TextureButton {
 				
 			case Building.Type.WIND:
 				UpdatePowerPlant(ref WindPlant, PP);
+				break;
+				
+			case Building.Type.WASTE:
+				UpdatePowerPlant(ref WastePlant, PP);
+				break;
+				
+			case Building.Type.BIOMASS:
+				UpdatePowerPlant(ref BiomassPlant, PP);
+				break;
+				
+			case Building.Type.RIVER:
+				UpdatePowerPlant(ref RiverPlant, PP);
+				break;
+				
+			case Building.Type.PUMP:
+				UpdatePowerPlant(ref PumpPlant, PP);
 				break;
 				
 			default:
