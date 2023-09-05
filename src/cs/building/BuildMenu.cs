@@ -158,6 +158,22 @@ public partial class BuildMenu : CanvasLayer {
 			case Building.Type.WIND:
 				SetPlantName(ref WindPlant, newName);
 				break;
+
+			case Building.Type.WASTE:
+				SetPlantName(ref WastePlant, newName);
+				break;
+
+			case Building.Type.BIOMASS:
+				SetPlantName(ref BiomassPlant, newName);
+				break;
+
+			case Building.Type.RIVER:
+				SetPlantName(ref RiverPlant, newName);
+				break;
+
+			case Building.Type.PUMP:
+				SetPlantName(ref PumpPlant, newName);
+				break;
 			
 			default:
 				break;
@@ -324,7 +340,69 @@ public partial class BuildMenu : CanvasLayer {
 					}
 					break;
 
-				
+				case Building.Type.WASTE:
+					SetPlantPosition(ref WastePlant, idx++);
+					SetPlantColor(ref WastePlant);
+					WastePlant._SetPlantFromConfig(Building.Type.WASTE);
+					WastePlant.PlantType = Building.Type.WASTE;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(WastePlant.BuildCost)) {
+						WastePlant._MakeTransparent();
+						WasteButton.Disabled = true;
+					} else {
+						WastePlant._MakeOpaque();
+						WasteButton.Disabled = false;
+					}
+					break;
+
+				case Building.Type.BIOMASS:
+					SetPlantPosition(ref BiomassPlant, idx++);
+					SetPlantColor(ref BiomassPlant);
+					BiomassPlant._SetPlantFromConfig(Building.Type.BIOMASS);
+					BiomassPlant.PlantType = Building.Type.BIOMASS;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(BiomassPlant.BuildCost)) {
+						BiomassPlant._MakeTransparent();
+						BiomassButton.Disabled = true;
+					} else {
+						BiomassPlant._MakeOpaque();
+						BiomassButton.Disabled = false;
+					}
+					break;
+
+				case Building.Type.RIVER:
+					SetPlantPosition(ref RiverPlant, idx++);
+					SetPlantColor(ref RiverPlant);
+					RiverPlant._SetPlantFromConfig(Building.Type.RIVER);
+					RiverPlant.PlantType = Building.Type.RIVER;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(RiverPlant.BuildCost)) {
+						RiverPlant._MakeTransparent();
+						RiverButton.Disabled = true;
+					} else {
+						RiverPlant._MakeOpaque();
+						RiverButton.Disabled = false;
+					}
+					break;
+
+				case Building.Type.PUMP:
+					SetPlantPosition(ref PumpPlant, idx++);
+					SetPlantColor(ref PumpPlant);
+					PumpPlant._SetPlantFromConfig(Building.Type.PUMP);
+					PumpPlant.PlantType = Building.Type.PUMP;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(PumpPlant.BuildCost)) {
+						PumpPlant._MakeTransparent();
+						PumpButton.Disabled = true;
+					} else {
+						PumpPlant._MakeOpaque();
+						PumpButton.Disabled = false;
+					}
+					break;
 			}
 		}
 	} 
