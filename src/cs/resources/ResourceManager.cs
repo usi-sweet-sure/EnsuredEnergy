@@ -51,6 +51,8 @@ public partial class ResourceManager : Node {
 
 	// Reference to the UI object
 	private UI _UI;
+	
+	private End _End;
 
 	// Contains all of the PowerPlants and BuildButtons in the scene
 	private List<PowerPlant> PowerPlants;
@@ -69,6 +71,8 @@ public partial class ResourceManager : Node {
 		EnvM = GetNode<EnvironmentManager>("EnvironmentManager");
 		_UI = GetNode<UI>("../UI");
 		C = GetNode<Context>("/root/Context");
+		_End = GetNode<End>("../End");
+		
 
 		// Initialize the powerplant and Buildbutton lists
 		PowerPlants = new List<PowerPlant>();
@@ -88,6 +92,11 @@ public partial class ResourceManager : Node {
 			SignalName.UpdateNextTurnState,
 			E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
 		);
+	}
+
+	public void _EndGame() {
+		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+		_End._SetEndStats(E.SupplyWinter, E.SupplySummer, 0.6, 0.5);
 	}
 
 	// Progresses to the next turn

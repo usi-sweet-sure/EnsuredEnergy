@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=26 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
-[ext_resource type="PackedScene" uid="uid://bs48lirfn2fp2" path="res://scenes/hud/ui.tscn" id="2_d60f5"]
+[ext_resource type="PackedScene" uid="uid://didx83lrttwem" path="res://scenes/hud/ui.tscn" id="2_d60f5"]
 [ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/building/BuildMenu.tscn" id="2_wrh8p"]
 [ext_resource type="Texture2D" uid="uid://cnp5jnw2xibl8" path="res://assets/temp_swiss_map.png" id="3_fsnjl"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="11_uite1"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="12_vvejj"]
 [ext_resource type="PackedScene" uid="uid://pvoi2mcc3oc1" path="res://scenes/hud/menu.tscn" id="18_h65u3"]
+[ext_resource type="PackedScene" uid="uid://cej4dlw11su6f" path="res://scenes/hud/end.tscn" id="21_7pke6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlpb2"]
 atlas = ExtResource("5_ra246")
@@ -115,13 +116,6 @@ visible = false
 offset_top = 104.0
 offset_bottom = 133.0
 metadata/_edit_group_ = true
-
-[node name="TimeLeft" type="Label" parent="World/Nuclear" index="9"]
-offset_left = -13.0
-offset_top = -201.0
-offset_right = 27.0
-offset_bottom = -178.0
-text = "⌛"
 
 [node name="Nuclear2" parent="World" index="2"]
 visible = false
@@ -266,6 +260,9 @@ script = ExtResource("10_7fban")
 [node name="Menu" parent="." instance=ExtResource("18_h65u3")]
 
 [node name="Shock" parent="." instance=ExtResource("12_vvejj")]
+visible = false
+
+[node name="End" parent="." instance=ExtResource("21_7pke6")]
 visible = false
 
 [editable path="World"]

@@ -69,7 +69,8 @@ public partial class GameLoop : Node2D {
 
 	// Shock Window
 	private Shock ShockWindow;
-
+	
+	private End EndScreen;
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -78,6 +79,7 @@ public partial class GameLoop : Node2D {
 		C = GetNode<Context>("/root/Context");
 		MC = GetNode<ModelController>("ModelController");
 		ShockWindow = GetNode<Shock>("Shock");
+		EndScreen = GetNode<End>("End");
 
 		// Init Data
 		GS = GameState.NOT_STARTED;
@@ -309,7 +311,7 @@ public partial class GameLoop : Node2D {
 		ShockWindow.Hide();
 
 		// Decerement the remaining turns and check for game end
-		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
+		if((GS == GameState.PLAYING) && (RemainingTurns-- > 1)) {
 
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
@@ -321,7 +323,7 @@ public partial class GameLoop : Node2D {
 			UpdateResources(true);
 			RM._UpdateResourcesUI();
 
-		} else if(RemainingTurns <= 0) {
+		} else if(RemainingTurns <= 1) {
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
 
@@ -337,7 +339,7 @@ public partial class GameLoop : Node2D {
 		ShockWindow.Hide();
 
 		// Decerement the remaining turns and check for game end
-		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
+		if((GS == GameState.PLAYING) && (RemainingTurns-- > 1)) {
 
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
@@ -358,7 +360,7 @@ public partial class GameLoop : Node2D {
 			UpdateResources(true);
 			RM._UpdateResourcesUI();
 
-		} else if(RemainingTurns <= 0) {
+		} else if(RemainingTurns <= 1) {
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
 
@@ -377,6 +379,9 @@ public partial class GameLoop : Node2D {
 		foreach(var bb in BBs) {
 			bb._Disable();
 		}
+		
+		RM._EndGame();
+		EndScreen.Show();
 	}
 
 	// Applies a given shock effect
