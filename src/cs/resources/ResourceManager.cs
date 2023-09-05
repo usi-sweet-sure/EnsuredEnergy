@@ -101,9 +101,16 @@ public partial class ResourceManager : Node {
 	// The game loop must pass in the amount of money as a ref
 	public void _NextTurn(ref MoneyData Money) {
 
+		// Make the plants distinct
+		BBs = BBs.Distinct().ToList();
+		PowerPlants = PowerPlants.Distinct().ToList();
+
 		// Create a copy of the buildbutton and powerplant lists
-		var tmp_bb = BBs.Distinct();
-		var tmp_pp = PowerPlants.Distinct();
+		BuildButton[] tmp_bb = new BuildButton[BBs.Count];
+		PowerPlant[] tmp_pp = new PowerPlant[PowerPlants.Count];
+
+		BBs.CopyTo(tmp_bb);
+		PowerPlants.CopyTo(tmp_pp);
 
 		// Update all build buttons
 		foreach(BuildButton bb in tmp_bb) {

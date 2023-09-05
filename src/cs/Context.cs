@@ -102,6 +102,8 @@ public partial class Context : Node {
         // Initialize the language
         _UpdateLanguage(Language.Type.EN);
 
+        Turn = 0;
+
         // Initialize the internal stats
         ResetPPStats();
     }
