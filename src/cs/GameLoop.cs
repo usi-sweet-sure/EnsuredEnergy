@@ -58,7 +58,7 @@ public partial class GameLoop : Node2D {
 	private BuildMenu BM;
 
 	//TODO: Add resource managers once they are implemented
-	private MoneyData Money; // The current money the player has
+	public MoneyData Money; // The current money the player has
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
 
@@ -131,6 +131,9 @@ public partial class GameLoop : Node2D {
 			// Record a reference to the game loop
 			bb._RecordGameLoopRef(this);
 		}
+		
+		// Temp for test pls change
+		BM._RecordGameLoopRef(this);
 
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;

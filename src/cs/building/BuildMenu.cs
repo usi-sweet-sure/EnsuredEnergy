@@ -60,6 +60,8 @@ public partial class BuildMenu : CanvasLayer {
 	
 	// Tab Container
 	private TabContainer TabC;
+	
+	private GameLoop GL;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -137,7 +139,11 @@ public partial class BuildMenu : CanvasLayer {
 	}
 
 	// ==================== Internal Helpers ====================
-
+	
+	// If you know a better way please change
+	public void _RecordGameLoopRef(GameLoop _GL) {
+		GL = _GL;
+	}
 	// Hides all of the plants related to this button
 	private void HideAllPlants() {
 		// Hide all plants
@@ -162,6 +168,14 @@ public partial class BuildMenu : CanvasLayer {
 
 		// Show the plant once the position is set
 		pp.Show();
+	}
+	
+	private void SetPlantColor(ref PowerPlant pp) {
+		if (GL.Money.Money >= pp.BuildCost) {
+			pp.Modulate = new Color(1,1,1,1);
+		} else {
+			pp.Modulate = new Color(0.5f,0.5f,0.5f,1f);
+		}
 	}
 
 	// ==================== Interaction Callbacks ====================
@@ -205,7 +219,7 @@ public partial class BuildMenu : CanvasLayer {
 				case Building.Type.GAS:
 					// Position the plant correctly
 					SetPlantPosition(ref GasPlant, idx++);
-
+					SetPlantColor(ref GasPlant);
 					// Make sure that its fields are set correctly before displaying anything
 					GasPlant._SetPlantFromConfig(Building.Type.GAS);
 					GasPlant.PlantType = Building.Type.GAS;
@@ -213,24 +227,28 @@ public partial class BuildMenu : CanvasLayer {
 
 				case Building.Type.HYDRO:
 					SetPlantPosition(ref HydroPlant, idx++);
+					SetPlantColor(ref HydroPlant);
 					HydroPlant._SetPlantFromConfig(Building.Type.HYDRO);
 					HydroPlant.PlantType = Building.Type.HYDRO;
 					break;
 
 				case Building.Type.SOLAR:
 					SetPlantPosition(ref SolarPlant, idx++);
+					SetPlantColor(ref SolarPlant);
 					SolarPlant._SetPlantFromConfig(Building.Type.SOLAR);
 					SolarPlant.PlantType = Building.Type.SOLAR;
 					break;
 
 				case Building.Type.TREE:
 					SetPlantPosition(ref TreePlant, idx++);
+					SetPlantColor(ref TreePlant);
 					TreePlant._SetPlantFromConfig(Building.Type.TREE);
 					TreePlant.PlantType = Building.Type.TREE;
 					break;
 					
 				case Building.Type.WIND:
 					SetPlantPosition(ref WindPlant, idx++);
+					SetPlantColor(ref WindPlant);
 					WindPlant._SetPlantFromConfig(Building.Type.WIND);
 					WindPlant.PlantType = Building.Type.WIND;
 					break;
