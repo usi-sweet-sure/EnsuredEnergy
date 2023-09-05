@@ -83,9 +83,27 @@ public partial class Tutorial : CanvasLayer {
 
 	// ==================== Interaction Callbacks ====================
 
+	// Reset the tutorial
+	public void _Reset() {
+		TutoIdx = 0;
+
+		// Hide all bubbles
+		foreach(var bb in IBs) {
+			bb.Item1.Hide();
+		}
+
+		// Initialize the tutorial text
+		L.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, TutoIdx.ToString());
+		Show();
+
+	}
+
 	// Updates labels when the language changes
 	public void _OnLanguageUpdate() {
-		L.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, TutoIdx.ToString());
+		// Update the text on the screen if the tutorial is still shown
+		if(TutoIdx < MaxTutoIdx) {
+			L.Text = TC._GetText(TUTO_FILENAME, TUTO_TEXT_GROUP, TutoIdx.ToString());
+		}
 	}
 
 	// When the continuation button is pressed, advance the tutorial

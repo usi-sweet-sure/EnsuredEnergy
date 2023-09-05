@@ -784,6 +784,7 @@ icon = ExtResource("7_mnpcp")
 flat = true
 
 [node name="SettingsBox" type="ColorRect" parent="SettingsButton"]
+visible = false
 layout_mode = 0
 offset_left = 86.0
 offset_top = 19.0

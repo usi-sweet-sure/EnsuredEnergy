@@ -120,6 +120,9 @@ public partial class UI : CanvasLayer {
 	// Context
 	private Context C;
 
+	// Year label
+	private Label Year;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -157,6 +160,7 @@ public partial class UI : CanvasLayer {
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
 		Imports = GetNode<ImportSlider>("Import");
+		Year = GetNode<Label>("TimePanelBlank/Year");
 		
 		TimelineAP = GetNode<AnimationPlayer>("TimePanelBlank/TimelineAnimation");
 
@@ -582,6 +586,12 @@ public partial class UI : CanvasLayer {
 		MoneyL.Text = Data.Money.ToString();
 		ImportCostL.Text = Data.Imports.ToString();
 	}
+
+	// Sets the correct years without the Next Turn Animation
+	public void SetNextYearsNoAnim(int val) {
+		Year.Text = val.ToString();
+		Timeline.Value = val;
+	}
 	
 	// Sets the correct years on the Next Turn Animation
 	public void SetNextYears() {
@@ -770,6 +780,7 @@ public partial class UI : CanvasLayer {
 		// Singal that a reset will happen
 		EmitSignal(SignalName.ResetGame);
 		ResetPrompt.Hide();
+		SettingsBox.Hide();
 	}
 
 	// Reacts to a reset cancelation

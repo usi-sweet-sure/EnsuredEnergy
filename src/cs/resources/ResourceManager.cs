@@ -75,9 +75,6 @@ public partial class ResourceManager : Node {
 		// Initialize the powerplant and Buildbutton lists
 		PowerPlants = new List<PowerPlant>();
 		BBs = new List<BuildButton>();
-
-		// Connect the reset signal
-		_UI.ResetGame += _OnResetGame;
 	}
 
 	// ==================== Public API ====================
@@ -104,15 +101,19 @@ public partial class ResourceManager : Node {
 	// The game loop must pass in the amount of money as a ref
 	public void _NextTurn(ref MoneyData Money) {
 
+		// Create a copy of the buildbutton and powerplant lists
+		BuildButton[] tmp_bb = new BuildButton[BBs.Count];
+		PowerPlant[] tmp_pp = new PowerPlant[PowerPlants.Count];
+		BBs.CopyTo(tmp_bb);
+		PowerPlants.CopyTo(tmp_pp);
+
 		// Update all build buttons
-		if(BBs.Count() > 0) {
-			foreach(var bb in BBs) {
-				bb._NextTurn();
-			}
+		foreach(BuildButton bb in tmp_bb) {
+			bb._NextTurn();
 		}
 
 		// Update all plants
-		foreach(PowerPlant pp in PowerPlants) {
+		foreach(PowerPlant pp in tmp_pp) {
 			pp._NextTurn();
 		}
 
@@ -305,9 +306,12 @@ public partial class ResourceManager : Node {
 	}
 
 	// Resets the game to its initial state
-	public void _OnResetGame() {
+	public void _Reset() {
 		ImportCost = InitImportCost;
 		ImportPollution = InitImportPollution;
+
+		EngM._Reset();
+		EnvM._Reset();
 	}
 	
 }

@@ -163,6 +163,10 @@ public partial class BuildButton : TextureButton {
 
 	// Resets the build button
 	public void _Reset() {
+		// Cancel all current builds
+		if(BuildSprite.Visible) {
+			_OnCancelPressed();
+		}
 		// Hide all associated plants
 		HideAllPlants();
 

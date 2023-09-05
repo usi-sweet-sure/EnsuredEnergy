@@ -465,7 +465,7 @@ public partial class PowerPlant : Node2D {
 		Hide();
 
 		// Reset the button
-		BB._Reset();
+		BB?._Reset();
 
 		// Set the refund amount
 		if(RefundAmount == -1) {
