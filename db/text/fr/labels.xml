@@ -59,6 +59,10 @@ Energy
         <text id="label_mode">Mode</text>
         <text id="mode_offline">Hors Ligne</text>
         <text id="mode_online">En Ligne</text>
+        <text id="label_reset">Redémarrer</text>
+        <text id="reset_prompt">Es-tu sûr(e) de vouloir redémarrer le jeu?</text>
+        <text id="reset_yes">Oui</text>
+        <text id="reset_no">Non</text>
     </group>
 
     <!-- Labels for the different power plants -->

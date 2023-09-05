@@ -93,6 +93,21 @@ public partial class Context : Node {
 
     // ==================== Public API ====================
 
+    // Reset the context
+    public void _Reset() {
+         // Initialize models
+        MSummer = new Model(ModelSeason.SUMMER); 
+        MWinter = new Model(ModelSeason.WINTER);
+
+        // Initialize the language
+        _UpdateLanguage(Language.Type.EN);
+
+        Turn = 0;
+
+        // Initialize the internal stats
+        ResetPPStats();
+    }
+
     // Initialize the internal stats dictionary given a list of powerplants
     public void _InitializePPStats(List<PowerPlant> PPs) {
         // Reset the stats

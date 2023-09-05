@@ -100,6 +100,14 @@ public partial class EnvironmentManager : Node {
 		ImportPollution = pol;
 	}
 
+	// Reset the environment fields
+	public void _Reset() {
+		// Initialize Power Plants and import pollution
+		PowerPlants.Clear();
+		ImportPollution = 0;
+		ShockImpact = 0;
+	}
+
 	// ==================== Helper Methods ====================  
 
 	// Aggregate the biodiverstiy contributions

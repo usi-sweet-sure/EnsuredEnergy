@@ -163,6 +163,10 @@ public partial class BuildButton : TextureButton {
 
 	// Resets the build button
 	public void _Reset() {
+		// Cancel all current builds
+		if(BuildSprite.Visible) {
+			_OnCancelPressed();
+		}
 		// Hide all associated plants
 		HideAllPlants();
 
@@ -372,6 +376,8 @@ public partial class BuildButton : TextureButton {
 
 				// Update Build State
 				BS = BuildState.DONE;
+
+				Debug.Print("BUILT PP: CAP = " + PP._GetCapacity() + ", NAME = " + PP.PlantName);
 
 				// Signal that the build is complete
 				EmitSignal(SignalName.BuildDone);
