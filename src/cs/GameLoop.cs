@@ -171,6 +171,9 @@ public partial class GameLoop : Node2D {
 		// Return false if we couldn't afford the build
 		return false;
 	}
+	
+	// Checks that we can afford a certain build
+	public bool _CheckBuildReq(int cost) => Money.Money >= cost;
 
 	// Getter for the internal list of built powerplants
 	public List<PowerPlant> _GetPowerPlants() => PowerPlants;
