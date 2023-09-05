@@ -110,8 +110,8 @@ public partial class EnergyManager : Node {
 	// Returns a pair of (SupplyWinter, SupplySummer)
 	private (float, float) AggregateSupply() => (
 		// Sum all capacities for each active power plant
-		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability().Item1).Sum(),
-		PowerPlants.Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability().Item2).Sum()
+		PowerPlants.Distinct().Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability().Item1).Sum(),
+		PowerPlants.Distinct().Where(pp => pp._GetLiveness()).Select(pp => pp._GetCapacity() * pp._GetAvailability().Item2).Sum()
 	);
 
 	// Aggregate the current capacities into a single value

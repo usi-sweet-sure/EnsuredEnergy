@@ -377,6 +377,8 @@ public partial class BuildButton : TextureButton {
 				// Update Build State
 				BS = BuildState.DONE;
 
+				Debug.Print("BUILT PP: CAP = " + PP._GetCapacity() + ", NAME = " + PP.PlantName);
+
 				// Signal that the build is complete
 				EmitSignal(SignalName.BuildDone);
 			}

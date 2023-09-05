@@ -19,6 +19,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Linq;
 
 // Models the overarching game loop, which controls every aspect of the game
 // and makes sure that things are synchronized across game objects
@@ -451,6 +452,7 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
+			PowerPlants = PowerPlants.Distinct().ToList();
 
 			// Connect to the delete signal
 			if(!pp._GetDeleteConnectFlag()) {

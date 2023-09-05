@@ -102,10 +102,8 @@ public partial class ResourceManager : Node {
 	public void _NextTurn(ref MoneyData Money) {
 
 		// Create a copy of the buildbutton and powerplant lists
-		BuildButton[] tmp_bb = new BuildButton[BBs.Count];
-		PowerPlant[] tmp_pp = new PowerPlant[PowerPlants.Count];
-		BBs.CopyTo(tmp_bb);
-		PowerPlants.CopyTo(tmp_pp);
+		var tmp_bb = BBs.Distinct();
+		var tmp_pp = PowerPlants.Distinct();
 
 		// Update all build buttons
 		foreach(BuildButton bb in tmp_bb) {
@@ -189,6 +187,9 @@ public partial class ResourceManager : Node {
 			PowerPlants.Add(pp);
 		}
 
+		// Remove all duplicates
+		PowerPlants = PowerPlants.Distinct().ToList();
+
 		// Propagate the update to the energy manager
 		EngM._UpdatePowerPlants(PowerPlants);
 		EnvM._UpdatePowerPlants(PowerPlants);
@@ -196,8 +197,8 @@ public partial class ResourceManager : Node {
 		// Connect the powerplants signals to propagate changes to the UI
 		foreach(PowerPlant pp in PowerPlants) {
 			// Check that the signal isn't already connected
-			// Check that the signal isn't already connected
-			if(!pp.IsConnected(PowerPlant.SignalName.UpdatePlant, Callable.From(_OnBuildDone))) {
+			if(!pp._GetEnergyConnectFlag()) {
+				pp._SetEnergyConnectFlag();
 				pp.UpdatePlant += _OnBuildDone;
 			}
 		}
