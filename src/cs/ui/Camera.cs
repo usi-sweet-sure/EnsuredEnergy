@@ -69,4 +69,11 @@ public partial class Camera : Camera2D {
 			}
 		}
 	}
+
+	// ==================== Public API ====================
+
+	// Reset the camera position
+	public void _ResetPos() {
+		Offset = Vector2.Zero;
+	}
 }

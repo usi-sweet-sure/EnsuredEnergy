@@ -44,6 +44,8 @@ public partial class ResourceManager : Node {
 	/* The base pollution of a kWh imported from abroad */
 	public float ImportPollution = 0.2f;
 
+	private float InitImportCost, InitImportPollution;
+
 	// Children resource managers
 	private SupportManager SM;
 	private EnergyManager EngM;
@@ -83,6 +85,11 @@ public partial class ResourceManager : Node {
 		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 		UpdateEnergyUI(E);
 
+		// Set initial fields for future reset
+		InitImportCost = ImportCost;
+		InitImportPollution = ImportPollution;
+
+
 		// Check if the demand has been reached
 		EmitSignal(
 			SignalName.UpdateNextTurnState,
@@ -94,15 +101,24 @@ public partial class ResourceManager : Node {
 	// The game loop must pass in the amount of money as a ref
 	public void _NextTurn(ref MoneyData Money) {
 
+		// Make the plants distinct
+		BBs = BBs.Distinct().ToList();
+		PowerPlants = PowerPlants.Distinct().ToList();
+
+		// Create a copy of the buildbutton and powerplant lists
+		BuildButton[] tmp_bb = new BuildButton[BBs.Count];
+		PowerPlant[] tmp_pp = new PowerPlant[PowerPlants.Count];
+
+		BBs.CopyTo(tmp_bb);
+		PowerPlants.CopyTo(tmp_pp);
+
 		// Update all build buttons
-		if(BBs.Count() > 0) {
-			foreach(var bb in BBs) {
-				bb._NextTurn();
-			}
+		foreach(BuildButton bb in tmp_bb) {
+			bb._NextTurn();
 		}
 
 		// Update all plants
-		foreach(PowerPlant pp in PowerPlants) {
+		foreach(PowerPlant pp in tmp_pp) {
 			pp._NextTurn();
 		}
 
@@ -178,6 +194,9 @@ public partial class ResourceManager : Node {
 			PowerPlants.Add(pp);
 		}
 
+		// Remove all duplicates
+		PowerPlants = PowerPlants.Distinct().ToList();
+
 		// Propagate the update to the energy manager
 		EngM._UpdatePowerPlants(PowerPlants);
 		EnvM._UpdatePowerPlants(PowerPlants);
@@ -185,14 +204,9 @@ public partial class ResourceManager : Node {
 		// Connect the powerplants signals to propagate changes to the UI
 		foreach(PowerPlant pp in PowerPlants) {
 			// Check that the signal isn't already connected
-			// Check that the signal isn't already connected
-			if(!pp.IsConnected(PowerPlant.SignalName.UpdatePlant, Callable.From(_OnBuildDone))) {
+			if(!pp._GetEnergyConnectFlag()) {
+				pp._SetEnergyConnectFlag();
 				pp.UpdatePlant += _OnBuildDone;
-			}
-			if(!pp.Switch.IsConnected(BaseButton.SignalName.Toggled, Callable.From<bool>(_OnPowerPlantSwitchToggle))) {
-				/*try {
-					pp.Switch.Toggled += _OnPowerPlantSwitchToggle;
-				} catch (Exception) { }*/
 			}
 		}
 	}
@@ -297,6 +311,15 @@ public partial class ResourceManager : Node {
 	// Reacts to a new power plant being built
 	public void _OnBuildDone() {
 		_UpdateResourcesUI(false);
+	}
+
+	// Resets the game to its initial state
+	public void _Reset() {
+		ImportCost = InitImportCost;
+		ImportPollution = InitImportPollution;
+
+		EngM._Reset();
+		EnvM._Reset();
 	}
 	
 }

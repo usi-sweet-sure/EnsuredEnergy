@@ -59,6 +59,10 @@ Energy
         <text id="label_mode">Mode</text>
         <text id="mode_offline">Offline</text>
         <text id="mode_online">Online</text>
+        <text id="label_reset">Neu Starten</text>
+        <text id="reset_prompt">Sind Sie sicher, dass Sie neu starten möchten?</text>
+        <text id="reset_yes">Ja</text>
+        <text id="reset_no">Nein</text>
     </group>
 
     <!-- Labels for the different power plants -->

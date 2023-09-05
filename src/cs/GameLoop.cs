@@ -19,7 +19,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 
 // Models the overarching game loop, which controls every aspect of the game
 // and makes sure that things are synchronized across game objects
@@ -27,6 +27,9 @@ public partial class GameLoop : Node2D {
 
 	// Represents the various states that the game can be in
 	public enum GameState { NOT_STARTED, PLAYING, ENDED };
+
+	// Start year const
+	private const int START_YEAR = 2020;
 
 	// Context of the game
 	private Context C;
@@ -70,6 +73,11 @@ public partial class GameLoop : Node2D {
 	// Shock Window
 	private Shock ShockWindow;
 
+	// Other references used for reset
+	private MainMenu MM;
+	private Camera Cam;
+	private Tutorial Tuto;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -78,6 +86,9 @@ public partial class GameLoop : Node2D {
 		C = GetNode<Context>("/root/Context");
 		MC = GetNode<ModelController>("ModelController");
 		ShockWindow = GetNode<Shock>("Shock");
+		MM = GetNode<MainMenu>("Menu");
+		Cam = GetNode<Camera>("World/Camera2D");
+		Tuto = GetNode<Tutorial>("Tutorial");
 
 		// Init Data
 		GS = GameState.NOT_STARTED;
@@ -141,6 +152,7 @@ public partial class GameLoop : Node2D {
 		ShockWindow.SelectReaction += _OnShockSelectReaction;
 		ShockWindow.ApplyReward += _OnShockApplyReward;
 		RM.UpdateNextTurnState += _UI._OnNextTurnStateUpdate;
+		_UI.ResetGame += _OnResetGame;
 	}
 
 	// ==================== Resource access API ====================
@@ -440,6 +452,7 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
+			PowerPlants = PowerPlants.Distinct().ToList();
 
 			// Connect to the delete signal
 			if(!pp._GetDeleteConnectFlag()) {
@@ -518,5 +531,103 @@ public partial class GameLoop : Node2D {
 		} else {
 			NewTurn();
 		}
+	}
+
+	// Resets the game's state
+	public void _OnResetGame() {
+		
+		// Create a copy of the power plants array
+		PowerPlant[] tmp = new PowerPlant[PowerPlants.Count];
+		PowerPlants.CopyTo(tmp);
+
+		// Delete all plants
+		foreach(var pp in tmp) {
+			pp.OnDeletePressed();
+		}
+
+		// reinit Data
+		GS = GameState.NOT_STARTED;
+		RemainingTurns = N_TURNS;
+		PowerPlants.Clear();
+		BBs.Clear();
+
+		// Reset the context
+		C._Reset();
+
+		// Reset the resource manager
+		RM._Reset();
+
+		// Start with PowerPlants, in the begining there are only 2 PowerPlants Nuclear and Coal
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Coal"));
+
+		// Fill in build buttons
+		BBs.Add(GetNode<BuildButton>("World/BuildButton"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton2"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton3"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton4"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton5"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton6"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton7"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton8"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton9"));
+		BBs.Add(GetNode<BuildButton>("World/BuildButton10"));
+
+		// Set the number of turns in the context
+		C._SetNTurns(N_TURNS);
+
+		// Set the game loop reference
+		C._SetGLRef(this);
+
+		// Initially set all plants form their configs
+		foreach(PowerPlant pp in PowerPlants) {
+			pp._SetPlantFromConfig(pp.PlantType);
+
+			// Reset the plant
+			pp._Reset();
+
+			// Show the plant
+			pp.Show();
+		}
+
+		// Connect Callback to each build button and give them a reference to the loop
+		foreach(BuildButton bb in BBs) {
+			// Rest the build button
+			bb._Reset();
+			
+			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
+
+			// Record a reference to the game loop
+			bb._RecordGameLoopRef(this);
+
+			// Show the button
+			bb.Show();
+		}
+
+		// Reset the arrays
+		RM._UpdateBuildButtons(BBs);
+		RM._UpdatePowerPlants(PowerPlants);
+		C._ClearModified();
+		C._InitializePPStats(PowerPlants);
+
+		// Show the main menu
+		MM.Show();
+
+		// Reset the year
+		_UI.SetNextYearsNoAnim(START_YEAR);
+
+		// Update the UI
+		RM._UpdateResourcesUI();
+		_UI._UpdateUI();
+
+		// Reset money and propagate resource update to UI
+		Money = new MoneyData(START_MONEY);
+		_UpdateResourcesUI();
+
+		// Reset the camera's position
+		Cam._ResetPos();
+		
+		// Reset the tutorial
+		Tuto._Reset();
 	}
 }
