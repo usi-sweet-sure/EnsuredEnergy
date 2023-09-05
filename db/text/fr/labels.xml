@@ -25,7 +25,7 @@
         <text id="label_aesth">Aesthetique</text>
         <text id="label_land">Terrain</text>
         <text id="label_pollution">Pollution</text>
-        <text id="label_biodiversity">Biodiversitée</text>
+        <text id="label_biodiversity">Biodiversité</text>
         <text id="label_money">Argent</text>
         <text id="label_budget">Budget</text>
         <text id="label_building">Construction</text>
@@ -64,7 +64,7 @@ Energy
     <!-- Labels for the different power plants -->
     <group id="powerplants">
         <text id="label_gas">Gaz</text>
-        <text id="label_hydro">Hydrolique</text>
+        <text id="label_hydro">Hydraulique</text>
         <text id="label_solar">Solaire</text>
         <text id="label_wind">Eolienne</text>
         <text id="label_tree">Arbre</text>

@@ -30,7 +30,7 @@
         <text id="label_budget">Budget</text>
         <text id="label_building">Konstruktion</text>
         <text id="label_production">Produktion</text>
-        <text id="label_import_pol">Einfuhrensverschmutzung</text>
+        <text id="label_import_pol">Einführensverschmutzung</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -45,7 +45,7 @@
      <!-- Labels for general UI buttons -->
     <group id="ui">
         <text id="label_next_turn">Nächste Runde</text>
-        <text id="label_import">Einfuhren</text>
+        <text id="label_import">Einführen</text>
     </group>
 
     <!-- Labels for the main menu -->
