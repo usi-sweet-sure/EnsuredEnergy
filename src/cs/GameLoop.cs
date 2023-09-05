@@ -19,6 +19,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 // Models the overarching game loop, which controls every aspect of the game
 // and makes sure that things are synchronized across game objects
@@ -409,13 +410,27 @@ public partial class GameLoop : Node2D {
 			C._UpdatePPStats(pp.PlantType, false);
 
 			// Connect the new build button to our signal
-			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
+			if(!bb.IsConnected(BuildButton.SignalName.UpdateBuildSlot, 
+					Callable.From<BuildButton, PowerPlant, bool>(_OnUpdateBuildSlot))) {
+				bb.UpdateBuildSlot += _OnUpdateBuildSlot;
+			}
 
 			// Make sure that it has access to the game loop
 			bb._RecordGameLoopRef(this);
 
 			// Replace it with the new build button
 			BBs.Add(bb);
+
+			// Reset the build button
+			bb._Reset();
+
+			// Reimburse the price 
+			Money.SpendMoney(-pp._GetRefund());
+
+			// Notify the UI of the resource update
+			UpdateResources();
+
+			Debug.Print("REACTING TO DELETE PLANT");
 		} else {
 			// Sanity Check
 			Debug.Assert(BBs.Contains(bb));
@@ -425,6 +440,15 @@ public partial class GameLoop : Node2D {
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
+
+			// Connect to the delete signal
+			if(!pp._GetDeleteConnectFlag()) {
+				pp.DeletePlant += _OnUpdateBuildSlot;
+				pp._SetDeleteConnectFlag();
+			}
+
+			// Show the delete button
+			pp._ShowDelete();
 
 			// Update the context stats
 			C._UpdatePPStats(pp.PlantType);

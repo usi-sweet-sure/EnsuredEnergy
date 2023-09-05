@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1ipgesi102nc"]
 
-[node name="Farm" type="Node2D"]
+[node name="BuildTag" type="Node2D"]
 scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

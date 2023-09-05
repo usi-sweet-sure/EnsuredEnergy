@@ -19,6 +19,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 
 // Models a button that can be used to create power plants
 public partial class BuildButton : TextureButton {
@@ -70,6 +71,10 @@ public partial class BuildButton : TextureButton {
 	private Sprite2D BuildSprite;
 	private Label TL;
 
+	// Build cancellation button
+	private Button Cancel;
+	private int RefundAmount = -1;
+
 	// Reference to the game loop
 	private GameLoop GL;
 
@@ -101,13 +106,25 @@ public partial class BuildButton : TextureButton {
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
 		WindPlant = GetNode<PowerPlant>(WIND_NAME);
-		WindPlant = GetNode<PowerPlant>(WASTE_NAME);
-		WindPlant = GetNode<PowerPlant>(BIOMASS_NAME);
-		WindPlant = GetNode<PowerPlant>(RIVER_NAME);
-		WindPlant = GetNode<PowerPlant>(PUMP_NAME);
+		WastePlant = GetNode<PowerPlant>(WASTE_NAME);
+		BiomassPlant = GetNode<PowerPlant>(BIOMASS_NAME);
+		RiverPlant = GetNode<PowerPlant>(RIVER_NAME);
+		PumpPlant = GetNode<PowerPlant>(PUMP_NAME);
+
+		// Set their bb reference
+		GasPlant._SetBuildButton(this);
+		SolarPlant._SetBuildButton(this);
+		HydroPlant._SetBuildButton(this);
+		TreePlant._SetBuildButton(this);
+		WindPlant._SetBuildButton(this);
+    WastePlant._SetBuildButton(this);
+		BiomassPlant._SetBuildButton(this);
+		RiverPlant._SetBuildButton(this);
+		PumpPlant._SetBuildButton(this);
 		
 		BuildSprite = GetNode<Sprite2D>("Building");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
+		Cancel = GetNode<Button>("Cancel");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -117,6 +134,7 @@ public partial class BuildButton : TextureButton {
 
 		// Connect the onShowBuildMenu callback to our signal
 		ShowBuildMenu += BM._OnShowBuildMenu;
+		Cancel.Pressed += _OnCancelPressed;
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
@@ -137,6 +155,10 @@ public partial class BuildButton : TextureButton {
 
 	// Signals that a turn has passed
 	public void _NextTurn() {
+
+		// Hide the cancel button
+		Cancel.Hide();
+
 		// Check if we are currently building something
 		if(BS == BuildState.BUILDING) {
 			// Decrement the number of remaining turns and check for build completion
@@ -155,12 +177,28 @@ public partial class BuildButton : TextureButton {
 		Disabled = true;
 	}
 
+	// Resets the build button
+	public void _Reset() {
+		// Hide all associated plants
+		HideAllPlants();
+
+		// Show the button
+		ShowOnlyButton();
+
+		// Reset state
+		BS = BuildState.IDLE;
+	}
+
 	// ==================== Internal Helpers ====================
 
 	// Begins the mutli-turn build of the given power plant
 	private void BeginBuild(PowerPlant PP) {
 		// Update build state
 		BS = BuildState.BUILDING;
+
+		// Show the cancel button
+		Cancel.Show();
+		RefundAmount = PP.BuildCost;
 
 		// Update requested build fields
 		PPInProgress = PP;
@@ -204,6 +242,12 @@ public partial class BuildButton : TextureButton {
 	private void HideOnlyButton() {
 		Disabled = true;
 		SelfModulate = new Color(1,1,1,0);
+	}
+
+	// Show only the button
+	private void ShowOnlyButton() {
+		Disabled = false;
+		SelfModulate = new Color(1,1,1,1);
 	}
 
 	// Resets the button to it's initial state
@@ -365,5 +409,26 @@ public partial class BuildButton : TextureButton {
 				EmitSignal(SignalName.BuildDone);
 			}
 		}		
+	}
+
+	// Reacts to a cancelation request
+	private void _OnCancelPressed() {
+		// Hide all plants
+		HideAllPlants();
+
+		// Hide the cancel button
+		Cancel.Hide();
+
+		// Show the buildbutton
+		ShowOnlyButton();
+
+		// Refund
+		GL._RequestBuild(-RefundAmount);
+		
+		// Reset the refund amount
+		RefundAmount = -1;
+
+		// Reset the build state
+		BS = BuildState.IDLE;
 	}
 }

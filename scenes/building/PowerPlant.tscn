@@ -297,3 +297,10 @@ script = ExtResource("3_runxt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 shape = SubResource("RectangleShape2D_wggy5")
+
+[node name="Delete" type="Button" parent="."]
+offset_left = 96.0
+offset_top = -166.0
+offset_right = 127.0
+offset_bottom = -136.0
+text = "X"

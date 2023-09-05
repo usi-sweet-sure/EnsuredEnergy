@@ -18,7 +18,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 
 // ============================================================
@@ -123,6 +123,7 @@ public struct MoneyData {
 	public void SpendMoney(int amountBuild) {
 		Build += amountBuild;
 		Money -= amountBuild;
+		Debug.Print("Spent: " + amountBuild);
 	}
 }
 
