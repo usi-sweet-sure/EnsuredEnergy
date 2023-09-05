@@ -61,6 +61,9 @@ public partial class BuildMenu : CanvasLayer {
 	// Tab Container
 	private TabContainer TabC;
 
+	// Context
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -87,6 +90,9 @@ public partial class BuildMenu : CanvasLayer {
 		
 		// Fetch Animation Player
 		BuildMenuAP = GetNode<AnimationPlayer>("AnimationPlayer");
+
+		// Fetch Context
+		C = GetNode<Context>("/root/Context");
 		
 		// Fetch TabContainer and sets tab titles 
 		//TODO for all tabs in all lang
@@ -210,30 +216,75 @@ public partial class BuildMenu : CanvasLayer {
 					// Make sure that its fields are set correctly before displaying anything
 					GasPlant._SetPlantFromConfig(Building.Type.GAS);
 					GasPlant.PlantType = Building.Type.GAS;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(GasPlant.BuildCost)) {
+						GasPlant._MakeTransparent();
+						GasButton.Disabled = true;
+					} else {
+						GasPlant._MakeOpaque();
+						GasButton.Disabled = false;
+					}
 					break;
 
 				case Building.Type.HYDRO:
 					SetPlantPosition(ref HydroPlant, idx++);
 					HydroPlant._SetPlantFromConfig(Building.Type.HYDRO);
 					HydroPlant.PlantType = Building.Type.HYDRO;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(HydroPlant.BuildCost)) {
+						HydroPlant._MakeTransparent();
+						HydroButton.Disabled = true;
+					} else {
+						HydroPlant._MakeOpaque();
+						HydroButton.Disabled = false;
+					}
 					break;
 
 				case Building.Type.SOLAR:
 					SetPlantPosition(ref SolarPlant, idx++);
 					SolarPlant._SetPlantFromConfig(Building.Type.SOLAR);
 					SolarPlant.PlantType = Building.Type.SOLAR;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(SolarPlant.BuildCost)) {
+						SolarPlant._MakeTransparent();
+						SolarButton.Disabled = true;
+					} else {
+						SolarPlant._MakeOpaque();
+						SolarButton.Disabled = false;
+					}
 					break;
 
 				case Building.Type.TREE:
 					SetPlantPosition(ref TreePlant, idx++);
 					TreePlant._SetPlantFromConfig(Building.Type.TREE);
 					TreePlant.PlantType = Building.Type.TREE;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(TreePlant.BuildCost)) {
+						TreePlant._MakeTransparent();
+						TreeButton.Disabled = true;
+					} else {
+						TreePlant._MakeOpaque();
+						TreeButton.Disabled = false;
+					}
 					break;
 					
 				case Building.Type.WIND:
 					SetPlantPosition(ref WindPlant, idx++);
 					WindPlant._SetPlantFromConfig(Building.Type.WIND);
 					WindPlant.PlantType = Building.Type.WIND;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(WindPlant.BuildCost)) {
+						WindPlant._MakeTransparent();
+						WindButton.Disabled = true;
+					} else {
+						WindPlant._MakeOpaque();
+						WindButton.Disabled = false;
+					}
 					break;
 			}
 		}

@@ -201,6 +201,16 @@ public partial class PowerPlant : Node2D {
 		}
 	}
 
+	// Makes the sprite transparent
+	public void _MakeTransparent() {
+		Sprite.Modulate = new (1, 0.75f, 0.75f, 0.5f);
+	}
+
+	// Makes the sprite opaque
+	public void _MakeOpaque() {
+		Sprite.Modulate = new(1, 1, 1, 1);
+  }
+  
 	// Resets the plant
 	public void _Reset() {
 		// Disable the switch
