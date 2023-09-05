@@ -305,6 +305,7 @@ offset_left = 199.0
 offset_top = 932.0
 offset_right = 373.0
 offset_bottom = 973.0
+LowColor = Color(0.94902, 0.317647, 0.0666667, 1)
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -328,6 +329,7 @@ offset_right = 303.0
 offset_bottom = 974.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
+LowColor = Color(0.94902, 0.317647, 0.0666667, 1)
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)
@@ -437,10 +439,10 @@ text = "Support 👆"
 horizontal_alignment = 2
 
 [node name="Env" type="ProgressBar" parent="."]
-offset_left = 1584.0
-offset_top = 246.0
-offset_right = 1694.0
-offset_bottom = 356.0
+offset_left = 112.0
+offset_top = 608.0
+offset_right = 222.0
+offset_bottom = 718.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nm6d8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
@@ -449,6 +451,7 @@ show_percentage = false
 script = ExtResource("4_e5tgv")
 NormalColor = Color(0.0313726, 0.67451, 0.2, 1)
 LowColor = Color(0.329412, 0.372549, 0, 1)
+metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Env"]
 visible = false
@@ -520,10 +523,10 @@ scale = Vector2(1.01351, 1.00676)
 texture = ExtResource("9_kqwrt")
 
 [node name="Poll" type="ProgressBar" parent="."]
-offset_left = 1720.0
-offset_top = 246.0
-offset_right = 1832.0
-offset_bottom = 358.0
+offset_left = 248.0
+offset_top = 608.0
+offset_right = 360.0
+offset_bottom = 720.0
 tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
@@ -533,6 +536,7 @@ show_percentage = false
 script = ExtResource("4_e5tgv")
 NormalColor = Color(0.239216, 0.239216, 0.239216, 1)
 LowColor = Color(0.74902, 0.74902, 0.74902, 1)
+metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Poll"]
 visible = false

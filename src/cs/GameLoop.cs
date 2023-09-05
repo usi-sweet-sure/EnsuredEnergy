@@ -40,10 +40,10 @@ public partial class GameLoop : Node2D {
 
 	// The amount of money the player starts with (in millions of CHF)
 	[Export]
-	public int START_MONEY = 1000;
+	public int START_MONEY = 400;
 
 	[Export]
-	public static int BUDGET_PER_TURN = 1000;
+	public static int BUDGET_PER_TURN = 300;
 
 	// Internal game state
 	private GameState GS;
@@ -61,7 +61,7 @@ public partial class GameLoop : Node2D {
 	private BuildMenu BM;
 
 	//TODO: Add resource managers once they are implemented
-	private MoneyData Money; // The current money the player has
+	public MoneyData Money; // The current money the player has
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
 
@@ -72,6 +72,8 @@ public partial class GameLoop : Node2D {
 
 	// Shock Window
 	private Shock ShockWindow;
+	
+	private End EndScreen;
 
 	// Other references used for reset
 	private MainMenu MM;
@@ -86,6 +88,7 @@ public partial class GameLoop : Node2D {
 		C = GetNode<Context>("/root/Context");
 		MC = GetNode<ModelController>("ModelController");
 		ShockWindow = GetNode<Shock>("Shock");
+		EndScreen = GetNode<End>("End");
 		MM = GetNode<MainMenu>("Menu");
 		Cam = GetNode<Camera>("World/Camera2D");
 		Tuto = GetNode<Tutorial>("Tutorial");
@@ -142,6 +145,9 @@ public partial class GameLoop : Node2D {
 			// Record a reference to the game loop
 			bb._RecordGameLoopRef(this);
 		}
+		
+		// Temp for test pls change
+		BM._RecordGameLoopRef(this);
 
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
@@ -321,7 +327,7 @@ public partial class GameLoop : Node2D {
 		ShockWindow.Hide();
 
 		// Decerement the remaining turns and check for game end
-		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
+		if((GS == GameState.PLAYING) && (RemainingTurns-- > 1)) {
 
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
@@ -333,7 +339,7 @@ public partial class GameLoop : Node2D {
 			UpdateResources(true);
 			RM._UpdateResourcesUI();
 
-		} else if(RemainingTurns <= 0) {
+		} else if(RemainingTurns <= 1) {
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
 
@@ -349,7 +355,7 @@ public partial class GameLoop : Node2D {
 		ShockWindow.Hide();
 
 		// Decerement the remaining turns and check for game end
-		if((GS == GameState.PLAYING) && (RemainingTurns-- > 0)) {
+		if((GS == GameState.PLAYING) && (RemainingTurns-- > 1)) {
 
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
@@ -370,7 +376,7 @@ public partial class GameLoop : Node2D {
 			UpdateResources(true);
 			RM._UpdateResourcesUI();
 
-		} else if(RemainingTurns <= 0) {
+		} else if(RemainingTurns <= 1) {
 			// Update the Context's turn count
 			C._UpdateTurn(GetTurn());
 
@@ -389,6 +395,9 @@ public partial class GameLoop : Node2D {
 		foreach(var bb in BBs) {
 			bb._Disable();
 		}
+		
+		RM._EndGame();
+		EndScreen.Show();
 	}
 
 	// Applies a given shock effect

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://src/cs/building/BuildMenu.cs" id="1_vbiqr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="2_236y8"]
-[ext_resource type="Texture2D" uid="uid://c0sb3kncaf7uc" path="res://assets/Plants/Solar.png" id="3_4vb5s"]
-[ext_resource type="Texture2D" uid="uid://bftiushevl5aj" path="res://assets/Plants/Wind.png" id="4_rnlgr"]
-[ext_resource type="Texture2D" uid="uid://d2ijw7avf37la" path="res://assets/Plants/Turbine.png" id="5_n1d5g"]
+[ext_resource type="Texture2D" uid="uid://drc6pwawtjjqu" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0001_Solar.png" id="3_x7du8"]
+[ext_resource type="Texture2D" uid="uid://bajeyuq7feqxr" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0004_Wind.png" id="4_tld6o"]
+[ext_resource type="Texture2D" uid="uid://cmeajgdmtv4xn" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0002_Wind-propeller.png" id="5_tp7dt"]
 [ext_resource type="Texture2D" uid="uid://ujeuwa2ehsay" path="res://assets/Plants/Forest.png" id="6_52mtj"]
-[ext_resource type="Texture2D" uid="uid://6nhylpws0rhg" path="res://assets/Plants/Dam.png" id="7_v8asv"]
+[ext_resource type="Texture2D" uid="uid://btk3fbtu5m5ua" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0014_Hydrolic-Reservoir.png" id="7_lh640"]
 [ext_resource type="Texture2D" uid="uid://lvf5eog6buhr" path="res://assets/Plants/230601_CH_SUREgame_Gas-Plant.png" id="8_sbytn"]
 
 [sub_resource type="Animation" id="Animation_j4va7"]
@@ -78,8 +78,7 @@ _PlantType = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" parent="TabContainer/TabBar/Solar" index="0"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_4vb5s")
+texture = ExtResource("3_x7du8")
 
 [node name="SolarButton" type="Button" parent="TabContainer/TabBar/Solar"]
 offset_left = -104.0
@@ -96,13 +95,12 @@ _PlantType = 5
 metadata/_edit_group_ = true
 
 [node name="Sprite" parent="TabContainer/TabBar/Wind" index="0"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_rnlgr")
+position = Vector2(0, 21.1111)
+texture = ExtResource("4_tld6o")
 
 [node name="Turbine" type="Sprite2D" parent="TabContainer/TabBar/Wind"]
-position = Vector2(0, -35.5558)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_n1d5g")
+position = Vector2(1.11115, -45.5558)
+texture = ExtResource("5_tp7dt")
 
 [node name="WindButton" type="Button" parent="TabContainer/TabBar/Wind"]
 offset_left = -104.0
@@ -112,7 +110,7 @@ offset_bottom = 141.0
 flat = true
 
 [node name="Tree" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
-position = Vector2(650, 199)
+position = Vector2(904, 199)
 scale = Vector2(0.9, 0.9)
 PlantName = "Trees"
 _PlantType = 3
@@ -130,15 +128,14 @@ offset_bottom = 141.0
 flat = true
 
 [node name="Hydro" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
-position = Vector2(903, 197)
+position = Vector2(160, 200)
 scale = Vector2(0.9, 0.9)
 PlantName = "Hydro Plant"
 _PlantType = 0
 metadata/_edit_group_ = true
 
 [node name="Sprite" parent="TabContainer/TabBar/Hydro" index="0"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_v8asv")
+texture = ExtResource("7_lh640")
 
 [node name="HydroButton" type="Button" parent="TabContainer/TabBar/Hydro"]
 offset_left = -104.0
@@ -147,20 +144,16 @@ offset_right = 100.0
 offset_bottom = 141.0
 flat = true
 
-[node name="TabBar2" type="TabBar" parent="TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Gas" parent="TabContainer/TabBar2" instance=ExtResource("2_236y8")]
-position = Vector2(160, 200)
+[node name="Gas" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
+position = Vector2(650, 199)
 scale = Vector2(0.9, 0.9)
 PlantName = "Gas Plant"
 metadata/_edit_group_ = true
 
-[node name="Sprite" parent="TabContainer/TabBar2/Gas" index="0"]
+[node name="Sprite" parent="TabContainer/TabBar/Gas" index="0"]
 texture = ExtResource("8_sbytn")
 
-[node name="GasButton" type="Button" parent="TabContainer/TabBar2/Gas"]
+[node name="GasButton" type="Button" parent="TabContainer/TabBar/Gas"]
 offset_left = -102.0
 offset_top = -143.0
 offset_right = 102.0
@@ -171,4 +164,4 @@ flat = true
 [editable path="TabContainer/TabBar/Wind"]
 [editable path="TabContainer/TabBar/Tree"]
 [editable path="TabContainer/TabBar/Hydro"]
-[editable path="TabContainer/TabBar2/Gas"]
+[editable path="TabContainer/TabBar/Gas"]

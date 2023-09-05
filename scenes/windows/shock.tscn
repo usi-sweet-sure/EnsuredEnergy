@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://885lty3v1qbq"]
+[gd_scene load_steps=10 format=3 uid="uid://885lty3v1qbq"]
 
 [ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="2_i1jhu"]
@@ -8,10 +8,72 @@
 
 [sub_resource type="Theme" id="Theme_jkqh0"]
 
+[sub_resource type="Animation" id="Animation_hvy7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0i7qt"]
+resource_name = "popUp"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wm02j"]
+_data = {
+"RESET": SubResource("Animation_hvy7n"),
+"popUp": SubResource("Animation_0i7qt")
+}
+
 [node name="Shock" type="CanvasLayer"]
 script = ExtResource("1_jq3nm")
 
 [node name="ColorRect2" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,10 +81,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_left = 720.0
-offset_top = 336.0
-offset_right = 1256.0
-offset_bottom = 712.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -268.0
+offset_top = -188.0
+offset_right = 268.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(268, 188)
 texture = ExtResource("2_qaski")
 region_rect = Rect2(26, 26, 298, 220)
 patch_margin_left = 22
@@ -30,27 +101,28 @@ patch_margin_top = 22
 patch_margin_right = 22
 patch_margin_bottom = 18
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="NinePatchRect"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -216.0
-offset_top = -180.0
-offset_right = 271.0
-offset_bottom = 148.0
+offset_left = -244.0
+offset_top = -164.0
+offset_right = 243.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_jkqh0")
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
-[node name="Img" type="Sprite2D" parent="ColorRect"]
+[node name="Img" type="Sprite2D" parent="NinePatchRect/ColorRect"]
 position = Vector2(89, 117)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_fweec")
 
-[node name="Title" type="Label" parent="ColorRect"]
+[node name="Title" type="Label" parent="NinePatchRect/ColorRect"]
 layout_mode = 1
 offset_left = 30.0
 offset_top = -6.0
@@ -61,7 +133,7 @@ theme_override_font_sizes/font_size = 25
 text = "Cold Spell"
 vertical_alignment = 1
 
-[node name="Text" type="Label" parent="ColorRect"]
+[node name="Text" type="Label" parent="NinePatchRect/ColorRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -77,7 +149,7 @@ text = "The past few winters have been colder than usual, increasing the energy 
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Reward" type="Label" parent="ColorRect"]
+[node name="Reward" type="Label" parent="NinePatchRect/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -97,7 +169,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Result" type="Label" parent="ColorRect"]
+[node name="Result" type="Label" parent="NinePatchRect/ColorRect"]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -115,14 +187,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "..."
 autowrap_mode = 3
 
-[node name="EnergyBar" parent="ColorRect/Result" instance=ExtResource("2_i1jhu")]
+[node name="EnergyBar" parent="NinePatchRect/ColorRect/Result" instance=ExtResource("2_i1jhu")]
 layout_mode = 0
 offset_left = 136.0
 offset_top = 48.0
 offset_right = 272.0
 offset_bottom = 74.0
 
-[node name="Reactions" type="Control" parent="ColorRect"]
+[node name="Reactions" type="Control" parent="NinePatchRect/ColorRect"]
 visible = false
 layout_mode = 1
 anchors_preset = 5
@@ -134,7 +206,7 @@ offset_right = -80.0
 offset_bottom = 109.0
 grow_horizontal = 2
 
-[node name="Button" type="Button" parent="ColorRect/Reactions"]
+[node name="Button" type="Button" parent="NinePatchRect/ColorRect/Reactions"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -151,7 +223,7 @@ theme_override_font_sizes/font_size = 14
 text = "Ask the population to lower their energy consumption.
 - 50 Support 😡"
 
-[node name="Button2" type="Button" parent="ColorRect/Reactions"]
+[node name="Button2" type="Button" parent="NinePatchRect/ColorRect/Reactions"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -168,7 +240,7 @@ theme_override_font_sizes/font_size = 14
 text = "Turn on the spare coal plant.
 - 50 Environment 🏭"
 
-[node name="Button3" type="Button" parent="ColorRect/Reactions"]
+[node name="Button3" type="Button" parent="NinePatchRect/ColorRect/Reactions"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -185,7 +257,7 @@ theme_override_font_sizes/font_size = 14
 text = "Import electricity from neighbouring countries.
 - 50 💰"
 
-[node name="Continue" type="Button" parent="ColorRect"]
+[node name="Continue" type="Button" parent="NinePatchRect/ColorRect"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -201,4 +273,9 @@ text = "Continue"
 [node name="ShockController" type="Node" parent="."]
 script = ExtResource("4_gcg7v")
 
-[editable path="ColorRect/Result/EnergyBar"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wm02j")
+}
+
+[editable path="NinePatchRect/ColorRect/Result/EnergyBar"]

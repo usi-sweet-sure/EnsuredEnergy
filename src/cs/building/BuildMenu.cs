@@ -60,6 +60,8 @@ public partial class BuildMenu : CanvasLayer {
 	
 	// Tab Container
 	private TabContainer TabC;
+	
+	private GameLoop GL;
 
 	// Context
 	private Context C;
@@ -72,14 +74,14 @@ public partial class BuildMenu : CanvasLayer {
 		Hide();
 
 		// Fetch Power plants
-		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar2/Gas");
+		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar/Gas");
 		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/Solar");
 		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/Hydro");
 		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/Tree");
 		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/Wind");
 
 		// Fetch associated buttons
-		GasButton = GetNode<Button>("TabContainer/TabBar2/Gas/GasButton");
+		GasButton = GetNode<Button>("TabContainer/TabBar/Gas/GasButton");
 		SolarButton = GetNode<Button>("TabContainer/TabBar/Solar/SolarButton");
 		HydroButton = GetNode<Button>("TabContainer/TabBar/Hydro/HydroButton");
 		TreeButton = GetNode<Button>("TabContainer/TabBar/Tree/TreeButton");
@@ -97,8 +99,7 @@ public partial class BuildMenu : CanvasLayer {
 		// Fetch TabContainer and sets tab titles 
 		//TODO for all tabs in all lang
 		TabC = GetNode<TabContainer>("TabContainer");
-		TabC.SetTabTitle(0,"Green");
-		TabC.SetTabTitle(1,"Fossil");
+		TabC.SetTabTitle(0,"_");
 
 		// Connect the associated button callbacks
 		GasButton.Pressed += _OnGasButtonPressed;
@@ -144,7 +145,11 @@ public partial class BuildMenu : CanvasLayer {
 	}
 
 	// ==================== Internal Helpers ====================
-
+	
+	// If you know a better way please change
+	public void _RecordGameLoopRef(GameLoop _GL) {
+		GL = _GL;
+	}
 	// Hides all of the plants related to this button
 	private void HideAllPlants() {
 		// Hide all plants
@@ -169,6 +174,14 @@ public partial class BuildMenu : CanvasLayer {
 
 		// Show the plant once the position is set
 		pp.Show();
+	}
+	
+	private void SetPlantColor(ref PowerPlant pp) {
+		if (GL.Money.Money >= pp.BuildCost) {
+			pp.Modulate = new Color(1,1,1,1);
+		} else {
+			pp.Modulate = new Color(0.5f,0.5f,0.5f,1f);
+		}
 	}
 
 	// ==================== Interaction Callbacks ====================
@@ -212,7 +225,7 @@ public partial class BuildMenu : CanvasLayer {
 				case Building.Type.GAS:
 					// Position the plant correctly
 					SetPlantPosition(ref GasPlant, idx++);
-
+					SetPlantColor(ref GasPlant);
 					// Make sure that its fields are set correctly before displaying anything
 					GasPlant._SetPlantFromConfig(Building.Type.GAS);
 					GasPlant.PlantType = Building.Type.GAS;
@@ -229,6 +242,7 @@ public partial class BuildMenu : CanvasLayer {
 
 				case Building.Type.HYDRO:
 					SetPlantPosition(ref HydroPlant, idx++);
+					SetPlantColor(ref HydroPlant);
 					HydroPlant._SetPlantFromConfig(Building.Type.HYDRO);
 					HydroPlant.PlantType = Building.Type.HYDRO;
 
@@ -244,6 +258,7 @@ public partial class BuildMenu : CanvasLayer {
 
 				case Building.Type.SOLAR:
 					SetPlantPosition(ref SolarPlant, idx++);
+					SetPlantColor(ref SolarPlant);
 					SolarPlant._SetPlantFromConfig(Building.Type.SOLAR);
 					SolarPlant.PlantType = Building.Type.SOLAR;
 
@@ -259,6 +274,7 @@ public partial class BuildMenu : CanvasLayer {
 
 				case Building.Type.TREE:
 					SetPlantPosition(ref TreePlant, idx++);
+					SetPlantColor(ref TreePlant);
 					TreePlant._SetPlantFromConfig(Building.Type.TREE);
 					TreePlant.PlantType = Building.Type.TREE;
 
@@ -274,6 +290,7 @@ public partial class BuildMenu : CanvasLayer {
 					
 				case Building.Type.WIND:
 					SetPlantPosition(ref WindPlant, idx++);
+					SetPlantColor(ref WindPlant);
 					WindPlant._SetPlantFromConfig(Building.Type.WIND);
 					WindPlant.PlantType = Building.Type.WIND;
 

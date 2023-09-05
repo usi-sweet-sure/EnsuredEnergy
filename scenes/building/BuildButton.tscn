@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=29 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="1_dqrnt"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
@@ -6,15 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://cvm4lopnmbupy" path="res://assets/Elements/BUILDINGBUTTONPressed.png" id="2_e5byc"]
 [ext_resource type="Texture2D" uid="uid://747hpnocr8yq" path="res://assets/Elements/BUILDINGBUTTONHover.png" id="3_6vldy"]
 [ext_resource type="Texture2D" uid="uid://25k27rpg0rwn" path="res://assets/Plants/230601_CH_SUREgame_Gas-PlantNoCloud.png" id="5_kuv5l"]
-[ext_resource type="Texture2D" uid="uid://6nhylpws0rhg" path="res://assets/Plants/Dam.png" id="6_lruly"]
 [ext_resource type="Texture2D" uid="uid://2u2prn54c0qr" path="res://assets/Plants/230601_CH_SUREgame_Gas-PlantClouds.png" id="6_rv7g4"]
-[ext_resource type="Texture2D" uid="uid://c0sb3kncaf7uc" path="res://assets/Plants/Solar.png" id="7_mt0mh"]
 [ext_resource type="Texture2D" uid="uid://1rj1xmhstc75" path="res://assets/Plants/230601_CH_SUREgame_Gas-PlantClouds5.png" id="7_owsdt"]
 [ext_resource type="Texture2D" uid="uid://bnyqsfndjikdn" path="res://assets/Plants/230601_CH_SUREgame_Gas-PlantClouds8.png" id="8_tkxxi"]
 [ext_resource type="Texture2D" uid="uid://ujeuwa2ehsay" path="res://assets/Plants/Forest.png" id="8_wp0io"]
 [ext_resource type="Texture2D" uid="uid://dsoyr833nrhyj" path="res://assets/Plants/230601_CH_SUREgame_Gas-PlantClouds2.png" id="9_4162j"]
-[ext_resource type="Texture2D" uid="uid://bftiushevl5aj" path="res://assets/Plants/Wind.png" id="9_lgc8d"]
-[ext_resource type="Texture2D" uid="uid://d2ijw7avf37la" path="res://assets/Plants/Turbine.png" id="10_1u3s0"]
+[ext_resource type="Texture2D" uid="uid://btk3fbtu5m5ua" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0014_Hydrolic-Reservoir.png" id="10_wly2t"]
+[ext_resource type="Texture2D" uid="uid://drc6pwawtjjqu" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0001_Solar.png" id="11_4r262"]
+[ext_resource type="Texture2D" uid="uid://b0wao2oeami4x" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0013_Hydrolic-Reservoir-water.png" id="11_y5juj"]
+[ext_resource type="Texture2D" uid="uid://bajeyuq7feqxr" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0004_Wind.png" id="13_uoixp"]
+[ext_resource type="Texture2D" uid="uid://cmeajgdmtv4xn" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0002_Wind-propeller.png" id="14_n41d3"]
 
 [sub_resource type="Animation" id="Animation_q0r05"]
 length = 0.001
@@ -342,6 +343,79 @@ _data = {
 "smoke": SubResource("Animation_qonkf")
 }
 
+[sub_resource type="Animation" id="Animation_6xjqo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Water:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Water:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 82)]
+}
+
+[sub_resource type="Animation" id="Animation_anud6"]
+resource_name = "water"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Water:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0349066, -0.0349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Water:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 82), Vector2(1, 81), Vector2(-1, 82)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dd3cj"]
+_data = {
+"RESET": SubResource("Animation_6xjqo"),
+"water": SubResource("Animation_anud6")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxtmc"]
+atlas = ExtResource("14_n41d3")
+region = Rect2(0, 58, 80, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mojba"]
+atlas = ExtResource("14_n41d3")
+region = Rect2(28, -8, 104, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02idw"]
+atlas = ExtResource("14_n41d3")
+region = Rect2(122, 30, 92, 90)
+
 [sub_resource type="Animation" id="Animation_s3im0"]
 length = 0.001
 tracks/0/type = "value"
@@ -356,10 +430,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turbine3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turbine4:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-6.28319]
+}
 
 [sub_resource type="Animation" id="Animation_7lfvt"]
 resource_name = "spin"
-length = 2.0
+length = 3.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -368,10 +466,34 @@ tracks/0/path = NodePath("Turbine:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turbine3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turbine4:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-6.28319, 6.28319]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dcpmn"]
@@ -396,12 +518,6 @@ position = Vector2(112, 88)
 
 [node name="Sprite" parent="Gas" index="0"]
 texture = ExtResource("5_kuv5l")
-
-[node name="Switch" parent="Gas" index="4"]
-visible = false
-
-[node name="HoverArea" parent="Gas" index="8"]
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gas"]
 autoplay = "smoke"
@@ -446,11 +562,21 @@ position = Vector2(112, 88)
 _PlantType = 0
 
 [node name="Sprite" parent="Hydro" index="0"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_lruly")
+texture = ExtResource("10_wly2t")
 
 [node name="Switch" parent="Hydro" index="4"]
 visible = false
+
+[node name="Water" type="Sprite2D" parent="Hydro"]
+position = Vector2(-1, 82)
+skew = -0.0349066
+texture = ExtResource("11_y5juj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hydro"]
+autoplay = "water"
+libraries = {
+"": SubResource("AnimationLibrary_dd3cj")
+}
 
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
@@ -458,8 +584,7 @@ position = Vector2(112, 88)
 _PlantType = 2
 
 [node name="Sprite" parent="Solar" index="0"]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("7_mt0mh")
+texture = ExtResource("11_4r262")
 
 [node name="Switch" parent="Solar" index="4"]
 visible = false
@@ -482,16 +607,28 @@ position = Vector2(112, 88)
 _PlantType = 5
 
 [node name="Sprite" parent="Wind" index="0"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_lgc8d")
+texture = ExtResource("13_uoixp")
 
 [node name="Switch" parent="Wind" index="4"]
 visible = false
 
 [node name="Turbine" type="Sprite2D" parent="Wind"]
-position = Vector2(2, -32)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_1u3s0")
+position = Vector2(-64, -36)
+texture = SubResource("AtlasTexture_lxtmc")
+
+[node name="Turbine2" type="Sprite2D" parent="Wind"]
+visible = false
+position = Vector2(-3, -42)
+texture = SubResource("AtlasTexture_mojba")
+
+[node name="Turbine3" type="Sprite2D" parent="Wind"]
+position = Vector2(66, -53)
+texture = SubResource("AtlasTexture_02idw")
+
+[node name="Turbine4" type="Sprite2D" parent="Wind"]
+position = Vector2(-15, -82)
+rotation = -6.28319
+texture = SubResource("AtlasTexture_02idw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wind"]
 autoplay = "spin"

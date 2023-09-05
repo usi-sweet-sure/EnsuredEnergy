@@ -49,6 +49,7 @@ public partial class Shock : CanvasLayer {
 	private Label Result;
 	private Label Reward;
 	private Sprite2D Img;
+	private AnimationPlayer AP;
 	
 	// Control node containing the reactions
 	private Control Reactions;
@@ -74,17 +75,18 @@ public partial class Shock : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch nodes
-		Title = GetNode<Label>("ColorRect/Title");
-		Text = GetNode<Label>("ColorRect/Text");
-		Result = GetNode<Label>("ColorRect/Result");
-		Reward = GetNode<Label>("ColorRect/Reward");
-		Reactions = GetNode<Control>("ColorRect/Reactions");
-		R1 = GetNode<Button>("ColorRect/Reactions/Button");
-		R2 = GetNode<Button>("ColorRect/Reactions/Button2");
-		R3 = GetNode<Button>("ColorRect/Reactions/Button3");
-		Continue = GetNode<Button>("ColorRect/Continue");
+		Title = GetNode<Label>("NinePatchRect/ColorRect/Title");
+		Text = GetNode<Label>("NinePatchRect/ColorRect/Text");
+		Result = GetNode<Label>("NinePatchRect/ColorRect/Result");
+		Reward = GetNode<Label>("NinePatchRect/ColorRect/Reward");
+		Reactions = GetNode<Control>("NinePatchRect/ColorRect/Reactions");
+		R1 = GetNode<Button>("NinePatchRect/ColorRect/Reactions/Button");
+		R2 = GetNode<Button>("NinePatchRect/ColorRect/Reactions/Button2");
+		R3 = GetNode<Button>("NinePatchRect/ColorRect/Reactions/Button3");
+		Continue = GetNode<Button>("NinePatchRect/ColorRect/Continue");
 		SC = GetNode<ShockController>("ShockController");
-		Img = GetNode<Sprite2D>("ColorRect/Img");
+		Img = GetNode<Sprite2D>("NinePatchRect/ColorRect/Img");
+		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 
 		// Set the button callbacks
 		R1.Pressed += _OnR1Pressed;
@@ -161,6 +163,7 @@ public partial class Shock : CanvasLayer {
 
 		// Show the shock itself once everything is setup
 		Show();
+		AP.Play("popUp");
 	}
 
 	  // Hides all of the reaction buttons

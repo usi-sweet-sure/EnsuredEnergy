@@ -19,6 +19,20 @@ centered = false
 [node name="Nuclear" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(998, 269)
 PlantName = "Nuclear"
+_PlantType = 4
+metadata/_edit_group_ = true
+
+[node name="Nuclear2" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(1296, 177)
+PlantName = "Nuclear"
+_PlantType = 4
+NUCLEAR_LIFE_SPAN = 6
+metadata/_edit_group_ = true
+
+[node name="Nuclear3" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(1056, -45)
+PlantName = "Nuclear"
+_PlantType = 4
 metadata/_edit_group_ = true
 
 [node name="Coal" parent="." instance=ExtResource("7_6x5m2")]
@@ -105,4 +119,6 @@ script = ExtResource("4_mo62v")
 anchor_mode = 0
 
 [editable path="Nuclear"]
+[editable path="Nuclear2"]
+[editable path="Nuclear3"]
 [editable path="Coal"]

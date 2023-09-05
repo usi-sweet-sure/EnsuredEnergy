@@ -25,6 +25,10 @@ public partial class PowerPlant : Node2D {
 
 	[Signal]
 	public delegate void UpdatePlantEventHandler();
+	
+	// Check if the powerplant has an animation
+	[Export]
+	public bool HasAnimation = false;
 
 	[Signal]
 	/* Signals that the plant should be deleted and replaced by a buildbutton */
@@ -45,8 +49,8 @@ public partial class PowerPlant : Node2D {
 
 	[Export]
 	// Life cycle of a nuclear power plant
-	public int NUCLEAR_LIFE_SPAN = 5; 
-	public int DEFAULT_LIFE_SPAN = 10;
+	public int NUCLEAR_LIFE_SPAN = 2; 
+	public int DEFAULT_LIFE_SPAN = 11;
 
 	[Export]
 	// Defines whether or not the building is a preview
@@ -95,6 +99,8 @@ public partial class PowerPlant : Node2D {
 	// Power off modulate color
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
 	private Color DEFAULT_COLOR = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+	
+	private string AnimName;
 
 	// Children Nodes
 	private Sprite2D Sprite;
@@ -168,10 +174,10 @@ public partial class PowerPlant : Node2D {
 		NameL.Text = PlantName;
 		EnergyS.Text = EnergyCapacity.ToString();
 		EnergyW.Text = EnergyCapacity.ToString();
-		MoneyL.Text = ProductionCost.ToString();
+		MoneyL.Text = "💰/⌛ " +  ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
-		PollL.Text = Pollution.ToString();
-		BTime.Text = BuildTime.ToString() + " ⌛";
+		PollL.Text = "🏭 " + Pollution.ToString();
+		BTime.Text = "⌛ " + BuildTime.ToString();
 
 		// Set plant life cycle
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
@@ -387,12 +393,12 @@ public partial class PowerPlant : Node2D {
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
-		EnergyS.Text = EnergyCapacity.ToString();
-		EnergyW.Text = EnergyCapacity.ToString();
-		MoneyL.Text = ProductionCost.ToString();
+		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
+		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
+		MoneyL.Text = "💰/⌛ " + ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
-		PollL.Text = Pollution.ToString();
-		BTime.Text = BuildTime.ToString() + " ⌛";
+		PollL.Text = "🏭 " + Pollution.ToString();
+		BTime.Text = "⌛ " + BuildTime.ToString();
 	}
 
 	// ==================== Helper Methods ====================    
@@ -436,6 +442,14 @@ public partial class PowerPlant : Node2D {
 		// Changes the plant's color
 		Modulate = GRAY;
 		
+		// Turns animation off
+		if(HasAnimation) {
+			AnimationPlayer AP = GetNode<AnimationPlayer>("AnimationPlayer");
+			AnimName = AP.CurrentAnimation;
+			AP.Play("RESET");
+			AP.Stop();
+		}
+		
 		// Propagate the new values to the UI
 		_UpdatePlantData();
 	}
@@ -455,6 +469,11 @@ public partial class PowerPlant : Node2D {
 		
 		// Resets the plant's original color
 		Modulate = DEFAULT_COLOR;
+		
+		if(HasAnimation) {
+			AnimationPlayer AP = GetNode<AnimationPlayer>("AnimationPlayer");
+			AP.Play(AnimName);
+		}
 		
 		// Propagate the new values to the UI
 		_UpdatePlantData();
