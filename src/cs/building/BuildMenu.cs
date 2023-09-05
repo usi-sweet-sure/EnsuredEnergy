@@ -82,6 +82,10 @@ public partial class BuildMenu : CanvasLayer {
 		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Hydro");
 		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Tree");
 		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Wind");
+		WastePlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Waste");
+		BiomassPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Biomass");
+		RiverPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/River");
+		PumpPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Pump");
 
 		// Fetch associated buttons
 		GasButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Gas/GasButton");
@@ -89,6 +93,10 @@ public partial class BuildMenu : CanvasLayer {
 		HydroButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Hydro/HydroButton");
 		TreeButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Tree/TreeButton");
 		WindButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Wind/WindButton");
+		WasteButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Waste/WasteButton");
+		BiomassButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Biomass/BiomassButton");
+		RiverButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/River/RiverButton");
+		PumpButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Pump/PumpButton");
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");
@@ -107,6 +115,10 @@ public partial class BuildMenu : CanvasLayer {
 		HydroButton.Pressed += _OnHydroButtonPressed;
 		TreeButton.Pressed += _OnTreeButtonPressed;
 		WindButton.Pressed += _OnWindButtonPressed;
+		WasteButton.Pressed += _OnWasteButtonPressed; 
+		BiomassButton.Pressed += _OnBiomassButtonPressed;
+		RiverButton.Pressed += _OnRiverButtonPressed;
+		PumpButton.Pressed += _OnPumpButtonPressed;
 		CloseButton.Pressed += _OnCloseButtonPressed;
 
 		HideAllPlants();
@@ -242,6 +254,8 @@ public partial class BuildMenu : CanvasLayer {
 					WindPlant._SetPlantFromConfig(Building.Type.WIND);
 					WindPlant.PlantType = Building.Type.WIND;
 					break;
+
+				
 			}
 		}
 	} 
@@ -278,6 +292,38 @@ public partial class BuildMenu : CanvasLayer {
 	public void _OnWindButtonPressed() {
 		// Send out the selection
 		EmitSignal(SignalName.SelectBuilding, WindPlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+
+	public void _OnWasteButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, WastePlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+
+	public void _OnBiomassButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, BiomassPlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+
+	public void _OnRiverButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, RiverPlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+	
+	public void _OnPumpButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, PumpPlant);
 
 		// Close the menu
 		IsOpen = false;

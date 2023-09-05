@@ -183,12 +183,24 @@ _PlantType = 6
 [node name="Sprite" parent="TabContainer/TabBar/ScrollC/HBoxC/Waste" index="0"]
 texture = ExtResource("9_ydaxd")
 
+[node name="WasteButton" type="Button" parent="TabContainer/TabBar/ScrollC/HBoxC/Waste"]
+offset_left = -101.0
+offset_top = -144.0
+offset_right = 104.0
+offset_bottom = 143.0
+
 [node name="Biomass" parent="TabContainer/TabBar/ScrollC/HBoxC" instance=ExtResource("2_236y8")]
 position = Vector2(1377, 334)
 _PlantType = 7
 
 [node name="Sprite" parent="TabContainer/TabBar/ScrollC/HBoxC/Biomass" index="0"]
 texture = ExtResource("10_mc0bo")
+
+[node name="BiomassButton" type="Button" parent="TabContainer/TabBar/ScrollC/HBoxC/Biomass"]
+offset_left = -103.0
+offset_top = -148.0
+offset_right = 96.0
+offset_bottom = 141.0
 
 [node name="River" parent="TabContainer/TabBar/ScrollC/HBoxC" instance=ExtResource("2_236y8")]
 position = Vector2(384, 330)
@@ -197,9 +209,21 @@ _PlantType = 8
 [node name="Sprite" parent="TabContainer/TabBar/ScrollC/HBoxC/River" index="0"]
 texture = ExtResource("11_8ko7n")
 
+[node name="RiverButton" type="Button" parent="TabContainer/TabBar/ScrollC/HBoxC/River"]
+offset_left = -98.0
+offset_top = -120.0
+offset_right = 108.0
+offset_bottom = 146.0
+
 [node name="Pump" parent="TabContainer/TabBar/ScrollC/HBoxC" instance=ExtResource("2_236y8")]
 position = Vector2(632, 328)
 _PlantType = 9
+
+[node name="PumpButton" type="Button" parent="TabContainer/TabBar/ScrollC/HBoxC/Pump"]
+offset_left = -90.0
+offset_top = -120.0
+offset_right = 93.0
+offset_bottom = 144.0
 
 [editable path="TabContainer/TabBar/ScrollC/HBoxC/Solar"]
 [editable path="TabContainer/TabBar/ScrollC/HBoxC/Wind"]
