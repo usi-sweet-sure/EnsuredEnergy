@@ -583,6 +583,9 @@ public partial class GameLoop : Node2D {
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
 
+			// Reset the plant
+			pp._Reset();
+
 			// Show the plant
 			pp.Show();
 		}
