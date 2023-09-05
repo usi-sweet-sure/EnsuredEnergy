@@ -44,6 +44,10 @@ public partial class BuildMenu : CanvasLayer {
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
 	private PowerPlant WindPlant;
+	private PowerPlant WastePlant;
+	private PowerPlant BiomassPlant;
+	private PowerPlant RiverPlant;
+	private PowerPlant PumpPlant;
 
 	// Buttons to select the power plants
 	private Button GasButton;
@@ -51,6 +55,10 @@ public partial class BuildMenu : CanvasLayer {
 	private Button HydroButton;
 	private Button TreeButton;
 	private Button WindButton;
+	private Button WasteButton;
+	private Button BiomassButton;
+	private Button RiverButton;
+	private Button PumpButton;
 
 	// Close button
 	private Button CloseButton;

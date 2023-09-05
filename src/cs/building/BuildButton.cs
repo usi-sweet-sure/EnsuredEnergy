@@ -117,7 +117,7 @@ public partial class BuildButton : TextureButton {
 		HydroPlant._SetBuildButton(this);
 		TreePlant._SetBuildButton(this);
 		WindPlant._SetBuildButton(this);
-    WastePlant._SetBuildButton(this);
+    	WastePlant._SetBuildButton(this);
 		BiomassPlant._SetBuildButton(this);
 		RiverPlant._SetBuildButton(this);
 		PumpPlant._SetBuildButton(this);
