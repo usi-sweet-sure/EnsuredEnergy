@@ -132,6 +132,7 @@ public partial class PowerPlant : Node2D {
 	private int RefundAmount = -1;
 
 	private bool DeleteSignalConnected = false;
+	private bool EnergySignalConnected = false;
 
 	// ==================== GODOT Method Overrides ====================
 	
@@ -166,6 +167,7 @@ public partial class PowerPlant : Node2D {
 			Price.Show();
 		} else {
 			Price.Hide();
+			Switch.Show();
 		}
 
 		// Set the labels correctly
@@ -205,6 +207,29 @@ public partial class PowerPlant : Node2D {
 		}
 	}
 
+	// Makes the sprite transparent
+	public void _MakeTransparent() {
+		Sprite.Modulate = new (1, 0.75f, 0.75f, 0.5f);
+	}
+
+	// Makes the sprite opaque
+	public void _MakeOpaque() {
+		Sprite.Modulate = new(1, 1, 1, 1);
+  }
+  
+	// Resets the plant
+	public void _Reset() {
+		// Disable the switch
+		Switch.ButtonPressed = true;
+		Switch.Disabled = false;
+		Switch.Show();
+		
+		// Workaround to allow for an immediate update
+		IsAlive = false;
+		_OnSwitchToggled(false);
+		Debug.Print("RESET PP : " + PlantName);
+	}
+
 	// Getter for the powerplant's current capacity
 	public int _GetCapacity() => EnergyCapacity;
 
@@ -226,9 +251,17 @@ public partial class PowerPlant : Node2D {
 	// Getter for the delete signal connection flag
 	public bool _GetDeleteConnectFlag() => DeleteSignalConnected;
 
+	// Getter for the energy signal connection flag
+	public bool _GetEnergyConnectFlag() => EnergySignalConnected;
+
 	// Sets the delete signal connection flag
 	public void _SetDeleteConnectFlag() {
 		DeleteSignalConnected = true;
+	}
+
+	// Sets the energy signal connection flag
+	public void _SetEnergyConnectFlag() {
+		EnergySignalConnected = true;
 	}
 
 	// Sets the reference to the buildbutton that created this plant
@@ -280,6 +313,8 @@ public partial class PowerPlant : Node2D {
 		if(EndTurn <= C._GetTurn()) {
 			// Deactivate the plant
 			KillPowerPlant();
+
+			Debug.Print("PLANT LIFE ENDED: " + PlantName);
 
 			// Disable the switch
 			Switch.ButtonPressed = false;
@@ -390,6 +425,12 @@ public partial class PowerPlant : Node2D {
 
 	// Deactivates the current power plant
 	private void KillPowerPlant() {
+		// Save initial values
+		InitialEnergyAvailability = EnergyAvailability;
+		InitialEnergyCapacity = EnergyCapacity;
+		InitialProductionCost = ProductionCost;
+		InitialPollution = Pollution;
+
 		IsAlive = false;
 		EnergyCapacity = 0;
 		EnergyAvailability = (0.0f, 0.0f);
@@ -415,6 +456,7 @@ public partial class PowerPlant : Node2D {
 
 	// Activates the power plant
 	private void ActivatePowerPlant() {
+		Debug.Print("Plant Activated: " + PlantName);
 		IsAlive = true;
 
 		// Reset the internal metrics to their initial values
@@ -479,12 +521,12 @@ public partial class PowerPlant : Node2D {
 	}
 
 	// Requests a deletion of the powerplant
-	private void OnDeletePressed() {
+	public void OnDeletePressed() {
 		// Hide the current plant
 		Hide();
 
 		// Reset the button
-		BB._Reset();
+		BB?._Reset();
 
 		// Set the refund amount
 		if(RefundAmount == -1) {

@@ -31,10 +31,15 @@ public partial class UI : CanvasLayer {
 	private const string RES_GROUP = "resources";
 	private const string POWERPLANT_GROUP = "powerplants";	
 	private const string UI_GROUP = "ui";
+	private const string MENU_GROUP = "menu";
 
 	// Signals to the game loop that the turn must be passed
 	[Signal]
 	public delegate void NextTurnEventHandler();
+
+	[Signal]
+	/* Signals that a game reset should take place */
+	public delegate void ResetGameEventHandler();
 
 	// Timeline update values
 	[Export]
@@ -102,11 +107,21 @@ public partial class UI : CanvasLayer {
 	private Button LanguageButton;
 	private Button SettingsClose;
 
+	// Reset button and confirmation
+	private Button ResetButton;
+	private ColorRect ResetPrompt;
+	private Label ResetConfirmL;
+	private Button ResetYes;
+	private Button ResetNo;
+
 	// Game Loop
 	private GameLoop GL;
 
 	// Context
 	private Context C;
+
+	// Year label
+	private Label Year;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -126,6 +141,13 @@ public partial class UI : CanvasLayer {
 		LanguageButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Language");
 		SettingsClose = GetNode<Button>("SettingsButton/SettingsBox/Close");
 
+		// Reset nodes
+		ResetButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset");
+		ResetPrompt = GetNode<ColorRect>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm");
+		ResetConfirmL = GetNode<Label>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
+		ResetYes = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
+		ResetNo = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
 		WinterEnergyPredict = GetNode<InfoBar>("EnergyBarWinterPredict");
@@ -138,6 +160,7 @@ public partial class UI : CanvasLayer {
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
 		Imports = GetNode<ImportSlider>("Import");
+		Year = GetNode<Label>("TimePanelBlank/Year");
 		
 		TimelineAP = GetNode<AnimationPlayer>("TimePanelBlank/TimelineAnimation");
 
@@ -187,6 +210,11 @@ public partial class UI : CanvasLayer {
 		PollutionBar.MouseExited += _OnPollutionMouseExited;
 		Imports.ImportUpdate += _OnImportUpdate;
 
+		// Reset signals
+		ResetButton.Pressed += _OnResetPressed;
+		ResetYes.Pressed += _OnResetYesPressed;
+		ResetNo.Pressed += _OnResetNoPressed;
+
 		// For predictive updates
 		C.UpdatePrediction += _OnUpdatePrediction;
 		TC.UpdateUI += _UpdateUI;
@@ -227,6 +255,18 @@ public partial class UI : CanvasLayer {
 		// UI buttons
 		string next_turn_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_next_turn");
 		string import_name = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
+
+		// Reset texts
+		string reset_name = TC._GetText(LABEL_FILENAME, MENU_GROUP, "label_reset");
+		string reset_prompt = TC._GetText(LABEL_FILENAME, MENU_GROUP, "reset_prompt");
+		string reset_yes = TC._GetText(LABEL_FILENAME, MENU_GROUP, "reset_yes");
+		string reset_no = TC._GetText(LABEL_FILENAME, MENU_GROUP, "reset_no");
+
+		// Update the reset texet
+		ResetButton.Text = reset_name;
+		ResetConfirmL.Text = reset_prompt;
+		ResetYes.Text = reset_yes;
+		ResetNo.Text = reset_no;
 
 		// Update the various plants
 		BM._UpdatePlantName(Building.Type.GAS, gas_name);
@@ -566,6 +606,12 @@ public partial class UI : CanvasLayer {
 		MoneyL.Text = Data.Money.ToString();
 		ImportCostL.Text = Data.Imports.ToString();
 	}
+
+	// Sets the correct years without the Next Turn Animation
+	public void SetNextYearsNoAnim(int val) {
+		Year.Text = val.ToString();
+		Timeline.Value = val;
+	}
 	
 	// Sets the correct years on the Next Turn Animation
 	public void SetNextYears() {
@@ -744,5 +790,25 @@ public partial class UI : CanvasLayer {
 	// Updates the state of the next turn button
 	public void _OnNextTurnStateUpdate(bool state) {
 		NextTurnButton.Disabled = state;
+	}
+
+	// Reacts to the reset button being pressed
+	public void _OnResetPressed() {
+		// Simply show the confirmation prompt
+		ResetPrompt.Show();
+	}
+
+	// Reacts to a reset confirmation
+	public void _OnResetYesPressed() {
+		// Singal that a reset will happen
+		EmitSignal(SignalName.ResetGame);
+		ResetPrompt.Hide();
+		SettingsBox.Hide();
+	}
+
+	// Reacts to a reset cancelation
+	public void _OnResetNoPressed() {
+		// Simply hide the reset confirmation
+		ResetPrompt.Hide();
 	}
 }
