@@ -62,6 +62,9 @@ public partial class BuildButton : TextureButton {
 	// Building sprite
 	private Sprite2D BuildSprite;
 	private Label TL;
+	
+	// Building audio
+	private AudioStreamPlayer2D Sound;
 
 	// Build cancellation button
 	private Button Cancel;
@@ -109,6 +112,7 @@ public partial class BuildButton : TextureButton {
 		BuildSprite = GetNode<Sprite2D>("Building");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
 		Cancel = GetNode<Button>("Cancel");
+		Sound = GetNode<AudioStreamPlayer2D>("Sound");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -221,6 +225,8 @@ public partial class BuildButton : TextureButton {
 		// Update the requested build fields
 		PPInProgress = null;
 		BS = BuildState.DONE;
+		
+		Sound.Stop();
 
 		// Signal that the build is complete
 		EmitSignal(SignalName.BuildDone);
@@ -245,6 +251,7 @@ public partial class BuildButton : TextureButton {
 
 	// Sets the button to the build state
 	private void SetToBuild() {
+		Sound.Play();
 		BuildSprite.Show();
 		TL.Text = "⌛ " + TurnsToBuild.ToString();
 		Disabled = true;

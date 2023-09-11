@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=29 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -16,11 +16,14 @@
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
 [ext_resource type="Script" path="res://src/cs/resources/EnergyManager.cs" id="8_axsc3"]
 [ext_resource type="Script" path="res://src/cs/resources/SupportManager.cs" id="9_44b4k"]
+[ext_resource type="AudioStream" uid="uid://chfos7nbvqtwi" path="res://assets/Sounds/Ambience_Place_Waterfall_Loop.wav" id="9_kpuis"]
 [ext_resource type="Script" path="res://src/cs/resources/EnvironmentManager.cs" id="10_7fban"]
 [ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="11_uite1"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="12_vvejj"]
 [ext_resource type="PackedScene" uid="uid://pvoi2mcc3oc1" path="res://scenes/hud/menu.tscn" id="18_h65u3"]
 [ext_resource type="PackedScene" uid="uid://cej4dlw11su6f" path="res://scenes/hud/end.tscn" id="21_7pke6"]
+[ext_resource type="AudioStream" uid="uid://c78fhd6h6rxwg" path="res://assets/Sounds/Forest Loop.wav" id="23_xfeff"]
+[ext_resource type="AudioStream" uid="uid://b1xt7i8bt73lf" path="res://assets/Sounds/10-Dark Fantasy Studio- Color the sky.mp3" id="24_jvewo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlpb2"]
 atlas = ExtResource("5_ra246")
@@ -229,6 +232,13 @@ limit_right = 5000
 limit_bottom = 3000
 script = ExtResource("3_s6ssk")
 
+[node name="WaterSound" type="AudioStreamPlayer2D" parent="World"]
+position = Vector2(637, 432)
+stream = ExtResource("9_kpuis")
+volume_db = -8.0
+autoplay = true
+max_distance = 1000.0
+
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false
 script = ExtResource("3_l6dyd")
@@ -265,6 +275,16 @@ visible = false
 
 [node name="End" parent="." instance=ExtResource("21_7pke6")]
 visible = false
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_xfeff")
+volume_db = -10.0
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_jvewo")
+volume_db = -15.0
+autoplay = true
 
 [editable path="World"]
 [editable path="World/Nuclear"]

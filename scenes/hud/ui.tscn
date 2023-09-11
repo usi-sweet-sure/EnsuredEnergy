@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=33 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
 [ext_resource type="Texture2D" uid="uid://djx386wryt8ab" path="res://assets/Elements/ENVIORMENT BUTTON.png" id="9_kqwrt"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
+[ext_resource type="AudioStream" uid="uid://vnx82prugxgv" path="res://assets/Sounds/tick_01.mp3" id="10_mq7y0"]
 [ext_resource type="Texture2D" uid="uid://3ypqypyywx05" path="res://assets/temp_pollution_icon.png" id="10_vhysx"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
 
@@ -100,6 +101,29 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_mq7y0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_mq7y0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_mq7y0")
+}],
+"times": PackedFloat32Array(1.2, 1.95, 2.7)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_lrye6"]
 length = 0.001
@@ -394,6 +418,10 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_08hvt")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TimePanelBlank"]
+volume_db = -20.0
+pitch_scale = 0.5
 
 [node name="Trust" type="ProgressBar" parent="."]
 offset_left = 278.0
