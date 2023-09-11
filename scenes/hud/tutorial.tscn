@@ -120,6 +120,7 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
+mouse_default_cursor_shape = 2
 flat = true
 
 [node name="Arrow" type="Sprite2D" parent="TutoPopUp"]

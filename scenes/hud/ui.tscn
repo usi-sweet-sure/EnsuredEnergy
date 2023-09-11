@@ -224,6 +224,7 @@ offset_top = 929.0
 offset_right = 1879.0
 offset_bottom = 993.0
 focus_mode = 0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_kbgc4")
 texture_pressed = ExtResource("3_l43te")
 texture_hover = ExtResource("4_6fg8a")
@@ -775,6 +776,7 @@ offset_right = -1472.0
 offset_bottom = 152.0
 grow_horizontal = 0
 focus_mode = 0
+mouse_default_cursor_shape = 2
 flat = true
 alignment = 0
 
@@ -784,6 +786,7 @@ offset_top = 40.0
 offset_right = 136.0
 offset_bottom = 128.0
 focus_mode = 0
+mouse_default_cursor_shape = 2
 icon = ExtResource("7_mnpcp")
 flat = true
 

@@ -219,6 +219,7 @@ offset_right = 293.0
 offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 14
 text = "Ask the population to lower their energy consumption.
 - 50 Support 😡"
@@ -236,6 +237,7 @@ offset_right = 293.0
 offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 14
 text = "Turn on the spare coal plant.
 - 50 Environment 🏭"
@@ -253,6 +255,7 @@ offset_right = 293.0
 offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 14
 text = "Import electricity from neighbouring countries.
 - 50 💰"
@@ -268,6 +271,7 @@ offset_left = -79.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 text = "Continue"
 
 [node name="ShockController" type="Node" parent="."]
