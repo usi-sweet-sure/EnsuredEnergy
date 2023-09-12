@@ -537,6 +537,9 @@ public partial class GameLoop : Node2D {
 
 	// Reacts to the shock window's continue button being pressed
 	public void _OnShockWindowContinuePressed() {
+		// Reset the shock window animation (if you find a better place, go for it)
+		ShockWindow.AP.Play("RESET");
+		
 		// Check wether or not offline mode is active
 		if(C._GetOffline()) {
 			NewTurnOffline();
