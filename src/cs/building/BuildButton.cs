@@ -68,8 +68,8 @@ public partial class BuildButton : TextureButton {
 	private int RefundAmount = -1;
 	
 	// Money animation
-	private AnimationPlayer AP;
-	private Label AnimMoney;
+	public AnimationPlayer AP;
+	public Label AnimMoney;
 
 	// Reference to the game loop
 	private GameLoop GL;
