@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=36 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="1_dqrnt"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
@@ -839,10 +839,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.5
-offset_top = -24.5
-offset_right = 55.5
-offset_bottom = 33.5
+offset_left = 57.0
+offset_top = 68.0
+offset_right = 169.0
+offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)

@@ -412,7 +412,7 @@ public partial class BuildButton : TextureButton {
 				C._UpdatePPStats(PP.PlantType);
 
 				// Update the data stored in the model struct if online
-				if(C._GetOffline()) {
+				if(!C._GetOffline()) {
 					C._UpdateModelFromClient(PP);
 				}
 
