@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=35 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="1_dqrnt"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bajeyuq7feqxr" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0004_Wind.png" id="13_uoixp"]
 [ext_resource type="Texture2D" uid="uid://cmeajgdmtv4xn" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0002_Wind-propeller.png" id="14_n41d3"]
 [ext_resource type="AudioStream" uid="uid://dohnoi7wa60h6" path="res://assets/Sounds/Ambience_Place_Blacksmith_Shop_Loop.wav" id="17_q6pln"]
+[ext_resource type="Texture2D" uid="uid://lkinuybw2vd8" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0006_Waste.png" id="17_q1r63"]
+[ext_resource type="Texture2D" uid="uid://drju16akfui3t" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0012_Biomass.png" id="18_fbsst"]
+[ext_resource type="Texture2D" uid="uid://com3jwqcdurjb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0016_Hydrolic-river-.png" id="19_jfn5w"]
 
 [sub_resource type="Animation" id="Animation_q0r05"]
 length = 0.001
@@ -784,6 +787,36 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Waste" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+PlantName = "Waste"
+_PlantType = 6
+
+[node name="Sprite" parent="Waste" index="0"]
+texture = ExtResource("17_q1r63")
+
+[node name="Biomass" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+_PlantType = 7
+
+[node name="Sprite" parent="Biomass" index="0"]
+texture = ExtResource("18_fbsst")
+
+[node name="River" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+_PlantType = 8
+
+[node name="Sprite" parent="River" index="0"]
+texture = ExtResource("19_jfn5w")
+
+[node name="Pump" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+_PlantType = 9
+
 [node name="Cancel" type="Button" parent="."]
 visible = false
 layout_mode = 0
@@ -831,3 +864,7 @@ vertical_alignment = 1
 [editable path="Solar"]
 [editable path="Tree"]
 [editable path="Wind"]
+[editable path="Waste"]
+[editable path="Biomass"]
+[editable path="River"]
+[editable path="Pump"]

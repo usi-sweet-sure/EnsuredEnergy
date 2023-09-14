@@ -73,6 +73,10 @@ Energy
         <text id="label_wind">Windrad</text>
         <text id="label_tree">Baum</text>
         <text id="label_nuclear">Atomwerk</text>
+        <text id="label_waste">Abfallverbrennung</text>
+        <text id="label_biomass">Biomasse</text>
+        <text id="label_river">Fluss</text>
+        <text id="label_pump">Pumpe</text>
     </group>
 
         <!-- Labels for the main menu -->
