@@ -222,6 +222,7 @@ offset_bottom = 1984.0
 [node name="Camera2D" parent="World" index="15"]
 position = Vector2(958, 538)
 anchor_mode = 1
+zoom = Vector2(0.75, 0.75)
 limit_left = -2800
 limit_top = -1000
 limit_right = 5000

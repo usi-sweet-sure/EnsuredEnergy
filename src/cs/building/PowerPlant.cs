@@ -532,6 +532,9 @@ public partial class PowerPlant : Node2D {
 		if(RefundAmount == -1) {
 			RefundAmount = BuildCost;
 		}
+		
+		BB.AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
+		BB.AP.Play("Money+");
 
 		// Kill the deleted power plant
 		KillPowerPlant();

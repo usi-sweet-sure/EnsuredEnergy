@@ -49,7 +49,7 @@ public partial class Shock : CanvasLayer {
 	private Label Result;
 	private Label Reward;
 	private Sprite2D Img;
-	private AnimationPlayer AP;
+	public AnimationPlayer AP;
 	
 	// Control node containing the reactions
 	private Control Reactions;

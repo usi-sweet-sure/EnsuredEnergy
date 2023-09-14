@@ -74,6 +74,10 @@ public partial class BuildButton : TextureButton {
 	// Build cancellation button
 	private Button Cancel;
 	private int RefundAmount = -1;
+	
+	// Money animation
+	public AnimationPlayer AP;
+	public Label AnimMoney;
 
 	// Reference to the game loop
 	private GameLoop GL;
@@ -125,6 +129,8 @@ public partial class BuildButton : TextureButton {
 		BuildSprite = GetNode<Sprite2D>("Building");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
 		Cancel = GetNode<Button>("Cancel");
+		AP = GetNode<AnimationPlayer>("AnimationPlayer");
+		AnimMoney = GetNode<Label>("Money");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -386,6 +392,12 @@ public partial class BuildButton : TextureButton {
 
 		// Hide the build menu UI
 		BM.Hide();
+		
+		// play money animation
+		if(PP.BuildCost > 0) {
+			AnimMoney.Text = "-" + PP.BuildCost.ToString() + "$";
+			AP.Play("Money-");
+		}
 
 		// Check if the requested build was legal
 		if(GL._RequestBuild(PP.BuildCost)) {
@@ -423,6 +435,10 @@ public partial class BuildButton : TextureButton {
 
 	// Reacts to a cancelation request
 	private void _OnCancelPressed() {
+		// play money anim
+		AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
+		AP.Play("Money+");
+		
 		// Hide all plants
 		HideAllPlants();
 

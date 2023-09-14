@@ -62,7 +62,9 @@ public partial class ImportSlider : VSlider {
 
 		// Connect the various callbacks
 		ValueChanged += OnSliderRangeValueChanged;
-		ApplySelection.Pressed += OnApplySelectionPressed;
+		DragEnded += OnApplySelectionPressed;
+		//Keeping it just in case for now
+		//ApplySelection.Pressed += OnApplySelectionPressed;
 		Cancel.Pressed += OnCancelPressed;
 		ImportsButton.Pressed += OnImportsButtonPressed;
 	}
@@ -99,18 +101,18 @@ public partial class ImportSlider : VSlider {
 		Amount.Text = value.ToString() + " %";
 
 		// Show the two selection related buttons
-		ApplySelection.Show();
-		Cancel.Show();
+		//ApplySelection.Show();
+		//Cancel.Show();
 	}
 
 	// Confirms the selection of a specific import amount
-	private void OnApplySelectionPressed() {
+	private void OnApplySelectionPressed(bool ValChanged) {
 		// Save the import amount
 		ImportAmount = Math.Max(0, Math.Min((int) Value, 100));
 
 		// Hide the apply selection button
-		ApplySelection.Hide();
-		Cancel.Hide();
+		//ApplySelection.Hide();
+		//Cancel.Hide();
 
 		// Propagate the value update to the rest of the system
 		EmitSignal(SignalName.ImportUpdate);
