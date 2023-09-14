@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=34 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="1_dqrnt"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
@@ -797,7 +797,7 @@ text = "X"
 position = Vector2(112, 88)
 stream = ExtResource("17_q6pln")
 max_distance = 1000.0
-attenuation = 2.46229
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_xn1x5")
