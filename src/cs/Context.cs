@@ -332,14 +332,18 @@ public partial class Context : Node {
             PPStats.Clear();
         }
 
-        // Initialize the internal stats
-        PPStats = new() {
-            {Building.Type.GAS, 0},
-            {Building.Type.HYDRO, 0},
-            {Building.Type.NUCLEAR, 0},
-            {Building.Type.SOLAR, 0},
-            {Building.Type.TREE, 0},
-            {Building.Type.WIND, 0}
-        };
-    }
+		// Initialize the internal stats
+		PPStats = new() {
+			{Building.Type.GAS, 0},
+			{Building.Type.HYDRO, 0},
+			{Building.Type.NUCLEAR, 0},
+			{Building.Type.SOLAR, 0},
+			{Building.Type.TREE, 0},
+			{Building.Type.WIND, 0},
+			{Building.Type.WASTE, 0},
+			{Building.Type.BIOMASS, 0},
+			{Building.Type.RIVER, 0},
+			{Building.Type.PUMP, 0}
+		};
+	}
 }
