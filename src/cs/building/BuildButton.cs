@@ -386,7 +386,11 @@ public partial class BuildButton : TextureButton {
 	// Receives the power plant selected by the user and now we need to place it
 	public void _OnSelectBuilding(PowerPlant PP) {
 		// Sanity check: Check explicitly for hydro builds and dissallow illegal ones
-		if(!AllowHydro && PP.PlantType.type == Building.Type.HYDRO || PP.PlantType.type == Building.Type.RIVER || PP.PlantType.type == Building.Type.PUMP) {
+		if(!AllowHydro && (
+			PP.PlantType.type == Building.Type.HYDRO || 
+			PP.PlantType.type == Building.Type.RIVER || 
+			PP.PlantType.type == Building.Type.PUMP)
+		) {
 			return;
 		}
 
