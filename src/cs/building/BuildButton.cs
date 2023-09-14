@@ -117,7 +117,7 @@ public partial class BuildButton : TextureButton {
 		HydroPlant._SetBuildButton(this);
 		TreePlant._SetBuildButton(this);
 		WindPlant._SetBuildButton(this);
-    	WastePlant._SetBuildButton(this);
+		WastePlant._SetBuildButton(this);
 		BiomassPlant._SetBuildButton(this);
 		RiverPlant._SetBuildButton(this);
 		PumpPlant._SetBuildButton(this);
@@ -274,6 +274,10 @@ public partial class BuildButton : TextureButton {
 		SolarPlant.Hide();
 		TreePlant.Hide();
 		WindPlant.Hide();
+		BiomassPlant.Hide();
+		WastePlant.Hide();
+		RiverPlant.Hide();
+		PumpPlant.Hide();
 		
 		BuildSprite.Hide();
 	}
@@ -376,7 +380,7 @@ public partial class BuildButton : TextureButton {
 	// Receives the power plant selected by the user and now we need to place it
 	public void _OnSelectBuilding(PowerPlant PP) {
 		// Sanity check: Check explicitly for hydro builds and dissallow illegal ones
-		if(PP.PlantType.type == Building.Type.HYDRO && !AllowHydro) {
+		if(!AllowHydro && PP.PlantType.type == Building.Type.HYDRO || PP.PlantType.type == Building.Type.RIVER || PP.PlantType.type == Building.Type.PUMP) {
 			return;
 		}
 

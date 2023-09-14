@@ -194,6 +194,10 @@ public partial class BuildMenu : CanvasLayer {
 		SolarPlant.Hide();
 		TreePlant.Hide();
 		WindPlant.Hide();
+		BiomassPlant.Hide();
+		WastePlant.Hide();
+		RiverPlant.Hide();
+		PumpPlant.Hide();
 	}
 
 	// Sets the plants name and propagates info to ui
