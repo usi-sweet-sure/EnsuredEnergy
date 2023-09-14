@@ -82,26 +82,26 @@ public partial class BuildMenu : CanvasLayer {
 		Hide();
 
 		// Fetch Power plants
-		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Gas");
-		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Solar");
-		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Hydro");
-		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Tree");
-		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Wind");
-		WastePlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Waste");
-		BiomassPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Biomass");
-		RiverPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/River");
-		PumpPlant = GetNode<PowerPlant>("TabContainer/TabBar/ScrollC/HBoxC/Pump");
+		GasPlant = GetNode<PowerPlant>("TabContainer/TabBar/Gas");
+		SolarPlant = GetNode<PowerPlant>("TabContainer/TabBar/Solar");
+		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/Hydro");
+		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/Tree");
+		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/Wind");
+		WastePlant = GetNode<PowerPlant>("TabContainer/TabBar/Waste");
+		BiomassPlant = GetNode<PowerPlant>("TabContainer/TabBar/Biomass");
+		RiverPlant = GetNode<PowerPlant>("TabContainer/TabBar/River");
+		PumpPlant = GetNode<PowerPlant>("TabContainer/TabBar/Pump");
 
 		// Fetch associated buttons
-		GasButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Gas/GasButton");
-		SolarButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Solar/SolarButton");
-		HydroButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Hydro/HydroButton");
-		TreeButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Tree/TreeButton");
-		WindButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Wind/WindButton");
-		WasteButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Waste/WasteButton");
-		BiomassButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Biomass/BiomassButton");
-		RiverButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/River/RiverButton");
-		PumpButton = GetNode<Button>("TabContainer/TabBar/ScrollC/HBoxC/Pump/PumpButton");
+		GasButton = GetNode<Button>("TabContainer/TabBar/Gas/GasButton");
+		SolarButton = GetNode<Button>("TabContainer/TabBar/Solar/SolarButton");
+		HydroButton = GetNode<Button>("TabContainer/TabBar/Hydro/HydroButton");
+		TreeButton = GetNode<Button>("TabContainer/TabBar/Tree/TreeButton");
+		WindButton = GetNode<Button>("TabContainer/TabBar/Wind/WindButton");
+		WasteButton = GetNode<Button>("TabContainer/TabBar/Waste/WasteButton");
+		BiomassButton = GetNode<Button>("TabContainer/TabBar/Biomass/BiomassButton");
+		RiverButton = GetNode<Button>("TabContainer/TabBar/River/RiverButton");
+		PumpButton = GetNode<Button>("TabContainer/TabBar/Pump/PumpButton");
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");
