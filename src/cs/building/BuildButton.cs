@@ -64,7 +64,7 @@ public partial class BuildButton : TextureButton {
 	private Label TL;
 	
 	// Building audio
-	private AudioStreamPlayer2D Sound;
+	private AudioStreamPlayer2D BuildingSound;
 
 	// Build cancellation button
 	private Button Cancel;
@@ -112,7 +112,7 @@ public partial class BuildButton : TextureButton {
 		BuildSprite = GetNode<Sprite2D>("Building");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
 		Cancel = GetNode<Button>("Cancel");
-		Sound = GetNode<AudioStreamPlayer2D>("Sound");
+		BuildingSound = GetNode<AudioStreamPlayer2D>("BuildingSound");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -226,7 +226,7 @@ public partial class BuildButton : TextureButton {
 		PPInProgress = null;
 		BS = BuildState.DONE;
 		
-		Sound.Stop();
+		BuildingSound.Stop();
 
 		// Signal that the build is complete
 		EmitSignal(SignalName.BuildDone);
@@ -251,7 +251,7 @@ public partial class BuildButton : TextureButton {
 
 	// Sets the button to the build state
 	private void SetToBuild() {
-		Sound.Play();
+		BuildingSound.Play();
 		BuildSprite.Show();
 		TL.Text = "⌛ " + TurnsToBuild.ToString();
 		Disabled = true;
@@ -396,6 +396,9 @@ public partial class BuildButton : TextureButton {
 	private void _OnCancelPressed() {
 		// Hide all plants
 		HideAllPlants();
+		
+		//Stop building sound
+		BuildingSound.Stop();
 
 		// Hide the cancel button
 		Cancel.Hide();

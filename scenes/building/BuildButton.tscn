@@ -669,7 +669,7 @@ offset_right = 208.0
 offset_bottom = 14.0
 text = "X"
 
-[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+[node name="BuildingSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(112, 88)
 stream = ExtResource("17_q6pln")
 max_distance = 1000.0
