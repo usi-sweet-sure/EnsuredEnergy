@@ -139,7 +139,7 @@ public readonly struct Building {
 	public readonly Type type;
 
 	// The various types of power plants
-	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, WIND, WASTE, BIOMASS, RIVER, PUMP, NONE };
+	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, WIND, NONE };
 
 	// Labels used as string representations of the types
 	public const string GAS_LABEL = "gas";
@@ -148,10 +148,6 @@ public readonly struct Building {
 	public const string TREE_LABEL = "tree";
 	public const string NUCLEAR_LABEL = "nuclear";
 	public const string WIND_LABEL = "wind";
-	public const string WASTE_LABEL = "waste";
-	public const string BIOMASS_LABEL = "biomass";
-	public const string RIVER_LABEL = "river";
-	public const string PUMP_LABEL = "pump";
 
 	// Base values for the model's building types
 	private const int GAS_ID_BASE = 1;
@@ -159,7 +155,6 @@ public readonly struct Building {
 	private const int RIV_ID_BASE = 3;
 	private const int SOL_ID_BASE = 6;
 	private const int WND_ID_BASE = 7;
-	// Could you fill this ?
 
 	// Basic constructor for the Building type
 	public Building(Type bt)  {
@@ -204,18 +199,6 @@ public readonly struct Building {
 		if(s_ == NUCLEAR_LABEL) {
 			return new Building(Type.NUCLEAR);
 		}
-		if(s_ == WASTE_LABEL) {
-			return new Building(Type.WASTE);
-		}
-		if(s_ == BIOMASS_LABEL) {
-			return new Building(Type.BIOMASS);
-		}
-		if(s_ == RIVER_LABEL) {
-			return new Building(Type.RIVER);
-		}
-		if(s_ == PUMP_LABEL) {
-			return new Building(Type.PUMP);
-		}
 
 		// The given string was invalid so we give it the impossible type
 		return new Building(Type.NONE);
@@ -229,10 +212,6 @@ public readonly struct Building {
 		type == Type.TREE ? TREE_LABEL :
 		type == Type.WIND ? WIND_LABEL :
 		type == Type.NUCLEAR ? NUCLEAR_LABEL : 
-		type == Type.WASTE ? WASTE_LABEL : 
-		type == Type.BIOMASS ? BIOMASS_LABEL : 
-		type == Type.RIVER ? RIVER_LABEL : 
-		type == Type.PUMP ? PUMP_LABEL : 
 		"";
 
 	// Explicit conversion to an int
@@ -242,7 +221,6 @@ public readonly struct Building {
 		type == Type.SOLAR ? SOL_ID_BASE :
 		type == Type.NUCLEAR ? NUC_ID_BASE : 
 		-1;
-		// Could you fill this ?
 
 	// Performs the same check as the == operator, but with a run-time check on the type
 	public override bool Equals(object obj) {
