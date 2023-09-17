@@ -76,6 +76,9 @@ public partial class Context : Node {
     // Reference to the game loop
     private GameLoop GL;
 
+    // Stat for the number of shocks that were survived
+    private int ShocksSurvived = 0;
+
     // ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -130,6 +133,11 @@ public partial class Context : Node {
     // This should only be called by the game loop
     public void _SetNTurns(int nt) {
         N_TURNS = nt;
+    }
+
+    // Increases the number of shocks survived
+    public void _IncShocksSurvived() {
+        ShocksSurvived++;
     }
 
     // Updates the PPStats to modifiy the number of plants of a certain type
@@ -248,6 +256,9 @@ public partial class Context : Node {
         // Signal to controllers that the language has changed
         EmitSignal(SignalName.UpdateLanguage);
 	}
+
+    // Get the number of survived shocks
+    public int _GetShocksSurvived() => ShocksSurvived;
 
 	// Retrieve the language name
 	public string _GetLanguageName() => Lang.ToName();

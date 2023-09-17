@@ -395,8 +395,20 @@ public partial class GameLoop : Node2D {
 		foreach(var bb in BBs) {
 			bb._Disable();
 		}
+
+		// Retrieve the current resources
+		(Energy Eng, Environment Env, Support Sup) = RM._GetResources();
 		
-		RM._EndGame();
+		// Prepare and show the final end screen
+		EndScreen._SetEndStats(
+			C._GetShocksSurvived(),
+			Eng.SupplyWinter,
+			Eng.SupplySummer,
+			Money.Money < 0, // Are we currently in debt?
+			Sup.Value,
+			Env.PollutionBarValue() <= 0, // Check that the pollution is below 0 (netzero)
+			Env.EnvBarValue()
+		);
 		EndScreen.Show();
 	}
 
@@ -488,6 +500,7 @@ public partial class GameLoop : Node2D {
 	// Triggers a new turn if the game is currently acitve
 	public void _OnNextTurn() {
 		Debug.Print("NEXT TURN: " + GS);
+
 		// Display a shock
 		DisplayShock();
 		Debug.Print("NEXT TURN");
