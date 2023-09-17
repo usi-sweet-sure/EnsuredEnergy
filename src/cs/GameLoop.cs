@@ -563,10 +563,9 @@ public partial class GameLoop : Node2D {
 
 	// Resets the game's state
 	public void _OnResetGame() {
-		
 		// Create a copy of the power plants array
 		PowerPlant[] tmp = new PowerPlant[PowerPlants.Count];
-		PowerPlants.CopyTo(tmp);
+		PowerPlants.Distinct().ToList().CopyTo(tmp);
 
 		// Delete all plants
 		foreach(var pp in tmp) {

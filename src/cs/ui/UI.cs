@@ -801,9 +801,14 @@ public partial class UI : CanvasLayer {
 	// Reacts to a reset confirmation
 	public void _OnResetYesPressed() {
 		// Singal that a reset will happen
-		EmitSignal(SignalName.ResetGame);
 		ResetPrompt.Hide();
 		SettingsBox.Hide();
+
+		// Reset the imports
+		Imports.Value = 0;
+		Imports._OnApplySelectionPressed(true);
+
+		EmitSignal(SignalName.ResetGame);
 	}
 
 	// Reacts to a reset cancelation
