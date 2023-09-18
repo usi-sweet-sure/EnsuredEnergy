@@ -100,6 +100,7 @@ public struct MoneyData {
 	public int Production; // Money spent on production costs this round
 	public int Build; // Money spent on build costs this round
 	public int Imports; // Money spent on imports this turn
+	public int Debt; // The amount of debt acquired so far
 
 	// Default constructor for the MoneyData
 	public MoneyData(int start_money) {
@@ -108,15 +109,21 @@ public struct MoneyData {
 		Production = 0;
 		Build = 0;
 		Imports = 0;
+		Debt = 0;
 	}
 
 	// Resets the spending statistics at the end of each round
 	public void NextTurn(int new_budget, int production, int ImportCost) {
 		Budget = Money + new_budget;
-		Money += new_budget - production - ImportCost;
+		// Each turn the player needs to pay for:
+		// Production costs: the cost of running the power plants
+		// Import costs: the cost of importing the requested amount of power
+		// Debt: pay back the acquired debt
+		Money += new_budget - production - ImportCost - Debt;
 		Production = production;
 		Build = 0;
 		Imports = ImportCost;
+		Debt = 0;
 	}
 
 	// Spends money by updating the data correctly
@@ -124,6 +131,17 @@ public struct MoneyData {
 		Build += amountBuild;
 		Money -= amountBuild;
 		Debug.Print("Spent: " + amountBuild);
+	}
+
+	// Acquire debt
+	// @param debt: the amount debt acquired
+	// @param borrowed: the amount of money that was borrowed
+	public void AcquireDebt(int debt, int borrowed) {
+		// Record debt
+		Debt += debt;
+
+		// Add the money
+		Money += borrowed;
 	}
 }
 

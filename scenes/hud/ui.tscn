@@ -766,75 +766,6 @@ text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BorrowMoneyWindow" type="ColorRect" parent="."]
-visible = false
-offset_left = 514.0
-offset_top = 205.0
-offset_right = 1523.0
-offset_bottom = 816.0
-color = Color(0.596078, 0.596078, 0.596078, 1)
-
-[node name="Title" type="Label" parent="BorrowMoneyWindow"]
-layout_mode = 0
-offset_left = 153.0
-offset_top = 130.0
-offset_right = 843.0
-offset_bottom = 200.0
-theme_override_font_sizes/font_size = 37
-text = "How much would you like to borrow?"
-
-[node name="BorrowSlider" type="HSlider" parent="BorrowMoneyWindow"]
-layout_mode = 0
-offset_left = 152.0
-offset_top = 248.0
-offset_right = 848.0
-offset_bottom = 282.0
-
-[node name="Money" type="Label" parent="BorrowMoneyWindow"]
-layout_mode = 0
-offset_left = 176.0
-offset_top = 344.0
-offset_right = 414.0
-offset_bottom = 404.0
-theme_override_colors/font_color = Color(0.435294, 0.956863, 0.435294, 1)
-theme_override_font_sizes/font_size = 27
-text = "Borrow: xxx$"
-
-[node name="Interest" type="Label" parent="BorrowMoneyWindow"]
-layout_mode = 0
-offset_left = 486.0
-offset_top = 344.0
-offset_right = 824.0
-offset_bottom = 391.0
-theme_override_colors/font_color = Color(0.992157, 0, 0, 1)
-theme_override_font_sizes/font_size = 27
-text = "Pay Back (next turn): xxx$"
-
-[node name="Apply" type="Button" parent="BorrowMoneyWindow"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 480.0
-offset_right = 362.0
-offset_bottom = 534.0
-theme_override_font_sizes/font_size = 27
-text = "Apply"
-
-[node name="Button" type="Button" parent="BorrowMoneyWindow"]
-layout_mode = 0
-offset_left = 584.0
-offset_top = 480.0
-offset_right = 743.0
-offset_bottom = 532.0
-theme_override_font_sizes/font_size = 28
-text = "Cancel"
-
-[node name="BorrowMoney" type="Button" parent="."]
-offset_left = 444.0
-offset_top = 41.0
-offset_right = 482.0
-offset_bottom = 76.0
-text = "+"
-
 [node name="MoneyUI" type="Button" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -991,6 +922,124 @@ offset_top = -113.0
 offset_right = 2121.0
 offset_bottom = 1225.0
 color = Color(1, 1, 1, 0)
+
+[node name="BorrowMoney" type="Button" parent="."]
+offset_left = 444.0
+offset_top = 41.0
+offset_right = 482.0
+offset_bottom = 76.0
+text = "+"
+
+[node name="Debt" type="ColorRect" parent="BorrowMoney"]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_top = 49.0
+offset_right = 106.0
+offset_bottom = 92.0
+color = Color(0.596078, 0.596078, 0.596078, 1)
+
+[node name="DebtAmount" type="Label" parent="BorrowMoney/Debt"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 6.0
+offset_right = 73.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "-000"
+
+[node name="BorrowContainer" type="Button" parent="."]
+visible = false
+offset_left = 5.0
+offset_top = 10.0
+offset_right = 1918.0
+offset_bottom = 1078.0
+
+[node name="BorrowMoneyWindow" type="ColorRect" parent="BorrowContainer"]
+offset_left = 474.0
+offset_top = 220.0
+offset_right = 1483.0
+offset_bottom = 831.0
+color = Color(0.596078, 0.596078, 0.596078, 1)
+
+[node name="Title" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 130.0
+offset_right = 843.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 37
+text = "How much would you like to borrow?"
+
+[node name="BorrowSlider" type="HSlider" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 248.0
+offset_right = 848.0
+offset_bottom = 282.0
+max_value = 1000.0
+step = 100.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Money" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 344.0
+offset_right = 295.0
+offset_bottom = 404.0
+theme_override_colors/font_color = Color(0.435294, 0.956863, 0.435294, 1)
+theme_override_font_sizes/font_size = 27
+text = "Borrow"
+
+[node name="BorrowAmount" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Money"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -1.0
+offset_right = 241.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.454902, 0.94902, 0.458824, 1)
+theme_override_font_sizes/font_size = 27
+text = "xxx"
+
+[node name="Interest" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 344.0
+offset_right = 824.0
+offset_bottom = 391.0
+theme_override_colors/font_color = Color(0.992157, 0, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "Pay Back (next turn)"
+
+[node name="InterestAmount" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Interest"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 429.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "xxx"
+
+[node name="Apply" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 480.0
+offset_right = 362.0
+offset_bottom = 534.0
+theme_override_font_sizes/font_size = 27
+text = "Apply"
+
+[node name="Cancel" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 480.0
+offset_right = 743.0
+offset_bottom = 532.0
+theme_override_font_sizes/font_size = 28
+text = "Cancel"
 
 [editable path="EnergyBarSummerPredict"]
 [editable path="EnergyBarWinterPredict"]

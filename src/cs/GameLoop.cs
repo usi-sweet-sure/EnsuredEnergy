@@ -60,7 +60,6 @@ public partial class GameLoop : Node2D {
 	// Reference to the buildmenu
 	private BuildMenu BM;
 
-	//TODO: Add resource managers once they are implemented
 	public MoneyData Money; // The current money the player has
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
@@ -155,6 +154,7 @@ public partial class GameLoop : Node2D {
 
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
+		_UI.DebtRequest += _OnDebtRequest;
 		C.UpdateContext += _OnContextUpdate;
 
 		// Connect the shock related callbacks
@@ -217,6 +217,9 @@ public partial class GameLoop : Node2D {
 			Money.Money,
 			Money.Imports
 		);
+
+		// Udpate debt
+		_UI._UpdateDebtResource(Money.Debt);
 
 		// Propagate the update to the UI
 		_UI._UpdateUI();
@@ -660,5 +663,24 @@ public partial class GameLoop : Node2D {
 		
 		// Reset the tutorial
 		Tuto._Reset();
+	}
+
+	// Reacts to the reception of a debt request
+	public void _OnDebtRequest(int debt, int borrowed) {
+		// Acquire more debt
+		Money.AcquireDebt(debt, borrowed);
+
+		// Update Money UI
+		_UI._UpdateData(
+			UI.InfoType.MONEY,
+			Money.Budget, 
+			Money.Production,
+			Money.Build,
+			Money.Money,
+			Money.Imports
+		);
+
+		// Update the UI to reflect the new debt
+		_UI._UpdateDebtResource(Money.Debt);
 	}
 }
