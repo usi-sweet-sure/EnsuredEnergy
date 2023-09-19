@@ -587,12 +587,8 @@ public partial class UI : CanvasLayer {
 		// when the supply meets the demand
 		float diff = Math.Max(0.0f, demand - supply); 
 
-		Debug.Print("SUPPLY = " + supply + ", DEMAND = " + demand);
-
 		// Compute the percentage of the total demand tha the diff represents
 		float diff_perc = diff / demand;
-
-		Debug.Print("DIFF_PERC = " + diff_perc);
 
 		// Set the import target to that percentage
 		Imports._UpdateTargetImport(diff_perc);

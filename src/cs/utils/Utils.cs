@@ -130,7 +130,6 @@ public struct MoneyData {
 	public void SpendMoney(int amountBuild) {
 		Build += amountBuild;
 		Money -= amountBuild;
-		Debug.Print("Spent: " + amountBuild);
 	}
 
 	// Acquire debt
@@ -350,6 +349,29 @@ public readonly struct Config {
 
 	// Override of the get hashcode method (needed to overload == and !=)
 	public override int GetHashCode() => HashCode.Combine(type);
+}
+
+// Represents the multiplier config of a powerplant
+public readonly struct Multiplier {
+
+	public readonly int MaxElements; // The maximum number of elements allowed for a given plant
+	public readonly int Cost; // The cost of adding an element to the given power plant
+	public readonly float Pollution; // The factor by which the pollution is increased when an element is added
+	public readonly float LandUse; // The factor by which the land use is increased when an element is added
+	public readonly float Biodiversity; // The factor by which the biodiversity is increased when an element is added
+	public readonly float ProductionCost; // The factor by which the production cost is increased when an element is added
+	public readonly int Capacity; // The amount by which the capacity is increased when an element is added
+
+	// Basic constructor
+	public Multiplier(int me, int c, float p, float lu, float bd, float pc, int cap) {
+		MaxElements = me;
+		Cost = c;
+		Pollution = p;
+		LandUse = lu;
+		Biodiversity = bd;
+		ProductionCost = pc;
+		Capacity = cap;
+	}
 }
 
 // ==================== Language Enum ====================

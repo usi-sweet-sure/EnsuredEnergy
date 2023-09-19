@@ -139,6 +139,8 @@ public partial class GameLoop : Node2D {
 
 			// Add the power plants to the stats
 			C._UpdatePPStats(pp.PlantType);
+
+			pp.UpgradePlant += _OnUpgradePlant;
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
@@ -173,6 +175,8 @@ public partial class GameLoop : Node2D {
 		if(Money.Money >= cost) {
 			// Spend some money
 			Money.SpendMoney(cost);
+
+			Debug.Print("Requested Build");
 
 			// Notify the UI of the resource update
 			UpdateResources();
@@ -248,7 +252,6 @@ public partial class GameLoop : Node2D {
 	private void StartGameOffline() {
 		// Update the game state
 		GS = GameState.PLAYING;
-		Debug.Print("Starting Game");
 
 		// Initialize the context stats
 		C._InitializePPStats(PowerPlants);
@@ -446,6 +449,9 @@ public partial class GameLoop : Node2D {
 			//Sanity Check
 			Debug.Assert(PowerPlants.Contains(pp));
 
+			// Disconnect the upgrade signal
+			pp.UpgradePlant -= _OnUpgradePlant;
+
 			// Destroy the power plant
 			PowerPlants.Remove(pp);
 
@@ -472,8 +478,6 @@ public partial class GameLoop : Node2D {
 
 			// Notify the UI of the resource update
 			UpdateResources();
-
-			Debug.Print("REACTING TO DELETE PLANT");
 		} else {
 			// Sanity Check
 			Debug.Assert(BBs.Contains(bb));
@@ -484,6 +488,9 @@ public partial class GameLoop : Node2D {
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
 			PowerPlants = PowerPlants.Distinct().ToList();
+
+			// Connect the upgrade signal
+			pp.UpgradePlant += _OnUpgradePlant;
 
 			// Connect to the delete signal
 			if(!pp._GetDeleteConnectFlag()) {
@@ -506,11 +513,8 @@ public partial class GameLoop : Node2D {
 
 	// Triggers a new turn if the game is currently acitve
 	public void _OnNextTurn() {
-		Debug.Print("NEXT TURN: " + GS);
-
 		// Display a shock
 		DisplayShock();
-		Debug.Print("NEXT TURN");
 	}
 
 	// Reacts to a context update
@@ -576,6 +580,7 @@ public partial class GameLoop : Node2D {
 
 		// Delete all plants
 		foreach(var pp in tmp) {
+			pp.UpgradePlant -= _OnUpgradePlant;
 			pp.OnDeletePressed();
 		}
 
@@ -616,6 +621,9 @@ public partial class GameLoop : Node2D {
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
+
+			// Connect the upgrade signal
+			pp.UpgradePlant += _OnUpgradePlant;
 
 			// Reset the plant
 			pp._Reset();
@@ -682,5 +690,21 @@ public partial class GameLoop : Node2D {
 
 		// Update the UI to reflect the new debt
 		_UI._UpdateDebtResource(Money.Debt);
+	}
+
+	// Reacts to a plant upgrade request by checking if we can afford it or not
+	public void _OnUpgradePlant(bool inc, int cost, PowerPlant pp) {
+		// Check if the upgrade can be afforded
+		if(_RequestBuild(cost)) {
+			// Enact the upgrade or downgrade
+			if(inc) {
+				Debug.Print("Upgrading Plant");
+				pp._IncMutliplier();
+			} else {
+				Debug.Print("Downgrading Plant");
+				pp._DecMultiplier();
+			}
+			_UpdateResourcesUI();
+		}
 	}
 }

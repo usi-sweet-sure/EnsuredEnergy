@@ -33,16 +33,17 @@ public partial class ConfigController : XMLController {
 	// ==================== Public API ====================
 
 	// Reads out a config file given a config type and a config id
-	public ConfigData _ReadConfig(Config config, string id) {
-		// Find the config type that is requested
-		switch(config.type) {
-			case Config.Type.POWER_PLANT:
-				return ReadPPConfig(config.ToString(), id);
-			default:
-				break;
-		}
-		throw new ArgumentException("Invalid Configuration Type was given!!");
-	}
+	public ConfigData _ReadConfig(Config config, string id) => config.type switch {
+		Config.Type.POWER_PLANT => ReadPPConfig(config.ToString(), id),	
+		_ => throw new ArgumentException("Invalid Configuration Type was given!!")
+	};
+
+	// Reads out a multiplier for a given plant
+	public Multiplier _ReadMultiplier(Config config, string id) => config.type switch {
+		Config.Type.POWER_PLANT => ReadPPMultiplier(config.ToString(), id),
+		_ => throw new ArgumentException("Invalid Configuration Type was given!!")
+	};
+	
 
 	// ==================== Internal Helper Methods ====================
 	
@@ -64,6 +65,37 @@ public partial class ConfigController : XMLController {
 			.Where(g => (g.Attribute("id").Value == id) && (g.Attribute("type").Value == "float"))
 			.Select(p => p.Value).ElementAt(0));
 
+	// Reads out a multiplier from a powerplant config
+	private Multiplier ReadPPMultiplier(string filename, string id) {
+		// Start by checking if the file is loaded in or not
+		if(LoadedFileName != filename) {
+			ParseXML(ref LoadedXML, Path.Combine("configs", filename));
+			LoadedFileName = filename;
+		}
+
+		// Query the file
+		IEnumerable<XElement> query = 
+			from g in LoadedXML.Root.Descendants("config")
+			where g.Attribute("id").Value == id // Find the correct group
+			select g;
+		
+		// Retrive parameter group
+		IEnumerable<XElement> multparams = GetParamGroup(query, "multiplier");
+
+		if(multparams == null) throw new Exception("HELP");
+
+		// Build out the mutliplier struct
+		return new (
+			GetIntParam(multparams, "max_elements"), 
+			GetIntParam(multparams, "cost"),
+			GetFloatParam(multparams, "pollution"),
+			GetFloatParam(multparams, "land_use"),
+			GetFloatParam(multparams, "biodiversity"),
+			GetFloatParam(multparams, "production_cost"),
+			GetIntParam(multparams, "capacity")
+		);
+	}
+
 	// Reads out a power plant configuation file
 	private PowerPlantConfigData ReadPPConfig(string filename, string id) {
 		// Start by checking if the file is loaded in or not
@@ -73,9 +105,10 @@ public partial class ConfigController : XMLController {
 		}
 
 		// Query the file
-		IEnumerable<XElement> query = from g in LoadedXML.Root.Descendants("config")
-					where g.Attribute("id").Value == id // Find the correct group
-					select g;
+		IEnumerable<XElement> query = 
+			from g in LoadedXML.Root.Descendants("config")
+			where g.Attribute("id").Value == id // Find the correct group
+			select g;
 		
 		// Retrive parameter groups
 		IEnumerable<XElement> metaParams = GetParamGroup(query, "meta");
