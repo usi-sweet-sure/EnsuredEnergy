@@ -20,6 +20,10 @@
 [ext_resource type="AudioStream" uid="uid://xl4bsmv07wdo" path="res://assets/Sounds/Coin and Purse 09.wav" id="18_bdggr"]
 [ext_resource type="AudioStream" uid="uid://bk0byrjhpqlci" path="res://assets/Sounds/Demolish 1_5.wav" id="19_7wm0g"]
 [ext_resource type="AudioStream" uid="uid://c3jt3ou2rb68h" path="res://assets/Sounds/HammerHits.wav" id="20_86vnk"]
+[ext_resource type="Texture2D" uid="uid://lkinuybw2vd8" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0006_Waste.png" id="17_q1r63"]
+[ext_resource type="Texture2D" uid="uid://drju16akfui3t" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0012_Biomass.png" id="18_fbsst"]
+[ext_resource type="Texture2D" uid="uid://com3jwqcdurjb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0016_Hydrolic-river-.png" id="19_jfn5w"]
+[ext_resource type="Texture2D" uid="uid://bhkojglciqwmb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0009_Geothermal.png" id="20_6kkmi"]
 
 [sub_resource type="Animation" id="Animation_q0r05"]
 length = 0.001
@@ -846,6 +850,39 @@ theme_override_font_sizes/font_size = 24
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Waste" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+PlantName = "Waste"
+_PlantType = 6
+
+[node name="Sprite" parent="Waste" index="0"]
+texture = ExtResource("17_q1r63")
+
+[node name="Biomass" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+_PlantType = 7
+
+[node name="Sprite" parent="Biomass" index="0"]
+texture = ExtResource("18_fbsst")
+
+[node name="River" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+_PlantType = 8
+
+[node name="Sprite" parent="River" index="0"]
+texture = ExtResource("19_jfn5w")
+
+[node name="Pump" parent="." instance=ExtResource("1_wi5q3")]
+visible = false
+position = Vector2(112, 88)
+_PlantType = 9
+
+[node name="Sprite" parent="Pump" index="0"]
+texture = ExtResource("20_6kkmi")
 
 [node name="Cancel" type="Button" parent="."]
 visible = false

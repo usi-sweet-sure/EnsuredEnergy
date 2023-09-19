@@ -50,6 +50,7 @@ theme = SubResource("Theme_mklkc")
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton2" parent="." instance=ExtResource("16_pnu0i")]
+self_modulate = Color(0.380392, 0.654902, 1, 1)
 offset_left = 1298.0
 offset_top = 433.0
 offset_right = 1390.0
@@ -102,11 +103,13 @@ offset_bottom = 263.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton9" parent="." instance=ExtResource("16_pnu0i")]
+self_modulate = Color(0.380392, 0.654902, 1, 1)
 offset_left = 1511.0
 offset_top = 1218.0
 offset_right = 1600.0
 offset_bottom = 1261.0
 script = ExtResource("4_mo62v")
+AllowHydro = true
 
 [node name="BuildButton10" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 651.0
@@ -114,6 +117,36 @@ offset_top = 1258.0
 offset_right = 740.0
 offset_bottom = 1301.0
 script = ExtResource("4_mo62v")
+
+[node name="BuildButton11" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 516.0
+offset_top = -257.0
+offset_right = 743.0
+offset_bottom = -72.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton12" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = -1098.0
+offset_top = 1159.0
+offset_right = -871.0
+offset_bottom = 1344.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton13" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 1487.0
+offset_top = -345.0
+offset_right = 1714.0
+offset_bottom = -160.0
+script = ExtResource("4_mo62v")
+
+[node name="BuildButton14" parent="." instance=ExtResource("16_pnu0i")]
+self_modulate = Color(0.380392, 0.654902, 1, 1)
+offset_left = 2774.0
+offset_top = 1145.0
+offset_right = 3001.0
+offset_bottom = 1330.0
+script = ExtResource("4_mo62v")
+AllowHydro = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
