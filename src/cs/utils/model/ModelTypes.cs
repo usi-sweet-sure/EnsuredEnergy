@@ -350,9 +350,6 @@ public struct Capacity : IColumn {
         Building.Type.SOLAR   => Solar,
         Building.Type.NUCLEAR => Nuclear,
         Building.Type.WIND    => Wind,
-        Building.Type.TREE    => 0.0f,
-        _ => throw new ArgumentException("No field is associated to the given type!")
-    };
 
     // Updates the internal value of a field
     // The field is selected using the given building type
@@ -385,6 +382,11 @@ public struct Capacity : IColumn {
     // Checks whether the internal values are all 0 or not
     public bool _IsEmpty() => 
         Gas == Nuclear && Nuclear == River && River == Solar && Solar == Wind && Wind == 0.0f;
+		Building.Type.TREE    => 0.0f,
+		Building.Type.RIVER    => 0.0f, // Quick fix DO NOT KEEP
+		Building.Type.PUMP    => 0.0f,
+		_ => throw new ArgumentException("No field is associated to the given type!")
+	};
 }
 
 // Represents the data retrived from the Demand columns of the model

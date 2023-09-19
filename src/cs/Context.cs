@@ -28,10 +28,10 @@ using System.Collections.Generic;
 // ...
 public partial class Context : Node {
 
-	private const float DEMAND_INC_S = 30;
-	private const float DEMAND_INC_W = 60;
-	private const float DEMAND_INIT_S = 360;
-	private const float DEMAND_INIT_W = 380;
+	private const float DEMAND_INC_S = 10;
+	private const float DEMAND_INC_W = 40;
+	private const float DEMAND_INIT_S = 310;
+	private const float DEMAND_INIT_W = 330;
 
     [Signal]
     // Signals that the context has been updated by an external actor
