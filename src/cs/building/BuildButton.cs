@@ -33,6 +33,10 @@ public partial class BuildButton : TextureButton {
 	public const string HYDRO_NAME = "Hydro";
 	public const string TREE_NAME = "Tree";
 	public const string WIND_NAME = "Wind";
+	public const string WASTE_NAME = "Waste";
+	public const string BIOMASS_NAME = "Biomass";
+	public const string RIVER_NAME = "River";
+	public const string PUMP_NAME = "Pump";
 
 	// Signal used to trigger the showing of the build menu
 	[Signal]
@@ -58,13 +62,14 @@ public partial class BuildButton : TextureButton {
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
 	private PowerPlant WindPlant;
+	private PowerPlant WastePlant;
+	private PowerPlant BiomassPlant;
+	private PowerPlant RiverPlant;
+	private PowerPlant PumpPlant;
 	
 	// Building sprite
 	private Sprite2D BuildSprite;
 	private Label TL;
-	
-	// Building audio
-	private AudioStreamPlayer2D BuildingSound;
 
 	// Build cancellation button
 	private Button Cancel;
@@ -73,6 +78,9 @@ public partial class BuildButton : TextureButton {
 	// Money animation
 	public AnimationPlayer AP;
 	public Label AnimMoney;
+
+	
+	private AudioStreamPlayer2D BuildingSound;
 
 	// Reference to the game loop
 	private GameLoop GL;
@@ -105,6 +113,10 @@ public partial class BuildButton : TextureButton {
 		HydroPlant = GetNode<PowerPlant>(HYDRO_NAME);
 		TreePlant = GetNode<PowerPlant>(TREE_NAME);
 		WindPlant = GetNode<PowerPlant>(WIND_NAME);
+		WastePlant = GetNode<PowerPlant>(WASTE_NAME);
+		BiomassPlant = GetNode<PowerPlant>(BIOMASS_NAME);
+		RiverPlant = GetNode<PowerPlant>(RIVER_NAME);
+		PumpPlant = GetNode<PowerPlant>(PUMP_NAME);
 
 		// Set their bb reference
 		GasPlant._SetBuildButton(this);
@@ -112,13 +124,17 @@ public partial class BuildButton : TextureButton {
 		HydroPlant._SetBuildButton(this);
 		TreePlant._SetBuildButton(this);
 		WindPlant._SetBuildButton(this);
+		WastePlant._SetBuildButton(this);
+		BiomassPlant._SetBuildButton(this);
+		RiverPlant._SetBuildButton(this);
+		PumpPlant._SetBuildButton(this);
 		
 		BuildSprite = GetNode<Sprite2D>("Building");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
 		Cancel = GetNode<Button>("Cancel");
-		BuildingSound = GetNode<AudioStreamPlayer2D>("BuildingSound");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 		AnimMoney = GetNode<Label>("Money");
+		BuildingSound = GetNode<AudioStreamPlayer2D>("BuildingSound");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -132,9 +148,9 @@ public partial class BuildButton : TextureButton {
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
-			BL = new BuildLocation(Position, Building.Type.HYDRO);
+			BL = new BuildLocation(Position, Building.Type.HYDRO, Building.Type.RIVER, Building.Type.PUMP);
 		} else {
-			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND);
+			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND, Building.Type.WASTE, Building.Type.BIOMASS);
 		}
 
 		// Connect the button press callback
@@ -228,11 +244,11 @@ public partial class BuildButton : TextureButton {
 		// Hide the button
 		HideOnlyButton();
 
+		BuildingSound.Stop();
+
 		// Update the requested build fields
 		PPInProgress = null;
 		BS = BuildState.DONE;
-		
-		BuildingSound.Stop();
 
 		// Signal that the build is complete
 		EmitSignal(SignalName.BuildDone);
@@ -271,6 +287,10 @@ public partial class BuildButton : TextureButton {
 		SolarPlant.Hide();
 		TreePlant.Hide();
 		WindPlant.Hide();
+		BiomassPlant.Hide();
+		WastePlant.Hide();
+		RiverPlant.Hide();
+		PumpPlant.Hide();
 		
 		BuildSprite.Hide();
 	}
@@ -305,6 +325,22 @@ public partial class BuildButton : TextureButton {
 				
 			case Building.Type.WIND:
 				UpdatePowerPlant(ref WindPlant, PP);
+				break;
+				
+			case Building.Type.WASTE:
+				UpdatePowerPlant(ref WastePlant, PP);
+				break;
+				
+			case Building.Type.BIOMASS:
+				UpdatePowerPlant(ref BiomassPlant, PP);
+				break;
+				
+			case Building.Type.RIVER:
+				UpdatePowerPlant(ref RiverPlant, PP);
+				break;
+				
+			case Building.Type.PUMP:
+				UpdatePowerPlant(ref PumpPlant, PP);
 				break;
 				
 			default:
@@ -416,7 +452,7 @@ public partial class BuildButton : TextureButton {
 		
 		// Hide all plants
 		HideAllPlants();
-		
+
 		//Stop building sound
 		BuildingSound.Stop();
 

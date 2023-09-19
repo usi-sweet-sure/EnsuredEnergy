@@ -44,6 +44,10 @@ public partial class BuildMenu : CanvasLayer {
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
 	private PowerPlant WindPlant;
+	private PowerPlant WastePlant;
+	private PowerPlant BiomassPlant;
+	private PowerPlant RiverPlant;
+	private PowerPlant PumpPlant;
 
 	// Buttons to select the power plants
 	private Button GasButton;
@@ -51,6 +55,10 @@ public partial class BuildMenu : CanvasLayer {
 	private Button HydroButton;
 	private Button TreeButton;
 	private Button WindButton;
+	private Button WasteButton;
+	private Button BiomassButton;
+	private Button RiverButton;
+	private Button PumpButton;
 
 	// Close button
 	private Button CloseButton;
@@ -79,6 +87,10 @@ public partial class BuildMenu : CanvasLayer {
 		HydroPlant = GetNode<PowerPlant>("TabContainer/TabBar/Hydro");
 		TreePlant = GetNode<PowerPlant>("TabContainer/TabBar/Tree");
 		WindPlant = GetNode<PowerPlant>("TabContainer/TabBar/Wind");
+		WastePlant = GetNode<PowerPlant>("TabContainer/TabBar/Waste");
+		BiomassPlant = GetNode<PowerPlant>("TabContainer/TabBar/Biomass");
+		RiverPlant = GetNode<PowerPlant>("TabContainer/TabBar/River");
+		PumpPlant = GetNode<PowerPlant>("TabContainer/TabBar/Pump");
 
 		// Fetch associated buttons
 		GasButton = GetNode<Button>("TabContainer/TabBar/Gas/GasButton");
@@ -86,6 +98,10 @@ public partial class BuildMenu : CanvasLayer {
 		HydroButton = GetNode<Button>("TabContainer/TabBar/Hydro/HydroButton");
 		TreeButton = GetNode<Button>("TabContainer/TabBar/Tree/TreeButton");
 		WindButton = GetNode<Button>("TabContainer/TabBar/Wind/WindButton");
+		WasteButton = GetNode<Button>("TabContainer/TabBar/Waste/WasteButton");
+		BiomassButton = GetNode<Button>("TabContainer/TabBar/Biomass/BiomassButton");
+		RiverButton = GetNode<Button>("TabContainer/TabBar/River/RiverButton");
+		PumpButton = GetNode<Button>("TabContainer/TabBar/Pump/PumpButton");
 
 		// Fetch Close button
 		CloseButton = GetNode<Button>("CloseButton");
@@ -107,6 +123,10 @@ public partial class BuildMenu : CanvasLayer {
 		HydroButton.Pressed += _OnHydroButtonPressed;
 		TreeButton.Pressed += _OnTreeButtonPressed;
 		WindButton.Pressed += _OnWindButtonPressed;
+		WasteButton.Pressed += _OnWasteButtonPressed; 
+		BiomassButton.Pressed += _OnBiomassButtonPressed;
+		RiverButton.Pressed += _OnRiverButtonPressed;
+		PumpButton.Pressed += _OnPumpButtonPressed;
 		CloseButton.Pressed += _OnCloseButtonPressed;
 
 		HideAllPlants();
@@ -138,6 +158,22 @@ public partial class BuildMenu : CanvasLayer {
 			case Building.Type.WIND:
 				SetPlantName(ref WindPlant, newName);
 				break;
+
+			case Building.Type.WASTE:
+				SetPlantName(ref WastePlant, newName);
+				break;
+
+			case Building.Type.BIOMASS:
+				SetPlantName(ref BiomassPlant, newName);
+				break;
+
+			case Building.Type.RIVER:
+				SetPlantName(ref RiverPlant, newName);
+				break;
+
+			case Building.Type.PUMP:
+				SetPlantName(ref PumpPlant, newName);
+				break;
 			
 			default:
 				break;
@@ -158,6 +194,10 @@ public partial class BuildMenu : CanvasLayer {
 		SolarPlant.Hide();
 		TreePlant.Hide();
 		WindPlant.Hide();
+		BiomassPlant.Hide();
+		WastePlant.Hide();
+		RiverPlant.Hide();
+		PumpPlant.Hide();
 	}
 
 	// Sets the plants name and propagates info to ui
@@ -303,6 +343,70 @@ public partial class BuildMenu : CanvasLayer {
 						WindButton.Disabled = false;
 					}
 					break;
+
+				case Building.Type.WASTE:
+					SetPlantPosition(ref WastePlant, idx++);
+					SetPlantColor(ref WastePlant);
+					WastePlant._SetPlantFromConfig(Building.Type.WASTE);
+					WastePlant.PlantType = Building.Type.WASTE;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(WastePlant.BuildCost)) {
+						WastePlant._MakeTransparent();
+						WasteButton.Disabled = true;
+					} else {
+						WastePlant._MakeOpaque();
+						WasteButton.Disabled = false;
+					}
+					break;
+
+				case Building.Type.BIOMASS:
+					SetPlantPosition(ref BiomassPlant, idx++);
+					SetPlantColor(ref BiomassPlant);
+					BiomassPlant._SetPlantFromConfig(Building.Type.BIOMASS);
+					BiomassPlant.PlantType = Building.Type.BIOMASS;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(BiomassPlant.BuildCost)) {
+						BiomassPlant._MakeTransparent();
+						BiomassButton.Disabled = true;
+					} else {
+						BiomassPlant._MakeOpaque();
+						BiomassButton.Disabled = false;
+					}
+					break;
+
+				case Building.Type.RIVER:
+					SetPlantPosition(ref RiverPlant, idx++);
+					SetPlantColor(ref RiverPlant);
+					RiverPlant._SetPlantFromConfig(Building.Type.RIVER);
+					RiverPlant.PlantType = Building.Type.RIVER;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(RiverPlant.BuildCost)) {
+						RiverPlant._MakeTransparent();
+						RiverButton.Disabled = true;
+					} else {
+						RiverPlant._MakeOpaque();
+						RiverButton.Disabled = false;
+					}
+					break;
+
+				case Building.Type.PUMP:
+					SetPlantPosition(ref PumpPlant, idx++);
+					SetPlantColor(ref PumpPlant);
+					PumpPlant._SetPlantFromConfig(Building.Type.PUMP);
+					PumpPlant.PlantType = Building.Type.PUMP;
+
+					// Check if we can afford the build
+					if(!C._GetGL()._CheckBuildReq(PumpPlant.BuildCost)) {
+						PumpPlant._MakeTransparent();
+						PumpButton.Disabled = true;
+					} else {
+						PumpPlant._MakeOpaque();
+						PumpButton.Disabled = false;
+					}
+					break;
 			}
 		}
 	} 
@@ -339,6 +443,38 @@ public partial class BuildMenu : CanvasLayer {
 	public void _OnWindButtonPressed() {
 		// Send out the selection
 		EmitSignal(SignalName.SelectBuilding, WindPlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+
+	public void _OnWasteButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, WastePlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+
+	public void _OnBiomassButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, BiomassPlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+
+	public void _OnRiverButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, RiverPlant);
+
+		// Close the menu
+		IsOpen = false;
+	}
+	
+	public void _OnPumpButtonPressed() {
+		// Send out the selection
+		EmitSignal(SignalName.SelectBuilding, PumpPlant);
 
 		// Close the menu
 		IsOpen = false;
