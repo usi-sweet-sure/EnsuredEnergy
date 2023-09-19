@@ -357,11 +357,7 @@ public partial class BuildButton : TextureButton {
 	// Receives the power plant selected by the user and now we need to place it
 	public void _OnSelectBuilding(PowerPlant PP) {
 		// Sanity check: Check explicitly for hydro builds and dissallow illegal ones
-		if(!AllowHydro && (
-			PP.PlantType.type == Building.Type.HYDRO || 
-			PP.PlantType.type == Building.Type.RIVER || 
-			PP.PlantType.type == Building.Type.PUMP)
-		) {
+		if(PP.PlantType.type == Building.Type.HYDRO && !AllowHydro) {
 			return;
 		}
 
@@ -387,7 +383,7 @@ public partial class BuildButton : TextureButton {
 				C._UpdatePPStats(PP.PlantType);
 
 				// Update the data stored in the model struct if online
-				if(!C._GetOffline()) {
+				if(C._GetOffline()) {
 					C._UpdateModelFromClient(PP);
 				}
 

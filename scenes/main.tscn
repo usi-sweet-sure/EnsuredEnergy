@@ -98,8 +98,8 @@ script = ExtResource("1_4jam2")
 [node name="Map" parent="World" index="0"]
 visible = true
 texture_filter = 2
-position = Vector2(-2395, -1109)
-scale = Vector2(7, 7)
+position = Vector2(-2064, -872)
+scale = Vector2(6, 6)
 texture = ExtResource("3_fsnjl")
 
 [node name="Nuclear" parent="World" index="1"]
@@ -135,7 +135,7 @@ texture = ExtResource("4_wlqc3")
 [node name="Coal" parent="World" index="4"]
 position = Vector2(637, 385)
 PlantName = "Hydro"
-_PlantType = 9
+_PlantType = 0
 
 [node name="Sprite" parent="World/Coal" index="0"]
 texture = ExtResource("5_i2doc")
@@ -222,7 +222,7 @@ offset_top = 1941.0
 offset_right = 338.0
 offset_bottom = 1984.0
 
-[node name="Camera2D" parent="World" index="19"]
+[node name="Camera2D" parent="World" index="15"]
 position = Vector2(958, 538)
 anchor_mode = 1
 zoom = Vector2(0.75, 0.75)

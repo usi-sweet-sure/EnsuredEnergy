@@ -43,7 +43,7 @@ public partial class GameLoop : Node2D {
 	public int START_MONEY = 400;
 
 	[Export]
-	public static int BUDGET_PER_TURN = 350;
+	public static int BUDGET_PER_TURN = 300;
 
 	// Internal game state
 	private GameState GS;
@@ -116,10 +116,6 @@ public partial class GameLoop : Node2D {
 		BBs.Add(GetNode<BuildButton>("World/BuildButton8"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton9"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton10"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton11"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton12"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton13"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton14"));
 
 		// Fetch UI and BuildMenu
 		_UI = GetNode<UI>("UI");

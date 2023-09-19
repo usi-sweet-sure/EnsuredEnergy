@@ -202,7 +202,7 @@ public partial class PowerPlant : Node2D {
 
 	// Shows the delete button
 	public void _ShowDelete() {
-		if(BuildTime < 1 || PlantType.type == Building.Type.TREE) {
+		if(BuildTime < 1) {
 			Delete.Show();
 		}
 	}
@@ -305,14 +305,8 @@ public partial class PowerPlant : Node2D {
 		Debug.Print("Current turn: " + C._GetTurn());
 
 		// Only allow the delete button to be pressed during the turn the plant was built in
-		// Allow for trees to be deleted at any time
 		if(Delete.Visible) {
 			Delete.Hide();
-		}
-
-		// Trees always have a delete button
-		if(PlantType == Building.Type.TREE) {
-			Delete.Show();
 		}
 
 		// Check if the plant should be deactivated
