@@ -957,6 +957,7 @@ offset_right = 1918.0
 offset_bottom = 1078.0
 
 [node name="BorrowMoneyWindow" type="ColorRect" parent="BorrowContainer"]
+layout_mode = 0
 offset_left = 474.0
 offset_top = 220.0
 offset_right = 1483.0
@@ -981,7 +982,7 @@ offset_bottom = 282.0
 max_value = 1000.0
 step = 100.0
 rounded = true
-tick_count = 10
+tick_count = 11
 ticks_on_borders = true
 
 [node name="Money" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
