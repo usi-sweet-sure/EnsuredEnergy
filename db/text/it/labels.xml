@@ -73,6 +73,10 @@ Energy
         <text id="label_wind">Eolica</text>
         <text id="label_tree">Albero</text>
         <text id="label_nuclear">Nucleare</text>
+        <text id="label_waste">Incenerimento</text>
+        <text id="label_biomass">Biomassa</text>
+        <text id="label_river">Fiume</text>
+        <text id="label_pump">Pompa</text>
     </group>
 
         <!-- Labels for the main menu -->

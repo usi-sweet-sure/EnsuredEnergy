@@ -240,6 +240,10 @@ public partial class UI : CanvasLayer {
 		string wind_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_wind");
 		string tree_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_tree");
 		string nuclear_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_nuclear");
+		string waste_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_waste");
+		string biomass_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_biomass");
+		string river_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_river");
+		string pump_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_pump");
 
 		// Fetch the energy bar names
 		string WinterEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_w");
@@ -270,6 +274,10 @@ public partial class UI : CanvasLayer {
 		BM._UpdatePlantName(Building.Type.SOLAR, solar_name);
 		BM._UpdatePlantName(Building.Type.TREE, tree_name);
 		BM._UpdatePlantName(Building.Type.WIND, wind_name);
+		BM._UpdatePlantName(Building.Type.WASTE, waste_name);
+		BM._UpdatePlantName(Building.Type.BIOMASS, biomass_name);
+		BM._UpdatePlantName(Building.Type.RIVER, river_name);
+		BM._UpdatePlantName(Building.Type.PUMP, pump_name);
 
 		// Update the placed plants
 		foreach(PowerPlant pp in GL._GetPowerPlants()) {
@@ -292,6 +300,18 @@ public partial class UI : CanvasLayer {
 				case Building.Type.WIND:
 					pp._UpdatePlantName(wind_name);
 					break;
+				case Building.Type.WASTE:
+					pp._UpdatePlantName(waste_name);
+					break;
+				case Building.Type.BIOMASS:
+					pp._UpdatePlantName(biomass_name);
+					break;
+				case Building.Type.RIVER:
+					pp._UpdatePlantName(river_name);
+					break;
+				case Building.Type.PUMP:
+					pp._UpdatePlantName(pump_name);
+					break;	
 				default:
 					break;
 			}

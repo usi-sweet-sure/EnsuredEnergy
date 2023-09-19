@@ -75,7 +75,7 @@ offset_bottom = 1080.0
 layout_mode = 2
 
 [node name="Solar" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
-position = Vector2(160, 200)
+position = Vector2(140, 183)
 scale = Vector2(0.9, 0.9)
 PlantName = "Solar Plant"
 _PlantType = 2
@@ -92,7 +92,7 @@ offset_bottom = 141.0
 flat = true
 
 [node name="Wind" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
-position = Vector2(400, 200)
+position = Vector2(380, 183)
 scale = Vector2(0.9, 0.9)
 PlantName = "Wind"
 _PlantType = 5
@@ -114,7 +114,7 @@ offset_bottom = 141.0
 flat = true
 
 [node name="Tree" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
-position = Vector2(904, 199)
+position = Vector2(1374, 182)
 scale = Vector2(0.9, 0.9)
 PlantName = "Trees"
 _PlantType = 3
@@ -132,7 +132,7 @@ offset_bottom = 141.0
 flat = true
 
 [node name="Hydro" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
-position = Vector2(160, 200)
+position = Vector2(140, 183)
 scale = Vector2(0.9, 0.9)
 PlantName = "Hydro Plant"
 _PlantType = 0
@@ -149,7 +149,7 @@ offset_bottom = 141.0
 flat = true
 
 [node name="Gas" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
-position = Vector2(650, 199)
+position = Vector2(630, 182)
 scale = Vector2(0.9, 0.9)
 PlantName = "Gas Plant"
 metadata/_edit_group_ = true
