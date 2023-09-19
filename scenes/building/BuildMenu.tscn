@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://i802aa7uc538"]
+[gd_scene load_steps=16 format=3 uid="uid://i802aa7uc538"]
 
 [ext_resource type="Script" path="res://src/cs/building/BuildMenu.cs" id="1_vbiqr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="2_236y8"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://ujeuwa2ehsay" path="res://assets/Plants/Forest.png" id="6_52mtj"]
 [ext_resource type="Texture2D" uid="uid://btk3fbtu5m5ua" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0014_Hydrolic-Reservoir.png" id="7_lh640"]
 [ext_resource type="Texture2D" uid="uid://lvf5eog6buhr" path="res://assets/Plants/230601_CH_SUREgame_Gas-Plant.png" id="8_sbytn"]
+[ext_resource type="Texture2D" uid="uid://lkinuybw2vd8" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0006_Waste.png" id="9_ydaxd"]
+[ext_resource type="Texture2D" uid="uid://drju16akfui3t" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0012_Biomass.png" id="10_mc0bo"]
+[ext_resource type="Texture2D" uid="uid://com3jwqcdurjb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0016_Hydrolic-river-.png" id="11_8ko7n"]
+[ext_resource type="Texture2D" uid="uid://bhkojglciqwmb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0009_Geothermal.png" id="12_2dgo3"]
 
 [sub_resource type="Animation" id="Animation_j4va7"]
 length = 0.001
@@ -160,8 +164,75 @@ offset_right = 102.0
 offset_bottom = 141.0
 flat = true
 
+[node name="Waste" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
+position = Vector2(884, 182)
+scale = Vector2(0.9, 0.9)
+PlantName = "Waste"
+_PlantType = 6
+
+[node name="Sprite" parent="TabContainer/TabBar/Waste" index="0"]
+texture = ExtResource("9_ydaxd")
+
+[node name="WasteButton" type="Button" parent="TabContainer/TabBar/Waste"]
+offset_left = -101.0
+offset_top = -144.0
+offset_right = 104.0
+offset_bottom = 143.0
+flat = true
+
+[node name="Biomass" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
+position = Vector2(1134, 182)
+scale = Vector2(0.9, 0.9)
+_PlantType = 7
+
+[node name="Sprite" parent="TabContainer/TabBar/Biomass" index="0"]
+texture = ExtResource("10_mc0bo")
+
+[node name="BiomassButton" type="Button" parent="TabContainer/TabBar/Biomass"]
+offset_left = -103.0
+offset_top = -148.0
+offset_right = 96.0
+offset_bottom = 141.0
+flat = true
+
+[node name="River" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
+visible = false
+position = Vector2(381, 183)
+scale = Vector2(0.9, 0.9)
+_PlantType = 8
+
+[node name="Sprite" parent="TabContainer/TabBar/River" index="0"]
+texture = ExtResource("11_8ko7n")
+
+[node name="RiverButton" type="Button" parent="TabContainer/TabBar/River"]
+offset_left = -98.0
+offset_top = -120.0
+offset_right = 108.0
+offset_bottom = 146.0
+flat = true
+
+[node name="Pump" parent="TabContainer/TabBar" instance=ExtResource("2_236y8")]
+visible = false
+position = Vector2(629, 181)
+scale = Vector2(0.9, 0.9)
+_PlantType = 9
+
+[node name="Sprite" parent="TabContainer/TabBar/Pump" index="0"]
+texture = ExtResource("12_2dgo3")
+
+[node name="PumpButton" type="Button" parent="TabContainer/TabBar/Pump"]
+offset_left = -90.0
+offset_top = -120.0
+offset_right = 93.0
+offset_bottom = 144.0
+flat = true
+
 [editable path="TabContainer/TabBar/Solar"]
 [editable path="TabContainer/TabBar/Wind"]
 [editable path="TabContainer/TabBar/Tree"]
 [editable path="TabContainer/TabBar/Hydro"]
 [editable path="TabContainer/TabBar/Gas"]
+[editable path="TabContainer/TabBar/Waste"]
+[editable path="TabContainer/TabBar/Biomass"]
+[editable path="TabContainer/TabBar/River"]
+[editable path="TabContainer/TabBar/Pump"]
