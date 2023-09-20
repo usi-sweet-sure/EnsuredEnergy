@@ -665,7 +665,7 @@ public partial class PowerPlant : Node2D {
 		// Reset the plant from config
 		_SetPlantFromConfig(PlantType);
 		
-		if(BB != null) {
+		if(BB != null && RefundAmount > 0) {
 			BB.AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
 			BB.AP.Play("Money+");
 		}
@@ -694,6 +694,11 @@ public partial class PowerPlant : Node2D {
 
 		// Check that the max hasn't been reached
 		if(MultiplierValue < mult.MaxElements) {
+			// check if the cost is more than 0 before playing the money anim
+			if(C._GetGL()._CheckBuildReq(mult.Cost)) {
+				BB.AnimMoney.Text = "-" + mult.Cost.ToString() + "$";
+				BB.AP.Play("Money-");
+			}
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, true, mult.Cost, this);
 		}
@@ -707,6 +712,10 @@ public partial class PowerPlant : Node2D {
 
 		// Check that the min hasn't been reached
 		if(MultiplierValue > 1) {
+			if(mult.Cost > 0) {
+				BB.AnimMoney.Text = "+" + mult.Cost.ToString() + "$";
+				BB.AP.Play("Money+");
+			}
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
 		}

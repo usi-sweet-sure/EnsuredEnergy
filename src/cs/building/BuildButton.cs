@@ -440,8 +440,10 @@ public partial class BuildButton : TextureButton {
 	// Reacts to a cancelation request
 	private void _OnCancelPressed() {
 		// play money anim
-		AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
-		AP.Play("Money+");
+		if(RefundAmount > 0) {
+			AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
+			AP.Play("Money+");
+		}
 		
 		// Hide all plants
 		HideAllPlants();
