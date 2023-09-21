@@ -145,6 +145,7 @@ public partial class PowerPlant : Node2D {
 
 	private bool DeleteSignalConnected = false;
 	private bool EnergySignalConnected = false;
+	private bool UpgradeSignalConnected = false;
 	
 	// Fields related to multipliers for wind and solar
 	private int MultiplierValue = 1; // The number of elements the plant contains
@@ -366,6 +367,14 @@ public partial class PowerPlant : Node2D {
 
 	// Getter for the energy signal connection flag
 	public bool _GetEnergyConnectFlag() => EnergySignalConnected;
+
+	// Getter for the upgrade signal connection flag
+	public bool _GetUpgradeConnectFlag() => UpgradeSignalConnected;
+
+	// Sets the upgrade signal connection flag
+	public void _SetUpgradeConnectFlag(bool v) {
+		UpgradeSignalConnected = v;
+	}
 
 	// Sets the delete signal connection flag
 	public void _SetDeleteConnectFlag() {
@@ -665,6 +674,9 @@ public partial class PowerPlant : Node2D {
 		// Reset the multiplier
 		MultiplierValue = 1;
 
+		// Reset the label
+		MultiplierL.Text = MultiplierValue.ToString();
+
 		// Reset the plant from config
 		_SetPlantFromConfig(PlantType);
 		
@@ -692,6 +704,7 @@ public partial class PowerPlant : Node2D {
 	// Reacts to the increase request by requesting it to the game loop
 	// which will enact it if we have enough money
 	private void OnMultIncPressed() {
+		Debug.Print("UPGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
@@ -710,6 +723,7 @@ public partial class PowerPlant : Node2D {
 	// Reacts to the decrease request by requesting it to the game loop
 	// which will enact it if we have enough money
 	private void OnMultDecPressed() {
+		Debug.Print("DOWNGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 

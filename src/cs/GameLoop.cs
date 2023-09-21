@@ -140,7 +140,11 @@ public partial class GameLoop : Node2D {
 			// Add the power plants to the stats
 			C._UpdatePPStats(pp.PlantType);
 
-			pp.UpgradePlant += _OnUpgradePlant;
+			// Connect the upgrade signal if missing
+			if(!pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant += _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(true);
+			}
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
@@ -449,8 +453,11 @@ public partial class GameLoop : Node2D {
 			//Sanity Check
 			Debug.Assert(PowerPlants.Contains(pp));
 
-			// Disconnect the upgrade signal
-			pp.UpgradePlant -= _OnUpgradePlant;
+			// Disconnect the upgrade signal if connected
+			if(pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant -= _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(false);
+			}
 
 			// Destroy the power plant
 			PowerPlants.Remove(pp);
@@ -489,8 +496,11 @@ public partial class GameLoop : Node2D {
 			PowerPlants.Add(pp);
 			PowerPlants = PowerPlants.Distinct().ToList();
 
-			// Connect the upgrade signal
-			pp.UpgradePlant += _OnUpgradePlant;
+			// Connect the upgrade signal if missing
+			if(!pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant += _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(true);
+			}
 
 			// Connect to the delete signal
 			if(!pp._GetDeleteConnectFlag()) {
@@ -580,7 +590,11 @@ public partial class GameLoop : Node2D {
 
 		// Delete all plants
 		foreach(var pp in tmp) {
-			pp.UpgradePlant -= _OnUpgradePlant;
+			// Disconnect upgrade signal if missing
+			if(pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant -= _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(false);
+			}
 			pp.OnDeletePressed();
 		}
 
@@ -622,8 +636,11 @@ public partial class GameLoop : Node2D {
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
 
-			// Connect the upgrade signal
-			pp.UpgradePlant += _OnUpgradePlant;
+			// Connect the upgrade signal if missing
+			if(!pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant += _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(true);
+			}
 
 			// Reset the plant
 			pp._Reset();
