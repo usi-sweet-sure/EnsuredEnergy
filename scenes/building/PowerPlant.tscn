@@ -304,3 +304,35 @@ offset_top = -166.0
 offset_right = 127.0
 offset_bottom = -136.0
 text = "X"
+
+[node name="Multiplier" type="ColorRect" parent="."]
+offset_left = 85.0
+offset_top = 99.0
+offset_right = 151.0
+offset_bottom = 139.0
+color = Color(0.596078, 0.596078, 0.596078, 1)
+
+[node name="MultAmount" type="Label" parent="Multiplier"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 67.0
+offset_bottom = 39.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Inc" type="Button" parent="Multiplier"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 4.0
+offset_right = 78.0
+offset_bottom = 35.0
+text = "+"
+
+[node name="Dec" type="Button" parent="Multiplier"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 35.0
+text = "-"

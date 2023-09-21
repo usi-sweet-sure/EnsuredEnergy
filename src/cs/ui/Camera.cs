@@ -28,10 +28,18 @@ public partial class Camera : Camera2D {
 	private Vector2 ZOOM_SPEED = new (0.2f,0.2f);
 	private Vector2 ZoomVal = new (1.0f,1.0f);
 
+	// Record initial position and zoom for reset
+	private Vector2 InitPos;
+	private Vector2 InitZoom;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready() {}
+	public override void _Ready() {
+		// Record initial position and zoom
+		InitPos = Position;
+		InitZoom = Zoom;
+	}
 
 	// Adds control to inputs that otherwise would not have triggered any events  
 	// In our case, this includes 2 events:  
@@ -72,8 +80,11 @@ public partial class Camera : Camera2D {
 
 	// ==================== Public API ====================
 
-	// Reset the camera position
+	// Reset the camera position and zoom
 	public void _ResetPos() {
 		Offset = Vector2.Zero;
+		Position = InitPos;
+		ZoomVal = new (1.0f,1.0f);
+		Zoom = InitZoom;
 	}
 }

@@ -70,6 +70,9 @@ public partial class Shock : CanvasLayer {
 	private ShockEffect CurReward;
 	private List<ShockEffect> CurReactions;
 
+	// Context for persistent states
+	private Context C;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -87,6 +90,9 @@ public partial class Shock : CanvasLayer {
 		SC = GetNode<ShockController>("ShockController");
 		Img = GetNode<Sprite2D>("NinePatchRect/ColorRect/Img");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
+
+		// Fetch the context
+		C = GetNode<Context>("/root/Context");
 
 		// Set the button callbacks
 		R1.Pressed += _OnR1Pressed;
@@ -147,6 +153,9 @@ public partial class Shock : CanvasLayer {
 			// Show the rewards
 			Reward.Show();
 
+			// Mark the shock as survived
+			C._IncShocksSurvived();
+
 			// Signal that a reward is applied
 			// This should cause the gameloop to retrieve the reward and 
 			// update the various related resources
@@ -184,7 +193,7 @@ public partial class Shock : CanvasLayer {
 
 	// Sets all of the fields for the shock once a new one is selected
 	private void SetFields() {
-		// Extract the name and the description and set the labels to match them
+		// Load in the corresponding image representing this shock
 		string res_path = "res://assets/Icons/" + SC._GetShockImg(CurShock) + ".png"
 			?? throw new Exception("Unable to fetch image path: " + CurShock.ToString());
 		Img.Texture = (
@@ -192,6 +201,7 @@ public partial class Shock : CanvasLayer {
 			?? throw new Exception("Unable to load resource: " + res_path)
 		) as Texture2D;
 		
+		// Extract the name and the description and set the labels to match them
 		Title.Text = SC._GetShockName(CurShock) 
 			?? throw new Exception("Unable to fetch name for id: " + CurShock.ToString());
 		Text.Text = SC._GetShockText(CurShock) 

@@ -41,12 +41,21 @@ public partial class UI : CanvasLayer {
 	/* Signals that a game reset should take place */
 	public delegate void ResetGameEventHandler();
 
+	[Signal]
+	/* Signals that a debt has been requested */
+	public delegate void DebtRequestEventHandler(int debt, int borrowed);
+
 	// Timeline update values
+	[ExportGroup("Timeline Parameters")]
 	[Export]
 	public int TIMELINE_STEP_SIZE = 3;
 	[Export]
 	public int TIMELINE_MAX_VALUE = 2050;
 
+	[ExportGroup("Money Borrowing Parameters")]
+	[Export]
+	// The amount of debt applied
+	public float InterestRate = 0.2f;
 
 	// Contains the data displayed in the UI
 	private InfoData Data;
@@ -90,6 +99,22 @@ public partial class UI : CanvasLayer {
 	private Label BuildL;
 	private Label ProdL;
 	private Label ImportCostL;
+
+	// Borrow related fields
+	private Label BorrowTitle;
+	private Label BorrowText;
+	private Label PayBackText;
+	private Label BorrowAmount;
+	private Label PayBackAmount;
+	private Button DebtApplyButton;
+	private Button DebtCancelButton;
+	private ColorRect BorrowMoneyWindow;
+	private HSlider DebtSlider;
+	private ColorRect DebtResource;
+	private Label DebtResLabel;
+	private Button BorrowMoneyButton;
+	private Button BorrowContainer;
+
 
 	// Window buttons
 	private TextureButton PolicyButton;
@@ -173,6 +198,21 @@ public partial class UI : CanvasLayer {
 		ProdL = GetNode<Label>("MoneyInfo/prod");
 		ImportCostL = GetNode<Label>("MoneyInfo/importamounts");
 
+		// Borrow Nodes
+		BorrowTitle = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Title");
+		BorrowText = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Money");
+		BorrowAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Money/BorrowAmount");
+		PayBackText = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest");
+		PayBackAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest/InterestAmount");
+		DebtApplyButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Apply");
+		DebtCancelButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Cancel");
+		BorrowMoneyWindow = GetNode<ColorRect>("BorrowContainer/BorrowMoneyWindow");
+		DebtSlider = GetNode<HSlider>("BorrowContainer/BorrowMoneyWindow/BorrowSlider");
+		DebtResource = GetNode<ColorRect>("BorrowMoney/Debt");
+		DebtResLabel = GetNode<Label>("BorrowMoney/Debt/DebtAmount");
+		BorrowMoneyButton = GetNode<Button>("BorrowMoney");
+		BorrowContainer = GetNode<Button>("BorrowContainer");
+
 		// Name labels
 		MoneyNameL = GetNode<Label>("Money/Label");
 		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label3");
@@ -209,6 +249,14 @@ public partial class UI : CanvasLayer {
 		PollutionBar.MouseEntered += _OnPollutionMouseEntered;
 		PollutionBar.MouseExited += _OnPollutionMouseExited;
 		Imports.ImportUpdate += _OnImportUpdate;
+		DebtApplyButton.Pressed += _OnDebtApplyPressed;
+		DebtCancelButton.Pressed += _OnDebtCancelPressed;
+		DebtSlider.ValueChanged += _OnDebtSliderValueChanged;
+		BorrowContainer.Pressed += _OnDebtCancelPressed;
+		BorrowMoneyButton.Pressed += BorrowContainer.Show;
+
+		// Initially hide the borrow container
+		BorrowContainer.Hide();
 
 		// Reset signals
 		ResetButton.Pressed += _OnResetPressed;
@@ -261,6 +309,20 @@ public partial class UI : CanvasLayer {
 		string reset_prompt = TC._GetText(LABEL_FILENAME, MENU_GROUP, "reset_prompt");
 		string reset_yes = TC._GetText(LABEL_FILENAME, MENU_GROUP, "reset_yes");
 		string reset_no = TC._GetText(LABEL_FILENAME, MENU_GROUP, "reset_no");
+
+		// Debt texts
+		string debt_title = TC._GetText(LABEL_FILENAME, UI_GROUP, "debt_title");
+		string borrow_text = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_borrow");
+		string debt_text = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_debt");
+		string debt_apply = TC._GetText(LABEL_FILENAME, UI_GROUP, "apply_button");
+		string debt_cancel = TC._GetText(LABEL_FILENAME, UI_GROUP, "cancel_button");
+
+		// Update debt texts
+		BorrowTitle.Text = debt_title;
+		BorrowText.Text = borrow_text;
+		PayBackText.Text = debt_text;
+		DebtApplyButton.Text = debt_apply;
+		DebtCancelButton.Text = debt_cancel;
 
 		// Update the reset texet
 		ResetButton.Text = reset_name;
@@ -410,7 +472,7 @@ public partial class UI : CanvasLayer {
 				_UpdateBarSlider(
 					InfoType.W_ENGERGY, 
 					(float)Data.W_EnergyDemand / EnergyManager.MAX_ENERGY_BAR_VAL
-                );
+				);
 				
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
@@ -496,6 +558,20 @@ public partial class UI : CanvasLayer {
 		}
 	}
 
+	// Hides the debt label in the case where no debt is acquired this turn
+	// Shows the debt label when debt was acquired
+	public void _UpdateDebtResource(int debt) {
+		// Propagate the new amount to the label
+		DebtResLabel.Text = "-" + debt.ToString();
+
+		// Check if there is any debt to show
+		if(debt > 0) {
+			DebtResource.Show();
+		} else {
+			DebtResource.Hide();
+		}
+	}
+
 	// Retrieves the import percentage selected by the user
 	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 100.0f;
 
@@ -511,12 +587,8 @@ public partial class UI : CanvasLayer {
 		// when the supply meets the demand
 		float diff = Math.Max(0.0f, demand - supply); 
 
-		Debug.Print("SUPPLY = " + supply + ", DEMAND = " + demand);
-
 		// Compute the percentage of the total demand tha the diff represents
 		float diff_perc = diff / demand;
-
-		Debug.Print("DIFF_PERC = " + diff_perc);
 
 		// Set the import target to that percentage
 		Imports._UpdateTargetImport(diff_perc);
@@ -801,14 +873,41 @@ public partial class UI : CanvasLayer {
 	// Reacts to a reset confirmation
 	public void _OnResetYesPressed() {
 		// Singal that a reset will happen
-		EmitSignal(SignalName.ResetGame);
 		ResetPrompt.Hide();
 		SettingsBox.Hide();
+
+		// Reset the imports
+		Imports.Value = 0;
+		Imports._OnApplySelectionPressed(true);
+
+		EmitSignal(SignalName.ResetGame);
 	}
 
 	// Reacts to a reset cancelation
 	public void _OnResetNoPressed() {
 		// Simply hide the reset confirmation
 		ResetPrompt.Hide();
+	}
+
+	// Reacts to the money borrowing apply button being pressed
+	public void _OnDebtApplyPressed() {
+		// Send the amount of debt to the game loop to be applied and update the debt resource
+		DebtResLabel.Text = "-" + PayBackAmount.Text;
+		BorrowContainer.Hide();
+		EmitSignal(SignalName.DebtRequest, (int)(DebtSlider.Value + (InterestRate * DebtSlider.Value)), (int)DebtSlider.Value);
+	}
+
+	// Reacts to the money borrowing cancel button being pressed
+	public void _OnDebtCancelPressed() {
+		// Reset the slider and close the window
+		DebtSlider.Value = 0;
+		BorrowContainer.Hide();
+	}
+
+	// Reacts the the selected debt amount being changed
+	public void _OnDebtSliderValueChanged(double value) {
+		// Update the borrow and pay back amounts to reflect the new values
+		BorrowAmount.Text = ((int)value).ToString();
+		PayBackAmount.Text = ((int)(value + (value * InterestRate))).ToString(); // Add the interest rate
 	}
 }
