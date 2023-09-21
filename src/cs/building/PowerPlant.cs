@@ -654,13 +654,16 @@ public partial class PowerPlant : Node2D {
 		// Reset the button
 		BB?._Reset();
 
-		// Reset the multiplier
-		MultiplierValue = 1;
+		// Retrieve the multiplier
+		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
 		// Set the refund amount
 		if(RefundAmount == -1) {
-			RefundAmount = BuildCost;
+			RefundAmount = BuildCost + (mult.Cost * (MultiplierValue - 1));
 		}
+
+		// Reset the multiplier
+		MultiplierValue = 1;
 
 		// Reset the plant from config
 		_SetPlantFromConfig(PlantType);
