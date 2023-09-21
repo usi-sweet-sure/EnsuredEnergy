@@ -585,7 +585,8 @@ public partial class UI : CanvasLayer {
 
 		// Compute the different, clamped to 0 as no imports are required
 		// when the supply meets the demand
-		float diff = Math.Max(0.0f, demand - supply); 
+		float imported = C._GetDemand().Item1 * Imports._GetImportValue() / 100;
+		float diff = Math.Max(0.0f, demand - (supply - imported)); 
 
 		// Compute the percentage of the total demand tha the diff represents
 		float diff_perc = diff / demand;
