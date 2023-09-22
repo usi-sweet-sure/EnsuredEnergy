@@ -713,9 +713,12 @@ public partial class UI : CanvasLayer {
 		// Simply toggle the money info
 		if(MoneyInfo.Visible) {
 			MoneyInfo.Hide();
+			DebtResource.Position = new Vector2(4,47);
 		} else {
 			// Set the info first
 			SetMoneyInfo();
+			
+			DebtResource.Position = new Vector2(244,37);
 
 			// Finally display it
 			MoneyInfo.Show();
