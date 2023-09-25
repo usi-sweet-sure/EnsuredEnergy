@@ -17,89 +17,119 @@ texture = ExtResource("1_a32ik")
 centered = false
 
 [node name="Nuclear" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(998, 269)
+position = Vector2(613, 216)
 PlantName = "Nuclear"
 _PlantType = 4
 metadata/_edit_group_ = true
 
 [node name="Nuclear2" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(1296, 177)
+position = Vector2(1115, -164)
 PlantName = "Nuclear"
 _PlantType = 4
 NUCLEAR_LIFE_SPAN = 6
 metadata/_edit_group_ = true
 
 [node name="Nuclear3" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(1056, -45)
+position = Vector2(896, -269)
 PlantName = "Nuclear"
 _PlantType = 4
 metadata/_edit_group_ = true
 
-[node name="Coal" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(923, 505)
+[node name="Hydro" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(-47, 2116)
+PlantName = "Gas"
+metadata/_edit_group_ = true
+
+[node name="Pump" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(2177, 638)
+PlantName = "Gas"
+metadata/_edit_group_ = true
+
+[node name="River" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(1163, 1288)
+PlantName = "Gas"
+metadata/_edit_group_ = true
+
+[node name="Waste" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(213, 191)
+PlantName = "Gas"
+metadata/_edit_group_ = true
+
+[node name="Biomass" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(-810, 935)
+PlantName = "Gas"
+metadata/_edit_group_ = true
+
+[node name="Solar" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(1825, 1517)
+PlantName = "Gas"
+metadata/_edit_group_ = true
+
+[node name="Wind" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(277, 1543)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="BuildButton" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 472.0
-offset_top = 567.0
-offset_right = 564.0
-offset_bottom = 617.0
+offset_left = 523.0
+offset_top = 1036.0
+offset_right = 750.0
+offset_bottom = 1221.0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_mklkc")
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton2" parent="." instance=ExtResource("16_pnu0i")]
 self_modulate = Color(0.380392, 0.654902, 1, 1)
-offset_left = 1298.0
-offset_top = 433.0
-offset_right = 1390.0
-offset_bottom = 483.0
+offset_left = 1736.0
+offset_top = 836.0
+offset_right = 1963.0
+offset_bottom = 1021.0
 mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 AllowHydro = true
 
 [node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 1087.0
-offset_top = 695.0
-offset_right = 1179.0
-offset_bottom = 745.0
+offset_left = 961.0
+offset_top = 650.0
+offset_right = 1188.0
+offset_bottom = 835.0
 mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 585.0
-offset_top = 371.0
-offset_right = 674.0
-offset_bottom = 414.0
+offset_left = 1235.0
+offset_top = 225.0
+offset_right = 1462.0
+offset_bottom = 410.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton5" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = -125.0
-offset_top = 609.0
-offset_right = -36.0
-offset_bottom = 652.0
+offset_left = -104.0
+offset_top = 781.0
+offset_right = 123.0
+offset_bottom = 966.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton6" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = -5.0
-offset_top = 1090.0
-offset_right = 84.0
-offset_bottom = 1133.0
+offset_left = -358.0
+offset_top = 1271.0
+offset_right = -131.0
+offset_bottom = 1456.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton7" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 2232.0
-offset_top = 863.0
-offset_right = 2321.0
-offset_bottom = 906.0
+offset_left = 2288.0
+offset_top = 1050.0
+offset_right = 2515.0
+offset_bottom = 1235.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton8" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 1786.0
-offset_top = 220.0
-offset_right = 1875.0
-offset_bottom = 263.0
+offset_left = 1862.0
+offset_top = 114.0
+offset_right = 2089.0
+offset_bottom = 299.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton9" parent="." instance=ExtResource("16_pnu0i")]
@@ -112,24 +142,24 @@ script = ExtResource("4_mo62v")
 AllowHydro = true
 
 [node name="BuildButton10" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 651.0
-offset_top = 1258.0
-offset_right = 740.0
-offset_bottom = 1301.0
+offset_left = 324.0
+offset_top = 1979.0
+offset_right = 551.0
+offset_bottom = 2164.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton11" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 516.0
-offset_top = -257.0
-offset_right = 743.0
-offset_bottom = -72.0
+offset_left = -492.0
+offset_top = 353.0
+offset_right = -265.0
+offset_bottom = 538.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton12" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = -1098.0
-offset_top = 1159.0
-offset_right = -871.0
-offset_bottom = 1344.0
+offset_left = -1158.0
+offset_top = 1219.0
+offset_right = -931.0
+offset_bottom = 1404.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton13" parent="." instance=ExtResource("16_pnu0i")]
@@ -154,4 +184,10 @@ anchor_mode = 0
 [editable path="Nuclear"]
 [editable path="Nuclear2"]
 [editable path="Nuclear3"]
-[editable path="Coal"]
+[editable path="Hydro"]
+[editable path="Pump"]
+[editable path="River"]
+[editable path="Waste"]
+[editable path="Biomass"]
+[editable path="Solar"]
+[editable path="Wind"]

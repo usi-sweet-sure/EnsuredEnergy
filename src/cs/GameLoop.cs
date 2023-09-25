@@ -102,7 +102,16 @@ public partial class GameLoop : Node2D {
 		// Fetch initial nodes
 		// Start with PowerPlants, in the begining there are only 2 PowerPlants Nuclear and Coal
 		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear"));
-		PowerPlants.Add(GetNode<PowerPlant>("World/Coal"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear2"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear3"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Hydro"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Pump"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/River"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Waste"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
+		
 
 		// Fill in build buttons
 		BBs.Add(GetNode<BuildButton>("World/BuildButton"));

@@ -711,7 +711,7 @@ public partial class PowerPlant : Node2D {
 		// Check that the max hasn't been reached
 		if(MultiplierValue < mult.MaxElements) {
 			// check if the cost is more than 0 before playing the money anim
-			if(C._GetGL()._CheckBuildReq(mult.Cost)) {
+			if(C._GetGL()._CheckBuildReq(mult.Cost) && BB != null) {
 				BB.AnimMoney.Text = "-" + mult.Cost.ToString() + "$";
 				BB.AP.Play("Money-");
 			}
