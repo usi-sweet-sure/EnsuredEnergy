@@ -729,7 +729,7 @@ public partial class PowerPlant : Node2D {
 
 		// Check that the min hasn't been reached
 		if(MultiplierValue > 1) {
-			if(mult.Cost > 0) {
+			if(mult.Cost > 0 && BB != null) {
 				BB.AnimMoney.Text = "+" + mult.Cost.ToString() + "$";
 				BB.AP.Play("Money+");
 			}

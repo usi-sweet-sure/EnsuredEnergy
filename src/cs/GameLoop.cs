@@ -43,7 +43,7 @@ public partial class GameLoop : Node2D {
 	public int START_MONEY = 400;
 
 	[Export]
-	public static int BUDGET_PER_TURN = 350;
+	public static int BUDGET_PER_TURN = 270;
 
 	// Internal game state
 	private GameState GS;
