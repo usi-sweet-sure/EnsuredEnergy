@@ -535,6 +535,8 @@ public partial class PowerPlant : Node2D {
 		Price.Text = BuildCost.ToString();
 		PollL.Text = "🏭 " + Pollution.ToString();
 		BTime.Text = "⌛ " + BuildTime.ToString();
+		
+		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
 	}
 
 	// ==================== Helper Methods ====================    
