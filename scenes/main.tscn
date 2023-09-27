@@ -1,10 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=25 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
 [ext_resource type="PackedScene" uid="uid://bs48lirfn2fp2" path="res://scenes/hud/ui.tscn" id="2_d60f5"]
 [ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/building/BuildMenu.tscn" id="2_wrh8p"]
-[ext_resource type="Texture2D" uid="uid://cnp5jnw2xibl8" path="res://assets/temp_swiss_map.png" id="3_fsnjl"]
 [ext_resource type="Script" path="res://src/cs/ui/UI.cs" id="3_l6dyd"]
 [ext_resource type="Script" path="res://src/cs/ui/Camera.cs" id="3_s6ssk"]
 [ext_resource type="Texture2D" uid="uid://tkvsvedhf6x4" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0020_Nuclear.png" id="4_wlqc3"]
@@ -32,14 +31,10 @@ script = ExtResource("1_4jam2")
 [node name="World" parent="." instance=ExtResource("1_prp6q")]
 
 [node name="Map" parent="World" index="0"]
-visible = true
 texture_filter = 2
-position = Vector2(-2395, -1109)
-scale = Vector2(7, 7)
-texture = ExtResource("3_fsnjl")
 
 [node name="Nuclear" parent="World" index="1"]
-position = Vector2(1088, 276)
+position = Vector2(1001, 130)
 
 [node name="Sprite" parent="World/Nuclear" index="0"]
 texture = ExtResource("4_wlqc3")
@@ -56,6 +51,9 @@ offset_top = 104.0
 offset_bottom = 133.0
 metadata/_edit_group_ = true
 
+[node name="Nuclear2" parent="World" index="2"]
+position = Vector2(1479, -248)
+
 [node name="Sprite" parent="World/Nuclear2" index="0"]
 texture = ExtResource("4_wlqc3")
 
@@ -63,12 +61,14 @@ texture = ExtResource("4_wlqc3")
 texture = ExtResource("4_wlqc3")
 
 [node name="Hydro" parent="World" index="4"]
+position = Vector2(564, 1995)
 _PlantType = 0
 
 [node name="Sprite" parent="World/Hydro" index="0"]
 texture = ExtResource("5_i2doc")
 
 [node name="Pump" parent="World" index="5"]
+position = Vector2(1954, 2062)
 _PlantType = 9
 
 [node name="Sprite" parent="World/Pump" index="0"]
@@ -81,77 +81,89 @@ _PlantType = 8
 texture = ExtResource("7_ei5st")
 
 [node name="Waste" parent="World" index="7"]
+position = Vector2(380, 96)
 _PlantType = 6
 
 [node name="Sprite" parent="World/Waste" index="0"]
 texture = ExtResource("8_ccefw")
 
 [node name="Biomass" parent="World" index="8"]
+position = Vector2(-827, 1474)
 _PlantType = 7
 
 [node name="Sprite" parent="World/Biomass" index="0"]
 texture = ExtResource("9_78toe")
 
 [node name="Solar" parent="World" index="9"]
+position = Vector2(2617, 1493)
 _PlantType = 2
 
 [node name="Sprite" parent="World/Solar" index="0"]
 texture = ExtResource("10_qycq3")
 
 [node name="Wind" parent="World" index="10"]
+position = Vector2(-556, 553)
 _PlantType = 5
 
 [node name="Sprite" parent="World/Wind" index="0"]
 texture = ExtResource("11_80dv6")
 
 [node name="BuildButton" parent="World" index="11"]
-offset_left = 497.0
-offset_top = 1080.0
-offset_right = 589.0
-offset_bottom = 1130.0
+offset_left = 706.0
+offset_top = 1037.0
+offset_right = 933.0
+offset_bottom = 1222.0
 
 [node name="BuildButton2" parent="World" index="12"]
-offset_left = 1388.0
-offset_top = 631.0
-offset_right = 1480.0
-offset_bottom = 681.0
+offset_left = 3101.0
+offset_top = 802.0
+offset_right = 3328.0
+offset_bottom = 987.0
 metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton3" parent="World" index="13"]
-offset_left = 1410.0
-offset_top = 1163.0
-offset_right = 1502.0
-offset_bottom = 1213.0
+offset_left = 592.0
+offset_top = 521.0
+offset_right = 819.0
+offset_bottom = 706.0
 
 [node name="BuildButton4" parent="World" index="14"]
-offset_left = -234.0
-offset_top = 496.0
-offset_right = -145.0
-offset_bottom = 539.0
+offset_left = 104.0
+offset_top = 781.0
+offset_right = 331.0
+offset_bottom = 966.0
 
 [node name="BuildButton5" parent="World" index="15"]
-offset_left = -572.0
-offset_top = 949.0
-offset_right = -483.0
-offset_bottom = 992.0
+offset_left = -210.0
+offset_top = 1317.0
+offset_right = 17.0
+offset_bottom = 1502.0
 
 [node name="BuildButton6" parent="World" index="16"]
-offset_left = -252.0
-offset_top = 1651.0
-offset_right = -163.0
-offset_bottom = 1694.0
+offset_left = 2217.0
+offset_top = 966.0
+offset_right = 2444.0
+offset_bottom = 1151.0
 
 [node name="BuildButton7" parent="World" index="17"]
+offset_left = 3401.0
+offset_top = 1350.0
+offset_right = 3628.0
+offset_bottom = 1535.0
 metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton8" parent="World" index="18"]
+offset_left = 2655.0
+offset_top = 15.0
+offset_right = 2882.0
+offset_bottom = 200.0
 metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton9" parent="World" index="19"]
-offset_left = 1519.0
-offset_top = 1839.0
-offset_right = 1608.0
-offset_bottom = 1882.0
+offset_left = 1238.0
+offset_top = 1810.0
+offset_right = 1465.0
+offset_bottom = 1995.0
 
 [node name="BuildButton10" parent="World" index="20"]
 offset_left = 249.0
@@ -163,10 +175,10 @@ offset_bottom = 1984.0
 position = Vector2(958, 538)
 anchor_mode = 1
 zoom = Vector2(0.75, 0.75)
-limit_left = -2800
-limit_top = -1000
-limit_right = 5000
-limit_bottom = 3000
+limit_left = -2425
+limit_top = -950
+limit_right = 5240
+limit_bottom = 3350
 script = ExtResource("3_s6ssk")
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
