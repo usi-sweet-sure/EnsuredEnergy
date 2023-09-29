@@ -21,18 +21,18 @@ _PlantType = 4
 NUCLEAR_LIFE_SPAN = 3
 metadata/_edit_group_ = true
 
-[node name="Nuclear2" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(1503, -104)
-PlantName = "Nuclear"
-_PlantType = 4
-NUCLEAR_LIFE_SPAN = 6
-metadata/_edit_group_ = true
-
 [node name="Nuclear3" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(1244, -395)
 PlantName = "Nuclear"
 _PlantType = 4
 NUCLEAR_LIFE_SPAN = 9
+metadata/_edit_group_ = true
+
+[node name="Nuclear2" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(1503, -104)
+PlantName = "Nuclear"
+_PlantType = 4
+NUCLEAR_LIFE_SPAN = 6
 metadata/_edit_group_ = true
 
 [node name="Hydro" parent="." instance=ExtResource("7_6x5m2")]
@@ -73,8 +73,8 @@ metadata/_edit_group_ = true
 [node name="BuildButton" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 699.0
 offset_top = 1071.0
-offset_right = 926.0
-offset_bottom = 1256.0
+offset_right = 790.0
+offset_bottom = 1144.0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_mklkc")
 script = ExtResource("4_mo62v")
@@ -83,8 +83,8 @@ script = ExtResource("4_mo62v")
 self_modulate = Color(0.380392, 0.654902, 1, 1)
 offset_left = 112.0
 offset_top = 2187.0
-offset_right = 339.0
-offset_bottom = 2372.0
+offset_right = 203.0
+offset_bottom = 2260.0
 mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 AllowHydro = true
@@ -92,52 +92,52 @@ AllowHydro = true
 [node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 961.0
 offset_top = 650.0
-offset_right = 1188.0
-offset_bottom = 835.0
+offset_right = 1052.0
+offset_bottom = 723.0
 mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 1568.0
 offset_top = 154.0
-offset_right = 1795.0
-offset_bottom = 339.0
+offset_right = 1659.0
+offset_bottom = 227.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton5" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 224.0
 offset_top = 695.0
-offset_right = 451.0
-offset_bottom = 880.0
+offset_right = 315.0
+offset_bottom = 768.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton6" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = -424.0
 offset_top = 1215.0
-offset_right = -197.0
-offset_bottom = 1400.0
+offset_right = -333.0
+offset_bottom = 1288.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton7" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 2288.0
 offset_top = 1050.0
-offset_right = 2515.0
-offset_bottom = 1235.0
+offset_right = 2379.0
+offset_bottom = 1123.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton8" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 2512.0
 offset_top = -42.0
-offset_right = 2739.0
-offset_bottom = 143.0
+offset_right = 2603.0
+offset_bottom = 31.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton9" parent="." instance=ExtResource("16_pnu0i")]
 self_modulate = Color(0.380392, 0.654902, 1, 1)
 offset_left = 1149.0
 offset_top = 1864.0
-offset_right = 1376.0
-offset_bottom = 2049.0
+offset_right = 1240.0
+offset_bottom = 1937.0
 script = ExtResource("4_mo62v")
 AllowHydro = true
 
@@ -145,31 +145,31 @@ AllowHydro = true
 visible = false
 offset_left = 324.0
 offset_top = 1979.0
-offset_right = 551.0
-offset_bottom = 2164.0
+offset_right = 415.0
+offset_bottom = 2052.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton11" parent="." instance=ExtResource("16_pnu0i")]
 visible = false
 offset_left = -540.0
 offset_top = 281.0
-offset_right = -313.0
-offset_bottom = 466.0
+offset_right = -449.0
+offset_bottom = 354.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton12" parent="." instance=ExtResource("16_pnu0i")]
 visible = false
 offset_left = -1158.0
 offset_top = 1219.0
-offset_right = -931.0
-offset_bottom = 1404.0
+offset_right = -1067.0
+offset_bottom = 1292.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton13" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 2122.0
 offset_top = -370.0
-offset_right = 2349.0
-offset_bottom = -185.0
+offset_right = 2213.0
+offset_bottom = -297.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton14" parent="." instance=ExtResource("16_pnu0i")]
@@ -177,8 +177,8 @@ visible = false
 self_modulate = Color(0.380392, 0.654902, 1, 1)
 offset_left = 2774.0
 offset_top = 1145.0
-offset_right = 3001.0
-offset_bottom = 1330.0
+offset_right = 2865.0
+offset_bottom = 1218.0
 script = ExtResource("4_mo62v")
 AllowHydro = true
 
@@ -186,8 +186,8 @@ AllowHydro = true
 anchor_mode = 0
 
 [editable path="Nuclear"]
-[editable path="Nuclear2"]
 [editable path="Nuclear3"]
+[editable path="Nuclear2"]
 [editable path="Hydro"]
 [editable path="Pump"]
 [editable path="River"]

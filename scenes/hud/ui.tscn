@@ -254,14 +254,14 @@ offset_bottom = 56.0
 color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
-position = Vector2(236, 864)
+position = Vector2(179, 874)
 texture = ExtResource("2_hhj2t")
 
 [node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 129.0
-offset_top = 932.0
-offset_right = 303.0
-offset_bottom = 974.0
+offset_left = 72.0
+offset_top = 942.0
+offset_right = 246.0
+offset_bottom = 984.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
@@ -281,10 +281,10 @@ rotation = 1.5708
 metadata/_edit_group_ = true
 
 [node name="EnergyBarWinterPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 199.0
-offset_top = 932.0
-offset_right = 373.0
-offset_bottom = 973.0
+offset_left = 142.0
+offset_top = 942.0
+offset_right = 316.0
+offset_bottom = 983.0
 theme_override_styles/background = SubResource("StyleBoxFlat_opb6j")
 NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.784314)
 LowColor = Color(0.94902, 0.533333, 0.0666667, 0.521569)
@@ -302,10 +302,10 @@ offset_bottom = 113.053
 rotation = 1.5708
 
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 199.0
-offset_top = 932.0
-offset_right = 373.0
-offset_bottom = 973.0
+offset_left = 142.0
+offset_top = 942.0
+offset_right = 316.0
+offset_bottom = 983.0
 LowColor = Color(0.94902, 0.317647, 0.0666667, 1)
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
@@ -324,10 +324,10 @@ offset_right = 335.0
 offset_bottom = 258.0
 
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 129.0
-offset_top = 932.0
-offset_right = 303.0
-offset_bottom = 974.0
+offset_left = 72.0
+offset_top = 942.0
+offset_right = 246.0
+offset_bottom = 984.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 LowColor = Color(0.94902, 0.317647, 0.0666667, 1)
@@ -349,10 +349,10 @@ offset_right = 334.0
 offset_bottom = 261.0
 
 [node name="Import" parent="." instance=ExtResource("5_ps4b6")]
-offset_left = 330.0
-offset_top = 950.28
-offset_right = 330.96
-offset_bottom = 950.0
+offset_left = 273.0
+offset_top = 960.28
+offset_right = 273.96
+offset_bottom = 960.0
 ticks_on_borders = false
 
 [node name="Target" parent="Import" index="1"]
@@ -440,10 +440,10 @@ text = "Support 👆"
 horizontal_alignment = 2
 
 [node name="Env" type="ProgressBar" parent="."]
-offset_left = 112.0
-offset_top = 608.0
-offset_right = 222.0
-offset_bottom = 718.0
+offset_left = 55.0
+offset_top = 618.0
+offset_right = 165.0
+offset_bottom = 728.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nm6d8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
@@ -524,10 +524,10 @@ scale = Vector2(1.01351, 1.00676)
 texture = ExtResource("9_kqwrt")
 
 [node name="Poll" type="ProgressBar" parent="."]
-offset_left = 248.0
-offset_top = 608.0
-offset_right = 360.0
-offset_bottom = 720.0
+offset_left = 191.0
+offset_top = 618.0
+offset_right = 303.0
+offset_bottom = 730.0
 tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
