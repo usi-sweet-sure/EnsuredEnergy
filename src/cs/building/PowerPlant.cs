@@ -110,6 +110,7 @@ public partial class PowerPlant : Node2D {
 	
 	// Power off modulate color
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
+	private Color HOVER_COLOR = new Color(0.9f, 0.9f, 0.7f);
 	private Color DEFAULT_COLOR = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 	
 	private string AnimName;
@@ -127,12 +128,17 @@ public partial class PowerPlant : Node2D {
 	private Label BTime;
 	private Control Info;
 	private Button Delete;
+	private Control InfoBubble;
+	private Button InfoButton;
+	private ColorRect ResRect;
+	private Label LandL;
+	private Label BioL;
+	
+	// The Area used to detect hovering
+	private Area2D HoverArea;
 
 	// Configuration controller
 	private ConfigController CC;
-
-	// The Area used to detect hovering
-	private Area2D HoverArea;
 
 	// Context
 	private Context C;
@@ -167,18 +173,23 @@ public partial class PowerPlant : Node2D {
 		EnergyS = GetNode<Label>("ResRect/EnergyS");
 		EnergyW = GetNode<Label>("ResRect/EnergyW");
 		MoneyL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
-		Switch = GetNode<CheckButton>("Switch");
+		Switch = GetNode<CheckButton>("BuildInfo/Switch");
 		CC = GetNode<ConfigController>("ConfigController");
 		Price = GetNode<Label>("Price");
 		HoverArea = GetNode<Area2D>("HoverArea");
 		Info = GetNode<Control>("BuildInfo");
-		BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
+		//BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
 		C = GetNode<Context>("/root/Context");
 		Delete = GetNode<Button>("Delete");
 		Multiplier = GetNode<ColorRect>("Multiplier");
 		MultiplierL = GetNode<Label>("Multiplier/MultAmount");
 		MultInc = GetNode<Button>("Multiplier/Inc");
 		MultDec = GetNode<Button>("Multiplier/Dec");
+		InfoBubble = GetNode<Control>("InfoBubble");
+		InfoButton = GetNode<Button>("InfoButton");
+		ResRect = GetNode<ColorRect>("ResRect");
+		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
+		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 
 		// the delete button should only be shown on new constructions
 		Delete.Hide();
@@ -190,9 +201,11 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			Switch.Hide();
 			Price.Show();
+			ResRect.Show();
 		} else {
 			Price.Hide();
 			Switch.Show();
+			ResRect.Hide();
 		}
 
 		// Set the labels correctly
@@ -202,7 +215,9 @@ public partial class PowerPlant : Node2D {
 		MoneyL.Text = "💰/⌛ " +  ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 		PollL.Text = "🏭 " + Pollution.ToString();
-		BTime.Text = "⌛ " + BuildTime.ToString();
+		//BTime.Text = "⌛ " + BuildTime.ToString();
+		LandL.Text = (LandUse * 100).ToString();
+		BioL.Text = (BiodiversityImpact * 100).ToString();
 
 		// Set plant life cycle
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
@@ -220,6 +235,7 @@ public partial class PowerPlant : Node2D {
 		Switch.Toggled += _OnSwitchToggled;
 		HoverArea.MouseEntered += OnArea2DMouseEntered;
 		HoverArea.MouseExited += OnArea2DMouseExited;
+		InfoButton.Pressed += OnInfoButtonPressed;
 		Delete.Pressed += OnDeletePressed;
 		MultInc.Pressed += OnMultIncPressed;
 		MultDec.Pressed += OnMultDecPressed;
@@ -234,7 +250,7 @@ public partial class PowerPlant : Node2D {
 		if(mult.MaxElements <= 1) {
 			Multiplier.Hide();
 		} else {
-			Multiplier.Show();
+			//Multiplier.Show();
 			MultInc.Show();
 			MultDec.Hide();
 		}
@@ -490,6 +506,7 @@ public partial class PowerPlant : Node2D {
 			NameR.Show();
 			Price.Show();
 			Multiplier.Hide();
+			ResRect.Show();
 		} 
 		// When not in preview mode, the interactive elements should be visible
 		else {
@@ -508,6 +525,7 @@ public partial class PowerPlant : Node2D {
 			Switch.Show();
 			Price.Hide();
 			NameR.Hide();
+			ResRect.Hide();
 		}
 	}
 
@@ -523,6 +541,7 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			Switch.Hide();
 			NameR.Show();
+			ResRect.Show();
 		} else {
 			NameR.Hide();
 		}
@@ -531,10 +550,12 @@ public partial class PowerPlant : Node2D {
 		NameL.Text = PlantName;
 		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
 		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		MoneyL.Text = "💰/⌛ " + ProductionCost.ToString();
+		MoneyL.Text = ProductionCost.ToString() + " 💰/⌛";
 		Price.Text = BuildCost.ToString();
-		PollL.Text = "🏭 " + Pollution.ToString();
-		BTime.Text = "⌛ " + BuildTime.ToString();
+		PollL.Text = Pollution.ToString();
+		//BTime.Text = "⌛ " + BuildTime.ToString();
+		LandL.Text = (LandUse * 100).ToString();
+		BioL.Text = (BiodiversityImpact * 100).ToString();
 		
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
 	}
@@ -642,6 +663,8 @@ public partial class PowerPlant : Node2D {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Show();
+			Sprite.SelfModulate = HOVER_COLOR;
+			
 		} else {
 			Info.Show();
 		}
@@ -652,9 +675,22 @@ public partial class PowerPlant : Node2D {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
 			NameR.Hide();
+			Sprite.SelfModulate = DEFAULT_COLOR;
 		} else {
 			Info.Hide();
 		}
+	}
+	
+	// Press on the powerplant to get more info about it
+	private void OnInfoButtonPressed(){
+		Info.Visible = !Info.Visible;
+		ResRect.Visible = !ResRect.Visible;
+		
+		// only show the multiplier if  the plant can be upgraded
+		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
+		
+		if(mult.MaxElements > 1)
+			Multiplier.Visible = !Multiplier.Visible;
 	}
 
 	// Requests a deletion of the powerplant
@@ -737,6 +773,17 @@ public partial class PowerPlant : Node2D {
 			}
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
+		}
+	}
+	
+	// Hides the powerplant info if the player clicks somewhere else on the map
+	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+				Info.Hide();
+				ResRect.Hide();
+				Multiplier.Hide();
+			}
 		}
 	}
 }

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://lkinuybw2vd8" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0006_Waste.png" id="9_ydaxd"]
 [ext_resource type="Texture2D" uid="uid://drju16akfui3t" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0012_Biomass.png" id="10_mc0bo"]
 [ext_resource type="Texture2D" uid="uid://com3jwqcdurjb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0016_Hydrolic-river-.png" id="11_8ko7n"]
-[ext_resource type="Texture2D" uid="uid://bhkojglciqwmb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0009_Geothermal.png" id="12_2dgo3"]
+[ext_resource type="Texture2D" uid="uid://blctpbo8r261a" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0010_Geothermal.png" id="12_r0ufk"]
 
 [sub_resource type="Animation" id="Animation_j4va7"]
 length = 0.001
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(449, 656)]
+"values": [Vector2(400, 656)]
 }
 
 [sub_resource type="Animation" id="Animation_kodya"]
@@ -41,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(449, 1080), Vector2(449, 656)]
+"values": [Vector2(400, 1080), Vector2(400, 656)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cqvg1"]
@@ -66,10 +66,11 @@ libraries = {
 }
 
 [node name="TabContainer" type="TabContainer" parent="."]
-offset_left = 449.0
+offset_left = 400.0
 offset_top = 656.0
-offset_right = 2041.0
+offset_right = 1992.0
 offset_bottom = 1080.0
+mouse_filter = 0
 
 [node name="TabBar" type="TabBar" parent="TabContainer"]
 layout_mode = 2
@@ -218,7 +219,7 @@ scale = Vector2(0.9, 0.9)
 _PlantType = 9
 
 [node name="Sprite" parent="TabContainer/TabBar/Pump" index="0"]
-texture = ExtResource("12_2dgo3")
+texture = ExtResource("12_r0ufk")
 
 [node name="PumpButton" type="Button" parent="TabContainer/TabBar/Pump"]
 offset_left = -90.0
