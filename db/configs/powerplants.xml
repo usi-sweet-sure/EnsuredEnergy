@@ -29,8 +29,8 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
         
         <param groupid="environment" id="pollution" type="int">10</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.1</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="land_use" type="float">0.05</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.05</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
         
         <param groupid="multiplier" id="max_elements" type="int">1</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">0</param> <!-- The cost of adding an element to this power plant -->
@@ -55,8 +55,8 @@
         <param groupid="energy" id="availability_w" type="float">0</param>
         
         <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="land_use" type="float">0.07</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.05</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
         
         <param groupid="multiplier" id="max_elements" type="int">3</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">50</param> <!-- The cost of adding an element to this power plant -->
@@ -81,7 +81,7 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
         
         <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="land_use" type="float">0.07</param> <!-- The percentage of the total land area used up by this plant -->
         <param groupid="environment" id="biodiversity" type="float">0.05</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
         
         <param groupid="multiplier" id="max_elements" type="int">1</param> <!-- The maximum number of elements that this plant can contain --> 
@@ -107,13 +107,13 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
 
         <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="land_use" type="float">0.02</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.02</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
 
         <param groupid="multiplier" id="max_elements" type="int">3</param> <!-- The maximum number of elements that this plant can contain --> 
-        <param groupid="multiplier" id="cost" type="int">0</param> <!-- The cost of adding an element to this power plant -->
+        <param groupid="multiplier" id="cost" type="int">50</param> <!-- The cost of adding an element to this power plant -->
         <param groupid="multiplier" id="pollution" type="float">1.0</param> <!-- The factor by which pollution is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="land_use" type="float">1.0</param> <!-- The factor by which land use is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="land_use" type="float">1.1</param> <!-- The factor by which land use is increased when a multiplier is applied -->
         <param groupid="multiplier" id="biodiversity" type="float">1.0</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
         <param groupid="multiplier" id="production_cost" type="float">1.0</param> <!-- The factor by which the production cost is increased when a multiplier is applied -->
         <param groupid="multiplier" id="capacity" type="int">5</param> <!-- The factor by which capacity is increased when a multiplier is applied -->
@@ -133,8 +133,8 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
 
         <param groupid="environment" id="pollution" type="int">-3</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">-0.05</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">-0.05</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="land_use" type="float">-0.025</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">-0.025</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
 
         <param groupid="multiplier" id="max_elements" type="int">1</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">0</param> <!-- The cost of adding an element to this power plant -->
@@ -159,8 +159,8 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
         
         <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
-        <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+        <param groupid="environment" id="land_use" type="float">0.08</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.05</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
 
         <param groupid="multiplier" id="max_elements" type="int">5</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">50</param> <!-- The cost of adding an element to this power plant -->
@@ -185,14 +185,14 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
         
         <param groupid="environment" id="pollution" type="int">5</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="land_use" type="float">0.01</param> <!-- The percentage of the total land area used up by this plant -->
         <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
 
         <param groupid="multiplier" id="max_elements" type="int">5</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">20</param> <!-- The cost of adding an element to this power plant -->
         <param groupid="multiplier" id="pollution" type="float">1.0</param> <!-- The factor by which pollution is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="land_use" type="float">1.0</param> <!-- The factor by which land use is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="biodiversity" type="float">1.0</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="land_use" type="float">1.01</param> <!-- The factor by which land use is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="biodiversity" type="float">1.01</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
         <param groupid="multiplier" id="production_cost" type="float">1.0</param> <!-- The factor by which the production cost is increased when a multiplier is applied -->
         <param groupid="multiplier" id="capacity" type="int">2</param> <!-- The factor by which capacity is increased when a multiplier is applied -->
     
@@ -211,14 +211,14 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
         
         <param groupid="environment" id="pollution" type="int">2</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="land_use" type="float">0.01</param> <!-- The percentage of the total land area used up by this plant -->
         <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
 
         <param groupid="multiplier" id="max_elements" type="int">5</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">20</param> <!-- The cost of adding an element to this power plant -->
         <param groupid="multiplier" id="pollution" type="float">1.0</param> <!-- The factor by which pollution is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="land_use" type="float">1.0</param> <!-- The factor by which land use is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="biodiversity" type="float">1.0</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="land_use" type="float">1.01</param> <!-- The factor by which land use is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="biodiversity" type="float">1.01</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
         <param groupid="multiplier" id="production_cost" type="float">1.0</param> <!-- The factor by which the production cost is increased when a multiplier is applied -->
         <param groupid="multiplier" id="capacity" type="int">3</param> <!-- The factor by which capacity is increased when a multiplier is applied -->
     
@@ -237,14 +237,14 @@
         <param groupid="energy" id="availability_w" type="float">0.5</param>
         
         <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="land_use" type="float">0.02</param> <!-- The percentage of the total land area used up by this plant -->
         <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
 
         <param groupid="multiplier" id="max_elements" type="int">3</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">50</param> <!-- The cost of adding an element to this power plant -->
         <param groupid="multiplier" id="pollution" type="float">1.0</param> <!-- The factor by which pollution is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="land_use" type="float">1.0</param> <!-- The factor by which land use is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="biodiversity" type="float">1.0</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="land_use" type="float">1.1</param> <!-- The factor by which land use is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="biodiversity" type="float">1.1</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
         <param groupid="multiplier" id="production_cost" type="float">1.0</param> <!-- The factor by which the production cost is increased when a multiplier is applied -->
         <param groupid="multiplier" id="capacity" type="int">5</param> <!-- The factor by which capacity is increased when a multiplier is applied -->
     
@@ -263,14 +263,14 @@
         <param groupid="energy" id="availability_w" type="float">1.0</param>
         
         <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
-        <param groupid="environment" id="land_use" type="float">0.1</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="land_use" type="float">0.03</param> <!-- The percentage of the total land area used up by this plant -->
         <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
 
         <param groupid="multiplier" id="max_elements" type="int">2</param> <!-- The maximum number of elements that this plant can contain --> 
         <param groupid="multiplier" id="cost" type="int">100</param> <!-- The cost of adding an element to this power plant -->
         <param groupid="multiplier" id="pollution" type="float">1.0</param> <!-- The factor by which pollution is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="land_use" type="float">1.0</param> <!-- The factor by which land use is increased when a multiplier is applied -->
-        <param groupid="multiplier" id="biodiversity" type="float">1.0</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="land_use" type="float">1.1</param> <!-- The factor by which land use is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="biodiversity" type="float">1.1</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
         <param groupid="multiplier" id="production_cost" type="float">1.0</param> <!-- The factor by which the production cost is increased when a multiplier is applied -->
         <param groupid="multiplier" id="capacity" type="int">5</param> <!-- The factor by which capacity is increased when a multiplier is applied -->
     
