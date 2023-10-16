@@ -112,6 +112,8 @@ public partial class PowerPlant : Node2D {
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
 	private Color HOVER_COLOR = new Color(0.9f, 0.9f, 0.7f);
 	private Color DEFAULT_COLOR = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+	private Color RED = new Color(0.65f, 0f, 0.05f, 1.0f);
+	private Color GREEN = new Color(0, 0.55f, 0.27f, 1.0f);
 	
 	private string AnimName;
 
@@ -178,14 +180,13 @@ public partial class PowerPlant : Node2D {
 		Price = GetNode<Label>("Price");
 		HoverArea = GetNode<Area2D>("HoverArea");
 		Info = GetNode<Control>("BuildInfo");
-		//BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
+		BTime = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Time");
 		C = GetNode<Context>("/root/Context");
 		Delete = GetNode<Button>("Delete");
 		Multiplier = GetNode<ColorRect>("Multiplier");
 		MultiplierL = GetNode<Label>("Multiplier/MultAmount");
 		MultInc = GetNode<Button>("Multiplier/Inc");
 		MultDec = GetNode<Button>("Multiplier/Dec");
-		InfoBubble = GetNode<Control>("InfoBubble");
 		InfoButton = GetNode<Button>("InfoButton");
 		ResRect = GetNode<ColorRect>("ResRect");
 		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
@@ -215,9 +216,9 @@ public partial class PowerPlant : Node2D {
 		MoneyL.Text = "💰/⌛ " +  ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 		PollL.Text = "🏭 " + Pollution.ToString();
-		//BTime.Text = "⌛ " + BuildTime.ToString();
+		BTime.Text = "⌛ " + BuildTime.ToString();
 		LandL.Text = (LandUse * 100).ToString();
-		BioL.Text = (BiodiversityImpact * 100).ToString();
+		BioL.Text = (-BiodiversityImpact * 100).ToString();
 
 		// Set plant life cycle
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
@@ -550,12 +551,24 @@ public partial class PowerPlant : Node2D {
 		NameL.Text = PlantName;
 		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
 		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		MoneyL.Text = ProductionCost.ToString() + " 💰/⌛";
+		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString();
 		PollL.Text = Pollution.ToString();
-		//BTime.Text = "⌛ " + BuildTime.ToString();
+		BTime.Text = BuildTime.ToString() + " ⌛";
 		LandL.Text = (LandUse * 100).ToString();
-		BioL.Text = (BiodiversityImpact * 100).ToString();
+		BioL.Text = (-BiodiversityImpact * 100).ToString();
+		
+		if (BiodiversityImpact < 0)
+			BioL.Set("theme_override_colors/font_color", GREEN);
+		if (LandUse < 0)
+			LandL.Set("theme_override_colors/font_color", GREEN);
+		if (Pollution <= 0)
+			PollL.Set("theme_override_colors/font_color", GREEN);
+		if (ProductionCost <= 0)
+			MoneyL.Set("theme_override_colors/font_color", GREEN);
+		if (BuildTime <= 0)
+			BTime.Set("theme_override_colors/font_color", GREEN);
+		
 		
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
 	}

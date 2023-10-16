@@ -23,7 +23,7 @@
         <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
         <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
-        <param groupid="energy" id="production_cost" type="int">50</param> <!-- The cost of maintaining this plant active every turn -->
+        <param groupid="energy" id="production_cost" type="int">20</param> <!-- The cost of maintaining this plant active every turn -->
         <param groupid="energy" id="capacity" type="int">25</param> <!-- The capacity this plant has w.r.t. energy production -->
         <param groupid="energy" id="availability_s" type="float">1.0</param> <!-- The percentage of the total capacity the plant can produce this turn -->
         <param groupid="energy" id="availability_w" type="float">1.0</param>

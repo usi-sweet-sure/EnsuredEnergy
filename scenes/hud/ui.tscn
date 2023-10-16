@@ -306,7 +306,7 @@ offset_left = 142.0
 offset_top = 942.0
 offset_right = 316.0
 offset_bottom = 983.0
-LowColor = Color(0.94902, 0.317647, 0.0666667, 1)
+LowColor = Color(0.94902, 0.156863, 0.0666667, 1)
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -330,7 +330,7 @@ offset_right = 246.0
 offset_bottom = 984.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-LowColor = Color(0.94902, 0.317647, 0.0666667, 1)
+LowColor = Color(0.94902, 0.156863, 0.0666667, 1)
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)
