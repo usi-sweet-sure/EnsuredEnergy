@@ -55,7 +55,7 @@ public partial class UI : CanvasLayer {
 	[ExportGroup("Money Borrowing Parameters")]
 	[Export]
 	// The amount of debt applied
-	public float InterestRate = 0.2f;
+	public float InterestRate = 0.15f;
 
 	// Contains the data displayed in the UI
 	private InfoData Data;
@@ -66,6 +66,8 @@ public partial class UI : CanvasLayer {
 	// Button that triggers the passage to a next turn
 	private TextureButton NextTurnButton;
 	private Label NextTurnL;
+	private AnimationPlayer NextTurnAP;
+	private Label Warning;
 
 	// The two energy bars, showing the availability and demand
 	private InfoBar WinterEnergy;
@@ -155,6 +157,8 @@ public partial class UI : CanvasLayer {
 		// Fetch Nodes
 		NextTurnButton = GetNode<TextureButton>("NextTurn");
 		NextTurnL = GetNode<Label>("NextTurn/Label");
+		NextTurnAP = GetNode<AnimationPlayer>("NextTurn/NextTurnAP");
+		Warning = GetNode<Label>("NextTurn/Warning");
 		TC = GetNode<TextController>("../TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
@@ -230,6 +234,7 @@ public partial class UI : CanvasLayer {
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
 		NextTurnButton.Pressed += _OnNextTurnPressed;
+		NextTurnButton.GuiInput += _OnNextTurnGuiInput;
 		SettingsButton.Pressed += _OnSettingsButtonPressed;
 		LanguageButton.Pressed += _OnLanguageButtonPressed;
 		SettingsClose.Pressed += _OnSettingsClosePressed;
@@ -742,7 +747,14 @@ public partial class UI : CanvasLayer {
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 
 	}
-
+	
+	public void _OnNextTurnGuiInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left)
+				NextTurnAP.Play("warning");
+		}
+	}
+	
 	// Displays the information box related to the winter energy
 	public void _OnWinterEnergyMouseEntered() {
 		 SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
@@ -863,6 +875,11 @@ public partial class UI : CanvasLayer {
 	// Updates the state of the next turn button
 	public void _OnNextTurnStateUpdate(bool state) {
 		NextTurnButton.Disabled = state;
+		if (state) {
+			NextTurnButton.GuiInput += _OnNextTurnGuiInput;
+		} else {
+			NextTurnButton.GuiInput -= _OnNextTurnGuiInput;
+		}
 	}
 
 	// Reacts to the reset button being pressed
