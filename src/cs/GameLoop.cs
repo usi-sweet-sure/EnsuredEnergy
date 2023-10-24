@@ -124,10 +124,6 @@ public partial class GameLoop : Node2D {
 		BBs.Add(GetNode<BuildButton>("World/BuildButton8"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton9"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton10"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton11"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton12"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton13"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton14"));
 
 		// Fetch UI and BuildMenu
 		_UI = GetNode<UI>("UI");
@@ -642,10 +638,6 @@ public partial class GameLoop : Node2D {
 		BBs.Add(GetNode<BuildButton>("World/BuildButton8"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton9"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton10"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton11"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton12"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton13"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton14"));
 
 		// Set the number of turns in the context
 		C._SetNTurns(N_TURNS);

@@ -213,16 +213,16 @@
         <text>Ein neues Virus breitet sich rasant in der Welt aus. Was sollten wir tun?</text>
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
-            <text>Put the population in lockdown. 
+            <text>Beschränkungen einrichten. 
 -10 👍 +50 ⚡</text>
             <effect field="support" value="-10"/>
-            <effect field="support" value="-10"/>
+            <effect field="support" value="0"/>
         </reaction>
         <reaction id="1">
             <text>Legen Sie eine Impfkampagne fest.
--20 👍 -100$</text>
+-20 👍 -50$</text>
             <effect field="support" value="-20"/>
-            <effect field="money" value="-100"/>
+            <effect field="money" value="-50"/>
         </reaction>
         <reaction id="2">
             <text>Warten Sie auf die Herdenimmunität.</text>
