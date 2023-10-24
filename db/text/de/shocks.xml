@@ -93,8 +93,8 @@
         </reaction>
         <reward>
             <text>Hydraulische Energieerzeugung -1% pro Umdrehung</text>
-            <effect field="money" value="50"/>
-            <effect field="env" value="50"/>
+            <effect field="money" value="0"/>
+            <effect field="env" value="0"/>
         </reward>
     </shock>
 
@@ -109,8 +109,8 @@
         </reaction>
         <reward>
             <text>Wind- und Solarenergie -20% ⚡</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
 <!-- Need geothermal
@@ -140,8 +140,8 @@
         </reaction>
         <reward>
             <text>Produktionskosten +10%</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <effect field="support" value="0"/>
+            <effect field="money" value="-20"/>
         </reward>
     </shock>
     
@@ -156,8 +156,8 @@
         </reaction>
         <reward>
             <text>Produktionskosten +20%</text>
-            <effect field="support" value="50"/>
-            <effect field="money" value="50"/>
+            <effect field="support" value="0"/>
+            <effect field="money" value="-50"/>
         </reward>
     </shock>
 <!-- Need policies
@@ -202,8 +202,8 @@
         </reaction>
         <reward>
             <text>Energiebedarf im Winter und Sommer +50 ⚡</text>
-            <effect field="energyS" value="-50"/>
-            <effect field="energyW" value="-50"/>
+            <effect field="energyS" value="0"/>
+            <effect field="energyW" value="0"/>
         </reward>
     </shock>
 
