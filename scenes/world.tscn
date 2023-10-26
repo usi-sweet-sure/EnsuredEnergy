@@ -86,18 +86,18 @@ mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 2207.0
-offset_top = 861.0
-offset_right = 2434.0
-offset_bottom = 1046.0
+offset_left = 2093.0
+offset_top = 718.0
+offset_right = 2320.0
+offset_bottom = 903.0
 mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 1155.0
-offset_top = 628.0
-offset_right = 1382.0
-offset_bottom = 813.0
+offset_left = 3194.0
+offset_top = 970.0
+offset_right = 3421.0
+offset_bottom = 1155.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton5" parent="." instance=ExtResource("16_pnu0i")]
@@ -115,10 +115,10 @@ offset_bottom = 1516.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton7" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 3311.0
-offset_top = 1342.0
-offset_right = 3538.0
-offset_bottom = 1527.0
+offset_left = 3482.0
+offset_top = 1463.0
+offset_right = 3709.0
+offset_bottom = 1648.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton8" parent="." instance=ExtResource("16_pnu0i")]

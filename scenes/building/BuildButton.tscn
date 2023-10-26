@@ -632,10 +632,8 @@ _data = {
 }
 
 [node name="BuildButton" type="TextureButton" groups=["BB"]]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 115.0
-offset_bottom = 97.0
+offset_right = 227.0
+offset_bottom = 185.0
 focus_mode = 0
 texture_normal = ExtResource("1_dqrnt")
 texture_pressed = ExtResource("2_e5byc")

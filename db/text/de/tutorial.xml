@@ -18,7 +18,7 @@
 <db id="tutorial" lang="de">
 	<group id="tutorial_text">
 		<text id="0">Glückwunsch !
-Sie wurden dazu ausgewählt, [b]das Stromnetz[/b] zu steuern und einen nachhaltigen und widerstandsfähigen Energiesektor sicherzustellen.</text>
+Sie wurden dazu ausgewählt, [b]das Stromnetz[/b] zu steuern und einen nachhaltigen und widerstandsfähigen Energiesektor sicherzustellen für die nächsten 30 Jahre (10 Runden).</text>
 		<text id="1">Sie müssen genügend [b]Energie[/b] für Ihre Bevölkerung zur Verfügung stellen.
 Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
 		<text id="2">Sie müssen genügend [b]Energie[/b] für Ihre Bevölkerung zur Verfügung stellen.
@@ -29,10 +29,14 @@ Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können
 		<text id="4">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:
 
 - Man kann neue Kraftwerke bauen, aber das kostet Zeit und Geld.</text>
+<text id="5">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:
+
+	- Sie können einige der bestehenden Kraftwerke aufrüsten</text>
 	</group>
 	<group id="info_bubble">
 		<text id="0">Für jede Runde muss man den Bedarf für Sommer und Winter erreichen.</text>
 		<text id="1">Importiere mehr Energie hier</text>
 		<text id="2">Neue Kraftwerke bauen</text>
+		<text id="3">Aufrüstung des bestehenden Kraftwerks</text>
 	</group>
 </db>

@@ -230,7 +230,7 @@ _PlantType = 2
 texture = ExtResource("10_qycq3")
 
 [node name="Camera2D" parent="World" index="21"]
-position = Vector2(552, 538)
+position = Vector2(858, 685)
 anchor_mode = 1
 zoom = Vector2(0.75, 0.75)
 limit_left = -2425
