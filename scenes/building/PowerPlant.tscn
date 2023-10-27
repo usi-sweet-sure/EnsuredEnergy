@@ -22,31 +22,14 @@ script = ExtResource("1_qsehc")
 texture_filter = 2
 
 [node name="Price" type="Label" parent="."]
-offset_left = -17.0
-offset_top = 146.0
-offset_right = 18.0
-offset_bottom = 171.0
+offset_left = -80.0
+offset_top = 144.0
+offset_right = -28.0
+offset_bottom = 179.0
 theme_override_font_sizes/font_size = 23
 text = "1000"
 horizontal_alignment = 1
 metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Price"]
-visible = false
-show_behind_parent = true
-layout_mode = 0
-offset_left = -1.0
-offset_top = 3.0
-offset_right = 49.0
-offset_bottom = 21.0
-color = Color(0.498039, 0.498039, 0.498039, 0.580392)
-
-[node name="Line2D" type="Line2D" parent="Price"]
-visible = false
-position = Vector2(69, 68)
-points = PackedVector2Array(-68, 71, -68, -65, 60, -65, 60, 71)
-width = 2.0
-default_color = Color(0.498039, 0.498039, 0.498039, 0.580392)
 
 [node name="Label" type="Label" parent="Price"]
 layout_mode = 1
@@ -60,80 +43,29 @@ theme_override_font_sizes/font_size = 23
 text = "$"
 horizontal_alignment = 2
 
-[node name="InfoBubble" type="Control" parent="."]
+[node name="Time3" type="Label" parent="Price"]
+offset_left = 135.0
+offset_top = 5.0
+offset_right = 164.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 26
+text = "⌛"
+
+[node name="Time2" type="Label" parent="Price"]
 visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = -65.0
-offset_top = -276.0
-offset_right = -25.0
-offset_bottom = -236.0
+offset_left = 130.0
+offset_top = 7.0
+offset_right = 166.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 26
+text = "🔨"
 
-[node name="NinePatchRect" type="NinePatchRect" parent="InfoBubble"]
-layout_mode = 0
-offset_left = -79.0
-offset_top = 12.0
-offset_right = 209.0
-offset_bottom = 126.0
-texture = ExtResource("3_jv8ie")
-region_rect = Rect2(24, 32, 254, 152)
-patch_margin_left = 12
-patch_margin_top = 12
-patch_margin_right = 12
-patch_margin_bottom = 12
-
-[node name="ColorRect" type="ColorRect" parent="InfoBubble"]
-layout_mode = 0
-offset_left = -55.0
-offset_top = 28.0
-offset_right = 185.0
-offset_bottom = 92.0
-color = Color(0.597656, 0.597656, 0.597656, 1)
-
-[node name="ContainerL" type="VBoxContainer" parent="InfoBubble/ColorRect"]
-visible = false
-layout_mode = 0
-offset_left = 1.0
-offset_right = 120.0
-offset_bottom = 120.0
-
-[node name="Prod" type="Label" parent="InfoBubble/ColorRect/ContainerL"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "$ / ⌛"
-
-[node name="Poll" type="Label" parent="InfoBubble/ColorRect/ContainerL"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "🏭"
-
-[node name="Time" type="Label" parent="InfoBubble/ColorRect/ContainerL"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-
-[node name="ContainerN" type="HBoxContainer" parent="InfoBubble/ColorRect"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -50.0
-offset_bottom = -21.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 29
-alignment = 1
-
-[node name="Prod" type="Label" parent="InfoBubble/ColorRect/ContainerN"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "100"
-horizontal_alignment = 2
-
-[node name="Poll" type="Label" parent="InfoBubble/ColorRect/ContainerN"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "10"
+[node name="Time" type="Label" parent="Price"]
+offset_left = 104.0
+offset_right = 129.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 23
+text = "0"
 horizontal_alignment = 2
 
 [node name="BuildInfo" type="Control" parent="."]
@@ -168,56 +100,44 @@ color = Color(0.596078, 0.596078, 0.596078, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BuildInfo/ColorRect"]
 layout_mode = 0
-offset_top = -5.0
 offset_right = 248.0
-offset_bottom = 179.0
-
-[node name="ColorRect" type="ColorRect" parent="BuildInfo/ColorRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-color = Color(0.647059, 0.647059, 0.647059, 0)
+offset_bottom = 184.0
 
 [node name="ColorRect2" type="ColorRect" parent="BuildInfo/ColorRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+visible = false
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
-color = Color(0.839216, 0.741176, 0, 1)
+color = Color(0.839216, 0.882353, 0.0862745, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="BuildInfo/ColorRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+visible = false
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
-color = Color(0.498039, 0.498039, 0.498039, 1)
+color = Color(0.541176, 0.541176, 0.541176, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="BuildInfo/ColorRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+visible = false
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
-color = Color(0.545098, 0.686275, 0.619608, 1)
+color = Color(0.231373, 0.584314, 0, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="BuildInfo/ColorRect/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+visible = false
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
-color = Color(0.545098, 0.686275, 0.619608, 1)
+color = Color(0.545098, 0.976471, 0, 1)
 
 [node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = -3.0
-offset_right = 240.0
-offset_bottom = 158.0
-
-[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 18
-text = "Turns to build"
+offset_right = 239.0
+offset_bottom = 161.0
 
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "$ / Turn"
 
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
@@ -225,7 +145,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "Pollution"
 
 [node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
@@ -233,7 +153,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "Land Use"
 
 [node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
@@ -241,7 +161,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "Biodiversity"
 
 [node name="ContainerN" type="VBoxContainer" parent="BuildInfo/ColorRect"]
@@ -250,44 +170,37 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -152.0
-offset_bottom = -21.0
+offset_top = -184.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="Time" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 18
-text = "3"
-horizontal_alignment = 2
-
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "100"
 horizontal_alignment = 2
 
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "10"
 horizontal_alignment = 2
 
 [node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "3"
 horizontal_alignment = 2
 
 [node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "3"
 horizontal_alignment = 2
 
@@ -347,14 +260,16 @@ uppercase = true
 
 [node name="ResRect" type="ColorRect" parent="."]
 visible = false
-offset_left = -38.0
+offset_left = -50.0
 offset_top = 106.0
-offset_right = -6.0
+offset_right = -18.0
 offset_bottom = 135.0
+scale = Vector2(1.2, 1.2)
 color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="InfoBG2" type="Sprite2D" parent="ResRect"]
-position = Vector2(41, 13)
+position = Vector2(41, 10)
+scale = Vector2(1, 0.869565)
 texture = SubResource("AtlasTexture_vpdo4")
 
 [node name="ColorRect" type="ColorRect" parent="ResRect"]
@@ -459,12 +374,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 84.0
-offset_top = 100.0
-offset_right = 150.0
-offset_bottom = 140.0
+offset_left = 96.0
+offset_top = 94.0
+offset_right = 163.0
+offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.2, 1.2)
 color = Color(0.596078, 0.596078, 0.596078, 1)
 metadata/_edit_group_ = true
 
@@ -473,6 +389,8 @@ layout_mode = 0
 offset_top = 2.0
 offset_right = 67.0
 offset_bottom = 39.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -304,10 +304,10 @@ position = Vector2(264, 168)
 texture = ExtResource("6_vs2ug")
 
 [node name="NextTurn" type="TextureButton" parent="."]
-offset_left = 1679.0
-offset_top = 929.0
-offset_right = 1879.0
-offset_bottom = 993.0
+offset_left = 1587.0
+offset_top = 911.0
+offset_right = 1927.0
+offset_bottom = 1051.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_kbgc4")
@@ -315,7 +315,7 @@ texture_pressed = ExtResource("3_l43te")
 texture_hover = ExtResource("4_6fg8a")
 texture_disabled = ExtResource("5_xpjuf")
 ignore_texture_size = true
-stretch_mode = 3
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="NextTurn"]
 layout_mode = 1
