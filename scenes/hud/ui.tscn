@@ -825,7 +825,7 @@ texture = ExtResource("10_2gyrf")
 
 [node name="ColorRect" type="ColorRect" parent="MoneyInfo"]
 layout_mode = 0
-offset_right = 227.0
+offset_right = 231.0
 offset_bottom = 185.0
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
@@ -862,9 +862,9 @@ text = "  Import:"
 
 [node name="prod" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 61.0
+offset_left = 54.0
 offset_top = 51.0
-offset_right = 201.0
+offset_right = 194.0
 offset_bottom = 91.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -874,9 +874,9 @@ vertical_alignment = 1
 
 [node name="build" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 62.0
+offset_left = 55.0
 offset_top = 97.0
-offset_right = 202.0
+offset_right = 195.0
 offset_bottom = 137.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -886,9 +886,9 @@ vertical_alignment = 1
 
 [node name="budget" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 53.0
 offset_top = 8.0
-offset_right = 202.0
+offset_right = 195.0
 offset_bottom = 48.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -898,9 +898,9 @@ vertical_alignment = 1
 
 [node name="importamounts" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 102.0
+offset_left = 95.0
 offset_top = 148.0
-offset_right = 201.0
+offset_right = 194.0
 offset_bottom = 179.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -1152,10 +1152,10 @@ offset_left = 152.0
 offset_top = 248.0
 offset_right = 848.0
 offset_bottom = 282.0
-max_value = 1000.0
+max_value = 500.0
 step = 100.0
 rounded = true
-tick_count = 11
+tick_count = 6
 ticks_on_borders = true
 
 [node name="Money" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
@@ -1176,7 +1176,7 @@ offset_right = 241.0
 offset_bottom = 50.0
 theme_override_colors/font_color = Color(0.454902, 0.94902, 0.458824, 1)
 theme_override_font_sizes/font_size = 27
-text = "xxx"
+text = "0"
 
 [node name="Interest" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
@@ -1195,7 +1195,7 @@ offset_right = 429.0
 offset_bottom = 42.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 27
-text = "xxx"
+text = "0"
 
 [node name="Apply" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
