@@ -62,7 +62,7 @@ public partial class ImportSlider : VSlider {
 
 		// Connect the various callbacks
 		ValueChanged += OnSliderRangeValueChanged;
-		DragEnded += OnApplySelectionPressed;
+		DragEnded += _OnApplySelectionPressed;
 		//Keeping it just in case for now
 		//ApplySelection.Pressed += OnApplySelectionPressed;
 		Cancel.Pressed += OnCancelPressed;
@@ -106,7 +106,7 @@ public partial class ImportSlider : VSlider {
 	}
 
 	// Confirms the selection of a specific import amount
-	private void OnApplySelectionPressed(bool ValChanged) {
+	public void _OnApplySelectionPressed(bool ValChanged) {
 		// Save the import amount
 		ImportAmount = Math.Max(0, Math.Min((int) Value, 100));
 

@@ -100,6 +100,7 @@ public struct MoneyData {
 	public int Production; // Money spent on production costs this round
 	public int Build; // Money spent on build costs this round
 	public int Imports; // Money spent on imports this turn
+	public int Debt; // The amount of debt acquired so far
 
 	// Default constructor for the MoneyData
 	public MoneyData(int start_money) {
@@ -108,22 +109,38 @@ public struct MoneyData {
 		Production = 0;
 		Build = 0;
 		Imports = 0;
+		Debt = 0;
 	}
 
 	// Resets the spending statistics at the end of each round
 	public void NextTurn(int new_budget, int production, int ImportCost) {
 		Budget = Money + new_budget;
-		Money += new_budget - production - ImportCost;
+		// Each turn the player needs to pay for:
+		// Production costs: the cost of running the power plants
+		// Import costs: the cost of importing the requested amount of power
+		// Debt: pay back the acquired debt
+		Money += new_budget - production - ImportCost - Debt;
 		Production = production;
 		Build = 0;
 		Imports = ImportCost;
+		Debt = 0;
 	}
 
 	// Spends money by updating the data correctly
 	public void SpendMoney(int amountBuild) {
 		Build += amountBuild;
 		Money -= amountBuild;
-		Debug.Print("Spent: " + amountBuild);
+	}
+
+	// Acquire debt
+	// @param debt: the amount debt acquired
+	// @param borrowed: the amount of money that was borrowed
+	public void AcquireDebt(int debt, int borrowed) {
+		// Record debt
+		Debt += debt;
+
+		// Add the money
+		Money += borrowed;
 	}
 }
 
@@ -331,6 +348,29 @@ public readonly struct Config {
 
 	// Override of the get hashcode method (needed to overload == and !=)
 	public override int GetHashCode() => HashCode.Combine(type);
+}
+
+// Represents the multiplier config of a powerplant
+public readonly struct Multiplier {
+
+	public readonly int MaxElements; // The maximum number of elements allowed for a given plant
+	public readonly int Cost; // The cost of adding an element to the given power plant
+	public readonly float Pollution; // The factor by which the pollution is increased when an element is added
+	public readonly float LandUse; // The factor by which the land use is increased when an element is added
+	public readonly float Biodiversity; // The factor by which the biodiversity is increased when an element is added
+	public readonly float ProductionCost; // The factor by which the production cost is increased when an element is added
+	public readonly int Capacity; // The amount by which the capacity is increased when an element is added
+
+	// Basic constructor
+	public Multiplier(int me, int c, float p, float lu, float bd, float pc, int cap) {
+		MaxElements = me;
+		Cost = c;
+		Pollution = p;
+		LandUse = lu;
+		Biodiversity = bd;
+		ProductionCost = pc;
+		Capacity = cap;
+	}
 }
 
 // ==================== Language Enum ====================

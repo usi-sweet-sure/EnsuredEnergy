@@ -44,8 +44,13 @@
 
     <!-- Labels for general UI buttons -->
     <group id="ui">
-        <text id="label_next_turn">Prochain Tour</text>
+        <text id="label_next_turn">Prochain Tour ⌛</text>
         <text id="label_import">Imports</text>
+        <text id="debt_title">Combien voulez-vous emprunter?</text>
+        <text id="label_borrow">Emprunter</text>
+        <text id="label_debt">Remboursez (au prochain tour)</text>
+        <text id="apply_button">Confirmer</text>
+        <text id="cancel_button">Annuler</text>
     </group>
 
      <!-- Labels for the main menu -->

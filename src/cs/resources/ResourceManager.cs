@@ -38,11 +38,11 @@ public partial class ResourceManager : Node {
 
 	[Export]
 	/* The base cost of a kWh imported from abroad */
-	public float ImportCost = 8.0f;
+	public float ImportCost = 5.0f;
 
 	[Export]
 	/* The base pollution of a kWh imported from abroad */
-	public float ImportPollution = 0.2f;
+	public float ImportPollution = 0.1f;
 
 	private float InitImportCost, InitImportPollution;
 
@@ -53,8 +53,6 @@ public partial class ResourceManager : Node {
 
 	// Reference to the UI object
 	private UI _UI;
-	
-	private End _End;
 
 	// Contains all of the PowerPlants and BuildButtons in the scene
 	private List<PowerPlant> PowerPlants;
@@ -73,9 +71,7 @@ public partial class ResourceManager : Node {
 		EnvM = GetNode<EnvironmentManager>("EnvironmentManager");
 		_UI = GetNode<UI>("../UI");
 		C = GetNode<Context>("/root/Context");
-		_End = GetNode<End>("../End");
 		
-
 		// Initialize the powerplant and Buildbutton lists
 		PowerPlants = new List<PowerPlant>();
 		BBs = new List<BuildButton>();
@@ -99,11 +95,6 @@ public partial class ResourceManager : Node {
 			SignalName.UpdateNextTurnState,
 			E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
 		);
-	}
-
-	public void _EndGame() {
-		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
-		_End._SetEndStats(E.SupplyWinter, E.SupplySummer, 0.6, 0.5);
 	}
 
 	// Progresses to the next turn

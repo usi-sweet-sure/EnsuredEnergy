@@ -40,10 +40,10 @@ public partial class GameLoop : Node2D {
 
 	// The amount of money the player starts with (in millions of CHF)
 	[Export]
-	public int START_MONEY = 400;
+	public int START_MONEY = 420;
 
 	[Export]
-	public static int BUDGET_PER_TURN = 350;
+	public static int BUDGET_PER_TURN = 280;
 
 	// Internal game state
 	private GameState GS;
@@ -60,7 +60,6 @@ public partial class GameLoop : Node2D {
 	// Reference to the buildmenu
 	private BuildMenu BM;
 
-	//TODO: Add resource managers once they are implemented
 	public MoneyData Money; // The current money the player has
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
@@ -103,7 +102,16 @@ public partial class GameLoop : Node2D {
 		// Fetch initial nodes
 		// Start with PowerPlants, in the begining there are only 2 PowerPlants Nuclear and Coal
 		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear"));
-		PowerPlants.Add(GetNode<PowerPlant>("World/Coal"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear2"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear3"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Hydro"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Pump"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/River"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Waste"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
+		
 
 		// Fill in build buttons
 		BBs.Add(GetNode<BuildButton>("World/BuildButton"));
@@ -116,10 +124,6 @@ public partial class GameLoop : Node2D {
 		BBs.Add(GetNode<BuildButton>("World/BuildButton8"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton9"));
 		BBs.Add(GetNode<BuildButton>("World/BuildButton10"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton11"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton12"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton13"));
-		BBs.Add(GetNode<BuildButton>("World/BuildButton14"));
 
 		// Fetch UI and BuildMenu
 		_UI = GetNode<UI>("UI");
@@ -140,6 +144,12 @@ public partial class GameLoop : Node2D {
 
 			// Add the power plants to the stats
 			C._UpdatePPStats(pp.PlantType);
+
+			// Connect the upgrade signal if missing
+			if(!pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant += _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(true);
+			}
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
@@ -155,6 +165,7 @@ public partial class GameLoop : Node2D {
 
 		// Connect to the UI's signals
 		_UI.NextTurn += _OnNextTurn;
+		_UI.DebtRequest += _OnDebtRequest;
 		C.UpdateContext += _OnContextUpdate;
 
 		// Connect the shock related callbacks
@@ -173,6 +184,8 @@ public partial class GameLoop : Node2D {
 		if(Money.Money >= cost) {
 			// Spend some money
 			Money.SpendMoney(cost);
+
+			Debug.Print("Requested Build");
 
 			// Notify the UI of the resource update
 			UpdateResources();
@@ -218,6 +231,9 @@ public partial class GameLoop : Node2D {
 			Money.Imports
 		);
 
+		// Udpate debt
+		_UI._UpdateDebtResource(Money.Debt);
+
 		// Propagate the update to the UI
 		_UI._UpdateUI();
 	}
@@ -245,7 +261,6 @@ public partial class GameLoop : Node2D {
 	private void StartGameOffline() {
 		// Update the game state
 		GS = GameState.PLAYING;
-		Debug.Print("Starting Game");
 
 		// Initialize the context stats
 		C._InitializePPStats(PowerPlants);
@@ -399,8 +414,20 @@ public partial class GameLoop : Node2D {
 		foreach(var bb in BBs) {
 			bb._Disable();
 		}
+
+		// Retrieve the current resources
+		(Energy Eng, Environment Env, Support Sup) = RM._GetResources();
 		
-		RM._EndGame();
+		// Prepare and show the final end screen
+		EndScreen._SetEndStats(
+			C._GetShocksSurvived(),
+			Eng.SupplyWinter,
+			Eng.SupplySummer,
+			Money.Money < 0, // Are we currently in debt?
+			Sup.Value,
+			Env.PollutionBarValue() <= 0, // Check that the pollution is below 0 (netzero)
+			Env.EnvBarValue()
+		);
 		EndScreen.Show();
 	}
 
@@ -431,6 +458,12 @@ public partial class GameLoop : Node2D {
 			//Sanity Check
 			Debug.Assert(PowerPlants.Contains(pp));
 
+			// Disconnect the upgrade signal if connected
+			if(pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant -= _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(false);
+			}
+
 			// Destroy the power plant
 			PowerPlants.Remove(pp);
 
@@ -457,8 +490,6 @@ public partial class GameLoop : Node2D {
 
 			// Notify the UI of the resource update
 			UpdateResources();
-
-			Debug.Print("REACTING TO DELETE PLANT");
 		} else {
 			// Sanity Check
 			Debug.Assert(BBs.Contains(bb));
@@ -469,6 +500,12 @@ public partial class GameLoop : Node2D {
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
 			PowerPlants = PowerPlants.Distinct().ToList();
+
+			// Connect the upgrade signal if missing
+			if(!pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant += _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(true);
+			}
 
 			// Connect to the delete signal
 			if(!pp._GetDeleteConnectFlag()) {
@@ -491,10 +528,8 @@ public partial class GameLoop : Node2D {
 
 	// Triggers a new turn if the game is currently acitve
 	public void _OnNextTurn() {
-		Debug.Print("NEXT TURN: " + GS);
 		// Display a shock
 		DisplayShock();
-		Debug.Print("NEXT TURN");
 	}
 
 	// Reacts to a context update
@@ -554,13 +589,17 @@ public partial class GameLoop : Node2D {
 
 	// Resets the game's state
 	public void _OnResetGame() {
-		
 		// Create a copy of the power plants array
 		PowerPlant[] tmp = new PowerPlant[PowerPlants.Count];
-		PowerPlants.CopyTo(tmp);
+		PowerPlants.Distinct().ToList().CopyTo(tmp);
 
 		// Delete all plants
 		foreach(var pp in tmp) {
+			// Disconnect upgrade signal if missing
+			if(pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant -= _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(false);
+			}
 			pp.OnDeletePressed();
 		}
 
@@ -578,7 +617,15 @@ public partial class GameLoop : Node2D {
 
 		// Start with PowerPlants, in the begining there are only 2 PowerPlants Nuclear and Coal
 		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear"));
-		PowerPlants.Add(GetNode<PowerPlant>("World/Coal"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear2"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Nuclear3"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Hydro"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Pump"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/River"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Waste"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
 
 		// Fill in build buttons
 		BBs.Add(GetNode<BuildButton>("World/BuildButton"));
@@ -601,6 +648,12 @@ public partial class GameLoop : Node2D {
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
 			pp._SetPlantFromConfig(pp.PlantType);
+
+			// Connect the upgrade signal if missing
+			if(!pp._GetUpgradeConnectFlag()) {
+				pp.UpgradePlant += _OnUpgradePlant;
+				pp._SetUpgradeConnectFlag(true);
+			}
 
 			// Reset the plant
 			pp._Reset();
@@ -648,5 +701,40 @@ public partial class GameLoop : Node2D {
 		
 		// Reset the tutorial
 		Tuto._Reset();
+	}
+
+	// Reacts to the reception of a debt request
+	public void _OnDebtRequest(int debt, int borrowed) {
+		// Acquire more debt
+		Money.AcquireDebt(debt, borrowed);
+
+		// Update Money UI
+		_UI._UpdateData(
+			UI.InfoType.MONEY,
+			Money.Budget, 
+			Money.Production,
+			Money.Build,
+			Money.Money,
+			Money.Imports
+		);
+
+		// Update the UI to reflect the new debt
+		_UI._UpdateDebtResource(Money.Debt);
+	}
+
+	// Reacts to a plant upgrade request by checking if we can afford it or not
+	public void _OnUpgradePlant(bool inc, int cost, PowerPlant pp) {
+		// Check if the upgrade can be afforded
+		if(_RequestBuild(cost)) {
+			// Enact the upgrade or downgrade
+			if(inc) {
+				Debug.Print("Upgrading Plant");
+				pp._IncMutliplier();
+			} else {
+				Debug.Print("Downgrading Plant");
+				pp._DecMultiplier();
+			}
+			_UpdateResourcesUI();
+		}
 	}
 }

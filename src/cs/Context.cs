@@ -28,10 +28,10 @@ using System.Collections.Generic;
 // ...
 public partial class Context : Node {
 
-	private const float DEMAND_INC_S = 30;
-	private const float DEMAND_INC_W = 60;
-	private const float DEMAND_INIT_S = 360;
-	private const float DEMAND_INIT_W = 380;
+	private const float DEMAND_INC_S = 9;
+	private const float DEMAND_INC_W = 22;
+	private const float DEMAND_INIT_S = 240;
+	private const float DEMAND_INIT_W = 260;
 
     [Signal]
     // Signals that the context has been updated by an external actor
@@ -75,6 +75,9 @@ public partial class Context : Node {
 
     // Reference to the game loop
     private GameLoop GL;
+
+    // Stat for the number of shocks that were survived
+    private int ShocksSurvived = 0;
 
     // ==================== GODOT Method Overrides ====================
 
@@ -130,6 +133,11 @@ public partial class Context : Node {
     // This should only be called by the game loop
     public void _SetNTurns(int nt) {
         N_TURNS = nt;
+    }
+
+    // Increases the number of shocks survived
+    public void _IncShocksSurvived() {
+        ShocksSurvived++;
     }
 
     // Updates the PPStats to modifiy the number of plants of a certain type
@@ -248,6 +256,9 @@ public partial class Context : Node {
         // Signal to controllers that the language has changed
         EmitSignal(SignalName.UpdateLanguage);
 	}
+
+    // Get the number of survived shocks
+    public int _GetShocksSurvived() => ShocksSurvived;
 
 	// Retrieve the language name
 	public string _GetLanguageName() => Lang.ToName();
