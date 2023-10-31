@@ -153,7 +153,7 @@ offset_right = 239.0
 offset_bottom = 167.0
 alignment = 2
 
-[node name="LifeSpan" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+[node name="LifeSpan2" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
