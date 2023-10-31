@@ -36,8 +36,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -48.0
+offset_left = -60.0
 offset_top = -35.0
+offset_right = -12.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 23
@@ -60,9 +61,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
+offset_left = -44.0
 offset_top = -30.0
-offset_right = -5.0
+offset_right = -17.0
 offset_bottom = 6.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -74,8 +75,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -35.0
-offset_right = 52.0
+offset_left = 12.0
+offset_top = -34.0
+offset_right = 64.0
+offset_bottom = 1.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 23
 text = "1000"
@@ -304,7 +307,6 @@ color = Color(0.398438, 0.398438, 0.398438, 1)
 
 [node name="InfoBG2" type="Sprite2D" parent="ResRect"]
 position = Vector2(41, 10)
-scale = Vector2(1, 0.869565)
 texture = SubResource("AtlasTexture_vpdo4")
 
 [node name="ColorRect" type="ColorRect" parent="ResRect"]
@@ -364,11 +366,11 @@ vertical_alignment = 1
 [node name="EnergyS" type="Label" parent="ResRect"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = -1.0
-offset_right = 30.0
-offset_bottom = 25.0
+offset_top = -5.99999
+offset_right = 41.0
+offset_bottom = 28.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -376,11 +378,11 @@ vertical_alignment = 1
 [node name="EnergyW" type="Label" parent="ResRect"]
 layout_mode = 0
 offset_left = 76.0
-offset_top = -1.0
-offset_right = 104.0
-offset_bottom = 25.0
+offset_top = -5.99999
+offset_right = 115.0
+offset_bottom = 28.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -412,7 +414,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 96.0
 offset_top = 94.0
-offset_right = 163.0
+offset_right = 176.0
 offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -422,8 +424,9 @@ metadata/_edit_group_ = true
 
 [node name="MultAmount" type="Label" parent="Multiplier"]
 layout_mode = 0
+offset_left = 6.66666
 offset_top = 2.0
-offset_right = 67.0
+offset_right = 73.6667
 offset_bottom = 39.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -433,35 +436,35 @@ vertical_alignment = 1
 
 [node name="Inc" type="Button" parent="Multiplier"]
 layout_mode = 0
-offset_left = 47.0
+offset_left = 53.6667
 offset_top = 4.0
-offset_right = 78.0
+offset_right = 84.6667
 offset_bottom = 35.0
+text = "+"
+
+[node name="Label" type="Label" parent="Multiplier/Inc"]
+layout_mode = 0
+offset_left = 6.33334
+offset_top = -8.16667
+offset_right = 24.3333
+offset_bottom = 38.8333
+theme_override_font_sizes/font_size = 31
 text = "+"
 
 [node name="Dec" type="Button" parent="Multiplier"]
 layout_mode = 0
-offset_left = -11.0
+offset_left = -4.33334
 offset_top = 4.0
-offset_right = 20.0
+offset_right = 26.6667
 offset_bottom = 35.0
 text = "-"
 
-[node name="Label" type="Label" parent="Multiplier"]
+[node name="Label2" type="Label" parent="Multiplier/Dec"]
 layout_mode = 0
-offset_left = 53.3333
-offset_top = -4.16666
-offset_right = 71.3333
-offset_bottom = 42.8333
-theme_override_font_sizes/font_size = 31
-text = "+"
-
-[node name="Label2" type="Label" parent="Multiplier"]
-layout_mode = 0
-offset_left = -0.833344
-offset_top = -5.0
-offset_right = 17.1667
-offset_bottom = 42.0
+offset_left = 10.1666
+offset_top = -9.00001
+offset_right = 28.1666
+offset_bottom = 38.0
 theme_override_font_sizes/font_size = 31
 text = "-"
 
