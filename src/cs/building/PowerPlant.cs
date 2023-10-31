@@ -126,6 +126,7 @@ public partial class PowerPlant : Node2D {
 	private Label EnergyW;
 	private Label MoneyL;
 	public CheckButton Switch;
+	private Control PreviewInfo;
 	private Label Price;
 	private Label BTime;
 	private Control Info;
@@ -135,6 +136,7 @@ public partial class PowerPlant : Node2D {
 	private ColorRect ResRect;
 	private Label LandL;
 	private Label BioL;
+	private Label LifeSpan;
 	
 	// The Area used to detect hovering
 	private Area2D HoverArea;
@@ -177,10 +179,11 @@ public partial class PowerPlant : Node2D {
 		MoneyL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
 		Switch = GetNode<CheckButton>("BuildInfo/Switch");
 		CC = GetNode<ConfigController>("ConfigController");
-		Price = GetNode<Label>("Price");
+		PreviewInfo = GetNode<Control>("PreviewInfo");
+		Price = GetNode<Label>("PreviewInfo/Price");
 		HoverArea = GetNode<Area2D>("HoverArea");
 		Info = GetNode<Control>("BuildInfo");
-		BTime = GetNode<Label>("Price/Time");
+		BTime = GetNode<Label>("PreviewInfo/Time");
 		C = GetNode<Context>("/root/Context");
 		Delete = GetNode<Button>("Delete");
 		Multiplier = GetNode<ColorRect>("Multiplier");
@@ -191,6 +194,7 @@ public partial class PowerPlant : Node2D {
 		ResRect = GetNode<ColorRect>("ResRect");
 		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
+		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
 
 		// the delete button should only be shown on new constructions
 		Delete.Hide();
@@ -201,10 +205,10 @@ public partial class PowerPlant : Node2D {
 		// Hide unnecessary fields if we are in preview mode
 		if(IsPreview) {
 			Switch.Hide();
-			Price.Show();
+			PreviewInfo.Show();
 			ResRect.Show();
 		} else {
-			Price.Hide();
+			PreviewInfo.Hide();
 			Switch.Show();
 			ResRect.Hide();
 		}
@@ -214,7 +218,7 @@ public partial class PowerPlant : Node2D {
 		EnergyS.Text = EnergyCapacity.ToString();
 		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = "💰/⌛ " +  ProductionCost.ToString();
-		Price.Text = BuildCost.ToString();
+		Price.Text = BuildCost.ToString() + "$";
 		PollL.Text = "🏭 " + Pollution.ToString();
 		BTime.Text = BuildTime.ToString();
 		LandL.Text = (LandUse * 100).ToString();
@@ -465,6 +469,9 @@ public partial class PowerPlant : Node2D {
 			IsAlive = true;
 			_OnSwitchToggled(false);
 		} 
+		
+		// Update plants after every turn
+		_UpdatePlantData();
 	}
 
 	// Update API for the private fields of the plant
@@ -505,7 +512,7 @@ public partial class PowerPlant : Node2D {
 		if(IsPreview) {
 			Switch.Hide();
 			NameR.Show();
-			Price.Show();
+			PreviewInfo.Show();
 			Multiplier.Hide();
 			ResRect.Show();
 		} 
@@ -524,7 +531,7 @@ public partial class PowerPlant : Node2D {
 			}
 			
 			Switch.Show();
-			Price.Hide();
+			PreviewInfo.Hide();
 			NameR.Hide();
 			ResRect.Hide();
 		}
@@ -552,7 +559,7 @@ public partial class PowerPlant : Node2D {
 		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
 		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
 		MoneyL.Text = ProductionCost.ToString();
-		Price.Text = BuildCost.ToString();
+		Price.Text = BuildCost.ToString() + "$";
 		PollL.Text = Convert.ToInt32(Pollution).ToString();
 		BTime.Text = BuildTime.ToString();
 		LandL.Text = Convert.ToInt32(LandUse * 100).ToString();
@@ -564,11 +571,17 @@ public partial class PowerPlant : Node2D {
 			LandL.Set("theme_override_colors/font_color", GREEN);
 		if (Pollution <= 0)
 			PollL.Set("theme_override_colors/font_color", GREEN);
+		else
+			PollL.Set("theme_override_colors/font_color", RED);
 		if (ProductionCost <= 0)
 			MoneyL.Set("theme_override_colors/font_color", GREEN);
+		else
+			MoneyL.Set("theme_override_colors/font_color", RED);
 		
 		
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
+		
+		LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
 	}
 
 	// ==================== Helper Methods ====================    

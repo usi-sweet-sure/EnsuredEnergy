@@ -646,6 +646,15 @@ position = Vector2(112, 88)
 [node name="Sprite" parent="Gas" index="0"]
 texture = ExtResource("5_kuv5l")
 
+[node name="Price" parent="Gas/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gas"]
 autoplay = "smoke"
 libraries = {
@@ -691,6 +700,15 @@ _PlantType = 0
 [node name="Sprite" parent="Hydro" index="0"]
 texture = ExtResource("10_wly2t")
 
+[node name="Price" parent="Hydro/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Water" type="Sprite2D" parent="Hydro"]
 position = Vector2(-1, 82)
 skew = -0.0349066
@@ -710,6 +728,15 @@ _PlantType = 2
 [node name="Sprite" parent="Solar" index="0"]
 texture = ExtResource("11_4r262")
 
+[node name="Price" parent="Solar/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -719,6 +746,15 @@ _PlantType = 3
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_wp0io")
 
+[node name="Price" parent="Tree/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -726,6 +762,15 @@ _PlantType = 5
 
 [node name="Sprite" parent="Wind" index="0"]
 texture = ExtResource("13_uoixp")
+
+[node name="Price" parent="Wind/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Turbine" type="Sprite2D" parent="Wind"]
 position = Vector2(-64, -36)
@@ -783,6 +828,15 @@ _PlantType = 6
 [node name="Sprite" parent="Waste" index="0"]
 texture = ExtResource("17_q1r63")
 
+[node name="Price" parent="Waste/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Biomass" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -790,6 +844,15 @@ _PlantType = 7
 
 [node name="Sprite" parent="Biomass" index="0"]
 texture = ExtResource("18_fbsst")
+
+[node name="Price" parent="Biomass/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="River" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
@@ -799,6 +862,15 @@ _PlantType = 8
 [node name="Sprite" parent="River" index="0"]
 texture = ExtResource("19_jfn5w")
 
+[node name="Price" parent="River/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Pump" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -806,6 +878,15 @@ _PlantType = 9
 
 [node name="Sprite" parent="Pump" index="0"]
 texture = ExtResource("20_6kkmi")
+
+[node name="Price" parent="Pump/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Cancel" type="Button" parent="."]
 visible = false

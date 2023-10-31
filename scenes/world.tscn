@@ -30,12 +30,30 @@ _PlantType = 4
 NUCLEAR_LIFE_SPAN = 9
 metadata/_edit_group_ = true
 
+[node name="Price" parent="Nuclear3/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Nuclear2" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(1503, -104)
 PlantName = "Nuclear"
 _PlantType = 4
 NUCLEAR_LIFE_SPAN = 6
 metadata/_edit_group_ = true
+
+[node name="Price" parent="Nuclear2/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Nuclear" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(729, 216)
@@ -44,20 +62,56 @@ _PlantType = 4
 NUCLEAR_LIFE_SPAN = 3
 metadata/_edit_group_ = true
 
+[node name="Price" parent="Nuclear/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Waste" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(213, 191)
 PlantName = "Gas"
 metadata/_edit_group_ = true
+
+[node name="Price" parent="Waste/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Biomass" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(-936, 1464)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
+[node name="Price" parent="Biomass/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Wind" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(-489, 520)
 PlantName = "Gas"
 metadata/_edit_group_ = true
+
+[node name="Price" parent="Wind/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Turbine" type="Sprite2D" parent="Wind"]
 texture = SubResource("AtlasTexture_kklxw")
@@ -94,11 +148,13 @@ mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 3194.0
-offset_top = 970.0
-offset_right = 3421.0
-offset_bottom = 1155.0
+modulate = Color(0.380392, 0.654902, 1, 1)
+offset_left = 3080.0
+offset_top = 728.0
+offset_right = 3307.0
+offset_bottom = 913.0
 script = ExtResource("4_mo62v")
+AllowHydro = true
 
 [node name="BuildButton5" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 224.0
@@ -142,6 +198,15 @@ position = Vector2(502, 2005)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
+[node name="Price" parent="Hydro/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="BuildButton10" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 57.0
 offset_top = 2239.0
@@ -154,15 +219,42 @@ position = Vector2(1979, 1525)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
+[node name="Price" parent="River/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Pump" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(2016, 2100)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
+[node name="Price" parent="Pump/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Solar" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(2697, 1446)
 PlantName = "Gas"
 metadata/_edit_group_ = true
+
+[node name="Price" parent="Solar/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

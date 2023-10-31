@@ -21,52 +21,63 @@ script = ExtResource("1_qsehc")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 2
 
-[node name="Price" type="Label" parent="."]
-offset_left = -80.0
-offset_top = 144.0
-offset_right = -28.0
-offset_bottom = 179.0
-theme_override_font_sizes/font_size = 23
-text = "1000"
-horizontal_alignment = 1
-metadata/_edit_group_ = true
+[node name="PreviewInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -88.0
+offset_top = 142.0
+offset_right = 88.0
+offset_bottom = 182.0
 
-[node name="Label" type="Label" parent="Price"]
+[node name="Time" type="Label" parent="PreviewInfo"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.404
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -0.00800323
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -48.0
+offset_top = -35.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 23
-text = "$"
-horizontal_alignment = 2
+text = "0"
 
-[node name="Time3" type="Label" parent="Price"]
-offset_left = 135.0
-offset_top = 5.0
-offset_right = 164.0
-offset_bottom = 44.0
-theme_override_font_sizes/font_size = 26
-text = "⌛"
-
-[node name="Time2" type="Label" parent="Price"]
+[node name="Time2" type="Label" parent="PreviewInfo"]
 visible = false
-offset_left = 130.0
-offset_top = 7.0
-offset_right = 166.0
-offset_bottom = 43.0
+layout_mode = 0
+offset_left = 138.0
+offset_top = 15.0
+offset_right = 174.0
+offset_bottom = 51.0
 theme_override_font_sizes/font_size = 26
 text = "🔨"
 
-[node name="Time" type="Label" parent="Price"]
-offset_left = 104.0
-offset_right = 129.0
-offset_bottom = 35.0
+[node name="Time3" type="Label" parent="PreviewInfo"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 26
+text = "⌛"
+
+[node name="Price" type="Label" parent="PreviewInfo"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+offset_right = 52.0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 23
-text = "0"
-horizontal_alignment = 2
+text = "1000"
+horizontal_alignment = 1
 
 [node name="BuildInfo" type="Control" parent="."]
 visible = false
@@ -102,6 +113,7 @@ color = Color(0.596078, 0.596078, 0.596078, 1)
 layout_mode = 0
 offset_right = 248.0
 offset_bottom = 184.0
+alignment = 2
 
 [node name="ColorRect2" type="ColorRect" parent="BuildInfo/ColorRect/VBoxContainer"]
 visible = false
@@ -129,8 +141,17 @@ color = Color(0.545098, 0.976471, 0, 1)
 
 [node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
 layout_mode = 0
+offset_top = -44.0
 offset_right = 239.0
-offset_bottom = 161.0
+offset_bottom = 167.0
+alignment = 2
+
+[node name="LifeSpan2" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
+theme_override_font_sizes/font_size = 22
+text = "Shutting down in"
 
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
@@ -175,6 +196,15 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 5
+alignment = 2
+
+[node name="LifeSpan" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
+theme_override_font_sizes/font_size = 24
+text = "3"
+horizontal_alignment = 2
 
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
