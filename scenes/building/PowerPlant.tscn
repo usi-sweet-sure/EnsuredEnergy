@@ -25,9 +25,9 @@ texture_filter = 2
 layout_mode = 3
 anchors_preset = 0
 offset_left = -88.0
-offset_top = 142.0
+offset_top = 146.0
 offset_right = 88.0
-offset_bottom = 182.0
+offset_bottom = 186.0
 
 [node name="Time" type="Label" parent="PreviewInfo"]
 layout_mode = 1
@@ -60,8 +60,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -27.0
-offset_top = -36.0
+offset_left = -32.0
+offset_top = -30.0
+offset_right = -5.0
+offset_bottom = 6.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 26
@@ -80,6 +82,9 @@ text = "1000"
 horizontal_alignment = 1
 
 [node name="BuildInfo" type="Control" parent="."]
+visible = false
+z_index = 1
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -65.0
@@ -289,6 +294,7 @@ uppercase = true
 
 [node name="ResRect" type="ColorRect" parent="."]
 visible = false
+z_index = 1
 offset_left = -50.0
 offset_top = 106.0
 offset_right = -18.0
@@ -398,6 +404,7 @@ default_color = Color(0.109375, 0.0703125, 0.25, 1)
 
 [node name="Multiplier" type="ColorRect" parent="."]
 visible = false
+z_index = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -440,10 +447,29 @@ offset_right = 20.0
 offset_bottom = 35.0
 text = "-"
 
+[node name="Label" type="Label" parent="Multiplier"]
+layout_mode = 0
+offset_left = 53.3333
+offset_top = -4.16666
+offset_right = 71.3333
+offset_bottom = 42.8333
+theme_override_font_sizes/font_size = 31
+text = "+"
+
+[node name="Label2" type="Label" parent="Multiplier"]
+layout_mode = 0
+offset_left = -0.833344
+offset_top = -5.0
+offset_right = 17.1667
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 31
+text = "-"
+
 [node name="ConfigController" type="Node" parent="."]
 script = ExtResource("3_runxt")
 
 [node name="Delete" type="Button" parent="."]
+z_index = 1
 offset_left = 106.0
 offset_top = -141.0
 offset_right = 137.0
