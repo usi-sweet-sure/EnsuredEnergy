@@ -70,7 +70,6 @@ public partial class BuildButton : TextureButton {
 	// Building sprite
 	private Sprite2D BuildSprite;
 	private Label TL;
-	private Sprite2D Grass;
 
 	// Build cancellation button
 	private Button Cancel;
@@ -128,7 +127,6 @@ public partial class BuildButton : TextureButton {
 		PumpPlant._SetBuildButton(this);
 		
 		BuildSprite = GetNode<Sprite2D>("Building");
-		Grass = GetNode<Sprite2D>("Grass");
 		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
 		Cancel = GetNode<Button>("Cancel");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -260,7 +258,6 @@ public partial class BuildButton : TextureButton {
 	private void ShowOnlyButton() {
 		Disabled = false;
 		SelfModulate = new Color(1,1,1,1);
-		Grass.Show();
 	}
 
 	// Resets the button to it's initial state
@@ -410,7 +407,6 @@ public partial class BuildButton : TextureButton {
 		if(GL._RequestBuild(PP.BuildCost)) {
 			// Hide all plants
 			HideAllPlants();
-			Grass.Hide();
 			
 			// Check for the requested plant's build time
 			if(PP.BuildTime >= 1) {

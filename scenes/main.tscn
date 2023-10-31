@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=30 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://tkvsvedhf6x4" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0020_Nuclear.png" id="4_wlqc3"]
 [ext_resource type="Texture2D" uid="uid://btk3fbtu5m5ua" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0014_Hydrolic-Reservoir.png" id="5_i2doc"]
 [ext_resource type="Script" path="res://src/cs/utils/model/ModelController.cs" id="6_hyuox"]
-[ext_resource type="Texture2D" uid="uid://blctpbo8r261a" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0010_Geothermal.png" id="6_pxvkr"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/TextController.cs" id="6_wtjaw"]
 [ext_resource type="Texture2D" uid="uid://com3jwqcdurjb" path="res://assets/Power plants/230601_CH_SUREgame_Power-Plants_0016_Hydrolic-river-.png" id="7_ei5st"]
 [ext_resource type="Script" path="res://src/cs/resources/ResourceManager.cs" id="7_u5qtv"]
@@ -133,14 +132,6 @@ texture_filter = 2
 [node name="Sprite" parent="World/Nuclear3" index="0"]
 texture = ExtResource("4_wlqc3")
 
-[node name="Price" parent="World/Nuclear3/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
 [node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="0"]
 offset_top = -143.0
 
@@ -156,14 +147,6 @@ position = Vector2(1479, -248)
 [node name="Sprite" parent="World/Nuclear2" index="0"]
 texture = ExtResource("4_wlqc3")
 
-[node name="Price" parent="World/Nuclear2/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
 [node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="0"]
 offset_top = -142.0
 
@@ -178,14 +161,6 @@ position = Vector2(1001, 130)
 
 [node name="Sprite" parent="World/Nuclear" index="0"]
 texture = ExtResource("4_wlqc3")
-
-[node name="Price" parent="World/Nuclear/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="0"]
 offset_top = -143.0
@@ -212,43 +187,19 @@ _PlantType = 6
 [node name="Sprite" parent="World/Waste" index="0"]
 texture = ExtResource("8_ccefw")
 
-[node name="Price" parent="World/Waste/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
-[node name="Biomass" parent="World" index="5" groups=["PP"]]
+[node name="Biomass" parent="World" index="6" groups=["PP"]]
 position = Vector2(-827, 1474)
 _PlantType = 7
 
 [node name="Sprite" parent="World/Biomass" index="0"]
 texture = ExtResource("9_78toe")
 
-[node name="Price" parent="World/Biomass/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
-[node name="Wind" parent="World" index="6" groups=["PP"]]
+[node name="Wind" parent="World" index="7" groups=["PP"]]
 position = Vector2(-556, 553)
 _PlantType = 5
 
 [node name="Sprite" parent="World/Wind" index="0"]
 texture = ExtResource("11_80dv6")
-
-[node name="Price" parent="World/Wind/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="Turbine" parent="World/Wind" index="10"]
 position = Vector2(-11, -78)
@@ -268,75 +219,29 @@ libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
 
-[node name="BuildButton2" parent="World" index="8"]
+[node name="BuildButton2" parent="World" index="9"]
 metadata/_edit_use_anchors_ = true
 
-[node name="BuildButton7" parent="World" index="13"]
+[node name="BuildButton7" parent="World" index="14"]
 metadata/_edit_use_anchors_ = true
 
-[node name="BuildButton8" parent="World" index="14"]
+[node name="BuildButton8" parent="World" index="15"]
 metadata/_edit_use_anchors_ = true
 
-[node name="Hydro" parent="World" index="16" groups=["PP"]]
-position = Vector2(564, 1995)
-_PlantType = 0
-
-[node name="Sprite" parent="World/Hydro" index="0"]
-texture = ExtResource("5_i2doc")
-
-[node name="Price" parent="World/Hydro/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
-[node name="River" parent="World" index="18" groups=["PP"]]
+[node name="River" parent="World" index="17" groups=["PP"]]
 _PlantType = 8
 
 [node name="Sprite" parent="World/River" index="0"]
 texture = ExtResource("7_ei5st")
 
-[node name="Price" parent="World/River/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
-[node name="Pump" parent="World" index="19" groups=["PP"]]
-position = Vector2(1954, 2062)
-_PlantType = 9
-
-[node name="Sprite" parent="World/Pump" index="0"]
-texture = ExtResource("6_pxvkr")
-
-[node name="Price" parent="World/Pump/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
-[node name="Solar" parent="World" index="20" groups=["PP"]]
+[node name="Solar" parent="World" index="18" groups=["PP"]]
 position = Vector2(2617, 1493)
 _PlantType = 2
 
 [node name="Sprite" parent="World/Solar" index="0"]
 texture = ExtResource("10_qycq3")
 
-[node name="Price" parent="World/Solar/PreviewInfo" index="3"]
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 35.0
-grow_vertical = 1
-
-[node name="Camera2D" parent="World" index="21"]
+[node name="Camera2D" parent="World" index="19"]
 position = Vector2(858, 685)
 anchor_mode = 1
 zoom = Vector2(0.75, 0.75)
@@ -345,6 +250,20 @@ limit_top = -950
 limit_right = 5240
 limit_bottom = 3350
 script = ExtResource("3_s6ssk")
+
+[node name="Hydro" parent="World" index="22" groups=["PP"]]
+position = Vector2(564, 1995)
+_PlantType = 0
+
+[node name="Sprite" parent="World/Hydro" index="0"]
+texture = ExtResource("5_i2doc")
+
+[node name="Pump" parent="World" index="26" groups=["PP"]]
+position = Vector2(1954, 2062)
+_PlantType = 9
+
+[node name="Sprite" parent="World/Pump" index="0"]
+texture = ExtResource("5_i2doc")
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false
@@ -390,7 +309,7 @@ visible = false
 [editable path="World/Waste"]
 [editable path="World/Biomass"]
 [editable path="World/Wind"]
-[editable path="World/Hydro"]
 [editable path="World/River"]
-[editable path="World/Pump"]
 [editable path="World/Solar"]
+[editable path="World/Hydro"]
+[editable path="World/Pump"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=37 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="1_dqrnt"]
-[ext_resource type="Texture2D" uid="uid://boxy0dartrbyi" path="res://assets/grass.png" id="1_h1775"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
 [ext_resource type="Texture2D" uid="uid://duoo8yelpa3l4" path="res://assets/Elements/ENERGY PLANT - BUILDING.png" id="2_0x6r5"]
 [ext_resource type="Texture2D" uid="uid://cvm4lopnmbupy" path="res://assets/Elements/BUILDINGBUTTONPressed.png" id="2_e5byc"]
@@ -924,10 +923,6 @@ theme_override_font_sizes/font_size = 40
 text = "-100$"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Grass" type="Sprite2D" parent="."]
-position = Vector2(111, 170)
-texture = ExtResource("1_h1775")
 
 [editable path="Gas"]
 [editable path="Hydro"]
