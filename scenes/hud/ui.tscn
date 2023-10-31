@@ -651,7 +651,7 @@ texture = ExtResource("10_2gyrf")
 
 [node name="ColorRect" type="ColorRect" parent="MoneyInfo"]
 layout_mode = 0
-offset_right = 227.0
+offset_right = 231.0
 offset_bottom = 185.0
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
@@ -688,9 +688,9 @@ text = "  Import:"
 
 [node name="prod" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 61.0
+offset_left = 54.0
 offset_top = 51.0
-offset_right = 201.0
+offset_right = 194.0
 offset_bottom = 91.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -700,9 +700,9 @@ vertical_alignment = 1
 
 [node name="build" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 62.0
+offset_left = 55.0
 offset_top = 97.0
-offset_right = 202.0
+offset_right = 195.0
 offset_bottom = 137.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -712,9 +712,9 @@ vertical_alignment = 1
 
 [node name="budget" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 53.0
 offset_top = 8.0
-offset_right = 202.0
+offset_right = 195.0
 offset_bottom = 48.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -724,9 +724,9 @@ vertical_alignment = 1
 
 [node name="importamounts" type="Label" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 102.0
+offset_left = 95.0
 offset_top = 148.0
-offset_right = 201.0
+offset_right = 194.0
 offset_bottom = 179.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
@@ -931,23 +931,25 @@ offset_bottom = 76.0
 text = "+"
 
 [node name="Debt" type="ColorRect" parent="BorrowMoney"]
-visible = false
 layout_mode = 0
-offset_left = 9.0
-offset_top = 49.0
-offset_right = 106.0
-offset_bottom = 92.0
+offset_left = 4.0
+offset_top = 47.0
+offset_right = 71.0
+offset_bottom = 97.0
 color = Color(0.596078, 0.596078, 0.596078, 1)
 
 [node name="DebtAmount" type="Label" parent="BorrowMoney/Debt"]
-layout_mode = 0
-offset_left = 23.0
-offset_top = 6.0
-offset_right = 73.0
-offset_bottom = 37.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "-000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BorrowContainer" type="Button" parent="."]
 visible = false
@@ -979,10 +981,10 @@ offset_left = 152.0
 offset_top = 248.0
 offset_right = 848.0
 offset_bottom = 282.0
-max_value = 1000.0
+max_value = 500.0
 step = 100.0
 rounded = true
-tick_count = 11
+tick_count = 6
 ticks_on_borders = true
 
 [node name="Money" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
@@ -1003,7 +1005,7 @@ offset_right = 241.0
 offset_bottom = 50.0
 theme_override_colors/font_color = Color(0.454902, 0.94902, 0.458824, 1)
 theme_override_font_sizes/font_size = 27
-text = "xxx"
+text = "0"
 
 [node name="Interest" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
@@ -1022,7 +1024,7 @@ offset_right = 429.0
 offset_bottom = 42.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 27
-text = "xxx"
+text = "0"
 
 [node name="Apply" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
