@@ -407,7 +407,7 @@ public partial class BuildButton : TextureButton {
 		if(GL._RequestBuild(PP.BuildCost)) {
 			// Hide all plants
 			HideAllPlants();
-
+			
 			// Check for the requested plant's build time
 			if(PP.BuildTime >= 1) {
 				BeginBuild(PP);

@@ -630,11 +630,9 @@ _data = {
 "RESET": SubResource("Animation_5sliq")
 }
 
-[node name="BuildButton" type="TextureButton"]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 115.0
-offset_bottom = 97.0
+[node name="BuildButton" type="TextureButton" groups=["BB"]]
+offset_right = 227.0
+offset_bottom = 185.0
 focus_mode = 0
 texture_normal = ExtResource("1_dqrnt")
 texture_pressed = ExtResource("2_e5byc")
@@ -646,6 +644,15 @@ position = Vector2(112, 88)
 
 [node name="Sprite" parent="Gas" index="0"]
 texture = ExtResource("5_kuv5l")
+
+[node name="Price" parent="Gas/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gas"]
 autoplay = "smoke"
@@ -692,8 +699,14 @@ _PlantType = 0
 [node name="Sprite" parent="Hydro" index="0"]
 texture = ExtResource("10_wly2t")
 
-[node name="Switch" parent="Hydro" index="4"]
-visible = false
+[node name="Price" parent="Hydro/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Water" type="Sprite2D" parent="Hydro"]
 position = Vector2(-1, 82)
@@ -714,8 +727,14 @@ _PlantType = 2
 [node name="Sprite" parent="Solar" index="0"]
 texture = ExtResource("11_4r262")
 
-[node name="Switch" parent="Solar" index="4"]
-visible = false
+[node name="Price" parent="Solar/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
@@ -726,8 +745,14 @@ _PlantType = 3
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_wp0io")
 
-[node name="Switch" parent="Tree" index="4"]
-visible = false
+[node name="Price" parent="Tree/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
@@ -737,8 +762,14 @@ _PlantType = 5
 [node name="Sprite" parent="Wind" index="0"]
 texture = ExtResource("13_uoixp")
 
-[node name="Switch" parent="Wind" index="4"]
-visible = false
+[node name="Price" parent="Wind/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Turbine" type="Sprite2D" parent="Wind"]
 position = Vector2(-64, -36)
@@ -796,6 +827,15 @@ _PlantType = 6
 [node name="Sprite" parent="Waste" index="0"]
 texture = ExtResource("17_q1r63")
 
+[node name="Price" parent="Waste/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Biomass" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -803,6 +843,15 @@ _PlantType = 7
 
 [node name="Sprite" parent="Biomass" index="0"]
 texture = ExtResource("18_fbsst")
+
+[node name="Price" parent="Biomass/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="River" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
@@ -812,6 +861,15 @@ _PlantType = 8
 [node name="Sprite" parent="River" index="0"]
 texture = ExtResource("19_jfn5w")
 
+[node name="Price" parent="River/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
+
 [node name="Pump" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
@@ -819,6 +877,15 @@ _PlantType = 9
 
 [node name="Sprite" parent="Pump" index="0"]
 texture = ExtResource("20_6kkmi")
+
+[node name="Price" parent="Pump/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Cancel" type="Button" parent="."]
 visible = false
@@ -843,10 +910,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.5
-offset_top = -24.5
-offset_right = 55.5
-offset_bottom = 33.5
+offset_left = 57.0
+offset_top = 68.0
+offset_right = 169.0
+offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
