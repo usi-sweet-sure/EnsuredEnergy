@@ -24,8 +24,8 @@
         </reaction>
         <reaction id="3">
             <text>Importer de l'électricité des pays voisins.
--150 $</text>
-            <effect field="money" value="-150"/>
+-50 $</text>
+            <effect field="money" value="-50"/>
         </reaction>
         <!-- Reward to the player in case they met the requirements -->
         <reward>

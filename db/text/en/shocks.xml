@@ -39,8 +39,8 @@
             <effect field="env" value="10"/>
         </reaction>
         <reaction id="2">
-            <text>Import electricity from neighbouring countries -150 $</text>
-            <effect field="money" value="-150"/>
+            <text>Import electricity from neighbouring countries -50 $</text>
+            <effect field="money" value="-50"/>
         </reaction>
         <!-- Reward to the player in case they met the requirements -->
         <reward>
