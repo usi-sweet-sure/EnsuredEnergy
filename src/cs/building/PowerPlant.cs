@@ -565,20 +565,26 @@ public partial class PowerPlant : Node2D {
 		LandL.Text = Convert.ToInt32(LandUse * 100).ToString();
 		BioL.Text = Convert.ToInt32(-BiodiversityImpact * 100).ToString();
 		
-		if (BiodiversityImpact < 0)
+		// Update label colors to represent levels
+		if (BiodiversityImpact < 0) {
 			BioL.Set("theme_override_colors/font_color", GREEN);
-		if (LandUse < 0)
+		}
+		if (LandUse < 0) {
 			LandL.Set("theme_override_colors/font_color", GREEN);
-		if (Pollution <= 0)
+		}
+		if (Pollution <= 0) {
 			PollL.Set("theme_override_colors/font_color", GREEN);
-		else
+
+		} else {
 			PollL.Set("theme_override_colors/font_color", RED);
-		if (ProductionCost <= 0)
+		}
+		if (ProductionCost <= 0) {
 			MoneyL.Set("theme_override_colors/font_color", GREEN);
-		else
+		} else {
 			MoneyL.Set("theme_override_colors/font_color", RED);
+		}
 		
-		
+		// Set the end turn based on the building type
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
 		
 		LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
@@ -713,8 +719,10 @@ public partial class PowerPlant : Node2D {
 		// only show the multiplier if  the plant can be upgraded
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 		
-		if(mult.MaxElements > 1)
+		// Toggle multiplier state if several elements are available
+		if(mult.MaxElements > 1) {
 			Multiplier.Visible = !Multiplier.Visible;
+		}
 	}
 
 	// Requests a deletion of the powerplant
