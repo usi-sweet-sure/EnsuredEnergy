@@ -29,6 +29,7 @@ text = "Well Done !
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 uppercase = true
 
 [node name="EndText" type="Label" parent="."]
@@ -46,6 +47,7 @@ for 30 years
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 uppercase = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
