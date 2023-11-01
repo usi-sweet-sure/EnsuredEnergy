@@ -137,6 +137,7 @@ public partial class PowerPlant : Node2D {
 	private Label LandL;
 	private Label BioL;
 	private Label LifeSpan;
+	private Label LifeSpanWarning;
 	
 	// The Area used to detect hovering
 	private Area2D HoverArea;
@@ -195,6 +196,7 @@ public partial class PowerPlant : Node2D {
 		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
+		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 
 		// the delete button should only be shown on new constructions
 		Delete.Hide();
@@ -588,6 +590,12 @@ public partial class PowerPlant : Node2D {
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
 		
 		LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
+		
+		if (EndTurn - C._GetTurn() == 1) {
+			LifeSpanWarning.Show();
+		} else {
+			LifeSpanWarning.Hide();
+		}
 	}
 
 	// ==================== Helper Methods ====================    

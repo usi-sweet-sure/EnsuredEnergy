@@ -493,3 +493,15 @@ flat = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hky5x")
+
+[node name="LifeSpanWarning" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = 72.0
+offset_top = 64.0
+offset_right = 119.0
+offset_bottom = 111.0
+tooltip_text = "Shutting down next turn"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 34
+text = "⚠️"
