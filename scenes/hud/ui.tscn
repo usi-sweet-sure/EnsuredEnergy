@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=42 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
