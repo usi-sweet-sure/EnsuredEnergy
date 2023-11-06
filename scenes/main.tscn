@@ -181,10 +181,6 @@ visible = true
 [node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
 
-[node name="NameRect" parent="World/Nuclear" index="3"]
-offset_top = -192.0
-offset_bottom = -164.0
-
 [node name="ResRect" parent="World/Nuclear" index="4"]
 offset_top = 104.0
 offset_bottom = 133.0
@@ -263,6 +259,7 @@ position = Vector2(1954, 2062)
 _PlantType = 9
 
 [node name="Sprite" parent="World/Pump" index="0"]
+position = Vector2(0, 0)
 texture = ExtResource("5_i2doc")
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=10 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="2_nry78"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bvjrf5k45j5m0" path="res://assets/Elements/ENERGY PLANT - INFO HOVER.png" id="3_sgdtt"]
 
 [sub_resource type="Theme" id="Theme_f6ssq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ted5n"]
+atlas = ExtResource("3_sgdtt")
+region = Rect2(22, 24, 116, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vpdo4"]
 atlas = ExtResource("2_nry78")
@@ -265,35 +269,64 @@ alignment = 1
 expand_icon = true
 
 [node name="NameRect" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_left = -56.0
-offset_top = -193.0
+offset_top = -192.0
 offset_right = 56.0
-offset_bottom = -165.0
+offset_bottom = -164.0
+grow_horizontal = 2
 color = Color(0.597656, 0.597656, 0.597656, 1)
 metadata/_edit_group_ = true
 
-[node name="InfoHover" type="Sprite2D" parent="NameRect"]
-position = Vector2(59, 24)
-texture = ExtResource("3_sgdtt")
-
-[node name="ColorRect" type="ColorRect" parent="NameRect"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = -2.0
-offset_right = 108.0
-offset_bottom = 38.0
-color = Color(0.597656, 0.597656, 0.597656, 1)
-
 [node name="Name" type="Label" parent="NameRect"]
-layout_mode = 0
-offset_top = 1.0
-offset_right = 112.0
-offset_bottom = 32.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -81.0
+offset_top = -1.0
+offset_right = 81.0
+offset_bottom = 30.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 20
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="InfoHover" type="TextureRect" parent="NameRect/Name"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.043
+anchor_top = -0.29
+anchor_right = 1.043
+anchor_bottom = 2.032
+offset_left = -0.0339999
+offset_top = -0.00999928
+offset_right = 0.0339813
+offset_bottom = 0.00799942
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ted5n")
+
+[node name="ColorRect" type="ColorRect" parent="NameRect/Name"]
+show_behind_parent = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.154
+anchor_top = -0.194
+anchor_right = 0.846
+anchor_bottom = -0.194
+offset_left = 0.0519981
+offset_top = 2.014
+offset_right = -0.052002
+offset_bottom = 42.014
+grow_horizontal = 2
+color = Color(0.597656, 0.597656, 0.597656, 1)
 
 [node name="ResRect" type="ColorRect" parent="."]
 visible = false
