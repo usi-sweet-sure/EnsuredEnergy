@@ -148,6 +148,12 @@ public struct MoneyData {
 	public void UpdateImportCost(int importCost) {
 		Imports = importCost;
 	}
+
+	// Updates the production cost to the given amount
+	// @param prodCost: The amount of money that production currently costs
+	public void UpdateProductionCost(int prodCost) {
+		Production = prodCost;
+	}
 }
 
 // ============================================================

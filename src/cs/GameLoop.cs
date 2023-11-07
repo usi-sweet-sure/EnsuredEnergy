@@ -174,6 +174,9 @@ public partial class GameLoop : Node2D {
 		ShockWindow.ApplyReward += _OnShockApplyReward;
 		RM.UpdateNextTurnState += _UI._OnNextTurnStateUpdate;
 		_UI.ResetGame += _OnResetGame;
+
+		// Finally make sure that the resource ui is up to date
+		RM._UpdateResourcesUI(false, ref Money);
 	}
 
 	// ==================== Resource access API ====================
@@ -280,9 +283,9 @@ public partial class GameLoop : Node2D {
 
 		// Initialize resources
 		_UI._OnUpdatePrediction();
-		RM._UpdateResourcesUI();
+		RM._UpdateResourcesUI(false, ref Money);
 
-		RM._StartGame();
+		RM._StartGame(ref Money);
 	}
 
 	// Initializes all of the data that is propagated across the game

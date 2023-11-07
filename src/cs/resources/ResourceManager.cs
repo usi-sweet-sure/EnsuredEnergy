@@ -80,7 +80,7 @@ public partial class ResourceManager : Node {
 	// ==================== Public API ====================
 
 	// Starts the game for the resource manager
-	public void _StartGame() {
+	public void _StartGame(ref MoneyData money) {
 		// Check the current state of the next turn button
 		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 		UpdateEnergyUI(E);
@@ -89,6 +89,9 @@ public partial class ResourceManager : Node {
 		InitImportCost = ImportCost;
 		InitImportPollution = ImportPollution;
 
+		// This is done in order to guarantee that all resource ui elements are up to date
+		// at the game's start
+		_UpdateResourcesUI(false, ref money);
 
 		// Check if the demand has been reached
 		EmitSignal(
@@ -151,6 +154,7 @@ public partial class ResourceManager : Node {
 		);
 	}
 
+	// Allows for resources to be updated without having access to the moneydata field
 	public void _UpdateResourcesUI(bool predict) {
 		// Get the energy manager data
 		if(!predict) {
@@ -195,8 +199,9 @@ public partial class ResourceManager : Node {
 		// Compute the total import cost
 		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
 
-		// Update the import cost in the moneydata
+		// Update the import and production cost in the moneydata
 		money.UpdateImportCost(_GetTotalImportCost(_UI._GetImportSliderPercentage()));
+		money.UpdateProductionCost(AggregateProductionCost());
 
 		// Update the amount of pollution caused by imports
 		EnvM._UpdateImportPollution(imported, ImportPollution);
