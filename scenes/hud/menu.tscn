@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://pvoi2mcc3oc1"]
+[gd_scene load_steps=16 format=3 uid="uid://pvoi2mcc3oc1"]
 
 [ext_resource type="Script" path="res://src/cs/ui/MainMenu.cs" id="1_acmck"]
 [ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/MAP-BG.png" id="2_rie33"]
@@ -7,6 +7,43 @@
 [ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="3_t8pt2"]
 [ext_resource type="Texture2D" uid="uid://sob7pstxhrp" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="4_ppdqc"]
 [ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_gh7te"]
+[ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="8_6l5mf"]
+[ext_resource type="Texture2D" uid="uid://cd6sf3eopmy2p" path="res://assets/UI/leftClick1.png" id="9_gmi16"]
+[ext_resource type="Texture2D" uid="uid://bwsp0bov6brls" path="res://assets/UI/leftClick5.png" id="10_dsxfl"]
+[ext_resource type="Texture2D" uid="uid://sabh1djtxkod" path="res://assets/UI/leftClick2.png" id="11_8vm85"]
+[ext_resource type="Texture2D" uid="uid://yrdc3dolvhwh" path="res://assets/UI/leftClick3.png" id="12_mb4hu"]
+[ext_resource type="Texture2D" uid="uid://cpbd0webiu3jh" path="res://assets/UI/leftClick4.png" id="13_be3wx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjwrc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_gmi16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dsxfl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5hyn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_8vm85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mb4hu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_be3wx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_acmck")
@@ -136,3 +173,62 @@ grow_vertical = 2
 text = "Mode: Online"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.721569, 0.847059, 0.701961, 1)
+position = Vector2(224, 168)
+texture = ExtResource("8_6l5mf")
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+offset_left = -112.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 72.0
+color = Color(0.429688, 0.507813, 0.417969, 1)
+
+[node name="ClickAnim" type="AnimatedSprite2D" parent="Sprite2D"]
+texture_filter = 1
+position = Vector2(-72, 7)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_tjwrc")
+autoplay = "default"
+frame_progress = 0.948559
+
+[node name="ScrollAnim" type="AnimatedSprite2D" parent="Sprite2D"]
+texture_filter = 1
+position = Vector2(64, 7)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_u5hyn")
+autoplay = "default"
+frame_progress = 0.56765
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -128.0
+offset_top = -88.0
+offset_right = -16.0
+offset_bottom = -10.0
+text = "Hold and drag 
+
+
+
+
+to MOVE"
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label2" type="Label" parent="Sprite2D"]
+offset_left = 16.0
+offset_top = -88.0
+offset_right = 112.0
+offset_bottom = 94.0
+text = "Scroll 
+
+
+
+
+
+to zoom"
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
