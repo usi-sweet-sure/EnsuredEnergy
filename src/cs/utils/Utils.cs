@@ -142,6 +142,12 @@ public struct MoneyData {
 		// Add the money
 		Money += borrowed;
 	}
+
+	// Simply updates the cost of imports
+	// @param importCost: the cost of the current import
+	public void UpdateImportCost(int importCost) {
+		Imports = importCost;
+	}
 }
 
 // ============================================================

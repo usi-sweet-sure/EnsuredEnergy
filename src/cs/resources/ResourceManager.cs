@@ -151,8 +151,34 @@ public partial class ResourceManager : Node {
 		);
 	}
 
-	// Initializes all of the resource managers
 	public void _UpdateResourcesUI(bool predict) {
+		// Get the energy manager data
+		if(!predict) {
+			Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+			UpdateEnergyUI(E);
+
+			// Check if the demand has been reached
+			EmitSignal(
+				SignalName.UpdateNextTurnState,
+				E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
+			);
+		}
+
+		// Compute the total import cost
+		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the amount of pollution caused by imports
+		EnvM._UpdateImportPollution(imported, ImportPollution);
+
+		// Get the environment manager data
+		Environment Env = EnvM._GetEnvValues();
+
+		// Update the UI
+		UpdateEnvironmentUI(Env);
+	}
+
+	// Updates all of the resource managers
+	public void _UpdateResourcesUI(bool predict, ref MoneyData money) {
 
 		// Get the energy manager data
 		if(!predict) {
@@ -168,6 +194,9 @@ public partial class ResourceManager : Node {
 
 		// Compute the total import cost
 		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the import cost in the moneydata
+		money.UpdateImportCost(_GetTotalImportCost(_UI._GetImportSliderPercentage()));
 
 		// Update the amount of pollution caused by imports
 		EnvM._UpdateImportPollution(imported, ImportPollution);
