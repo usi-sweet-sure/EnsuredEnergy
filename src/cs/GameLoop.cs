@@ -495,10 +495,10 @@ public partial class GameLoop : Node2D {
 			UpdateResources();
 		} else {
 			// Sanity Check
-			Debug.Assert(BBs.Contains(bb));
-
-			// Destroy the Build Button
-			BBs.Remove(bb);
+			if(BBs.Contains(bb)) {
+				// Destroy the Build Button
+				BBs.Remove(bb);
+			}
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
