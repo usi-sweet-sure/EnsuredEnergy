@@ -183,6 +183,9 @@ public partial class GameLoop : Node2D {
 	
 	// Checks if a current build is legal and if so updates the amount of money
 	public bool _RequestBuild(int cost) {
+		// You can always buy something that's free
+		if(cost == 0) return true;
+
 		// Check that we have enough money
 		if(Money.Money >= cost) {
 			// Spend some money
@@ -199,7 +202,7 @@ public partial class GameLoop : Node2D {
 	}
 	
 	// Checks that we can afford a certain build
-	public bool _CheckBuildReq(int cost) => Money.Money >= cost;
+	public bool _CheckBuildReq(int cost) => Money.Money >= cost || cost == 0;
 
 	// Getter for the internal list of built powerplants
 	public List<PowerPlant> _GetPowerPlants() => PowerPlants;
