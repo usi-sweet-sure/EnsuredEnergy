@@ -80,7 +80,7 @@ public partial class ResourceManager : Node {
 	// ==================== Public API ====================
 
 	// Starts the game for the resource manager
-	public void _StartGame() {
+	public void _StartGame(ref MoneyData money) {
 		// Check the current state of the next turn button
 		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 		UpdateEnergyUI(E);
@@ -89,6 +89,9 @@ public partial class ResourceManager : Node {
 		InitImportCost = ImportCost;
 		InitImportPollution = ImportPollution;
 
+		// This is done in order to guarantee that all resource ui elements are up to date
+		// at the game's start
+		_UpdateResourcesUI(false, ref money);
 
 		// Check if the demand has been reached
 		EmitSignal(
@@ -151,8 +154,35 @@ public partial class ResourceManager : Node {
 		);
 	}
 
-	// Initializes all of the resource managers
+	// Allows for resources to be updated without having access to the moneydata field
 	public void _UpdateResourcesUI(bool predict) {
+		// Get the energy manager data
+		if(!predict) {
+			Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+			UpdateEnergyUI(E);
+
+			// Check if the demand has been reached
+			EmitSignal(
+				SignalName.UpdateNextTurnState,
+				E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
+			);
+		}
+
+		// Compute the total import cost
+		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the amount of pollution caused by imports
+		EnvM._UpdateImportPollution(imported, ImportPollution);
+
+		// Get the environment manager data
+		Environment Env = EnvM._GetEnvValues();
+
+		// Update the UI
+		UpdateEnvironmentUI(Env);
+	}
+
+	// Updates all of the resource managers
+	public void _UpdateResourcesUI(bool predict, ref MoneyData money) {
 
 		// Get the energy manager data
 		if(!predict) {
@@ -168,6 +198,10 @@ public partial class ResourceManager : Node {
 
 		// Compute the total import cost
 		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the import and production cost in the moneydata
+		money.UpdateImportCost(_GetTotalImportCost(_UI._GetImportSliderPercentage()));
+		money.UpdateProductionCost(AggregateProductionCost());
 
 		// Update the amount of pollution caused by imports
 		EnvM._UpdateImportPollution(imported, ImportPollution);

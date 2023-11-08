@@ -217,7 +217,7 @@ public partial class BuildMenu : CanvasLayer {
 	}
 	
 	private void SetPlantColor(ref PowerPlant pp) {
-		if (GL.Money.Money >= pp.BuildCost) {
+		if (GL.Money.Money >= pp.BuildCost || pp.BuildCost == 0) {
 			pp.Modulate = new Color(1,1,1,1);
 		} else {
 			pp.Modulate = new Color(0.5f,0.5f,0.5f,1f);
@@ -318,14 +318,9 @@ public partial class BuildMenu : CanvasLayer {
 					TreePlant._SetPlantFromConfig(Building.Type.TREE);
 					TreePlant.PlantType = Building.Type.TREE;
 
-					// Check if we can afford the build
-					if(!C._GetGL()._CheckBuildReq(TreePlant.BuildCost)) {
-						TreePlant._MakeTransparent();
-						TreeButton.Disabled = true;
-					} else {
-						TreePlant._MakeOpaque();
-						TreeButton.Disabled = false;
-					}
+					// You can always afford trees
+					TreePlant._MakeOpaque();
+					TreeButton.Disabled = false;
 					break;
 					
 				case Building.Type.WIND:

@@ -261,6 +261,17 @@ public partial class PowerPlant : Node2D {
 		}
 	}
 
+	// Hides the powerplant info if the player clicks somewhere else on the map
+	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+				Info.Hide();
+				ResRect.Hide();
+				Multiplier.Hide();
+			}
+		}
+	}
+
 	// ==================== Power Plant Update API ====================
 
 	// Shows the delete button
@@ -357,8 +368,18 @@ public partial class PowerPlant : Node2D {
 		Switch.Disabled = false;
 		Switch.Show();
 
+		// Retrieve the multiplier
+		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
+
 		// Reset multiplier
 		MultiplierValue = 1;
+		MultiplierL.Text = MultiplierValue.ToString();
+
+		// Check if the multiplier window should be shown
+		if(MultiplierValue < mult.MaxElements) {
+			MultInc.Show();
+		}
+		MultDec.Hide();
 		
 		// Workaround to allow for an immediate update
 		IsAlive = false;
@@ -737,10 +758,8 @@ public partial class PowerPlant : Node2D {
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
 		// Set the refund amount
-		if(RefundAmount == -1) {
-			RefundAmount = BuildCost + (mult.Cost * (MultiplierValue - 1));
-		}
-
+		RefundAmount = BuildCost + (mult.Cost * (MultiplierValue - 1));
+		
 		// Reset the multiplier
 		MultiplierValue = 1;
 
@@ -769,6 +788,8 @@ public partial class PowerPlant : Node2D {
 
 		// Reactivate the plant for future construction
 		ActivatePowerPlant();
+
+		_Reset();
 	}
 
 	// Reacts to the increase request by requesting it to the game loop
@@ -805,17 +826,6 @@ public partial class PowerPlant : Node2D {
 			}
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
-		}
-	}
-	
-	// Hides the powerplant info if the player clicks somewhere else on the map
-	public override void _UnhandledInput(InputEvent E) {
-		if(E is InputEventMouseButton MouseButton) {
-			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
-				Info.Hide();
-				ResRect.Hide();
-				Multiplier.Hide();
-			}
 		}
 	}
 }
