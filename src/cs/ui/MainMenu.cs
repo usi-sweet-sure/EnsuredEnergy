@@ -85,6 +85,14 @@ public partial class MainMenu : CanvasLayer {
 		//////////////////////////////////////////
 		//////////////////////////////////////////
 	}
+
+	// ==================== Public API ====================
+	// Resets the main menu to its initial state
+	public void _Reset() {
+		// The only thing that is needed to reset the main menu is to
+		// reset the labels so that they have the correct language
+		SetLabels();
+	}
 	
 	// ==================== Interaction Callbacks ====================
 

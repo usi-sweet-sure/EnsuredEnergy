@@ -705,8 +705,9 @@ public partial class GameLoop : Node2D {
 		// Reset the camera's position
 		Cam._ResetPos();
 		
-		// Reset the tutorial
+		// Reset the tutorial and main menu
 		Tuto._Reset();
+		MM._Reset();
 	}
 
 	// Reacts to the reception of a debt request
