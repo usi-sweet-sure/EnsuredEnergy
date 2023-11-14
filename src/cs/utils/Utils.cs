@@ -52,9 +52,9 @@ public struct Energy {
 
 // Models the public support resource
 public struct Support {
-	public float Value; // Basic support type for now.
+	public int Value; // Basic support type for now.
 
-	public Support(float v=1.0f) {
+	public Support(int v=60) {
 		Value = v;
 	}
 }
@@ -586,7 +586,7 @@ public struct InfoData {
 	public const int N_W_ENERGY_FIELDS = 2;
 	public const int N_S_ENERGY_FIELDS = 2;
 	public const int N_ENV_FIELDS = 5;
-	public const int N_SUPPORT_FIELDS = 2;
+	public const int N_SUPPORT_FIELDS = 1;
 	public const int N_MONEY_FIELDS = 5;
 
 	// === Energy metrics ===
@@ -596,8 +596,7 @@ public struct InfoData {
 	public int S_EnergySupply; // Energy supply for the summer season
 
 	// === Support metrics ===
-	public int EnergyAffordability; // Used in the support bar
-	public int EnvAesthetic; // Also used in the support bar
+	public int SupportVal; // The amount of support the player has (0 to 100)
 
 	// === Environment metrics ===
 	public int LandUse; // Used in the environment bar
@@ -619,8 +618,7 @@ public struct InfoData {
 		S_EnergyDemand = 0; 
 		S_EnergySupply = 0; 
 
-		EnergyAffordability = 0; 
-		EnvAesthetic = 0; 
+		SupportVal = 0; 
 
 		LandUse = 0;
 		Pollution = 0;

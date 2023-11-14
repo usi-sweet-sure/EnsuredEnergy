@@ -18,9 +18,17 @@
 using Godot;
 using System;
 
+// Updates and handles the political support that the player has
 public partial class SupportManager : Node {
 	public Support S;
+	private const int SUPPORT_DEFAULT_VALUE = 60;
+
+	// ==================== GODOT Method Overrides ====================
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
+		S = new(SUPPORT_DEFAULT_VALUE);
 	}
+
+	public Support _GetSupportValue() => S;
 }

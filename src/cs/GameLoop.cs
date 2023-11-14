@@ -64,6 +64,7 @@ public partial class GameLoop : Node2D {
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
 
+	// Updates and maintains various resources in the simulation
 	private ResourceManager RM;
 
 	// Model controller
