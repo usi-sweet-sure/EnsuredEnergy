@@ -97,7 +97,7 @@ public partial class End : CanvasLayer {
 		Shocks.Text = nShocks.ToString();
 		EnergyW.Text = enw.ToString();
 		EnergyS.Text = ens.ToString();
-		Support.Text = (sup * 100).ToString() + "%";
+		Support.Text = sup.ToString() + "%";
 		EnvScore.Text = ((int)(env_ * 100)).ToString();
 
 		// Set textual stats
