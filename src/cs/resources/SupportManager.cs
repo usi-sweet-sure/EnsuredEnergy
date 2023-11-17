@@ -17,11 +17,13 @@
 */
 using Godot;
 using System;
+using System.Xml;
 
 // Updates and handles the political support that the player has
 public partial class SupportManager : Node {
-	public Support S;
+	private Support S;
 	private const int SUPPORT_DEFAULT_VALUE = 60;
+	
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -30,5 +32,24 @@ public partial class SupportManager : Node {
 		S = new(SUPPORT_DEFAULT_VALUE);
 	}
 
-	public Support _GetSupportValue() => S;
+	// ==================== Public API ====================
+
+	// Getters for the support
+	public Support _GetSupport() => S;
+	public int _GetSupportValue() => S.Value;
+
+	// Increases the value of the support by the given diff amount (can be negative) 
+	public void _UpdateSupport(int diff) {
+		S.Value = Math.Max(S.Value + diff, 0);
+	}
+
+	// Setter for the support
+	public void _SetSupport(int newval) {
+		S.Value = Math.Max(newval, 0);
+	}
+
+	// Resets the support manager back to its default values
+	public void _Reset() {
+		S = new(SUPPORT_DEFAULT_VALUE);
+	}
 }

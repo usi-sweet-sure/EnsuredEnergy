@@ -19,6 +19,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 
 // ============================================================
@@ -556,9 +557,13 @@ public struct ShockRequirement {
 	// The value required by the requirement
 	public float Value; 
 
-	// Basic constructor 
+	// Basic constructors
 	public ShockRequirement(string s, float v) {
 		RT = RTM.ResourceTypeFromString(s);
+		Value = v;
+	}
+	public ShockRequirement(ResourceType rt, float v) {
+		RT = rt;
 		Value = v;
 	}
 }
@@ -576,6 +581,12 @@ public struct ShockEffect {
 		Text = t;
 		Effects = es;
 	}
+
+	// Converts an effect into a list of requirements
+	public List<ShockRequirement> ToRequirements() => 
+		// Only negative effects have requirements, all others are clamped to 0
+		Effects.Select(se => new ShockRequirement(se.Item1, Math.Abs(Math.Min(se.Item2, 0)))).ToList();
+	
 }
 
 // ==================== UI Info Datatype ===================

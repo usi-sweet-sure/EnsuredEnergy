@@ -150,7 +150,7 @@ public partial class ResourceManager : Node {
 		UpdateEnvironmentUI(Env);
 		
 		// Update the support bar 
-		UpdateSupportUI(SM._GetSupportValue());
+		UpdateSupportUI(SM._GetSupport());
 
 		EmitSignal(
 			SignalName.UpdateNextTurnState,
@@ -185,7 +185,7 @@ public partial class ResourceManager : Node {
 		UpdateEnvironmentUI(Env);
 
 		// Update the support bar 
-		UpdateSupportUI(SM._GetSupportValue());
+		UpdateSupportUI(SM._GetSupport());
 	}
 
 	// Updates all of the resource managers
@@ -220,7 +220,7 @@ public partial class ResourceManager : Node {
 		UpdateEnvironmentUI(Env);
 
 		// Update the support bar 
-		UpdateSupportUI(SM._GetSupportValue());
+		UpdateSupportUI(SM._GetSupport());
 
 	}
 
@@ -274,7 +274,7 @@ public partial class ResourceManager : Node {
 	public (Energy, Environment, Support) _GetResources() => (
 		EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer),
 		EnvM._GetEnvValues(),
-		SM._GetSupportValue()
+		SM._GetSupport()
 	);
 
 	// Applies a given shock effect
@@ -294,8 +294,8 @@ public partial class ResourceManager : Node {
 				break;
 			case ResourceType.SUPPORT:
 				// Naive update for support for now
-				SM.S.Value += (int)v;
-				Debug.Print("Support: " + SM.S.Value.ToString());
+				SM._UpdateSupport((int)v);
+				Debug.Print("Support: " + SM._GetSupportValue().ToString());
 				break;
 			default:
 			 return;

@@ -250,11 +250,11 @@ public partial class GameLoop : Node2D {
 
 	// Triggers the selection and display of a new shock
 	private void DisplayShock() {
-		// Select a new shock
-		ShockWindow._SelectNewShock();
-
 		// Retrieve the resources
 		(Energy E, Environment Env, Support Sup) = RM._GetResources();
+
+		// Select a new shock
+		ShockWindow._SelectNewShock(Money, E, Env, Sup);
 
 		// Show the shock
 		ShockWindow._Show(Money, E, Env, Sup);
