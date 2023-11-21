@@ -1,0 +1,91 @@
+<db id="policies">
+    <!-- Policy config for the renewable energy campaign -->
+    <policy id="renewables_info" tag="env">
+        <!-- The title that will be displayed at the top of the policy -->
+        <name>Renewable energy information campaign</name>
+        <!-- The description text that will be displayed in the policy popup -->
+        <text>Start Information Campaign informing on the advantages of Renewable Energy.</text>
+        <reaction id="0">
+            <!-- The text that will be displayed in the reaction button (verbatim) -->
+            <text>Increases acceptance of renewable energy and their related policies by n %</text>
+            <!-- The effect selecting this reaction will have on the player's resources -->
+            <effect field="env_popularity" value="n"/>
+        </reaction>
+        <!-- The popularity of the policy -->
+        <!-- Here it means that the player needs to have... TBT copied from shocks -->
+        <popularity id="0" value="50"/> <!-- Important to note that information campaigns do not use the vote system -->
+    </policy>
+
+    <policy id="rooftop_PV" tag="env">
+        <name>Rooftop solar PV regulation</name>
+        <text>Mandatory rooftop solar PV installation by [year].</text>
+        <reaction id="0">
+            <text>Increase of decentral production of Solar Energy by n %</text> 
+            <effect field="energyS" value="n"/>
+            <effect field="energyW" value="n"/>
+        </reaction>
+        <popularity id="0" value="50"/>
+    </policy>
+
+    <policy id="Upgrade_PV" tag="env">
+        <name>Alpine solar PV regulation</name>
+        <text>Limitation of Appeal to large scale Solar Projects.</text>
+        <reaction id="0">
+            <text>Increase solar plant upgrades from 1 to 3.</text> 
+            <effect field="solar_mult_max" value="3"/>
+        </reaction>
+        <popularity id="0" value="50"/>
+    </policy>
+
+    <policy id="Wind_buildtime" tag="env">
+        <name>Wind parks regulation</name>
+        <text>Limitation of the possibilities of appeal for wind parks.</text>
+        <reaction id="0">
+            <text>Lowers required building time for wind parks from 2 to 0.</text> 
+            <effect field="wind_build_time" value="0"/>
+        </reaction>
+        <popularity id="0" value="50"/>
+    </policy>
+
+    <policy id="Upgrade_wind" tag="env">
+        <name>Wind parks regulation</name>
+        <text>Limitation of the possibilities of appeal for wind parks.</text>
+        <reaction id="0">
+            <text>Increase wind parks upgrades from 2 to 5.</text> 
+            <effect field="wind_mult_max" value="5"/>
+        </reaction>
+        <popularity id="0" value="50"/>
+    </policy>
+
+    <policy id="home_info" tag="demand">
+        <name>Home insulation</name>
+        <text>Start information campaign explaining the advantages of home insulation.</text>
+        <reaction id="0">
+            <text>Increases acceptance of home insulation and their related policies by n %</text> 
+            <effect field="demand_popularity" value="n"/>
+        </reaction>
+        <popularity id="0" value="50"/>
+    </policy>
+
+    <policy id="home_regulation" tag="demand">
+        <name>Home</name>
+        <text>Mandatory insulation of buildings within n turns.</text>
+        <reaction id="0">
+            <text>Lowers energy demand by n.</text> 
+            <effect field="energyDemandW" value="-5"/>
+            <effect field="energyDemandS" value="-5"/>
+        </reaction>
+        <popularity id="0" value="50"/>
+    </policy>
+
+    <policy id="industry_subsidy" tag="demand">
+        <name>Industry Subsidy</name>
+        <text>Grant for Production Flexibility.</text>
+        <reaction id="0">
+            <text>Lowers Energy Demand from Industry by n.</text> 
+            <effect field="energyDemandW" value="-5"/>
+            <effect field="energyDemandS" value="-5"/>
+        </reaction>
+        <popularity id="0" value="50"/>
+    </policy>
+</db>

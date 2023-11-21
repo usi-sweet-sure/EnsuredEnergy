@@ -19,8 +19,20 @@ bg_color = Color(0.843137, 0.72549, 0.352941, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip8xd"]
 bg_color = Color(0.513726, 0.588235, 0.839216, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vk0"]
-bg_color = Color(0.196078, 0.545098, 0.968627, 1)
+[sub_resource type="Animation" id="Animation_wviye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/NinePatchRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_k75ra"]
 resource_name = "popup"
@@ -39,21 +51,6 @@ tracks/0/keys = {
 "values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_wviye"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect/NinePatchRect:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8dlcw"]
 _data = {
 "RESET": SubResource("Animation_wviye"),
@@ -62,6 +59,11 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcjrg"]
 bg_color = Color(0.823529, 0.521569, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vk0"]
+bg_color = Color(0.196078, 0.545098, 0.968627, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
 
 [node name="Policy" type="CanvasLayer"]
 script = ExtResource("1_is3ep")
@@ -553,119 +555,6 @@ theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_ip8xd")
 text = "📉"
 
-[node name="Popup" type="Panel" parent="OldWindow/Panel"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect2" type="ColorRect" parent="OldWindow/Panel/Popup"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -258.0
-offset_top = -200.0
-offset_right = 258.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Text" type="Label" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 60.0
-offset_right = 466.0
-offset_bottom = 144.0
-theme_override_colors/font_color = Color(0.270588, 0.270588, 0.270588, 1)
-theme_override_font_sizes/font_size = 15
-text = "Information campaign / Raise grants / Guaranteed purchase of _"
-autowrap_mode = 3
-
-[node name="Title" type="Label" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 186.0
-offset_top = 4.0
-offset_right = 331.0
-offset_bottom = 52.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "Policy name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Effect" type="Label" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 142.0
-offset_right = 458.0
-offset_bottom = 292.0
-theme_override_colors/font_color = Color(0.270588, 0.270588, 0.270588, 1)
-theme_override_font_sizes/font_size = 15
-text = "Effects:
- + n ⚡   
- - n 💰     
- n turns 
-
-Estimated popularity with voters:"
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="ProgressBar" type="ProgressBar" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 138.0
-offset_top = 300.0
-offset_right = 370.0
-offset_bottom = 327.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_77vk0")
-value = 42.0
-
-[node name="Button" type="Button" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 186.0
-offset_top = 348.0
-offset_right = 328.0
-offset_bottom = 379.0
-text = "Try to Implement"
-
-[node name="CheckButton" type="Button" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 178.0
-offset_top = 100.0
-offset_right = 227.0
-offset_bottom = 131.0
-focus_mode = 0
-toggle_mode = true
-keep_pressed_outside = true
-text = "LVL 1"
-
-[node name="CheckButton2" type="Button" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 228.0
-offset_top = 100.0
-offset_right = 277.0
-offset_bottom = 131.0
-focus_mode = 0
-toggle_mode = true
-keep_pressed_outside = true
-text = "LVL 2"
-
-[node name="CheckButton3" type="Button" parent="OldWindow/Panel/Popup/ColorRect2"]
-layout_mode = 0
-offset_left = 278.0
-offset_top = 100.0
-offset_right = 327.0
-offset_bottom = 131.0
-focus_mode = 0
-toggle_mode = true
-keep_pressed_outside = true
-text = "LVL 3"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8dlcw")
@@ -692,7 +581,6 @@ offset_right = 540.0
 offset_bottom = 381.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(540, 381)
 texture = ExtResource("2_2apud")
 region_rect = Rect2(24, 28, 302, 216)
@@ -817,3 +705,141 @@ theme_override_font_sizes/font_size = 48
 text = "POLICIES"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Popup" type="Panel" parent="ColorRect/NinePatchRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ColorRect/NinePatchRect/Popup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -193.5
+offset_right = 208.0
+offset_bottom = 193.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2apud")
+region_rect = Rect2(26, 28, 298, 218)
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect/NinePatchRect/Popup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.5
+offset_top = -166.5
+offset_right = 202.5
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.597656, 0.597656, 0.597656, 1)
+
+[node name="Title" type="Label" parent="ColorRect/NinePatchRect/Popup/ColorRect2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.5
+offset_top = -11.0
+offset_right = 72.5
+offset_bottom = 37.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Policy name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="ColorRect/NinePatchRect/Popup/ColorRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = -115.5
+offset_right = 160.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "Information campaign / Raise grants / Guaranteed purchase of _"
+autowrap_mode = 3
+
+[node name="Effect" type="Label" parent="ColorRect/NinePatchRect/Popup/ColorRect2"]
+layout_mode = 0
+offset_left = 98.5
+offset_top = 116.5
+offset_right = 295.5
+offset_bottom = 248.5
+theme_override_font_sizes/font_size = 21
+text = "Effects:
+ + n ⚡   
+ - n 💰     
+ n turns 
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PopularityL" type="Label" parent="ColorRect/NinePatchRect/Popup/ColorRect2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = -58.5
+offset_right = 81.0
+offset_bottom = -32.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Estimated popularity with voters:"
+
+[node name="Popularity" type="ProgressBar" parent="ColorRect/NinePatchRect/Popup/ColorRect2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -27.0
+offset_right = 71.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_77vk0")
+value = 42.0
+
+[node name="Vote" type="Button" parent="ColorRect/NinePatchRect/Popup/ColorRect2"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -31.0
+offset_right = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Vote
+"
