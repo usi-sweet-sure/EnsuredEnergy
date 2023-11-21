@@ -19,6 +19,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 
 // Encapsulates all of the resource management used throughout the game
@@ -147,6 +148,9 @@ public partial class ResourceManager : Node {
 		// Update the energy UI
 		UpdateEnergyUI(E);
 		UpdateEnvironmentUI(Env);
+		
+		// Update the support bar 
+		UpdateSupportUI(SM._GetSupport());
 
 		EmitSignal(
 			SignalName.UpdateNextTurnState,
@@ -179,6 +183,9 @@ public partial class ResourceManager : Node {
 
 		// Update the UI
 		UpdateEnvironmentUI(Env);
+
+		// Update the support bar 
+		UpdateSupportUI(SM._GetSupport());
 	}
 
 	// Updates all of the resource managers
@@ -211,6 +218,10 @@ public partial class ResourceManager : Node {
 
 		// Update the UI
 		UpdateEnvironmentUI(Env);
+
+		// Update the support bar 
+		UpdateSupportUI(SM._GetSupport());
+
 	}
 
 	// Wrapper used for signal compatibility
@@ -263,7 +274,7 @@ public partial class ResourceManager : Node {
 	public (Energy, Environment, Support) _GetResources() => (
 		EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer),
 		EnvM._GetEnvValues(),
-		new Support(1.0f)
+		SM._GetSupport()
 	);
 
 	// Applies a given shock effect
@@ -283,7 +294,8 @@ public partial class ResourceManager : Node {
 				break;
 			case ResourceType.SUPPORT:
 				// Naive update for support for now
-				SM.S.Value += v;
+				SM._UpdateSupport((int)v);
+				Debug.Print("Support: " + SM._GetSupportValue().ToString());
 				break;
 			default:
 			 return;
@@ -327,6 +339,14 @@ public partial class ResourceManager : Node {
 			(int)(Env.Biodiversity * 100),
 			(int)(Env.EnvBarValue() * 100),
 			Env.ImportedPollution
+		);
+	}
+
+	// Updates the UI fields related to the support resource
+	private void UpdateSupportUI(Support Sup) {
+		_UI._UpdateData(
+			UI.InfoType.SUPPORT,
+			Sup.Value
 		);
 	}
 
