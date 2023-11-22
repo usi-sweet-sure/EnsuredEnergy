@@ -107,7 +107,7 @@ public partial class Shock : CanvasLayer {
 	// ==================== Public API ====================
 
 	// Sets the internal current shock to a newly selected one
-	public void _SelectNewShock() {
+	public void _SelectNewShock(MoneyData M, Energy E, Environment Env, Support S) {
 		// Initialize pseudo-random number generator
 		Random rnd = new ();
 
@@ -127,7 +127,7 @@ public partial class Shock : CanvasLayer {
 		CurShock = next_shock;
 
 		// Update the fields to match the new shock
-		SetFields();
+		SetFields(M, E, Env, S);
 	}
 
 	// Getter for the shock's reward effects
@@ -190,6 +190,85 @@ public partial class Shock : CanvasLayer {
 	}
 
 	// ==================== Internal Helpers ====================
+
+	// Sets all of the fields for the shock once a new one is selected
+	private void SetFields(MoneyData M, Energy E, Environment Env, Support S) {
+		// Load in the corresponding image representing this shock
+		string res_path = "res://assets/Icons/" + SC._GetShockImg(CurShock) + ".png"
+			?? throw new Exception("Unable to fetch image path: " + CurShock.ToString());
+		Img.Texture = (
+			ResourceLoader.Load(res_path)
+			?? throw new Exception("Unable to load resource: " + res_path)
+		) as Texture2D;
+		
+		// Extract the name and the description and set the labels to match them
+		Title.Text = SC._GetShockName(CurShock) 
+			?? throw new Exception("Unable to fetch name for id: " + CurShock.ToString());
+		Text.Text = SC._GetShockText(CurShock) 
+			?? throw new Exception("Unable to fetch text for id: " + CurShock.ToString());
+
+		// Set the current requirement
+		CurRequirements = SC._GetRequirements(CurShock);
+
+		// Retrieve the current reward
+		CurReward = SC._GetReward(CurShock);
+
+		// Set the reward text
+		Reward.Text = CurReward.Text;
+
+		// Retrieve the current reactions
+		CurReactions = SC._GetReactions(CurShock);
+
+		// Set the individual buttons if they have associated reactions
+		if(CurReactions.Count > 0) {
+			// Set the button's text and enable it
+			R1.Text = CurReactions[0].Text;
+			R1.Disabled = false;
+			R1.Show();
+			R2.Hide();
+			R3.Hide();
+
+			// Check reaction requirements
+			CheckAllEffectReqs(CurReactions[0], ref R1, (M, E, Env, S));
+
+		}
+		if(CurReactions.Count > 1) {
+			// Set the button's text and enable it
+			R2.Text = CurReactions[1].Text;
+			R2.Disabled = false;
+			R2.Show();
+			R3.Hide();
+
+			// Check reaction requirements
+			CheckAllEffectReqs(CurReactions[1], ref R2, (M, E, Env, S));
+		}
+		if(CurReactions.Count > 2) {
+			// Set the button's text and enable it
+			R3.Text = CurReactions[2].Text;
+			R3.Disabled = false;
+			R3.Show();
+
+			// Check reaction requirements
+			CheckAllEffectReqs(CurReactions[2], ref R3, (M, E, Env, S));
+		}
+	}
+
+	// Checks the validity of the reaction based on current resources
+	private void CheckAllEffectReqs(ShockEffect se, ref Button react, (MoneyData, Energy, Environment, Support) res) {
+		
+		// We start looking at if our effect requirements are all met
+		bool AllReqsMet = se.ToRequirements().Aggregate(true, (acc, req) => 
+			CheckRequirement(req, res.Item1, res.Item2, res.Item3, res.Item4) && acc
+		);
+		// If they aren't all met, then we have to deactivate this response
+		if(!AllReqsMet) {
+			react.Disabled = true;
+			react.Modulate = new(1, 1, 1, 0.5f);
+		} else {
+			react.Disabled = false;
+			react.Modulate = new(1, 1, 1, 1);
+		}
+	}
 
 	// Sets all of the fields for the shock once a new one is selected
 	private void SetFields() {

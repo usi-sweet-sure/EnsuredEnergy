@@ -64,6 +64,7 @@ public partial class GameLoop : Node2D {
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
 
+	// Updates and maintains various resources in the simulation
 	private ResourceManager RM;
 
 	// Model controller
@@ -174,12 +175,18 @@ public partial class GameLoop : Node2D {
 		ShockWindow.ApplyReward += _OnShockApplyReward;
 		RM.UpdateNextTurnState += _UI._OnNextTurnStateUpdate;
 		_UI.ResetGame += _OnResetGame;
+
+		// Finally make sure that the resource ui is up to date
+		RM._UpdateResourcesUI(false, ref Money);
 	}
 
 	// ==================== Resource access API ====================
 	
 	// Checks if a current build is legal and if so updates the amount of money
 	public bool _RequestBuild(int cost) {
+		// You can always buy something that's free
+		if(cost == 0) return true;
+
 		// Check that we have enough money
 		if(Money.Money >= cost) {
 			// Spend some money
@@ -196,7 +203,7 @@ public partial class GameLoop : Node2D {
 	}
 	
 	// Checks that we can afford a certain build
-	public bool _CheckBuildReq(int cost) => Money.Money >= cost;
+	public bool _CheckBuildReq(int cost) => Money.Money >= cost || cost == 0;
 
 	// Getter for the internal list of built powerplants
 	public List<PowerPlant> _GetPowerPlants() => PowerPlants;
@@ -218,7 +225,7 @@ public partial class GameLoop : Node2D {
 		if(newturn) {
 			RM._NextTurn(ref Money);
 		} else {
-			RM._UpdateResourcesUI(false);
+			RM._UpdateResourcesUI(false, ref Money);
 		}
 
 		// Update Money UI
@@ -243,11 +250,11 @@ public partial class GameLoop : Node2D {
 
 	// Triggers the selection and display of a new shock
 	private void DisplayShock() {
-		// Select a new shock
-		ShockWindow._SelectNewShock();
-
 		// Retrieve the resources
 		(Energy E, Environment Env, Support Sup) = RM._GetResources();
+
+		// Select a new shock
+		ShockWindow._SelectNewShock(Money, E, Env, Sup);
 
 		// Show the shock
 		ShockWindow._Show(Money, E, Env, Sup);
@@ -280,9 +287,9 @@ public partial class GameLoop : Node2D {
 
 		// Initialize resources
 		_UI._OnUpdatePrediction();
-		RM._UpdateResourcesUI();
+		RM._UpdateResourcesUI(false, ref Money);
 
-		RM._StartGame();
+		RM._StartGame(ref Money);
 	}
 
 	// Initializes all of the data that is propagated across the game
@@ -492,10 +499,10 @@ public partial class GameLoop : Node2D {
 			UpdateResources();
 		} else {
 			// Sanity Check
-			Debug.Assert(BBs.Contains(bb));
-
-			// Destroy the Build Button
-			BBs.Remove(bb);
+			if(BBs.Contains(bb)) {
+				// Destroy the Build Button
+				BBs.Remove(bb);
+			}
 
 			// Replace it with the new power plant
 			PowerPlants.Add(pp);
@@ -699,8 +706,9 @@ public partial class GameLoop : Node2D {
 		// Reset the camera's position
 		Cam._ResetPos();
 		
-		// Reset the tutorial
+		// Reset the tutorial and main menu
 		Tuto._Reset();
+		MM._Reset();
 	}
 
 	// Reacts to the reception of a debt request
