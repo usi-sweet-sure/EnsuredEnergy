@@ -745,4 +745,12 @@ public partial class GameLoop : Node2D {
 			_UpdateResourcesUI();
 		}
 	}
+	
+	public override void _UnhandledInput(InputEvent E) {
+		if (E is InputEventKey eventKey) {
+			if (eventKey.Pressed && eventKey.Keycode == Key.Escape) {
+				GetTree().Quit();
+			}
+		} 
+	}
 }
