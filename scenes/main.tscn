@@ -455,10 +455,6 @@ visible = true
 [node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
 
-[node name="NameRect" parent="World/Nuclear" index="3"]
-offset_top = -192.0
-offset_bottom = -164.0
-
 [node name="ResRect" parent="World/Nuclear" index="4"]
 offset_top = 104.0
 offset_bottom = 133.0
@@ -508,6 +504,10 @@ autoplay = "Wind"
 libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
+
+[node name="Turbine3" parent="World/Wind" index="14"]
+position = Vector2(67, -51)
+texture = SubResource("AtlasTexture_5nxuw")
 
 [node name="BuildButton2" parent="World" index="14"]
 metadata/_edit_use_anchors_ = true
