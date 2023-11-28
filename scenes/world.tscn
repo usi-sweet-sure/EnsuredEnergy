@@ -155,7 +155,6 @@ offset_left = 2268.0
 offset_top = -307.0
 offset_right = 2508.0
 offset_bottom = -67.0
-mouse_default_cursor_shape = 2
 theme = SubResource("Theme_mklkc")
 script = ExtResource("4_mo62v")
 
@@ -168,7 +167,6 @@ offset_left = 2578.0
 offset_top = 154.0
 offset_right = 2818.0
 offset_bottom = 394.0
-mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
@@ -176,7 +174,6 @@ offset_left = 2093.0
 offset_top = 718.0
 offset_right = 2333.0
 offset_bottom = 958.0
-mouse_default_cursor_shape = 2
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
