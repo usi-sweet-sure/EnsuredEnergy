@@ -107,15 +107,7 @@ public partial class Camera : Camera2D {
 	public void _ResetPos() {
 		Offset = Vector2.Zero;
 		Position = InitPos;
-		ZoomVal = new (0.75f, 0.75f);
+		ZoomVal = new (1.0f,1.0f);
 		Zoom = InitZoom;
-		
-		// reset scale
-		foreach (Node2D Plant in GetTree().GetNodesInGroup("PP")) {
-			Plant.Scale = new Vector2(1.0f, 1.0f);
-		}
-		foreach (TextureButton BuildButton in GetTree().GetNodesInGroup("BB")) {
-			BuildButton.Scale = new Vector2(1.0f, 1.0f);
-		}
 	}
 }

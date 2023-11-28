@@ -53,8 +53,6 @@ public partial class End : CanvasLayer {
 	private Label SupportT;
 	private Label PollT;
 	private Label EnvT;
-	
-	private Button Close;
 
 	// Text controller for the dynamic text
 	private TextController TC;
@@ -80,13 +78,9 @@ public partial class End : CanvasLayer {
 		SupportT = GetNode<Label>("HBoxContainer/Support");
 		PollT = GetNode<Label>("HBoxContainer/Poll");
 		EnvT = GetNode<Label>("HBoxContainer/Env");
-		
-		Close = GetNode<Button>("Close");
 
 		// Fetch the text controller
 		TC = GetNode<TextController>("../TextController");
-		
-		Close.Pressed += _OnClosePressed;
 	}
 
 	// ==================== Public API ====================
@@ -117,9 +111,5 @@ public partial class End : CanvasLayer {
 		EnergyT.Text = TC._GetText(END_FILE, END_GROUP, ENERGY_ID);
 		SupportT.Text = TC._GetText(END_FILE, END_GROUP, SUPPORT_ID);
 		EnvT.Text = TC._GetText(END_FILE, END_GROUP, ENV_TEXT_ID);
-	}
-	
-	private void _OnClosePressed() {
-		Hide();
 	}
 }

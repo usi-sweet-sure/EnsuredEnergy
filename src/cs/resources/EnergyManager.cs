@@ -25,7 +25,7 @@ using System.Linq;
 public partial class EnergyManager : Node {
 
 	// Max value allowed by the UI
-	public const int MAX_ENERGY_BAR_VAL = 600;
+	public const int MAX_ENERGY_BAR_VAL = 1000;
 
 	// Keep track of all of the placed power plants
 	private List<PowerPlant> PowerPlants;
