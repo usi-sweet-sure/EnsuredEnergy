@@ -152,9 +152,9 @@ grow_vertical = 1
 
 [node name="BuildButton" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 2268.0
-offset_top = -307.0
+offset_top = -323.0
 offset_right = 2508.0
-offset_bottom = -67.0
+offset_bottom = -83.0
 theme = SubResource("Theme_mklkc")
 script = ExtResource("4_mo62v")
 
@@ -163,16 +163,16 @@ position = Vector2(2930, 777)
 texture = ExtResource("11_6ys5y")
 
 [node name="BuildButton2" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 2578.0
-offset_top = 154.0
-offset_right = 2818.0
-offset_bottom = 394.0
+offset_left = 2606.0
+offset_top = 107.0
+offset_right = 2846.0
+offset_bottom = 347.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 2093.0
+offset_left = 2152.0
 offset_top = 718.0
-offset_right = 2333.0
+offset_right = 2392.0
 offset_bottom = 958.0
 script = ExtResource("4_mo62v")
 
@@ -193,9 +193,9 @@ offset_bottom = 910.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton6" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = -171.0
+offset_left = -155.0
 offset_top = 1533.0
-offset_right = 69.0
+offset_right = 85.0
 offset_bottom = 1773.0
 script = ExtResource("4_mo62v")
 
@@ -207,9 +207,9 @@ offset_bottom = 1446.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton8" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 1548.0
+offset_left = 1626.0
 offset_top = 898.0
-offset_right = 1788.0
+offset_right = 1866.0
 offset_bottom = 1138.0
 script = ExtResource("4_mo62v")
 
@@ -281,13 +281,6 @@ offset_right = 52.0
 offset_bottom = 35.0
 grow_vertical = 1
 
-[node name="BuildButton10" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 57.0
-offset_top = 2239.0
-offset_right = 297.0
-offset_bottom = 2479.0
-script = ExtResource("4_mo62v")
-
 [node name="Mountain3" type="Sprite2D" parent="."]
 position = Vector2(526, 2669)
 texture = ExtResource("8_600g3")
@@ -323,6 +316,13 @@ texture = ExtResource("16_53p1h")
 [node name="Forest6" type="Sprite2D" parent="."]
 position = Vector2(-509, 2466)
 texture = ExtResource("17_vyoia")
+
+[node name="BuildButton10" parent="." instance=ExtResource("16_pnu0i")]
+offset_left = 57.0
+offset_top = 2366.0
+offset_right = 297.0
+offset_bottom = 2606.0
+script = ExtResource("4_mo62v")
 
 [node name="Forest7" type="Sprite2D" parent="."]
 position = Vector2(2319, 2280)
