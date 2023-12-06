@@ -926,6 +926,153 @@ _data = {
 "spin": SubResource("Animation_7lfvt")
 }
 
+[sub_resource type="Animation" id="Animation_kfh41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(105, -215)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(115, -285)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoke3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(110, -375)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Smoke:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.345098, 0.345098, 0.345098, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Smoke2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.345098, 0.345098, 0.345098, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Smoke3:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.345098, 0.345098, 0.345098, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Smoke4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -235)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Smoke5:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15, -295)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Smoke6:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(25, -345)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Smoke4:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.345098, 0.345098, 0.345098, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Smoke5:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.345098, 0.345098, 0.345098, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Smoke6:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.345098, 0.345098, 0.345098, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_3ui28"]
 resource_name = "Smoke"
 length = 5.0
@@ -1075,7 +1222,13 @@ tracks/11/keys = {
 "values": [Color(0.345098, 0.345098, 0.345098, 0), Color(0.345098, 0.345098, 0.345098, 0.392157), Color(0.345098, 0.345098, 0.345098, 0.392157), Color(0.345098, 0.345098, 0.345098, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_kfh41"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ewng"]
+_data = {
+"RESET": SubResource("Animation_kfh41"),
+"Smoke": SubResource("Animation_3ui28")
+}
+
+[sub_resource type="Animation" id="Animation_6iuy7"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1087,7 +1240,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(105, -215)]
+"values": [Vector2(-53, -263)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1099,7 +1252,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(115, -285)]
+"values": [Vector2(-23, -328)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1111,7 +1264,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(110, -375)]
+"values": [Vector2(-18, -403)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1159,7 +1312,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(30, -235)]
+"values": [Vector2(-135, -225)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -1171,19 +1324,19 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(15, -295)]
+"values": [Vector2(-115, -300)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Smoke6:position")
+tracks/8/path = NodePath("Smoke5:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(25, -345)]
+"values": [Color(0.345098, 0.345098, 0.345098, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1196,36 +1349,6 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Smoke5:modulate")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Smoke6:modulate")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ewng"]
-_data = {
-"RESET": SubResource("Animation_kfh41"),
-"Smoke": SubResource("Animation_3ui28")
 }
 
 [sub_resource type="Animation" id="Animation_mrklp"]
@@ -1353,133 +1476,49 @@ tracks/9/keys = {
 "values": [Color(0.345098, 0.345098, 0.345098, 0), Color(0.345098, 0.345098, 0.345098, 0.588235), Color(0.345098, 0.345098, 0.345098, 0), Color(0.345098, 0.345098, 0.345098, 0), Color(0.345098, 0.345098, 0.345098, 0.588235), Color(0.345098, 0.345098, 0.345098, 0.588235), Color(0.345098, 0.345098, 0.345098, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_6iuy7"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrkkx"]
+_data = {
+"RESET": SubResource("Animation_6iuy7"),
+"Smoke": SubResource("Animation_mrklp")
+}
+
+[sub_resource type="Animation" id="Animation_cx5dv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Smoke:position")
+tracks/0/path = NodePath("Water:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-53, -263)]
+"values": [Color(1, 1, 1, 0.588235)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Smoke2:position")
+tracks/1/path = NodePath("Water2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-23, -328)]
+"values": [Color(1, 1, 1, 0.588235)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Smoke3:position")
+tracks/2/path = NodePath("Water3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-18, -403)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Smoke:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Smoke2:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Smoke3:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Smoke4:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-135, -225)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Smoke5:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-115, -300)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Smoke5:modulate")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Smoke4:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.345098, 0.345098, 0.345098, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrkkx"]
-_data = {
-"RESET": SubResource("Animation_6iuy7"),
-"Smoke": SubResource("Animation_mrklp")
+"values": [Color(1, 1, 1, 0.588235)]
 }
 
 [sub_resource type="Animation" id="Animation_ji2x8"]
@@ -1520,45 +1559,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_cx5dv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Water:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.588235)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Water2:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.588235)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Water3:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.588235)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_flnhf"]
@@ -1997,19 +1997,16 @@ texture = ExtResource("6_3vcfd")
 [node name="Smoke4" type="Sprite2D" parent="Waste/Sprite" index="3"]
 modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(30, -235)
-scale = Vector2(1, 1)
 texture = ExtResource("4_xclwe")
 
 [node name="Smoke5" type="Sprite2D" parent="Waste/Sprite" index="4"]
 modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(15, -295)
-scale = Vector2(1, 1)
 texture = ExtResource("5_s6f5j")
 
 [node name="Smoke6" type="Sprite2D" parent="Waste/Sprite" index="5"]
 modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(25, -345)
-scale = Vector2(1, 1)
 texture = ExtResource("6_3vcfd")
 
 [node name="Price" parent="Waste/PreviewInfo" index="3"]
@@ -2057,13 +2054,11 @@ texture = ExtResource("6_3vcfd")
 [node name="Smoke4" type="Sprite2D" parent="Biomass/Sprite" index="3"]
 modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(-135, -225)
-scale = Vector2(1, 1)
 texture = ExtResource("4_xclwe")
 
 [node name="Smoke5" type="Sprite2D" parent="Biomass/Sprite" index="4"]
 modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(-115, -300)
-scale = Vector2(1, 1)
 texture = ExtResource("5_s6f5j")
 
 [node name="Price" parent="Biomass/PreviewInfo" index="3"]
