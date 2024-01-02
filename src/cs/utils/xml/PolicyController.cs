@@ -22,10 +22,12 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
 
-// XML Controller specifically tailored for reading the shock config files
+// XML Controller specifically tailored for reading the policy config files
 // These are particular, as they contain both translatable text and config data.
-public partial class ShockController : XMLController {
+// These also contain both campaigns and policies which are handled differently
+public partial class PolicyController : XMLController {
 	// The currently loaded xml document
 	private XDocument LoadedXML;
 	private string LoadedFileName;
@@ -37,8 +39,8 @@ public partial class ShockController : XMLController {
 	// Context
 	private Context C;
 
-	// Shock xml file name (always the same)
-	private const string SHOCK_FILENAME = "shocks.xml";
+	// Policy xml file name (always the same)
+	private const string POLICY_FILENAME = "policies.xml";
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -65,54 +67,56 @@ public partial class ShockController : XMLController {
 		// Don't do anything if the languages are the same
 	}
 
-	// Retrieves the shock's name from the shocks xml file given the shock's id
-	public string _GetShockName(string id) => GetField(id, "name");
+	// Retrieves the policy's name from the policies xml file given the id
+	public string _GetPolicyName(string id) => GetField("policy", id, "name");
 
-	// Retrieves the shock's description from the shocks xml given the shock's id
-	public string _GetShockText(string id) => GetField(id, "text");
+	// Retrieves the policy's description from the policies xml given the id
+	public string _GetPolicyText(string id) => GetField("policy", id, "text");
 	
-	// Retrieves the shock's image name from the shocks xml file given the shock's id
-	public string _GetShockImg(string id) => GetField(id, "img");
+	// Retrieves the policy's probability from the policies xml file given the id
+	public float _GetPolicyProba(string id) => float.Parse(GetField("policy", id, "probability"));
 
-	// Retrieves the text from a requirement given the id of the shock and that of the requirement
-	public List<Requirement> _GetRequirements(string shock_id) {
+  
+
+	// Retrieves the text from a requirement given the id of the policy 
+	public List<Requirement> _GetRequirements(string policyId) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-		// Retrieve the shock from the currently parsed xml file
-		IEnumerable<XElement> shock = 
-			from s in LoadedXML.Root.Descendants("shock")
-			where s.Attribute("id").Value == shock_id
+		// Retrieve the policy from the currently parsed xml file
+		IEnumerable<XElement> policy = 
+			from s in LoadedXML.Root.Descendants("policy")
+			where s.Attribute("id").Value == policyId
 			select s;
 
-		// Find the correct requirement from the shock
-		IEnumerable<XElement> requirements = shock.Descendants("requirement");
+		// Find the correct requirement from the policy
+		IEnumerable<XElement> requirements = policy.Descendants("requirement");
 
 		// Extract the requirement values and return them in a struct list
-		return shock.Descendants("requirement").Select(r => new Requirement(
+		return policy.Descendants("requirement").Select(r => new Requirement(
 			r.Attribute("field").Value,
 			r.Attribute("value").Value.ToFloat()
 		)).ToList();
 	}
 
-	// Retrieves the reward from surviving a shock, given the shock id
+	// Retrieves the reward from surviving a policy, given the policy id
 	public Effect _GetReward(string id) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-		// Retrieve the shock from the currently parsed xml file
-		IEnumerable<XElement> shock = 
-			from s in LoadedXML.Root.Descendants("shock")
+		// Retrieve the policy from the currently parsed xml file
+		IEnumerable<XElement> policy = 
+			from s in LoadedXML.Root.Descendants("policy")
 			where s.Attribute("id").Value == id
 			select s;
 
 		// Extract the different fields
-		string t = shock.Descendants("reward").ElementAt(0)
+		string t = policy.Descendants("reward").ElementAt(0)
 						.Descendants("text").ElementAt(0).Value;
 
 		// Extract all of the effects
 		IEnumerable<XElement> effects_xml = 
-			shock.Descendants("reward").ElementAt(0)
+			policy.Descendants("reward").ElementAt(0)
 				 .Descendants("effect");
 		
 		// Build out the effects list
@@ -125,21 +129,21 @@ public partial class ShockController : XMLController {
 		return new (t, effects);
 	}
 
-	// Retrieves all of the reactions associated to the given shock
+	// Retrieves all of the reactions associated to the given policy
 	public List<Effect> _GetReactions(string id) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-		// Retrieve the shock from the currently parsed xml file
-		IEnumerable<XElement> shock = 
-			from s in LoadedXML.Root.Descendants("shock")
+		// Retrieve the policy from the currently parsed xml file
+		IEnumerable<XElement> policy = 
+			from s in LoadedXML.Root.Descendants("policy")
 			where s.Attribute("id").Value == id
 			select s;
 
 		// Extract all of the rewards
-		IEnumerable<XElement> reacts_xml = shock.Descendants("reaction");
+		IEnumerable<XElement> reacts_xml = policy.Descendants("reaction");
 
-		// Build out the shock effect list and return it
+		// Build out the policy effect list and return it
 		return reacts_xml.Select(r => new Effect(
 			r.Descendants("text").ElementAt(0).Value,
 			r.Descendants("effect").Select(e => ( // Build out the effects list
@@ -153,24 +157,42 @@ public partial class ShockController : XMLController {
 	// ==================== Internal Helpers ====================
 
 	// Retrives a first-level field's content given an id and the field string
-	private string GetField(string id, string field) {
+    // A type (policy or campaign) is also required
+	private string GetField(string type, string id, string field) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-		// Retrieve the shock from the currently parsed xml file
+        // Sanity check: make sure that type is valid
+        Debug.Assert(type == "policy" || type == "campaign");
+
+		// Retrieve the policy from the currently parsed xml file
 		return (
-			from s in LoadedXML.Root.Descendants("shock")
+			from s in LoadedXML.Root.Descendants(type)
 			where s.Attribute("id").Value == id
 			select s.Descendants(field).ElementAt(0).Value // Only the first field in the xml is considered
 		).ElementAt(0);
 	}
 
+    // Retrieves the policy's tag given its id
+    private string _GetTag(string type, string id) {
+        // Start by checking if the file is loaded in or not
+        CheckXML();
+
+        // Sanity check: make sure that type is valid
+        Debug.Assert(type == "policy" || type == "campaign");
+
+        return (from s in LoadedXML.Root.Descendants("policy")
+            where s.Attribute("id").Value == id
+            select s.Attribute("tag").Value
+        ).ElementAt(0);
+    }
+
 	// Checks if the currently loaded xml is up to date
 	private void CheckXML() {
 		// Check if the file is loaded in or not
-		if(LoadedFileName != SHOCK_FILENAME || LoadedLanguage != Lang) {
-			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + SHOCK_FILENAME));
-			LoadedFileName = SHOCK_FILENAME;
+		if(LoadedFileName != POLICY_FILENAME || LoadedLanguage != Lang) {
+			ParseXML(ref LoadedXML, Path.Combine("text", Lang.ToString() + "/" + POLICY_FILENAME));
+			LoadedFileName = POLICY_FILENAME;
 			LoadedLanguage = Lang;
 		}
 	}

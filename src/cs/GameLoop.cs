@@ -439,7 +439,7 @@ public partial class GameLoop : Node2D {
 	}
 
 	// Applies a given shock effect
-	private void ApplyShockEffect(ShockEffect SE) {
+	private void ApplyShockEffect(Effect SE) {
 		// Apply each individual effect
 		foreach((ResourceType rt, float v) in SE.Effects) {
 			// Figure out which resource to affect
@@ -549,7 +549,7 @@ public partial class GameLoop : Node2D {
 	// Updates the resources after a reaction to a shock has been selected
 	public void _OnShockSelectReaction(int id) {
 		// Fetch the reaction effect
-		List<ShockEffect> reactions = ShockWindow._GetReactions();
+		List<Effect> reactions = ShockWindow._GetReactions();
 
 		// Sanity check: make sure that the id is valid
 		if(reactions.Count <= id) {
@@ -566,7 +566,7 @@ public partial class GameLoop : Node2D {
 	// Updates the resources to apply a given shock reward
 	public void _OnShockApplyReward() {
 		// Extract the reward
-		ShockEffect reward = ShockWindow._GetReward();
+		Effect reward = ShockWindow._GetReward();
 
 		// Apply the reward
 		ApplyShockEffect(reward);

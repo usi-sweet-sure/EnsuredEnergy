@@ -550,7 +550,7 @@ public readonly struct RTM {
 }
 
 // Represents the requirements of a given shock
-public struct ShockRequirement {
+public struct Requirement {
 	// The resource impacted by this requirement
 	public ResourceType RT;
 
@@ -558,18 +558,18 @@ public struct ShockRequirement {
 	public float Value; 
 
 	// Basic constructors
-	public ShockRequirement(string s, float v) {
+	public Requirement(string s, float v) {
 		RT = RTM.ResourceTypeFromString(s);
 		Value = v;
 	}
-	public ShockRequirement(ResourceType rt, float v) {
+	public Requirement(ResourceType rt, float v) {
 		RT = rt;
 		Value = v;
 	}
 }
 
 // Represents the rewards of surviving a given shock
-public struct ShockEffect {
+public struct Effect {
 	// The text show for the given reward
 	public string Text;
 
@@ -577,15 +577,15 @@ public struct ShockEffect {
 	public List<(ResourceType, float)> Effects;
 
 	// Basic Constructor
-	public ShockEffect(string t, List<(ResourceType, float)> es) {
+	public Effect(string t, List<(ResourceType, float)> es) {
 		Text = t;
 		Effects = es;
 	}
 
 	// Converts an effect into a list of requirements
-	public List<ShockRequirement> ToRequirements() => 
+	public List<Requirement> ToRequirements() => 
 		// Only negative effects have requirements, all others are clamped to 0
-		Effects.Select(se => new ShockRequirement(se.Item1, Math.Abs(Math.Min(se.Item2, 0)))).ToList();
+		Effects.Select(se => new Requirement(se.Item1, Math.Abs(Math.Min(se.Item2, 0)))).ToList();
 	
 }
 
