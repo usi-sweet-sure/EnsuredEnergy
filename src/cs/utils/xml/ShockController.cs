@@ -96,7 +96,7 @@ public partial class ShockController : XMLController {
 	}
 
 	// Retrieves the reward from surviving a shock, given the shock id
-	public Effect _GetReward(string id) {
+	public Reward _GetReward(string id) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
@@ -116,7 +116,7 @@ public partial class ShockController : XMLController {
 				 .Descendants("effect");
 		
 		// Build out the effects list
-		List<(ResourceType, float)> effects = effects_xml.Select(e => (
+		List<Effect> effects = effects_xml.Select(e => new Effect(
 			RTM.ResourceTypeFromString(e.Attribute("field").Value),
 			e.Attribute("value").Value.ToFloat()
 		)).ToList();
@@ -126,7 +126,7 @@ public partial class ShockController : XMLController {
 	}
 
 	// Retrieves all of the reactions associated to the given shock
-	public List<Effect> _GetReactions(string id) {
+	public List<Reward> _GetReactions(string id) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
@@ -140,9 +140,9 @@ public partial class ShockController : XMLController {
 		IEnumerable<XElement> reacts_xml = shock.Descendants("reaction");
 
 		// Build out the shock effect list and return it
-		return reacts_xml.Select(r => new Effect(
+		return reacts_xml.Select(r => new Reward(
 			r.Descendants("text").ElementAt(0).Value,
-			r.Descendants("effect").Select(e => ( // Build out the effects list
+			r.Descendants("effect").Select(e => new Effect( // Build out the effects list
 				RTM.ResourceTypeFromString(e.Attribute("field").Value),
 				e.Attribute("value").Value.ToFloat()
 			)).ToList()

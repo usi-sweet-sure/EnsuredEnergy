@@ -76,7 +76,17 @@ public partial class PolicyController : XMLController {
 	// Retrieves the policy's probability from the policies xml file given the id
 	public float _GetPolicyProba(string id) => float.Parse(GetField("policy", id, "probability"));
 
-  
+    // Retrieves the campaign's name from the policies xml file given the id
+	public string _GetCampaigName(string id) => GetField("campaign", id, "name");
+
+	// Retrieves the campaign's description from the policies xml given the id
+	public string _GetCampaignText(string id) => GetField("campaign", id, "text");
+	
+	// Retrieves the campaign's probability from the policies xml file given the id
+	public float _GetCampaigProba(string id) => float.Parse(GetField("campaign", id, "probability"));
+
+    // Retrieves the campaign's length from the policies xml file give the id
+    public int _GetCampaignLength(string id) => int.Parse(GetField("campaign", id, "length"));
 
 	// Retrieves the text from a requirement given the id of the policy 
 	public List<Requirement> _GetRequirements(string policyId) {
@@ -99,58 +109,25 @@ public partial class PolicyController : XMLController {
 		)).ToList();
 	}
 
-	// Retrieves the reward from surviving a policy, given the policy id
-	public Effect _GetReward(string id) {
+	// Retrieves all of the effects associated to the given policy
+	public List<Effect> _GetEffects(string type, string id) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-		// Retrieve the policy from the currently parsed xml file
-		IEnumerable<XElement> policy = 
-			from s in LoadedXML.Root.Descendants("policy")
-			where s.Attribute("id").Value == id
-			select s;
-
-		// Extract the different fields
-		string t = policy.Descendants("reward").ElementAt(0)
-						.Descendants("text").ElementAt(0).Value;
-
-		// Extract all of the effects
-		IEnumerable<XElement> effects_xml = 
-			policy.Descendants("reward").ElementAt(0)
-				 .Descendants("effect");
-		
-		// Build out the effects list
-		List<(ResourceType, float)> effects = effects_xml.Select(e => (
-			RTM.ResourceTypeFromString(e.Attribute("field").Value),
-			e.Attribute("value").Value.ToFloat()
-		)).ToList();
-
-		// Return the reward as a struct
-		return new (t, effects);
-	}
-
-	// Retrieves all of the reactions associated to the given policy
-	public List<Effect> _GetReactions(string id) {
-		// Start by checking if the file is loaded in or not
-		CheckXML();
+        // Sanity check: Make sure the type is valid
+        Debug.Assert(type == "policy" || type == "campaign");
 
 		// Retrieve the policy from the currently parsed xml file
 		IEnumerable<XElement> policy = 
-			from s in LoadedXML.Root.Descendants("policy")
+			from s in LoadedXML.Root.Descendants(type)
 			where s.Attribute("id").Value == id
 			select s;
-
-		// Extract all of the rewards
-		IEnumerable<XElement> reacts_xml = policy.Descendants("reaction");
 
 		// Build out the policy effect list and return it
-		return reacts_xml.Select(r => new Effect(
-			r.Descendants("text").ElementAt(0).Value,
-			r.Descendants("effect").Select(e => ( // Build out the effects list
-				RTM.ResourceTypeFromString(e.Attribute("field").Value),
-				e.Attribute("value").Value.ToFloat()
-			)).ToList()
-		)).ToList();
+		return policy.Descendants("effect").Select(e => new Effect(
+			RTM.ResourceTypeFromString(e.Attribute("field").Value),
+			e.Attribute("value").Value.ToFloat()
+        )).ToList();
 	}
 
 
@@ -181,7 +158,7 @@ public partial class PolicyController : XMLController {
         // Sanity check: make sure that type is valid
         Debug.Assert(type == "policy" || type == "campaign");
 
-        return (from s in LoadedXML.Root.Descendants("policy")
+        return (from s in LoadedXML.Root.Descendants(type)
             where s.Attribute("id").Value == id
             select s.Attribute("tag").Value
         ).ElementAt(0);

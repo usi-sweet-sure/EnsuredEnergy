@@ -11,9 +11,9 @@
             Increases acceptance of renewable energy and their related policies by n %.
         </text>
         <!-- The effect the campaign will have on the probability of passing the env policies -->
-        <effect tag="env" value="0.2"/>
+        <effect field="tag" value="0.2"/>
         <!-- Number of turns that the campaign will take -->
-        <length value="1"/>
+        <length>1</length>
     </campaign>
 
     <campaign id="home" tag="demand">
@@ -21,8 +21,8 @@
         <text>Start information campaign explaining the advantages of home insulation.
             Increases acceptance of home insulation and their related policies by n %.
         </text>
-        <effect tag="demand" value="0.2"/>
-        <length value="1"/>
+        <effect field="tag" value="0.2"/>
+        <length>1</length>
     </campaign>
 
     <!-- ============================ -->

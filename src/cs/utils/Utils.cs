@@ -533,7 +533,7 @@ public readonly struct PowerPlantConfigData : ConfigData {
 }
 
 // The different types of resources the player has access to
-public enum ResourceType { ENERGY_W, ENERGY_S, ENVIRONMENT, SUPPORT, MONEY };
+public enum ResourceType { ENERGY_W, ENERGY_S, ENVIRONMENT, SUPPORT, MONEY, TAG };
 
 // Struct simply containing the couple of methods useful for the resource type enum
 // RTM = Resource Type Methods
@@ -545,6 +545,7 @@ public readonly struct RTM {
 		"env" => ResourceType.ENVIRONMENT,
 		"support" => ResourceType.SUPPORT,
 		"money" => ResourceType.MONEY,
+		"tag" => ResourceType.TAG,
 		_ => throw new ArgumentException("The given string can't be converted to a resource type")
 	};
 }
@@ -568,16 +569,30 @@ public struct Requirement {
 	}
 }
 
-// Represents the rewards of surviving a given shock
+// Represents an effect on a resource
 public struct Effect {
+	// The type of resource that's targeted by this effect
+	public ResourceType RT;
+	// The amount by which the resource will be impacted (can be negative)
+	public float Value;
+
+	// Basic constructor
+	public Effect(ResourceType _RT, float _Val) {
+		RT = _RT;
+		Value = _Val;
+	}
+}
+
+// Represents the rewards of surviving a given shock
+public struct Reward {
 	// The text show for the given reward
 	public string Text;
 
 	// The effects of the reward
-	public List<(ResourceType, float)> Effects;
+	public List<Effect> Effects;
 
 	// Basic Constructor
-	public Effect(string t, List<(ResourceType, float)> es) {
+	public Reward(string t, List<Effect> es) {
 		Text = t;
 		Effects = es;
 	}
@@ -585,7 +600,7 @@ public struct Effect {
 	// Converts an effect into a list of requirements
 	public List<Requirement> ToRequirements() => 
 		// Only negative effects have requirements, all others are clamped to 0
-		Effects.Select(se => new Requirement(se.Item1, Math.Abs(Math.Min(se.Item2, 0)))).ToList();
+		Effects.Select(se => new Requirement(se.RT, Math.Abs(Math.Min(se.Value, 0)))).ToList();
 	
 }
 
