@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=57 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://uiiomylqkmqf" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0019_Free-Slot.png" id="1_edwj0"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
@@ -21,6 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://qq50ou5x8jbb" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0003_Water-1.png" id="19_ll4xw"]
 [ext_resource type="Texture2D" uid="uid://tep3shxoy2eg" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0004_Water-2.png" id="20_h55rh"]
 [ext_resource type="Texture2D" uid="uid://doe7y0txnwax7" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0005_Water-3.png" id="21_g2ord"]
+[ext_resource type="AudioStream" uid="uid://xl4bsmv07wdo" path="res://assets/Sounds/Coin and Purse 09.wav" id="22_2vpu6"]
+[ext_resource type="AudioStream" uid="uid://dohnoi7wa60h6" path="res://assets/Sounds/Ambience_Place_Blacksmith_Shop_Loop.wav" id="22_ij0o5"]
+[ext_resource type="AudioStream" uid="uid://c3jt3ou2rb68h" path="res://assets/Sounds/HammerHits.wav" id="22_pqfvq"]
+[ext_resource type="AudioStream" uid="uid://bk0byrjhpqlci" path="res://assets/Sounds/Demolish 1_5.wav" id="23_jy6ch"]
 
 [sub_resource type="Animation" id="Animation_q0r05"]
 length = 0.001
@@ -1567,6 +1571,8 @@ _data = {
 "water": SubResource("Animation_ji2x8")
 }
 
+[sub_resource type="Theme" id="Theme_6inie"]
+
 [sub_resource type="Animation" id="Animation_pm2y8"]
 resource_name = "Money+"
 tracks/0/type = "value"
@@ -1615,9 +1621,9 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("18_bdggr")
+"stream": ExtResource("22_2vpu6")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.3)
 }
 tracks/3/use_blend = true
 tracks/4/type = "audio"
@@ -1630,14 +1636,39 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("19_7wm0g")
+"stream": ExtResource("23_jy6ch")
 }],
-"times": PackedFloat32Array(0.1)
+"times": PackedFloat32Array(0)
 }
 tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DestroySound:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DestroySound:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_gdbaf"]
 resource_name = "Money-"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1684,26 +1715,93 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("18_bdggr")
+"stream": ExtResource("22_2vpu6")
 }],
-"times": PackedFloat32Array(0.1)
+"times": PackedFloat32Array(0)
 }
 tracks/3/use_blend = true
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("BuildSound")
+tracks/4/path = NodePath("HammerSound")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
+"end_offset": 0.65,
+"start_offset": 0.0,
+"stream": ExtResource("22_pqfvq")
+}, {
+"end_offset": 0.65,
+"start_offset": 0.0,
+"stream": ExtResource("22_pqfvq")
+}],
+"times": PackedFloat32Array(0.15, 0.8)
+}
+tracks/4/use_blend = false
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HammerSound:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HammerSound:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DestroySound")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("20_86vnk")
+"stream": ExtResource("23_jy6ch")
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/4/use_blend = true
+tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DestroySound:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DestroySound:pitch_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
 
 [sub_resource type="Animation" id="Animation_5sliq"]
 length = 0.001
@@ -1742,6 +1840,54 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HammerSound:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HammerSound:pitch_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.8]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DestroySound:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-15.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DestroySound:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xn1x5"]
@@ -2212,12 +2358,8 @@ offset_left = 175.0
 offset_top = -17.0
 offset_right = 208.0
 offset_bottom = 14.0
+theme = SubResource("Theme_6inie")
 text = "X"
-
-[node name="BuildingSound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(112, 88)
-stream = ExtResource("17_q6pln")
-max_distance = 1000.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -2247,17 +2389,18 @@ text = "-100$"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoneySound" type="AudioStreamPlayer" parent="."]
-volume_db = 2.0
-pitch_scale = 1.29
+[node name="BuildingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_ij0o5")
 
-[node name="BuildSound" type="AudioStreamPlayer" parent="."]
-volume_db = -12.0
-pitch_scale = 0.5
-autoplay = true
+[node name="MoneySound" type="AudioStreamPlayer" parent="."]
+
+[node name="HammerSound" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+pitch_scale = 0.8
 
 [node name="DestroySound" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
+volume_db = -15.0
+pitch_scale = 1.5
 
 [editable path="Gas"]
 [editable path="Hydro"]

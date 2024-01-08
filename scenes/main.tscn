@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=67 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -33,8 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://doe7y0txnwax7" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0005_Water-3.png" id="17_4nld4"]
 [ext_resource type="PackedScene" uid="uid://pvoi2mcc3oc1" path="res://scenes/hud/menu.tscn" id="18_h65u3"]
 [ext_resource type="PackedScene" uid="uid://cej4dlw11su6f" path="res://scenes/hud/end.tscn" id="21_7pke6"]
-[ext_resource type="AudioStream" uid="uid://c78fhd6h6rxwg" path="res://assets/Sounds/Forest Loop.wav" id="23_xfeff"]
-[ext_resource type="AudioStream" uid="uid://b1xt7i8bt73lf" path="res://assets/Sounds/10-Dark Fantasy Studio- Color the sky.mp3" id="24_jvewo"]
+[ext_resource type="PackedScene" uid="uid://cuuj2s4h1588i" path="res://scenes/audio.tscn" id="34_smnob"]
 
 [sub_resource type="Animation" id="Animation_k4it7"]
 length = 0.001
@@ -1423,6 +1422,9 @@ texture = ExtResource("9_2lgj4")
 [node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="0"]
 offset_top = -143.0
 
+[node name="LifeSpan2" parent="World/Nuclear3/BuildInfo/ColorRect/ContainerL" index="0"]
+visible = true
+
 [node name="LifeSpan" parent="World/Nuclear3/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
 
@@ -1463,6 +1465,9 @@ texture = ExtResource("9_2lgj4")
 
 [node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="0"]
 offset_top = -142.0
+
+[node name="LifeSpan2" parent="World/Nuclear2/BuildInfo/ColorRect/ContainerL" index="0"]
+visible = true
 
 [node name="LifeSpan" parent="World/Nuclear2/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
@@ -1513,6 +1518,9 @@ texture = ExtResource("8_jh2tr")
 
 [node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="0"]
 offset_top = -143.0
+
+[node name="LifeSpan2" parent="World/Nuclear/BuildInfo/ColorRect/ContainerL" index="0"]
+visible = true
 
 [node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
@@ -1724,21 +1732,6 @@ libraries = {
 "": SubResource("AnimationLibrary_5k73m")
 }
 
-[node name="WaterSound" type="AudioStreamPlayer2D" parent="World"]
-position = Vector2(1997, 2055)
-stream = ExtResource("9_kpuis")
-volume_db = -8.0
-autoplay = true
-max_distance = 1000.0
-
-[node name="WaterSound2" type="AudioStreamPlayer2D" parent="World"]
-position = Vector2(585, 2066)
-stream = ExtResource("9_kpuis")
-volume_db = -8.0
-autoplay = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="World"]
-
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false
 script = ExtResource("3_l6dyd")
@@ -1776,14 +1769,19 @@ visible = false
 [node name="End" parent="." instance=ExtResource("21_7pke6")]
 visible = false
 
-[node name="Ambiance" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23_xfeff")
-volume_db = -10.0
+[node name="Audio" parent="." instance=ExtResource("34_smnob")]
+
+[node name="Water" parent="Audio" index="1"]
+position = Vector2(808, 2080)
+volume_db = -5.0
 autoplay = true
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("24_jvewo")
-volume_db = -15.0
+[node name="Water2" parent="Audio" index="2"]
+position = Vector2(2056, 2080)
+autoplay = true
+
+[node name="Wind" parent="Audio" index="3"]
+position = Vector2(-568, 576)
 
 [editable path="World"]
 [editable path="World/Nuclear3"]
@@ -1796,3 +1794,4 @@ volume_db = -15.0
 [editable path="World/Pump"]
 [editable path="World/Hydro"]
 [editable path="World/River"]
+[editable path="Audio"]
