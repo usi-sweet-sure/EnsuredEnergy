@@ -511,8 +511,9 @@ public partial class UI : CanvasLayer {
 				Debug.Assert(d.Length >= InfoData.N_SUPPORT_FIELDS);
 
 				// Set the fields in order, for support it's affordability, aesthetic
-				Data.EnergyAffordability = d[0];
-				Data.EnvAesthetic = d[1];
+				Data.SupportVal = d[0];
+
+				_UpdateBarValue(InfoType.SUPPORT, Data.SupportVal);
 
 				// Update the UI
 				SetSupportInfo();
@@ -624,13 +625,11 @@ public partial class UI : CanvasLayer {
 	// Sets the information fields for the support bar
 	private void SetSupportInfo() {
 		// Get the labels from the XML file
-		string afford_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_afford");
-		string aesth_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_aesth");
+		string support_label = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_support");
 
 		SupportBar._UpdateInfo(
 			" ", // N/Max TODO: Figure out what to use here
-			afford_label, Data.EnergyAffordability.ToString(), // T0, N0
-			aesth_label, Data.EnvAesthetic.ToString() // T1, N1
+			support_label, Data.SupportVal.ToString() // T0, N0
 		);
 	}
 
@@ -718,9 +717,12 @@ public partial class UI : CanvasLayer {
 		// Simply toggle the money info
 		if(MoneyInfo.Visible) {
 			MoneyInfo.Hide();
+			DebtResource.Position = new Vector2(4,47);
 		} else {
 			// Set the info first
 			SetMoneyInfo();
+			
+			DebtResource.Position = new Vector2(244,37);
 
 			// Finally display it
 			MoneyInfo.Show();

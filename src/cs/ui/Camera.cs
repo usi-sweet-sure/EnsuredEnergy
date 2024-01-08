@@ -42,12 +42,18 @@ public partial class Camera : Camera2D {
 		InitZoom = Zoom;
 	}
 	
+	// Updates the size of the plants to follow the zoom amount
 	public void ScalePlants(Vector2 ZoomVal) {
+		// Check for valid zoom
 		if (ZoomVal < SCALE_LIMIT) {
+			// Update all powerplants
 			foreach (Node2D Plant in GetTree().GetNodesInGroup("PP")) {
+				// Create an animation for the zoom
 				Tween TweenScale = CreateTween();
 				TweenScale.TweenProperty(Plant, "scale", new Vector2(1,1) / (ZoomVal*1.75f), 0.3f);
 			}
+
+			// Do the same for all buildbuttons
 			foreach (TextureButton BuildButton in GetTree().GetNodesInGroup("BB")) {
 				Tween TweenScale = CreateTween();
 				TweenScale.TweenProperty(BuildButton, "scale", new Vector2(1,1) / (ZoomVal*1.75f), 0.3f);
@@ -62,8 +68,9 @@ public partial class Camera : Camera2D {
 	public override void _UnhandledInput(InputEvent E) {
 		// Camera can be moved by holding left click and dragging the mouse
 		if(E is InputEventMouseMotion MouseMotion) {
-			if(MouseMotion.ButtonMask == MouseButtonMask.Left)
+			if(MouseMotion.ButtonMask == MouseButtonMask.Left) {
 				Position -= MouseMotion.Relative / Zoom;
+			}
 		}
 
 		// Can zoom the camera using the mouse wheel, smoothed with a tween animation
@@ -100,7 +107,15 @@ public partial class Camera : Camera2D {
 	public void _ResetPos() {
 		Offset = Vector2.Zero;
 		Position = InitPos;
-		ZoomVal = new (1.0f,1.0f);
+		ZoomVal = new (0.75f, 0.75f);
 		Zoom = InitZoom;
+		
+		// reset scale
+		foreach (Node2D Plant in GetTree().GetNodesInGroup("PP")) {
+			Plant.Scale = new Vector2(1.0f, 1.0f);
+		}
+		foreach (TextureButton BuildButton in GetTree().GetNodesInGroup("BB")) {
+			BuildButton.Scale = new Vector2(1.0f, 1.0f);
+		}
 	}
 }

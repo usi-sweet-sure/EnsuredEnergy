@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ciphd0cmpslrn"]
+[gd_scene load_steps=9 format=3 uid="uid://ciphd0cmpslrn"]
 
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="1_ua11s"]
 [ext_resource type="Script" path="res://src/cs/ui/Tutorial.cs" id="1_xyv1m"]
 [ext_resource type="Texture2D" uid="uid://03lloca0uata" path="res://assets/Elements/ARROW INFO – 1.png" id="3_xv1gs"]
+[ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="4_ymnp0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s13c5"]
+atlas = ExtResource("4_ymnp0")
+region = Rect2(56, 260, 166, 48)
 
 [sub_resource type="Animation" id="Animation_b0nkl"]
 resource_name = "Float"
@@ -326,10 +331,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -248.0
-offset_top = -476.0
-offset_right = 16.0
-offset_bottom = -324.0
+offset_left = -136.0
+offset_top = -412.0
+offset_right = 128.0
+offset_bottom = -260.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ua11s")
@@ -338,7 +343,6 @@ patch_margin_left = 16
 patch_margin_top = 18
 patch_margin_right = 16
 patch_margin_bottom = 16
-metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="InfoBubble4"]
 self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
@@ -381,6 +385,105 @@ self_modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(-12, 66)
 texture = ExtResource("3_xv1gs")
 region_rect = Rect2(24, 24, 30, 32)
+
+[node name="Sprite2D" type="Sprite2D" parent="InfoBubble4"]
+position = Vector2(-221, 64)
+texture = SubResource("AtlasTexture_s13c5")
+
+[node name="ColorRect" type="ColorRect" parent="InfoBubble4/Sprite2D"]
+offset_left = 36.0
+offset_top = -13.0
+offset_right = 68.0
+offset_bottom = 11.0
+color = Color(0.398438, 0.398438, 0.398438, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="InfoBubble4/Sprite2D"]
+offset_left = -36.0
+offset_top = -12.0
+offset_right = -4.0
+offset_bottom = 12.0
+color = Color(0.398438, 0.398438, 0.398438, 1)
+
+[node name="Label" type="Label" parent="InfoBubble4/Sprite2D"]
+offset_left = -37.0
+offset_top = -18.0
+offset_right = 3.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 24
+text = "15"
+
+[node name="Label2" type="Label" parent="InfoBubble4/Sprite2D"]
+offset_left = 34.0
+offset_top = -18.0
+offset_right = 74.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 24
+text = "15"
+
+[node name="Multiplier" type="ColorRect" parent="InfoBubble4"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -112.0
+offset_right = -190.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
+color = Color(0.596078, 0.596078, 0.596078, 1)
+metadata/_edit_group_ = true
+
+[node name="MultAmount" type="Label" parent="InfoBubble4/Multiplier"]
+layout_mode = 0
+offset_left = 6.66666
+offset_top = 2.0
+offset_right = 73.6667
+offset_bottom = 39.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Inc" type="Button" parent="InfoBubble4/Multiplier"]
+layout_mode = 0
+offset_left = 53.6667
+offset_top = 4.0
+offset_right = 84.6667
+offset_bottom = 35.0
+text = "+"
+
+[node name="Label" type="Label" parent="InfoBubble4/Multiplier/Inc"]
+layout_mode = 0
+offset_left = 6.33334
+offset_top = -8.16667
+offset_right = 24.3333
+offset_bottom = 38.8333
+theme_override_font_sizes/font_size = 31
+text = "+"
+
+[node name="Dec" type="Button" parent="InfoBubble4/Multiplier"]
+visible = false
+layout_mode = 0
+offset_left = -4.33334
+offset_top = 4.0
+offset_right = 26.6667
+offset_bottom = 35.0
+text = "-"
+
+[node name="Label2" type="Label" parent="InfoBubble4/Multiplier/Dec"]
+layout_mode = 0
+offset_left = 10.1666
+offset_top = -9.00001
+offset_right = 28.1666
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 31
+text = "-"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Float"

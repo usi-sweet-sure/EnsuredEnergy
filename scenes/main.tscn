@@ -32,10 +32,6 @@
 atlas = ExtResource("11_kslp2")
 region = Rect2(130, 32, 80, 88)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5nxuw"]
-atlas = ExtResource("11_kslp2")
-region = Rect2(-2, 54, 86, 84)
-
 [sub_resource type="Animation" id="Animation_hyc1l"]
 length = 0.001
 tracks/0/type = "value"
@@ -122,6 +118,10 @@ _data = {
 "Wind": SubResource("Animation_ci2t2")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nxuw"]
+atlas = ExtResource("11_kslp2")
+region = Rect2(-2, 54, 86, 84)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4jam2")
 
@@ -175,10 +175,6 @@ offset_top = -143.0
 [node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
 
-[node name="NameRect" parent="World/Nuclear" index="3"]
-offset_top = -192.0
-offset_bottom = -164.0
-
 [node name="ResRect" parent="World/Nuclear" index="4"]
 offset_top = 104.0
 offset_bottom = 133.0
@@ -205,23 +201,23 @@ _PlantType = 5
 [node name="Sprite" parent="World/Wind" index="0"]
 texture = ExtResource("11_80dv6")
 
-[node name="Turbine" parent="World/Wind" index="10"]
+[node name="Turbine" parent="World/Wind" index="11"]
 position = Vector2(-11, -78)
 texture = SubResource("AtlasTexture_3bbke")
 
-[node name="Turbine2" parent="World/Wind" index="11"]
+[node name="Turbine2" parent="World/Wind" index="12"]
 position = Vector2(-61, -37)
 texture = SubResource("AtlasTexture_3bbke")
-
-[node name="Turbine3" parent="World/Wind" index="12"]
-position = Vector2(67, -51)
-texture = SubResource("AtlasTexture_5nxuw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Wind" index="13"]
 autoplay = "Wind"
 libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
+
+[node name="Turbine3" parent="World/Wind" index="14"]
+position = Vector2(67, -51)
+texture = SubResource("AtlasTexture_5nxuw")
 
 [node name="BuildButton2" parent="World" index="14"]
 metadata/_edit_use_anchors_ = true
@@ -257,6 +253,7 @@ position = Vector2(1954, 2062)
 _PlantType = 9
 
 [node name="Sprite" parent="World/Pump" index="0"]
+position = Vector2(0, 0)
 texture = ExtResource("5_i2doc")
 
 [node name="WaterSound" type="AudioStreamPlayer2D" parent="World"]

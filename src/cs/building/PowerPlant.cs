@@ -137,6 +137,7 @@ public partial class PowerPlant : Node2D {
 	private Label LandL;
 	private Label BioL;
 	private Label LifeSpan;
+	private Label LifeSpanWarning;
 	
 	// The Area used to detect hovering
 	private Area2D HoverArea;
@@ -195,6 +196,7 @@ public partial class PowerPlant : Node2D {
 		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
+		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 
 		// the delete button should only be shown on new constructions
 		Delete.Hide();
@@ -258,6 +260,17 @@ public partial class PowerPlant : Node2D {
 			//Multiplier.Show();
 			MultInc.Show();
 			MultDec.Hide();
+		}
+	}
+
+	// Hides the powerplant info if the player clicks somewhere else on the map
+	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+				Info.Hide();
+				ResRect.Hide();
+				Multiplier.Hide();
+			}
 		}
 	}
 
@@ -357,8 +370,18 @@ public partial class PowerPlant : Node2D {
 		Switch.Disabled = false;
 		Switch.Show();
 
+		// Retrieve the multiplier
+		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
+
 		// Reset multiplier
 		MultiplierValue = 1;
+		MultiplierL.Text = MultiplierValue.ToString();
+
+		// Check if the multiplier window should be shown
+		if(MultiplierValue < mult.MaxElements) {
+			MultInc.Show();
+		}
+		MultDec.Hide();
 		
 		// Workaround to allow for an immediate update
 		IsAlive = false;
@@ -565,23 +588,35 @@ public partial class PowerPlant : Node2D {
 		LandL.Text = Convert.ToInt32(LandUse * 100).ToString();
 		BioL.Text = Convert.ToInt32(-BiodiversityImpact * 100).ToString();
 		
-		if (BiodiversityImpact < 0)
+		// Update label colors to represent levels
+		if (BiodiversityImpact < 0) {
 			BioL.Set("theme_override_colors/font_color", GREEN);
-		if (LandUse < 0)
+		}
+		if (LandUse < 0) {
 			LandL.Set("theme_override_colors/font_color", GREEN);
-		if (Pollution <= 0)
+		}
+		if (Pollution <= 0) {
 			PollL.Set("theme_override_colors/font_color", GREEN);
-		else
+
+		} else {
 			PollL.Set("theme_override_colors/font_color", RED);
-		if (ProductionCost <= 0)
+		}
+		if (ProductionCost <= 0) {
 			MoneyL.Set("theme_override_colors/font_color", GREEN);
-		else
+		} else {
 			MoneyL.Set("theme_override_colors/font_color", RED);
+		}
 		
-		
+		// Set the end turn based on the building type
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
 		
 		LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
+		
+		if (EndTurn - C._GetTurn() == 1) {
+			LifeSpanWarning.Show();
+		} else {
+			LifeSpanWarning.Hide();
+		}
 	}
 
 	// ==================== Helper Methods ====================    
@@ -713,8 +748,10 @@ public partial class PowerPlant : Node2D {
 		// only show the multiplier if  the plant can be upgraded
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 		
-		if(mult.MaxElements > 1)
+		// Toggle multiplier state if several elements are available
+		if(mult.MaxElements > 1) {
 			Multiplier.Visible = !Multiplier.Visible;
+		}
 	}
 
 	// Requests a deletion of the powerplant
@@ -729,10 +766,8 @@ public partial class PowerPlant : Node2D {
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
 		// Set the refund amount
-		if(RefundAmount == -1) {
-			RefundAmount = BuildCost + (mult.Cost * (MultiplierValue - 1));
-		}
-
+		RefundAmount = BuildCost + (mult.Cost * (MultiplierValue - 1));
+		
 		// Reset the multiplier
 		MultiplierValue = 1;
 
@@ -761,6 +796,8 @@ public partial class PowerPlant : Node2D {
 
 		// Reactivate the plant for future construction
 		ActivatePowerPlant();
+
+		_Reset();
 	}
 
 	// Reacts to the increase request by requesting it to the game loop
@@ -797,17 +834,6 @@ public partial class PowerPlant : Node2D {
 			}
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
-		}
-	}
-	
-	// Hides the powerplant info if the player clicks somewhere else on the map
-	public override void _UnhandledInput(InputEvent E) {
-		if(E is InputEventMouseButton MouseButton) {
-			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
-				Info.Hide();
-				ResRect.Hide();
-				Multiplier.Hide();
-			}
 		}
 	}
 }

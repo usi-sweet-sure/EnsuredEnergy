@@ -19,6 +19,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 
 // Encapsulates all of the resource management used throughout the game
@@ -80,7 +81,7 @@ public partial class ResourceManager : Node {
 	// ==================== Public API ====================
 
 	// Starts the game for the resource manager
-	public void _StartGame() {
+	public void _StartGame(ref MoneyData money) {
 		// Check the current state of the next turn button
 		Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
 		UpdateEnergyUI(E);
@@ -89,6 +90,9 @@ public partial class ResourceManager : Node {
 		InitImportCost = ImportCost;
 		InitImportPollution = ImportPollution;
 
+		// This is done in order to guarantee that all resource ui elements are up to date
+		// at the game's start
+		_UpdateResourcesUI(false, ref money);
 
 		// Check if the demand has been reached
 		EmitSignal(
@@ -144,6 +148,9 @@ public partial class ResourceManager : Node {
 		// Update the energy UI
 		UpdateEnergyUI(E);
 		UpdateEnvironmentUI(Env);
+		
+		// Update the support bar 
+		UpdateSupportUI(SM._GetSupport());
 
 		EmitSignal(
 			SignalName.UpdateNextTurnState,
@@ -151,9 +158,8 @@ public partial class ResourceManager : Node {
 		);
 	}
 
-	// Initializes all of the resource managers
+	// Allows for resources to be updated without having access to the moneydata field
 	public void _UpdateResourcesUI(bool predict) {
-
 		// Get the energy manager data
 		if(!predict) {
 			Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
@@ -177,6 +183,45 @@ public partial class ResourceManager : Node {
 
 		// Update the UI
 		UpdateEnvironmentUI(Env);
+
+		// Update the support bar 
+		UpdateSupportUI(SM._GetSupport());
+	}
+
+	// Updates all of the resource managers
+	public void _UpdateResourcesUI(bool predict, ref MoneyData money) {
+
+		// Get the energy manager data
+		if(!predict) {
+			Energy E = EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer);
+			UpdateEnergyUI(E);
+
+			// Check if the demand has been reached
+			EmitSignal(
+				SignalName.UpdateNextTurnState,
+				E.DemandSummer > E.SupplySummer || E.DemandWinter > E.SupplyWinter
+			);
+		}
+
+		// Compute the total import cost
+		int imported = EngM._ComputeTotalImportAmount(_UI._GetImportSliderPercentage(), ImportInSummer);
+
+		// Update the import and production cost in the moneydata
+		money.UpdateImportCost(_GetTotalImportCost(_UI._GetImportSliderPercentage()));
+		money.UpdateProductionCost(AggregateProductionCost());
+
+		// Update the amount of pollution caused by imports
+		EnvM._UpdateImportPollution(imported, ImportPollution);
+
+		// Get the environment manager data
+		Environment Env = EnvM._GetEnvValues();
+
+		// Update the UI
+		UpdateEnvironmentUI(Env);
+
+		// Update the support bar 
+		UpdateSupportUI(SM._GetSupport());
+
 	}
 
 	// Wrapper used for signal compatibility
@@ -229,7 +274,7 @@ public partial class ResourceManager : Node {
 	public (Energy, Environment, Support) _GetResources() => (
 		EngM._GetEnergyValues(_UI._GetImportSliderPercentage(), ImportInSummer),
 		EnvM._GetEnvValues(),
-		new Support(1.0f)
+		SM._GetSupport()
 	);
 
 	// Applies a given shock effect
@@ -249,7 +294,8 @@ public partial class ResourceManager : Node {
 				break;
 			case ResourceType.SUPPORT:
 				// Naive update for support for now
-				SM.S.Value += v;
+				SM._UpdateSupport((int)v);
+				Debug.Print("Support: " + SM._GetSupportValue().ToString());
 				break;
 			default:
 			 return;
@@ -293,6 +339,14 @@ public partial class ResourceManager : Node {
 			(int)(Env.Biodiversity * 100),
 			(int)(Env.EnvBarValue() * 100),
 			Env.ImportedPollution
+		);
+	}
+
+	// Updates the UI fields related to the support resource
+	private void UpdateSupportUI(Support Sup) {
+		_UI._UpdateData(
+			UI.InfoType.SUPPORT,
+			Sup.Value
 		);
 	}
 

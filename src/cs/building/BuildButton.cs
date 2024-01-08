@@ -266,11 +266,6 @@ public partial class BuildButton : TextureButton {
 		SelfModulate = new Color(1,1,1,1);
 	}
 
-	// Resets the button to it's initial state
-	private void Reset() {
-		Disabled = false;
-	}
-
 	// Sets the button to the build state
 	private void SetToBuild() {
 		BuildingSound.Play();

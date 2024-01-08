@@ -12,9 +12,13 @@ script = ExtResource("1_dvce5")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = 91.0
+offset_right = 2.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.596078, 0.596078, 0.596078, 1)
+color = Color(0.596078, 0.596078, 0.596078, 0.917647)
 
 [node name="Bravo" type="Label" parent="."]
 anchors_preset = 15
@@ -29,16 +33,21 @@ text = "Well Done !
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 uppercase = true
 
 [node name="EndText" type="Label" parent="."]
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 231.0
-offset_bottom = -425.0
+anchor_bottom = 0.5
+offset_left = 328.0
+offset_top = -156.0
+offset_right = -342.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 80
 text = "You ensured enough energy 
@@ -46,10 +55,11 @@ for 30 years
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 uppercase = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(55, 0)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -61,6 +71,7 @@ theme_override_constants/separation = 22
 alignment = 1
 
 [node name="Shock" type="Label" parent="HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
@@ -70,7 +81,7 @@ text = "Resisted shocks
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 uppercase = true
 
 [node name="ColorRect2" type="ColorRect" parent="HBoxContainer/Shock"]
@@ -85,7 +96,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(1, 0.305882, 0.176471, 1)
 
 [node name="Energy" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(290, 250)
+custom_minimum_size = Vector2(350, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -94,7 +105,7 @@ text = "Final Energy Supply
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 uppercase = true
 
 [node name="ColorRect3" type="ColorRect" parent="HBoxContainer/Energy"]
@@ -109,7 +120,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(1, 0.470588, 0.180392, 1)
 
 [node name="Money" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(290, 250)
+custom_minimum_size = Vector2(350, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -117,7 +128,7 @@ text = "You avoided an economical crisis
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 uppercase = true
 
 [node name="ColorRect4" type="ColorRect" parent="HBoxContainer/Money"]
@@ -132,7 +143,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(0.827451, 0.819608, 0.0313726, 1)
 
 [node name="Support" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(290, 250)
+custom_minimum_size = Vector2(350, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -142,7 +153,7 @@ Support
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 uppercase = true
 
 [node name="ColorRect5" type="ColorRect" parent="HBoxContainer/Support"]
@@ -157,7 +168,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(0.466667, 0.607843, 0.917647, 1)
 
 [node name="Poll" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(290, 250)
+custom_minimum_size = Vector2(350, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -180,7 +191,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [node name="Env" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(290, 250)
+custom_minimum_size = Vector2(350, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -212,6 +223,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Shocks" type="Label" parent="Stats"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -239,17 +251,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -453.0
-offset_top = 306.0
-offset_right = -341.0
-offset_bottom = 389.0
+offset_left = -729.0
+offset_top = 308.0
+offset_right = -617.0
+offset_bottom = 391.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
-theme_override_font_sizes/font_size = 67
+theme_override_font_sizes/font_size = 57
 text = "700
 "
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 uppercase = true
 
@@ -260,17 +272,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -604.0
-offset_top = 307.0
-offset_right = -492.0
-offset_bottom = 390.0
+offset_left = -880.0
+offset_top = 309.0
+offset_right = -768.0
+offset_bottom = 392.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
-theme_override_font_sizes/font_size = 67
+theme_override_font_sizes/font_size = 57
 text = "900
 "
-horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
@@ -281,10 +292,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 88.0
-offset_top = 298.0
-offset_right = 228.0
-offset_bottom = 409.0
+offset_left = -56.0
+offset_top = 308.0
+offset_right = 84.0
+offset_bottom = 419.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
@@ -302,10 +313,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 714.0
-offset_top = 297.0
-offset_right = 853.0
-offset_bottom = 408.0
+offset_left = 680.0
+offset_top = 300.0
+offset_right = 819.0
+offset_bottom = 411.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
@@ -315,3 +326,10 @@ text = "50%
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="Close" type="Button" parent="."]
+offset_left = 1859.0
+offset_top = 104.0
+offset_right = 1888.0
+offset_bottom = 138.0
+text = "x"
