@@ -29,6 +29,8 @@ public partial class PowerPlant : Node2D {
 	// Check if the powerplant has an animation
 	[Export]
 	public bool HasAnimation = false;
+	[Export]
+	public bool HasMultSprite = false;
 
 	[Signal]
 	/* Signals that the plant should be deleted and replaced by a buildbutton */
@@ -119,6 +121,8 @@ public partial class PowerPlant : Node2D {
 
 	// Children Nodes
 	private Sprite2D Sprite;
+	private Sprite2D Sprite2;
+	private Sprite2D Sprite3;
 	private ColorRect NameR;
 	private Label NameL;
 	private Label PollL;
@@ -172,6 +176,10 @@ public partial class PowerPlant : Node2D {
 	public override void _Ready() {
 		// Fetch all children nodes
 		Sprite = GetNode<Sprite2D>("Sprite");
+		if(HasMultSprite) {
+			Sprite2 = GetNode<Sprite2D>("Sprite2");
+			Sprite3 = GetNode<Sprite2D>("Sprite3");
+		}
 		NameL = GetNode<Label>("NameRect/Name");
 		NameR = GetNode<ColorRect>("NameRect");
 		PollL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll");
@@ -305,6 +313,19 @@ public partial class PowerPlant : Node2D {
 			// Update the label and make sure that it is shown
 			MultiplierL.Text = MultiplierValue.ToString();
 			Multiplier.Show();
+			
+			if(HasMultSprite) {
+				if(MultiplierValue == 2) {
+					Sprite.Hide();
+					Sprite2.Show();
+					Sprite3.Hide();
+				}
+				if(MultiplierValue == 3) {
+					Sprite.Hide();
+					Sprite2.Hide();
+					Sprite3.Show();
+				}
+			}
 		}
 
 		// Check if we can still increase
@@ -340,6 +361,20 @@ public partial class PowerPlant : Node2D {
 			// Update the label and make sure that it is shown
 			MultiplierL.Text = MultiplierValue.ToString();
 			Multiplier.Show();
+			
+			if(HasMultSprite){
+				if(Sprite2 != null && MultiplierValue == 2) {
+					Sprite.Hide();
+					Sprite2.Show();
+					Sprite3.Hide();
+				}
+				if(Sprite2 != null && MultiplierValue == 1) {
+					Sprite.Show();
+					Sprite2.Hide();
+					Sprite3.Hide();
+				}
+			}
+			
 		}
 
 		// Check if we can still increase
@@ -814,6 +849,7 @@ public partial class PowerPlant : Node2D {
 				BB.AnimMoney.Text = "-" + mult.Cost.ToString() + "$";
 				BB.AP.Play("Money-");
 			}
+			
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, true, mult.Cost, this);
 		}
