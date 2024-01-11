@@ -5,9 +5,9 @@
     <!-- The tag here represents where the policy button will be displayed in the policy window-->
     <campaign id="renewables" tag="env">
         <!-- The title that will be displayed at the top of the policy -->
-        <name>Renewable energy information campaign</name>
+        <name>Renewable energy</name>
         <!-- The description text that will be displayed in the policy popup -->
-        <text>Start Information Campaign informing on the advantages of Renewable Energy.
+        <text>Start an information campaign on the advantages of renewable energy.
             Increases acceptance of renewable energy and their related policies by n %.
         </text>
         <!-- The effect the campaign will have on the probability of passing the env policies -->
@@ -18,7 +18,7 @@
 
     <campaign id="home" tag="demand">
         <name>Home insulation</name>
-        <text>Start information campaign explaining the advantages of home insulation.
+        <text>Start an information campaign explaining the advantages of home insulation.
             Increases acceptance of home insulation and their related policies by n %.
         </text>
         <effect field="tag" value="0.2"/>
@@ -30,9 +30,9 @@
     <!-- ============================ -->
 
     <policy id="rooftop_PV" tag="env">
-        <name>Rooftop solar PV regulation</name>
-        <text>Mandatory rooftop solar PV installation by [year].
-            Increase of decentral production of Solar Energy by n %.
+        <name>Mandatory rooftop solar PV</name>
+        <text>Solar PV must be installed on all suitable rooftops within n turn.
+            Increase of solar energy production by n %.
         </text>
         <!-- A requirement on the amount of support needed to attempt the policy -->
         <requirement field="support" value="50" bound="min"/>
@@ -44,8 +44,8 @@
     </policy>
 
     <policy id="Upgrade_PV" tag="env">
-        <name>Alpine solar PV regulation</name>
-        <text>Limitation of Appeal to large scale Solar Projects.
+        <name>Enable alpine solar PV</name>
+        <text>Limitation of appeals to large scale solar projects.
             Increase solar plant upgrades from 1 to 3.
         </text>
         <effect field="solar_mult_max" value="3"/>
@@ -54,13 +54,13 @@
     </policy>
 
     <policy id="Wind_buildtime" tag="env">
-        <name>Wind parks regulation</name>
+        <name>Fast track wind parks</name>
         <text>Limitation of the possibilities of appeal for wind parks.
             Lowers required building time for wind parks from 2 to 0.
         </text>
         <effect field="wind_build_time" value="0"/>
         <requirement field="support" value="70" bound="min" />
-        <probability value="50"/>
+        <probability value="0.5"/>
     </policy>
 
     <policy id="Upgrade_wind" tag="env">
@@ -74,8 +74,8 @@
     </policy>
 
     <policy id="home_regulation" tag="demand">
-        <name>Home</name>
-        <text>Mandatory insulation of buildings within n turns.
+        <name>Mandatory Building Insulation</name>
+        <text>All buildings must be insulated within n turns.
             Lowers energy demand by n.
         </text>
         <effect field="energyDemandW" value="-5"/>
@@ -86,8 +86,8 @@
 
     <policy id="industry_subsidy" tag="demand">
         <name>Industry Subsidy</name>
-        <text>Grant for Production Flexibility.
-            Lowers Energy Demand from Industry by n.
+        <text>Provide industries with grants for less energy intensive production.
+            Lowers energy demand from Industry by n.
         </text>
         <effect field="energyDemandW" value="-5"/>
         <effect field="energyDemandS" value="-5"/>
