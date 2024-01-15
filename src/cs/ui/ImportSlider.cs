@@ -41,8 +41,8 @@ public partial class ImportSlider : VSlider {
 	// The confirmed import amount
 	private int ImportAmount;
 
-	// The import display button
-	private Button ImportsButton;
+	// The clean import toggle switch
+	private Button ImportSwitch;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -55,7 +55,7 @@ public partial class ImportSlider : VSlider {
 		Target = GetNode<Line2D>("Target");
 		ApplySelection = GetNode<Button>("Apply");
 		Cancel = GetNode<Button>("Cancel");
-		ImportsButton = GetNode<Button>("../ImportsB");
+		ImportSwitch = GetNode<Button>("../ImportSwitch");
 
 		// Initialize the import amount
 		ImportAmount = 0;
@@ -66,7 +66,7 @@ public partial class ImportSlider : VSlider {
 		//Keeping it just in case for now
 		//ApplySelection.Pressed += OnApplySelectionPressed;
 		Cancel.Pressed += OnCancelPressed;
-		ImportsButton.Pressed += OnImportsButtonPressed;
+		ImportSwitch.Pressed += OnImportSwitchPressed;
 	}
 
 	// ==================== Public API ====================
@@ -128,9 +128,9 @@ public partial class ImportSlider : VSlider {
 		Cancel.Hide();
 	}
 	
-	// Toggles the import slider's visibility when the label button is pressed
-	private void OnImportsButtonPressed() {
-		Visible = !Visible;
+	// Toggles the clean import that cost more but doesn't pollute
+	private void OnImportSwitchPressed() {
+		// TODO
 	}
 }
 
