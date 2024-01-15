@@ -125,6 +125,7 @@ public partial class PowerPlant : Node2D {
 	private Sprite2D Sprite3;
 	private ColorRect NameR;
 	private Label NameL;
+	private Label PollN;
 	private Label PollL;
 	private Label EnergyS;
 	private Label EnergyW;
@@ -138,6 +139,8 @@ public partial class PowerPlant : Node2D {
 	private Control InfoBubble;
 	private Button InfoButton;
 	private ColorRect ResRect;
+	private Label LandN;
+	private Label BioN;
 	private Label LandL;
 	private Label BioL;
 	private Label LifeSpan;
@@ -151,6 +154,9 @@ public partial class PowerPlant : Node2D {
 
 	// Context
 	private Context C;
+	
+	// Text controller for the dynamic text
+	private TextController TC;
 
 	// Build Button associated to this plant
 	private BuildButton BB;
@@ -182,7 +188,8 @@ public partial class PowerPlant : Node2D {
 		}
 		NameL = GetNode<Label>("NameRect/Name");
 		NameR = GetNode<ColorRect>("NameRect");
-		PollL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll");
+		PollN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll");
+		PollL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Poll");
 		EnergyS = GetNode<Label>("ResRect/EnergyS");
 		EnergyW = GetNode<Label>("ResRect/EnergyW");
 		MoneyL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
@@ -201,10 +208,15 @@ public partial class PowerPlant : Node2D {
 		MultDec = GetNode<Button>("Multiplier/Dec");
 		InfoButton = GetNode<Button>("InfoButton");
 		ResRect = GetNode<ColorRect>("ResRect");
-		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
-		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
+		LandN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
+		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Land");
+		BioN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
+		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Bio");
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
+		
+		// Fetch the text controller
+		TC = GetNode<TextController>("/root/TextController");
 
 		// the delete button should only be shown on new constructions
 		Delete.Hide();
@@ -229,10 +241,16 @@ public partial class PowerPlant : Node2D {
 		EnergyW.Text = EnergyCapacity.ToString();
 		MoneyL.Text = "💰/⌛ " +  ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
-		PollL.Text = "🏭 " + Pollution.ToString();
+		PollN.Text = "🏭 " + Pollution.ToString();
 		BTime.Text = BuildTime.ToString();
-		LandL.Text = (LandUse * 100).ToString();
-		BioL.Text = (-BiodiversityImpact * 100).ToString();
+		LandN.Text = (LandUse * 100).ToString();
+		BioN.Text = (-BiodiversityImpact * 100).ToString();
+		
+		// Set text labels coorectly
+		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
+		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
+		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
+		
 
 		// Set plant life cycle
 		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
@@ -599,6 +617,11 @@ public partial class PowerPlant : Node2D {
 	public void _UpdatePlantName(string name) {
 		NameL.Text = name;
 		PlantName = name;
+		
+		// Update text labels correctly
+		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
+		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
+		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
 	}
 
 	// Updates the UI to match the internal state of the plant
@@ -618,23 +641,28 @@ public partial class PowerPlant : Node2D {
 		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
-		PollL.Text = Convert.ToInt32(Pollution).ToString();
+		PollN.Text = Convert.ToInt32(Pollution).ToString();
 		BTime.Text = BuildTime.ToString();
-		LandL.Text = Convert.ToInt32(LandUse * 100).ToString();
-		BioL.Text = Convert.ToInt32(-BiodiversityImpact * 100).ToString();
+		LandN.Text = Convert.ToInt32(LandUse * 100).ToString();
+		BioN.Text = Convert.ToInt32(-BiodiversityImpact * 100).ToString();
+		
+		// Set text labels coorectly
+		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
+		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
+		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
 		
 		// Update label colors to represent levels
 		if (BiodiversityImpact < 0) {
-			BioL.Set("theme_override_colors/font_color", GREEN);
+			BioN.Set("theme_override_colors/font_color", GREEN);
 		}
 		if (LandUse < 0) {
-			LandL.Set("theme_override_colors/font_color", GREEN);
+			LandN.Set("theme_override_colors/font_color", GREEN);
 		}
 		if (Pollution <= 0) {
-			PollL.Set("theme_override_colors/font_color", GREEN);
+			PollN.Set("theme_override_colors/font_color", GREEN);
 
 		} else {
-			PollL.Set("theme_override_colors/font_color", RED);
+			PollN.Set("theme_override_colors/font_color", RED);
 		}
 		if (ProductionCost <= 0) {
 			MoneyL.Set("theme_override_colors/font_color", GREEN);
