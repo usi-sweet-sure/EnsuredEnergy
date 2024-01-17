@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=42 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
 [ext_resource type="Texture2D" uid="uid://djx386wryt8ab" path="res://assets/Elements/ENVIORMENT BUTTON.png" id="9_kqwrt"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
+[ext_resource type="AudioStream" uid="uid://ben5r72x0p8pr" path="res://assets/Sounds/Move_03.wav" id="10_po2ll"]
 [ext_resource type="Texture2D" uid="uid://3ypqypyywx05" path="res://assets/temp_pollution_icon.png" id="10_vhysx"]
+[ext_resource type="AudioStream" uid="uid://00apgxjmwgw0" path="res://assets/Sounds/Click_020.wav" id="11_tr1n1"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhpc3"]
@@ -205,6 +207,37 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 1.50526,
+"start_offset": 0.08,
+"stream": ExtResource("10_po2ll")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_tr1n1")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_tr1n1")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_tr1n1")
+}, {
+"end_offset": 1.38936,
+"start_offset": 0.03,
+"stream": ExtResource("10_po2ll")
+}],
+"times": PackedFloat32Array(0.05, 1.25, 2, 2.75, 3)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_lrye6"]
 length = 0.001
@@ -560,7 +593,8 @@ offset_top = -38.0
 offset_right = 82.0
 offset_bottom = 32.0
 theme_override_font_sizes/font_size = 48
-text = "2020"
+text = "2023
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -568,6 +602,10 @@ vertical_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_08hvt")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TimePanelBlank"]
+volume_db = -20.0
+pitch_scale = 0.5
 
 [node name="Trust" type="ProgressBar" parent="."]
 offset_left = 17.0
