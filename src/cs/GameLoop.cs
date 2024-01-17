@@ -419,9 +419,10 @@ public partial class GameLoop : Node2D {
 
 		// Deactivate all buttons
 		foreach(var bb in BBs) {
-			bb._Disable();
+			bb._Disable(PowerPlants);
 		}
 		
+		// Disable powerplant buttons
 		GetTree().CallGroup("PP", "Disable");
 			
 		
@@ -715,6 +716,12 @@ public partial class GameLoop : Node2D {
 		// Reset the tutorial and main menu
 		Tuto._Reset();
 		MM._Reset();
+		
+		// Hide End scene
+		EndScreen.Hide();
+		
+		// Show Next Turn button
+		_UI.NextTurnButton.Show();
 	}
 
 	// Reacts to the reception of a debt request
