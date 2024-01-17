@@ -422,6 +422,14 @@ public partial class PowerPlant : Node2D {
 		Switch.ButtonPressed = true;
 		Switch.Disabled = false;
 		Switch.Show();
+		MultInc.Disabled = false;
+		MultDec.Disabled = false;
+		
+		if(HasMultSprite) {
+			Sprite.Show();
+			Sprite2.Hide();
+			Sprite3.Hide();
+		}
 
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
@@ -759,7 +767,7 @@ public partial class PowerPlant : Node2D {
 		_UpdatePlantData();
 	}
 	
-	private void Disable() {
+	public void Disable() {
 		MultInc.Disabled = true;
 		MultDec.Disabled = true;
 	}

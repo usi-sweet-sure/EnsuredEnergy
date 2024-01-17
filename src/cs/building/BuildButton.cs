@@ -179,8 +179,12 @@ public partial class BuildButton : TextureButton {
 	}	
 
 	// Public accessor which disables the current build button
-	public void _Disable() {
+	public void _Disable(List<PowerPlant> PP) {
 		Disabled = true;
+		GD.Print(PP);
+		foreach(PowerPlant pp in PP) {
+			pp.Disable();
+		}
 	}
 
 	// Resets the build button
