@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=71 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="12_vvejj"]
 [ext_resource type="Texture2D" uid="uid://py2jqgbip8j4" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0022_Wind-3.png" id="13_n0wou"]
 [ext_resource type="Texture2D" uid="uid://dcpr8ukl4bkqc" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0006_Water-Pump-1.png" id="13_udqyc"]
+[ext_resource type="Texture2D" uid="uid://hwov71epfekc" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0024_River-Slot.png" id="14_eqh1c"]
 [ext_resource type="Texture2D" uid="uid://dn4l161c4rmxe" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0026_Solar-2.png" id="15_rfjt7"]
 [ext_resource type="Texture2D" uid="uid://qq50ou5x8jbb" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0003_Water-1.png" id="15_terxt"]
 [ext_resource type="Texture2D" uid="uid://tep3shxoy2eg" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0004_Water-2.png" id="16_d8kd2"]
@@ -1118,7 +1119,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/path = NodePath("Sprite/PointLight2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1130,7 +1131,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:texture:fill_from")
+tracks/1/path = NodePath("Sprite/PointLight2D:texture:fill_from")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1142,7 +1143,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PointLight2D:texture:fill_to")
+tracks/2/path = NodePath("Sprite/PointLight2D:texture:fill_to")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1159,7 +1160,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/path = NodePath("Sprite/PointLight2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1171,7 +1172,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:texture:fill_from")
+tracks/1/path = NodePath("Sprite/PointLight2D:texture:fill_from")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1183,7 +1184,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PointLight2D:texture:fill_to")
+tracks/2/path = NodePath("Sprite/PointLight2D:texture:fill_to")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1652,6 +1653,10 @@ libraries = {
 [node name="BuildButton2" parent="World" index="14"]
 metadata/_edit_use_anchors_ = true
 
+[node name="BuildButton4" parent="World" index="16"]
+texture_pressed = ExtResource("14_eqh1c")
+texture_hover = ExtResource("14_eqh1c")
+
 [node name="BuildButton7" parent="World" index="19"]
 metadata/_edit_use_anchors_ = true
 
@@ -1667,6 +1672,14 @@ _PlantType = 2
 [node name="Sprite" parent="World/Solar" index="0"]
 texture = ExtResource("10_3byff")
 
+[node name="PointLight2D" type="PointLight2D" parent="World/Solar/Sprite" index="0"]
+position = Vector2(23.374, -85.6564)
+rotation = 0.523599
+scale = Vector2(1.87526, 2.35201)
+color = Color(1, 1, 0.823529, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_mhl0d")
+
 [node name="Sprite2" type="Sprite2D" parent="World/Solar" index="1"]
 visible = false
 position = Vector2(0, 44)
@@ -1679,15 +1692,7 @@ position = Vector2(0, 6)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("16_luswp")
 
-[node name="PointLight2D" type="PointLight2D" parent="World/Solar" index="12"]
-position = Vector2(17.6992, -24.5252)
-rotation = 0.523599
-scale = Vector2(1.50021, 1.88161)
-color = Color(1, 1, 0.823529, 1)
-energy = 0.0
-texture = SubResource("GradientTexture2D_mhl0d")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="World/Solar" index="13"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/Solar" index="12"]
 autoplay = "Sun"
 libraries = {
 "": SubResource("AnimationLibrary_1rsdt")
@@ -1699,6 +1704,10 @@ _PlantType = 9
 [node name="Sprite" parent="World/Pump" index="0"]
 position = Vector2(0, 0)
 texture = ExtResource("11_nggna")
+
+[node name="BuildButton9" parent="World" index="25"]
+texture_pressed = ExtResource("14_eqh1c")
+texture_hover = ExtResource("14_eqh1c")
 
 [node name="Hydro" parent="World" index="26" groups=["PP"]]
 position = Vector2(783, 1982)

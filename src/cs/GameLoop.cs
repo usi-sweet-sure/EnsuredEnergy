@@ -421,6 +421,12 @@ public partial class GameLoop : Node2D {
 		foreach(var bb in BBs) {
 			bb._Disable();
 		}
+		
+		GetTree().CallGroup("PP", "Disable");
+			
+		
+		// Hide next turn button
+		_UI.NextTurnButton.Hide();
 
 		// Retrieve the current resources
 		(Energy Eng, Environment Env, Support Sup) = RM._GetResources();

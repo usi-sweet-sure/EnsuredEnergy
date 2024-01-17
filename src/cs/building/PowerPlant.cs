@@ -618,7 +618,7 @@ public partial class PowerPlant : Node2D {
 		NameL.Text = name;
 		PlantName = name;
 		
-		// Update text labels correctly
+		// Update buildInfo text labels correctly
 		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
 		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
 		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
@@ -757,6 +757,11 @@ public partial class PowerPlant : Node2D {
 		
 		// Propagate the new values to the UI
 		_UpdatePlantData();
+	}
+	
+	private void Disable() {
+		MultInc.Disabled = true;
+		MultDec.Disabled = true;
 	}
 
 	// ==================== Button Callbacks ====================  

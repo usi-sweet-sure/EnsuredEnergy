@@ -64,7 +64,7 @@ public partial class UI : CanvasLayer {
 	private TextController TC;
 
 	// Button that triggers the passage to a next turn
-	private TextureButton NextTurnButton;
+	public TextureButton NextTurnButton;
 	private Label NextTurnL;
 	private AnimationPlayer NextTurnAP;
 	private Label Warning;

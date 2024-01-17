@@ -27,7 +27,7 @@ public partial class Camera : Camera2D {
 	private Vector2 ZOOM_MAX = new (0.8f,0.8f);
 	private Vector2 ZOOM_SPEED = new (0.2f,0.2f);
 	private Vector2 ZoomVal = new (0.8f,0.8f);
-	private Vector2 SCALE_LIMIT = new (1f, 1f);
+	private Vector2 SCALE_LIMIT = new (0.65f, 0.65f);
 
 	// Record initial position and zoom for reset
 	private Vector2 InitPos;
