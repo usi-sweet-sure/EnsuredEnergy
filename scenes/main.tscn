@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://doe7y0txnwax7" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0005_Water-3.png" id="17_4nld4"]
 [ext_resource type="PackedScene" uid="uid://pvoi2mcc3oc1" path="res://scenes/hud/menu.tscn" id="18_h65u3"]
 [ext_resource type="PackedScene" uid="uid://cej4dlw11su6f" path="res://scenes/hud/end.tscn" id="21_7pke6"]
+[ext_resource type="PackedScene" uid="uid://cuuj2s4h1588i" path="res://scenes/audio.tscn" id="34_smnob"]
 
 [sub_resource type="Animation" id="Animation_k4it7"]
 length = 0.001
@@ -1810,6 +1811,20 @@ visible = false
 [node name="End" parent="." instance=ExtResource("21_7pke6")]
 visible = false
 
+[node name="Audio" parent="." instance=ExtResource("34_smnob")]
+
+[node name="Water" parent="Audio" index="1"]
+position = Vector2(808, 2080)
+volume_db = -5.0
+autoplay = true
+
+[node name="Water2" parent="Audio" index="2"]
+position = Vector2(2056, 2080)
+autoplay = true
+
+[node name="Wind" parent="Audio" index="3"]
+position = Vector2(-568, 576)
+
 [editable path="World"]
 [editable path="World/Nuclear3"]
 [editable path="World/Nuclear2"]
@@ -1821,3 +1836,4 @@ visible = false
 [editable path="World/Pump"]
 [editable path="World/Hydro"]
 [editable path="World/River"]
+[editable path="Audio"]
