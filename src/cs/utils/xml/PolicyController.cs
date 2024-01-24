@@ -23,6 +23,7 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 // XML Controller specifically tailored for reading the policy config files
 // These are particular, as they contain both translatable text and config data.
@@ -70,6 +71,9 @@ public partial class PolicyController : XMLController {
 	// Retrieves the policy's name from the policies xml file given the id
 	public string _GetPolicyName(string id) => GetField("policy", id, "name");
 
+	// Retrieve the tag associated with a given policy
+	public string _GetPolicyTag(string id) => _GetTag("policy", id);
+
 	// Retrieves the policy's description from the policies xml given the id
 	public string _GetPolicyText(string id) => GetField("policy", id, "text");
 	
@@ -78,6 +82,9 @@ public partial class PolicyController : XMLController {
 
     // Retrieves the campaign's name from the policies xml file given the id
 	public string _GetCampaigName(string id) => GetField("campaign", id, "name");
+
+	// Retrieve the tag associated with a given campaign
+	public string _GetCampaignTag(string id) => _GetTag("campaign", id);
 
 	// Retrieves the campaign's description from the policies xml given the id
 	public string _GetCampaignText(string id) => GetField("campaign", id, "text");

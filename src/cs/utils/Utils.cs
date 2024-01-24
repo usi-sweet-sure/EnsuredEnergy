@@ -157,6 +157,23 @@ public struct MoneyData {
 	}
 }
 
+// Keeps track of the current active multiplier overloads
+// -1 means that no overload is active
+// These are created by enacting policies
+public struct MultiplierOverloads {
+	public int WindMax;
+	public int WindBuildTime;
+	public int SolarMax;
+	public int SolarBuildTime;
+
+	public MultiplierOverloads() {
+		WindMax = -1;
+		WindBuildTime = -1;
+		SolarMax = -1;
+		SolarBuildTime = -1;
+	}
+}
+
 // ============================================================
 // ======================= FANCY ENUMS ========================
 // ============================================================
@@ -533,7 +550,12 @@ public readonly struct PowerPlantConfigData : ConfigData {
 }
 
 // The different types of resources the player has access to
-public enum ResourceType { ENERGY_W, ENERGY_S, ENVIRONMENT, SUPPORT, MONEY, TAG };
+public enum ResourceType { 
+	ENERGY_W, ENERGY_S, DEMAND_W,
+	DEMAND_S, ENVIRONMENT, SUPPORT,
+	MONEY, TAG, WIND_MULT_MAX,
+	WIND_BUILD_TIME, SOLAR_MULT_MAX, SOLAR_BUILD_TIME
+};
 
 // Struct simply containing the couple of methods useful for the resource type enum
 // RTM = Resource Type Methods
@@ -542,6 +564,12 @@ public readonly struct RTM {
 	public static ResourceType ResourceTypeFromString(string s) => s switch {
 		"energyW" => ResourceType.ENERGY_W,
 		"energyS" => ResourceType.ENERGY_S,
+		"energyDemandW" => ResourceType.DEMAND_W,
+		"energyDemandS" => ResourceType.DEMAND_S,
+		"wind_mult_max" => ResourceType.WIND_MULT_MAX,
+		"wind_buildtime" => ResourceType.WIND_BUILD_TIME,
+		"solar_mult_max" => ResourceType.SOLAR_MULT_MAX,
+		"solar_buildtime" => ResourceType.SOLAR_BUILD_TIME,
 		"env" => ResourceType.ENVIRONMENT,
 		"support" => ResourceType.SUPPORT,
 		"money" => ResourceType.MONEY,

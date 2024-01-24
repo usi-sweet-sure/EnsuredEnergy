@@ -615,7 +615,7 @@ offset_bottom = 24.0
 grow_vertical = 2
 color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[node name="PolicyButton" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
+[node name="Wind_buildtime" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.472
@@ -627,7 +627,7 @@ offset_top = -63.72
 offset_right = 65.816
 offset_bottom = 56.28
 
-[node name="PolicyButton5" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
+[node name="Upgrade_wind" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.486
@@ -640,7 +640,7 @@ offset_right = 59.908
 offset_bottom = 54.856
 text = "🌬"
 
-[node name="PolicyButton6" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
+[node name="home_regulation" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 221.5
@@ -648,7 +648,7 @@ offset_right = 177.0
 offset_bottom = 341.5
 text = "🌞"
 
-[node name="PolicyButton7" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
+[node name="industry_subsidy" parent="ColorRect/NinePatchRect/ColorRect/ColorRect" instance=ExtResource("3_wnx31")]
 layout_mode = 0
 offset_left = 233.0
 offset_top = 221.5

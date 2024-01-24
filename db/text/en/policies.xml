@@ -40,7 +40,7 @@
         <effect field="energyW" value="n"/>
         <!-- The base probability of passing this policy
         This can be increased by an internal counter for accumulated campaign results -->
-        <probability value="0.5"/>
+        <probability>0.5</probability>
     </policy>
 
     <policy id="Upgrade_PV" tag="env">
@@ -50,7 +50,7 @@
         </text>
         <effect field="solar_mult_max" value="3"/>
         <requirement field="support" value="70" bound="min"/>
-        <probability value="0.5"/>
+        <probability>0.5</probability>
     </policy>
 
     <policy id="Wind_buildtime" tag="env">
@@ -60,7 +60,7 @@
         </text>
         <effect field="wind_build_time" value="0"/>
         <requirement field="support" value="70" bound="min" />
-        <probability value="0.5"/>
+        <probability>0.5</probability>
     </policy>
 
     <policy id="Upgrade_wind" tag="env">
@@ -70,7 +70,7 @@
         </text>
         <effect field="wind_mult_max" value="5"/>
         <requirement field="support" value="70" bound="min" />
-        <probability value="0.5"/>
+        <probability>0.5</probability>
     </policy>
 
     <policy id="home_regulation" tag="demand">
@@ -78,10 +78,10 @@
         <text>All buildings must be insulated within n turns.
             Lowers energy demand by n.
         </text>
-        <effect field="energyDemandW" value="-5"/>
-        <effect field="energyDemandS" value="-5"/>
+        <effect field="energyW" value="-5"/>
+        <effect field="energyS" value="-5"/>
         <requirement field="support" value="40" bound="min" />
-        <probability value="0.5"/>
+        <probability>0.5</probability>
     </policy>
 
     <policy id="industry_subsidy" tag="demand">
@@ -89,9 +89,9 @@
         <text>Provide industries with grants for less energy intensive production.
             Lowers energy demand from Industry by n.
         </text>
-        <effect field="energyDemandW" value="-5"/>
-        <effect field="energyDemandS" value="-5"/>
+        <effect field="energyW" value="-5"/>
+        <effect field="energyS" value="-5"/>
         <requirement field="support" value="60" bound="min"/>
-        <popularity value="0.5"/>
+        <probability>0.5</probability>
     </policy>
 </db>
