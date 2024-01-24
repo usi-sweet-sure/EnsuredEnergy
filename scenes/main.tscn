@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=69 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -35,8 +35,7 @@
 [ext_resource type="Script" path="res://src/cs/resources/PolicyManager.cs" id="21_0i66f"]
 [ext_resource type="PackedScene" uid="uid://cej4dlw11su6f" path="res://scenes/hud/end.tscn" id="21_7pke6"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/PolicyController.cs" id="22_yvls4"]
-[ext_resource type="PackedScene" uid="uid://cuuj2s4h1588i" path="res://scenes/audio.tscn" id="34_smnob"]
-
+[ext_resource type="PackedScene" path="res://scenes/audio.tscn" id="34_smnob"]
 
 [sub_resource type="Animation" id="Animation_k4it7"]
 length = 0.001
@@ -1791,6 +1790,7 @@ autoplay = true
 
 [node name="Wind" parent="Audio" index="3"]
 position = Vector2(-568, 576)
+stream_paused = false
 
 [editable path="World"]
 [editable path="World/Nuclear3"]
