@@ -28,10 +28,17 @@ public partial class PolicyWindow : CanvasLayer {
 
 	private ColorRect P;
 	private AnimationPlayer AP;
+	private Button Vote;
+	private Button WindButton;
+	private ButtonGroup PolicyGroup;
+	private BaseButton PressedPolicy;
+	private Label VoteResult;
 
 	private Context C;
 
 	private List<Button> PolicyButtons;
+	
+	private String SelectedPolicy;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -39,20 +46,31 @@ public partial class PolicyWindow : CanvasLayer {
 	public override void _Ready() {
 		C = GetNode<Context>("/root/Context");
 		P = GetNode<ColorRect>("ColorRect");
-		P.GuiInput += _OnPanelGuiInput;
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
+		VoteResult = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/VoteResult");
+		Vote = GetNode<Button>("ColorRect/NinePatchRect/ColorRect2/Vote");
+		WindButton = GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Wind_buildtime");
+		
+		PolicyGroup = WindButton.ButtonGroup;
+		PressedPolicy = PolicyGroup.GetPressedButton();
+		
 		PolicyButtons = new();
 
 		// Fetch policy buttons
 		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Wind_buildtime"));
 		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_wind"));
-		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/home_regulation"));
-		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/industry_subsidy"));
+		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/home_regulation"));
+		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/industry_subsidy"));
+		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_PV"));
 
 		PolicyButtons[0].Pressed += _OnWindBuildtimePressed;
 		PolicyButtons[1].Pressed += _OnUpgradeWindPressed;
 		PolicyButtons[2].Pressed += _OnHomeRegulationPressed;
 		PolicyButtons[3].Pressed += _OnIndustrySubsidy;
+		PolicyButtons[4].Pressed += _OnUpgradePV;
+		
+		P.GuiInput += _OnPanelGuiInput;
+		Vote.Pressed += _OnVotePressed;
 	}
 	
 
@@ -76,20 +94,39 @@ public partial class PolicyWindow : CanvasLayer {
 	public void _OnPanelGuiInput(InputEvent input) {
 		if(input.GetType() == new InputEventMouseButton().GetType())
 			Hide();
+			Vote.Hide();
+			PressedPolicy = PolicyGroup.GetPressedButton();
+			if (PressedPolicy != null) {
+				PressedPolicy.ButtonPressed = false;
+			}
+			
 	} 
 
 	// A bunch of specific buttons
 	public void _OnWindBuildtimePressed() {
-		C._GetGL()._GetPM()._RequestPolicy("Wind_buildtime");
+		Vote.Show();
 	}
 	public void _OnUpgradeWindPressed() {
-		C._GetGL()._GetPM()._RequestPolicy("Upgrade_wind");
+		Vote.Show();
 	}
 	public void _OnHomeRegulationPressed() {
-		C._GetGL()._GetPM()._RequestPolicy("home_regulation");
+		Vote.Show();
 	}
 	public void _OnIndustrySubsidy() {
-		C._GetGL()._GetPM()._RequestPolicy("industry_subsidy");
+		Vote.Show();
+	}
+	public void _OnUpgradePV() {
+		Vote.Show();
 	}
 
+	public void _OnVotePressed() {
+		// Check the vote result based on the selected policy
+		PressedPolicy = PolicyGroup.GetPressedButton();
+		if (PressedPolicy != null) {
+			C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
+			Vote.Disabled = true;
+			VoteResult.Show();
+			//VoteResult.Text = TODO
+		}
+	}
 }

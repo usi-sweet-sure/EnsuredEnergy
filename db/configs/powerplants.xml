@@ -150,7 +150,7 @@
         <!-- Contains all of the parameters related to the powerplant -->
         <!-- Such that they are grouped by parameter type -->
         <param groupid="meta" id="build_cost" type="int">100</param> <!-- The cost of building this plant -->
-        <param groupid="meta" id="build_time" type="int">0</param> <!-- The number of turns the plant takes to be constructed -->
+        <param groupid="meta" id="build_time" type="int">3</param> <!-- The number of turns the plant takes to be constructed -->
         <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
 
         <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->

@@ -49,7 +49,7 @@
             Increase solar plant upgrades from 1 to 3.
         </text>
         <effect field="solar_mult_max" value="3"/>
-        <requirement field="support" value="70" bound="min"/>
+        <requirement field="support" value="60" bound="min"/>
         <probability>0.5</probability>
     </policy>
 
@@ -59,7 +59,7 @@
             Lowers required building time for wind parks from 2 to 0.
         </text>
         <effect field="wind_build_time" value="0"/>
-        <requirement field="support" value="70" bound="min" />
+        <requirement field="support" value="60" bound="min" />
         <probability>0.5</probability>
     </policy>
 
