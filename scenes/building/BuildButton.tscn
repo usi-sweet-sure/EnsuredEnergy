@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=66 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://uiiomylqkmqf" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0019_Free-Slot.png" id="1_edwj0"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
@@ -1603,6 +1603,7 @@ damping_max = 28.0
 scale_curve = SubResource("CurveTexture_5iqfb")
 color_ramp = SubResource("GradientTexture1D_eqh2j")
 turbulence_enabled = true
+
 [sub_resource type="Theme" id="Theme_6inie"]
 
 [sub_resource type="Animation" id="Animation_pm2y8"]

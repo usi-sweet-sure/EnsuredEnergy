@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ciphd0cmpslrn"]
+[gd_scene load_steps=10 format=3 uid="uid://ciphd0cmpslrn"]
 
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="1_ua11s"]
 [ext_resource type="Script" path="res://src/cs/ui/Tutorial.cs" id="1_xyv1m"]
 [ext_resource type="Texture2D" uid="uid://03lloca0uata" path="res://assets/Elements/ARROW INFO – 1.png" id="3_xv1gs"]
 [ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="4_ymnp0"]
+[ext_resource type="Texture2D" uid="uid://ikiclp3p8k8k" path="res://assets/key_tab_icon.png" id="5_mivsl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s13c5"]
 atlas = ExtResource("4_ymnp0")
@@ -490,3 +491,15 @@ autoplay = "Float"
 libraries = {
 "": SubResource("AnimationLibrary_b6dub")
 }
+
+[node name="Label" type="Label" parent="."]
+offset_left = 759.0
+offset_top = 784.0
+offset_right = 981.0
+offset_bottom = 810.0
+text = "to skip"
+
+[node name="KeyTabIcon" type="Sprite2D" parent="Label"]
+position = Vector2(-25.1, 13)
+scale = Vector2(0.329687, 0.225)
+texture = ExtResource("5_mivsl")

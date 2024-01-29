@@ -134,6 +134,15 @@ public partial class Tutorial : CanvasLayer {
 			Hide();
 		}
 	}
+	
+	// Press tab to skip tutorial
+	public override void _UnhandledInput(InputEvent E) {
+		if (E is InputEventKey eventKey) {
+			if (eventKey.Pressed && eventKey.Keycode == Key.Tab) {
+				Hide();
+			}
+		} 
+	}
 
 	// ==================== Internal Helpers ====================
 

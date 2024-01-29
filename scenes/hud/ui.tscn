@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=50 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://3ypqypyywx05" path="res://assets/temp_pollution_icon.png" id="10_vhysx"]
 [ext_resource type="AudioStream" uid="uid://00apgxjmwgw0" path="res://assets/Sounds/Click_020.wav" id="11_tr1n1"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
+[ext_resource type="FontFile" uid="uid://bp3o6potcw07r" path="res://assets/Fonts/BebasNeue-Regular.otf" id="23_og3i5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhpc3"]
 atlas = ExtResource("6_vs2ug")
@@ -348,6 +349,40 @@ bg_color = Color(0.627451, 0.627451, 0.627451, 1)
 border_color = Color(0, 0, 0, 1)
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
+bg_color = Color(0.988235, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vka7n"]
+bg_color = Color(0.709804, 0.176471, 0.113725, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgbvl"]
+bg_color = Color(0.509804, 0, 0.117647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_4p1wg"]
+Button/styles/hover = SubResource("StyleBoxFlat_pwy5b")
+Button/styles/normal = SubResource("StyleBoxFlat_vka7n")
+Button/styles/pressed = SubResource("StyleBoxFlat_fgbvl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2x8o"]
+bg_color = Color(0.45098, 0.45098, 0.45098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnqwg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xki6c"]
+bg_color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [node name="UI" type="CanvasLayer"]
 follow_viewport_enabled = true
@@ -1086,51 +1121,120 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("7_mnpcp")
 flat = true
 
-[node name="SettingsBox" type="ColorRect" parent="SettingsButton"]
+[node name="ColorRect" type="ColorRect" parent="SettingsButton"]
 visible = false
-layout_mode = 0
-offset_left = 86.0
-offset_top = 19.0
-offset_right = 277.0
-offset_bottom = 115.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 21.898
+anchor_bottom = 12.364
+offset_right = -8.02405
+offset_bottom = -8.03198
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.313726, 0.313726, 0.313726, 0.345098)
+
+[node name="SettingsBox" type="ColorRect" parent="SettingsButton/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -316.0
+offset_right = 256.0
+offset_bottom = 316.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.398438, 0.398438, 0.398438, 1)
 metadata/_edit_group_ = true
 
-[node name="Close" type="Button" parent="SettingsButton/SettingsBox"]
+[node name="Title" type="Label" parent="SettingsButton/ColorRect/SettingsBox"]
 layout_mode = 0
-offset_left = -49.0
-offset_top = -76.0
-offset_right = 1873.0
-offset_bottom = 1008.0
+offset_top = 10.0
+offset_right = 512.0
+offset_bottom = 194.0
+theme_override_fonts/font = ExtResource("23_og3i5")
+theme_override_font_sizes/font_size = 57
+text = "ENSURED
+ENERGY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="SettingsButton/ColorRect/SettingsBox"]
+layout_mode = 0
+offset_left = -496.5
+offset_top = -224.0
+offset_right = 1425.5
+offset_bottom = 860.0
 focus_mode = 0
 flat = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsButton/SettingsBox"]
-layout_mode = 0
-offset_right = 188.0
-offset_bottom = 96.0
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsButton/ColorRect/SettingsBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.5
+offset_top = 216.0
+offset_right = 99.5
+offset_bottom = 312.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
 
-[node name="Language" type="Button" parent="SettingsButton/SettingsBox/VBoxContainer"]
+[node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Fullscreen"
+icon_alignment = 2
+
+[node name="Language" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "Language: English"
-flat = true
 
-[node name="Reset" type="Button" parent="SettingsButton/SettingsBox/VBoxContainer"]
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
-text = "Reset"
-flat = true
+text = "Music"
 
-[node name="ResetConfirm" type="ColorRect" parent="SettingsButton/SettingsBox/VBoxContainer/Reset"]
+[node name="VolMusic" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="VolSound" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Credits" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Credits"
+
+[node name="Reset" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme = SubResource("Theme_4p1wg")
+text = "Reset"
+
+[node name="ResetConfirm" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
 visible = false
-layout_mode = 0
-offset_left = 476.0
-offset_top = 223.0
-offset_right = 1162.0
-offset_bottom = 568.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -343.0
+offset_top = -172.5
+offset_right = 343.0
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.560784, 0.560784, 0.560784, 1)
 
-[node name="Label" type="Label" parent="SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 64.0
@@ -1140,7 +1244,7 @@ theme_override_font_sizes/font_size = 32
 text = "Are you sure that you want to restart?"
 autowrap_mode = 2
 
-[node name="Yes" type="Button" parent="SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+[node name="Yes" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 216.0
@@ -1149,12 +1253,15 @@ offset_bottom = 269.0
 text = "Yes
 "
 
-[node name="No" type="Button" parent="SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+[node name="No" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 layout_mode = 0
 offset_left = 440.0
 offset_top = 216.0
 offset_right = 546.0
 offset_bottom = 269.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_a2x8o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xnqwg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xki6c")
 text = "No"
 
 [node name="BorrowContainer" type="Button" parent="."]

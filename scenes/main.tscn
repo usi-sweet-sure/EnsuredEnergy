@@ -1824,6 +1824,7 @@ autoplay = true
 
 [node name="Wind" parent="Audio" index="3"]
 position = Vector2(-568, 576)
+stream_paused = false
 
 [editable path="World"]
 [editable path="World/Nuclear3"]

@@ -133,6 +133,7 @@ public partial class UI : CanvasLayer {
 	private ColorRect SettingsBox;
 	private Button LanguageButton;
 	private Button SettingsClose;
+	private Button ScreenOption;
 
 	// Reset button and confirmation
 	private Button ResetButton;
@@ -166,16 +167,17 @@ public partial class UI : CanvasLayer {
 
 		// Settings
 		SettingsButton = GetNode<Button>("SettingsButton");
-		SettingsBox = GetNode<ColorRect>("SettingsButton/SettingsBox");
-		LanguageButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Language");
-		SettingsClose = GetNode<Button>("SettingsButton/SettingsBox/Close");
+		SettingsBox = GetNode<ColorRect>("SettingsButton/ColorRect");
+		LanguageButton = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
+		SettingsClose = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/Close");
+		ScreenOption = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/ScreenOption");
 
 		// Reset nodes
-		ResetButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset");
-		ResetPrompt = GetNode<ColorRect>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm");
-		ResetConfirmL = GetNode<Label>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
-		ResetYes = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
-		ResetNo = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+		ResetButton = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset");
+		ResetPrompt = GetNode<ColorRect>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm");
+		ResetConfirmL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
+		ResetYes = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
+		ResetNo = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
@@ -259,6 +261,7 @@ public partial class UI : CanvasLayer {
 		DebtSlider.ValueChanged += _OnDebtSliderValueChanged;
 		BorrowContainer.Pressed += _OnDebtCancelPressed;
 		BorrowMoneyButton.Pressed += BorrowContainer.Show;
+		ScreenOption.Toggled += _OnScreenOption;
 
 		// Initially hide the borrow container
 		BorrowContainer.Hide();
@@ -926,5 +929,13 @@ public partial class UI : CanvasLayer {
 		// Update the borrow and pay back amounts to reflect the new values
 		BorrowAmount.Text = ((int)value).ToString();
 		PayBackAmount.Text = ((int)(value + (value * InterestRate))).ToString(); // Add the interest rate
+	}
+	
+	public void _OnScreenOption(bool Toggle) {
+		if(Toggle) {
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+		} else {
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+		}
 	}
 }
