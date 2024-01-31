@@ -26,7 +26,7 @@ public partial class Tutorial : CanvasLayer {
 	private const string TUTO_FILENAME = "tutorial.xml";
 	private const string TUTO_TEXT_GROUP = "tutorial_text";
 	private const string INFO_BUBBLE_GROUP = "info_bubble";
-	private const int INFO_BUBBLE_START_IDX = 2;
+	private const int INFO_BUBBLE_START_IDX = 3;
 
 	// TextController reference set by the game loop
 	private TextController TC;
@@ -68,7 +68,8 @@ public partial class Tutorial : CanvasLayer {
 			(GetNode<NinePatchRect>("InfoBubble"), GetNode<RichTextLabel>("InfoBubble/ColorRect/Text")),
 			(GetNode<NinePatchRect>("InfoBubble2"), GetNode<RichTextLabel>("InfoBubble2/ColorRect/Text")),
 			(GetNode<NinePatchRect>("InfoBubble3"), GetNode<RichTextLabel>("InfoBubble3/ColorRect/Text")),
-			(GetNode<NinePatchRect>("InfoBubble4"), GetNode<RichTextLabel>("InfoBubble4/ColorRect/Text"))
+			(GetNode<NinePatchRect>("InfoBubble4"), GetNode<RichTextLabel>("InfoBubble4/ColorRect/Text")),
+			(GetNode<NinePatchRect>("InfoBubble5"), GetNode<RichTextLabel>("InfoBubble5/ColorRect/Text"))
 		};
 
 		// Initialize the tutorial text
