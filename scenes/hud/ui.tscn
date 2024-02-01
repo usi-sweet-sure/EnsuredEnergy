@@ -1182,6 +1182,43 @@ offset_bottom = 312.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
 
+[node name="Instructions" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Instructions"
+
+[node name="ColorRect" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -4.638
+anchor_top = -9.333
+anchor_right = 5.66
+anchor_bottom = 13.292
+offset_left = -0.0559692
+offset_top = 7.98401
+offset_right = -16.0801
+offset_bottom = -0.0160522
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.184314, 0.184314, 0.184314, 0.470588)
+
+[node name="ColorRect" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions/ColorRect"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -724.0
+offset_top = -444.0
+offset_right = 724.0
+offset_bottom = 444.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.398438, 0.398438, 0.398438, 1)
+
 [node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
 button_pressed = true
