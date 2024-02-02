@@ -28,6 +28,7 @@ public partial class Camera : Camera2D {
 	private Vector2 ZOOM_SPEED = new (0.2f,0.2f);
 	private Vector2 ZoomVal = new (0.8f,0.8f);
 	private Vector2 SCALE_LIMIT = new (0.65f, 0.65f);
+	private Vector2 TargetZoom = new (1f, 1f);
 
 	// Record initial position and zoom for reset
 	private Vector2 InitPos;
@@ -66,6 +67,15 @@ public partial class Camera : Camera2D {
 	//     1) When the player clicks the screen, in which case we want to drag the camera around
 	//     2) When the player uses the mouse wheel, in which case we want to zoom in or out
 	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMagnifyGesture Magnify) {
+			GD.Print(Magnify.Factor);
+			var zoom_factor = Zoom;
+			zoom_factor *= Magnify.Factor;
+			TargetZoom = zoom_factor.Clamp(ZOOM_MIN, ZOOM_MAX);
+			Zoom = TargetZoom;
+			
+		}
+		
 		// Camera can be moved by holding left click and dragging the mouse
 		if(E is InputEventMouseMotion MouseMotion) {
 			if(MouseMotion.ButtonMask == MouseButtonMask.Left) {
