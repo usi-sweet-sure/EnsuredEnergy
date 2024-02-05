@@ -1380,7 +1380,7 @@ script = ExtResource("1_4jam2")
 [node name="Camera2D" parent="World" index="0"]
 position = Vector2(858, 685)
 anchor_mode = 1
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.6, 0.6)
 limit_left = -2425
 limit_top = -950
 limit_right = 5240
