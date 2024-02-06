@@ -566,7 +566,7 @@ public readonly struct RTM {
 		"energyDemandW" => ResourceType.DEMAND_W,
 		"energyDemandS" => ResourceType.DEMAND_S,
 		"wind_mult_max" => ResourceType.WIND_MULT_MAX,
-		"wind_buildtime" => ResourceType.WIND_BUILD_TIME,
+		"wind_build_time" => ResourceType.WIND_BUILD_TIME,
 		"solar_mult_max" => ResourceType.SOLAR_MULT_MAX,
 		"solar_buildtime" => ResourceType.SOLAR_BUILD_TIME,
 		"env" => ResourceType.ENVIRONMENT,
