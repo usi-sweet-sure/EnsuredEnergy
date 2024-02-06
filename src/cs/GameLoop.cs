@@ -29,7 +29,7 @@ public partial class GameLoop : Node2D {
 	public enum GameState { NOT_STARTED, PLAYING, ENDED };
 
 	// Start year const
-	private const int START_YEAR = 2020;
+	private const int START_YEAR = 2022;
 
 	// Context of the game
 	private Context C;
@@ -756,6 +756,8 @@ public partial class GameLoop : Node2D {
 				pp._DecMultiplier();
 			}
 			_UpdateResourcesUI();
+		} else {
+			pp.PlayAnimation();
 		}
 	}
 	

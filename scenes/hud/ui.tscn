@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=51 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
 [ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
 [ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_xpjuf"]
 [ext_resource type="Texture2D" uid="uid://dddt3hgvf20b6" path="res://assets/Elements/POLICIES BUTTON.png" id="6_ivien"]
+[ext_resource type="AudioStream" uid="uid://d0mx81kv2vlha" path="res://assets/Sounds/Negative 2_1.wav" id="6_jw1cb"]
 [ext_resource type="Texture2D" uid="uid://b5c8nhwhjb6rh" path="res://assets/Elements/TIME PANEL – BLANK.png" id="6_mfs1l"]
 [ext_resource type="Texture2D" uid="uid://yom48x87obxw" path="res://assets/Elements/CHARACTER INFORMATION – BLANK.png" id="6_vs2ug"]
 [ext_resource type="Texture2D" uid="uid://d01b6u4flcphj" path="res://assets/Elements/GRAPH BUTTON.png" id="7_7gbcu"]
@@ -122,6 +123,21 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Error")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_jw1cb")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpw4y"]
 _data = {
@@ -444,6 +460,9 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 23
 text = "Not enough energy!"
 
+[node name="Error" type="AudioStreamPlayer" parent="NextTurn"]
+stream = ExtResource("6_jw1cb")
+
 [node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
 position = Vector2(216, 874)
 texture = ExtResource("2_hhj2t")
@@ -628,8 +647,7 @@ offset_top = -38.0
 offset_right = 82.0
 offset_bottom = 32.0
 theme_override_font_sizes/font_size = 48
-text = "2023
-"
+text = "2022"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -854,6 +872,7 @@ scale = Vector2(0.0802083, 0.0752813)
 texture = ExtResource("10_vhysx")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
+visible = false
 offset_left = -8.0
 offset_top = 248.0
 offset_right = 140.0
@@ -1042,10 +1061,10 @@ offset_left = 63.0
 offset_top = 18.0
 offset_right = 674.0
 offset_bottom = 34.0
-min_value = 2020.0
-max_value = 2050.0
+min_value = 2022.0
+max_value = 2052.0
 step = 3.0
-value = 2020.0
+value = 2022.0
 editable = false
 scrollable = false
 tick_count = 11

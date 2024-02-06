@@ -68,7 +68,6 @@ public partial class Camera : Camera2D {
 	//     2) When the player uses the mouse wheel, in which case we want to zoom in or out
 	public override void _UnhandledInput(InputEvent E) {
 		if(E is InputEventMagnifyGesture Magnify) {
-			GD.Print(Magnify.Factor);
 			var zoom_factor = Zoom;
 			zoom_factor *= Magnify.Factor;
 			TargetZoom = zoom_factor.Clamp(ZOOM_MIN, ZOOM_MAX);

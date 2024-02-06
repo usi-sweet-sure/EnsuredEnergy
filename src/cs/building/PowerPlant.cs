@@ -146,6 +146,8 @@ public partial class PowerPlant : Node2D {
 	private Label LifeSpan;
 	private Label LifeSpanWarning;
 	
+	public AnimationPlayer AP;
+	
 	// The Area used to detect hovering
 	private Area2D HoverArea;
 
@@ -214,6 +216,7 @@ public partial class PowerPlant : Node2D {
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Bio");
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
+		AP = GetNode<AnimationPlayer>("AP");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -733,10 +736,10 @@ public partial class PowerPlant : Node2D {
 		
 		// Turns animation off
 		if(HasAnimation) {
-			AnimationPlayer AP = GetNode<AnimationPlayer>("AnimationPlayer");
-			AnimName = AP.CurrentAnimation;
-			AP.Play("RESET");
-			AP.Stop();
+			AnimationPlayer APlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+			AnimName = APlayer.CurrentAnimation;
+			APlayer.Play("RESET");
+			APlayer.Stop();
 		}
 		
 		// Propagate the new values to the UI
@@ -759,8 +762,8 @@ public partial class PowerPlant : Node2D {
 		Modulate = DEFAULT_COLOR;
 		
 		if(HasAnimation) {
-			AnimationPlayer AP = GetNode<AnimationPlayer>("AnimationPlayer");
-			AP.Play(AnimName);
+			AnimationPlayer APlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+			APlayer.Play(AnimName);
 		}
 		
 		// Propagate the new values to the UI
@@ -770,6 +773,12 @@ public partial class PowerPlant : Node2D {
 	public void Disable() {
 		MultInc.Disabled = true;
 		MultDec.Disabled = true;
+	}
+	
+	public void PlayAnimation() {
+		// TODO set text in lang
+		//NoMoney.Text =
+		AP.Play("noMoney");
 	}
 
 	// ==================== Button Callbacks ====================  
