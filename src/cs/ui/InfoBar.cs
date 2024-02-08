@@ -34,7 +34,7 @@ public partial class InfoBar : ProgressBar {
 	private Label BarName;
 
 	// Info boc showing all of the relevant subfields of this resource
-	private InfoBox Box;
+	public InfoBox Box;
 	
 	// Colors for Bars
 	[Export]
@@ -120,4 +120,13 @@ public partial class InfoBar : ProgressBar {
 		}
 
 	}
+	
+	// Hides the info if the player clicks somewhere else on the map
+	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+				_HideInfo();
+			}
+		}
+		}
 }

@@ -74,11 +74,16 @@ public partial class UI : CanvasLayer {
 	private InfoBar WinterEnergyPredict;
 	private InfoBar SummerEnergy;
 	private InfoBar SummerEnergyPredict;
+	private Button WinterButton;
+	private Button SummerButton;
 	
 	// The two information bars
 	private InfoBar EnvironmentBar;
 	private InfoBar SupportBar;
 	private InfoBar PollutionBar;
+	private Button EnvButton;
+	private Button SuppButton;
+	private Button PollButton;
 
 	// Date progression
 	private HSlider Timeline;
@@ -187,6 +192,11 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar = GetNode<InfoBar>("Env");
 		SupportBar = GetNode<InfoBar>("Trust");
 		PollutionBar = GetNode<InfoBar>("Poll");
+		WinterButton = GetNode<Button>("EnergyBarWinter/WinterButton");
+		SummerButton = GetNode<Button>("EnergyBarSummer/SummerButton");
+		EnvButton = GetNode<Button>("Env/EnvButton");
+		SuppButton = GetNode<Button>("Trust/SuppButton");
+		PollButton = GetNode<Button>("Poll/PollButton");
 
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
@@ -241,20 +251,11 @@ public partial class UI : CanvasLayer {
 		LanguageButton.Pressed += _OnLanguageButtonPressed;
 		SettingsClose.Pressed += _OnSettingsClosePressed;
 		PolicyButton.Pressed += _OnPolicyButtonPressed;
-		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
-		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
-		WinterEnergyPredict.MouseEntered += _OnWinterEnergyMouseEntered;
-		WinterEnergyPredict.MouseExited += _OnWinterEnergyMouseExited;
-		SummerEnergy.MouseEntered += _OnSummerEnergyMouseEntered;
-		SummerEnergy.MouseExited += _OnSummerEnergyMouseExited;
-		SummerEnergyPredict.MouseEntered += _OnSummerEnergyMouseEntered;
-		SummerEnergyPredict.MouseExited += _OnSummerEnergyMouseExited;
-		EnvironmentBar.MouseEntered += _OnEnvironmentMouseEntered;
-		EnvironmentBar.MouseExited += _OnEnvironmentMouseExited;
-		SupportBar.MouseEntered += _OnSupportMouseEntered;
-		SupportBar.MouseExited += _OnSupportMouseExited;
-		PollutionBar.MouseEntered += _OnPollutionMouseEntered;
-		PollutionBar.MouseExited += _OnPollutionMouseExited;
+		WinterButton.Pressed += _OnWinterEnergyPressed;
+		SummerButton.Pressed += _OnSummerEnergyPressed;
+		EnvButton.Pressed += _OnEnvButtonPressed;
+		SuppButton.Pressed += _OnSuppButtonPressed;
+		PollButton.Pressed += _OnPollButtonPressed;
 		Imports.ImportUpdate += _OnImportUpdate;
 		DebtApplyButton.Pressed += _OnDebtApplyPressed;
 		DebtCancelButton.Pressed += _OnDebtCancelPressed;
@@ -619,7 +620,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the info
 		eng._UpdateInfo(
-			" ", // N/Max TODO: Figure out what to use here
+			"The energy supply needs to reach the energy demand.", // N/Max TODO: Figure out what to use here
 			demand_label, demand.ToString(), // T0, N0
 			supply_label, supply.ToString() // T1, N1
 		);
@@ -643,7 +644,7 @@ public partial class UI : CanvasLayer {
 		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
 
 		EnvironmentBar._UpdateInfo(
-			" ", // N/Max TODO: Figure out what to use here
+			"Some power plants need more land than others. This can negatively impact biodiversity", // N/Max TODO: Figure out what to use here
 			land_label, Data.LandUse.ToString() + "%", // T0, N0
 			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
 		);
@@ -652,11 +653,11 @@ public partial class UI : CanvasLayer {
 	// Sets the information fields for the pollution bar
 	private void SetPollutionInfo() {
 		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
-		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
+		string import_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_import_pol");
 
 		PollutionBar._UpdateInfo(
 			// N/Max TODO: Figure out what to use here
-			" ",
+			"Some power plants emit CO2. Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
@@ -761,69 +762,63 @@ public partial class UI : CanvasLayer {
 					NextTurnAP.Play("warning");
 		}
 	}
+	
+	public void _OnWinterEnergyPressed() {
+		if(WinterEnergy.Box.Visible) {
+			WinterEnergy._HideInfo();
+		} else {
+			SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
 
-	// Displays the information box related to the winter energy
-	public void _OnWinterEnergyMouseEntered() {
-		 SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
-
-		 // Display the energy info
-		 WinterEnergy._DisplayInfo();
+		 	// Display the energy info
+		 	WinterEnergy._DisplayInfo();
+		}
 	}
-	// Hides the information box related to the winter energy
-	public void _OnWinterEnergyMouseExited() {
-		WinterEnergy._HideInfo();
+	
+	public void _OnSummerEnergyPressed() {
+		if(SummerEnergy.Box.Visible) {
+			SummerEnergy._HideInfo();
+		} else {
+			SetEnergyInfo(ref SummerEnergy, InfoType.S_ENGERGY);
+
+		 	// Display the energy info
+		 	SummerEnergy._DisplayInfo();
+		}
 	}
+	
+	public void _OnEnvButtonPressed() {
+		if(EnvironmentBar.Box.Visible) {
+			EnvironmentBar._HideInfo();
+		} else {
+			// Set the information first
+			SetEnvironmentInfo();
 
-	// Displays the information box related to the summer energy
-	public void _OnSummerEnergyMouseEntered() {
-		SetEnergyInfo(ref SummerEnergy, InfoType.S_ENGERGY);
-
-		// Display the energy info
-		SummerEnergy._DisplayInfo();
+			// Then show the info
+			EnvironmentBar._DisplayInfo();
+		}
 	}
-	// Hides the information box related to the summer energy
-	public void _OnSummerEnergyMouseExited() {
-		SummerEnergy._HideInfo();
+	
+	public void _OnSuppButtonPressed() {
+		if(SupportBar.Box.Visible) {
+			SupportBar._HideInfo();
+		} else  {
+			// Set the information first
+			SetSupportInfo();
+
+			// Show the new info
+			SupportBar._DisplayInfo();
+		}
 	}
+	
+	public void _OnPollButtonPressed() {
+		if(PollutionBar.Box.Visible) {
+			PollutionBar._HideInfo();
+		} else {
+			// Make sure that the pollution info is up to date
+			SetPollutionInfo();
 
-	// Displays the information box related to the environment bar
-	public void _OnEnvironmentMouseEntered() {
-		// Set the information first
-		SetEnvironmentInfo();
-
-		// Then show the info
-		EnvironmentBar._DisplayInfo();
-	}
-	// Hides the information box related to the environment bar
-	public void _OnEnvironmentMouseExited() {
-		EnvironmentBar._HideInfo();
-	}
-
-	// Displays the information box related to the Support bar
-	public void _OnSupportMouseEntered() {
-		// Set the information first
-		SetSupportInfo();
-
-		// Show the new info
-		SupportBar._DisplayInfo();
-	}
-	// Hides the information box related to the Support bar
-	public void _OnSupportMouseExited() {
-		SupportBar._HideInfo();
-	}
-
-	// Displays the information box related to the pollution bar
-	public void _OnPollutionMouseEntered() {
-		// Make sure that the pollution info is up to date
-		SetPollutionInfo();
-
-		// Show the new info
-		PollutionBar._DisplayInfo();
-	}
-
-	// Hides the information box related to the Pollution bar
-	public void _OnPollutionMouseExited() {
-		PollutionBar._HideInfo();
+			// Show the new info
+			PollutionBar._DisplayInfo();
+		}
 	}
 
 	// Shows the policy window
@@ -938,4 +933,5 @@ public partial class UI : CanvasLayer {
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
 		}
 	}
+	
 }

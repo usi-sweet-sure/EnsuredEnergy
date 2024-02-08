@@ -61,6 +61,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Texte"
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Text1" type="Label" parent="Control/TextContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -68,6 +69,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Texte"
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Text2" type="Label" parent="Control/TextContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -75,12 +77,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Texte"
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="space" type="Label" parent="Control/TextContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="nContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -105,6 +109,7 @@ theme_override_font_sizes/font_size = 22
 text = "n"
 horizontal_alignment = 2
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="n1" type="Label" parent="Control/nContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -113,6 +118,7 @@ theme_override_font_sizes/font_size = 22
 text = "n"
 horizontal_alignment = 2
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="n2" type="Label" parent="Control/nContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -121,6 +127,7 @@ theme_override_font_sizes/font_size = 22
 text = " n"
 horizontal_alignment = 2
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="n_ov_max" type="Label" parent="Control/nContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -129,3 +136,4 @@ theme_override_font_sizes/font_size = 22
 text = "n / max"
 horizontal_alignment = 2
 vertical_alignment = 1
+autowrap_mode = 3
