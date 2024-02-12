@@ -43,6 +43,10 @@ public partial class PowerPlant : Node2D {
 	 * @param pp, the plant that emitted the signal (in order to potentially revert the request) 
 	 */
 	public delegate void UpgradePlantEventHandler(bool inc, int cost, PowerPlant pp);
+	
+	// Signal the position of the selected plant for a zoom effect
+	[Signal]
+	public delegate void ZoomSignalEventHandler(Vector2 PlantPos);
 
 
 	[ExportGroup("Meta Parameters")]
@@ -826,17 +830,30 @@ public partial class PowerPlant : Node2D {
 	}
 	
 	// Press on the powerplant to get more info about it
-	private void OnInfoButtonPressed(){
-		Info.Visible = !Info.Visible;
-		ResRect.Visible = !ResRect.Visible;
-		
+	private void OnInfoButtonPressed() {
 		// only show the multiplier if  the plant can be upgraded
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
-		
-		// Toggle multiplier state if several elements are available
-		if(mult.MaxElements > 1) {
-			Multiplier.Visible = !Multiplier.Visible;
+	
+		if(Info.Visible) {
+			Info.Visible = false;
+			ResRect.Visible = false;
+			Multiplier.Visible = false;
+		} else {
+			// Hide other powerplants info before showing the selected plant's info
+			foreach (PowerPlant Plant in GetTree().GetNodesInGroup("PP")) {
+				Plant.Info.Visible = false;
+				Plant.ResRect.Visible = false;
+				Plant.Multiplier.Visible = false;
+			}
+			Info.Visible = true;
+			ResRect.Visible = true;
+			// Toggle multiplier state if several elements are available
+			if(mult.MaxElements > 1) {
+				Multiplier.Visible = true;
+			}
 		}
+		
+		EmitSignal(SignalName.ZoomSignal, Position);
 	}
 
 	// Requests a deletion of the powerplant
