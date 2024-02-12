@@ -192,11 +192,11 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar = GetNode<InfoBar>("Env");
 		SupportBar = GetNode<InfoBar>("Trust");
 		PollutionBar = GetNode<InfoBar>("Poll");
-		WinterButton = GetNode<Button>("EnergyBarWinter/WinterButton");
-		SummerButton = GetNode<Button>("EnergyBarSummer/SummerButton");
-		EnvButton = GetNode<Button>("Env/EnvButton");
-		SuppButton = GetNode<Button>("Trust/SuppButton");
-		PollButton = GetNode<Button>("Poll/PollButton");
+		WinterButton = GetNode<Button>("EnergyBarWinter/Button");
+		SummerButton = GetNode<Button>("EnergyBarSummer/Button");
+		EnvButton = GetNode<Button>("Env/Button");
+		SuppButton = GetNode<Button>("Trust/Button");
+		PollButton = GetNode<Button>("Poll/Button");
 
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");

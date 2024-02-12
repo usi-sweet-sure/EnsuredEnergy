@@ -32,6 +32,8 @@ public partial class InfoBar : ProgressBar {
 
 	// Label containing the name of the bar
 	private Label BarName;
+	
+	private Button BarButton;
 
 	// Info boc showing all of the relevant subfields of this resource
 	public InfoBox Box;
@@ -50,6 +52,7 @@ public partial class InfoBar : ProgressBar {
 		Target = GetNode<Line2D>("Target");
 		BarName = GetNode<Label>("Name");
 		Box = GetNode<InfoBox>("BarInfo");
+		BarButton = GetNode<Button>("Button");
 
 		Box.Hide();
 	}
@@ -84,7 +87,7 @@ public partial class InfoBar : ProgressBar {
 
 	// Updates the bar name (for localization)
 	public void _UpdateBarName(string name) {
-		BarName.Text = name;
+		BarButton.TooltipText = name;
 	}
 
 	// Updates the information of the associated info box 
