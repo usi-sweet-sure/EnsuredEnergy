@@ -657,7 +657,7 @@ public partial class UI : CanvasLayer {
 
 		PollutionBar._UpdateInfo(
 			// N/Max TODO: Figure out what to use here
-			"Some power plants emit CO2. Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.",
+			"Goal: Reach net zero by 2050",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);

@@ -549,7 +549,7 @@ offset_right = 28.2081
 offset_bottom = 182.095
 theme_override_constants/separation = 14
 
-[node name="Text1" parent="EnergyBarWinter/BarInfo/Control/TextContainer" index="1"]
+[node name="Text1" parent="EnergyBarWinter/BarInfo/Control/TextContainer" index="2"]
 theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 
 [node name="nContainer" parent="EnergyBarWinter/BarInfo/Control" index="1"]
@@ -561,10 +561,10 @@ offset_right = 43.0233
 offset_bottom = 177.469
 theme_override_constants/separation = 14
 
-[node name="n1" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="1"]
+[node name="n1" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="2"]
 theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 
-[node name="n_ov_max" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="3"]
+[node name="n_ov_max" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="5"]
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
@@ -606,7 +606,7 @@ theme_override_constants/separation = 14
 theme_override_colors/font_color = Color(0.835294, 0.12549, 0.0431373, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 
-[node name="Text1" parent="EnergyBarSummer/BarInfo/Control/TextContainer" index="1"]
+[node name="Text1" parent="EnergyBarSummer/BarInfo/Control/TextContainer" index="2"]
 theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 
 [node name="nContainer" parent="EnergyBarSummer/BarInfo/Control" index="1"]
@@ -615,10 +615,10 @@ theme_override_constants/separation = 14
 [node name="n" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="0"]
 theme_override_colors/font_color = Color(0.835294, 0.12549, 0.0431373, 1)
 
-[node name="n1" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="1"]
+[node name="n1" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="2"]
 theme_override_colors/font_color = Color(0, 0.6, 0, 1)
 
-[node name="n_ov_max" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="3"]
+[node name="n_ov_max" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="5"]
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 
@@ -796,7 +796,7 @@ theme_override_constants/separation = 14
 [node name="Text0" parent="Env/BarInfo/Control/TextContainer" index="0"]
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 
-[node name="Text1" parent="Env/BarInfo/Control/TextContainer" index="1"]
+[node name="Text1" parent="Env/BarInfo/Control/TextContainer" index="2"]
 theme_override_colors/font_color = Color(0, 0.537255, 0, 1)
 
 [node name="nContainer" parent="Env/BarInfo/Control" index="1"]
@@ -814,10 +814,10 @@ theme_override_constants/separation = 14
 [node name="n" parent="Env/BarInfo/Control/nContainer" index="0"]
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 
-[node name="n1" parent="Env/BarInfo/Control/nContainer" index="1"]
+[node name="n1" parent="Env/BarInfo/Control/nContainer" index="2"]
 theme_override_colors/font_color = Color(0, 0.537255, 0, 1)
 
-[node name="n_ov_max" parent="Env/BarInfo/Control/nContainer" index="3"]
+[node name="n_ov_max" parent="Env/BarInfo/Control/nContainer" index="5"]
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
@@ -908,8 +908,15 @@ theme_override_constants/separation = 14
 [node name="Text0" parent="Poll/BarInfo/Control/TextContainer" index="0"]
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 
-[node name="Text1" parent="Poll/BarInfo/Control/TextContainer" index="1"]
+[node name="InfoText" parent="Poll/BarInfo/Control/TextContainer" index="1"]
+text = "Some power plants emit CO2 which has a negative impact on climate. Switzerland has decided to be carbon neutral and reach net zero by 2050."
+
+[node name="Text1" parent="Poll/BarInfo/Control/TextContainer" index="2"]
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+
+[node name="InfoText2" parent="Poll/BarInfo/Control/TextContainer" index="3"]
+text = "Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.
+"
 
 [node name="nContainer" parent="Poll/BarInfo/Control" index="1"]
 anchors_preset = 10
@@ -927,10 +934,10 @@ theme_override_constants/separation = 14
 [node name="n" parent="Poll/BarInfo/Control/nContainer" index="0"]
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 
-[node name="n1" parent="Poll/BarInfo/Control/nContainer" index="1"]
+[node name="n1" parent="Poll/BarInfo/Control/nContainer" index="2"]
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 
-[node name="n_ov_max" parent="Poll/BarInfo/Control/nContainer" index="3"]
+[node name="n_ov_max" parent="Poll/BarInfo/Control/nContainer" index="5"]
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1

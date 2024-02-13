@@ -35,6 +35,12 @@ public partial class InfoBox : Control {
 	private Label NOvMax;
 
 	private Label[] labels;
+	
+	private TextureButton InfoButton;
+	private Label InfoText;
+	private Label InfoText2;
+	private Label InfoN;
+	private Label InfoN2;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -50,6 +56,14 @@ public partial class InfoBox : Control {
 		labels[4] = GetNode<Label>("Control/nContainer/n1");
 		labels[5] = GetNode<Label>("Control/TextContainer/Text2");
 		labels[6] = GetNode<Label>("Control/nContainer/n2");
+		
+		InfoButton = GetNode<TextureButton>("MoreInfo");
+		InfoText = GetNode<Label>("Control/TextContainer/InfoText");
+		InfoText2 = GetNode<Label>("Control/TextContainer/InfoText2");
+		InfoN = GetNode<Label>("Control/nContainer/InfoN");
+		InfoN2 = GetNode<Label>("Control/nContainer/InfoN2");
+		
+		InfoButton.Pressed += _OnMoreInfoPressed;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -87,5 +101,13 @@ public partial class InfoBox : Control {
 		for(; i < labels.Length; ++i) {
 			labels[i].Text = "";
 		}
+	}
+	
+	public void _OnMoreInfoPressed() {
+		InfoText.Visible = !InfoText.Visible;
+		InfoText2.Visible = !InfoText2.Visible;
+		InfoN.Visible = !InfoN.Visible;
+		InfoN2.Visible = !InfoN2.Visible;
+		labels[0].Visible = !labels[0].Visible;
 	}
 }
