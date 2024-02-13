@@ -30,6 +30,7 @@ public partial class Camera : Camera2D {
 	private Vector2 SCALE_LIMIT = new (0.65f, 0.65f);
 	private Vector2 PLANT_ZOOM = new (0.6f, 0.6f);
 	private Vector2 TargetZoom = new (1f, 1f);
+	private int CAMERA_SPEED = 40;
 
 	// Record initial position and zoom for reset
 	private Vector2 InitPos;
@@ -122,6 +123,13 @@ public partial class Camera : Camera2D {
 		Tween TweenZoom = CreateTween();
 		TweenZoom.TweenProperty(this, "zoom", PLANT_ZOOM, 0.4f);
 	}
+	
+	// Arrow key camera movement
+	public override void _PhysicsProcess(double delta) {
+		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		Position = Position.Lerp(Position + direction*CAMERA_SPEED * Zoom, CAMERA_SPEED * (float)delta);
+	}
+  
 
 	// ==================== Public API ====================
 
