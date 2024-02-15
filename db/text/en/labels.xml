@@ -32,6 +32,12 @@
         <text id="label_production">Production</text>
         <text id="label_import_pol">Imports Emissions</text>
     </group>
+
+    <!-- Labels used in the policies window -->
+    <group id="policies">
+        <text id="policy_success">Policy was passed successfully!</text>
+        <text id="policy_failure">Policy failed to be passed...</text>
+    </group>
     
     <!-- Labels for the resource bars -->
     <group id="resources">

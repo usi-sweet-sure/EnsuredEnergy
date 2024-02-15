@@ -301,6 +301,7 @@ public partial class BuildMenu : CanvasLayer {
 					SetPlantColor(ref SolarPlant);
 					SolarPlant._SetPlantFromConfig(Building.Type.SOLAR);
 					SolarPlant.PlantType = Building.Type.SOLAR;
+					C._GetGL()._ApplyOverload(ref SolarPlant);
 
 					// Check if we can afford the build
 					if(!C._GetGL()._CheckBuildReq(SolarPlant.BuildCost)) {
@@ -328,6 +329,7 @@ public partial class BuildMenu : CanvasLayer {
 					SetPlantColor(ref WindPlant);
 					WindPlant._SetPlantFromConfig(Building.Type.WIND);
 					WindPlant.PlantType = Building.Type.WIND;
+					C._GetGL()._ApplyOverload(ref WindPlant);
 
 					// Check if we can afford the build
 					if(!C._GetGL()._CheckBuildReq(WindPlant.BuildCost)) {

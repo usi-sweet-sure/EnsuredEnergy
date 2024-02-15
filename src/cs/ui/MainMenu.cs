@@ -58,7 +58,7 @@ public partial class MainMenu : CanvasLayer {
 		// Fetch Nodes
 		C = GetNode<Context>("/root/Context");
 		GL = GetOwner<GameLoop>();
-		TC = GetNode<TextController>("../TextController");
+		TC = GetNode<TextController>("/root/TextController");
 		Play = GetNode<TextureButton>("Play");
 		Lang = GetNode<TextureButton>("Lang");
 		Mode = GetNode<TextureButton>("Offline");

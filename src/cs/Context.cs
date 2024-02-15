@@ -283,6 +283,12 @@ public partial class Context : Node {
     // Fetches the game name and returns an empty string if not set
     public string _GetGameName() => ResName;
 
+    // Getter for the current state of resources
+    public (Energy, Environment, Support) _GetResources() => GL._GetResources();
+
+    // Getter for the resource manager
+    public ResourceManager _GetRM() => GL._GetRM();
+
     // Returns whether or not the model is valid
     public bool _GetModelValidity(ModelSeason S) => 
         S == ModelSeason.WINTER ? MWinter._IsValid() : MSummer._IsValid();

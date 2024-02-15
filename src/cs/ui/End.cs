@@ -86,7 +86,7 @@ public partial class End : CanvasLayer {
 		ScoreToggle = GetNode<TextureButton>("Score");
 
 		// Fetch the text controller
-		TC = GetNode<TextController>("../TextController");
+		TC = GetNode<TextController>("/root/TextController");
 		
 		ScoreToggle.Pressed += _OnScorePressed;
 	}

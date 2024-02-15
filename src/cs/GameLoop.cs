@@ -60,7 +60,10 @@ public partial class GameLoop : Node2D {
 	// Reference to the buildmenu
 	private BuildMenu BM;
 
+	private PolicyManager PM;
+
 	public MoneyData Money; // The current money the player has
+	public MultiplierOverloads MO; // The current active overloads
 
 	private int RemainingTurns; // The number of turns remaining until the end of the game
 
@@ -86,6 +89,13 @@ public partial class GameLoop : Node2D {
 	public override void _Ready() {
 		// Fetch context and model controller
 		C = GetNode<Context>("/root/Context");
+		// Set the number of turns in the context
+		C._SetNTurns(N_TURNS);
+
+		// Set the game loop reference
+		C._SetGLRef(this);
+
+		
 		MC = GetNode<ModelController>("ModelController");
 		ShockWindow = GetNode<Shock>("Shock");
 		EndScreen = GetNode<End>("End");
@@ -99,6 +109,7 @@ public partial class GameLoop : Node2D {
 		Money = new MoneyData(START_MONEY);
 		PowerPlants = new List<PowerPlant>();
 		BBs = new List<BuildButton>();
+		MO = new();
 
 		// Fetch initial nodes
 		// Start with PowerPlants, in the begining there are only 2 PowerPlants Nuclear and Coal
@@ -132,12 +143,8 @@ public partial class GameLoop : Node2D {
 		
 		// Fetch resource manager
 		RM = GetNode<ResourceManager>("ResourceManager");
+		PM = GetNode<PolicyManager>("ResourceManager/PolicyManager");
 
-		// Set the number of turns in the context
-		C._SetNTurns(N_TURNS);
-
-		// Set the game loop reference
-		C._SetGLRef(this);
 
 		// Initially set all plants form their configs
 		foreach(PowerPlant pp in PowerPlants) {
@@ -211,10 +218,78 @@ public partial class GameLoop : Node2D {
 	// Retrieves the current resource estimates from the resource manager
 	public (Energy, Environment, Support) _GetResources() => RM._GetResources();
 
+	// Returns the resource manager itself
+	public ResourceManager _GetRM() => RM;
+
+	public PolicyManager _GetPM() => PM;
+
 	// Enable public access to a resource update request
 	public void _UpdateResourcesUI() {
 		// Request a non-new turn update of the UI
 		UpdateResources();
+	}
+
+	// Apply the current overloads to all plants
+	public void _ApplyOverloads() {
+		PowerPlants.ForEach(pp => _ApplyOverload(ref pp));
+	}
+
+	// Checks for overloads and applies then to the given plant if necessary
+	public void _ApplyOverload(ref PowerPlant PP) {
+		// Figure out what kind of overload the plant needs and apply it
+		if(PP.PlantType.type == Building.Type.WIND) {
+			if(MO.WindMax != -1) {
+				PP._OverloadMultiplier(MO.WindMax);
+			}
+			if(MO.WindBuildTime != -1) {
+				PP._OverloadBuildTime(MO.WindBuildTime);
+			}
+		}
+		if(PP.PlantType.type == Building.Type.SOLAR) {
+			if(MO.SolarMax != -1) {
+				PP._OverloadMultiplier(MO.SolarMax);
+			}
+			if(MO.SolarBuildTime != -1) {
+				PP._OverloadBuildTime(MO.SolarBuildTime);
+			}
+		}
+	}
+
+	// Applies a given effect
+	public void _ApplyEffect(Effect e) {
+		// Handle each resource type differently
+		switch(e.RT) {
+			// Some resources are managed by the resource manager
+			case ResourceType.ENERGY_W:
+			case ResourceType.ENERGY_S:
+			case ResourceType.ENVIRONMENT:
+			case ResourceType.SUPPORT:
+				RM._ApplyEffect(e);
+			break;
+
+			// The other types must be handled separately
+			case ResourceType.MONEY:
+				Money.Money += (int)e.Value;
+			break;
+			case ResourceType.WIND_MULT_MAX:
+				MO.WindMax = (int)e.Value;
+			break;
+			case ResourceType.WIND_BUILD_TIME:
+				MO.WindBuildTime = (int)e.Value;
+			break;
+			case ResourceType.SOLAR_MULT_MAX:
+				MO.SolarMax = (int)e.Value;
+			break;
+			case ResourceType.SOLAR_BUILD_TIME:
+				MO.SolarBuildTime = (int)e.Value;
+			break;
+
+			default:
+			break;
+		}
+
+		// Apply the new overloads
+		_ApplyOverloads();
 	}
 
 	// ==================== Internal Helpers ====================
@@ -446,18 +521,18 @@ public partial class GameLoop : Node2D {
 	}
 
 	// Applies a given shock effect
-	private void ApplyShockEffect(ShockEffect SE) {
+	private void ApplyShockEffect(Reward SE) {
 		// Apply each individual effect
-		foreach((ResourceType rt, float v) in SE.Effects) {
+		foreach(Effect e in SE.Effects) {
 			// Figure out which resource to affect
-			switch(rt) {
+			switch(e.RT) {
 				// The game loop only handles money (for some reason lol)
 				case ResourceType.MONEY:
-					Money.Money += (int)v;
+					Money.Money += (int)e.Value;
 					break;
 				// All other resources are handled by the resource manager
 				default:
-					RM._ApplyShockEffect(rt, v);
+					RM._ApplyEffect(e);
 					break;
 			}
 		}
@@ -556,7 +631,7 @@ public partial class GameLoop : Node2D {
 	// Updates the resources after a reaction to a shock has been selected
 	public void _OnShockSelectReaction(int id) {
 		// Fetch the reaction effect
-		List<ShockEffect> reactions = ShockWindow._GetReactions();
+		List<Reward> reactions = ShockWindow._GetReactions();
 
 		// Sanity check: make sure that the id is valid
 		if(reactions.Count <= id) {
@@ -573,7 +648,7 @@ public partial class GameLoop : Node2D {
 	// Updates the resources to apply a given shock reward
 	public void _OnShockApplyReward() {
 		// Extract the reward
-		ShockEffect reward = ShockWindow._GetReward();
+		Reward reward = ShockWindow._GetReward();
 
 		// Apply the reward
 		ApplyShockEffect(reward);
@@ -606,6 +681,9 @@ public partial class GameLoop : Node2D {
 		// Create a copy of the power plants array
 		PowerPlant[] tmp = new PowerPlant[PowerPlants.Count];
 		PowerPlants.Distinct().ToList().CopyTo(tmp);
+		MO = new();
+		PM._Reset();
+		
 
 		// Delete all plants
 		foreach(var pp in tmp) {

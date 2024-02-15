@@ -298,6 +298,7 @@ public partial class BuildButton : TextureButton {
 	private void UpdateGenericPlant(PowerPlant PP) {
 		// Make sure that the selected plant is setup correctly
 		PP._SetPlantFromConfig(PP.PlantType);
+		C._GetGL()._ApplyOverload(ref PP);
 
 		// Update the availability if online mode is active
 		if(!C._GetOffline()) {
