@@ -61,6 +61,22 @@ public partial class EnergyManager : Node {
 		E = new Energy();
 	}
 
+	// Applies the effect of a shock
+	public void _ApplyEffect(Effect e) {
+		// Figure out which resource to affect
+		switch(e.RT) {
+			case ResourceType.ENERGY_S:
+				// Update the summer model's demand
+				E.DemandSummer += e.Value;
+				break;
+			case ResourceType.ENERGY_W:
+				E.DemandWinter += e.Value;
+				break;
+			default: 
+				break;
+		}
+	}
+
 	// Updates the current internal power plant list
 	public void _UpdatePowerPlants(List<PowerPlant> lP) {
 		// Clear the current list to be safe

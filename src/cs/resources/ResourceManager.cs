@@ -282,12 +282,8 @@ public partial class ResourceManager : Node {
 		// Figure out which resource to affect
 		switch(e.RT) {
 			case ResourceType.ENERGY_S:
-				// Update the summer model's demand
-				C._UpdateModelDemand(e.Value, winter: false);
-				break;
 			case ResourceType.ENERGY_W:
-				// Update the winter model's demand
-				C._UpdateModelDemand(e.Value);
+				EngM._ApplyEffect(e);
 				break;
 			case ResourceType.ENVIRONMENT:
 				EnvM._ApplyShockEffect(e.Value);

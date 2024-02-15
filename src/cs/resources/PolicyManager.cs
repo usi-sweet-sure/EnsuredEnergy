@@ -122,11 +122,8 @@ public partial class PolicyManager : Node {
 			return false;
 		}
 
-		// Recover the probability from the config
-		float prob = PC._GetPolicyProba(policyId);
-
 		// Perform the vote and apply the effects if the vote passed
-		bool pass = PerformVote(prob, Bonuses[tag]);
+		bool pass = PerformVote(policyId);
 		if(pass) {
 			ApplyEffects(PC._GetEffects("policy", policyId));
 
@@ -155,8 +152,8 @@ public partial class PolicyManager : Node {
 
 	// Dice roll to see if the vote passes or not given the probability and bonus
 	// The method is simply Rand(0, 100) <= (prob + bonus) * 100
-	private bool PerformVote(float prob, float bonus) =>
-		new Random().Next(0, 100) <= ((prob + bonus) * 100);
+	private bool PerformVote(string policyId) =>
+		new Random().Next(0, 100) <= (_GetRealProb(policyId) * 100);
 
 	// Applies the given effects to the current resources
 	private void ApplyEffects(List<Effect> effects) {
