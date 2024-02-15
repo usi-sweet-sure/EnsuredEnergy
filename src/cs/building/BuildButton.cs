@@ -274,7 +274,7 @@ public partial class BuildButton : TextureButton {
 	private void SetToBuild() {
 		BuildingSound.Play();
 		BuildSprite.Show();
-		TL.Text = "⌛ " + TurnsToBuild.ToString();
+		TL.Text = TurnsToBuild.ToString() + "⌛";
 		Disabled = true;
 	}
 

@@ -531,56 +531,12 @@ offset_right = 524.767
 offset_bottom = 345.054
 rotation = 1.5708
 
-[node name="InfoMoney" parent="EnergyBarWinter/BarInfo" index="0"]
-offset_right = 334.0
-offset_bottom = 312.0
-
-[node name="Control" parent="EnergyBarWinter/BarInfo" index="1"]
-offset_top = 32.0
-offset_bottom = 156.78
-
-[node name="TextContainer" parent="EnergyBarWinter/BarInfo/Control" index="0"]
-anchor_top = 0.0848428
-anchor_right = 0.820848
-anchor_bottom = 0.326765
-offset_left = 18.3652
-offset_top = -15.8418
-offset_right = 28.2081
-offset_bottom = 182.095
-theme_override_constants/separation = 14
-
-[node name="InfoText" parent="EnergyBarWinter/BarInfo/Control/TextContainer" index="1"]
+[node name="InfoText" parent="EnergyBarWinter/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
 text = "In winter, energy demand is higher due to the need for heating. Switzerland often has to import the missing energy supply."
 
-[node name="Text1" parent="EnergyBarWinter/BarInfo/Control/TextContainer" index="2"]
-theme_override_colors/font_color = Color(0, 0.6, 0, 1)
-
-[node name="InfoText2" parent="EnergyBarWinter/BarInfo/Control/TextContainer" index="3"]
+[node name="InfoText2" parent="EnergyBarWinter/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
 text = "You need to reach the demand in energy. The target is the white line on the energy bar.
 "
-
-[node name="nContainer" parent="EnergyBarWinter/BarInfo/Control" index="1"]
-anchor_top = 0.0566696
-anchor_bottom = 0.402413
-offset_left = 18.1804
-offset_top = -12.5737
-offset_right = 43.0233
-offset_bottom = 177.469
-theme_override_constants/separation = 14
-
-[node name="InfoN" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="1"]
-text = ""
-
-[node name="n1" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="2"]
-theme_override_colors/font_color = Color(0, 0.6, 0, 1)
-
-[node name="InfoN2" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="3"]
-text = ""
-
-[node name="n_ov_max" parent="EnergyBarWinter/BarInfo/Control/nContainer" index="5"]
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-horizontal_alignment = 1
 
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
 offset_left = 109.0
@@ -604,50 +560,13 @@ offset_bottom = 583.786
 rotation = 1.5708
 metadata/_edit_group_ = true
 
-[node name="InfoMoney" parent="EnergyBarSummer/BarInfo" index="0"]
-offset_top = -8.0
-offset_right = 334.0
-offset_bottom = 304.0
-
-[node name="Control" parent="EnergyBarSummer/BarInfo" index="1"]
-offset_bottom = -8.22
-
-[node name="TextContainer" parent="EnergyBarSummer/BarInfo/Control" index="0"]
-theme_override_constants/separation = 14
-
-[node name="Text0" parent="EnergyBarSummer/BarInfo/Control/TextContainer" index="0"]
-theme_override_colors/font_color = Color(0.835294, 0.12549, 0.0431373, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "In summer there is more energy demand for cooling, but in general the demand is lower than winter."
-
-[node name="InfoText" parent="EnergyBarSummer/BarInfo/Control/TextContainer" index="1"]
-text = "In Summer, there is a higher energy demand for cooling, but overall it is still lower than demand in winter."
-
-[node name="Text1" parent="EnergyBarSummer/BarInfo/Control/TextContainer" index="2"]
-theme_override_colors/font_color = Color(0, 0.6, 0, 1)
-
-[node name="InfoText2" parent="EnergyBarSummer/BarInfo/Control/TextContainer" index="3"]
-text = "You need to reach the demand in energy. The target is the white line on the energy bar.
+[node name="InfoText" parent="EnergyBarSummer/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
+text = "Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.
 "
 
-[node name="nContainer" parent="EnergyBarSummer/BarInfo/Control" index="1"]
-theme_override_constants/separation = 14
-
-[node name="n" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="0"]
-theme_override_colors/font_color = Color(0.835294, 0.12549, 0.0431373, 1)
-
-[node name="InfoN" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="1"]
-text = ""
-
-[node name="n1" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="2"]
-theme_override_colors/font_color = Color(0, 0.6, 0, 1)
-
-[node name="InfoN2" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="3"]
-text = ""
-
-[node name="n_ov_max" parent="EnergyBarSummer/BarInfo/Control/nContainer" index="5"]
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+[node name="InfoText2" parent="EnergyBarSummer/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
+text = "You need to reach the demand in energy. The target is the white line on the energy bar.
+"
 
 [node name="Import" parent="." instance=ExtResource("5_ps4b6")]
 offset_left = 310.0
@@ -729,15 +648,6 @@ offset_bottom = 285.121
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="InfoMoney" parent="Trust/BarInfo" index="0"]
-offset_bottom = 255.0
-
-[node name="TextContainer" parent="Trust/BarInfo/Control" index="0"]
-theme_override_constants/separation = 14
-
-[node name="nContainer" parent="Trust/BarInfo/Control" index="1"]
-theme_override_constants/separation = 14
-
 [node name="Name" type="Label" parent="Trust"]
 visible = false
 layout_mode = 2
@@ -788,73 +698,17 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
-visible = false
 layout_mode = 1
-offset_left = -36.0
-offset_top = -279.0
-offset_right = 266.52
-offset_bottom = -122.37
+offset_left = 308.0
+offset_top = 129.0
+offset_right = 610.52
+offset_bottom = 285.63
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
 
-[node name="InfoMoney" parent="Env/BarInfo" index="0"]
-offset_bottom = 264.0
-
-[node name="Control" parent="Env/BarInfo" index="1"]
-offset_left = 20.0
-offset_top = 18.0
-offset_right = -9.0
-offset_bottom = 67.208
-
-[node name="TextContainer" parent="Env/BarInfo/Control" index="0"]
-anchors_preset = 10
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-offset_left = 13.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 226.0
-grow_vertical = 1
-theme_override_constants/separation = 14
-
-[node name="Text0" parent="Env/BarInfo/Control/TextContainer" index="0"]
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-
-[node name="InfoText" parent="Env/BarInfo/Control/TextContainer" index="1"]
+[node name="InfoText" parent="Env/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
 text = "Some power plants need more land than others. This can negatively impact biodiversity."
-
-[node name="Text1" parent="Env/BarInfo/Control/TextContainer" index="2"]
-theme_override_colors/font_color = Color(0, 0.537255, 0, 1)
-
-[node name="InfoText2" parent="Env/BarInfo/Control/TextContainer" index="3"]
-text = "Most power plants negatively affect biodiversity because they require lots of land and water.
-"
-
-[node name="nContainer" parent="Env/BarInfo/Control" index="1"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.05822
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = -17.0
-offset_bottom = 226.0
-grow_vertical = 1
-theme_override_constants/separation = 14
-
-[node name="n" parent="Env/BarInfo/Control/nContainer" index="0"]
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-
-[node name="n1" parent="Env/BarInfo/Control/nContainer" index="2"]
-theme_override_colors/font_color = Color(0, 0.537255, 0, 1)
-
-[node name="n_ov_max" parent="Env/BarInfo/Control/nContainer" index="5"]
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
-horizontal_alignment = 1
 
 [node name="Name" type="Label" parent="Env"]
 visible = false
@@ -909,72 +763,28 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
+visible = false
 layout_mode = 1
-offset_left = -172.0
-offset_top = -279.0
-offset_right = -27.816
-offset_bottom = -258.904
+offset_left = 172.0
+offset_top = 129.0
+offset_right = 316.184
+offset_bottom = 149.096
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
 
-[node name="InfoMoney" parent="Poll/BarInfo" index="0"]
-offset_bottom = 264.0
-
-[node name="Control" parent="Poll/BarInfo" index="1"]
-offset_left = 20.0
-offset_top = 18.0
-offset_right = 143.0
-offset_bottom = 207.4
-
-[node name="TextContainer" parent="Poll/BarInfo/Control" index="0"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.825217
-anchor_bottom = 0.0
-offset_left = 11.0
-offset_top = 0.0
-offset_right = -0.0119934
-offset_bottom = 226.0
-grow_vertical = 1
-theme_override_constants/separation = 14
-
-[node name="Text0" parent="Poll/BarInfo/Control/TextContainer" index="0"]
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-
-[node name="InfoText" parent="Poll/BarInfo/Control/TextContainer" index="1"]
+[node name="InfoText" parent="Poll/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
 text = "Some power plants emit CO2 which has a negative impact on climate. Switzerland has decided to be carbon neutral and reach net zero by 2050."
 
-[node name="Text1" parent="Poll/BarInfo/Control/TextContainer" index="2"]
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+[node name="Text1" parent="Poll/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="2"]
+theme_override_colors/font_color = Color(0.666667, 0, 0, 1)
 
-[node name="InfoText2" parent="Poll/BarInfo/Control/TextContainer" index="3"]
+[node name="n1" parent="Poll/BarInfo/MarginContainer/MarginContainer/VBoxContainer/Text1" index="0"]
+theme_override_colors/font_color = Color(0.666667, 0, 0, 1)
+
+[node name="InfoText2" parent="Poll/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
 text = "Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.
 "
-
-[node name="nContainer" parent="Poll/BarInfo/Control" index="1"]
-anchors_preset = 10
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-offset_left = 19.0
-offset_top = 0.0
-offset_right = -15.0
-offset_bottom = 226.0
-grow_vertical = 1
-theme_override_constants/separation = 14
-
-[node name="n" parent="Poll/BarInfo/Control/nContainer" index="0"]
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-
-[node name="n1" parent="Poll/BarInfo/Control/nContainer" index="2"]
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-
-[node name="n_ov_max" parent="Poll/BarInfo/Control/nContainer" index="5"]
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
-horizontal_alignment = 1
 
 [node name="Name" type="Label" parent="Poll"]
 visible = false

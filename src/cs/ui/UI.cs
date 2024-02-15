@@ -767,6 +767,13 @@ public partial class UI : CanvasLayer {
 		if(WinterEnergy.Box.Visible) {
 			WinterEnergy._HideInfo();
 		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			
 			SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
 
 		 	// Display the energy info
@@ -778,6 +785,13 @@ public partial class UI : CanvasLayer {
 		if(SummerEnergy.Box.Visible) {
 			SummerEnergy._HideInfo();
 		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			
 			SetEnergyInfo(ref SummerEnergy, InfoType.S_ENGERGY);
 
 		 	// Display the energy info
@@ -789,6 +803,12 @@ public partial class UI : CanvasLayer {
 		if(EnvironmentBar.Box.Visible) {
 			EnvironmentBar._HideInfo();
 		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
 			// Set the information first
 			SetEnvironmentInfo();
 
@@ -801,6 +821,12 @@ public partial class UI : CanvasLayer {
 		if(SupportBar.Box.Visible) {
 			SupportBar._HideInfo();
 		} else  {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
 			// Set the information first
 			SetSupportInfo();
 
@@ -813,6 +839,13 @@ public partial class UI : CanvasLayer {
 		if(PollutionBar.Box.Visible) {
 			PollutionBar._HideInfo();
 		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			
 			// Make sure that the pollution info is up to date
 			SetPollutionInfo();
 

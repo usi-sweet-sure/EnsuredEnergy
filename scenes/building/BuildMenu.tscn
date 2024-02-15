@@ -86,17 +86,6 @@ metadata/_edit_group_ = true
 [node name="Sprite" parent="TabContainer/TabBar/Solar" index="0"]
 texture = ExtResource("3_jhvum")
 
-[node name="Price" parent="TabContainer/TabBar/Solar/PreviewInfo" index="3"]
-layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 52.0
-offset_bottom = 35.0
-grow_vertical = 1
-
 [node name="SolarButton" type="Button" parent="TabContainer/TabBar/Solar"]
 offset_left = -104.0
 offset_top = -139.0
@@ -117,14 +106,8 @@ texture = ExtResource("4_35oxp")
 
 [node name="Price" parent="TabContainer/TabBar/Wind/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="Turbine" type="Sprite2D" parent="TabContainer/TabBar/Wind"]
 position = Vector2(-86.25, -107.5)
@@ -149,14 +132,8 @@ texture = ExtResource("6_cx1ud")
 
 [node name="Price" parent="TabContainer/TabBar/Tree/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="TreeButton" type="Button" parent="TabContainer/TabBar/Tree"]
 offset_left = -109.0
@@ -181,14 +158,8 @@ texture = ExtResource("8_ypqld")
 
 [node name="Price" parent="TabContainer/TabBar/Hydro/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="HydroButton" type="Button" parent="TabContainer/TabBar/Hydro"]
 offset_left = -104.0
@@ -208,14 +179,8 @@ texture = ExtResource("8_61mnc")
 
 [node name="Price" parent="TabContainer/TabBar/Gas/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="GasButton" type="Button" parent="TabContainer/TabBar/Gas"]
 offset_left = -102.0
@@ -235,14 +200,8 @@ texture = ExtResource("9_5wkvd")
 
 [node name="Price" parent="TabContainer/TabBar/Waste/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="WasteButton" type="Button" parent="TabContainer/TabBar/Waste"]
 offset_left = -101.0
@@ -261,14 +220,8 @@ texture = ExtResource("10_xrjfu")
 
 [node name="Price" parent="TabContainer/TabBar/Biomass/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="BiomassButton" type="Button" parent="TabContainer/TabBar/Biomass"]
 offset_left = -103.0
@@ -292,14 +245,8 @@ texture = ExtResource("13_wuh2w")
 
 [node name="Price" parent="TabContainer/TabBar/River/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="RiverButton" type="Button" parent="TabContainer/TabBar/River"]
 offset_left = -98.0
@@ -319,14 +266,8 @@ texture = ExtResource("7_n0676")
 
 [node name="Price" parent="TabContainer/TabBar/Pump/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="PumpButton" type="Button" parent="TabContainer/TabBar/Pump"]
 offset_left = -90.0

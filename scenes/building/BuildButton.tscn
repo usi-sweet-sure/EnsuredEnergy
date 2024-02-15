@@ -2007,14 +2007,8 @@ texture = ExtResource("5_4jvt0")
 
 [node name="Price" parent="Gas/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="NameRect" parent="Gas" index="3"]
 visible = false
@@ -2076,14 +2070,8 @@ texture = ExtResource("10_ueb8a")
 
 [node name="Price" parent="Hydro/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="Water" type="Sprite2D" parent="Hydro"]
 modulate = Color(1, 1, 1, 0)
@@ -2133,14 +2121,8 @@ texture = SubResource("GradientTexture2D_ekq5o")
 
 [node name="Price" parent="Solar/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="Sprite2" type="Sprite2D" parent="Solar"]
 visible = false
@@ -2171,14 +2153,8 @@ texture = ExtResource("13_buqe2")
 
 [node name="Price" parent="Tree/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
@@ -2234,14 +2210,8 @@ offset = Vector2(0, 16)
 
 [node name="Price" parent="Wind/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="Sprite2" type="Sprite2D" parent="Wind"]
 visible = false
@@ -2290,7 +2260,6 @@ libraries = {
 }
 
 [node name="Building" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-13, -10)
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("16_ots00")
@@ -2302,10 +2271,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -54.2941
-offset_top = -98.1765
-offset_right = 50.7059
-offset_bottom = -66.176
+offset_left = -62.0
+offset_top = -77.0
+offset_right = 94.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.847656, 0.847656, 0.847656, 1)
@@ -2318,7 +2286,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.398438, 0.398438, 0.398438, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 70
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2365,14 +2333,8 @@ texture = ExtResource("6_3vcfd")
 
 [node name="Price" parent="Waste/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Waste"]
 root_node = NodePath("../Sprite")
@@ -2417,14 +2379,8 @@ texture = ExtResource("5_s6f5j")
 
 [node name="Price" parent="Biomass/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Biomass"]
 root_node = NodePath("../Sprite")
@@ -2464,14 +2420,8 @@ texture = ExtResource("21_g2ord")
 
 [node name="Price" parent="River/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="River"]
 root_node = NodePath("../Sprite")
@@ -2490,14 +2440,8 @@ texture = ExtResource("10_ueb8a")
 
 [node name="Price" parent="Pump/PreviewInfo" index="3"]
 layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
-grow_vertical = 1
 
 [node name="Cancel" type="Button" parent="."]
 visible = false

@@ -260,23 +260,19 @@ scale = Vector2(0.8, 0.8)
 layout_mode = 3
 anchors_preset = 0
 offset_left = -88.0
-offset_top = 194.0
+offset_top = 193.0
 offset_right = 88.0
-offset_bottom = 234.0
+offset_bottom = 259.0
 
 [node name="Time" type="Label" parent="PreviewInfo"]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -35.0
-offset_right = -12.0
+offset_left = -64.0
+offset_bottom = 58.0
 grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 40
 text = "0"
 
 [node name="Time2" type="Label" parent="PreviewInfo"]
@@ -291,31 +287,24 @@ text = "🔨"
 
 [node name="Time3" type="Label" parent="PreviewInfo"]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = -30.0
-offset_right = -17.0
-offset_bottom = 6.0
+offset_top = -27.5
+offset_bottom = 27.5
 grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 26
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
 text = "⌛"
 
 [node name="Price" type="Label" parent="PreviewInfo"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -34.0
-offset_right = 64.0
-offset_bottom = 1.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 23
+offset_right = 92.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
 text = "1000"
 horizontal_alignment = 1
 
