@@ -70,3 +70,10 @@ offset_right = 288.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "X"
+
+[node name="ImportSwitch" type="CheckButton" parent="."]
+offset_left = -11.0
+offset_top = 193.0
+offset_right = 33.0
+offset_bottom = 224.0
+focus_mode = 0

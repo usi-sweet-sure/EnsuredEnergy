@@ -1628,7 +1628,6 @@ visible = false
 [node name="Wind" parent="World" index="11" groups=["PP"]]
 position = Vector2(-556, 553)
 HasAnimation = true
-HasMultSprite = true
 _PlantType = 5
 
 [node name="Sprite" parent="World/Wind" index="0"]
@@ -1689,7 +1688,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Solar" parent="World" index="21" groups=["PP"]]
 position = Vector2(2617, 1493)
 HasAnimation = true
-HasMultSprite = true
 _PlantType = 2
 
 [node name="Sprite" parent="World/Solar" index="0"]

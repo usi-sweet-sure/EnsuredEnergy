@@ -43,6 +43,7 @@ public partial class ImportSlider : VSlider {
 
 	// The clean import toggle switch
 	private Button ImportSwitch;
+	private bool GreenImports;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -55,10 +56,11 @@ public partial class ImportSlider : VSlider {
 		Target = GetNode<Line2D>("Target");
 		ApplySelection = GetNode<Button>("Apply");
 		Cancel = GetNode<Button>("Cancel");
-		ImportSwitch = GetNode<Button>("../ImportSwitch");
+		ImportSwitch = GetNode<Button>("ImportSwitch");
 
 		// Initialize the import amount
 		ImportAmount = 0;
+		GreenImports = false;
 
 		// Connect the various callbacks
 		ValueChanged += OnSliderRangeValueChanged;
@@ -91,6 +93,9 @@ public partial class ImportSlider : VSlider {
 
 	// Getter for the current value selected with the slider
 	public int _GetImportValue() => Math.Max(0, Math.Min((int) ImportAmount, 100));
+
+	// Getter for the state of green imports
+	public bool _GetGreenImports() => GreenImports;
 
 	// ==================== Signal Callbacks ====================
 
@@ -131,6 +136,7 @@ public partial class ImportSlider : VSlider {
 	// Toggles the clean import that cost more but doesn't pollute
 	private void OnImportSwitchToggled(bool Toggled) {
 		GD.Print(Toggled);
+		GreenImports = ! GreenImports;
 		// TODO if switch on, import doesnt create pollution but cost more
 	}
 }

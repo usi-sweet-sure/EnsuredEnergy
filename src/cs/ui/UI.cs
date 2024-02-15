@@ -585,6 +585,9 @@ public partial class UI : CanvasLayer {
 	// Retrieves the import percentage selected by the user
 	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 100.0f;
 
+	// Getter for the green energy toggle state
+	public bool _GetGreenImportState() => Imports._GetGreenImports();
+
 	// ==================== Internal Helpers ====================
 
 	// Sets the required imports based on the demand
