@@ -1424,11 +1424,21 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(50, -277.5)
 texture = ExtResource("9_2lgj4")
 
+[node name="BuildInfo" parent="World/Nuclear3" index="3"]
+offset_top = -268.0
+offset_bottom = -228.0
+
 [node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="0"]
-offset_top = -143.0
+offset_top = -232.0
+
+[node name="ContainerL" parent="World/Nuclear3/BuildInfo/ColorRect" index="1"]
+offset_top = -59.0
+offset_right = 238.0
+offset_bottom = 213.0
 
 [node name="LifeSpan2" parent="World/Nuclear3/BuildInfo/ColorRect/ContainerL" index="0"]
 visible = true
+theme_override_font_sizes/font_size = 32
 
 [node name="LifeSpan" parent="World/Nuclear3/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
@@ -1469,10 +1479,16 @@ scale = Vector2(0.8, 1)
 texture = ExtResource("9_2lgj4")
 
 [node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="0"]
-offset_top = -142.0
+offset_top = -236.0
+
+[node name="ContainerL" parent="World/Nuclear2/BuildInfo/ColorRect" index="1"]
+offset_top = -60.0
+offset_right = 238.0
+offset_bottom = 212.0
 
 [node name="LifeSpan2" parent="World/Nuclear2/BuildInfo/ColorRect/ContainerL" index="0"]
 visible = true
+theme_override_font_sizes/font_size = 32
 
 [node name="LifeSpan" parent="World/Nuclear2/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
@@ -1522,10 +1538,16 @@ position = Vector2(57, -249.25)
 texture = ExtResource("8_jh2tr")
 
 [node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="0"]
-offset_top = -143.0
+offset_top = -241.0
+
+[node name="ContainerL" parent="World/Nuclear/BuildInfo/ColorRect" index="1"]
+offset_top = -59.0
+offset_right = 238.0
+offset_bottom = 213.0
 
 [node name="LifeSpan2" parent="World/Nuclear/BuildInfo/ColorRect/ContainerL" index="0"]
 visible = true
+theme_override_font_sizes/font_size = 32
 
 [node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true

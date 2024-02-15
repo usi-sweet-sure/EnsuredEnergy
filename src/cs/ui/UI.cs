@@ -644,7 +644,7 @@ public partial class UI : CanvasLayer {
 		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
 
 		EnvironmentBar._UpdateInfo(
-			"Some power plants need more land than others. This can negatively impact biodiversity", // N/Max TODO: Figure out what to use here
+			"", // N/Max TODO: Figure out what to use here
 			land_label, Data.LandUse.ToString() + "%", // T0, N0
 			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
 		);
@@ -657,7 +657,7 @@ public partial class UI : CanvasLayer {
 
 		PollutionBar._UpdateInfo(
 			// N/Max TODO: Figure out what to use here
-			"Goal: Reach net zero by 2050",
+			"Goal: Reach net zero by 2050.",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
