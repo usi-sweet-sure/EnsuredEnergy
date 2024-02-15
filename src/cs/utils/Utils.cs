@@ -602,11 +602,14 @@ public struct Effect {
 	public ResourceType RT;
 	// The amount by which the resource will be impacted (can be negative)
 	public float Value;
+	// A human-readable description of the effect
+	public string Text;
 
 	// Basic constructor
-	public Effect(ResourceType _RT, float _Val) {
+	public Effect(ResourceType _RT, float _Val, string T="") {
 		RT = _RT;
 		Value = _Val;
+		Text = T;
 	}
 }
 

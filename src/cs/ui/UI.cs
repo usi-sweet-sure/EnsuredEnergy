@@ -159,7 +159,7 @@ public partial class UI : CanvasLayer {
 		NextTurnL = GetNode<Label>("NextTurn/Label");
 		NextTurnAP = GetNode<AnimationPlayer>("NextTurn/NextTurnAP");
 		Warning = GetNode<Label>("NextTurn/Warning");
-		TC = GetNode<TextController>("../TextController");
+		TC = GetNode<TextController>("/root/TextController");
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
 		C = GetNode<Context>("/root/Context");

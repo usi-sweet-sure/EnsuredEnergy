@@ -18,11 +18,18 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata;
 
 // Represents the policy window containing all policy choices
 // TODO: This requires implementing policies, which is a tricky task that will require a ton of work.
 public partial class PolicyWindow : CanvasLayer {
+
+	// ==================== Constants ====================
+
+	private const string POLICY_GROUP = "policies";
+	private const string POLICY_SUCCESS = "policy_success";
+	private const string POLICY_FAILURE = "policy_failure";
 
 	// ==================== Children Nodes ====================
 
@@ -33,41 +40,56 @@ public partial class PolicyWindow : CanvasLayer {
 	private ButtonGroup PolicyGroup;
 	private BaseButton PressedPolicy;
 	private Label VoteResult;
+	private List<Button> PolicyButtons;
+	private string SelectedPolicy;
+
+	// ==================== UI fields ====================
+
+	private Label PN; // Policy Name
+	private Label PT; // Policy Text
+	private Label ET; // Effects Text
+	private ProgressBar Pop; // Vote probability
+
+	// ==================== Singletons ====================	
 
 	private Context C;
-
-	private List<Button> PolicyButtons;
-	
-	private String SelectedPolicy;
+	private PolicyController PC;
+	private TextController TC;
 
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		C = GetNode<Context>("/root/Context");
+		PC = GetNode<PolicyController>("/root/PolicyController");
+		TC = GetNode<TextController>("/root/TextController");
 		P = GetNode<ColorRect>("ColorRect");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 		VoteResult = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/VoteResult");
 		Vote = GetNode<Button>("ColorRect/NinePatchRect/ColorRect2/Vote");
 		WindButton = GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Wind_buildtime");
+
+		// Fetch UI Elements
+		PN = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/PolicyName");
+		PT = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/Text");
+		ET = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/EffectTitle/Text");
+		Pop = GetNode<ProgressBar>("ColorRect/NinePatchRect/ColorRect2/Vote/Popularity");
 		
 		PolicyGroup = WindButton.ButtonGroup;
 		PressedPolicy = PolicyGroup.GetPressedButton();
 		
-		PolicyButtons = new();
+		PolicyButtons = new()
+		{
+			// Fetch policy buttons
+			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Wind_buildtime"),
+			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_wind"),
+			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/home_regulation"),
+			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/industry_subsidy"),
+			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_PV")
+		};
 
-		// Fetch policy buttons
-		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Wind_buildtime"));
-		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_wind"));
-		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/home_regulation"));
-		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/industry_subsidy"));
-		PolicyButtons.Add(GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_PV"));
-
-		PolicyButtons[0].Pressed += _OnWindBuildtimePressed;
-		PolicyButtons[1].Pressed += _OnUpgradeWindPressed;
-		PolicyButtons[2].Pressed += _OnHomeRegulationPressed;
-		PolicyButtons[3].Pressed += _OnIndustrySubsidy;
-		PolicyButtons[4].Pressed += _OnUpgradePV;
+		// Connect the policy button callbacks
+		PolicyButtons.ForEach(pb => pb.Pressed += _OnPolicyButtonPressed);
 		
 		P.GuiInput += _OnPanelGuiInput;
 		Vote.Pressed += _OnVotePressed;
@@ -92,41 +114,56 @@ public partial class PolicyWindow : CanvasLayer {
 
 	// Hides the window if the panel is pressed
 	public void _OnPanelGuiInput(InputEvent input) {
-		if(input.GetType() == new InputEventMouseButton().GetType())
+		if(input.GetType() == new InputEventMouseButton().GetType()) {
 			Hide();
 			Vote.Hide();
 			PressedPolicy = PolicyGroup.GetPressedButton();
 			if (PressedPolicy != null) {
 				PressedPolicy.ButtonPressed = false;
 			}
-			
+		}
 	} 
 
-	// A bunch of specific buttons
-	public void _OnWindBuildtimePressed() {
+	// When a policy button is pressed, we simply show the vote button 
+	// We also need to update the window to display all of the specific data
+	public void _OnPolicyButtonPressed() {
+		// Allow for the user to trigger a vote
 		Vote.Show();
-	}
-	public void _OnUpgradeWindPressed() {
-		Vote.Show();
-	}
-	public void _OnHomeRegulationPressed() {
-		Vote.Show();
-	}
-	public void _OnIndustrySubsidy() {
-		Vote.Show();
-	}
-	public void _OnUpgradePV() {
-		Vote.Show();
+
+		// Retrieve the policy information to use it to update the UI
+		PressedPolicy = PolicyGroup.GetPressedButton();
+		if(PressedPolicy != null) {
+			// Retrieve the UI infor such as name, text and effects
+			// and update the UI with them
+			PN.Text = PC._GetPolicyName(PressedPolicy.Name);
+			PT.Text = PC._GetPolicyText(PressedPolicy.Name);
+			ET.Text = PC._GetEffects("policy", PressedPolicy.Name)
+				.Aggregate("", (acc, e) =>
+					 e.Text == "" ? acc : acc + "- " + e.Text + "\n"
+				);
+
+			// Update the probability preview
+			Pop.Value = C._GetGL()._GetPM()._GetRealProb(PressedPolicy.Name) * 100.0f;
+		}
 	}
 
+	// Attempts a vote and shows the result
 	public void _OnVotePressed() {
 		// Check the vote result based on the selected policy
 		PressedPolicy = PolicyGroup.GetPressedButton();
 		if (PressedPolicy != null) {
-			C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
+			// Attempt the vote
+			bool success = C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
+
+			// Disable the vote
 			Vote.Disabled = true;
 			VoteResult.Show();
-			//VoteResult.Text = TODO
+
+			// Show the result
+			VoteResult.Text = TC._GetText(
+				"labels.xml", POLICY_GROUP, 
+				success ? POLICY_SUCCESS : POLICY_FAILURE
+			);
 		}
 	}
 }

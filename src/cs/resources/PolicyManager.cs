@@ -50,7 +50,7 @@ public partial class PolicyManager : Node {
 		};
 
 		// Fetch Children Nodes
-		PC = GetNode<PolicyController>("PolicyController");
+		PC = GetNode<PolicyController>("/root/PolicyController");
 		C = GetNode<Context>("/root/Context");
 	}
 
@@ -78,6 +78,30 @@ public partial class PolicyManager : Node {
 		// Check that our current requirements don't surpass our available resources
 		return reqs.Select(req => CheckReq(req, E, Env, S))
 					.Aggregate(true, (acc, pass) => acc && pass);
+	}
+
+	// Retrieves the current real probability of passing a policy
+	// The real probability is computed as 
+	// (baseProbability + bonus) - ((baseProbability + bonus) * (requirement - support))
+	public float _GetRealProb(string policyId) {
+		// Compute the augmented base probability (clamped to [0, 1])
+		float baseWBonus = Math.Max(0.0f, 
+			Math.Min(
+				PC._GetPolicyProba(policyId) + Bonuses[PC._GetPolicyTag(policyId)],
+				1.0f
+			));
+
+		// Retrieve the aggregated support requirements
+		float req = PC._GetRequirements(policyId)
+			.Aggregate(1.0f, (acc, r) => acc * (r.RT == ResourceType.SUPPORT ? r.Value : 1.0f));
+
+		// Retrieve current support
+		float support = C._GetResources().Item3.Value;
+
+		// return the final result
+		return  Math.Max(0.0f, Math.Min(
+			baseWBonus - (baseWBonus * (req - support)),
+		1.0f));
 	}
 
 	// Request the enaction of a particular policy

@@ -133,7 +133,8 @@ public partial class PolicyController : XMLController {
 		// Build out the policy effect list and return it
 		return policy.Descendants("effect").Select(e => new Effect(
 			RTM.ResourceTypeFromString(e.Attribute("field").Value),
-			e.Attribute("value").Value.ToFloat()
+			e.Attribute("value").Value.ToFloat(),
+			e.Value ?? ""
         )).ToList();
 	}
 

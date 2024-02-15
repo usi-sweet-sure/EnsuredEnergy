@@ -84,7 +84,7 @@ public partial class End : CanvasLayer {
 		Close = GetNode<Button>("Close");
 
 		// Fetch the text controller
-		TC = GetNode<TextController>("../TextController");
+		TC = GetNode<TextController>("/root/TextController");
 		
 		Close.Pressed += _OnClosePressed;
 	}

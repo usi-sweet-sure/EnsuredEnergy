@@ -55,7 +55,7 @@ public partial class Tutorial : CanvasLayer {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		// Fetch the text controller and context
-		TC = GetNode<TextController>("../TextController");
+		TC = GetNode<TextController>("/root/TextController");
 		C = GetNode<Context>("/root/Context");
 
 		// Fetch other nodes
