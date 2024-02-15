@@ -407,7 +407,9 @@ public partial class BuildButton : TextureButton {
 		if(PP.BuildCost > 0) {
 			AnimMoney.Text = "-" + PP.BuildCost.ToString() + "$";
 			AP.Play("Money-");
-		}
+		} else {
+			AP.Play("SmokeEffect");
+			}
 
 		// Check if the requested build was legal
 		if(GL._RequestBuild(PP.BuildCost)) {
@@ -449,7 +451,9 @@ public partial class BuildButton : TextureButton {
 		if(RefundAmount > 0) {
 			AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
 			AP.Play("Money+");
-		}
+		} else {
+			AP.Play("SmokeEffect");
+			}
 		
 		// Hide all plants
 		HideAllPlants();

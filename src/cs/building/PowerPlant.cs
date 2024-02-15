@@ -151,6 +151,7 @@ public partial class PowerPlant : Node2D {
 	private Label LifeSpanWarning;
 	
 	public AnimationPlayer AP;
+	private Label AnimMoney;
 	
 	// The Area used to detect hovering
 	private Area2D HoverArea;
@@ -221,6 +222,7 @@ public partial class PowerPlant : Node2D {
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 		AP = GetNode<AnimationPlayer>("AP");
+		AnimMoney = GetNode<Label>("Money");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -883,6 +885,7 @@ public partial class PowerPlant : Node2D {
 			BB.AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
 			BB.AP.Play("Money+");
 		}
+		
 
 		// Kill the deleted power plant
 		KillPowerPlant();
@@ -912,9 +915,9 @@ public partial class PowerPlant : Node2D {
 		// Check that the max hasn't been reached
 		if(MultiplierValue < mult.MaxElements) {
 			// check if the cost is more than 0 before playing the money anim
-			if(C._GetGL()._CheckBuildReq(mult.Cost) && BB != null) {
-				BB.AnimMoney.Text = "-" + mult.Cost.ToString() + "$";
-				BB.AP.Play("Money-");
+			if(C._GetGL()._CheckBuildReq(mult.Cost)) {
+				AnimMoney.Text = "-" + mult.Cost.ToString() + "$";
+				AP.Play("Money-");
 			}
 			
 			// Signal the request to the game loop
@@ -931,9 +934,9 @@ public partial class PowerPlant : Node2D {
 
 		// Check that the min hasn't been reached
 		if(MultiplierValue > 1) {
-			if(mult.Cost > 0 && BB != null) {
-				BB.AnimMoney.Text = "+" + mult.Cost.ToString() + "$";
-				BB.AP.Play("Money+");
+			if(mult.Cost > 0) {
+				AnimMoney.Text = "+" + mult.Cost.ToString() + "$";
+				AP.Play("Money+");
 			}
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
