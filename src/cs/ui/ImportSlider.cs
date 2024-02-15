@@ -66,7 +66,7 @@ public partial class ImportSlider : VSlider {
 		//Keeping it just in case for now
 		//ApplySelection.Pressed += OnApplySelectionPressed;
 		Cancel.Pressed += OnCancelPressed;
-		ImportSwitch.Pressed += OnImportSwitchPressed;
+		ImportSwitch.Toggled += OnImportSwitchToggled;
 	}
 
 	// ==================== Public API ====================
@@ -129,8 +129,9 @@ public partial class ImportSlider : VSlider {
 	}
 	
 	// Toggles the clean import that cost more but doesn't pollute
-	private void OnImportSwitchPressed() {
-		// TODO
+	private void OnImportSwitchToggled(bool Toggled) {
+		GD.Print(Toggled);
+		// TODO if switch on, import doesnt create pollution but cost more
 	}
 }
 
