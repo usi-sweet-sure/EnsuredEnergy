@@ -164,6 +164,7 @@ public partial class PowerPlant : Node2D {
 	private Label MultiplierL; // The label containing the multiplier amount
 	private Button MultInc; // Increases the multiplier
 	private Button MultDec; // Decreases the multiplier
+	private int MultiplierMax;
 
 
 	// ==================== GODOT Method Overrides ====================
@@ -252,9 +253,10 @@ public partial class PowerPlant : Node2D {
 
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
+		MultiplierMax = mult.MaxElements;
 
 		// Check if the multiplier window should be shown
-		if(mult.MaxElements <= 1) {
+		if(MultiplierMax <= 1) {
 			Multiplier.Hide();
 		} else {
 			//Multiplier.Show();
@@ -283,13 +285,23 @@ public partial class PowerPlant : Node2D {
 		}
 	}
 
+	// Applies a multiplier overload to the current value
+	public void _OverloadMultiplier(int mo) {
+		MultiplierMax = mo;
+	}
+
+	// Applies a build time overload to the powerplant
+	public void _OverloadBuildTime(int mo) {
+		BuildTime = mo;
+	}
+
 	// Increases the multiplier amount for the current plant 
 	public void _IncMutliplier() {
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
 		// Check that the max hasn't been reached
-		if(MultiplierValue < mult.MaxElements) {
+		if(MultiplierValue < MultiplierMax) {
 			MultiplierValue++;
 
 			// Apply the multiplier
@@ -308,7 +320,7 @@ public partial class PowerPlant : Node2D {
 		}
 
 		// Check if we can still increase
-		if(MultiplierValue >= mult.MaxElements) {
+		if(MultiplierValue >= MultiplierMax) {
 			MultInc.Hide();
 		} 
 
@@ -343,7 +355,7 @@ public partial class PowerPlant : Node2D {
 		}
 
 		// Check if we can still increase
-		if(MultiplierValue < mult.MaxElements) {
+		if(MultiplierValue < MultiplierMax) {
 			MultInc.Show();
 		} 
 
@@ -378,7 +390,7 @@ public partial class PowerPlant : Node2D {
 		MultiplierL.Text = MultiplierValue.ToString();
 
 		// Check if the multiplier window should be shown
-		if(MultiplierValue < mult.MaxElements) {
+		if(MultiplierValue < MultiplierMax) {
 			MultInc.Show();
 		}
 		MultDec.Hide();
@@ -745,11 +757,8 @@ public partial class PowerPlant : Node2D {
 		Info.Visible = !Info.Visible;
 		ResRect.Visible = !ResRect.Visible;
 		
-		// only show the multiplier if  the plant can be upgraded
-		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
-		
 		// Toggle multiplier state if several elements are available
-		if(mult.MaxElements > 1) {
+		if(MultiplierMax > 1) {
 			Multiplier.Visible = !Multiplier.Visible;
 		}
 	}
@@ -776,6 +785,7 @@ public partial class PowerPlant : Node2D {
 
 		// Reset the plant from config
 		_SetPlantFromConfig(PlantType);
+		C._GetGL()._ApplyOverloads();
 		
 		if(BB != null && RefundAmount > 0) {
 			BB.AnimMoney.Text = "+" + RefundAmount.ToString() + "$";
@@ -808,7 +818,7 @@ public partial class PowerPlant : Node2D {
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
 		// Check that the max hasn't been reached
-		if(MultiplierValue < mult.MaxElements) {
+		if(MultiplierValue < MultiplierMax) {
 			// check if the cost is more than 0 before playing the money anim
 			if(C._GetGL()._CheckBuildReq(mult.Cost) && BB != null) {
 				BB.AnimMoney.Text = "-" + mult.Cost.ToString() + "$";

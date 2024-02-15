@@ -32,7 +32,7 @@
     <policy id="rooftop_PV" tag="env">
         <name>Mandatory rooftop solar PV</name>
         <text>Solar PV must be installed on all suitable rooftops within n turn.
-Increase of solar energy production by n %.
+            Increase of solar energy production by n %.
         </text>
         <!-- A requirement on the amount of support needed to attempt the policy -->
         <requirement field="support" value="50" bound="min"/>
@@ -45,42 +45,52 @@ Increase of solar energy production by n %.
 
     <policy id="Upgrade_PV" tag="env">
         <name>Enable alpine solar PV</name>
-        <text>Limitation of appeals to large scale solar projects.</text>
-        <effect field="solar_mult_max" value="3">Increase solar plant upgrades from 1 to 3.</effect>
-        <requirement field="support" value="60" bound="min"/>
+        <text>Limitation of appeals to large scale solar projects.
+            Increase solar plant upgrades from 1 to 3.
+        </text>
+        <effect field="solar_mult_max" value="3"/>
+        <requirement field="support" value="70" bound="min"/>
         <probability>0.5</probability>
     </policy>
 
     <policy id="Wind_buildtime" tag="env">
         <name>Fast track wind parks</name>
-        <text>Limitation of the possibilities of appeal for wind parks.</text>
-        <effect field="wind_build_time" value="0">Lowers required building time for wind parks from 2 to 0.</effect>
-        <requirement field="support" value="60" bound="min" />
+        <text>Limitation of the possibilities of appeal for wind parks.
+            Lowers required building time for wind parks from 2 to 0.
+        </text>
+        <effect field="wind_build_time" value="0"/>
+        <requirement field="support" value="70" bound="min" />
         <probability>0.5</probability>
     </policy>
 
     <policy id="Upgrade_wind" tag="env">
         <name>Wind parks regulation</name>
-        <text>Limitation of the possibilities of appeal for wind parks.</text>
-        <effect field="wind_mult_max" value="5">Increase wind parks upgrades from 2 to 5.</effect>
-        <requirement field="support" value="60" bound="min" />
+        <text>Limitation of the possibilities of appeal for wind parks.
+            Increase wind parks upgrades from 2 to 5.
+        </text>
+        <effect field="wind_mult_max" value="5"/>
+        <requirement field="support" value="70" bound="min" />
         <probability>0.5</probability>
     </policy>
 
     <policy id="home_regulation" tag="demand">
         <name>Mandatory Building Insulation</name>
-        <text>All buildings must be insulated within n turns.</text>
-        <effect field="energyDemandW" value="-5">Lowers energy demand by 5 in the Summer.</effect>
-        <effect field="energyDemandS" value="-5">Lowers energy demand by 5 in the Winter</effect>
+        <text>All buildings must be insulated within n turns.
+            Lowers energy demand by n.
+        </text>
+        <effect field="energyW" value="-5"/>
+        <effect field="energyS" value="-5"/>
         <requirement field="support" value="40" bound="min" />
         <probability>0.5</probability>
     </policy>
 
     <policy id="industry_subsidy" tag="demand">
         <name>Industry Subsidy</name>
-        <text>Provide industries with grants for less energy intensive production.</text>
-        <effect field="energyDemandW" value="-5">Lowers energy demand by 5 in the Summer.</effect>
-        <effect field="energyDemandS" value="-5">Lowers energy demand by 5 in the Winter</effect>
+        <text>Provide industries with grants for less energy intensive production.
+            Lowers energy demand from Industry by n.
+        </text>
+        <effect field="energyW" value="-5"/>
+        <effect field="energyS" value="-5"/>
         <requirement field="support" value="60" bound="min"/>
         <probability>0.5</probability>
     </policy>

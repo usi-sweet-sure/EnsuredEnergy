@@ -16,13 +16,10 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 using Godot;
-using System;
 using System.IO;
-using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 // Utility class used to access XML db files.
 // This is usually done to display text in a way that is linguistically dynamic .

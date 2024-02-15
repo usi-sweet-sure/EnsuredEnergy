@@ -157,6 +157,23 @@ public struct MoneyData {
 	}
 }
 
+// Keeps track of the current active multiplier overloads
+// -1 means that no overload is active
+// These are created by enacting policies
+public struct MultiplierOverloads {
+	public int WindMax;
+	public int WindBuildTime;
+	public int SolarMax;
+	public int SolarBuildTime;
+
+	public MultiplierOverloads() {
+		WindMax = -1;
+		WindBuildTime = -1;
+		SolarMax = -1;
+		SolarBuildTime = -1;
+	}
+}
+
 // ============================================================
 // ======================= FANCY ENUMS ========================
 // ============================================================
@@ -532,7 +549,12 @@ public readonly struct PowerPlantConfigData : ConfigData {
 }
 
 // The different types of resources the player has access to
-public enum ResourceType { ENERGY_W, ENERGY_S, ENVIRONMENT, SUPPORT, MONEY };
+public enum ResourceType { 
+	ENERGY_W, ENERGY_S, DEMAND_W,
+	DEMAND_S, ENVIRONMENT, SUPPORT,
+	MONEY, TAG, WIND_MULT_MAX,
+	WIND_BUILD_TIME, SOLAR_MULT_MAX, SOLAR_BUILD_TIME
+};
 
 // Struct simply containing the couple of methods useful for the resource type enum
 // RTM = Resource Type Methods
@@ -541,15 +563,22 @@ public readonly struct RTM {
 	public static ResourceType ResourceTypeFromString(string s) => s switch {
 		"energyW" => ResourceType.ENERGY_W,
 		"energyS" => ResourceType.ENERGY_S,
+		"energyDemandW" => ResourceType.DEMAND_W,
+		"energyDemandS" => ResourceType.DEMAND_S,
+		"wind_mult_max" => ResourceType.WIND_MULT_MAX,
+		"wind_build_time" => ResourceType.WIND_BUILD_TIME,
+		"solar_mult_max" => ResourceType.SOLAR_MULT_MAX,
+		"solar_buildtime" => ResourceType.SOLAR_BUILD_TIME,
 		"env" => ResourceType.ENVIRONMENT,
 		"support" => ResourceType.SUPPORT,
 		"money" => ResourceType.MONEY,
+		"tag" => ResourceType.TAG,
 		_ => throw new ArgumentException("The given string can't be converted to a resource type")
 	};
 }
 
 // Represents the requirements of a given shock
-public struct ShockRequirement {
+public struct Requirement {
 	// The resource impacted by this requirement
 	public ResourceType RT;
 
@@ -557,34 +586,51 @@ public struct ShockRequirement {
 	public float Value; 
 
 	// Basic constructors
-	public ShockRequirement(string s, float v) {
+	public Requirement(string s, float v) {
 		RT = RTM.ResourceTypeFromString(s);
 		Value = v;
 	}
-	public ShockRequirement(ResourceType rt, float v) {
+	public Requirement(ResourceType rt, float v) {
 		RT = rt;
 		Value = v;
 	}
 }
 
+// Represents an effect on a resource
+public struct Effect {
+	// The type of resource that's targeted by this effect
+	public ResourceType RT;
+	// The amount by which the resource will be impacted (can be negative)
+	public float Value;
+	// A human-readable description of the effect
+	public string Text;
+
+	// Basic constructor
+	public Effect(ResourceType _RT, float _Val, string T="") {
+		RT = _RT;
+		Value = _Val;
+		Text = T;
+	}
+}
+
 // Represents the rewards of surviving a given shock
-public struct ShockEffect {
+public struct Reward {
 	// The text show for the given reward
 	public string Text;
 
 	// The effects of the reward
-	public List<(ResourceType, float)> Effects;
+	public List<Effect> Effects;
 
 	// Basic Constructor
-	public ShockEffect(string t, List<(ResourceType, float)> es) {
+	public Reward(string t, List<Effect> es) {
 		Text = t;
 		Effects = es;
 	}
 
 	// Converts an effect into a list of requirements
-	public List<ShockRequirement> ToRequirements() => 
+	public List<Requirement> ToRequirements() => 
 		// Only negative effects have requirements, all others are clamped to 0
-		Effects.Select(se => new ShockRequirement(se.Item1, Math.Abs(Math.Min(se.Item2, 0)))).ToList();
+		Effects.Select(se => new Requirement(se.RT, Math.Abs(Math.Min(se.Value, 0)))).ToList();
 	
 }
 
