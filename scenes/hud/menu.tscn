@@ -127,7 +127,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 53.0
+offset_left = 5.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "LANGUAGE"
@@ -175,3 +176,10 @@ position = Vector2(1232, 680)
 sprite_frames = SubResource("SpriteFrames_fibyn")
 autoplay = "default"
 frame_progress = 0.665593
+
+[node name="Label" type="Label" parent="."]
+offset_left = 672.0
+offset_top = 816.0
+offset_right = 721.0
+offset_bottom = 842.0
+text = "MENU"

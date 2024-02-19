@@ -36,7 +36,7 @@ public partial class ImportSlider : VSlider {
 	private Button Cancel; // Button that cancels the modification of the import slider
 
 	// Target import required to meet demand
-	private Line2D Target;
+	private Sprite2D Target;
 
 	// The confirmed import amount
 	private int ImportAmount;
@@ -53,7 +53,7 @@ public partial class ImportSlider : VSlider {
 		//  Fetch nodes
 		Amount = GetNode<Label>("Amount");
 		Text = GetNode<Label>("Text");
-		Target = GetNode<Line2D>("Target");
+		Target = GetNode<Sprite2D>("Target");
 		ApplySelection = GetNode<Button>("Apply");
 		Cancel = GetNode<Button>("Cancel");
 		ImportSwitch = GetNode<Button>("ImportSwitch");

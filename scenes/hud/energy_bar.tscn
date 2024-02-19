@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2hyunjbx7qb7"]
+[gd_scene load_steps=6 format=3 uid="uid://d2hyunjbx7qb7"]
 
 [ext_resource type="StyleBox" uid="uid://phji31i5dkkd" path="res://scenes/hud/energy_low.tres" id="2_0gu0e"]
 [ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="2_otguq"]
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="3_an05x"]
+[ext_resource type="Texture2D" uid="uid://cq6ey1a2kxut1" path="res://assets/UI Elements/Energy-limit.png" id="3_rqqb7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kaeus"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0)
@@ -30,6 +31,7 @@ step = 1.0
 value = 50.0
 show_percentage = false
 script = ExtResource("2_otguq")
+EnergyBar = true
 NormalColor = Color(0.94902, 0.815686, 0.0666667, 1)
 LowColor = Color(0.94902, 0.533333, 0.0666667, 1)
 
@@ -37,6 +39,12 @@ LowColor = Color(0.94902, 0.533333, 0.0666667, 1)
 position = Vector2(-195, -616.5)
 points = PackedVector2Array(332, 643.5, 332, 616.5)
 width = 2.0
+default_color = Color(1, 1, 1, 0)
+
+[node name="Energy-limit" type="Sprite2D" parent="Target"]
+position = Vector2(332, 630.5)
+rotation = 1.5708
+texture = ExtResource("3_rqqb7")
 
 [node name="BarInfo" parent="." instance=ExtResource("3_an05x")]
 visible = false

@@ -1,49 +1,57 @@
-[gd_scene load_steps=51 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=70 format=3 uid="uid://bs48lirfn2fp2"]
 
-[ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="1_kbgc4"]
-[ext_resource type="Texture2D" uid="uid://bn8nkdb1vyogu" path="res://assets/Elements/ENERGY PANEL - BLANK.png" id="2_hhj2t"]
+[ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
-[ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="3_l43te"]
-[ext_resource type="Texture2D" uid="uid://sob7pstxhrp" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="4_6fg8a"]
+[ext_resource type="Texture2D" uid="uid://biq6v1m7nc6l" path="res://assets/UI Elements/Button-Next-Press.png" id="3_qtdni"]
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="4_67rbh"]
 [ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="4_e5tgv"]
+[ext_resource type="Texture2D" uid="uid://c25aef4m4yd40" path="res://assets/UI Elements/Button-Next-Hover.png" id="4_mh4j1"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="5_hh5pc"]
 [ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/hud/import.tscn" id="5_ps4b6"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
-[ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_xpjuf"]
 [ext_resource type="Texture2D" uid="uid://dddt3hgvf20b6" path="res://assets/Elements/POLICIES BUTTON.png" id="6_ivien"]
 [ext_resource type="AudioStream" uid="uid://d0mx81kv2vlha" path="res://assets/Sounds/Negative 2_1.wav" id="6_jw1cb"]
-[ext_resource type="Texture2D" uid="uid://b5c8nhwhjb6rh" path="res://assets/Elements/TIME PANEL – BLANK.png" id="6_mfs1l"]
 [ext_resource type="Texture2D" uid="uid://yom48x87obxw" path="res://assets/Elements/CHARACTER INFORMATION – BLANK.png" id="6_vs2ug"]
 [ext_resource type="Texture2D" uid="uid://d01b6u4flcphj" path="res://assets/Elements/GRAPH BUTTON.png" id="7_7gbcu"]
+[ext_resource type="Texture2D" uid="uid://cgf1xjsx0mfot" path="res://assets/UI Elements/Button-Next-Base.png" id="7_g7ih8"]
 [ext_resource type="Texture2D" uid="uid://b8lwrin3nxbmj" path="res://assets/Elements/SETTINGS BUTTON.png" id="7_mnpcp"]
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
-[ext_resource type="Texture2D" uid="uid://djx386wryt8ab" path="res://assets/Elements/ENVIORMENT BUTTON.png" id="9_kqwrt"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
 [ext_resource type="AudioStream" uid="uid://ben5r72x0p8pr" path="res://assets/Sounds/Move_03.wav" id="10_po2ll"]
-[ext_resource type="Texture2D" uid="uid://3ypqypyywx05" path="res://assets/temp_pollution_icon.png" id="10_vhysx"]
+[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="11_qepre"]
 [ext_resource type="AudioStream" uid="uid://00apgxjmwgw0" path="res://assets/Sounds/Click_020.wav" id="11_tr1n1"]
+[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="12_72t8i"]
+[ext_resource type="Texture2D" uid="uid://cp5u5s0g7ff24" path="res://assets/UI Elements/Clock_Case.png" id="14_m0dc4"]
+[ext_resource type="Texture2D" uid="uid://ck62bj2g88e8t" path="res://assets/UI Elements/Clock_Hand.png" id="17_8ninl"]
 [ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
+[ext_resource type="Texture2D" uid="uid://d313vvhrt0dso" path="res://assets/UI Elements/Clock_Hand-Shadow.png" id="18_183xf"]
+[ext_resource type="Texture2D" uid="uid://xyxroar1ffyt" path="res://assets/UI Elements/Envirornment-Bar-Metal.png" id="18_oaaki"]
+[ext_resource type="Texture2D" uid="uid://52o3k8juwbmd" path="res://assets/UI Elements/Clock_Meter-1.png" id="19_bcm0u"]
+[ext_resource type="Texture2D" uid="uid://bmjee8ocqy0ge" path="res://assets/UI Elements/Enviornment-Base.png" id="21_i8c3o"]
+[ext_resource type="Texture2D" uid="uid://cke7lrsfhrr8c" path="res://assets/UI Elements/Enviorment-Bar.png" id="22_facdj"]
+[ext_resource type="Texture2D" uid="uid://bwmnloeklg76n" path="res://assets/UI Elements/Enviornment-Hand.png" id="23_3qgyr"]
 [ext_resource type="FontFile" uid="uid://bp3o6potcw07r" path="res://assets/Fonts/BebasNeue-Regular.otf" id="23_og3i5"]
+[ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="24_t8vy5"]
+[ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/Icon-Pollution-.png" id="25_7q1c5"]
+[ext_resource type="Texture2D" uid="uid://dyyio7rs1i1l6" path="res://assets/UI Elements/Import_energy-Bar-Metal.png" id="27_6qqtw"]
+[ext_resource type="Texture2D" uid="uid://vff0e83ytund" path="res://assets/UI Elements/Energy-base.png" id="28_mr6x7"]
+[ext_resource type="Texture2D" uid="uid://da8jr70q0tucb" path="res://assets/UI Elements/Profil-Bar-Metal.png" id="30_0k2ft"]
+[ext_resource type="Texture2D" uid="uid://h78kteff8v5d" path="res://assets/UI Elements/Money-counter-hole.png" id="31_jcf3k"]
+[ext_resource type="Texture2D" uid="uid://p2nyvgv4j2ll" path="res://assets/UI Elements/Money-counter-1.png" id="32_2wt40"]
+[ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/Icon-Money.png" id="33_my285"]
+[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="34_xcgyc"]
+[ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/Popularity-.png" id="35_qiawk"]
+[ext_resource type="Texture2D" uid="uid://clnitajx25spt" path="res://assets/UI Elements/Button-Square-normal.png" id="36_xxsv6"]
+[ext_resource type="Texture2D" uid="uid://4dcp6f66sdeo" path="res://assets/UI Elements/Button-Square-press.png" id="37_533gb"]
+[ext_resource type="Texture2D" uid="uid://dlccss1xvy8tb" path="res://assets/UI Elements/Button-Square-hover.png" id="38_7v12r"]
+[ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/Button-Hole.png" id="39_jsaox"]
+[ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
+[ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
+[ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="46_mga3n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhpc3"]
 atlas = ExtResource("6_vs2ug")
 region = Rect2(222, 26, 198, 208)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b3c2j"]
-atlas = ExtResource("1_kbgc4")
-region = Rect2(42, 38, 200, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_icmin"]
-atlas = ExtResource("3_l43te")
-region = Rect2(42, 38, 200, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t151c"]
-atlas = ExtResource("4_6fg8a")
-region = Rect2(42, 38, 200, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wu5im"]
-atlas = ExtResource("5_xpjuf")
-region = Rect2(42, 38, 200, 64)
 
 [sub_resource type="Animation" id="Animation_pjxim"]
 length = 0.001
@@ -158,19 +166,6 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opb6j"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="Animation" id="Animation_f32o7"]
 resource_name = "NextTurnAnim"
 length = 4.0
@@ -197,7 +192,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.7, 0.8, 3.3, 3.4, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(3.2, 3.2), Vector2(3, 3), Vector2(3, 3), Vector2(3.2, 3.2), Vector2(1, 1)]
+"values": [Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0.5, 0.5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -255,6 +250,18 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.05, 1.25, 2, 2.75, 3)
 }
 tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Arrow:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.25, 2, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [-2.18166, -2.0944, -2.00713, -1.8326]
+}
 
 [sub_resource type="Animation" id="Animation_lrye6"]
 length = 0.001
@@ -280,7 +287,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0.5, 0.5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -305,6 +312,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Arrow:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.18166]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08hvt"]
@@ -408,16 +427,16 @@ position = Vector2(99, 167)
 texture = SubResource("AtlasTexture_uhpc3")
 
 [node name="NextTurn" type="TextureButton" parent="."]
-offset_left = 1605.0
-offset_top = 966.0
-offset_right = 1869.0
-offset_bottom = 1033.0
+offset_left = 1616.0
+offset_top = 936.0
+offset_right = 1808.0
+offset_bottom = 1022.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-texture_normal = SubResource("AtlasTexture_b3c2j")
-texture_pressed = SubResource("AtlasTexture_icmin")
-texture_hover = SubResource("AtlasTexture_t151c")
-texture_disabled = SubResource("AtlasTexture_wu5im")
+texture_normal = ExtResource("2_aobed")
+texture_pressed = ExtResource("3_qtdni")
+texture_hover = ExtResource("4_mh4j1")
+texture_disabled = ExtResource("5_hh5pc")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -432,20 +451,18 @@ theme_override_font_sizes/font_size = 24
 text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="NextTurn"]
-visible = false
-layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 184.0
-offset_bottom = 56.0
-color = Color(0.398438, 0.398438, 0.398438, 1)
+autowrap_mode = 2
+uppercase = true
 
 [node name="NextTurnAP" type="AnimationPlayer" parent="NextTurn"]
 libraries = {
 "": SubResource("AnimationLibrary_jpw4y")
 }
+
+[node name="Button-next-base" type="Sprite2D" parent="NextTurn"]
+show_behind_parent = true
+position = Vector2(109, 43)
+texture = ExtResource("7_g7ih8")
 
 [node name="Warning" type="Label" parent="NextTurn"]
 visible = false
@@ -463,15 +480,27 @@ text = "Not enough energy!"
 [node name="Error" type="AudioStreamPlayer" parent="NextTurn"]
 stream = ExtResource("6_jw1cb")
 
-[node name="EnergyPanel-Blank" type="Sprite2D" parent="."]
-position = Vector2(216, 874)
-texture = ExtResource("2_hhj2t")
+[node name="ImportEnergy-bar-metal" type="Sprite2D" parent="."]
+position = Vector2(218, 896)
+texture = ExtResource("27_6qqtw")
+
+[node name="Energy-base" type="Sprite2D" parent="ImportEnergy-bar-metal"]
+position = Vector2(72, -16)
+texture = ExtResource("28_mr6x7")
+
+[node name="Icon-wind" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
+position = Vector2(-56, 160)
+texture = ExtResource("11_qepre")
+
+[node name="Icon-solar" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
+position = Vector2(24, 160)
+texture = ExtResource("12_72t8i")
 
 [node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 109.0
-offset_top = 942.0
-offset_right = 283.0
-offset_bottom = 984.0
+offset_left = 291.0
+offset_top = 968.0
+offset_right = 465.0
+offset_bottom = 1010.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
@@ -491,11 +520,10 @@ rotation = 1.5708
 metadata/_edit_group_ = true
 
 [node name="EnergyBarWinterPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 179.0
-offset_top = 942.0
-offset_right = 353.0
-offset_bottom = 983.0
-theme_override_styles/background = SubResource("StyleBoxFlat_opb6j")
+offset_left = 222.0
+offset_top = 968.0
+offset_right = 396.0
+offset_bottom = 1009.0
 NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.784314)
 LowColor = Color(0.94902, 0.533333, 0.0666667, 0.521569)
 
@@ -512,10 +540,10 @@ offset_bottom = 113.053
 rotation = 1.5708
 
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 179.0
-offset_top = 942.0
-offset_right = 353.0
-offset_bottom = 983.0
+offset_left = 222.0
+offset_top = 968.0
+offset_right = 396.0
+offset_bottom = 1009.0
 NormalColor = Color(0, 0.815686, 0.0666667, 1)
 LowColor = Color(0.94902, 0.156863, 0.0666667, 1)
 
@@ -539,10 +567,10 @@ text = "You need to reach the demand in energy. The target is the white line on 
 "
 
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 109.0
-offset_top = 942.0
-offset_right = 283.0
-offset_bottom = 984.0
+offset_left = 291.0
+offset_top = 968.0
+offset_right = 465.0
+offset_bottom = 1010.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 NormalColor = Color(0, 0.815686, 0.0666667, 1)
@@ -569,14 +597,11 @@ text = "You need to reach the demand in energy. The target is the white line on 
 "
 
 [node name="Import" parent="." instance=ExtResource("5_ps4b6")]
-offset_left = 310.0
-offset_top = 960.28
-offset_right = 310.96
-offset_bottom = 960.0
+offset_left = 120.0
+offset_top = 1000.28
+offset_right = 135.96
+offset_bottom = 1000.0
 ticks_on_borders = false
-
-[node name="Target" parent="Import" index="1"]
-position = Vector2(-120, -9)
 
 [node name="Amount" parent="Import" index="3"]
 visible = false
@@ -598,7 +623,6 @@ offset_right = 36.0
 offset_bottom = 218.0
 
 [node name="ImportSwitch" parent="Import" index="6"]
-layout_mode = 0
 offset_left = -8.0
 offset_top = 160.0
 offset_right = 36.0
@@ -606,17 +630,8 @@ offset_bottom = 191.0
 
 [node name="TimePanelBlank" type="Sprite2D" parent="."]
 position = Vector2(1711, 156)
-texture = ExtResource("6_mfs1l")
-
-[node name="Year" type="Label" parent="TimePanelBlank"]
-offset_left = -81.0
-offset_top = -38.0
-offset_right = 82.0
-offset_bottom = 32.0
-theme_override_font_sizes/font_size = 48
-text = "2022"
-horizontal_alignment = 1
-vertical_alignment = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_m0dc4")
 
 [node name="TimelineAnimation" type="AnimationPlayer" parent="TimePanelBlank"]
 libraries = {
@@ -627,6 +642,60 @@ libraries = {
 volume_db = -20.0
 pitch_scale = 0.5
 
+[node name="Arrow" type="Sprite2D" parent="TimePanelBlank"]
+rotation = -2.18166
+texture = ExtResource("17_8ninl")
+offset = Vector2(0, -40)
+
+[node name="Shadow" type="Sprite2D" parent="TimePanelBlank/Arrow"]
+show_behind_parent = true
+position = Vector2(2, 0)
+texture = ExtResource("18_183xf")
+offset = Vector2(0, -40)
+
+[node name="Num1" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(-60, 122)
+texture = ExtResource("19_bcm0u")
+
+[node name="Num2" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(-20, 122)
+texture = ExtResource("19_bcm0u")
+
+[node name="Num3" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(20, 122)
+texture = ExtResource("19_bcm0u")
+
+[node name="Num4" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(60, 122)
+texture = ExtResource("19_bcm0u")
+
+[node name="Year" type="Label" parent="TimePanelBlank"]
+visible = false
+offset_left = -78.0
+offset_top = 88.0
+offset_right = 85.0
+offset_bottom = 158.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 48
+text = "2020"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Year2" type="Label" parent="TimePanelBlank"]
+offset_left = -80.0
+offset_top = 86.0
+offset_right = -2.0
+offset_bottom = 156.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "2 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
+position = Vector2(216, 636)
+texture = ExtResource("18_oaaki")
+
 [node name="Trust" type="ProgressBar" parent="."]
 offset_left = 17.0
 offset_top = 200.0
@@ -636,6 +705,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
+EnergyBar = true
 NormalColor = Color(0.180392, 0.509804, 1, 1)
 LowColor = Color(0.435294, 0.282353, 1, 1)
 
@@ -684,10 +754,10 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="Env" type="ProgressBar" parent="."]
-offset_left = 92.0
-offset_top = 591.0
-offset_right = 202.0
-offset_bottom = 701.0
+offset_left = 89.0
+offset_top = 593.0
+offset_right = 189.0
+offset_bottom = 650.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nm6d8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
@@ -730,11 +800,9 @@ theme_override_constants/outline_size = 1
 text = "Environment 🍃"
 horizontal_alignment = 2
 
-[node name="Temp" type="Sprite2D" parent="Env"]
-modulate = Color(1, 1, 1, 0.329412)
-position = Vector2(55, 55.5)
-scale = Vector2(1.01351, 1.00676)
-texture = ExtResource("9_kqwrt")
+[node name="Enviornment-base" type="Sprite2D" parent="Env"]
+position = Vector2(45, 46)
+texture = ExtResource("21_i8c3o")
 
 [node name="Button" type="Button" parent="Env"]
 layout_mode = 1
@@ -747,11 +815,26 @@ focus_mode = 0
 mouse_default_cursor_shape = 16
 flat = true
 
+[node name="Bar" type="Sprite2D" parent="Env"]
+position = Vector2(45, 63)
+texture = ExtResource("22_facdj")
+flip_h = true
+
+[node name="Arrow" type="Sprite2D" parent="Env"]
+position = Vector2(45, 58)
+scale = Vector2(1.5, 1.6)
+texture = ExtResource("23_3qgyr")
+offset = Vector2(-1.5, -9.5)
+
+[node name="Icon" type="Sprite2D" parent="Env"]
+position = Vector2(46, 70)
+texture = ExtResource("24_t8vy5")
+
 [node name="Poll" type="ProgressBar" parent="."]
-offset_left = 228.0
-offset_top = 591.0
-offset_right = 340.0
-offset_bottom = 703.0
+offset_left = 227.0
+offset_top = 593.0
+offset_right = 287.0
+offset_bottom = 658.0
 tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
@@ -806,11 +889,6 @@ theme_override_constants/outline_size = 1
 text = "Pollution"
 horizontal_alignment = 2
 
-[node name="Temp" type="Sprite2D" parent="Poll"]
-position = Vector2(63, 52.73)
-scale = Vector2(0.0802083, 0.0752813)
-texture = ExtResource("10_vhysx")
-
 [node name="Button" type="Button" parent="Poll"]
 layout_mode = 1
 anchors_preset = 15
@@ -822,8 +900,26 @@ focus_mode = 0
 mouse_default_cursor_shape = 16
 flat = true
 
+[node name="Base" type="Sprite2D" parent="Poll"]
+position = Vector2(48, 47)
+texture = ExtResource("21_i8c3o")
+
+[node name="Bar" type="Sprite2D" parent="Poll"]
+position = Vector2(47, 63)
+texture = ExtResource("22_facdj")
+flip_h = true
+
+[node name="Arrow" type="Sprite2D" parent="Poll"]
+position = Vector2(48, 59)
+scale = Vector2(1.5, 1.6)
+texture = ExtResource("23_3qgyr")
+offset = Vector2(-1.5, -9.5)
+
+[node name="Icon" type="Sprite2D" parent="Poll"]
+position = Vector2(49, 67)
+texture = ExtResource("25_7q1c5")
+
 [node name="PolicyButton" type="TextureButton" parent="."]
-visible = false
 offset_left = -8.0
 offset_top = 248.0
 offset_right = 140.0
@@ -837,6 +933,70 @@ offset_top = 610.0
 offset_right = 441.0
 offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
+
+[node name="Profil-bar-metal" type="Sprite2D" parent="."]
+position = Vector2(395, 176)
+texture = ExtResource("30_0k2ft")
+
+[node name="Money-counter-hole" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-4, 7)
+texture = ExtResource("31_jcf3k")
+
+[node name="Money-counter-1" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(-30, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Money-counter-2" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(-10, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Money-counter-3" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(10, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Money-counter-4" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(30, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Icon-money" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-84, 8)
+texture = ExtResource("33_my285")
+
+[node name="Icon-popularity" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-83, 70)
+texture = ExtResource("34_xcgyc")
+
+[node name="Popularity-" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-7, 70)
+texture = ExtResource("35_qiawk")
+
+[node name="TextureButton" type="TextureButton" parent="Profil-bar-metal"]
+offset_left = -91.0
+offset_top = -96.0
+offset_right = -25.0
+offset_bottom = -32.0
+texture_normal = ExtResource("36_xxsv6")
+texture_pressed = ExtResource("37_533gb")
+texture_hover = ExtResource("38_7v12r")
+
+[node name="Button-hole" type="Sprite2D" parent="Profil-bar-metal/TextureButton"]
+show_behind_parent = true
+position = Vector2(32, 32)
+texture = ExtResource("39_jsaox")
+
+[node name="TextureButton2" type="TextureButton" parent="Profil-bar-metal"]
+offset_left = -6.0
+offset_top = -97.0
+offset_right = 60.0
+offset_bottom = -33.0
+texture_normal = ExtResource("36_xxsv6")
+texture_pressed = ExtResource("37_533gb")
+texture_hover = ExtResource("38_7v12r")
+
+[node name="Button-hole2" type="Sprite2D" parent="Profil-bar-metal/TextureButton2"]
+show_behind_parent = true
+position = Vector2(32, 32)
+texture = ExtResource("39_jsaox")
 
 [node name="MoneyInfo" type="ColorRect" parent="."]
 visible = false
@@ -1043,18 +1203,21 @@ texture = ExtResource("18_42ope")
 
 [node name="MouseBlock" type="ColorRect" parent="."]
 visible = false
-offset_left = -166.0
+offset_left = -167.0
 offset_top = -113.0
-offset_right = 2121.0
+offset_right = 2120.0
 offset_bottom = 1225.0
 color = Color(1, 1, 1, 0)
 
-[node name="BorrowMoney" type="Button" parent="."]
-offset_left = 183.0
-offset_top = 41.0
-offset_right = 221.0
-offset_bottom = 76.0
-text = "+"
+[node name="BorrowMoney" type="TextureButton" parent="."]
+offset_left = 447.0
+offset_top = 166.0
+offset_right = 478.0
+offset_bottom = 198.0
+texture_normal = ExtResource("44_5a58h")
+texture_pressed = ExtResource("45_nhcbq")
+texture_hover = ExtResource("46_mga3n")
+ignore_texture_size = true
 
 [node name="Debt" type="ColorRect" parent="BorrowMoney"]
 visible = false
@@ -1074,6 +1237,18 @@ offset_bottom = 37.0
 theme_override_colors/font_color = Color(0.752941, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "-000"
+
+[node name="Label" type="Label" parent="BorrowMoney"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="."]
 offset_left = 1.0

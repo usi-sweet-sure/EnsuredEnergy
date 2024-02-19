@@ -119,7 +119,7 @@ public partial class UI : CanvasLayer {
 	private HSlider DebtSlider;
 	private ColorRect DebtResource;
 	private Label DebtResLabel;
-	private Button BorrowMoneyButton;
+	private TextureButton BorrowMoneyButton;
 	private Button BorrowContainer;
 
 
@@ -226,7 +226,7 @@ public partial class UI : CanvasLayer {
 		DebtSlider = GetNode<HSlider>("BorrowContainer/BorrowMoneyWindow/BorrowSlider");
 		DebtResource = GetNode<ColorRect>("BorrowMoney/Debt");
 		DebtResLabel = GetNode<Label>("BorrowMoney/Debt/DebtAmount");
-		BorrowMoneyButton = GetNode<Button>("BorrowMoney");
+		BorrowMoneyButton = GetNode<TextureButton>("BorrowMoney");
 		BorrowContainer = GetNode<Button>("BorrowContainer");
 
 		// Name labels
@@ -707,13 +707,16 @@ public partial class UI : CanvasLayer {
 
 		// Retrieve the animation track related to our current turn progression
 		int Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
+		// Retrieve the animation track related to the arrow's rotation
+		int ArrowTrack = Anim.FindTrack("Arrow:rotation", Animation.TrackType.Value);
 
 		// Retrieve the number of animation keypoints in the current track
 		int NKeys = Anim.TrackGetKeyCount(Track);
 
-		// Update the year incrementally during the animation
+		// Update the year incrementally during the animation and move the clock's arrow
 		for (int i = 0; i < NKeys; i++) {
 			Anim.TrackSetKeyValue(Track, i, (Year + i).ToString());
+			Anim.TrackSetKeyValue(ArrowTrack, i, (Mathf.Remap(Year+i, 2022, 2052, -2.18, 2.18)));
 		}
 	}
 

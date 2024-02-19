@@ -34,9 +34,15 @@ public partial class InfoBar : ProgressBar {
 	private Label BarName;
 	
 	private Button BarButton;
+	
+	private Sprite2D Arrow;
 
 	// Info boc showing all of the relevant subfields of this resource
 	public InfoBox Box;
+	
+	// Energy bar check
+	[Export]
+	private bool EnergyBar;
 	
 	// Colors for Bars
 	[Export]
@@ -54,6 +60,8 @@ public partial class InfoBar : ProgressBar {
 		Box = GetNode<InfoBox>("BarInfo");
 		BarButton = GetNode<Button>("Button");
 
+		
+
 		Box.Hide();
 	}
 
@@ -67,8 +75,16 @@ public partial class InfoBar : ProgressBar {
 		// Update the progress bar's value
 		//Value = v;
 		// Animates the value going to v in n seconds
-		Tween tween = CreateTween();
-		tween.TweenProperty(this, "value", v, 0.8f);
+		if (!EnergyBar) {
+			v = (int)Mathf.Remap(v, 0, 100, -90, 90);
+			Sprite2D Arrow = GetNode<Sprite2D>("Arrow");
+			Tween tween = CreateTween();
+			tween.TweenProperty(Arrow, "rotation_degrees", v, 0.5f);
+		} else {
+			Tween tween = CreateTween();
+			tween.TweenProperty(this, "value", v, 0.8f);
+		}
+		
 
 	}
 
