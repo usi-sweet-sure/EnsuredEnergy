@@ -709,6 +709,9 @@ public partial class UI : CanvasLayer {
 		int Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
 		// Retrieve the animation track related to the arrow's rotation
 		int ArrowTrack = Anim.FindTrack("Arrow:rotation", Animation.TrackType.Value);
+		// Retrieve the animation track related to year's numbers
+		int YearTrack = Anim.FindTrack("Year4:text", Animation.TrackType.Value);
+		int Year2Track = Anim.FindTrack("Year5:text", Animation.TrackType.Value);
 
 		// Retrieve the number of animation keypoints in the current track
 		int NKeys = Anim.TrackGetKeyCount(Track);
@@ -717,7 +720,16 @@ public partial class UI : CanvasLayer {
 		for (int i = 0; i < NKeys; i++) {
 			Anim.TrackSetKeyValue(Track, i, (Year + i).ToString());
 			Anim.TrackSetKeyValue(ArrowTrack, i, (Mathf.Remap(Year+i, 2022, 2052, -2.18, 2.18)));
+			string YearNum = (Year + i).ToString();
+			Anim.TrackSetKeyValue(YearTrack, i, YearNum[3].ToString());
+			if (i < NKeys-1) {
+				string YearNum2 = (Year + i + 1).ToString();
+				Anim.TrackSetKeyValue(Year2Track, i, YearNum2[3].ToString());
+			}
 		}
+		
+			
+			
 	}
 
 	// ==================== Interaction Callbacks ====================
