@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=74 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -11,19 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
 [ext_resource type="Texture2D" uid="uid://dddt3hgvf20b6" path="res://assets/Elements/POLICIES BUTTON.png" id="6_ivien"]
 [ext_resource type="AudioStream" uid="uid://d0mx81kv2vlha" path="res://assets/Sounds/Negative 2_1.wav" id="6_jw1cb"]
-[ext_resource type="Texture2D" uid="uid://yom48x87obxw" path="res://assets/Elements/CHARACTER INFORMATION – BLANK.png" id="6_vs2ug"]
 [ext_resource type="Texture2D" uid="uid://d01b6u4flcphj" path="res://assets/Elements/GRAPH BUTTON.png" id="7_7gbcu"]
 [ext_resource type="Texture2D" uid="uid://cgf1xjsx0mfot" path="res://assets/UI Elements/Button-Next-Base.png" id="7_g7ih8"]
 [ext_resource type="Texture2D" uid="uid://b8lwrin3nxbmj" path="res://assets/Elements/SETTINGS BUTTON.png" id="7_mnpcp"]
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
 [ext_resource type="AudioStream" uid="uid://ben5r72x0p8pr" path="res://assets/Sounds/Move_03.wav" id="10_po2ll"]
+[ext_resource type="Texture2D" uid="uid://bjeebs7uy4hpn" path="res://assets/UI Elements/Button-small-Hole.png" id="11_i0u5d"]
 [ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="11_qepre"]
 [ext_resource type="AudioStream" uid="uid://00apgxjmwgw0" path="res://assets/Sounds/Click_020.wav" id="11_tr1n1"]
 [ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="12_72t8i"]
 [ext_resource type="Texture2D" uid="uid://cp5u5s0g7ff24" path="res://assets/UI Elements/Clock_Case.png" id="14_m0dc4"]
 [ext_resource type="Texture2D" uid="uid://ck62bj2g88e8t" path="res://assets/UI Elements/Clock_Hand.png" id="17_8ninl"]
-[ext_resource type="Texture2D" uid="uid://efqqo78530ur" path="res://assets/Elements/BUILDING BUTTON.png" id="18_42ope"]
 [ext_resource type="Texture2D" uid="uid://d313vvhrt0dso" path="res://assets/UI Elements/Clock_Hand-Shadow.png" id="18_183xf"]
 [ext_resource type="Texture2D" uid="uid://xyxroar1ffyt" path="res://assets/UI Elements/Envirornment-Bar-Metal.png" id="18_oaaki"]
 [ext_resource type="Texture2D" uid="uid://52o3k8juwbmd" path="res://assets/UI Elements/Clock_Meter-1.png" id="19_bcm0u"]
@@ -45,13 +44,10 @@
 [ext_resource type="Texture2D" uid="uid://4dcp6f66sdeo" path="res://assets/UI Elements/Button-Square-press.png" id="37_533gb"]
 [ext_resource type="Texture2D" uid="uid://dlccss1xvy8tb" path="res://assets/UI Elements/Button-Square-hover.png" id="38_7v12r"]
 [ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/Button-Hole.png" id="39_jsaox"]
+[ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="40_knfjx"]
 [ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
 [ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
 [ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="46_mga3n"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uhpc3"]
-atlas = ExtResource("6_vs2ug")
-region = Rect2(222, 26, 198, 208)
 
 [sub_resource type="Animation" id="Animation_pjxim"]
 length = 0.001
@@ -105,7 +101,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(20, -25), Vector2(20, -50)]
+"values": [Vector2(-30, -40), Vector2(-30, -70)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -154,78 +150,65 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mw3r"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+bg_color = Color(0.214844, 0.335938, 0.347656, 1)
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qglqh"]
+bg_color = Color(0.214844, 0.335938, 0.347656, 1)
 
 [sub_resource type="Animation" id="Animation_f32o7"]
 resource_name = "NextTurnAnim"
 length = 4.0
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.7, 0.8, 3.3, 3.4, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1711, 156), Vector2(1019, 577), Vector2(1024, 568), Vector2(1024, 568), Vector2(1019, 577), Vector2(1711, 156)]
+"values": [Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0.5, 0.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath("Year:text")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8, 3.3, 3.4, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0.5, 0.5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Year:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = false
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 1.25, 2, 2.75),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["2020", "2021", "2022", "2023
 "]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../MouseBlock:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MouseBlock:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AudioStreamPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "clips": [{
 "end_offset": 1.50526,
 "start_offset": 0.08,
@@ -249,70 +232,7 @@ tracks/4/keys = {
 }],
 "times": PackedFloat32Array(0.05, 1.25, 2, 2.75, 3)
 }
-tracks/4/use_blend = true
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Arrow:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.25, 2, 2.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [-2.18166, -2.0944, -2.00713, -1.8326]
-}
-
-[sub_resource type="Animation" id="Animation_lrye6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1711, 156)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.5, 0.5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("Year:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["2020"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../MouseBlock:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -320,10 +240,181 @@ tracks/4/path = NodePath("Arrow:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.25, 2, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [-2.18166, -2.0944, -2.00713, -1.8326]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Year4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.25, 1.26, 2, 2.01, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 90), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 32)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Year5:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.25, 1.26, 2, 2.01, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 146), Vector2(40, 146), Vector2(40, 90), Vector2(40, 146), Vector2(40, 90), Vector2(40, 146), Vector2(40, 90)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.7, 3.4, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1790, 130), Vector2(1024, 568), Vector2(1024, 568), Vector2(1790, 130)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Year5:text")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.26, 2.01),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["3", "4", "5"]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Year4:text")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.26, 2.01, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["2", "3", "4", "5"]
+}
+
+[sub_resource type="Animation" id="Animation_lrye6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Year:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["2020"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MouseBlock:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arrow:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [-2.18166]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Year4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 90)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Year5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 90)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1790, 130)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Year5:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["2"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Year4:text")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["2"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08hvt"]
@@ -332,28 +423,22 @@ _data = {
 "RESET": SubResource("Animation_lrye6")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dw2x"]
+atlas = ExtResource("14_m0dc4")
+region = Rect2(241, 283, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou8cv"]
+atlas = ExtResource("14_m0dc4")
+region = Rect2(237, 395, 99, 60)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+bg_color = Color(0.317647, 0.317647, 0.317647, 0)
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mru71"]
-bg_color = Color(0.137255, 0.470588, 0.760784, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+bg_color = Color(0.137255, 0.470588, 0.760784, 0.701961)
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 14
-corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm6d8"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
@@ -384,6 +469,14 @@ bg_color = Color(0.627451, 0.627451, 0.627451, 1)
 border_color = Color(0, 0, 0, 1)
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dajl"]
+atlas = ExtResource("6_ivien")
+region = Rect2(48, 49, 43, 44)
+
+[sub_resource type="FontVariation" id="FontVariation_15ni2"]
+base_font = ExtResource("40_knfjx")
+spacing_glyph = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
 bg_color = Color(0.988235, 0, 0, 1)
@@ -422,14 +515,78 @@ bg_color = Color(0.368627, 0.368627, 0.368627, 1)
 [node name="UI" type="CanvasLayer"]
 follow_viewport_enabled = true
 
-[node name="CharacterInformation–Blank" type="Sprite2D" parent="."]
-position = Vector2(99, 167)
-texture = SubResource("AtlasTexture_uhpc3")
+[node name="Profil-bar-metal" type="Sprite2D" parent="."]
+position = Vector2(142, 133)
+texture = ExtResource("30_0k2ft")
+
+[node name="Money-counter-hole" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-4, 7)
+texture = ExtResource("31_jcf3k")
+
+[node name="Money-counter-1" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(-30, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Money-counter-2" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(-10, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Money-counter-3" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(10, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Money-counter-4" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
+position = Vector2(30, 0)
+texture = ExtResource("32_2wt40")
+
+[node name="Icon-money" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-84, 8)
+texture = ExtResource("33_my285")
+
+[node name="Icon-popularity" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-83, 70)
+texture = ExtResource("34_xcgyc")
+
+[node name="Popularity-" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(-7, 70)
+texture = ExtResource("35_qiawk")
+
+[node name="TextureButton" type="TextureButton" parent="Profil-bar-metal"]
+offset_left = -91.0
+offset_top = -96.0
+offset_right = -25.0
+offset_bottom = -32.0
+texture_normal = ExtResource("36_xxsv6")
+texture_pressed = ExtResource("37_533gb")
+texture_hover = ExtResource("38_7v12r")
+
+[node name="Button-hole" type="Sprite2D" parent="Profil-bar-metal/TextureButton"]
+show_behind_parent = true
+position = Vector2(32, 32)
+texture = ExtResource("39_jsaox")
+
+[node name="TextureButton2" type="TextureButton" parent="Profil-bar-metal"]
+offset_left = -6.0
+offset_top = -97.0
+offset_right = 60.0
+offset_bottom = -33.0
+texture_normal = ExtResource("36_xxsv6")
+texture_pressed = ExtResource("37_533gb")
+texture_hover = ExtResource("38_7v12r")
+
+[node name="Button-hole2" type="Sprite2D" parent="Profil-bar-metal/TextureButton2"]
+show_behind_parent = true
+position = Vector2(32, 32)
+texture = ExtResource("39_jsaox")
+
+[node name="Sprite2D" type="Sprite2D" parent="Profil-bar-metal"]
+position = Vector2(82, 24)
+texture = ExtResource("11_i0u5d")
 
 [node name="NextTurn" type="TextureButton" parent="."]
-offset_left = 1616.0
+offset_left = 1664.0
 offset_top = 936.0
-offset_right = 1808.0
+offset_right = 1856.0
 offset_bottom = 1022.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -445,8 +602,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("40_knfjx")
 theme_override_font_sizes/font_size = 24
 text = "Test"
 horizontal_alignment = 1
@@ -469,16 +631,17 @@ visible = false
 layout_mode = 0
 offset_left = 25.0
 offset_top = -25.0
-offset_right = 245.0
+offset_right = 291.0
 offset_bottom = 10.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
+theme_override_colors/font_color = Color(0.683594, 0.238281, 0.195313, 1)
+theme_override_colors/font_shadow_color = Color(0.141176, 0.192157, 0.2, 0.592157)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("40_knfjx")
 theme_override_font_sizes/font_size = 23
 text = "Not enough energy!"
+uppercase = true
 
 [node name="Error" type="AudioStreamPlayer" parent="NextTurn"]
-stream = ExtResource("6_jw1cb")
 
 [node name="ImportEnergy-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(218, 896)
@@ -544,8 +707,9 @@ offset_left = 222.0
 offset_top = 968.0
 offset_right = 396.0
 offset_bottom = 1009.0
-NormalColor = Color(0, 0.815686, 0.0666667, 1)
-LowColor = Color(0.94902, 0.156863, 0.0666667, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
+NormalColor = Color(0.329412, 0.819608, 0.352941, 1)
+LowColor = Color(0.866667, 0.270588, 0.239216, 1)
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -573,8 +737,8 @@ offset_right = 465.0
 offset_bottom = 1010.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-NormalColor = Color(0, 0.815686, 0.0666667, 1)
-LowColor = Color(0.94902, 0.156863, 0.0666667, 1)
+NormalColor = Color(0.329412, 0.819608, 0.352941, 1)
+LowColor = Color(0.866667, 0.270588, 0.239216, 1)
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)
@@ -597,39 +761,45 @@ text = "You need to reach the demand in energy. The target is the white line on 
 "
 
 [node name="Import" parent="." instance=ExtResource("5_ps4b6")]
-offset_left = 120.0
-offset_top = 1000.28
-offset_right = 135.96
-offset_bottom = 1000.0
+offset_left = 128.0
+offset_top = 920.28
+offset_right = 143.96
+offset_bottom = 1016.0
 ticks_on_borders = false
 
-[node name="Amount" parent="Import" index="3"]
+[node name="TargetLine" parent="Import" index="3"]
+visible = false
+
+[node name="Amount" parent="Import" index="5"]
 visible = false
 offset_left = 0.0
 offset_top = 160.0
 offset_right = 40.0
 offset_bottom = 186.0
 
-[node name="Apply" parent="Import" index="4"]
+[node name="Apply" parent="Import" index="6"]
 offset_left = -19.0
 offset_top = 187.0
 offset_right = 12.0
 offset_bottom = 217.0
 
-[node name="Cancel" parent="Import" index="5"]
+[node name="Cancel" parent="Import" index="7"]
 offset_left = 18.0
 offset_top = 187.0
 offset_right = 36.0
 offset_bottom = 218.0
 
-[node name="ImportSwitch" parent="Import" index="6"]
-offset_left = -8.0
-offset_top = 160.0
-offset_right = 36.0
-offset_bottom = 191.0
+[node name="ImportSwitch" parent="Import" index="8"]
+offset_left = -88.0
+offset_top = 184.0
+offset_right = -44.0
+offset_bottom = 233.0
+
+[node name="Icon-import" parent="Import" index="10"]
+position = Vector2(16, 280)
 
 [node name="TimePanelBlank" type="Sprite2D" parent="."]
-position = Vector2(1711, 156)
+position = Vector2(1790, 130)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_m0dc4")
 
@@ -649,7 +819,7 @@ offset = Vector2(0, -40)
 
 [node name="Shadow" type="Sprite2D" parent="TimePanelBlank/Arrow"]
 show_behind_parent = true
-position = Vector2(2, 0)
+position = Vector2(3, 0)
 texture = ExtResource("18_183xf")
 offset = Vector2(0, -40)
 
@@ -665,10 +835,6 @@ texture = ExtResource("19_bcm0u")
 position = Vector2(20, 122)
 texture = ExtResource("19_bcm0u")
 
-[node name="Num4" type="Sprite2D" parent="TimePanelBlank"]
-position = Vector2(60, 122)
-texture = ExtResource("19_bcm0u")
-
 [node name="Year" type="Label" parent="TimePanelBlank"]
 visible = false
 offset_left = -78.0
@@ -677,30 +843,84 @@ offset_right = 85.0
 offset_bottom = 158.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
 theme_override_font_sizes/font_size = 48
-text = "2020"
+text = "2023
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Year2" type="Label" parent="TimePanelBlank"]
-offset_left = -80.0
-offset_top = 86.0
-offset_right = -2.0
-offset_bottom = 156.0
+offset_left = -78.0
+offset_top = 90.0
+offset_bottom = 160.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_fonts/font = ExtResource("40_knfjx")
 theme_override_font_sizes/font_size = 46
 text = "2 0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Year3" type="Label" parent="TimePanelBlank"]
+offset_top = 90.0
+offset_right = 40.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Year4" type="Label" parent="TimePanelBlank"]
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 80.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year4"]
+show_behind_parent = true
+position = Vector2(20, 32)
+texture = ExtResource("19_bcm0u")
+
+[node name="Year5" type="Label" parent="TimePanelBlank"]
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 80.0
+offset_bottom = 160.003
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year5"]
+show_behind_parent = true
+position = Vector2(20, 32)
+texture = ExtResource("19_bcm0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(41, 66.5)
+texture = SubResource("AtlasTexture_2dw2x")
+
+[node name="Sprite2D2" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(41.5, 179.5)
+texture = SubResource("AtlasTexture_ou8cv")
 
 [node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(216, 636)
 texture = ExtResource("18_oaaki")
 
 [node name="Trust" type="ProgressBar" parent="."]
-offset_left = 17.0
-offset_top = 200.0
-offset_right = 96.0
-offset_bottom = 237.0
+offset_left = 90.0
+offset_top = 185.0
+offset_right = 170.0
+offset_bottom = 223.0
 theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
@@ -821,10 +1041,9 @@ texture = ExtResource("22_facdj")
 flip_h = true
 
 [node name="Arrow" type="Sprite2D" parent="Env"]
-position = Vector2(45, 58)
-scale = Vector2(1.5, 1.6)
+position = Vector2(47, 63)
 texture = ExtResource("23_3qgyr")
-offset = Vector2(-1.5, -9.5)
+offset = Vector2(-1.5, -30)
 
 [node name="Icon" type="Sprite2D" parent="Env"]
 position = Vector2(46, 70)
@@ -907,24 +1126,23 @@ texture = ExtResource("21_i8c3o")
 [node name="Bar" type="Sprite2D" parent="Poll"]
 position = Vector2(47, 63)
 texture = ExtResource("22_facdj")
-flip_h = true
 
 [node name="Arrow" type="Sprite2D" parent="Poll"]
-position = Vector2(48, 59)
-scale = Vector2(1.5, 1.6)
+position = Vector2(49, 64)
 texture = ExtResource("23_3qgyr")
-offset = Vector2(-1.5, -9.5)
+offset = Vector2(-1.5, -30)
 
 [node name="Icon" type="Sprite2D" parent="Poll"]
 position = Vector2(49, 67)
 texture = ExtResource("25_7q1c5")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
-offset_left = -8.0
-offset_top = 248.0
-offset_right = 140.0
-offset_bottom = 396.0
-texture_normal = ExtResource("6_ivien")
+offset_left = 147.0
+offset_top = 46.0
+offset_right = 190.0
+offset_bottom = 89.0
+texture_normal = SubResource("AtlasTexture_0dajl")
+ignore_texture_size = true
 
 [node name="Stats" type="TextureButton" parent="."]
 visible = false
@@ -933,70 +1151,6 @@ offset_top = 610.0
 offset_right = 441.0
 offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
-
-[node name="Profil-bar-metal" type="Sprite2D" parent="."]
-position = Vector2(395, 176)
-texture = ExtResource("30_0k2ft")
-
-[node name="Money-counter-hole" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(-4, 7)
-texture = ExtResource("31_jcf3k")
-
-[node name="Money-counter-1" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(-30, 0)
-texture = ExtResource("32_2wt40")
-
-[node name="Money-counter-2" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(-10, 0)
-texture = ExtResource("32_2wt40")
-
-[node name="Money-counter-3" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(10, 0)
-texture = ExtResource("32_2wt40")
-
-[node name="Money-counter-4" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(30, 0)
-texture = ExtResource("32_2wt40")
-
-[node name="Icon-money" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(-84, 8)
-texture = ExtResource("33_my285")
-
-[node name="Icon-popularity" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(-83, 70)
-texture = ExtResource("34_xcgyc")
-
-[node name="Popularity-" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(-7, 70)
-texture = ExtResource("35_qiawk")
-
-[node name="TextureButton" type="TextureButton" parent="Profil-bar-metal"]
-offset_left = -91.0
-offset_top = -96.0
-offset_right = -25.0
-offset_bottom = -32.0
-texture_normal = ExtResource("36_xxsv6")
-texture_pressed = ExtResource("37_533gb")
-texture_hover = ExtResource("38_7v12r")
-
-[node name="Button-hole" type="Sprite2D" parent="Profil-bar-metal/TextureButton"]
-show_behind_parent = true
-position = Vector2(32, 32)
-texture = ExtResource("39_jsaox")
-
-[node name="TextureButton2" type="TextureButton" parent="Profil-bar-metal"]
-offset_left = -6.0
-offset_top = -97.0
-offset_right = 60.0
-offset_bottom = -33.0
-texture_normal = ExtResource("36_xxsv6")
-texture_pressed = ExtResource("37_533gb")
-texture_hover = ExtResource("38_7v12r")
-
-[node name="Button-hole2" type="Sprite2D" parent="Profil-bar-metal/TextureButton2"]
-show_behind_parent = true
-position = Vector2(32, 32)
-texture = ExtResource("39_jsaox")
 
 [node name="MoneyInfo" type="ColorRect" parent="."]
 visible = false
@@ -1104,12 +1258,12 @@ horizontal_alignment = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1911.0
-offset_top = 89.0
-offset_right = -1818.0
-offset_bottom = 137.0
+offset_left = -1833.0
+offset_top = 116.0
+offset_right = -1740.0
+offset_bottom = 164.0
 grow_horizontal = 0
-color = Color(0.597656, 0.597656, 0.597656, 1)
+color = Color(0.596078, 0.596078, 0.596078, 0)
 
 [node name="Label" type="Label" parent="Money"]
 visible = false
@@ -1123,12 +1277,14 @@ vertical_alignment = 1
 
 [node name="money" type="Label" parent="Money"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 2.0
-offset_right = 79.0
-offset_bottom = 47.0
+offset_left = 14.0
+offset_top = 5.0
+offset_right = 89.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.015625, 0.109375, 0.117188, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = SubResource("FontVariation_15ni2")
+theme_override_font_sizes/font_size = 27
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -1137,10 +1293,10 @@ vertical_alignment = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1911.0
-offset_top = 72.0
-offset_right = -1733.0
-offset_bottom = 152.0
+offset_left = -1898.0
+offset_top = 114.0
+offset_right = -1736.0
+offset_bottom = 169.0
 grow_horizontal = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -1196,11 +1352,6 @@ visible = false
 [node name="Window" parent="." instance=ExtResource("7_yu7g8")]
 visible = false
 
-[node name="BuildingButton" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(235, 650)
-texture = ExtResource("18_42ope")
-
 [node name="MouseBlock" type="ColorRect" parent="."]
 visible = false
 offset_left = -167.0
@@ -1210,10 +1361,10 @@ offset_bottom = 1225.0
 color = Color(1, 1, 1, 0)
 
 [node name="BorrowMoney" type="TextureButton" parent="."]
-offset_left = 447.0
-offset_top = 166.0
-offset_right = 478.0
-offset_bottom = 198.0
+offset_left = 194.0
+offset_top = 123.0
+offset_right = 225.0
+offset_bottom = 155.0
 texture_normal = ExtResource("44_5a58h")
 texture_pressed = ExtResource("45_nhcbq")
 texture_hover = ExtResource("46_mga3n")
@@ -1251,9 +1402,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="."]
-offset_left = 1.0
-offset_right = 89.0
-offset_bottom = 88.0
+offset_left = 39.0
+offset_top = 25.0
+offset_right = 127.0
+offset_bottom = 113.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("7_mnpcp")

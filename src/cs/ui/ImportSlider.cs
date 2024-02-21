@@ -26,14 +26,16 @@ public partial class ImportSlider : VSlider {
 	public delegate void ImportUpdateEventHandler();
 
 	// Constants for target bar positions
-	private const int TARGET_100_Y_POS = -8;
-	private const int TARGET_0_Y_POS = 124;
+	private const int TARGET_100_Y_POS = -16;
+	private const int TARGET_0_Y_POS = 232;
 
 	// Various labels that need to be dynamic
 	private Label Amount; // Current selected import percentage
 	private Label Text; // The text label describing the slider
 	private Button ApplySelection; // Button that confirms the selected import amount
 	private Button Cancel; // Button that cancels the modification of the import slider
+	private TextureButton Up;
+	private TextureButton Down;
 
 	// Target import required to meet demand
 	private Sprite2D Target;
@@ -57,6 +59,8 @@ public partial class ImportSlider : VSlider {
 		ApplySelection = GetNode<Button>("Apply");
 		Cancel = GetNode<Button>("Cancel");
 		ImportSwitch = GetNode<Button>("ImportSwitch");
+		Up = GetNode<TextureButton>("UpButton");
+		Down = GetNode<TextureButton>("DownButton");
 
 		// Initialize the import amount
 		ImportAmount = 0;
@@ -69,6 +73,8 @@ public partial class ImportSlider : VSlider {
 		//ApplySelection.Pressed += OnApplySelectionPressed;
 		Cancel.Pressed += OnCancelPressed;
 		ImportSwitch.Toggled += OnImportSwitchToggled;
+		Up.Pressed += OnUpPressed;
+		Down.Pressed += OnDownPressed;
 	}
 
 	// ==================== Public API ====================
@@ -138,6 +144,16 @@ public partial class ImportSlider : VSlider {
 		GD.Print(Toggled);
 		GreenImports = ! GreenImports;
 		// TODO if switch on, import doesnt create pollution but cost more
+	}
+	
+	private void OnUpPressed() {
+		Value += Step;
+		_OnApplySelectionPressed(true);
+	}
+	
+	private void OnDownPressed() {
+		Value -= Step;
+		_OnApplySelectionPressed(true);
 	}
 }
 

@@ -76,7 +76,7 @@ public partial class InfoBar : ProgressBar {
 		//Value = v;
 		// Animates the value going to v in n seconds
 		if (!EnergyBar) {
-			v = (int)Mathf.Remap(v, 0, 100, -90, 90);
+			v = (int)Mathf.Remap(v, 0, 100, -70, 70);
 			Sprite2D Arrow = GetNode<Sprite2D>("Arrow");
 			Tween tween = CreateTween();
 			tween.TweenProperty(Arrow, "rotation_degrees", v, 0.5f);

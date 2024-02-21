@@ -13,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://dn55t3gtpb3f8" path="res://assets/UI Elements/Button-arrow-press.png" id="11_yk6ot"]
 [ext_resource type="Texture2D" uid="uid://d2tmcpmc7mb3o" path="res://assets/UI Elements/Button-arrow-hover.png" id="12_d2wnx"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jai1g"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03nlt"]
+bg_color = Color(0.6, 0.6, 0.6, 0.152941)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c512u"]
 atlas = ExtResource("3_5cyy2")
@@ -28,13 +29,27 @@ anchors_preset = -1
 anchor_top = -0.141
 anchor_right = 0.012
 offset_top = 0.279999
-offset_right = 0.959999
+offset_right = 15.96
+offset_bottom = 96.0
 theme_override_icons/grabber = ExtResource("1_wlgbb")
 theme_override_icons/grabber_highlight = ExtResource("1_wlgbb")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_jai1g")
+theme_override_styles/slider = SubResource("StyleBoxFlat_03nlt")
+step = 0.5
+scrollable = false
 tick_count = 2
 ticks_on_borders = true
 script = ExtResource("1_3r6om")
+
+[node name="Target" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(-4, 238)
+texture = ExtResource("2_mncwm")
+
+[node name="Import-line" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(-8, 122)
+scale = Vector2(1.5, 1)
+texture = ExtResource("7_ielfg")
 
 [node name="Text" type="Label" parent="."]
 visible = false
@@ -51,7 +66,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TargetLine" type="Line2D" parent="."]
-position = Vector2(-120, 128)
+position = Vector2(-112, -16)
 points = PackedVector2Array(144, 16, 120, 16)
 width = 2.0
 
@@ -69,9 +84,9 @@ vertical_alignment = 2
 [node name="Amount" type="Label" parent="."]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 168.0
+offset_top = 262.0
 offset_right = 48.0
-offset_bottom = 194.0
+offset_bottom = 288.0
 text = "0 %"
 
 [node name="Apply" type="Button" parent="."]
@@ -98,58 +113,53 @@ text = "X"
 [node name="ImportSwitch" type="CheckButton" parent="."]
 layout_mode = 0
 offset_left = -11.0
-offset_top = 193.0
+offset_top = 287.0
 offset_right = 33.0
-offset_bottom = 224.0
+offset_bottom = 336.0
 focus_mode = 0
 theme_override_icons/checked = SubResource("AtlasTexture_c512u")
 theme_override_icons/unchecked = SubResource("AtlasTexture_x04dq")
 icon_alignment = 1
 
-[node name="Target" type="Sprite2D" parent="."]
-position = Vector2(-21, 144)
-texture = ExtResource("2_mncwm")
-
 [node name="Import-bar-hole" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(26, 28)
+position = Vector2(26, 122)
 texture = ExtResource("3_xcc16")
 
-[node name="Import-line" type="Sprite2D" parent="."]
-position = Vector2(-24, 28)
-texture = ExtResource("7_ielfg")
-
 [node name="Icon-import" type="Sprite2D" parent="."]
-position = Vector2(-24, 195)
+position = Vector2(-24, 289)
 texture = ExtResource("8_mstc7")
 
-[node name="Button-arrow-hole" type="Sprite2D" parent="."]
-position = Vector2(-50, 69)
-texture = ExtResource("9_o4d1x")
-
-[node name="Button-arrow-hole2" type="Sprite2D" parent="."]
-position = Vector2(-50, 33)
-texture = ExtResource("9_o4d1x")
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = -79.0
-offset_top = 35.0
-offset_right = -47.0
-offset_bottom = 67.0
-texture_normal = ExtResource("10_2eakc")
-texture_pressed = ExtResource("11_yk6ot")
-texture_hover = ExtResource("12_d2wnx")
-ignore_texture_size = true
-
-[node name="TextureButton2" type="TextureButton" parent="."]
+[node name="UpButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = -48.0
-offset_top = 32.0
+offset_top = 126.0
 offset_right = -16.0
-offset_bottom = 64.0
+offset_bottom = 158.0
 rotation = -3.14159
 texture_normal = ExtResource("10_2eakc")
 texture_pressed = ExtResource("11_yk6ot")
 texture_hover = ExtResource("12_d2wnx")
 ignore_texture_size = true
+
+[node name="Button-arrow-hole2" type="Sprite2D" parent="UpButton"]
+show_behind_parent = true
+position = Vector2(2, -1)
+rotation = 3.14159
+texture = ExtResource("9_o4d1x")
+
+[node name="DownButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -79.0
+offset_top = 129.0
+offset_right = -47.0
+offset_bottom = 161.0
+texture_normal = ExtResource("10_2eakc")
+texture_pressed = ExtResource("11_yk6ot")
+texture_hover = ExtResource("12_d2wnx")
+ignore_texture_size = true
+
+[node name="Button-arrow-hole" type="Sprite2D" parent="DownButton"]
+show_behind_parent = true
+position = Vector2(29, 34)
+texture = ExtResource("9_o4d1x")
