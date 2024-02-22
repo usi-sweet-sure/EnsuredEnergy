@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=79 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -148,6 +148,10 @@ _data = {
 "RESET": SubResource("Animation_pjxim"),
 "warning": SubResource("Animation_kvnnc")
 }
+
+[sub_resource type="FontVariation" id="FontVariation_rdii0"]
+base_font = ExtResource("40_knfjx")
+spacing_glyph = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mw3r"]
 bg_color = Color(0.214844, 0.335938, 0.347656, 1)
@@ -431,6 +435,120 @@ region = Rect2(241, 283, 90, 58)
 atlas = ExtResource("14_m0dc4")
 region = Rect2(237, 395, 99, 60)
 
+[sub_resource type="Animation" id="Animation_xtl2t"]
+resource_name = "NextDecade"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Year3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 90), Vector2(0, 34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Year6:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 146), Vector2(0, 90)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Year3:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["2"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Year6:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3"]
+}
+
+[sub_resource type="Animation" id="Animation_qpho6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Year3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 90)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Year6:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 146)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Year3:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["2"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Year6:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dlvf"]
+_data = {
+"NextDecade": SubResource("Animation_xtl2t"),
+"RESET": SubResource("Animation_qpho6")
+}
+
+[sub_resource type="FontVariation" id="FontVariation_kjeuh"]
+base_font = ExtResource("40_knfjx")
+variation_embolden = 0.2
+spacing_glyph = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0)
 border_color = Color(0, 0, 0, 1)
@@ -476,7 +594,8 @@ region = Rect2(48, 49, 43, 44)
 
 [sub_resource type="FontVariation" id="FontVariation_15ni2"]
 base_font = ExtResource("40_knfjx")
-spacing_glyph = 5
+variation_embolden = 0.5
+spacing_glyph = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
 bg_color = Color(0.988235, 0, 0, 1)
@@ -659,6 +778,17 @@ texture = ExtResource("11_qepre")
 position = Vector2(24, 160)
 texture = ExtResource("12_72t8i")
 
+[node name="Label" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
+offset_left = -98.0
+offset_top = -120.0
+offset_right = 70.0
+offset_bottom = -89.0
+theme_override_fonts/font = SubResource("FontVariation_rdii0")
+theme_override_font_sizes/font_size = 12
+text = "ENERGY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
 offset_left = 291.0
 offset_top = 968.0
@@ -715,12 +845,11 @@ LowColor = Color(0.866667, 0.270588, 0.239216, 1)
 position = Vector2(-195, -609.5)
 
 [node name="BarInfo" parent="EnergyBarWinter" index="1"]
-visible = true
 z_index = 1
-offset_left = 221.999
-offset_top = 221.001
-offset_right = 524.767
-offset_bottom = 345.054
+offset_left = 247.999
+offset_top = 186.001
+offset_right = 550.767
+offset_bottom = 310.054
 rotation = 1.5708
 
 [node name="InfoText" parent="EnergyBarWinter/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
@@ -745,10 +874,10 @@ position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummer" index="1"]
 z_index = 1
-offset_left = 214.0
-offset_top = 291.0
-offset_right = 516.768
-offset_bottom = 583.786
+offset_left = 248.0
+offset_top = 117.001
+offset_right = 550.768
+offset_bottom = 409.787
 rotation = 1.5708
 metadata/_edit_group_ = true
 
@@ -762,9 +891,9 @@ text = "You need to reach the demand in energy. The target is the white line on 
 
 [node name="Import" parent="." instance=ExtResource("5_ps4b6")]
 offset_left = 128.0
-offset_top = 920.28
+offset_top = 911.28
 offset_right = 143.96
-offset_bottom = 1016.0
+offset_bottom = 1007.0
 ticks_on_borders = false
 
 [node name="TargetLine" parent="Import" index="3"]
@@ -790,13 +919,31 @@ offset_right = 36.0
 offset_bottom = 218.0
 
 [node name="ImportSwitch" parent="Import" index="8"]
-offset_left = -88.0
-offset_top = 184.0
-offset_right = -44.0
-offset_bottom = 233.0
+offset_left = -77.0
+offset_top = 42.0
+offset_right = -33.0
+offset_bottom = 100.0
 
 [node name="Icon-import" parent="Import" index="10"]
-position = Vector2(16, 280)
+position = Vector2(16, 279)
+
+[node name="UpButton" parent="Import" index="11"]
+offset_left = -40.0
+offset_top = 169.0
+offset_right = -8.0
+offset_bottom = 201.0
+
+[node name="DownButton" parent="Import" index="12"]
+offset_left = -71.0
+offset_top = 172.0
+offset_right = -39.0
+offset_bottom = 204.0
+
+[node name="Label" parent="Import" index="13"]
+offset_left = -21.0
+offset_top = -23.0
+offset_right = 39.0
+offset_bottom = 3.0
 
 [node name="TimePanelBlank" type="Sprite2D" parent="."]
 position = Vector2(1790, 130)
@@ -831,10 +978,6 @@ texture = ExtResource("19_bcm0u")
 position = Vector2(-20, 122)
 texture = ExtResource("19_bcm0u")
 
-[node name="Num3" type="Sprite2D" parent="TimePanelBlank"]
-position = Vector2(20, 122)
-texture = ExtResource("19_bcm0u")
-
 [node name="Year" type="Label" parent="TimePanelBlank"]
 visible = false
 offset_left = -78.0
@@ -843,8 +986,7 @@ offset_right = 85.0
 offset_bottom = 158.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
 theme_override_font_sizes/font_size = 48
-text = "2023
-"
+text = "2020"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -869,6 +1011,27 @@ theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year3"]
+show_behind_parent = true
+position = Vector2(20, 32)
+texture = ExtResource("19_bcm0u")
+
+[node name="Year6" type="Label" parent="TimePanelBlank"]
+offset_top = 146.0
+offset_right = 40.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_font_sizes/font_size = 46
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year6"]
+show_behind_parent = true
+position = Vector2(20, 32)
+texture = ExtResource("19_bcm0u")
 
 [node name="Year4" type="Label" parent="TimePanelBlank"]
 offset_left = 40.0
@@ -904,13 +1067,18 @@ show_behind_parent = true
 position = Vector2(20, 32)
 texture = ExtResource("19_bcm0u")
 
-[node name="Sprite2D" type="Sprite2D" parent="TimePanelBlank"]
+[node name="HideNum" type="Sprite2D" parent="TimePanelBlank"]
 position = Vector2(41, 66.5)
 texture = SubResource("AtlasTexture_2dw2x")
 
-[node name="Sprite2D2" type="Sprite2D" parent="TimePanelBlank"]
+[node name="HideNum2" type="Sprite2D" parent="TimePanelBlank"]
 position = Vector2(41.5, 179.5)
 texture = SubResource("AtlasTexture_ou8cv")
+
+[node name="NextDecadeAP" type="AnimationPlayer" parent="TimePanelBlank"]
+libraries = {
+"": SubResource("AnimationLibrary_5dlvf")
+}
 
 [node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(216, 636)
@@ -921,6 +1089,8 @@ offset_left = 90.0
 offset_top = 185.0
 offset_right = 170.0
 offset_bottom = 223.0
+theme_override_fonts/font = SubResource("FontVariation_kjeuh")
+theme_override_font_sizes/font_size = 18
 theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
@@ -938,12 +1108,19 @@ width = 1.0
 [node name="BarInfo" parent="Trust" instance=ExtResource("4_67rbh")]
 visible = false
 layout_mode = 1
-offset_left = -361.0
-offset_top = 80.0
-offset_right = -47.272
-offset_bottom = 285.121
+offset_left = -74.0
+offset_top = 87.0
+offset_right = 239.728
+offset_bottom = 292.121
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="InfoText" parent="Trust/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
+text = "More Info
+"
+
+[node name="InfoText2" parent="Trust/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
+text = "More Info"
 
 [node name="Name" type="Label" parent="Trust"]
 visible = false
@@ -996,10 +1173,10 @@ width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
 layout_mode = 1
-offset_left = 308.0
-offset_top = 129.0
-offset_right = 610.52
-offset_bottom = 285.63
+offset_left = 319.0
+offset_top = 127.0
+offset_right = 621.52
+offset_bottom = 283.63
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
@@ -1026,9 +1203,11 @@ texture = ExtResource("21_i8c3o")
 
 [node name="Button" type="Button" parent="Env"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -0.17
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.526
+offset_bottom = 0.0179977
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -1054,7 +1233,6 @@ offset_left = 227.0
 offset_top = 593.0
 offset_right = 287.0
 offset_bottom = 658.0
-tooltip_text = "Reach the goal by 2050 to attain net zero"
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
 value = 50.0
@@ -1074,10 +1252,10 @@ width = 1.0
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
 visible = false
 layout_mode = 1
-offset_left = 172.0
-offset_top = 129.0
-offset_right = 316.184
-offset_bottom = 149.096
+offset_left = 181.0
+offset_top = 127.0
+offset_right = 325.184
+offset_bottom = 147.096
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
@@ -1113,10 +1291,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -19.0
+offset_right = 49.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-mouse_default_cursor_shape = 16
+mouse_default_cursor_shape = 2
 flat = true
 
 [node name="Base" type="Sprite2D" parent="Poll"]
@@ -1159,10 +1340,10 @@ anchor_left = 0.233
 anchor_top = 0.076
 anchor_right = 0.233
 anchor_bottom = 0.076
-offset_left = -199.36
-offset_top = -2.08
-offset_right = 32.64
-offset_bottom = 171.92
+offset_left = -175.36
+offset_top = -34.08
+offset_right = 56.64
+offset_bottom = 139.92
 grow_horizontal = 0
 color = Color(0.121569, 0.219608, 0.360784, 1)
 
@@ -1284,7 +1465,7 @@ offset_bottom = 50.0
 theme_override_colors/font_color = Color(0.015625, 0.109375, 0.117188, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_15ni2")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 25
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1

@@ -116,9 +116,9 @@ public partial class PolicyWindow : CanvasLayer {
 	public void _OnPanelGuiInput(InputEvent input) {
 		if(input.GetType() == new InputEventMouseButton().GetType()) {
 			Hide();
-			Vote.Hide();
 			PressedPolicy = PolicyGroup.GetPressedButton();
 			if (PressedPolicy != null) {
+				Vote.Hide();
 				PressedPolicy.ButtonPressed = false;
 			}
 		}
@@ -156,7 +156,7 @@ public partial class PolicyWindow : CanvasLayer {
 			bool success = C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
 
 			// Disable the vote
-			Vote.Disabled = true;
+			//Vote.Disabled = true;
 			VoteResult.Show();
 
 			// Show the result

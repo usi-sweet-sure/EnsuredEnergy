@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://jj476u8yn2g8"]
+[gd_scene load_steps=14 format=3 uid="uid://jj476u8yn2g8"]
 
 [ext_resource type="Script" path="res://src/cs/windows/PolicyWindow.cs" id="1_is3ep"]
 [ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="2_2apud"]
 [ext_resource type="PackedScene" uid="uid://dna2006dnsx2x" path="res://scenes/windows/policy_button.tscn" id="3_wnx31"]
 [ext_resource type="ButtonGroup" uid="uid://ei788aoab46g" path="res://scenes/windows/policyButtonGroup.tres" id="4_wme6q"]
+[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="5_iox1m"]
 
 [sub_resource type="Animation" id="Animation_wviye"]
 length = 0.001
@@ -273,7 +274,7 @@ anchor_bottom = 0.5
 offset_left = -192.0
 offset_top = -261.5
 offset_right = 192.0
-offset_bottom = 71.5
+offset_bottom = 106.5
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -281,14 +282,15 @@ color = Color(0, 0, 0, 1)
 [node name="PolicyName" type="Label" parent="ColorRect/NinePatchRect/ColorRect2"]
 layout_mode = 1
 offset_left = 43.0
-offset_top = 27.0
-offset_right = 188.0
-offset_bottom = 75.0
+offset_top = 18.0
+offset_right = 330.0
+offset_bottom = 73.0
 theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
 theme_override_font_sizes/font_size = 25
-text = "Policy name"
+text = "- Select Campaign -"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Text" type="Label" parent="ColorRect/NinePatchRect/ColorRect2"]
 layout_mode = 1
@@ -298,22 +300,22 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -159.5
-offset_top = -82.5
+offset_top = -105.5
 offset_right = 160.5
-offset_bottom = 90.5
+offset_bottom = 67.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
 theme_override_font_sizes/font_size = 15
-text = "Information campaign / Raise grants / Guaranteed purchase of _"
+text = "An information campaign to boost the popularity of your policies"
 autowrap_mode = 3
 
 [node name="EffectTitle" type="Label" parent="ColorRect/NinePatchRect/ColorRect2"]
 layout_mode = 0
-offset_left = 98.5
-offset_top = 167.5
-offset_right = 295.5
-offset_bottom = 299.5
+offset_left = 24.0
+offset_top = 169.0
+offset_right = 357.0
+offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
 theme_override_font_sizes/font_size = 21
 text = "Effects:
@@ -337,7 +339,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
 theme_override_font_sizes/font_size = 15
-text = "List of effects"
+text = "Policies can help improve existing renewable power plants or lower demand in energy. The population gets to decide, so your support score needs to be good if you want to implement policies"
 autowrap_mode = 3
 
 [node name="Vote" type="Button" parent="ColorRect/NinePatchRect/ColorRect2"]
@@ -348,10 +350,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 66.0
-offset_right = -27.0
-offset_bottom = 97.0
+offset_left = -98.0
+offset_top = 66.5
+offset_right = -19.0
+offset_bottom = 97.5
 grow_horizontal = 0
 grow_vertical = 0
 text = "Vote
@@ -364,10 +366,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -301.5
-offset_top = -58.5
-offset_right = -44.5
-offset_bottom = -32.5
+offset_left = -285.5
+offset_top = -73.0
+offset_right = -28.5
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -380,13 +382,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -286.0
-offset_top = -27.0
-offset_right = -77.0
+offset_left = -266.5
+offset_top = -33.0
+offset_right = -57.5
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_77vk0")
 value = 42.0
+
+[node name="Icon" type="Sprite2D" parent="ColorRect/NinePatchRect/ColorRect2/Vote"]
+position = Vector2(-267, 15)
+texture = ExtResource("5_iox1m")
 
 [node name="VoteResult" type="Label" parent="ColorRect/NinePatchRect/ColorRect2"]
 visible = false

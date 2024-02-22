@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://pvoi2mcc3oc1"]
+[gd_scene load_steps=20 format=3 uid="uid://pvoi2mcc3oc1"]
 
 [ext_resource type="Script" path="res://src/cs/ui/MainMenu.cs" id="1_acmck"]
 [ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/MAP-BG.png" id="2_rie33"]
-[ext_resource type="FontFile" uid="uid://dgb2xwp51s2cc" path="res://assets/Fonts/HeavyEquipment.otf" id="2_v5gom"]
 [ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_gh7te"]
+[ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="8_jaeq3"]
 [ext_resource type="Texture2D" uid="uid://dvojrl48elrdl" path="res://assets/UI Elements/Start_Menu_base.png" id="10_cm00s"]
 [ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/Button-Play-normal.png" id="11_v1gn1"]
 [ext_resource type="Texture2D" uid="uid://c5tgx0yng476j" path="res://assets/UI Elements/Button-Play-press.png" id="12_2e306"]
@@ -14,6 +14,24 @@
 [ext_resource type="Texture2D" uid="uid://bdqqnt7g3ojt8" path="res://assets/UI Elements/Blueprint_active_2.png" id="14_wbube"]
 [ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="15_4vyug"]
 [ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="16_gqjv5"]
+
+[sub_resource type="FontVariation" id="FontVariation_m8fhd"]
+base_font = ExtResource("8_jaeq3")
+
+[sub_resource type="FontVariation" id="FontVariation_iute2"]
+base_font = ExtResource("8_jaeq3")
+variation_embolden = 0.5
+spacing_glyph = 1
+
+[sub_resource type="FontVariation" id="FontVariation_6favg"]
+base_font = ExtResource("8_jaeq3")
+variation_embolden = 0.5
+spacing_glyph = 1
+
+[sub_resource type="FontVariation" id="FontVariation_4plkp"]
+base_font = ExtResource("8_jaeq3")
+variation_embolden = 0.5
+spacing_glyph = 1
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fibyn"]
 animations = [{
@@ -29,7 +47,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [node name="Menu" type="CanvasLayer"]
@@ -55,11 +73,10 @@ anchor_bottom = 1.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.980392, 0.760784, 1)
-theme_override_colors/font_outline_color = Color(1, 0.882353, 0.392157, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_v5gom")
-theme_override_font_sizes/font_size = 135
+theme_override_colors/font_color = Color(0.647059, 0.521569, 0.027451, 1)
+theme_override_colors/font_shadow_color = Color(0.341176, 0.254902, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_m8fhd")
+theme_override_font_sizes/font_size = 100
 text = "Ensured 
 Energy"
 horizontal_alignment = 1
@@ -94,8 +111,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_iute2")
+theme_override_font_sizes/font_size = 20
 text = "PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -127,10 +149,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_bottom = 3.0
+offset_left = 12.0
+offset_right = -12.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_6favg")
+theme_override_font_sizes/font_size = 18
 text = "LANGUAGE"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -163,8 +188,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_4plkp")
 text = "Mode: Online"
 horizontal_alignment = 1
 vertical_alignment = 1
