@@ -31,7 +31,7 @@ using System.Runtime.CompilerServices;
 public partial class PolicyController : XMLController {
 	// The currently loaded xml document
 	private XDocument LoadedXML;
-	private string LoadedFileName = "policies.xml";
+	private string LoadedFileName;
 	private Language LoadedLanguage;
 
 	// The current language
@@ -61,6 +61,8 @@ public partial class PolicyController : XMLController {
 		// Check that the given language is new
 		if(C._GetLanguage() != Lang) {
 			Lang = C._GetLanguage();
+			
+			CheckXML();
 			
 			// Update the loaded xml
 			ParseXML(ref LoadedXML, Path.Combine("text/", Lang.ToString() + "/" + LoadedFileName));
