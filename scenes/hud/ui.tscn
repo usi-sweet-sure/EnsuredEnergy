@@ -309,6 +309,18 @@ tracks/9/keys = {
 "update": 1,
 "values": ["2", "3", "4", "5"]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Shadow:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.25, 2, 2.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [-2.21657, -2.0944, -2.00713, -1.81514]
+}
 
 [sub_resource type="Animation" id="Animation_lrye6"]
 length = 0.001
@@ -420,6 +432,18 @@ tracks/8/keys = {
 "update": 1,
 "values": ["2"]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Shadow:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.21657]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08hvt"]
 _data = {
@@ -437,6 +461,7 @@ region = Rect2(237, 395, 99, 60)
 
 [sub_resource type="Animation" id="Animation_xtl2t"]
 resource_name = "NextDecade"
+length = 2.0
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -445,7 +470,7 @@ tracks/0/path = NodePath("Year3:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.45),
+"times": PackedFloat32Array(0.8, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 90), Vector2(0, 34)]
@@ -457,7 +482,7 @@ tracks/1/path = NodePath("Year6:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.45),
+"times": PackedFloat32Array(0.8, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 146), Vector2(0, 90)]
@@ -667,7 +692,7 @@ position = Vector2(-83, 70)
 texture = ExtResource("34_xcgyc")
 
 [node name="Popularity-" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(-7, 70)
+position = Vector2(0, 75)
 texture = ExtResource("35_qiawk")
 
 [node name="TextureButton" type="TextureButton" parent="Profil-bar-metal"]
@@ -959,25 +984,6 @@ libraries = {
 volume_db = -20.0
 pitch_scale = 0.5
 
-[node name="Arrow" type="Sprite2D" parent="TimePanelBlank"]
-rotation = -2.18166
-texture = ExtResource("17_8ninl")
-offset = Vector2(0, -40)
-
-[node name="Shadow" type="Sprite2D" parent="TimePanelBlank/Arrow"]
-show_behind_parent = true
-position = Vector2(3, 0)
-texture = ExtResource("18_183xf")
-offset = Vector2(0, -40)
-
-[node name="Num1" type="Sprite2D" parent="TimePanelBlank"]
-position = Vector2(-60, 122)
-texture = ExtResource("19_bcm0u")
-
-[node name="Num2" type="Sprite2D" parent="TimePanelBlank"]
-position = Vector2(-20, 122)
-texture = ExtResource("19_bcm0u")
-
 [node name="Year" type="Label" parent="TimePanelBlank"]
 visible = false
 offset_left = -78.0
@@ -1000,6 +1006,16 @@ theme_override_font_sizes/font_size = 46
 text = "2 0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Num1" type="Sprite2D" parent="TimePanelBlank/Year2"]
+show_behind_parent = true
+position = Vector2(18, 32)
+texture = ExtResource("19_bcm0u")
+
+[node name="Num2" type="Sprite2D" parent="TimePanelBlank/Year2"]
+show_behind_parent = true
+position = Vector2(58, 32)
+texture = ExtResource("19_bcm0u")
 
 [node name="Year3" type="Label" parent="TimePanelBlank"]
 offset_top = 90.0
@@ -1054,7 +1070,7 @@ texture = ExtResource("19_bcm0u")
 offset_left = 40.0
 offset_top = 90.0
 offset_right = 80.0
-offset_bottom = 160.003
+offset_bottom = 160.005
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
 theme_override_fonts/font = ExtResource("40_knfjx")
 theme_override_font_sizes/font_size = 46
@@ -1075,6 +1091,18 @@ texture = SubResource("AtlasTexture_2dw2x")
 position = Vector2(41.5, 179.5)
 texture = SubResource("AtlasTexture_ou8cv")
 
+[node name="Shadow" type="Sprite2D" parent="TimePanelBlank"]
+modulate = Color(1, 1, 1, 0.780392)
+position = Vector2(4, 4)
+rotation = -2.21657
+texture = ExtResource("18_183xf")
+offset = Vector2(0, -40)
+
+[node name="Arrow" type="Sprite2D" parent="TimePanelBlank"]
+rotation = -2.18166
+texture = ExtResource("17_8ninl")
+offset = Vector2(0, -40)
+
 [node name="NextDecadeAP" type="AnimationPlayer" parent="TimePanelBlank"]
 libraries = {
 "": SubResource("AnimationLibrary_5dlvf")
@@ -1085,10 +1113,10 @@ position = Vector2(216, 636)
 texture = ExtResource("18_oaaki")
 
 [node name="Trust" type="ProgressBar" parent="."]
-offset_left = 90.0
-offset_top = 185.0
-offset_right = 170.0
-offset_bottom = 223.0
+offset_left = 97.0
+offset_top = 192.0
+offset_right = 177.0
+offset_bottom = 230.0
 theme_override_fonts/font = SubResource("FontVariation_kjeuh")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")

@@ -701,20 +701,23 @@ public partial class UI : CanvasLayer {
 	public void SetNextYears() {
 		// Retrieve the current year
 		double Year = Timeline.Value;
+		
+		string LastDecade = Year.ToString();
 
 		// Set up the animation for the year progression
 		Animation Anim = TimelineAP.GetAnimation("NextTurnAnim");
+		// Set up decade change animation player
+		AnimationPlayer DecadeAP = GetNode<AnimationPlayer>("TimePanelBlank/NextDecadeAP");
+		Animation DecadeAnim = DecadeAP.GetAnimation("NextDecade");
 
 		// Retrieve the animation track related to our current turn progression
 		int Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
 		// Retrieve the animation track related to the arrow's rotation
 		int ArrowTrack = Anim.FindTrack("Arrow:rotation", Animation.TrackType.Value);
+		int ShadowTrack = Anim.FindTrack("Shadow:rotation", Animation.TrackType.Value);
 		// Retrieve the animation track related to year's numbers
 		int YearTrack = Anim.FindTrack("Year4:text", Animation.TrackType.Value);
 		int Year2Track = Anim.FindTrack("Year5:text", Animation.TrackType.Value);
-		
-		string YearNum = null;
-		string YearNum2 = null;
 
 		// Retrieve the number of animation keypoints in the current track
 		int NKeys = Anim.TrackGetKeyCount(Track);
@@ -723,16 +726,21 @@ public partial class UI : CanvasLayer {
 		for (int i = 0; i < NKeys; i++) {
 			Anim.TrackSetKeyValue(Track, i, (Year + i).ToString());
 			Anim.TrackSetKeyValue(ArrowTrack, i, (Mathf.Remap(Year+i, 2022, 2052, -2.18, 2.18)));
-			YearNum = (Year + i).ToString();
+			Anim.TrackSetKeyValue(ShadowTrack, i, (Mathf.Remap(Year+i, 2022, 2052, -2.22, 2.22)));
+			string YearNum = (Year + i).ToString();
 			Anim.TrackSetKeyValue(YearTrack, i, YearNum[3].ToString());
 			if (i < NKeys-1) {
-				YearNum2 = (Year + i + 1).ToString();
+				string YearNum2 = (Year + i + 1).ToString();
 				Anim.TrackSetKeyValue(Year2Track, i, YearNum2[3].ToString());
-			}
-			GD.Print(YearNum2);
-			if (YearNum2[3] == 0) {
-				AnimationPlayer DecadeAP = GetNode<AnimationPlayer>("TimePanelBlank/NextDecadeAP");
-				DecadeAP.Play("NextDecade");
+				if(YearNum2[3].ToString() == "0") {
+					// Retrieve the animation track related to decade's year numbers
+					int DecadeTrack = DecadeAnim.FindTrack("Year3:text", Animation.TrackType.Value);
+					int Decade2Track = DecadeAnim.FindTrack("Year6:text", Animation.TrackType.Value);
+					// Set the decade track numbers to the right tracks
+					DecadeAnim.TrackSetKeyValue(DecadeTrack, 0, LastDecade[2].ToString());
+					DecadeAnim.TrackSetKeyValue(Decade2Track, 0, YearNum2[2].ToString());
+					DecadeAP.Play("NextDecade");
+				}
 			}
 		}
 		

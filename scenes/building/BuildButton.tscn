@@ -2004,9 +2004,13 @@ HasAnimation = true
 
 [node name="Price" parent="Gas/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Gas" index="1"]
 texture = ExtResource("5_4jvt0")
@@ -2068,9 +2072,13 @@ _PlantType = 0
 
 [node name="Price" parent="Hydro/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Hydro" index="1"]
 texture = ExtResource("10_ueb8a")
@@ -2113,9 +2121,13 @@ _PlantType = 2
 
 [node name="Price" parent="Solar/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Solar" index="1"]
 texture = ExtResource("12_2b7wd")
@@ -2153,9 +2165,13 @@ _PlantType = 3
 
 [node name="Price" parent="Tree/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Tree" index="1"]
 texture = ExtResource("13_buqe2")
@@ -2169,9 +2185,13 @@ _PlantType = 5
 
 [node name="Price" parent="Wind/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Wind" index="1"]
 texture = ExtResource("14_sk126")
@@ -2305,9 +2325,13 @@ _PlantType = 6
 
 [node name="Price" parent="Waste/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Waste" index="1"]
 texture = ExtResource("17_f2csk")
@@ -2357,9 +2381,13 @@ _PlantType = 7
 
 [node name="Price" parent="Biomass/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Biomass" index="1"]
 texture = ExtResource("18_66dmx")
@@ -2404,9 +2432,13 @@ _PlantType = 8
 
 [node name="Price" parent="River/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="River" index="1"]
 texture = ExtResource("19_e5dte")
@@ -2445,9 +2477,13 @@ _PlantType = 9
 
 [node name="Price" parent="Pump/PreviewInfo" index="3"]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
 offset_top = 0.0
 offset_right = 52.0
 offset_bottom = 35.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Pump" index="1"]
 texture = ExtResource("10_ueb8a")
