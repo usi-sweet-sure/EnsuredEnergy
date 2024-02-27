@@ -26,8 +26,8 @@ public partial class ImportSlider : VSlider {
 	public delegate void ImportUpdateEventHandler();
 
 	// Constants for target bar positions
-	private const int TARGET_100_Y_POS = -16;
-	private const int TARGET_0_Y_POS = 232;
+	private const int TARGET_100_Y_POS = 24;
+	private const int TARGET_0_Y_POS = 220;
 
 	// Various labels that need to be dynamic
 	private Label Amount; // Current selected import percentage
@@ -87,7 +87,7 @@ public partial class ImportSlider : VSlider {
 		float _d = Math.Max(0.0f, Math.Min(demand, 1.0f));
 
 		// Set the bar position based on the given percentage
-		int y_pos = TARGET_0_Y_POS + (int)(_d * (TARGET_100_Y_POS - TARGET_0_Y_POS));
+		int y_pos = TARGET_0_Y_POS + (int)(_d/2 * (TARGET_100_Y_POS - TARGET_0_Y_POS));
 		Target.Position = new Vector2(Target.Position.X, y_pos);
 	}
 
@@ -98,7 +98,7 @@ public partial class ImportSlider : VSlider {
 	}
 
 	// Getter for the current value selected with the slider
-	public int _GetImportValue() => Math.Max(0, Math.Min((int) ImportAmount, 100));
+	public int _GetImportValue() => Math.Max(0, Math.Min((int) ImportAmount, 500));
 
 	// Getter for the state of green imports
 	public bool _GetGreenImports() => GreenImports;
@@ -119,7 +119,7 @@ public partial class ImportSlider : VSlider {
 	// Confirms the selection of a specific import amount
 	public void _OnApplySelectionPressed(bool ValChanged) {
 		// Save the import amount
-		ImportAmount = Math.Max(0, Math.Min((int) Value, 100));
+		ImportAmount = Math.Max(0, Math.Min((int) Value, 500));
 
 		// Hide the apply selection button
 		//ApplySelection.Hide();

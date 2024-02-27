@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://pvoi2mcc3oc1"]
+[gd_scene load_steps=21 format=3 uid="uid://pvoi2mcc3oc1"]
 
 [ext_resource type="Script" path="res://src/cs/ui/MainMenu.cs" id="1_acmck"]
 [ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/MAP-BG.png" id="2_rie33"]
@@ -49,6 +49,10 @@ animations = [{
 "name": &"default",
 "speed": 4.0
 }]
+
+[sub_resource type="FontVariation" id="FontVariation_4utnw"]
+base_font = ExtResource("8_jaeq3")
+variation_face_index = 1
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_acmck")
@@ -204,6 +208,26 @@ position = Vector2(1232, 680)
 sprite_frames = SubResource("SpriteFrames_fibyn")
 autoplay = "default"
 frame_progress = 0.665593
+
+[node name="Drag" type="Label" parent="BlueprintNormal"]
+offset_left = -204.0
+offset_top = -104.0
+offset_right = -76.0
+offset_bottom = -52.0
+theme_override_fonts/font = SubResource("FontVariation_4utnw")
+text = "Hold & drag to move"
+autowrap_mode = 3
+uppercase = true
+
+[node name="Scroll" type="Label" parent="BlueprintNormal"]
+offset_left = -204.0
+offset_top = 59.0
+offset_right = -76.0
+offset_bottom = 111.0
+theme_override_fonts/font = SubResource("FontVariation_4utnw")
+text = "Scroll to zoom"
+autowrap_mode = 3
+uppercase = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = 672.0
