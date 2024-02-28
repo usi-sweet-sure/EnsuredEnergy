@@ -1362,7 +1362,6 @@ offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
 
 [node name="MoneyInfo" type="ColorRect" parent="."]
-visible = false
 anchors_preset = -1
 anchor_left = 0.233
 anchor_top = 0.076
@@ -1376,13 +1375,14 @@ grow_horizontal = 0
 color = Color(0.121569, 0.219608, 0.360784, 1)
 
 [node name="InfoMoney" type="Sprite2D" parent="MoneyInfo"]
-position = Vector2(141, 93)
+position = Vector2(175, 122.5)
+scale = Vector2(1.19429, 1.21691)
 texture = ExtResource("10_2gyrf")
 
 [node name="ColorRect" type="ColorRect" parent="MoneyInfo"]
 layout_mode = 0
-offset_right = 231.0
-offset_bottom = 185.0
+offset_right = 280.0
+offset_bottom = 240.0
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoneyInfo"]
@@ -1393,71 +1393,110 @@ offset_right = 138.0
 offset_bottom = 147.0
 theme_override_constants/separation = 14
 
-[node name="Label3" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="BudgetName" type="Label" parent="MoneyInfo/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Budget:"
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="MoneyInfo/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "  Production: "
-vertical_alignment = 1
-
-[node name="Label4" type="Label" parent="MoneyInfo/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "  Building: "
-vertical_alignment = 1
-
-[node name="Import" type="Label" parent="MoneyInfo/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "  Import:"
-
-[node name="prod" type="Label" parent="MoneyInfo"]
+[node name="budgetNow" type="Label" parent="MoneyInfo/VBoxContainer/BudgetName"]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 51.0
-offset_right = 194.0
-offset_bottom = 91.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "000"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="build" type="Label" parent="MoneyInfo"]
-layout_mode = 0
-offset_left = 55.0
-offset_top = 97.0
-offset_right = 195.0
-offset_bottom = 137.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "000"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="budget" type="Label" parent="MoneyInfo"]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 8.0
-offset_right = 195.0
-offset_bottom = 48.0
+offset_left = 43.0
+offset_top = -3.0
+offset_right = 185.0
+offset_bottom = 37.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="importamounts" type="Label" parent="MoneyInfo"]
+[node name="budgetNext" type="Label" parent="MoneyInfo/VBoxContainer/BudgetName"]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 148.0
-offset_right = 194.0
-offset_bottom = 179.0
+offset_left = 118.0
+offset_top = -3.0
+offset_right = 260.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ProdName" type="Label" parent="MoneyInfo/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "  Production: "
+vertical_alignment = 1
+
+[node name="prod" type="Label" parent="MoneyInfo/VBoxContainer/ProdName"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = -5.0
+offset_right = 184.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BuildName" type="Label" parent="MoneyInfo/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "  Building: "
+vertical_alignment = 1
+
+[node name="build" type="Label" parent="MoneyInfo/VBoxContainer/BuildName"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = -4.0
+offset_right = 185.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ImportName" type="Label" parent="MoneyInfo/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "  Import:"
+
+[node name="importamounts" type="Label" parent="MoneyInfo/VBoxContainer/ImportName"]
+layout_mode = 2
+offset_left = 132.0
+offset_top = 2.0
+offset_right = 260.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+
+[node name="TotalName" type="Label" parent="MoneyInfo/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "  Total:"
+
+[node name="TotalNow" type="Label" parent="MoneyInfo/VBoxContainer/TotalName"]
+layout_mode = 2
+offset_left = 56.0
+offset_top = 2.0
+offset_right = 184.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+
+[node name="TotalNext" type="Label" parent="MoneyInfo/VBoxContainer/TotalName"]
+layout_mode = 2
+offset_left = 132.0
+offset_top = 2.0
+offset_right = 260.0
+offset_bottom = 33.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"

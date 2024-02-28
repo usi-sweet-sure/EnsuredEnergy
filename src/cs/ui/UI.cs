@@ -106,6 +106,9 @@ public partial class UI : CanvasLayer {
 	private Label BuildL;
 	private Label ProdL;
 	private Label ImportCostL;
+	private Label BudgetNext;
+	private Label TotalNow;
+	private Label TotalNext;
 
 	// Borrow related fields
 	private Label BorrowTitle;
@@ -209,10 +212,10 @@ public partial class UI : CanvasLayer {
 		MoneyL = GetNode<Label>("Money/money");
 		MoneyButton = GetNode<Button>("MoneyUI");
 		MoneyInfo = GetNode<ColorRect>("MoneyInfo");
-		BudgetL = GetNode<Label>("MoneyInfo/budget");
-		BuildL = GetNode<Label>("MoneyInfo/build");
-		ProdL = GetNode<Label>("MoneyInfo/prod");
-		ImportCostL = GetNode<Label>("MoneyInfo/importamounts");
+		BudgetL = GetNode<Label>("MoneyInfo/VBoxContainer/BudgetName/budgetNow");
+		BuildL = GetNode<Label>("MoneyInfo/VBoxContainer/BuildName/build");
+		ProdL = GetNode<Label>("MoneyInfo/VBoxContainer/ProdName/prod");
+		ImportCostL = GetNode<Label>("MoneyInfo/VBoxContainer/ImportName/importamounts");
 
 		// Borrow Nodes
 		BorrowTitle = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Title");
@@ -231,10 +234,10 @@ public partial class UI : CanvasLayer {
 
 		// Name labels
 		MoneyNameL = GetNode<Label>("Money/Label");
-		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label3");
-		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label4");
-		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label2");
-		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Import");
+		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/BudgetName");
+		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/BuildName");
+		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/ProdName");
+		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/ImportName");
 
 		// Window buttons
 		PolicyButton = GetNode<TextureButton>("PolicyButton");
