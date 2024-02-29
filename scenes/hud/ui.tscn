@@ -1431,9 +1431,9 @@ vertical_alignment = 1
 
 [node name="prod" type="Label" parent="MoneyInfo/VBoxContainer/ProdName"]
 layout_mode = 0
-offset_left = 44.0
+offset_left = 121.0
 offset_top = -5.0
-offset_right = 184.0
+offset_right = 261.0
 offset_bottom = 35.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20

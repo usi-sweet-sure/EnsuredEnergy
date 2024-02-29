@@ -216,6 +216,9 @@ public partial class UI : CanvasLayer {
 		BuildL = GetNode<Label>("MoneyInfo/VBoxContainer/BuildName/build");
 		ProdL = GetNode<Label>("MoneyInfo/VBoxContainer/ProdName/prod");
 		ImportCostL = GetNode<Label>("MoneyInfo/VBoxContainer/ImportName/importamounts");
+		BudgetNext = GetNode<Label>("MoneyInfo/VBoxContainer/BudgetName/budgetNext");
+		TotalNow = GetNode<Label>("MoneyInfo/VBoxContainer/TotalName/TotalNow");
+		TotalNext = GetNode<Label>("MoneyInfo/VBoxContainer/TotalName/TotalNext");
 
 		// Borrow Nodes
 		BorrowTitle = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Title");
@@ -688,10 +691,16 @@ public partial class UI : CanvasLayer {
 		
 		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
-		BuildL.Text = Data.Building.ToString();
-		ProdL.Text = Data.Production.ToString();
+		BuildL.Text = "-" + Data.Building.ToString();
+		ProdL.Text = "-" + Data.Production.ToString();
 		MoneyL.Text = Data.Money.ToString();
-		ImportCostL.Text = Data.Imports.ToString();
+		ImportCostL.Text = "-" + Data.Imports.ToString();
+		GD.Print(Data.Money, GameLoop.BUDGET_PER_TURN);
+		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
+		BudgetNext.Text = BudgetNextN.ToString();
+		TotalNow.Text = Data.Money.ToString();
+		int TotalNextN = BudgetNextN - Data.Imports - Data.Production;
+		TotalNext.Text = TotalNextN.ToString();
 	}
 
 	// Sets the correct years without the Next Turn Animation
