@@ -392,16 +392,16 @@ z_index = 1
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = -65.0
-offset_top = -264.0
-offset_right = -25.0
-offset_bottom = -224.0
+offset_left = -86.0
+offset_top = -295.0
+offset_right = -46.0
+offset_bottom = -255.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BuildInfo"]
 layout_mode = 0
 offset_left = -119.0
 offset_top = -208.0
-offset_right = 249.0
+offset_right = 289.0
 offset_bottom = 126.0
 texture = ExtResource("3_jv8ie")
 region_rect = Rect2(24, 32, 254, 152)
@@ -414,7 +414,7 @@ patch_margin_bottom = 12
 layout_mode = 0
 offset_left = -71.0
 offset_top = -168.0
-offset_right = 201.0
+offset_right = 241.0
 offset_bottom = 97.0
 color = Color(0.596078, 0.596078, 0.596078, 1)
 
@@ -526,12 +526,39 @@ theme_override_font_sizes/font_size = 35
 text = "100"
 horizontal_alignment = 2
 
+[node name="MultProd" type="Label" parent="BuildInfo/ColorRect/ContainerN/Prod"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 27.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
+theme_override_font_sizes/font_size = 35
+text = "100"
+
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
 theme_override_font_sizes/font_size = 35
 text = "10"
 horizontal_alignment = 2
+
+[node name="MultPoll" type="Label" parent="BuildInfo/ColorRect/ContainerN/Poll"]
+layout_mode = 2
+offset_left = 375.0
+offset_top = 4.0
+offset_right = 687.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
+theme_override_font_sizes/font_size = 35
+text = "10"
 
 [node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
@@ -540,12 +567,32 @@ theme_override_font_sizes/font_size = 35
 text = "3"
 horizontal_alignment = 2
 
+[node name="MultLand" type="Label" parent="BuildInfo/ColorRect/ContainerN/Land"]
+layout_mode = 2
+offset_left = 375.0
+offset_top = 2.0
+offset_right = 687.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
+theme_override_font_sizes/font_size = 35
+text = "3"
+
 [node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
 theme_override_font_sizes/font_size = 35
 text = "3"
 horizontal_alignment = 2
+
+[node name="MultBio" type="Label" parent="BuildInfo/ColorRect/ContainerN/Bio"]
+layout_mode = 2
+offset_left = 375.0
+offset_top = 1.0
+offset_right = 687.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
+theme_override_font_sizes/font_size = 35
+text = "3"
 
 [node name="Switch" type="CheckButton" parent="BuildInfo"]
 layout_mode = 1
@@ -766,10 +813,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 96.0
-offset_top = 142.0
-offset_right = 176.0
-offset_bottom = 182.0
+offset_left = 123.0
+offset_top = 124.0
+offset_right = 203.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.2, 1.2)
@@ -821,6 +868,15 @@ offset_right = 28.1666
 offset_bottom = 38.0
 theme_override_font_sizes/font_size = 31
 text = "-"
+
+[node name="MultPrice" type="Label" parent="Multiplier"]
+visible = false
+layout_mode = 0
+offset_left = 110.833
+offset_top = 9.99999
+offset_right = 150.833
+offset_bottom = 33.0
+text = "$$$"
 
 [node name="ConfigController" type="Node" parent="."]
 script = ExtResource("3_runxt")

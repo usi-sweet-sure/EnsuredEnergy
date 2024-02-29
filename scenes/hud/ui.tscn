@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=80 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://dlccss1xvy8tb" path="res://assets/UI Elements/Button-Square-hover.png" id="38_7v12r"]
 [ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/Button-Hole.png" id="39_jsaox"]
 [ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="40_knfjx"]
+[ext_resource type="Texture2D" uid="uid://dcbjy5kxo2vbm" path="res://assets/Elements/INFO ICON.png" id="42_v8iq7"]
 [ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
 [ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
 [ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="46_mga3n"]
@@ -1108,6 +1109,22 @@ libraries = {
 "": SubResource("AnimationLibrary_5dlvf")
 }
 
+[node name="CurrentTurn" type="Label" parent="TimePanelBlank"]
+visible = false
+offset_left = -124.0
+offset_top = 268.0
+offset_right = -71.0
+offset_bottom = 294.0
+text = "Turn N"
+
+[node name="RemainingTurns" type="Label" parent="TimePanelBlank"]
+visible = false
+offset_left = -124.0
+offset_top = 302.0
+offset_right = 4.0
+offset_bottom = 328.0
+text = "Remaining turns before 2050 N"
+
 [node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(216, 636)
 texture = ExtResource("18_oaaki")
@@ -1361,8 +1378,9 @@ offset_right = 441.0
 offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
 
-[node name="MoneyInfo" type="ColorRect" parent="."]
-anchors_preset = -1
+[node name="MoneyInfo" type="Control" parent="."]
+visible = false
+layout_mode = 3
 anchor_left = 0.233
 anchor_top = 0.076
 anchor_right = 0.233
@@ -1372,135 +1390,236 @@ offset_top = -34.08
 offset_right = 56.64
 offset_bottom = 139.92
 grow_horizontal = 0
-color = Color(0.121569, 0.219608, 0.360784, 1)
 
-[node name="InfoMoney" type="Sprite2D" parent="MoneyInfo"]
-position = Vector2(175, 122.5)
-scale = Vector2(1.19429, 1.21691)
-texture = ExtResource("10_2gyrf")
-
-[node name="ColorRect" type="ColorRect" parent="MoneyInfo"]
+[node name="MarginContainer" type="MarginContainer" parent="MoneyInfo"]
 layout_mode = 0
-offset_right = 280.0
-offset_bottom = 240.0
+offset_right = 339.0
+offset_bottom = 288.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="InfoMoney" type="NinePatchRect" parent="MoneyInfo/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("10_2gyrf")
+region_rect = Rect2(24, 24, 304, 224)
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="MoneyInfo/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ColorRect" type="ColorRect" parent="MoneyInfo/MarginContainer/MarginContainer"]
+layout_mode = 2
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoneyInfo"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 11.0
-offset_right = 138.0
-offset_bottom = 147.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MoneyInfo/MarginContainer/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="BudgetName" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="ColName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "  Budget:"
+theme_override_font_sizes/font_size = 14
+text = " "
 vertical_alignment = 1
 
-[node name="budgetNow" type="Label" parent="MoneyInfo/VBoxContainer/BudgetName"]
+[node name="Now" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ColName"]
 layout_mode = 0
 offset_left = 43.0
 offset_top = -3.0
 offset_right = 185.0
 offset_bottom = 37.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "000"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Now"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="budgetNext" type="Label" parent="MoneyInfo/VBoxContainer/BudgetName"]
+[node name="Next" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ColName"]
 layout_mode = 0
-offset_left = 118.0
+offset_left = 146.0
 offset_top = -3.0
-offset_right = 260.0
+offset_right = 288.0
 offset_bottom = 37.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Next Turn"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BudgetName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "  Budget:"
+vertical_alignment = 1
+
+[node name="budgetNow" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = -3.0
+offset_right = 185.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0.843137, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ProdName" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="budgetNext" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = -3.0
+offset_right = 281.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BudgetInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "You start the game with N amount and receive N per turn."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ProdName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Production: "
 vertical_alignment = 1
 
-[node name="prod" type="Label" parent="MoneyInfo/VBoxContainer/ProdName"]
+[node name="prod" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName"]
 layout_mode = 0
-offset_left = 121.0
+offset_left = 142.0
 offset_top = -5.0
-offset_right = 261.0
+offset_right = 282.0
 offset_bottom = 35.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BuildName" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="ProdInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Some power plants have production costs because they need materials to run."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BuildName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Building: "
 vertical_alignment = 1
 
-[node name="build" type="Label" parent="MoneyInfo/VBoxContainer/BuildName"]
+[node name="build" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName"]
 layout_mode = 0
 offset_left = 45.0
 offset_top = -4.0
 offset_right = 185.0
 offset_bottom = 36.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="ImportName" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="BuildInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Indicates how much you have spent on building or upgrading power plants."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ImportName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Import:"
 
-[node name="importamounts" type="Label" parent="MoneyInfo/VBoxContainer/ImportName"]
+[node name="importamounts" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName"]
 layout_mode = 2
-offset_left = 132.0
+offset_left = 153.0
 offset_top = 2.0
-offset_right = 260.0
+offset_right = 281.0
 offset_bottom = 33.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 
-[node name="TotalName" type="Label" parent="MoneyInfo/VBoxContainer"]
+[node name="ImportInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Indicates how much you will be spending on imports. Clean imports cost N more."
+autowrap_mode = 3
+
+[node name="TotalName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "  Total:"
 
-[node name="TotalNow" type="Label" parent="MoneyInfo/VBoxContainer/TotalName"]
+[node name="TotalNow" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName"]
 layout_mode = 2
 offset_left = 56.0
 offset_top = 2.0
 offset_right = 184.0
 offset_bottom = 33.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
 
-[node name="TotalNext" type="Label" parent="MoneyInfo/VBoxContainer/TotalName"]
+[node name="TotalNext" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName"]
 layout_mode = 2
-offset_left = 132.0
+offset_left = 153.0
 offset_top = 2.0
-offset_right = 260.0
+offset_right = 281.0
 offset_bottom = 33.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
+
+[node name="MoneyInfoButton" type="TextureButton" parent="MoneyInfo"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = -36.0
+offset_right = 368.0
+offset_bottom = 44.0
+texture_normal = ExtResource("42_v8iq7")
+texture_pressed = ExtResource("42_v8iq7")
+texture_hover = ExtResource("42_v8iq7")
+
+[node name="ColorRect" type="ColorRect" parent="MoneyInfo/MoneyInfoButton"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 29.0
+offset_right = 47.0
+offset_bottom = 50.0
+mouse_filter = 2
+color = Color(0.941176, 0.941176, 0.941176, 1)
+
+[node name="Label" type="Label" parent="MoneyInfo/MoneyInfoButton"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 25.0
+offset_right = 75.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0.356863, 0.356863, 0.356863, 1)
+theme_override_font_sizes/font_size = 20
+text = "?"
 
 [node name="Money" type="ColorRect" parent="."]
 anchors_preset = 1

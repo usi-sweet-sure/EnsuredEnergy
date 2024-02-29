@@ -101,7 +101,8 @@ public partial class UI : CanvasLayer {
 	private Label ProdNameL;
 	private Label ImportCostNameL;
 	private Button MoneyButton;
-	private ColorRect MoneyInfo;
+	private TextureButton MoneyInfoB;
+	private Control MoneyInfo;
 	private Label BudgetL;
 	private Label BuildL;
 	private Label ProdL;
@@ -109,6 +110,12 @@ public partial class UI : CanvasLayer {
 	private Label BudgetNext;
 	private Label TotalNow;
 	private Label TotalNext;
+	
+	// Money info nodes
+	private Label BudgetInfo;
+	private Label ProdInfo;
+	private Label BuildInfo;
+	private Label ImportInfo;
 
 	// Borrow related fields
 	private Label BorrowTitle;
@@ -211,14 +218,19 @@ public partial class UI : CanvasLayer {
 		// Money Nodes
 		MoneyL = GetNode<Label>("Money/money");
 		MoneyButton = GetNode<Button>("MoneyUI");
-		MoneyInfo = GetNode<ColorRect>("MoneyInfo");
-		BudgetL = GetNode<Label>("MoneyInfo/VBoxContainer/BudgetName/budgetNow");
-		BuildL = GetNode<Label>("MoneyInfo/VBoxContainer/BuildName/build");
-		ProdL = GetNode<Label>("MoneyInfo/VBoxContainer/ProdName/prod");
-		ImportCostL = GetNode<Label>("MoneyInfo/VBoxContainer/ImportName/importamounts");
-		BudgetNext = GetNode<Label>("MoneyInfo/VBoxContainer/BudgetName/budgetNext");
-		TotalNow = GetNode<Label>("MoneyInfo/VBoxContainer/TotalName/TotalNow");
-		TotalNext = GetNode<Label>("MoneyInfo/VBoxContainer/TotalName/TotalNext");
+		MoneyInfo = GetNode<Control>("MoneyInfo");
+		BudgetL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNow");
+		BuildL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName/build");
+		ProdL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName/prod");
+		ImportCostL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName/importamounts");
+		BudgetNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNext");
+		TotalNow = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNow");
+		TotalNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNext");
+		MoneyInfoB = GetNode<TextureButton>("MoneyInfo/MoneyInfoButton");
+		BudgetInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetInfo");
+		ProdInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdInfo");
+		BuildInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildInfo");
+		ImportInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportInfo");
 
 		// Borrow Nodes
 		BorrowTitle = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Title");
@@ -237,10 +249,10 @@ public partial class UI : CanvasLayer {
 
 		// Name labels
 		MoneyNameL = GetNode<Label>("Money/Label");
-		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/BudgetName");
-		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/BuildName");
-		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/ProdName");
-		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/ImportName");
+		BudgetNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName");
+		BuildNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName");
+		ProdNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName");
+		ImportCostNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName");
 
 		// Window buttons
 		PolicyButton = GetNode<TextureButton>("PolicyButton");
@@ -251,6 +263,7 @@ public partial class UI : CanvasLayer {
 
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
+		MoneyInfoB.Pressed += _OnMoneyInfoPressed;
 		NextTurnButton.Pressed += _OnNextTurnPressed;
 		NextTurnButton.GuiInput += _OnNextTurnGuiInput;
 		SettingsButton.Pressed += _OnSettingsButtonPressed;
@@ -777,6 +790,13 @@ public partial class UI : CanvasLayer {
 			// Finally display it
 			MoneyInfo.Show();
 		}
+	}
+	
+	public void _OnMoneyInfoPressed() {
+		BudgetInfo.Visible = !BudgetInfo.Visible;
+		ProdInfo.Visible = !ProdInfo.Visible;
+		BuildInfo.Visible = !BuildInfo.Visible;
+		ImportInfo.Visible = !ImportInfo.Visible;
 	}
 
 	// Updates the timelines and propagates the request up to the game loop

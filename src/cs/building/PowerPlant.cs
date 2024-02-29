@@ -149,6 +149,11 @@ public partial class PowerPlant : Node2D {
 	private Label BioL;
 	private Label LifeSpan;
 	private Label LifeSpanWarning;
+	private Label MultProd;
+	private Label MultPoll;
+	private Label MultLand;
+	private Label MultBio;
+	private Label MultPrice;
 	
 	public AnimationPlayer AP;
 	private Label AnimMoney;
@@ -224,6 +229,11 @@ public partial class PowerPlant : Node2D {
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 		AP = GetNode<AnimationPlayer>("AP");
 		AnimMoney = GetNode<Label>("Money");
+		MultProd = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod/MultProd");
+		MultPoll = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll/MultPoll");
+		MultLand = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land/MultLand");
+		MultBio = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio/MultBio");
+		MultPrice = GetNode<Label>("Multiplier/MultPrice");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -282,6 +292,10 @@ public partial class PowerPlant : Node2D {
 		Delete.Pressed += OnDeletePressed;
 		MultInc.Pressed += OnMultIncPressed;
 		MultDec.Pressed += OnMultDecPressed;
+		MultInc.MouseEntered += OnMultIncMouseEntered;
+		MultInc.MouseExited += OnMultIncMouseExited;
+		MultDec.MouseEntered += OnMultDecMouseEntered;
+		MultDec.MouseExited += OnMultDecMouseExited;
 
 		// Reset multiplier
 		MultiplierValue = 1;
@@ -670,10 +684,10 @@ public partial class PowerPlant : Node2D {
 		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
-		PollN.Text = Convert.ToInt32(Pollution).ToString();
+		PollN.Text = Pollution.ToString();
 		BTime.Text = BuildTime.ToString();
-		LandN.Text = Convert.ToInt32(LandUse * 100).ToString();
-		BioN.Text = Convert.ToInt32(-BiodiversityImpact * 100).ToString();
+		LandN.Text = (LandUse * 100).ToString();
+		BioN.Text = (-BiodiversityImpact * 100).ToString();
 		
 		// Set text labels coorectly
 		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
@@ -797,6 +811,22 @@ public partial class PowerPlant : Node2D {
 		// TODO set text in lang
 		//NoMoney.Text =
 		AP.Play("noMoney");
+	}
+	
+	public void ShowMultInfo() {
+		MultProd.Show();
+		MultPoll.Show();
+		MultLand.Show();
+		MultBio.Show();
+		MultPrice.Show();
+	}
+	
+	public void HideMultInfo() {
+		MultProd.Hide();
+		MultPoll.Hide();
+		MultLand.Hide();
+		MultBio.Hide();
+		MultPrice.Hide();
 	}
 
 	// ==================== Button Callbacks ====================  
@@ -954,5 +984,45 @@ public partial class PowerPlant : Node2D {
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
 		}
+	}
+	
+	private void GetMultIncInfo() {
+		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
+		MultPrice.Text = "-" + mult.Cost.ToString() + "$";
+		MultBio.Text = (-BiodiversityImpact * 100 * mult.Biodiversity).ToString();
+		//EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
+		//EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
+		MultProd.Text = (ProductionCost * mult.ProductionCost).ToString();
+		MultPoll.Text = (Pollution * mult.Pollution).ToString();
+		MultLand.Text = (LandUse * 100 * mult.LandUse).ToString();
+	}
+	
+	private void GetMultDecInfo() {
+		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
+		MultPrice.Text = "+" + mult.Cost.ToString() + "$";
+		MultBio.Text = (-BiodiversityImpact * 100 / mult.Biodiversity).ToString();
+		//EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
+		//EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
+		MultProd.Text = (ProductionCost / mult.ProductionCost).ToString();
+		MultPoll.Text = (Pollution / mult.Pollution).ToString();
+		MultLand.Text = (LandUse * 100 / mult.LandUse).ToString();
+	}
+	
+	private void OnMultIncMouseEntered() {
+		GetMultIncInfo();
+		ShowMultInfo();
+	}
+	
+	private void OnMultIncMouseExited() {
+		HideMultInfo();
+	}
+	
+	private void OnMultDecMouseEntered() {
+		GetMultDecInfo();
+		ShowMultInfo();
+	}
+	
+	private void OnMultDecMouseExited() {
+		HideMultInfo();
 	}
 }
