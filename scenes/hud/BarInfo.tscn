@@ -128,6 +128,7 @@ offset_left = 31.0
 offset_top = 30.0
 offset_right = 50.0
 offset_bottom = 50.0
+mouse_filter = 2
 color = Color(0.945313, 0.945313, 0.945313, 1)
 
 [node name="Label" type="Label" parent="MoreInfo"]

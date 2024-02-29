@@ -387,7 +387,6 @@ position = Vector2(-1, 44)
 scale = Vector2(0.8, 0.8)
 
 [node name="BuildInfo" type="Control" parent="."]
-visible = false
 z_index = 1
 z_as_relative = false
 layout_mode = 3
@@ -527,6 +526,7 @@ text = "100"
 horizontal_alignment = 2
 
 [node name="MultProd" type="Label" parent="BuildInfo/ColorRect/ContainerN/Prod"]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -551,6 +551,7 @@ text = "10"
 horizontal_alignment = 2
 
 [node name="MultPoll" type="Label" parent="BuildInfo/ColorRect/ContainerN/Poll"]
+visible = false
 layout_mode = 2
 offset_left = 375.0
 offset_top = 4.0
@@ -568,6 +569,7 @@ text = "3"
 horizontal_alignment = 2
 
 [node name="MultLand" type="Label" parent="BuildInfo/ColorRect/ContainerN/Land"]
+visible = false
 layout_mode = 2
 offset_left = 375.0
 offset_top = 2.0
@@ -585,6 +587,7 @@ text = "3"
 horizontal_alignment = 2
 
 [node name="MultBio" type="Label" parent="BuildInfo/ColorRect/ContainerN/Bio"]
+visible = false
 layout_mode = 2
 offset_left = 375.0
 offset_top = 1.0

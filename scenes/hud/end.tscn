@@ -24,6 +24,7 @@ grow_vertical = 2
 color = Color(0.596078, 0.596078, 0.596078, 0.917647)
 
 [node name="Bravo" type="Label" parent="EndWindow"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,14 +51,14 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 338.0
-offset_top = -204.5
+offset_top = -412.5
 offset_right = -332.0
 offset_bottom = -38.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_rfnjf")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 100
 text = "You ensured enough energy 
 for 30 years
 "
@@ -108,7 +109,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(1, 0.305882, 0.176471, 1)
 
 [node name="Energy" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(350, 250)
+custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -131,8 +132,31 @@ grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(1, 0.470588, 0.180392, 1)
 
+[node name="Import" type="Label" parent="EndWindow/HBoxContainer"]
+custom_minimum_size = Vector2(280, 250)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_rfnjf")
+theme_override_font_sizes/font_size = 46
+text = "You imported %
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="ColorRect3" type="ColorRect" parent="EndWindow/HBoxContainer/Import"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yg7sq")
+color = Color(0.921569, 0.407843, 0.909804, 1)
+
 [node name="Money" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(350, 250)
+custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -155,7 +179,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(0.827451, 0.819608, 0.0313726, 1)
 
 [node name="Support" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(350, 250)
+custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -180,7 +204,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(0.466667, 0.607843, 0.917647, 1)
 
 [node name="Poll" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(350, 250)
+custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -203,7 +227,7 @@ theme = SubResource("Theme_yg7sq")
 color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [node name="Env" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(350, 250)
+custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
@@ -308,10 +332,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = 347.0
-offset_right = 84.0
-offset_bottom = 458.0
+offset_left = 82.0
+offset_top = 350.5
+offset_right = 228.0
+offset_bottom = 461.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
@@ -329,10 +353,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 680.0
-offset_top = 341.0
-offset_right = 819.0
-offset_bottom = 452.0
+offset_left = 690.0
+offset_top = 358.5
+offset_right = 835.0
+offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")

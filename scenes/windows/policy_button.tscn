@@ -12,7 +12,6 @@ offset_left = 145.0
 offset_top = 40.0
 offset_right = 272.0
 offset_bottom = 120.0
-tooltip_text = "Information campaign explaining the advantages of renewable energy."
 focus_mode = 0
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_oju76")
