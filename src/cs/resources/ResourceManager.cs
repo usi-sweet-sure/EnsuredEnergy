@@ -342,7 +342,7 @@ public partial class ResourceManager : Node {
 		_UI._UpdateData(
 			UI.InfoType.ENVIRONMENT,
 			(int)(Env.LandUse * 100), // Convert floating point to integer percentage
-			Env.Pollution,
+			(int)Env.Pollution,
 			(int)(Env.Biodiversity * 100),
 			(int)(Env.EnvBarValue() * 100),
 			Env.ImportedPollution

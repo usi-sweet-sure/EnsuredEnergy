@@ -96,7 +96,7 @@ public partial class PowerPlant : Node2D {
 	public (float, float) InitialEnergyAvailability = (1.0f, 1.0f); // This is a percentage
 
 	// Amount of pollution caused by the power plant (can be negative in the tree case)
-	public int InitialPollution = 10;
+	public float InitialPollution = 10f;
 
 	// Percentage of the total land used up by this power plant
 	public float LandUse = 0.1f;
@@ -109,7 +109,7 @@ public partial class PowerPlant : Node2D {
 	private int ProductionCost = 0;
 	private int EnergyCapacity = 100;
 	private (float, float) EnergyAvailability = (1.0f, 1.0f); // (Winter, Summer)
-	private int Pollution = 10;
+	private float Pollution = 10f;
 
 	// Life flag: Whether or not the plant is on
 	private bool IsAlive = true;
@@ -354,7 +354,7 @@ public partial class PowerPlant : Node2D {
 			MultiplierValue++;
 
 			// Apply the multiplier
-			Pollution = (int)(Pollution * mult.Pollution);
+			Pollution *= mult.Pollution;
 			LandUse *= mult.LandUse;
 			BiodiversityImpact *= mult.Biodiversity;
 			ProductionCost = (int)(ProductionCost * mult.ProductionCost);
@@ -402,7 +402,7 @@ public partial class PowerPlant : Node2D {
 			MultiplierValue--;
 
 			// Apply the multiplier
-			Pollution = (int)(Pollution / Math.Max(1.0f, mult.Pollution));
+			Pollution /= mult.Pollution;
 			LandUse /= Math.Max(1.0f, mult.LandUse);
 			BiodiversityImpact /= Math.Max(1.0f, mult.Biodiversity);
 			ProductionCost = (int)(ProductionCost / Math.Max(1.0f, mult.ProductionCost));
@@ -488,7 +488,7 @@ public partial class PowerPlant : Node2D {
 	public int _GetCapacity() => EnergyCapacity;
 
 	// Getter for the Pollution amount
-	public int _GetPollution() => Pollution;
+	public float _GetPollution() => Pollution;
 
 	// Getter for the plant's production cost
 	public int _GetProductionCost() => ProductionCost;
@@ -596,7 +596,7 @@ public partial class PowerPlant : Node2D {
 	// Update API for the private fields of the plant
 	public void _UdpatePowerPlantFields(
 		bool updateInit=false, // Whether or not to update the initial values as well
-		int pol=-1, // pollution amount
+		float pol=-1, // pollution amount
 		int PC=-1, // Production cost
 		int EC=-1, // Energy capacity
 		float AV_W=-1, // Winter availability
@@ -684,10 +684,10 @@ public partial class PowerPlant : Node2D {
 		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
-		PollN.Text = Pollution.ToString();
-		BTime.Text = BuildTime.ToString();
-		LandN.Text = (LandUse * 100).ToString();
-		BioN.Text = (-BiodiversityImpact * 100).ToString();
+		PollN.Text = Pollution.ToString("0.0");
+		BTime.Text = BuildTime.ToString("0.0");
+		LandN.Text = (LandUse * 100).ToString("0.0");
+		BioN.Text = (-BiodiversityImpact * 100).ToString("0.0");
 		
 		// Set text labels coorectly
 		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
@@ -989,23 +989,23 @@ public partial class PowerPlant : Node2D {
 	private void GetMultIncInfo() {
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 		MultPrice.Text = "-" + mult.Cost.ToString() + "$";
-		MultBio.Text = (-BiodiversityImpact * 100 * mult.Biodiversity).ToString();
+		MultBio.Text = (-BiodiversityImpact * 100 * mult.Biodiversity).ToString("0.0");
 		//EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
 		//EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		MultProd.Text = (ProductionCost * mult.ProductionCost).ToString();
-		MultPoll.Text = (Pollution * mult.Pollution).ToString();
-		MultLand.Text = (LandUse * 100 * mult.LandUse).ToString();
+		MultProd.Text = (ProductionCost * mult.ProductionCost).ToString("0.0");
+		MultPoll.Text = (Pollution * mult.Pollution).ToString("0.0");
+		MultLand.Text = (LandUse * 100 * mult.LandUse).ToString("0.0");
 	}
 	
 	private void GetMultDecInfo() {
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 		MultPrice.Text = "+" + mult.Cost.ToString() + "$";
-		MultBio.Text = (-BiodiversityImpact * 100 / mult.Biodiversity).ToString();
+		MultBio.Text = (-BiodiversityImpact * 100 / mult.Biodiversity).ToString("0.0");
 		//EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
 		//EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		MultProd.Text = (ProductionCost / mult.ProductionCost).ToString();
-		MultPoll.Text = (Pollution / mult.Pollution).ToString();
-		MultLand.Text = (LandUse * 100 / mult.LandUse).ToString();
+		MultProd.Text = (ProductionCost / mult.ProductionCost).ToString("0.0");
+		MultPoll.Text = (Pollution / mult.Pollution).ToString("0.0");
+		MultLand.Text = (LandUse * 100 / mult.LandUse).ToString("0.0");
 	}
 	
 	private void OnMultIncMouseEntered() {
