@@ -142,6 +142,7 @@ public partial class UI : CanvasLayer {
 	// Window buttons
 	private TextureButton PolicyButton;
 	private TextureButton StatsButton;
+	public Label PolicyNotif;
 
 	// Windows
 	private PolicyWindow PW;
@@ -267,6 +268,7 @@ public partial class UI : CanvasLayer {
 		// Window buttons
 		PolicyButton = GetNode<TextureButton>("PolicyButton");
 		StatsButton = GetNode<TextureButton>("Stats");
+		PolicyNotif = GetNode<Label>("PolicyButton/Notif");
 
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
@@ -826,6 +828,7 @@ public partial class UI : CanvasLayer {
 		
 		// reset policy vote button
 		PW._ResetVote();
+		PolicyNotif.Show();
 		
 		// Hides debt in money UI
 		Debt.Hide();
@@ -950,6 +953,10 @@ public partial class UI : CanvasLayer {
 			PW.Show();
 			PW._PlayAnim("popup");
 		}
+		if(PW.Vote.Disabled) {
+				GD.Print("vote disabled");
+				PolicyNotif.Hide();
+			}
 	}
 
 	// Toggles the settings box

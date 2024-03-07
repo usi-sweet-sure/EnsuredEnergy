@@ -35,7 +35,7 @@ public partial class PolicyWindow : CanvasLayer {
 
 	private ColorRect P;
 	private AnimationPlayer AP;
-	private Button Vote;
+	public Button Vote;
 	private Button WindButton;
 	private ButtonGroup PolicyGroup;
 	private BaseButton PressedPolicy;

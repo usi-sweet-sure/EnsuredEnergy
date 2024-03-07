@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=85 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://4dcp6f66sdeo" path="res://assets/UI Elements/Button-Square-press.png" id="37_533gb"]
 [ext_resource type="Texture2D" uid="uid://dlccss1xvy8tb" path="res://assets/UI Elements/Button-Square-hover.png" id="38_7v12r"]
 [ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/Button-Hole.png" id="39_jsaox"]
+[ext_resource type="Texture2D" uid="uid://bfa7b1e5e7hxc" path="res://assets/CANCEL ICON.png" id="40_h6a6a"]
 [ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="40_knfjx"]
 [ext_resource type="Texture2D" uid="uid://dcbjy5kxo2vbm" path="res://assets/Elements/INFO ICON.png" id="42_v8iq7"]
 [ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
@@ -625,6 +626,10 @@ corner_radius_bottom_left = 8
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dajl"]
 atlas = ExtResource("6_ivien")
 region = Rect2(48, 49, 43, 44)
+
+[sub_resource type="FontVariation" id="FontVariation_4ww80"]
+base_font = ExtResource("40_knfjx")
+variation_embolden = 0.2
 
 [sub_resource type="FontVariation" id="FontVariation_15ni2"]
 base_font = ExtResource("40_knfjx")
@@ -1382,6 +1387,33 @@ offset_right = 190.0
 offset_bottom = 89.0
 texture_normal = SubResource("AtlasTexture_0dajl")
 ignore_texture_size = true
+
+[node name="Notif" type="Label" parent="PolicyButton"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 3.0
+offset_top = -16.0
+offset_right = 43.0
+offset_bottom = 10.0
+grow_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_4ww80")
+text = "1"
+
+[node name="CancelIcon" type="Sprite2D" parent="PolicyButton/Notif"]
+self_modulate = Color(1, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(5, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("40_h6a6a")
+
+[node name="ColorRect" type="ColorRect" parent="PolicyButton/Notif/CancelIcon"]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.580392, 0, 0, 1)
 
 [node name="Stats" type="TextureButton" parent="."]
 visible = false
