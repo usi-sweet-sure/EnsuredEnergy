@@ -110,12 +110,16 @@ public partial class UI : CanvasLayer {
 	private Label BudgetNext;
 	private Label TotalNow;
 	private Label TotalNext;
+	private Label Debt;
+	private Label DebtAmount;
+	private Label BorrowL;
 	
 	// Money info nodes
 	private Label BudgetInfo;
 	private Label ProdInfo;
 	private Label BuildInfo;
 	private Label ImportInfo;
+	private Label DebtInfo;
 
 	// Borrow related fields
 	private Label BorrowTitle;
@@ -131,6 +135,8 @@ public partial class UI : CanvasLayer {
 	private Label DebtResLabel;
 	private TextureButton BorrowMoneyButton;
 	private Button BorrowContainer;
+	private int DebtN = 0;
+	private int BorrowN = 0;
 
 
 	// Window buttons
@@ -231,6 +237,10 @@ public partial class UI : CanvasLayer {
 		ProdInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdInfo");
 		BuildInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildInfo");
 		ImportInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportInfo");
+		DebtInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/DebtInfo");
+		Debt = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt");
+		DebtAmount = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt/debtamount");
+		BorrowL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt/borrowamount");
 
 		// Borrow Nodes
 		BorrowTitle = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Title");
@@ -591,7 +601,9 @@ public partial class UI : CanvasLayer {
 	// Shows the debt label when debt was acquired
 	public void _UpdateDebtResource(int debt) {
 		// Propagate the new amount to the label
+		DebtN = debt;
 		DebtResLabel.Text = "-" + debt.ToString();
+		DebtAmount.Text = DebtResLabel.Text;
 
 		// Check if there is any debt to show
 		if(debt > 0) {
@@ -712,7 +724,7 @@ public partial class UI : CanvasLayer {
 		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
 		BudgetNext.Text = BudgetNextN.ToString();
 		TotalNow.Text = Data.Money.ToString();
-		int TotalNextN = BudgetNextN - Data.Imports - Data.Production;
+		int TotalNextN = BudgetNextN - Data.Imports - Data.Production - DebtN;
 		TotalNext.Text = TotalNextN.ToString();
 	}
 
@@ -780,12 +792,12 @@ public partial class UI : CanvasLayer {
 		// Simply toggle the money info
 		if(MoneyInfo.Visible) {
 			MoneyInfo.Hide();
-			DebtResource.Position = new Vector2(4,47);
+			if(DebtN > 0) {DebtResource.Show();}
 		} else {
 			// Set the info first
 			SetMoneyInfo();
 			
-			DebtResource.Position = new Vector2(244,37);
+			DebtResource.Hide();
 
 			// Finally display it
 			MoneyInfo.Show();
@@ -797,6 +809,7 @@ public partial class UI : CanvasLayer {
 		ProdInfo.Visible = !ProdInfo.Visible;
 		BuildInfo.Visible = !BuildInfo.Visible;
 		ImportInfo.Visible = !ImportInfo.Visible;
+		if(Debt.Visible) {DebtInfo.Visible = !DebtInfo.Visible;}
 	}
 
 	// Updates the timelines and propagates the request up to the game loop
@@ -813,6 +826,9 @@ public partial class UI : CanvasLayer {
 		
 		// reset policy vote button
 		PW._ResetVote();
+		
+		// Hides debt in money UI
+		Debt.Hide();
 		
 		// Trigger the next turn
 		EmitSignal(SignalName.NextTurn);
@@ -1012,6 +1028,8 @@ public partial class UI : CanvasLayer {
 		// Send the amount of debt to the game loop to be applied and update the debt resource
 		DebtResLabel.Text = "-" + PayBackAmount.Text;
 		BorrowContainer.Hide();
+		Debt.Show();
+		BorrowL.Text = BorrowN.ToString();
 		EmitSignal(SignalName.DebtRequest, (int)(DebtSlider.Value + (InterestRate * DebtSlider.Value)), (int)DebtSlider.Value);
 	}
 
@@ -1026,6 +1044,7 @@ public partial class UI : CanvasLayer {
 	public void _OnDebtSliderValueChanged(double value) {
 		// Update the borrow and pay back amounts to reflect the new values
 		BorrowAmount.Text = ((int)value).ToString();
+		BorrowN += (int)value;
 		PayBackAmount.Text = ((int)(value + (value * InterestRate))).ToString(); // Add the interest rate
 	}
 	

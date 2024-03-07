@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=83 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -630,6 +630,11 @@ region = Rect2(48, 49, 43, 44)
 base_font = ExtResource("40_knfjx")
 variation_embolden = 0.5
 spacing_glyph = 7
+
+[sub_resource type="FontVariation" id="FontVariation_lgwoq"]
+base_font = ExtResource("40_knfjx")
+variation_embolden = 0.2
+spacing_glyph = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
 bg_color = Color(0.988235, 0, 0, 1)
@@ -1555,7 +1560,7 @@ autowrap_mode = 3
 [node name="ImportName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "  Import:"
+text = " Import:"
 
 [node name="importamounts" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName"]
 layout_mode = 2
@@ -1575,10 +1580,45 @@ theme_override_font_sizes/font_size = 14
 text = "Indicates how much you will be spending on imports. Clean imports cost N more."
 autowrap_mode = 3
 
+[node name="Debt" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " Loan:"
+
+[node name="debtamount" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt"]
+layout_mode = 2
+offset_left = 153.0
+offset_top = 2.0
+offset_right = 281.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+
+[node name="borrowamount" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt"]
+layout_mode = 2
+offset_left = 57.0
+offset_top = 2.0
+offset_right = 185.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.0156863, 0.819608, 0.00392157, 1)
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 2
+
+[node name="DebtInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Info about the loan blablablabla"
+autowrap_mode = 3
+
 [node name="TotalName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "  Total:"
+text = "    Total:"
 
 [node name="TotalNow" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName"]
 layout_mode = 2
@@ -1748,11 +1788,11 @@ ignore_texture_size = true
 [node name="Debt" type="ColorRect" parent="BorrowMoney"]
 visible = false
 layout_mode = 0
-offset_left = 9.0
-offset_top = 49.0
-offset_right = 106.0
-offset_bottom = 92.0
-color = Color(0.596078, 0.596078, 0.596078, 1)
+offset_left = 54.0
+offset_top = -2.0
+offset_right = 151.0
+offset_bottom = 41.0
+color = Color(0.443137, 0.564706, 0.580392, 1)
 
 [node name="DebtAmount" type="Label" parent="BorrowMoney/Debt"]
 layout_mode = 0
@@ -1761,8 +1801,11 @@ offset_top = 6.0
 offset_right = 73.0
 offset_bottom = 37.0
 theme_override_colors/font_color = Color(0.752941, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_lgwoq")
 theme_override_font_sizes/font_size = 20
 text = "-000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="BorrowMoney"]
 layout_mode = 1
@@ -1771,6 +1814,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.0196078, 0.101961, 0.109804, 1)
 theme_override_font_sizes/font_size = 25
 text = "+"
 horizontal_alignment = 1

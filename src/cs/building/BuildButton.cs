@@ -70,6 +70,7 @@ public partial class BuildButton : TextureButton {
 	// Building sprite
 	private Sprite2D BuildSprite;
 	private Label TL;
+	private Label Hammer;
 
 	// Build cancellation button
 	private Button Cancel;
@@ -135,6 +136,7 @@ public partial class BuildButton : TextureButton {
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 		AnimMoney = GetNode<Label>("Money");
 		BuildingSound = GetNode<AudioStreamPlayer2D>("BuildingSound");
+		Hammer = GetNode<Label>("Hammer");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -185,7 +187,6 @@ public partial class BuildButton : TextureButton {
 	// Public accessor which disables the current build button
 	public void _Disable(List<PowerPlant> PP) {
 		Disabled = true;
-		GD.Print(PP);
 		foreach(PowerPlant pp in PP) {
 			pp.Disable();
 		}
@@ -262,12 +263,14 @@ public partial class BuildButton : TextureButton {
 	private void HideOnlyButton() {
 		Disabled = true;
 		SelfModulate = new Color(1,1,1,0);
+		Hammer.Hide();
 	}
 
 	// Show only the button
 	private void ShowOnlyButton() {
 		Disabled = false;
 		SelfModulate = new Color(1,1,1,1);
+		Hammer.Show();
 	}
 
 	// Sets the button to the build state

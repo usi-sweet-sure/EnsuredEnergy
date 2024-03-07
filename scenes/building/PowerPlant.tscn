@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=31 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://b60o54o5riav8" path="res://assets/UI Elements/Build_Menu_0005_Build-Menu-Metal.png" id="2_ambcb"]
@@ -13,12 +13,18 @@
 [ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="6_qkc2p"]
 [ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="7_fjg03"]
 [ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="8_a13i5"]
+[ext_resource type="Texture2D" uid="uid://c42n2mmget4xn" path="res://assets/no-money.png" id="14_x1bya"]
 
 [sub_resource type="FontVariation" id="FontVariation_us0ja"]
 base_font = ExtResource("8_a13i5")
 variation_embolden = 0.3
 
 [sub_resource type="Theme" id="Theme_f6ssq"]
+
+[sub_resource type="FontVariation" id="FontVariation_q0ye0"]
+base_font = ExtResource("8_a13i5")
+variation_embolden = 0.2
+spacing_glyph = 3
 
 [sub_resource type="FontVariation" id="FontVariation_tek51"]
 base_font = ExtResource("8_a13i5")
@@ -42,6 +48,10 @@ spacing_glyph = 6
 [sub_resource type="FontVariation" id="FontVariation_r1iqv"]
 base_font = ExtResource("8_a13i5")
 spacing_glyph = 6
+
+[sub_resource type="FontVariation" id="FontVariation_vvvj4"]
+base_font = ExtResource("8_a13i5")
+variation_embolden = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hky5x"]
 size = Vector2(176, 248)
@@ -400,9 +410,9 @@ offset_bottom = -255.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BuildInfo"]
 layout_mode = 0
-offset_left = -119.0
+offset_left = -182.0
 offset_top = -208.0
-offset_right = 289.0
+offset_right = 359.0
 offset_bottom = 126.0
 texture = ExtResource("3_jv8ie")
 region_rect = Rect2(24, 32, 254, 152)
@@ -413,9 +423,9 @@ patch_margin_bottom = 12
 
 [node name="ColorRect" type="ColorRect" parent="BuildInfo"]
 layout_mode = 0
-offset_left = -71.0
+offset_left = -132.0
 offset_top = -168.0
-offset_right = 241.0
+offset_right = 310.0
 offset_bottom = 97.0
 color = Color(0.596078, 0.596078, 0.596078, 1)
 
@@ -535,15 +545,34 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 63.0
-offset_top = -25.0
-offset_right = 375.0
-offset_bottom = 27.0
+offset_left = -249.0
+offset_top = -26.0
+offset_right = -149.0
+offset_bottom = 26.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
+theme_override_colors/font_color = Color(0.0627451, 0.572549, 0, 1)
 theme_override_font_sizes/font_size = 35
-text = "100"
+text = "10"
+horizontal_alignment = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Prod/MultProd"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -22.0
+offset_right = 70.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.105882, 0.207843, 0.215686, 1)
+theme_override_font_sizes/font_size = 35
+text = "→"
+horizontal_alignment = 2
 
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
@@ -555,13 +584,32 @@ horizontal_alignment = 2
 [node name="MultPoll" type="Label" parent="BuildInfo/ColorRect/ContainerN/Poll"]
 visible = false
 layout_mode = 2
-offset_left = 375.0
+offset_left = 193.0
 offset_top = 4.0
-offset_right = 687.0
+offset_right = 293.0
 offset_bottom = 56.0
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
 theme_override_font_sizes/font_size = 35
 text = "10"
+horizontal_alignment = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Poll/MultPoll"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -21.0
+offset_right = 70.0
+offset_bottom = 31.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.105882, 0.207843, 0.215686, 1)
+theme_override_font_sizes/font_size = 35
+text = "→"
+horizontal_alignment = 2
 
 [node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
@@ -573,13 +621,32 @@ horizontal_alignment = 2
 [node name="MultLand" type="Label" parent="BuildInfo/ColorRect/ContainerN/Land"]
 visible = false
 layout_mode = 2
-offset_left = 375.0
+offset_left = 193.0
 offset_top = 2.0
-offset_right = 687.0
+offset_right = 293.0
 offset_bottom = 54.0
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
 theme_override_font_sizes/font_size = 35
 text = "3"
+horizontal_alignment = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Land/MultLand"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -22.0
+offset_right = 70.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.105882, 0.207843, 0.215686, 1)
+theme_override_font_sizes/font_size = 35
+text = "→"
+horizontal_alignment = 2
 
 [node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
@@ -591,13 +658,32 @@ horizontal_alignment = 2
 [node name="MultBio" type="Label" parent="BuildInfo/ColorRect/ContainerN/Bio"]
 visible = false
 layout_mode = 2
-offset_left = 375.0
+offset_left = 193.0
 offset_top = 1.0
-offset_right = 687.0
+offset_right = 293.0
 offset_bottom = 53.0
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
 theme_override_font_sizes/font_size = 35
 text = "3"
+horizontal_alignment = 2
+
+[node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Bio/MultBio"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -22.0
+offset_right = 70.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.105882, 0.207843, 0.215686, 1)
+theme_override_font_sizes/font_size = 35
+text = "→"
+horizontal_alignment = 2
 
 [node name="Switch" type="CheckButton" parent="BuildInfo"]
 layout_mode = 1
@@ -621,6 +707,32 @@ keep_pressed_outside = true
 flat = true
 alignment = 1
 expand_icon = true
+
+[node name="MultWinterE" type="Label" parent="BuildInfo"]
+visible = false
+layout_mode = 0
+offset_left = 38.0
+offset_top = 468.0
+offset_right = 78.0
+offset_bottom = 496.0
+theme_override_colors/font_color = Color(0.113725, 0.215686, 0.227451, 1)
+theme_override_fonts/font = SubResource("FontVariation_q0ye0")
+theme_override_font_sizes/font_size = 24
+text = "+ 2"
+horizontal_alignment = 2
+
+[node name="MultSummerE" type="Label" parent="BuildInfo"]
+visible = false
+layout_mode = 0
+offset_left = 139.0
+offset_top = 467.0
+offset_right = 179.0
+offset_bottom = 495.0
+theme_override_colors/font_color = Color(0.113725, 0.215686, 0.227451, 1)
+theme_override_fonts/font = SubResource("FontVariation_q0ye0")
+theme_override_font_sizes/font_size = 24
+text = "+ 2"
+horizontal_alignment = 2
 
 [node name="NameRect" type="ColorRect" parent="."]
 z_index = 1
@@ -846,7 +958,7 @@ offset_left = 53.6667
 offset_top = 4.0
 offset_right = 84.6667
 offset_bottom = 35.0
-text = "+"
+focus_mode = 0
 
 [node name="Label" type="Label" parent="Multiplier/Inc"]
 layout_mode = 0
@@ -863,6 +975,7 @@ offset_left = -4.33334
 offset_top = 4.0
 offset_right = 26.6667
 offset_bottom = 35.0
+focus_mode = 0
 text = "-"
 
 [node name="Label2" type="Label" parent="Multiplier/Dec"]
@@ -877,11 +990,16 @@ text = "-"
 [node name="MultPrice" type="Label" parent="Multiplier"]
 visible = false
 layout_mode = 0
-offset_left = 110.833
-offset_top = 9.99999
-offset_right = 150.833
-offset_bottom = 33.0
+offset_left = 101.666
+offset_top = 8.33332
+offset_right = 143.666
+offset_bottom = 38.3333
+theme_override_colors/font_color = Color(0.745098, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.121569, 0.223529, 0.235294, 0.784314)
+theme_override_fonts/font = SubResource("FontVariation_vvvj4")
+theme_override_font_sizes/font_size = 26
 text = "$$$"
+horizontal_alignment = 2
 
 [node name="ConfigController" type="Node" parent="."]
 script = ExtResource("3_runxt")
@@ -892,6 +1010,7 @@ offset_left = 106.0
 offset_top = -141.0
 offset_right = 137.0
 offset_bottom = -110.0
+focus_mode = 0
 text = "X"
 
 [node name="InfoButton" type="Button" parent="."]
@@ -950,3 +1069,8 @@ libraries = {
 }
 
 [node name="Error" type="AudioStreamPlayer" parent="AP"]
+
+[node name="NoMoneySprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("14_x1bya")

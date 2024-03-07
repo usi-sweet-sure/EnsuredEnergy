@@ -154,12 +154,16 @@ public partial class PowerPlant : Node2D {
 	private Label MultLand;
 	private Label MultBio;
 	private Label MultPrice;
+	private Label MultWinterE;
+	private Label MultSummerE;
+	private Sprite2D NoMoneySprite;
 	
 	public AnimationPlayer AP;
 	private Label AnimMoney;
 	
 	// The Area used to detect hovering
 	private Area2D HoverArea;
+	private CollisionShape2D CollShape;
 
 	// Configuration controller
 	private ConfigController CC;
@@ -211,6 +215,7 @@ public partial class PowerPlant : Node2D {
 		PreviewInfo = GetNode<Control>("PreviewInfo");
 		Price = GetNode<Label>("PreviewInfo/Price");
 		HoverArea = GetNode<Area2D>("HoverArea");
+		CollShape = GetNode<CollisionShape2D>("HoverArea/CollisionShape2D");
 		Info = GetNode<Control>("BuildInfo");
 		BTime = GetNode<Label>("PreviewInfo/Time");
 		C = GetNode<Context>("/root/Context");
@@ -234,6 +239,9 @@ public partial class PowerPlant : Node2D {
 		MultLand = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land/MultLand");
 		MultBio = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio/MultBio");
 		MultPrice = GetNode<Label>("Multiplier/MultPrice");
+		MultWinterE = GetNode<Label>("BuildInfo/MultWinterE");
+		MultSummerE = GetNode<Label>("BuildInfo/MultSummerE");
+		NoMoneySprite = GetNode<Sprite2D>("NoMoneySprite");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -446,11 +454,15 @@ public partial class PowerPlant : Node2D {
 	// Makes the sprite transparent
 	public void _MakeTransparent() {
 		Sprite.Modulate = new (1, 0.75f, 0.75f, 0.5f);
+		CollShape.Disabled = true;
+		NoMoneySprite.Show();
 	}
 
 	// Makes the sprite opaque
 	public void _MakeOpaque() {
 		Sprite.Modulate = new(1, 1, 1, 1);
+		CollShape.Disabled = false;
+		NoMoneySprite.Hide();
   }
   
 	// Resets the plant
@@ -823,6 +835,8 @@ public partial class PowerPlant : Node2D {
 		MultLand.Show();
 		MultBio.Show();
 		MultPrice.Show();
+		MultWinterE.Show();
+		MultSummerE.Show();
 	}
 	
 	public void HideMultInfo() {
@@ -831,6 +845,8 @@ public partial class PowerPlant : Node2D {
 		MultLand.Hide();
 		MultBio.Hide();
 		MultPrice.Hide();
+		MultWinterE.Hide();
+		MultSummerE.Hide();
 	}
 
 	// ==================== Button Callbacks ====================  
@@ -998,23 +1014,33 @@ public partial class PowerPlant : Node2D {
 	private void GetMultIncInfo() {
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 		MultPrice.Text = "-" + mult.Cost.ToString() + "$";
-		MultBio.Text = (-BiodiversityImpact * 100 * mult.Biodiversity).ToString("0.0");
-		//EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
-		//EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		MultProd.Text = (ProductionCost * mult.ProductionCost).ToString("0.0");
-		MultPoll.Text = (Pollution * mult.Pollution).ToString("0.0");
-		MultLand.Text = (LandUse * 100 * mult.LandUse).ToString("0.0");
+		MultPrice.Set("theme_override_colors/font_color", RED);
+		MultBio.Text = BioN.Text;
+		BioN.Text = (-BiodiversityImpact * 100 * mult.Biodiversity).ToString("0.0");
+		MultProd.Text = MoneyL.Text;
+		MoneyL.Text = (ProductionCost * mult.ProductionCost).ToString("0.0");
+		MultPoll.Text = PollN.Text; 
+		PollN.Text = (Pollution * mult.Pollution).ToString("0.0");
+		MultLand.Text = LandN.Text;
+		LandN.Text = (LandUse * 100 * mult.LandUse).ToString("0.0");
+		MultWinterE.Text = "+" + (mult.Capacity * EnergyAvailability.Item1).ToString();
+		MultSummerE.Text = "+" + (mult.Capacity * EnergyAvailability.Item2).ToString();
 	}
 	
 	private void GetMultDecInfo() {
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 		MultPrice.Text = "+" + mult.Cost.ToString() + "$";
-		MultBio.Text = (-BiodiversityImpact * 100 / mult.Biodiversity).ToString("0.0");
-		//EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
-		//EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		MultProd.Text = (ProductionCost / mult.ProductionCost).ToString("0.0");
-		MultPoll.Text = (Pollution / mult.Pollution).ToString("0.0");
-		MultLand.Text = (LandUse * 100 / mult.LandUse).ToString("0.0");
+		MultPrice.Set("theme_override_colors/font_color", GREEN);
+		MultBio.Text = BioN.Text; 
+		BioN.Text = (-BiodiversityImpact * 100 / mult.Biodiversity).ToString("0.0");
+		MultProd.Text = MoneyL.Text;
+		MoneyL.Text = (ProductionCost / mult.ProductionCost).ToString("0.0");
+		MultPoll.Text = PollN.Text;
+		PollN.Text = (Pollution / mult.Pollution).ToString("0.0");
+		MultLand.Text = LandN.Text;
+		LandN.Text = (LandUse * 100 / mult.LandUse).ToString("0.0");
+		MultWinterE.Text = "-" + (mult.Capacity * EnergyAvailability.Item1).ToString();
+		MultSummerE.Text = "-" + (mult.Capacity * EnergyAvailability.Item2).ToString();
 	}
 	
 	private void OnMultIncMouseEntered() {
@@ -1024,6 +1050,7 @@ public partial class PowerPlant : Node2D {
 	
 	private void OnMultIncMouseExited() {
 		HideMultInfo();
+		_UpdatePlantData();
 	}
 	
 	private void OnMultDecMouseEntered() {
@@ -1033,5 +1060,6 @@ public partial class PowerPlant : Node2D {
 	
 	private void OnMultDecMouseExited() {
 		HideMultInfo();
+		_UpdatePlantData();
 	}
 }
