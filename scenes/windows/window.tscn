@@ -409,11 +409,20 @@ value = 42.0
 position = Vector2(-267, 15)
 texture = ExtResource("5_iox1m")
 
-[node name="VoteResult" type="Label" parent="ColorRect/NinePatchRect/ColorRect2"]
+[node name="VoteResult" type="Label" parent="ColorRect/NinePatchRect/ColorRect2/Vote"]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 482.0
-offset_right = 353.0
-offset_bottom = 562.0
+offset_left = -262.0
+offset_top = 47.5
+offset_right = 67.0
+offset_bottom = 127.5
 text = "Result"
+
+[node name="Implemented" type="Label" parent="ColorRect/NinePatchRect/ColorRect2"]
+visible = false
+layout_mode = 0
+offset_left = 28.0
+offset_top = 393.5
+offset_right = 355.0
+offset_bottom = 419.5
+text = "This policy is already implemented."
