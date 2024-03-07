@@ -16,6 +16,7 @@
 
 [sub_resource type="FontVariation" id="FontVariation_us0ja"]
 base_font = ExtResource("8_a13i5")
+variation_embolden = 0.3
 
 [sub_resource type="Theme" id="Theme_f6ssq"]
 
@@ -289,12 +290,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -69.0
-offset_top = 15.0
-offset_right = -5.0
-offset_bottom = 73.0
+offset_left = -40.0
+offset_top = -246.0
+offset_right = 24.0
+offset_bottom = -188.0
 grow_horizontal = 0
-theme_override_colors/font_color = Color(0.0352941, 0.156863, 0.168627, 1)
+theme_override_colors/font_color = Color(0.258824, 0.87451, 0.847059, 1)
 theme_override_fonts/font = SubResource("FontVariation_us0ja")
 theme_override_font_sizes/font_size = 28
 text = "0"
@@ -316,10 +317,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -53.0
-offset_top = -16.0
-offset_right = -9.0
-offset_bottom = 39.0
+offset_left = -24.0
+offset_top = -277.0
+offset_right = 20.0
+offset_bottom = -222.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
@@ -330,15 +331,15 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -19.0
-offset_right = 92.0
-offset_bottom = 13.0
+offset_left = -8.0
+offset_top = -280.0
+offset_right = 84.0
+offset_bottom = -248.0
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.0352941, 0.156863, 0.168627, 1)
+theme_override_colors/font_color = Color(0.258824, 0.87451, 0.847059, 1)
 theme_override_fonts/font = SubResource("FontVariation_us0ja")
 theme_override_font_sizes/font_size = 28
 text = "1000"
-horizontal_alignment = 1
 
 [node name="BuildMenuBG" type="Sprite2D" parent="PreviewInfo"]
 show_behind_parent = true
@@ -350,7 +351,7 @@ position = Vector2(-14, -16)
 texture = ExtResource("3_d3qhq")
 
 [node name="BuildMenuNumHole" type="Sprite2D" parent="PreviewInfo/BuildMenuBG"]
-position = Vector2(40, 120)
+position = Vector2(40, 129)
 texture = ExtResource("4_ovnj6")
 
 [node name="BuildMenuNumCounter" type="Sprite2D" parent="PreviewInfo/BuildMenuBG/BuildMenuNumHole"]
@@ -362,7 +363,7 @@ position = Vector2(29, 0)
 texture = ExtResource("5_bit08")
 
 [node name="BuildMenuNumHole2" type="Sprite2D" parent="PreviewInfo/BuildMenuBG"]
-position = Vector2(-60, 121)
+position = Vector2(-60, 130)
 texture = ExtResource("4_ovnj6")
 
 [node name="BuildMenuNumCounter" type="Sprite2D" parent="PreviewInfo/BuildMenuBG/BuildMenuNumHole2"]
@@ -374,11 +375,11 @@ position = Vector2(29, 0)
 texture = ExtResource("5_bit08")
 
 [node name="Icon-solar" type="Sprite2D" parent="PreviewInfo/BuildMenuBG"]
-position = Vector2(12, 119)
+position = Vector2(12, 128)
 texture = ExtResource("6_qkc2p")
 
 [node name="Icon-wind" type="Sprite2D" parent="PreviewInfo/BuildMenuBG"]
-position = Vector2(-88, 120)
+position = Vector2(-88, 129)
 texture = ExtResource("7_fjg03")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -387,6 +388,7 @@ position = Vector2(-1, 44)
 scale = Vector2(0.8, 0.8)
 
 [node name="BuildInfo" type="Control" parent="."]
+visible = false
 z_index = 1
 z_as_relative = false
 layout_mode = 3
@@ -691,9 +693,9 @@ color = Color(0.597656, 0.597656, 0.597656, 1)
 [node name="ResRect" type="ColorRect" parent="."]
 z_index = 1
 offset_left = -35.0
-offset_top = 148.0
+offset_top = 157.0
 offset_right = -3.0
-offset_bottom = 177.0
+offset_bottom = 186.0
 color = Color(0.4, 0.4, 0.4, 0)
 
 [node name="BuildMenuNumHole" type="Sprite2D" parent="ResRect"]

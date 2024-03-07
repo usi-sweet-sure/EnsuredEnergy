@@ -810,6 +810,10 @@ public partial class UI : CanvasLayer {
 		
 		// Waits for the next turn animation before sending the next turn signal
 		await ToSignal(TimelineAP, "animation_finished");
+		
+		// reset policy vote button
+		PW._ResetVote();
+		
 		// Trigger the next turn
 		EmitSignal(SignalName.NextTurn);
 

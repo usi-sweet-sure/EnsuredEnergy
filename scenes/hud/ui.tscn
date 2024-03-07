@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=82 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -49,6 +49,10 @@
 [ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
 [ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
 [ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="46_mga3n"]
+
+[sub_resource type="FontVariation" id="FontVariation_74xhr"]
+base_font = ExtResource("40_knfjx")
+variation_embolden = 0.5
 
 [sub_resource type="Animation" id="Animation_pjxim"]
 length = 0.001
@@ -452,6 +456,10 @@ _data = {
 "RESET": SubResource("Animation_lrye6")
 }
 
+[sub_resource type="FontVariation" id="FontVariation_qalwp"]
+base_font = ExtResource("40_knfjx")
+variation_embolden = 0.2
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dw2x"]
 atlas = ExtResource("14_m0dc4")
 region = Rect2(241, 283, 90, 58)
@@ -621,7 +629,7 @@ region = Rect2(48, 49, 43, 44)
 [sub_resource type="FontVariation" id="FontVariation_15ni2"]
 base_font = ExtResource("40_knfjx")
 variation_embolden = 0.5
-spacing_glyph = 6
+spacing_glyph = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
 bg_color = Color(0.988235, 0, 0, 1)
@@ -748,12 +756,12 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
-offset_top = 8.0
+offset_top = 10.0
 offset_right = -10.0
-offset_bottom = -9.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_fonts/font = SubResource("FontVariation_74xhr")
 theme_override_font_sizes/font_size = 24
 text = "Test"
 horizontal_alignment = 1
@@ -1002,7 +1010,7 @@ offset_left = -78.0
 offset_top = 90.0
 offset_bottom = 160.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_fonts/font = SubResource("FontVariation_qalwp")
 theme_override_font_sizes/font_size = 46
 text = "2 0"
 horizontal_alignment = 1
@@ -1023,7 +1031,7 @@ offset_top = 90.0
 offset_right = 40.0
 offset_bottom = 160.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_fonts/font = SubResource("FontVariation_qalwp")
 theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
@@ -1039,7 +1047,7 @@ offset_top = 146.0
 offset_right = 40.0
 offset_bottom = 216.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_fonts/font = SubResource("FontVariation_qalwp")
 theme_override_font_sizes/font_size = 46
 text = "3"
 horizontal_alignment = 1
@@ -1056,7 +1064,7 @@ offset_top = 90.0
 offset_right = 80.0
 offset_bottom = 160.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_fonts/font = SubResource("FontVariation_qalwp")
 theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
@@ -1073,7 +1081,7 @@ offset_top = 90.0
 offset_right = 80.0
 offset_bottom = 160.005
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_fonts/font = ExtResource("40_knfjx")
+theme_override_fonts/font = SubResource("FontVariation_qalwp")
 theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
@@ -1644,15 +1652,15 @@ vertical_alignment = 1
 
 [node name="money" type="Label" parent="Money"]
 layout_mode = 0
-offset_left = 14.0
+offset_left = 13.0
 offset_top = 5.0
-offset_right = 89.0
+offset_right = 88.0
 offset_bottom = 50.0
 theme_override_colors/font_color = Color(0.015625, 0.109375, 0.117188, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_15ni2")
-theme_override_font_sizes/font_size = 25
-text = "000"
+theme_override_font_sizes/font_size = 23
+text = "0000"
 horizontal_alignment = 2
 vertical_alignment = 1
 

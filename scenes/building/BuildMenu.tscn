@@ -97,9 +97,15 @@ _PlantType = 5
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Wind/PreviewInfo" index="3"]
-offset_top = -17.5
-offset_right = 64.0
-offset_bottom = 17.5
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -10.0
+offset_top = -250.0
+offset_right = 54.0
+offset_bottom = -218.0
+grow_vertical = 1
 
 [node name="Sprite" parent="Container/Wind" index="1"]
 position = Vector2(0, 21.1111)
@@ -125,9 +131,10 @@ _PlantType = 3
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Tree/PreviewInfo" index="3"]
-offset_top = -17.5
-offset_right = 64.0
-offset_bottom = 17.5
+offset_left = -9.0
+offset_top = -282.0
+offset_right = 63.0
+offset_bottom = -247.0
 
 [node name="Sprite" parent="Container/Tree" index="1"]
 position = Vector2(-2.25, 44)
@@ -148,9 +155,9 @@ _PlantType = 0
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Hydro/PreviewInfo" index="3"]
-offset_top = -17.5
-offset_right = 64.0
-offset_bottom = 17.5
+offset_left = -12.0
+offset_top = -283.0
+offset_right = 60.0
 
 [node name="Sprite" parent="Container/Hydro" index="1"]
 position = Vector2(-1, 24)
@@ -174,9 +181,9 @@ PlantName = "Gas Plant"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Gas/PreviewInfo" index="3"]
-offset_top = -17.5
+offset_top = -282.0
 offset_right = 64.0
-offset_bottom = 17.5
+offset_bottom = -247.0
 
 [node name="Sprite" parent="Container/Gas" index="1"]
 position = Vector2(-1, 24)
@@ -196,9 +203,10 @@ PlantName = "Waste"
 _PlantType = 6
 
 [node name="Price" parent="Container/Waste/PreviewInfo" index="3"]
-offset_top = -17.5
-offset_right = 64.0
-offset_bottom = 17.5
+offset_left = -14.0
+offset_top = -282.0
+offset_right = 58.0
+offset_bottom = -247.0
 
 [node name="Sprite" parent="Container/Waste" index="1"]
 position = Vector2(4, 10.25)
@@ -217,9 +225,10 @@ position = Vector2(1140, 141)
 _PlantType = 7
 
 [node name="Price" parent="Container/Biomass/PreviewInfo" index="3"]
-offset_top = -17.5
-offset_right = 64.0
-offset_bottom = 17.5
+offset_left = -12.0
+offset_top = -282.0
+offset_right = 60.0
+offset_bottom = -247.0
 
 [node name="Sprite" parent="Container/Biomass" index="1"]
 position = Vector2(0.25, 25.25)
@@ -239,9 +248,9 @@ position = Vector2(402, 142)
 _PlantType = 8
 
 [node name="Price" parent="Container/River/PreviewInfo" index="3"]
-offset_top = -17.5
-offset_right = 64.0
-offset_bottom = 17.5
+offset_left = -10.0
+offset_top = -283.0
+offset_right = 62.0
 
 [node name="Sprite" parent="Container/River" index="1"]
 position = Vector2(9, 32.75)
@@ -265,9 +274,9 @@ position = Vector2(648, 141)
 _PlantType = 9
 
 [node name="Price" parent="Container/Pump/PreviewInfo" index="3"]
-offset_top = -17.5
+offset_top = -282.0
 offset_right = 64.0
-offset_bottom = 17.5
+offset_bottom = -247.0
 
 [node name="Sprite" parent="Container/Pump" index="1"]
 position = Vector2(-1, 24)

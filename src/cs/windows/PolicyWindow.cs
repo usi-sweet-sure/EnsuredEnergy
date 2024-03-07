@@ -109,6 +109,11 @@ public partial class PolicyWindow : CanvasLayer {
 			AP.PlayBackwards(Anim);
 		}
 	}
+	
+	// Reset vote button at the end of each turn (player can vote once/turn)
+	public void _ResetVote() {
+		Vote.Disabled = false;
+	}
 			
 	// ==================== Interaction Callbacks ====================
 
@@ -156,7 +161,7 @@ public partial class PolicyWindow : CanvasLayer {
 			bool success = C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
 
 			// Disable the vote
-			//Vote.Disabled = true;
+			Vote.Disabled = true;
 			VoteResult.Show();
 
 			// Show the result

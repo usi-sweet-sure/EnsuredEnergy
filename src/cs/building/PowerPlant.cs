@@ -384,6 +384,7 @@ public partial class PowerPlant : Node2D {
 		// Check if we can still increase
 		if(MultiplierValue >= MultiplierMax) {
 			MultInc.Hide();
+			HideMultInfo();
 		} 
 
 		// Check if we can decrement now 
@@ -438,6 +439,7 @@ public partial class PowerPlant : Node2D {
 		// Check if we can decrement now 
 		if(MultiplierValue <= 1) {
 			MultDec.Hide();
+			HideMultInfo();
 		}
 	}
 
@@ -478,6 +480,7 @@ public partial class PowerPlant : Node2D {
 			MultInc.Show();
 		}
 		MultDec.Hide();
+		HideMultInfo();
 		
 		// Workaround to allow for an immediate update
 		IsAlive = false;
@@ -643,6 +646,7 @@ public partial class PowerPlant : Node2D {
 			// Check if the multiplier window should be shown
 			if(mult.MaxElements <= 1) {
 				Multiplier.Hide();
+				HideMultInfo();
 			} else {
 				Multiplier.Show();
 				MultInc.Show();
@@ -685,7 +689,7 @@ public partial class PowerPlant : Node2D {
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
 		PollN.Text = Pollution.ToString("0.0");
-		BTime.Text = BuildTime.ToString("0.0");
+		BTime.Text = BuildTime.ToString();
 		LandN.Text = (LandUse * 100).ToString("0.0");
 		BioN.Text = (-BiodiversityImpact * 100).ToString("0.0");
 		
@@ -954,7 +958,7 @@ public partial class PowerPlant : Node2D {
 		Debug.Print("UPGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
-
+		
 		// Check that the max hasn't been reached
 		if(MultiplierValue < MultiplierMax) {
 			// check if the cost is more than 0 before playing the money anim
@@ -966,6 +970,8 @@ public partial class PowerPlant : Node2D {
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, true, mult.Cost, this);
 		}
+		// Recalculate multiplier info numbers
+		GetMultIncInfo();
 	}
 
 	// Reacts to the decrease request by requesting it to the game loop
@@ -974,7 +980,7 @@ public partial class PowerPlant : Node2D {
 		Debug.Print("DOWNGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
-
+		
 		// Check that the min hasn't been reached
 		if(MultiplierValue > 1) {
 			if(mult.Cost > 0) {
@@ -984,6 +990,9 @@ public partial class PowerPlant : Node2D {
 			// Signal the request to the game loop
 			EmitSignal(SignalName.UpgradePlant, false, -mult.Cost, this);
 		}
+		
+		// Recalculate multiplier info numbers
+		GetMultDecInfo();
 	}
 	
 	private void GetMultIncInfo() {
