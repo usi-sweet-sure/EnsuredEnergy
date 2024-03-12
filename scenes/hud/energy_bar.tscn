@@ -17,7 +17,7 @@ corner_radius_bottom_left = 2
 [node name="Energy" type="ProgressBar"]
 offset_left = 86.0
 offset_top = -2.0
-offset_right = 224.0
+offset_right = 276.0
 offset_bottom = 36.0
 rotation = -1.5708
 theme_override_styles/background = SubResource("StyleBoxFlat_kaeus")

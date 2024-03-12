@@ -67,16 +67,16 @@ public partial class PolicyWindow : CanvasLayer {
 		TC = GetNode<TextController>("/root/TextController");
 		P = GetNode<ColorRect>("ColorRect");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
-		VoteResult = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/Vote/VoteResult");
-		Vote = GetNode<Button>("ColorRect/NinePatchRect/ColorRect2/Vote");
-		WindButton = GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Wind_buildtime");
-		Implemented = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/Implemented");
+		VoteResult = GetNode<Label>("ColorRect/Policies-base-2/Vote/VoteResult");
+		Vote = GetNode<Button>("ColorRect/Policies-base-2/Vote");
+		WindButton = GetNode<Button>("ColorRect/PoliciesBase-1/Wind_buildtime");
+		Implemented = GetNode<Label>("ColorRect/Policies-base-2/Implemented");
 
 		// Fetch UI Elements
-		PN = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/PolicyName");
-		PT = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/Text");
-		ET = GetNode<Label>("ColorRect/NinePatchRect/ColorRect2/EffectTitle/Text");
-		Pop = GetNode<ProgressBar>("ColorRect/NinePatchRect/ColorRect2/Vote/Popularity");
+		PN = GetNode<Label>("ColorRect/Policies-base-2/PolicyName");
+		PT = GetNode<Label>("ColorRect/Policies-base-2/Text");
+		ET = GetNode<Label>("ColorRect/Policies-base-2/EffectTitle/Text");
+		Pop = GetNode<ProgressBar>("ColorRect/Policies-base-2/Vote/Popularity");
 		
 		PolicyGroup = WindButton.ButtonGroup;
 		PressedPolicy = PolicyGroup.GetPressedButton();
@@ -84,11 +84,11 @@ public partial class PolicyWindow : CanvasLayer {
 		PolicyButtons = new()
 		{
 			// Fetch policy buttons
-			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Wind_buildtime"),
-			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_wind"),
-			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/home_regulation"),
-			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect2/industry_subsidy"),
-			GetNode<Button>("ColorRect/NinePatchRect/ColorRect/ColorRect/Upgrade_PV")
+			GetNode<Button>("ColorRect/PoliciesBase-1/Wind_buildtime"),
+			GetNode<Button>("ColorRect/PoliciesBase-1/Upgrade_wind"),
+			GetNode<Button>("ColorRect/PoliciesBase-2/home_regulation"),
+			GetNode<Button>("ColorRect/PoliciesBase-2/industry_subsidy"),
+			GetNode<Button>("ColorRect/PoliciesBase-1/Upgrade_PV")
 		};
 		
 		ImplementedPolicy = new(){};

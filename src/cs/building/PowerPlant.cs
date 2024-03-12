@@ -118,8 +118,8 @@ public partial class PowerPlant : Node2D {
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
 	private Color HOVER_COLOR = new Color(0.9f, 0.9f, 0.7f);
 	private Color DEFAULT_COLOR = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-	private Color RED = new Color(0.65f, 0f, 0.05f, 1.0f);
-	private Color GREEN = new Color(0, 0.55f, 0.27f, 1.0f);
+	private Color RED = new Color(1f, 0.1f, 0.2f, 1.0f);
+	private Color GREEN = new Color(0.3f, 1f, 0.1f, 1.0f);
 	
 	private string AnimName;
 

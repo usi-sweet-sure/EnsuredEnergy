@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://cgf1xjsx0mfot" path="res://assets/UI Elements/Button-Next-Base.png" id="7_g7ih8"]
 [ext_resource type="Texture2D" uid="uid://b8lwrin3nxbmj" path="res://assets/Elements/SETTINGS BUTTON.png" id="7_mnpcp"]
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
-[ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="10_2gyrf"]
 [ext_resource type="AudioStream" uid="uid://ben5r72x0p8pr" path="res://assets/Sounds/Move_03.wav" id="10_po2ll"]
 [ext_resource type="Texture2D" uid="uid://bjeebs7uy4hpn" path="res://assets/UI Elements/Button-small-Hole.png" id="11_i0u5d"]
 [ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="11_qepre"]
@@ -46,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/Button-Hole.png" id="39_jsaox"]
 [ext_resource type="Texture2D" uid="uid://bfa7b1e5e7hxc" path="res://assets/CANCEL ICON.png" id="40_h6a6a"]
 [ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="40_knfjx"]
+[ext_resource type="Texture2D" uid="uid://dyc87atrxvivu" path="res://assets/UI Elements/Paper_Info-1.png" id="42_5ijjs"]
 [ext_resource type="Texture2D" uid="uid://dcbjy5kxo2vbm" path="res://assets/Elements/INFO ICON.png" id="42_v8iq7"]
 [ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
 [ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
@@ -811,6 +811,7 @@ position = Vector2(218, 896)
 texture = ExtResource("27_6qqtw")
 
 [node name="Energy-base" type="Sprite2D" parent="ImportEnergy-bar-metal"]
+z_index = 1
 position = Vector2(72, -16)
 texture = ExtResource("28_mr6x7")
 
@@ -834,10 +835,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 291.0
-offset_top = 968.0
-offset_right = 465.0
-offset_bottom = 1010.0
+offset_left = 303.0
+offset_top = 975.0
+offset_right = 494.0
+offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
@@ -857,10 +858,10 @@ rotation = 1.5708
 metadata/_edit_group_ = true
 
 [node name="EnergyBarWinterPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 222.0
-offset_top = 968.0
-offset_right = 396.0
-offset_bottom = 1009.0
+offset_left = 237.0
+offset_top = 975.0
+offset_right = 428.0
+offset_bottom = 1016.0
 NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.784314)
 LowColor = Color(0.94902, 0.533333, 0.0666667, 0.521569)
 
@@ -877,10 +878,10 @@ offset_bottom = 113.053
 rotation = 1.5708
 
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 222.0
-offset_top = 968.0
-offset_right = 396.0
-offset_bottom = 1009.0
+offset_left = 237.0
+offset_top = 975.0
+offset_right = 428.0
+offset_bottom = 1016.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
 NormalColor = Color(0.329412, 0.819608, 0.352941, 1)
 LowColor = Color(0.866667, 0.270588, 0.239216, 1)
@@ -904,10 +905,10 @@ text = "You need to reach the demand in energy. The target is the white line on 
 "
 
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 291.0
-offset_top = 968.0
-offset_right = 465.0
-offset_bottom = 1010.0
+offset_left = 303.0
+offset_top = 975.0
+offset_right = 494.0
+offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 NormalColor = Color(0.329412, 0.819608, 0.352941, 1)
@@ -963,10 +964,10 @@ offset_right = 36.0
 offset_bottom = 218.0
 
 [node name="ImportSwitch" parent="Import" index="8"]
-offset_left = -77.0
-offset_top = 42.0
-offset_right = -33.0
-offset_bottom = 100.0
+offset_left = -96.0
+offset_top = 41.0
+offset_right = -16.0
+offset_bottom = 117.0
 
 [node name="Icon-import" parent="Import" index="10"]
 position = Vector2(16, 279)
@@ -1438,8 +1439,8 @@ grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MoneyInfo"]
 layout_mode = 0
-offset_right = 339.0
-offset_bottom = 288.0
+offset_right = 400.0
+offset_bottom = 336.0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -1447,21 +1448,22 @@ theme_override_constants/margin_bottom = 4
 
 [node name="InfoMoney" type="NinePatchRect" parent="MoneyInfo/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("10_2gyrf")
-region_rect = Rect2(24, 24, 304, 224)
-patch_margin_left = 24
-patch_margin_top = 24
-patch_margin_right = 24
-patch_margin_bottom = 24
+texture = ExtResource("42_5ijjs")
+region_rect = Rect2(0, 18, 585, 510)
+patch_margin_left = 54
+patch_margin_top = 48
+patch_margin_right = 51
+patch_margin_bottom = 68
 
 [node name="MarginContainer" type="MarginContainer" parent="MoneyInfo/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
 [node name="ColorRect" type="ColorRect" parent="MoneyInfo/MarginContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
@@ -1481,7 +1483,7 @@ offset_left = 43.0
 offset_top = -3.0
 offset_right = 185.0
 offset_bottom = 37.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
 text = "Now"
 horizontal_alignment = 2
@@ -1493,7 +1495,7 @@ offset_left = 146.0
 offset_top = -3.0
 offset_right = 288.0
 offset_bottom = 37.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
 text = "Next Turn"
 horizontal_alignment = 2
@@ -1501,6 +1503,7 @@ vertical_alignment = 1
 
 [node name="BudgetName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "  Budget:"
 vertical_alignment = 1
@@ -1539,6 +1542,7 @@ autowrap_mode = 3
 
 [node name="ProdName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "  Production: "
 vertical_alignment = 1
@@ -1565,6 +1569,7 @@ autowrap_mode = 3
 
 [node name="BuildName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "  Building: "
 vertical_alignment = 1
@@ -1591,6 +1596,7 @@ autowrap_mode = 3
 
 [node name="ImportName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = " Import:"
 
@@ -1649,6 +1655,7 @@ autowrap_mode = 3
 
 [node name="TotalName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "    Total:"
 
@@ -1658,6 +1665,7 @@ offset_left = 56.0
 offset_top = 2.0
 offset_right = 184.0
 offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1668,6 +1676,7 @@ offset_left = 153.0
 offset_top = 2.0
 offset_right = 281.0
 offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2

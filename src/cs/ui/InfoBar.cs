@@ -24,7 +24,7 @@ public partial class InfoBar : ProgressBar {
 
 	// Slider initial positions
 	private const int SLIDER_BEG_X = -330;
-	private const int SLIDER_END_X = -158;
+	private const int SLIDER_END_X = -139;
 	private int SLIDER_RANGE = Math.Abs(SLIDER_BEG_X - SLIDER_END_X);
 
 	// Line showing the target amount to reach
