@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=87 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -36,7 +36,9 @@
 [ext_resource type="Texture2D" uid="uid://da8jr70q0tucb" path="res://assets/UI Elements/Profil-Bar-Metal.png" id="30_0k2ft"]
 [ext_resource type="Texture2D" uid="uid://h78kteff8v5d" path="res://assets/UI Elements/Money-counter-hole.png" id="31_jcf3k"]
 [ext_resource type="Texture2D" uid="uid://p2nyvgv4j2ll" path="res://assets/UI Elements/Money-counter-1.png" id="32_2wt40"]
+[ext_resource type="StyleBox" uid="uid://yqtdxtw3vpjp" path="res://scenes/hud/energy_bar_green.tres" id="33_fod4b"]
 [ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/Icon-Money.png" id="33_my285"]
+[ext_resource type="StyleBox" uid="uid://lco0fbxgcpii" path="res://scenes/hud/energy_bar_low.tres" id="34_m2c15"]
 [ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="34_xcgyc"]
 [ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/Popularity-.png" id="35_qiawk"]
 [ext_resource type="Texture2D" uid="uid://clnitajx25spt" path="res://assets/UI Elements/Button-Square-normal.png" id="36_xxsv6"]
@@ -842,8 +844,8 @@ offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
-NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.45098)
-LowColor = Color(0.94902, 0.533333, 0.0666667, 0.45098)
+NormalColor = ExtResource("33_fod4b")
+LowColor = ExtResource("34_m2c15")
 
 [node name="Target" parent="EnergyBarSummerPredict" index="0"]
 position = Vector2(-331, -609.5)
@@ -862,8 +864,8 @@ offset_left = 237.0
 offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
-NormalColor = Color(0.94902, 0.815686, 0.0666667, 0.784314)
-LowColor = Color(0.94902, 0.533333, 0.0666667, 0.521569)
+NormalColor = ExtResource("33_fod4b")
+LowColor = ExtResource("34_m2c15")
 
 [node name="Target" parent="EnergyBarWinterPredict" index="0"]
 visible = false
@@ -883,8 +885,8 @@ offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
-NormalColor = Color(0.329412, 0.819608, 0.352941, 1)
-LowColor = Color(0.866667, 0.270588, 0.239216, 1)
+NormalColor = ExtResource("33_fod4b")
+LowColor = ExtResource("34_m2c15")
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -911,8 +913,8 @@ offset_right = 494.0
 offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-NormalColor = Color(0.329412, 0.819608, 0.352941, 1)
-LowColor = Color(0.866667, 0.270588, 0.239216, 1)
+NormalColor = ExtResource("33_fod4b")
+LowColor = ExtResource("34_m2c15")
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)
@@ -1160,8 +1162,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
 EnergyBar = true
-NormalColor = Color(0.180392, 0.509804, 1, 1)
-LowColor = Color(0.435294, 0.282353, 1, 1)
+NormalColor = ExtResource("34_m2c15")
+LowColor = ExtResource("33_fod4b")
 
 [node name="Target" type="Line2D" parent="Trust"]
 visible = false
@@ -1225,8 +1227,8 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-NormalColor = Color(0.0313726, 0.67451, 0.2, 1)
-LowColor = Color(0.329412, 0.372549, 0, 1)
+NormalColor = ExtResource("34_m2c15")
+LowColor = ExtResource("33_fod4b")
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Env"]
@@ -1303,8 +1305,8 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-NormalColor = Color(0.239216, 0.239216, 0.239216, 1)
-LowColor = Color(0.74902, 0.74902, 0.74902, 1)
+NormalColor = ExtResource("34_m2c15")
+LowColor = ExtResource("33_fod4b")
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Poll"]

@@ -35,13 +35,13 @@ public partial class PolicyWindow : CanvasLayer {
 
 	private ColorRect P;
 	private AnimationPlayer AP;
-	public Button Vote;
-	private Button WindButton;
+	public TextureButton Vote;
+	private TextureButton WindButton;
 	private ButtonGroup PolicyGroup;
-	private BaseButton PressedPolicy;
-	private List<BaseButton> ImplementedPolicy;
+	private TextureButton PressedPolicy;
+	private List<TextureButton> ImplementedPolicy;
 	private Label VoteResult;
-	private List<Button> PolicyButtons;
+	private List<TextureButton> PolicyButtons;
 	private string SelectedPolicy;
 	private Label Implemented;
 
@@ -67,28 +67,28 @@ public partial class PolicyWindow : CanvasLayer {
 		TC = GetNode<TextController>("/root/TextController");
 		P = GetNode<ColorRect>("ColorRect");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
-		VoteResult = GetNode<Label>("ColorRect/Policies-base-2/Vote/VoteResult");
-		Vote = GetNode<Button>("ColorRect/Policies-base-2/Vote");
-		WindButton = GetNode<Button>("ColorRect/PoliciesBase-1/Wind_buildtime");
-		Implemented = GetNode<Label>("ColorRect/Policies-base-2/Implemented");
+		VoteResult = GetNode<Label>("Control/Policies-base-2/Vote/VoteResult");
+		Vote = GetNode<TextureButton>("Control/Policies-base-2/Vote");
+		WindButton = GetNode<TextureButton>("Control/PoliciesBase-1/Wind_buildtime");
+		Implemented = GetNode<Label>("Control/Policies-base-2/Implemented");
 
 		// Fetch UI Elements
-		PN = GetNode<Label>("ColorRect/Policies-base-2/PolicyName");
-		PT = GetNode<Label>("ColorRect/Policies-base-2/Text");
-		ET = GetNode<Label>("ColorRect/Policies-base-2/EffectTitle/Text");
-		Pop = GetNode<ProgressBar>("ColorRect/Policies-base-2/Vote/Popularity");
+		PN = GetNode<Label>("Control/Policies-base-2/PolicyName");
+		PT = GetNode<Label>("Control/Policies-base-2/Text");
+		ET = GetNode<Label>("Control/Policies-base-2/EffectTitle/Text");
+		Pop = GetNode<ProgressBar>("Control/Policies-base-2/Vote/Popularity");
 		
 		PolicyGroup = WindButton.ButtonGroup;
-		PressedPolicy = PolicyGroup.GetPressedButton();
+		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
 		
 		PolicyButtons = new()
 		{
 			// Fetch policy buttons
-			GetNode<Button>("ColorRect/PoliciesBase-1/Wind_buildtime"),
-			GetNode<Button>("ColorRect/PoliciesBase-1/Upgrade_wind"),
-			GetNode<Button>("ColorRect/PoliciesBase-2/home_regulation"),
-			GetNode<Button>("ColorRect/PoliciesBase-2/industry_subsidy"),
-			GetNode<Button>("ColorRect/PoliciesBase-1/Upgrade_PV")
+			GetNode<TextureButton>("Control/PoliciesBase-1/Wind_buildtime"),
+			GetNode<TextureButton>("Control/PoliciesBase-1/Upgrade_wind"),
+			GetNode<TextureButton>("Control/PoliciesBase-2/home_regulation"),
+			GetNode<TextureButton>("Control/PoliciesBase-2/industry_subsidy"),
+			GetNode<TextureButton>("Control/PoliciesBase-1/Upgrade_PV")
 		};
 		
 		ImplementedPolicy = new(){};
@@ -127,7 +127,7 @@ public partial class PolicyWindow : CanvasLayer {
 	public void _OnPanelGuiInput(InputEvent input) {
 		if(input.GetType() == new InputEventMouseButton().GetType()) {
 			Hide();
-			PressedPolicy = PolicyGroup.GetPressedButton();
+			PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
 			if (PressedPolicy != null) {
 				Vote.Hide();
 				PressedPolicy.ButtonPressed = false;
@@ -139,7 +139,7 @@ public partial class PolicyWindow : CanvasLayer {
 	// We also need to update the window to display all of the specific data
 	public void _OnPolicyButtonPressed() {
 		// Retrieve the policy information to use it to update the UI
-		PressedPolicy = PolicyGroup.GetPressedButton();
+		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
 		if(PressedPolicy != null) {
 			// Allow for the user to trigger a vote
 			Vote.Show();
@@ -166,7 +166,7 @@ public partial class PolicyWindow : CanvasLayer {
 	// Attempts a vote and shows the result
 	public void _OnVotePressed() {
 		// Check the vote result based on the selected policy
-		PressedPolicy = PolicyGroup.GetPressedButton();
+		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
 		if (PressedPolicy != null) {
 			// Attempt the vote
 			bool success = C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
