@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/MAP-BG.png" id="2_rie33"]
 [ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_gh7te"]
 [ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="8_jaeq3"]
-[ext_resource type="Texture2D" uid="uid://dvojrl48elrdl" path="res://assets/UI Elements/Start_Menu_Base.png" id="10_cm00s"]
+[ext_resource type="Texture2D" uid="uid://dvojrl48elrdl" path="res://assets/UI Elements/Start_Menu_base.png" id="10_cm00s"]
 [ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/Button-Play-normal.png" id="11_v1gn1"]
 [ext_resource type="Texture2D" uid="uid://c5tgx0yng476j" path="res://assets/UI Elements/Button-Play-press.png" id="12_2e306"]
 [ext_resource type="Texture2D" uid="uid://id0egjudmljv" path="res://assets/UI Elements/Blueprint_normal.png" id="12_eqfmq"]

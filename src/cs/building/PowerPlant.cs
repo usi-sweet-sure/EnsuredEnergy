@@ -129,10 +129,13 @@ public partial class PowerPlant : Node2D {
 	private Sprite2D Sprite3;
 	private ColorRect NameR;
 	private Label NameL;
+	private Label NameBI;
 	private Label PollN;
 	private Label PollL;
 	private Label EnergyS;
 	private Label EnergyW;
+	private Label EnergySL;
+	private Label EnergyWL;
 	private Label MoneyL;
 	public CheckButton Switch;
 	private Control PreviewInfo;
@@ -188,8 +191,8 @@ public partial class PowerPlant : Node2D {
 	private int MultiplierValue = 1; // The number of elements the plant contains
 	private ColorRect Multiplier; // The visual Multiplier amount display
 	private Label MultiplierL; // The label containing the multiplier amount
-	private Button MultInc; // Increases the multiplier
-	private Button MultDec; // Decreases the multiplier
+	private TextureButton MultInc; // Increases the multiplier
+	private TextureButton MultDec; // Decreases the multiplier
 	private int MultiplierMax;
 
 
@@ -203,12 +206,15 @@ public partial class PowerPlant : Node2D {
 			Sprite2 = GetNode<Sprite2D>("Sprite2");
 			Sprite3 = GetNode<Sprite2D>("Sprite3");
 		}
+		NameBI = GetNode<Label>("BuildInfo/Name");
 		NameL = GetNode<Label>("NameRect/Name");
 		NameR = GetNode<ColorRect>("NameRect");
 		PollN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll");
 		PollL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Poll");
 		EnergyS = GetNode<Label>("ResRect/EnergyS");
 		EnergyW = GetNode<Label>("ResRect/EnergyW");
+		EnergySL = GetNode<Label>("BuildInfo/BuildMenuNumHole/SummerE");
+		EnergyWL = GetNode<Label>("BuildInfo/BuildMenuNumHole2/WinterE");
 		MoneyL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
 		Switch = GetNode<CheckButton>("BuildInfo/Switch");
 		CC = GetNode<ConfigController>("ConfigController");
@@ -222,8 +228,8 @@ public partial class PowerPlant : Node2D {
 		Delete = GetNode<Button>("Delete");
 		Multiplier = GetNode<ColorRect>("Multiplier");
 		MultiplierL = GetNode<Label>("Multiplier/MultAmount");
-		MultInc = GetNode<Button>("Multiplier/Inc");
-		MultDec = GetNode<Button>("Multiplier/Dec");
+		MultInc = GetNode<TextureButton>("Multiplier/Inc");
+		MultDec = GetNode<TextureButton>("Multiplier/Dec");
 		InfoButton = GetNode<Button>("InfoButton");
 		ResRect = GetNode<ColorRect>("ResRect");
 		LandN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
@@ -264,9 +270,12 @@ public partial class PowerPlant : Node2D {
 		}
 
 		// Set the labels correctly
+		NameBI.Text = PlantName;
 		NameL.Text = PlantName;
 		EnergyS.Text = EnergyCapacity.ToString();
 		EnergyW.Text = EnergyCapacity.ToString();
+		EnergySL.Text = EnergyCapacity.ToString();
+		EnergyWL.Text = EnergyCapacity.ToString();
 		MoneyL.Text = "💰/⌛ " +  ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
 		PollN.Text = "🏭 " + Pollution.ToString();
@@ -675,6 +684,7 @@ public partial class PowerPlant : Node2D {
 	// Updates the UI label for the plant to the given name
 	public void _UpdatePlantName(string name) {
 		NameL.Text = name;
+		NameBI.Text = name;
 		PlantName = name;
 		
 		// Update buildInfo text labels correctly
@@ -692,12 +702,16 @@ public partial class PowerPlant : Node2D {
 			ResRect.Show();
 		} else {
 			NameR.Hide();
+			ResRect.Hide();
 		}
 
 		// Set the labels correctly
 		NameL.Text = PlantName;
+		NameBI.Text = PlantName;
 		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
+		EnergySL.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
 		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
+		EnergyWL.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
 		PollN.Text = Pollution.ToString("0.0");
@@ -874,7 +888,6 @@ public partial class PowerPlant : Node2D {
 	private void OnArea2DMouseEntered() {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
-			NameR.Show();
 			Sprite.SelfModulate = HOVER_COLOR;
 			
 		} else {
@@ -886,7 +899,6 @@ public partial class PowerPlant : Node2D {
 	private void OnArea2DMouseExited() {
 		// Make sure that the plant isn't in the build menu
 		if(!IsPreview) {
-			NameR.Hide();
 			Sprite.SelfModulate = DEFAULT_COLOR;
 		} else {
 			Info.Hide();
@@ -910,7 +922,7 @@ public partial class PowerPlant : Node2D {
 				Plant.Multiplier.Visible = false;
 			}
 			Info.Visible = true;
-			ResRect.Visible = true;
+			//ResRect.Visible = true;
 			// Toggle multiplier state if several elements are available
 			if(mult.MaxElements > 1) {
 				Multiplier.Visible = true;

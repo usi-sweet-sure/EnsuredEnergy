@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=46 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://b60o54o5riav8" path="res://assets/UI Elements/Build_Menu_0005_Build-Menu-Metal.png" id="2_ambcb"]
@@ -17,6 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://dwys7y27kiabl" path="res://assets/UI Elements/Import-Switch-On.png" id="11_o2k5p"]
 [ext_resource type="Texture2D" uid="uid://dhxkhfg2qxlgx" path="res://assets/UI Elements/Import-Switch-Off.png" id="12_yxhto"]
 [ext_resource type="Texture2D" uid="uid://c42n2mmget4xn" path="res://assets/no-money.png" id="14_x1bya"]
+[ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="15_6udtn"]
+[ext_resource type="Texture2D" uid="uid://cdn0h6b873gbk" path="res://assets/UI Elements/Build_Menu_counter_yellow-1.png" id="16_svf0w"]
+[ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="17_1peyq"]
+[ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="18_ni8pb"]
+[ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="19_pbahr"]
+[ext_resource type="Texture2D" uid="uid://bjeebs7uy4hpn" path="res://assets/UI Elements/Button-small-Hole.png" id="20_6s7vn"]
 
 [sub_resource type="FontVariation" id="FontVariation_us0ja"]
 base_font = ExtResource("8_a13i5")
@@ -32,6 +38,13 @@ variation_embolden = 0.3
 base_font = ExtResource("8_a13i5")
 variation_embolden = 0.2
 spacing_glyph = 3
+
+[sub_resource type="FontVariation" id="FontVariation_ji1at"]
+base_font = ExtResource("15_6udtn")
+spacing_glyph = 7
+
+[sub_resource type="FontVariation" id="FontVariation_g0hl7"]
+base_font = ExtResource("15_6udtn")
 
 [sub_resource type="FontVariation" id="FontVariation_tek51"]
 base_font = ExtResource("8_a13i5")
@@ -55,6 +68,15 @@ spacing_glyph = 6
 [sub_resource type="FontVariation" id="FontVariation_r1iqv"]
 base_font = ExtResource("8_a13i5")
 spacing_glyph = 6
+
+[sub_resource type="FontVariation" id="FontVariation_muro4"]
+base_font = ExtResource("15_6udtn")
+
+[sub_resource type="FontVariation" id="FontVariation_054ol"]
+base_font = ExtResource("15_6udtn")
+
+[sub_resource type="FontVariation" id="FontVariation_bcams"]
+base_font = ExtResource("15_6udtn")
 
 [sub_resource type="FontVariation" id="FontVariation_vvvj4"]
 base_font = ExtResource("8_a13i5")
@@ -405,6 +427,7 @@ position = Vector2(-1, 44)
 scale = Vector2(0.8, 0.8)
 
 [node name="BuildInfo" type="Control" parent="."]
+visible = false
 z_index = 1
 z_as_relative = false
 layout_mode = 3
@@ -682,10 +705,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 290.0
-offset_top = 132.0
-offset_right = 370.0
-offset_bottom = 208.0
+offset_left = -322.0
+offset_top = -33.0
+offset_right = -242.0
+offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
@@ -740,6 +763,18 @@ texture = ExtResource("5_bit08")
 position = Vector2(29, 0)
 texture = ExtResource("5_bit08")
 
+[node name="SummerE" type="Label" parent="BuildInfo/BuildMenuNumHole"]
+offset_left = -3.0
+offset_top = -16.5
+offset_right = 37.0
+offset_bottom = 17.5
+theme_override_colors/font_color = Color(0.0862745, 0.184314, 0.196078, 1)
+theme_override_fonts/font = SubResource("FontVariation_ji1at")
+theme_override_font_sizes/font_size = 22
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="BuildMenuNumHole2" type="Sprite2D" parent="BuildInfo"]
 position = Vector2(-131.5, 151.5)
 scale = Vector2(2, 2)
@@ -753,6 +788,18 @@ texture = ExtResource("5_bit08")
 position = Vector2(29, 0)
 texture = ExtResource("5_bit08")
 
+[node name="WinterE" type="Label" parent="BuildInfo/BuildMenuNumHole2"]
+offset_left = -3.25
+offset_top = -17.25
+offset_right = 36.75
+offset_bottom = 16.75
+theme_override_colors/font_color = Color(0.0862745, 0.184314, 0.196078, 1)
+theme_override_fonts/font = SubResource("FontVariation_ji1at")
+theme_override_font_sizes/font_size = 22
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Icon-solar" type="Sprite2D" parent="BuildInfo"]
 position = Vector2(47.5, 149.5)
 scale = Vector2(2, 2)
@@ -762,6 +809,19 @@ texture = ExtResource("6_qkc2p")
 position = Vector2(-189.5, 149.5)
 scale = Vector2(2, 2)
 texture = ExtResource("7_fjg03")
+
+[node name="Name" type="Label" parent="BuildInfo"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -248.0
+offset_right = 214.0
+offset_bottom = -184.0
+theme_override_fonts/font = SubResource("FontVariation_g0hl7")
+theme_override_font_sizes/font_size = 32
+text = "1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="NameRect" type="ColorRect" parent="."]
 z_index = 1
@@ -959,62 +1019,96 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 123.0
-offset_top = 124.0
-offset_right = 203.0
-offset_bottom = 164.0
+offset_left = 167.0
+offset_top = -309.0
+offset_right = 247.0
+offset_bottom = -269.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.2, 1.2)
-color = Color(0.596078, 0.596078, 0.596078, 1)
-metadata/_edit_group_ = true
+color = Color(0.596078, 0.596078, 0.596078, 0)
 
 [node name="MultAmount" type="Label" parent="Multiplier"]
 layout_mode = 0
-offset_left = 6.66666
-offset_top = 2.0
-offset_right = 73.6667
-offset_bottom = 39.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+offset_left = -7.0
+offset_top = -14.0
+offset_right = 27.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.0431373, 0.141176, 0.14902, 1)
+theme_override_fonts/font = SubResource("FontVariation_muro4")
+theme_override_font_sizes/font_size = 44
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Inc" type="Button" parent="Multiplier"]
+[node name="Sprite2D" type="Sprite2D" parent="Multiplier/MultAmount"]
+show_behind_parent = true
+position = Vector2(16.1667, 31.6667)
+scale = Vector2(2, 2)
+texture = ExtResource("16_svf0w")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Multiplier/MultAmount/Sprite2D"]
+show_behind_parent = true
+position = Vector2(-9.0417, 1.25)
+scale = Vector2(0.487402, 1)
+texture = ExtResource("4_ovnj6")
+
+[node name="Inc" type="TextureButton" parent="Multiplier"]
 layout_mode = 0
-offset_left = 53.6667
-offset_top = 4.0
-offset_right = 84.6667
-offset_bottom = 35.0
+offset_left = 42.3333
+offset_top = -15.0
+offset_right = 73.3333
+offset_bottom = 16.0
 focus_mode = 0
+texture_normal = ExtResource("17_1peyq")
+texture_pressed = ExtResource("18_ni8pb")
+texture_hover = ExtResource("19_pbahr")
+ignore_texture_size = true
 
 [node name="Label" type="Label" parent="Multiplier/Inc"]
 layout_mode = 0
-offset_left = 6.33334
-offset_top = -8.16667
-offset_right = 24.3333
-offset_bottom = 38.8333
-theme_override_font_sizes/font_size = 31
+offset_left = 8.33334
+offset_top = -7.16667
+offset_right = 26.3333
+offset_bottom = 39.8333
+theme_override_fonts/font = SubResource("FontVariation_054ol")
+theme_override_font_sizes/font_size = 28
 text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Dec" type="Button" parent="Multiplier"]
+[node name="Sprite2D" type="Sprite2D" parent="Multiplier/Inc"]
+show_behind_parent = true
+position = Vector2(29.6667, 34)
+texture = ExtResource("20_6s7vn")
+
+[node name="Dec" type="TextureButton" parent="Multiplier"]
 layout_mode = 0
-offset_left = -4.33334
-offset_top = 4.0
-offset_right = 26.6667
-offset_bottom = 35.0
+offset_left = 41.5
+offset_top = 18.3333
+offset_right = 72.5
+offset_bottom = 51.3333
 focus_mode = 0
-text = "-"
+texture_normal = ExtResource("17_1peyq")
+texture_pressed = ExtResource("18_ni8pb")
+texture_hover = ExtResource("19_pbahr")
+ignore_texture_size = true
 
 [node name="Label2" type="Label" parent="Multiplier/Dec"]
 layout_mode = 0
-offset_left = 10.1666
-offset_top = -9.00001
-offset_right = 28.1666
-offset_bottom = 38.0
-theme_override_font_sizes/font_size = 31
+offset_left = 7.1666
+offset_top = -11.0
+offset_right = 25.1666
+offset_bottom = 36.0
+theme_override_fonts/font = SubResource("FontVariation_bcams")
+theme_override_font_sizes/font_size = 30
 text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="Multiplier/Dec"]
+show_behind_parent = true
+position = Vector2(29.5, 34.6667)
+texture = ExtResource("20_6s7vn")
 
 [node name="MultPrice" type="Label" parent="Multiplier"]
 visible = false

@@ -144,6 +144,7 @@ public partial class PolicyWindow : CanvasLayer {
 			// Allow for the user to trigger a vote
 			Vote.Show();
 			Implemented.Hide();
+			if (!Vote.Disabled) {VoteResult.Hide();}
 			// Retrieve the UI infor such as name, text and effects
 			// and update the UI with them
 			PN.Text = PC._GetPolicyName(PressedPolicy.Name);
@@ -183,6 +184,9 @@ public partial class PolicyWindow : CanvasLayer {
 				"labels.xml", POLICY_GROUP, 
 				success ? POLICY_SUCCESS : POLICY_FAILURE
 			);
+		} else {
+			VoteResult.Text = "Please select a policy.";
+			VoteResult.Show();
 		}
 	}
 }

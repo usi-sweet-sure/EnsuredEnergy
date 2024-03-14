@@ -59,6 +59,9 @@ public partial class InfoBar : ProgressBar {
 		BarName = GetNode<Label>("Name");
 		Box = GetNode<InfoBox>("BarInfo");
 		BarButton = GetNode<Button>("Button");
+		
+		NormalColor = ResourceLoader.Load("res://scenes/hud/energy_bar_green.tres") as StyleBoxTexture;
+		LowColor = ResourceLoader.Load("res://scenes/hud/energy_bar_low.tres") as StyleBoxTexture;
 
 		
 

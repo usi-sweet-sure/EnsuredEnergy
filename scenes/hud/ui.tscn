@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=92 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -28,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://bmjee8ocqy0ge" path="res://assets/UI Elements/Enviornment-Base.png" id="21_i8c3o"]
 [ext_resource type="Texture2D" uid="uid://cke7lrsfhrr8c" path="res://assets/UI Elements/Enviorment-Bar.png" id="22_facdj"]
 [ext_resource type="Texture2D" uid="uid://bwmnloeklg76n" path="res://assets/UI Elements/Enviornment-Hand.png" id="23_3qgyr"]
-[ext_resource type="FontFile" uid="uid://bp3o6potcw07r" path="res://assets/Fonts/BebasNeue-Regular.otf" id="23_og3i5"]
 [ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="24_t8vy5"]
 [ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/Icon-Pollution-.png" id="25_7q1c5"]
 [ext_resource type="Texture2D" uid="uid://dyyio7rs1i1l6" path="res://assets/UI Elements/Import_energy-Bar-Metal.png" id="27_6qqtw"]
@@ -36,9 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://da8jr70q0tucb" path="res://assets/UI Elements/Profil-Bar-Metal.png" id="30_0k2ft"]
 [ext_resource type="Texture2D" uid="uid://h78kteff8v5d" path="res://assets/UI Elements/Money-counter-hole.png" id="31_jcf3k"]
 [ext_resource type="Texture2D" uid="uid://p2nyvgv4j2ll" path="res://assets/UI Elements/Money-counter-1.png" id="32_2wt40"]
-[ext_resource type="StyleBox" uid="uid://yqtdxtw3vpjp" path="res://scenes/hud/energy_bar_green.tres" id="33_fod4b"]
 [ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/Icon-Money.png" id="33_my285"]
-[ext_resource type="StyleBox" uid="uid://lco0fbxgcpii" path="res://scenes/hud/energy_bar_low.tres" id="34_m2c15"]
 [ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="34_xcgyc"]
 [ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/Popularity-.png" id="35_qiawk"]
 [ext_resource type="Texture2D" uid="uid://clnitajx25spt" path="res://assets/UI Elements/Button-Square-normal.png" id="36_xxsv6"]
@@ -52,6 +49,10 @@
 [ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
 [ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
 [ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="46_mga3n"]
+[ext_resource type="Texture2D" uid="uid://ckf6s1uhm87ae" path="res://assets/UI Elements/Policies_Base-1.png" id="50_inaxr"]
+[ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="51_joowr"]
+[ext_resource type="Texture2D" uid="uid://co2hnnf0cnn72" path="res://assets/UI Elements/Plant_Menu_Base.png" id="52_tsua8"]
+[ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="53_v477p"]
 
 [sub_resource type="FontVariation" id="FontVariation_74xhr"]
 base_font = ExtResource("40_knfjx")
@@ -643,6 +644,13 @@ base_font = ExtResource("40_knfjx")
 variation_embolden = 0.2
 spacing_glyph = 2
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_21dh1"]
+atlas = ExtResource("50_inaxr")
+region = Rect2(0, 0, 328, 776)
+
+[sub_resource type="FontVariation" id="FontVariation_2lxgj"]
+base_font = ExtResource("51_joowr")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
 bg_color = Color(0.988235, 0, 0, 1)
 corner_radius_top_left = 4
@@ -676,6 +684,13 @@ bg_color = Color(0.45098, 0.45098, 0.45098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xki6c"]
 bg_color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_6evow"]
+base_font = ExtResource("51_joowr")
+spacing_glyph = 1
+
+[sub_resource type="FontVariation" id="FontVariation_1sp4q"]
+base_font = ExtResource("53_v477p")
 
 [node name="UI" type="CanvasLayer"]
 follow_viewport_enabled = true
@@ -844,8 +859,8 @@ offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
-NormalColor = ExtResource("33_fod4b")
-LowColor = ExtResource("34_m2c15")
+NormalColor = null
+LowColor = null
 
 [node name="Target" parent="EnergyBarSummerPredict" index="0"]
 position = Vector2(-331, -609.5)
@@ -864,8 +879,8 @@ offset_left = 237.0
 offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
-NormalColor = ExtResource("33_fod4b")
-LowColor = ExtResource("34_m2c15")
+NormalColor = null
+LowColor = null
 
 [node name="Target" parent="EnergyBarWinterPredict" index="0"]
 visible = false
@@ -885,8 +900,8 @@ offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
-NormalColor = ExtResource("33_fod4b")
-LowColor = ExtResource("34_m2c15")
+NormalColor = null
+LowColor = null
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -913,8 +928,8 @@ offset_right = 494.0
 offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-NormalColor = ExtResource("33_fod4b")
-LowColor = ExtResource("34_m2c15")
+NormalColor = null
+LowColor = null
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)
@@ -1162,8 +1177,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
 EnergyBar = true
-NormalColor = ExtResource("34_m2c15")
-LowColor = ExtResource("33_fod4b")
 
 [node name="Target" type="Line2D" parent="Trust"]
 visible = false
@@ -1227,8 +1240,6 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-NormalColor = ExtResource("34_m2c15")
-LowColor = ExtResource("33_fod4b")
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Env"]
@@ -1305,8 +1316,6 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
-NormalColor = ExtResource("34_m2c15")
-LowColor = ExtResource("33_fod4b")
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Poll"]
@@ -1879,11 +1888,17 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 21.898
 anchor_bottom = 12.364
-offset_right = -8.02405
-offset_bottom = -8.03198
+offset_left = -39.0
+offset_top = -25.0
+offset_right = -47.024
+offset_bottom = -33.032
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.313726, 0.313726, 0.313726, 0.345098)
+
+[node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect"]
+position = Vector2(958, 544)
+texture = SubResource("AtlasTexture_21dh1")
 
 [node name="SettingsBox" type="ColorRect" parent="SettingsButton/ColorRect"]
 layout_mode = 1
@@ -1898,16 +1913,16 @@ offset_right = 256.0
 offset_bottom = 316.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.398438, 0.398438, 0.398438, 1)
-metadata/_edit_group_ = true
+color = Color(0.4, 0.4, 0.4, 0)
 
 [node name="Title" type="Label" parent="SettingsButton/ColorRect/SettingsBox"]
 layout_mode = 0
-offset_top = 10.0
-offset_right = 512.0
-offset_bottom = 194.0
-theme_override_fonts/font = ExtResource("23_og3i5")
-theme_override_font_sizes/font_size = 57
+offset_left = 65.0
+offset_top = -53.0
+offset_right = 449.0
+offset_bottom = 15.0
+theme_override_fonts/font = SubResource("FontVariation_2lxgj")
+theme_override_font_sizes/font_size = 22
 text = "ENSURED
 ENERGY"
 horizontal_alignment = 1
@@ -1915,9 +1930,9 @@ vertical_alignment = 1
 
 [node name="Close" type="Button" parent="SettingsButton/ColorRect/SettingsBox"]
 layout_mode = 0
-offset_left = -496.5
+offset_left = -703.5
 offset_top = -224.0
-offset_right = 1425.5
+offset_right = 1218.5
 offset_bottom = 860.0
 focus_mode = 0
 flat = true
@@ -1927,12 +1942,52 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -88.5
-offset_top = 216.0
-offset_right = 99.5
-offset_bottom = 312.0
+offset_left = -91.0
+offset_top = 42.0
+offset_right = 102.0
+offset_bottom = 636.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
+
+[node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Fullscreen"
+icon_alignment = 2
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+
+[node name="VolMusic" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="VolSound" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space3" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space4" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space5" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Language" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Language: English"
 
 [node name="Instructions" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
@@ -1971,41 +2026,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.398438, 0.398438, 0.398438, 1)
 
-[node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-button_pressed = true
-text = "Fullscreen"
-icon_alignment = 2
-
-[node name="Language" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-text = "Language: English"
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-text = "Music"
-
-[node name="VolMusic" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-text = "SFX"
-
-[node name="VolSound" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-
 [node name="Credits" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "Credits"
 
-[node name="Reset" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+[node name="Reset" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = SubResource("Theme_4p1wg")
-text = "Reset"
+texture_normal = ExtResource("2_aobed")
+texture_pressed = ExtResource("3_qtdni")
+texture_hover = ExtResource("4_mh4j1")
 
 [node name="ResetConfirm" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
 visible = false
@@ -2053,6 +2085,19 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_xnqwg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xki6c")
 text = "No"
 
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 183.0
+offset_bottom = 74.0
+theme_override_fonts/font = SubResource("FontVariation_6evow")
+theme_override_font_sizes/font_size = 20
+text = "Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="BorrowContainer" type="Button" parent="."]
 visible = false
 offset_left = -8.0
@@ -2060,31 +2105,38 @@ offset_right = 1928.0
 offset_bottom = 1088.0
 flat = true
 
+[node name="Sprite2D" type="Sprite2D" parent="BorrowContainer"]
+position = Vector2(968, 520)
+scale = Vector2(2, 2)
+texture = ExtResource("52_tsua8")
+
 [node name="BorrowMoneyWindow" type="ColorRect" parent="BorrowContainer"]
 layout_mode = 0
 offset_left = 474.0
 offset_top = 220.0
 offset_right = 1483.0
 offset_bottom = 831.0
-color = Color(0.596078, 0.596078, 0.596078, 1)
+color = Color(0.596078, 0.596078, 0.596078, 0)
 
 [node name="Title" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 153.0
-offset_top = 122.0
-offset_right = 843.0
+offset_left = 214.0
+offset_top = 140.0
+offset_right = 774.0
 offset_bottom = 234.0
-theme_override_font_sizes/font_size = 37
+theme_override_colors/font_color = Color(0.721569, 1, 0.996078, 1)
+theme_override_fonts/font = SubResource("FontVariation_1sp4q")
+theme_override_font_sizes/font_size = 28
 text = "How much would you like to borrow?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="BorrowSlider" type="HSlider" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 248.0
-offset_right = 848.0
-offset_bottom = 282.0
+offset_left = 214.0
+offset_top = 404.0
+offset_right = 774.0
+offset_bottom = 438.0
 max_value = 500.0
 step = 100.0
 rounded = true
@@ -2093,11 +2145,12 @@ ticks_on_borders = true
 
 [node name="Money" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 225.0
-offset_top = 310.0
-offset_right = 344.0
-offset_bottom = 370.0
+offset_left = 280.0
+offset_top = 210.0
+offset_right = 399.0
+offset_bottom = 270.0
 theme_override_colors/font_color = Color(0.435294, 0.956863, 0.435294, 1)
+theme_override_fonts/font = SubResource("FontVariation_1sp4q")
 theme_override_font_sizes/font_size = 27
 text = "Borrow"
 
@@ -2108,6 +2161,7 @@ offset_top = 50.0
 offset_right = 73.0
 offset_bottom = 101.0
 theme_override_colors/font_color = Color(0.454902, 0.94902, 0.458824, 1)
+theme_override_fonts/font = SubResource("FontVariation_1sp4q")
 theme_override_font_sizes/font_size = 27
 text = "0"
 horizontal_alignment = 2
@@ -2115,10 +2169,11 @@ horizontal_alignment = 2
 [node name="Interest" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
 offset_left = 481.0
-offset_top = 310.0
+offset_top = 210.0
 offset_right = 819.0
-offset_bottom = 357.0
-theme_override_colors/font_color = Color(0.8, 0, 0, 1)
+offset_bottom = 257.0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_1sp4q")
 theme_override_font_sizes/font_size = 27
 text = "Pay Back (next turn)"
 
@@ -2128,26 +2183,27 @@ offset_left = 144.0
 offset_top = 52.0
 offset_right = 223.0
 offset_bottom = 94.0
-theme_override_colors/font_color = Color(0.8, 0, 0, 1)
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_1sp4q")
 theme_override_font_sizes/font_size = 27
 text = "0"
 horizontal_alignment = 2
 
 [node name="Apply" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 480.0
-offset_right = 362.0
-offset_bottom = 534.0
+offset_left = 270.0
+offset_top = 468.0
+offset_right = 432.0
+offset_bottom = 522.0
 theme_override_font_sizes/font_size = 27
 text = "Apply"
 
 [node name="Cancel" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 584.0
-offset_top = 480.0
-offset_right = 743.0
-offset_bottom = 532.0
+offset_left = 566.0
+offset_top = 468.0
+offset_right = 725.0
+offset_bottom = 520.0
 theme_override_font_sizes/font_size = 28
 text = "Cancel"
 

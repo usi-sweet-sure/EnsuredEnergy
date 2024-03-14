@@ -205,6 +205,7 @@ grow_vertical = 0
 texture_normal = ExtResource("4_b2slr")
 texture_pressed = ExtResource("5_dqo5y")
 texture_hover = ExtResource("6_8ixy2")
+texture_disabled = ExtResource("5_dqo5y")
 
 [node name="PopularityL" type="Label" parent="Control/Policies-base-2/Vote"]
 layout_mode = 1

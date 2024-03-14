@@ -158,7 +158,8 @@ public partial class UI : CanvasLayer {
 	private Button ScreenOption;
 
 	// Reset button and confirmation
-	private Button ResetButton;
+	private TextureButton ResetButton;
+	private Label ResetButtonL;
 	private ColorRect ResetPrompt;
 	private Label ResetConfirmL;
 	private Button ResetYes;
@@ -195,7 +196,8 @@ public partial class UI : CanvasLayer {
 		ScreenOption = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/ScreenOption");
 
 		// Reset nodes
-		ResetButton = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset");
+		ResetButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset");
+		ResetButtonL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/Label");
 		ResetPrompt = GetNode<ColorRect>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm");
 		ResetConfirmL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
 		ResetYes = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
@@ -365,7 +367,7 @@ public partial class UI : CanvasLayer {
 		DebtCancelButton.Text = debt_cancel;
 
 		// Update the reset texet
-		ResetButton.Text = reset_name;
+		ResetButtonL.Text = reset_name;
 		ResetConfirmL.Text = reset_prompt;
 		ResetYes.Text = reset_yes;
 		ResetNo.Text = reset_no;
