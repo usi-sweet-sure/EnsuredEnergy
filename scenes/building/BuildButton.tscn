@@ -2035,7 +2035,7 @@ texture = ExtResource("5_4jvt0")
 [node name="NameRect" parent="Gas" index="3"]
 visible = false
 
-[node name="HoverArea" parent="Gas" index="9"]
+[node name="HoverArea" parent="Gas" index="8"]
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gas"]
@@ -2134,7 +2134,6 @@ libraries = {
 visible = false
 position = Vector2(112, 88)
 HasAnimation = true
-HasMultSprite = true
 _PlantType = 2
 
 [node name="Price" parent="Solar/PreviewInfo" index="3"]
@@ -2200,7 +2199,6 @@ texture = ExtResource("13_buqe2")
 visible = false
 position = Vector2(112, 88)
 HasAnimation = true
-HasMultSprite = true
 _PlantType = 5
 
 [node name="Price" parent="Wind/PreviewInfo" index="3"]

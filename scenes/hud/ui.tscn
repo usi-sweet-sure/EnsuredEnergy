@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=97 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -53,6 +53,8 @@
 [ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="51_joowr"]
 [ext_resource type="Texture2D" uid="uid://co2hnnf0cnn72" path="res://assets/UI Elements/Plant_Menu_Base.png" id="52_tsua8"]
 [ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="53_v477p"]
+[ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" id="54_7juy1"]
+[ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" id="55_5s2up"]
 
 [sub_resource type="FontVariation" id="FontVariation_74xhr"]
 base_font = ExtResource("40_knfjx")
@@ -634,6 +636,16 @@ region = Rect2(48, 49, 43, 44)
 base_font = ExtResource("40_knfjx")
 variation_embolden = 0.2
 
+[sub_resource type="FontVariation" id="FontVariation_aj2ar"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="FontVariation" id="FontVariation_yha4g"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="FontVariation" id="FontVariation_gr4gv"]
+base_font = ExtResource("51_joowr")
+spacing_glyph = 1
+
 [sub_resource type="FontVariation" id="FontVariation_15ni2"]
 base_font = ExtResource("40_knfjx")
 variation_embolden = 0.5
@@ -833,11 +845,11 @@ position = Vector2(72, -16)
 texture = ExtResource("28_mr6x7")
 
 [node name="Icon-wind" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
-position = Vector2(-56, 160)
+position = Vector2(-35, 155)
 texture = ExtResource("11_qepre")
 
 [node name="Icon-solar" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
-position = Vector2(24, 160)
+position = Vector2(36, 155)
 texture = ExtResource("12_72t8i")
 
 [node name="Label" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
@@ -859,8 +871,6 @@ offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
-NormalColor = null
-LowColor = null
 
 [node name="Target" parent="EnergyBarSummerPredict" index="0"]
 position = Vector2(-331, -609.5)
@@ -879,8 +889,6 @@ offset_left = 237.0
 offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
-NormalColor = null
-LowColor = null
 
 [node name="Target" parent="EnergyBarWinterPredict" index="0"]
 visible = false
@@ -900,8 +908,6 @@ offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
-NormalColor = null
-LowColor = null
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -928,8 +934,6 @@ offset_right = 494.0
 offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-NormalColor = null
-LowColor = null
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)
@@ -1176,7 +1180,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
 script = ExtResource("4_e5tgv")
-EnergyBar = true
 
 [node name="Target" type="Line2D" parent="Trust"]
 visible = false
@@ -1195,11 +1198,11 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InfoText" parent="Trust/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
-text = "More Info
+text = "Political support shows how popular your decisions are. The higher the support the more options in policy choices you have.
 "
 
 [node name="InfoText2" parent="Trust/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
-text = "More Info"
+text = ""
 
 [node name="Name" type="Label" parent="Trust"]
 visible = false
@@ -1240,6 +1243,7 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
+EnergyBar = false
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Env"]
@@ -1251,15 +1255,19 @@ width = 1.0
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
 layout_mode = 1
 offset_left = 319.0
-offset_top = 127.0
-offset_right = 621.52
-offset_bottom = 283.63
+offset_top = -48.0
+offset_right = 621.2
+offset_bottom = 107.781
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
 
 [node name="InfoText" parent="Env/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
-text = "Some power plants need more land than others. This can negatively impact biodiversity."
+text = "Land use shows how much land is used by the energy system. The smaller the indicator, the less impact from the energy system on land use. Some power plants need more land than others. This can negatively impact biodiversity."
+
+[node name="InfoText2" parent="Env/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
+text = "Biodiversity shows the environmental impact of the energy system. The higher the score, the more can animals and plants thrive in their natural habitats. Most power plants negatively affect biodiversity because they require lots of land and water.
+"
 
 [node name="Name" type="Label" parent="Env"]
 visible = false
@@ -1316,6 +1324,7 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
+EnergyBar = false
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Poll"]
@@ -1325,18 +1334,17 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
-visible = false
 layout_mode = 1
 offset_left = 181.0
-offset_top = 127.0
-offset_right = 325.184
-offset_bottom = 147.096
+offset_top = -48.0
+offset_right = 324.92
+offset_bottom = -28.355
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
 
 [node name="InfoText" parent="Poll/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
-text = "Some power plants emit CO2 which has a negative impact on climate. Switzerland has decided to be carbon neutral and reach net zero by 2050."
+text = "CO2 emission shows how much greenhouse gas is released by the energy system. Lower emissions mean a lower impact on global warming. Some power plants emit CO2. Switzerland has decided to be carbon neutral and reach net zero by 2050."
 
 [node name="Text1" parent="Poll/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="2"]
 theme_override_colors/font_color = Color(0.666667, 0, 0, 1)
@@ -1484,6 +1492,7 @@ theme_override_constants/separation = 14
 
 [node name="ColName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
 text = " "
 vertical_alignment = 1
@@ -1495,6 +1504,7 @@ offset_top = -3.0
 offset_right = 185.0
 offset_bottom = 37.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
 text = "Now"
 horizontal_alignment = 2
@@ -1507,6 +1517,7 @@ offset_top = -3.0
 offset_right = 288.0
 offset_bottom = 37.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
 text = "Next Turn"
 horizontal_alignment = 2
@@ -1515,6 +1526,7 @@ vertical_alignment = 1
 [node name="BudgetName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "  Budget:"
 vertical_alignment = 1
@@ -1525,7 +1537,8 @@ offset_left = 43.0
 offset_top = -3.0
 offset_right = 185.0
 offset_bottom = 37.0
-theme_override_colors/font_color = Color(0, 0.843137, 0, 1)
+theme_override_colors/font_color = Color(0, 0.701961, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1537,7 +1550,8 @@ offset_left = 139.0
 offset_top = -3.0
 offset_right = 281.0
 offset_bottom = 37.0
-theme_override_colors/font_color = Color(0, 0.843137, 0, 1)
+theme_override_colors/font_color = Color(0, 0.701961, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1546,14 +1560,17 @@ vertical_alignment = 1
 [node name="BudgetInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
-text = "You start the game with N amount and receive N per turn."
+text = "The budget shows you how much money you have and can spend. You start the game with 700.- and at the beginning of each turn receive 280.-."
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ProdName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "  Production: "
 vertical_alignment = 1
@@ -1565,6 +1582,7 @@ offset_top = -5.0
 offset_right = 282.0
 offset_bottom = 35.0
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1573,6 +1591,8 @@ vertical_alignment = 1
 [node name="ProdInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
 text = "Some power plants have production costs because they need materials to run."
 vertical_alignment = 1
@@ -1581,6 +1601,7 @@ autowrap_mode = 3
 [node name="BuildName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "  Building: "
 vertical_alignment = 1
@@ -1592,6 +1613,7 @@ offset_top = -4.0
 offset_right = 185.0
 offset_bottom = 36.0
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1600,6 +1622,8 @@ vertical_alignment = 1
 [node name="BuildInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
 text = "Indicates how much you have spent on building or upgrading power plants."
 vertical_alignment = 1
@@ -1608,6 +1632,7 @@ autowrap_mode = 3
 [node name="ImportName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = " Import:"
 
@@ -1618,6 +1643,7 @@ offset_top = 2.0
 offset_right = 281.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1625,6 +1651,8 @@ horizontal_alignment = 2
 [node name="ImportInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
 text = "Indicates how much you will be spending on imports. Clean imports cost N more."
 autowrap_mode = 3
@@ -1632,6 +1660,7 @@ autowrap_mode = 3
 [node name="Debt" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = " Loan:"
 
@@ -1642,6 +1671,7 @@ offset_top = 2.0
 offset_right = 281.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1653,6 +1683,7 @@ offset_top = 2.0
 offset_right = 185.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0.0156863, 0.819608, 0.00392157, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1660,6 +1691,8 @@ horizontal_alignment = 2
 [node name="DebtInfo" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
 text = "Info about the loan blablablabla"
 autowrap_mode = 3
@@ -1667,6 +1700,7 @@ autowrap_mode = 3
 [node name="TotalName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_yha4g")
 theme_override_font_sizes/font_size = 20
 text = "    Total:"
 
@@ -1677,6 +1711,7 @@ offset_top = 2.0
 offset_right = 184.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_gr4gv")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -1688,6 +1723,7 @@ offset_top = 2.0
 offset_right = 281.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_gr4gv")
 theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 2
@@ -2206,6 +2242,32 @@ offset_right = 725.0
 offset_bottom = 520.0
 theme_override_font_sizes/font_size = 28
 text = "Cancel"
+
+[node name="BuildMenu0003Numbers-hole" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+visible = false
+position = Vector2(303.5, 380)
+scale = Vector2(1.52326, 1)
+texture = ExtResource("54_7juy1")
+
+[node name="BuildMenu0002Numbers-counter-1" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+visible = false
+position = Vector2(333, 380)
+texture = ExtResource("55_5s2up")
+
+[node name="BuildMenu0002Numbers-counter-2" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+visible = false
+position = Vector2(353.058, 380)
+texture = ExtResource("55_5s2up")
+
+[node name="BuildMenu0002Numbers-counter-3" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+visible = false
+position = Vector2(313.058, 380)
+texture = ExtResource("55_5s2up")
+
+[node name="BuildMenu0003Numbers-hole2" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+visible = false
+position = Vector2(638, 380)
+texture = ExtResource("54_7juy1")
 
 [editable path="EnergyBarSummerPredict"]
 [editable path="EnergyBarWinterPredict"]

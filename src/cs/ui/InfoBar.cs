@@ -42,7 +42,7 @@ public partial class InfoBar : ProgressBar {
 	
 	// Energy bar check
 	[Export]
-	private bool EnergyBar;
+	private bool EnergyBar = true;
 	
 	// Colors for Bars
 	[Export]

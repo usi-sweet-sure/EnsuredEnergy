@@ -39,12 +39,25 @@ base_font = ExtResource("8_a13i5")
 variation_embolden = 0.2
 spacing_glyph = 3
 
+[sub_resource type="FontVariation" id="FontVariation_g0hl7"]
+base_font = ExtResource("15_6udtn")
+
 [sub_resource type="FontVariation" id="FontVariation_ji1at"]
 base_font = ExtResource("15_6udtn")
 spacing_glyph = 7
 
-[sub_resource type="FontVariation" id="FontVariation_g0hl7"]
+[sub_resource type="FontVariation" id="FontVariation_muro4"]
 base_font = ExtResource("15_6udtn")
+
+[sub_resource type="FontVariation" id="FontVariation_054ol"]
+base_font = ExtResource("15_6udtn")
+
+[sub_resource type="FontVariation" id="FontVariation_bcams"]
+base_font = ExtResource("15_6udtn")
+
+[sub_resource type="FontVariation" id="FontVariation_vvvj4"]
+base_font = ExtResource("8_a13i5")
+variation_embolden = 0.2
 
 [sub_resource type="FontVariation" id="FontVariation_tek51"]
 base_font = ExtResource("8_a13i5")
@@ -68,19 +81,6 @@ spacing_glyph = 6
 [sub_resource type="FontVariation" id="FontVariation_r1iqv"]
 base_font = ExtResource("8_a13i5")
 spacing_glyph = 6
-
-[sub_resource type="FontVariation" id="FontVariation_muro4"]
-base_font = ExtResource("15_6udtn")
-
-[sub_resource type="FontVariation" id="FontVariation_054ol"]
-base_font = ExtResource("15_6udtn")
-
-[sub_resource type="FontVariation" id="FontVariation_bcams"]
-base_font = ExtResource("15_6udtn")
-
-[sub_resource type="FontVariation" id="FontVariation_vvvj4"]
-base_font = ExtResource("8_a13i5")
-variation_embolden = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hky5x"]
 size = Vector2(176, 248)
@@ -727,10 +727,10 @@ expand_icon = true
 [node name="MultWinterE" type="Label" parent="BuildInfo"]
 visible = false
 layout_mode = 0
-offset_left = -98.0
-offset_top = 193.0
-offset_right = -58.0
-offset_bottom = 221.0
+offset_left = -58.0
+offset_top = 192.0
+offset_right = -18.0
+offset_bottom = 220.0
 theme_override_colors/font_color = Color(0.113725, 0.215686, 0.227451, 1)
 theme_override_fonts/font = SubResource("FontVariation_q0ye0")
 theme_override_font_sizes/font_size = 24
@@ -740,75 +740,15 @@ horizontal_alignment = 2
 [node name="MultSummerE" type="Label" parent="BuildInfo"]
 visible = false
 layout_mode = 0
-offset_left = 142.0
+offset_left = 150.0
 offset_top = 192.0
-offset_right = 182.0
+offset_right = 190.0
 offset_bottom = 220.0
 theme_override_colors/font_color = Color(0.113725, 0.215686, 0.227451, 1)
 theme_override_fonts/font = SubResource("FontVariation_q0ye0")
 theme_override_font_sizes/font_size = 24
 text = "+ 2"
 horizontal_alignment = 2
-
-[node name="BuildMenuNumHole" type="Sprite2D" parent="BuildInfo"]
-position = Vector2(108.5, 150.5)
-scale = Vector2(2, 2)
-texture = ExtResource("4_ovnj6")
-
-[node name="BuildMenuNumCounter" type="Sprite2D" parent="BuildInfo/BuildMenuNumHole"]
-position = Vector2(9, 0)
-texture = ExtResource("5_bit08")
-
-[node name="BuildMenuNumCounter2" type="Sprite2D" parent="BuildInfo/BuildMenuNumHole"]
-position = Vector2(29, 0)
-texture = ExtResource("5_bit08")
-
-[node name="SummerE" type="Label" parent="BuildInfo/BuildMenuNumHole"]
-offset_left = -3.0
-offset_top = -16.5
-offset_right = 37.0
-offset_bottom = 17.5
-theme_override_colors/font_color = Color(0.0862745, 0.184314, 0.196078, 1)
-theme_override_fonts/font = SubResource("FontVariation_ji1at")
-theme_override_font_sizes/font_size = 22
-text = "10"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="BuildMenuNumHole2" type="Sprite2D" parent="BuildInfo"]
-position = Vector2(-131.5, 151.5)
-scale = Vector2(2, 2)
-texture = ExtResource("4_ovnj6")
-
-[node name="BuildMenuNumCounter" type="Sprite2D" parent="BuildInfo/BuildMenuNumHole2"]
-position = Vector2(9, 0)
-texture = ExtResource("5_bit08")
-
-[node name="BuildMenuNumCounter2" type="Sprite2D" parent="BuildInfo/BuildMenuNumHole2"]
-position = Vector2(29, 0)
-texture = ExtResource("5_bit08")
-
-[node name="WinterE" type="Label" parent="BuildInfo/BuildMenuNumHole2"]
-offset_left = -3.25
-offset_top = -17.25
-offset_right = 36.75
-offset_bottom = 16.75
-theme_override_colors/font_color = Color(0.0862745, 0.184314, 0.196078, 1)
-theme_override_fonts/font = SubResource("FontVariation_ji1at")
-theme_override_font_sizes/font_size = 22
-text = "10"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Icon-solar" type="Sprite2D" parent="BuildInfo"]
-position = Vector2(47.5, 149.5)
-scale = Vector2(2, 2)
-texture = ExtResource("6_qkc2p")
-
-[node name="Icon-wind" type="Sprite2D" parent="BuildInfo"]
-position = Vector2(-189.5, 149.5)
-scale = Vector2(2, 2)
-texture = ExtResource("7_fjg03")
 
 [node name="Name" type="Label" parent="BuildInfo"]
 layout_mode = 0
@@ -822,6 +762,185 @@ text = "1234"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="EnergyContainer" type="HBoxContainer" parent="BuildInfo"]
+layout_mode = 0
+offset_left = -258.0
+offset_top = 64.0
+offset_right = 270.0
+offset_bottom = 256.0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Winter" type="Control" parent="BuildInfo/EnergyContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="BuildMenuNumHole2" type="Sprite2D" parent="BuildInfo/EnergyContainer/Winter"]
+position = Vector2(112, 89)
+scale = Vector2(2, 2)
+texture = ExtResource("4_ovnj6")
+
+[node name="BuildMenuNumCounter" type="Sprite2D" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
+position = Vector2(9, 0)
+texture = ExtResource("5_bit08")
+
+[node name="BuildMenuNumCounter2" type="Sprite2D" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
+position = Vector2(29, 0)
+texture = ExtResource("5_bit08")
+
+[node name="WinterE" type="Label" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
+offset_left = -3.25
+offset_top = -17.25
+offset_right = 36.75
+offset_bottom = 16.75
+theme_override_colors/font_color = Color(0.0862745, 0.184314, 0.196078, 1)
+theme_override_fonts/font = SubResource("FontVariation_ji1at")
+theme_override_font_sizes/font_size = 22
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Icon-wind" type="Sprite2D" parent="BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2"]
+position = Vector2(-28, 0)
+texture = ExtResource("7_fjg03")
+
+[node name="Summer" type="Control" parent="BuildInfo/EnergyContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="BuildMenuNumHole" type="Sprite2D" parent="BuildInfo/EnergyContainer/Summer"]
+position = Vector2(112, 89)
+scale = Vector2(2, 2)
+texture = ExtResource("4_ovnj6")
+
+[node name="BuildMenuNumCounter" type="Sprite2D" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+position = Vector2(9, 0)
+texture = ExtResource("5_bit08")
+
+[node name="BuildMenuNumCounter2" type="Sprite2D" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+position = Vector2(29, 0)
+texture = ExtResource("5_bit08")
+
+[node name="SummerE" type="Label" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+offset_left = -3.0
+offset_top = -16.5
+offset_right = 37.0
+offset_bottom = 17.5
+theme_override_colors/font_color = Color(0.0862745, 0.184314, 0.196078, 1)
+theme_override_fonts/font = SubResource("FontVariation_ji1at")
+theme_override_font_sizes/font_size = 22
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Icon-solar" type="Sprite2D" parent="BuildInfo/EnergyContainer/Summer/BuildMenuNumHole"]
+position = Vector2(-28, 0)
+texture = ExtResource("6_qkc2p")
+
+[node name="Multiplier" type="ColorRect" parent="BuildInfo/EnergyContainer"]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+color = Color(0.596078, 0.596078, 0.596078, 0)
+
+[node name="MultAmount" type="Label" parent="BuildInfo/EnergyContainer/Multiplier"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 57.0
+offset_right = 85.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(0.0431373, 0.141176, 0.14902, 1)
+theme_override_fonts/font = SubResource("FontVariation_muro4")
+theme_override_font_sizes/font_size = 44
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="BuildInfo/EnergyContainer/Multiplier/MultAmount"]
+show_behind_parent = true
+position = Vector2(16.1667, 31.6667)
+scale = Vector2(2, 2)
+texture = ExtResource("16_svf0w")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BuildInfo/EnergyContainer/Multiplier/MultAmount/Sprite2D"]
+show_behind_parent = true
+position = Vector2(-9.0417, 1.25)
+scale = Vector2(0.487402, 1)
+texture = ExtResource("4_ovnj6")
+
+[node name="Inc" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
+layout_mode = 0
+offset_left = 100.333
+offset_top = 56.0
+offset_right = 131.333
+offset_bottom = 87.0
+focus_mode = 0
+texture_normal = ExtResource("17_1peyq")
+texture_pressed = ExtResource("18_ni8pb")
+texture_hover = ExtResource("19_pbahr")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="BuildInfo/EnergyContainer/Multiplier/Inc"]
+layout_mode = 0
+offset_left = 8.33334
+offset_top = -7.16667
+offset_right = 26.3333
+offset_bottom = 39.8333
+theme_override_fonts/font = SubResource("FontVariation_054ol")
+theme_override_font_sizes/font_size = 28
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="BuildInfo/EnergyContainer/Multiplier/Inc"]
+show_behind_parent = true
+position = Vector2(29.6667, 34)
+texture = ExtResource("20_6s7vn")
+
+[node name="Dec" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
+layout_mode = 0
+offset_left = 99.5
+offset_top = 89.3333
+offset_right = 130.5
+offset_bottom = 122.333
+focus_mode = 0
+texture_normal = ExtResource("17_1peyq")
+texture_pressed = ExtResource("18_ni8pb")
+texture_hover = ExtResource("19_pbahr")
+ignore_texture_size = true
+
+[node name="Label2" type="Label" parent="BuildInfo/EnergyContainer/Multiplier/Dec"]
+layout_mode = 0
+offset_left = 7.1666
+offset_top = -11.0
+offset_right = 25.1666
+offset_bottom = 36.0
+theme_override_fonts/font = SubResource("FontVariation_bcams")
+theme_override_font_sizes/font_size = 30
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="BuildInfo/EnergyContainer/Multiplier/Dec"]
+show_behind_parent = true
+position = Vector2(29.5, 34.6667)
+texture = ExtResource("20_6s7vn")
+
+[node name="MultPrice" type="Label" parent="BuildInfo/EnergyContainer/Multiplier"]
+visible = false
+layout_mode = 0
+offset_left = 146.0
+offset_top = 80.0
+offset_right = 191.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.745098, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.121569, 0.223529, 0.235294, 0.784314)
+theme_override_fonts/font = SubResource("FontVariation_vvvj4")
+theme_override_font_sizes/font_size = 26
+text = "$$$"
+horizontal_alignment = 2
 
 [node name="NameRect" type="ColorRect" parent="."]
 z_index = 1
@@ -1010,119 +1129,6 @@ texture = ExtResource("6_qkc2p")
 [node name="Icon-wind" type="Sprite2D" parent="ResRect"]
 position = Vector2(-37, -4)
 texture = ExtResource("7_fjg03")
-
-[node name="Multiplier" type="ColorRect" parent="."]
-visible = false
-z_index = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 167.0
-offset_top = -309.0
-offset_right = 247.0
-offset_bottom = -269.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0.596078, 0.596078, 0.596078, 0)
-
-[node name="MultAmount" type="Label" parent="Multiplier"]
-layout_mode = 0
-offset_left = -7.0
-offset_top = -14.0
-offset_right = 27.0
-offset_bottom = 50.0
-theme_override_colors/font_color = Color(0.0431373, 0.141176, 0.14902, 1)
-theme_override_fonts/font = SubResource("FontVariation_muro4")
-theme_override_font_sizes/font_size = 44
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="Multiplier/MultAmount"]
-show_behind_parent = true
-position = Vector2(16.1667, 31.6667)
-scale = Vector2(2, 2)
-texture = ExtResource("16_svf0w")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Multiplier/MultAmount/Sprite2D"]
-show_behind_parent = true
-position = Vector2(-9.0417, 1.25)
-scale = Vector2(0.487402, 1)
-texture = ExtResource("4_ovnj6")
-
-[node name="Inc" type="TextureButton" parent="Multiplier"]
-layout_mode = 0
-offset_left = 42.3333
-offset_top = -15.0
-offset_right = 73.3333
-offset_bottom = 16.0
-focus_mode = 0
-texture_normal = ExtResource("17_1peyq")
-texture_pressed = ExtResource("18_ni8pb")
-texture_hover = ExtResource("19_pbahr")
-ignore_texture_size = true
-
-[node name="Label" type="Label" parent="Multiplier/Inc"]
-layout_mode = 0
-offset_left = 8.33334
-offset_top = -7.16667
-offset_right = 26.3333
-offset_bottom = 39.8333
-theme_override_fonts/font = SubResource("FontVariation_054ol")
-theme_override_font_sizes/font_size = 28
-text = "+"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="Multiplier/Inc"]
-show_behind_parent = true
-position = Vector2(29.6667, 34)
-texture = ExtResource("20_6s7vn")
-
-[node name="Dec" type="TextureButton" parent="Multiplier"]
-layout_mode = 0
-offset_left = 41.5
-offset_top = 18.3333
-offset_right = 72.5
-offset_bottom = 51.3333
-focus_mode = 0
-texture_normal = ExtResource("17_1peyq")
-texture_pressed = ExtResource("18_ni8pb")
-texture_hover = ExtResource("19_pbahr")
-ignore_texture_size = true
-
-[node name="Label2" type="Label" parent="Multiplier/Dec"]
-layout_mode = 0
-offset_left = 7.1666
-offset_top = -11.0
-offset_right = 25.1666
-offset_bottom = 36.0
-theme_override_fonts/font = SubResource("FontVariation_bcams")
-theme_override_font_sizes/font_size = 30
-text = "-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Sprite2D2" type="Sprite2D" parent="Multiplier/Dec"]
-show_behind_parent = true
-position = Vector2(29.5, 34.6667)
-texture = ExtResource("20_6s7vn")
-
-[node name="MultPrice" type="Label" parent="Multiplier"]
-visible = false
-layout_mode = 0
-offset_left = 101.666
-offset_top = 8.33332
-offset_right = 143.666
-offset_bottom = 38.3333
-theme_override_colors/font_color = Color(0.745098, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.121569, 0.223529, 0.235294, 0.784314)
-theme_override_fonts/font = SubResource("FontVariation_vvvj4")
-theme_override_font_sizes/font_size = 26
-text = "$$$"
-horizontal_alignment = 2
 
 [node name="ConfigController" type="Node" parent="."]
 script = ExtResource("3_runxt")

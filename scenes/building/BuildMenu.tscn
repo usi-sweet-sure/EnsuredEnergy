@@ -83,6 +83,13 @@ metadata/_edit_group_ = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_jhvum")
 
+[node name="BuildInfo" parent="Container/Solar" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
+
 [node name="SolarButton" type="Button" parent="Container/Solar"]
 offset_left = -104.0
 offset_top = -139.0
@@ -112,6 +119,13 @@ grow_vertical = 1
 position = Vector2(0, 21.1111)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_35oxp")
+
+[node name="BuildInfo" parent="Container/Wind" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
 
 [node name="Turbine" type="Sprite2D" parent="Container/Wind"]
 position = Vector2(-56.25, -57.5)
@@ -143,8 +157,11 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_cx1ud")
 
 [node name="BuildInfo" parent="Container/Tree" index="2"]
-offset_left = -237.0
-offset_right = -197.0
+offset_left = -195.0
+offset_top = -360.0
+offset_right = -155.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
 
 [node name="TreeButton" type="Button" parent="Container/Tree"]
 offset_left = -110.0
@@ -175,6 +192,13 @@ texture = ExtResource("7_n0676")
 position = Vector2(-39.375, 85.625)
 texture = ExtResource("8_ypqld")
 
+[node name="BuildInfo" parent="Container/Hydro" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
+
 [node name="HydroButton" type="Button" parent="Container/Hydro"]
 offset_left = -104.0
 offset_top = -143.0
@@ -198,6 +222,13 @@ offset_bottom = -246.0
 position = Vector2(-1, 24)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_61mnc")
+
+[node name="BuildInfo" parent="Container/Gas" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
 
 [node name="GasButton" type="Button" parent="Container/Gas"]
 offset_left = -102.0
@@ -223,6 +254,13 @@ position = Vector2(4, 10.25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_5wkvd")
 
+[node name="BuildInfo" parent="Container/Waste" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
+
 [node name="WasteButton" type="Button" parent="Container/Waste"]
 offset_left = -101.0
 offset_top = -144.0
@@ -245,6 +283,13 @@ offset_bottom = -246.0
 position = Vector2(0.25, 25.25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_xrjfu")
+
+[node name="BuildInfo" parent="Container/Biomass" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
 
 [node name="BiomassButton" type="Button" parent="Container/Biomass"]
 offset_left = -103.0
@@ -274,6 +319,13 @@ texture = ExtResource("11_orq8p")
 position = Vector2(80.9375, 60.625)
 texture = ExtResource("13_wuh2w")
 
+[node name="BuildInfo" parent="Container/River" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
+
 [node name="RiverButton" type="Button" parent="Container/River"]
 offset_left = -98.0
 offset_top = -120.0
@@ -283,7 +335,6 @@ focus_mode = 0
 flat = true
 
 [node name="Pump" parent="Container" instance=ExtResource("2_236y8")]
-visible = false
 position = Vector2(648, 141)
 _PlantType = 9
 
@@ -298,6 +349,13 @@ position = Vector2(-1, 24)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_n0676")
 
+[node name="BuildInfo" parent="Container/Pump" index="2"]
+offset_left = -65.0
+offset_top = -360.0
+offset_right = -25.0
+offset_bottom = -320.0
+scale = Vector2(0.7, 0.7)
+
 [node name="PumpButton" type="Button" parent="Container/Pump"]
 offset_left = -90.0
 offset_top = -120.0
@@ -305,17 +363,6 @@ offset_right = 93.0
 offset_bottom = 144.0
 focus_mode = 0
 flat = true
-
-[node name="TabContainer" type="TabContainer" parent="."]
-visible = false
-offset_left = 400.0
-offset_top = 1080.0
-offset_right = 1992.0
-offset_bottom = 1504.0
-mouse_filter = 0
-
-[node name="TabBar" type="TabBar" parent="TabContainer"]
-layout_mode = 2
 
 [editable path="Container/Solar"]
 [editable path="Container/Wind"]

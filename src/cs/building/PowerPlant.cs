@@ -213,8 +213,8 @@ public partial class PowerPlant : Node2D {
 		PollL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Poll");
 		EnergyS = GetNode<Label>("ResRect/EnergyS");
 		EnergyW = GetNode<Label>("ResRect/EnergyW");
-		EnergySL = GetNode<Label>("BuildInfo/BuildMenuNumHole/SummerE");
-		EnergyWL = GetNode<Label>("BuildInfo/BuildMenuNumHole2/WinterE");
+		EnergySL = GetNode<Label>("BuildInfo/EnergyContainer/Summer/BuildMenuNumHole/SummerE");
+		EnergyWL = GetNode<Label>("BuildInfo/EnergyContainer/Winter/BuildMenuNumHole2/WinterE");
 		MoneyL = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod");
 		Switch = GetNode<CheckButton>("BuildInfo/Switch");
 		CC = GetNode<ConfigController>("ConfigController");
@@ -226,10 +226,10 @@ public partial class PowerPlant : Node2D {
 		BTime = GetNode<Label>("PreviewInfo/Time");
 		C = GetNode<Context>("/root/Context");
 		Delete = GetNode<Button>("Delete");
-		Multiplier = GetNode<ColorRect>("Multiplier");
-		MultiplierL = GetNode<Label>("Multiplier/MultAmount");
-		MultInc = GetNode<TextureButton>("Multiplier/Inc");
-		MultDec = GetNode<TextureButton>("Multiplier/Dec");
+		Multiplier = GetNode<ColorRect>("BuildInfo/EnergyContainer/Multiplier");
+		MultiplierL = GetNode<Label>("BuildInfo/EnergyContainer/Multiplier/MultAmount");
+		MultInc = GetNode<TextureButton>("BuildInfo/EnergyContainer/Multiplier/Inc");
+		MultDec = GetNode<TextureButton>("BuildInfo/EnergyContainer/Multiplier/Dec");
 		InfoButton = GetNode<Button>("InfoButton");
 		ResRect = GetNode<ColorRect>("ResRect");
 		LandN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land");
@@ -244,7 +244,7 @@ public partial class PowerPlant : Node2D {
 		MultPoll = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Poll/MultPoll");
 		MultLand = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Land/MultLand");
 		MultBio = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio/MultBio");
-		MultPrice = GetNode<Label>("Multiplier/MultPrice");
+		MultPrice = GetNode<Label>("BuildInfo/EnergyContainer/Multiplier/MultPrice");
 		MultWinterE = GetNode<Label>("BuildInfo/MultWinterE");
 		MultSummerE = GetNode<Label>("BuildInfo/MultSummerE");
 		NoMoneySprite = GetNode<Sprite2D>("NoMoneySprite");
