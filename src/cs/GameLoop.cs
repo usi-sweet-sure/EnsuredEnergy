@@ -119,6 +119,7 @@ public partial class GameLoop : Node2D {
 		PowerPlants.Add(GetNode<PowerPlant>("World/Hydro"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Pump"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/River"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/River2"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Waste"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));

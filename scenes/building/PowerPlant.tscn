@@ -872,10 +872,11 @@ texture = ExtResource("4_ovnj6")
 
 [node name="Inc" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
 layout_mode = 0
-offset_left = 100.333
-offset_top = 56.0
-offset_right = 131.333
-offset_bottom = 87.0
+offset_left = 106.333
+offset_top = 33.0
+offset_right = 137.333
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
 focus_mode = 0
 texture_normal = ExtResource("17_1peyq")
 texture_pressed = ExtResource("18_ni8pb")
@@ -901,10 +902,11 @@ texture = ExtResource("20_6s7vn")
 
 [node name="Dec" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
 layout_mode = 0
-offset_left = 99.5
-offset_top = 89.3333
-offset_right = 130.5
-offset_bottom = 122.333
+offset_left = 104.5
+offset_top = 99.3333
+offset_right = 135.5
+offset_bottom = 132.333
+scale = Vector2(1.5, 1.5)
 focus_mode = 0
 texture_normal = ExtResource("17_1peyq")
 texture_pressed = ExtResource("18_ni8pb")

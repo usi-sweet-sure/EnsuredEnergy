@@ -313,6 +313,7 @@ autowrap_mode = 2
 uppercase = true
 
 [node name="campaign_env" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
+modulate = Color(0.345098, 0.345098, 0.345098, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -321,6 +322,7 @@ offset_top = -264.5
 offset_right = -99.0
 offset_bottom = -136.5
 grow_horizontal = 2
+disabled = true
 button_group = ExtResource("4_wme6q")
 texture_normal = ExtResource("7_erhrg")
 texture_pressed = ExtResource("15_c1xso")
@@ -333,11 +335,13 @@ texture = ExtResource("8_iiaj0")
 visible = false
 
 [node name="Upgrade_PV" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
+modulate = Color(0.364706, 0.364706, 0.364706, 1)
 offset_left = -59.0
 offset_top = 44.0
 offset_right = 70.0
 offset_bottom = 124.0
 theme = SubResource("Theme_6bviu")
+disabled = true
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-1/Upgrade_PV" index="1"]
@@ -405,6 +409,7 @@ autowrap_mode = 2
 uppercase = true
 
 [node name="campaign_demand" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
+modulate = Color(0.380392, 0.380392, 0.380392, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -413,6 +418,7 @@ offset_top = -264.5
 offset_right = -99.0
 offset_bottom = -136.5
 grow_horizontal = 2
+disabled = true
 button_group = ExtResource("4_wme6q")
 texture_normal = ExtResource("9_q3xbc")
 texture_pressed = ExtResource("10_nfrkh")

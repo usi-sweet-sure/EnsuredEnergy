@@ -853,9 +853,9 @@ position = Vector2(36, 155)
 texture = ExtResource("12_72t8i")
 
 [node name="Label" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
-offset_left = -98.0
+offset_left = -83.0
 offset_top = -120.0
-offset_right = 70.0
+offset_right = 85.0
 offset_bottom = -89.0
 theme_override_fonts/font = SubResource("FontVariation_rdii0")
 theme_override_font_sizes/font_size = 12
@@ -871,8 +871,10 @@ offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
+max_value = 500.0
 
 [node name="Target" parent="EnergyBarSummerPredict" index="0"]
+visible = false
 position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummerPredict" index="1"]
@@ -889,6 +891,7 @@ offset_left = 237.0
 offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
+max_value = 500.0
 
 [node name="Target" parent="EnergyBarWinterPredict" index="0"]
 visible = false
@@ -908,6 +911,7 @@ offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
+max_value = 500.0
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -934,6 +938,7 @@ offset_right = 494.0
 offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
+max_value = 500.0
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)

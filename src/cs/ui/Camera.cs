@@ -28,7 +28,7 @@ public partial class Camera : Camera2D {
 	private Vector2 ZOOM_SPEED = new (0.2f,0.2f);
 	private Vector2 ZoomVal = new (0.8f,0.8f);
 	private Vector2 SCALE_LIMIT = new (0.65f, 0.65f);
-	private Vector2 PLANT_ZOOM = new (0.6f, 0.6f);
+	private Vector2 PLANT_ZOOM = new (0.55f, 0.55f);
 	private Vector2 TargetZoom = new (1f, 1f);
 	private int CAMERA_SPEED = 40;
 
@@ -118,10 +118,10 @@ public partial class Camera : Camera2D {
 	
 	// When the player clicks on a power plant, zoom and move the camera to the selected power plant
 	public void PlantZoom(Vector2 PlantPos) {
-		Tween TweenPos = CreateTween();
-		TweenPos.TweenProperty(this, "position", PlantPos, 0.4f);
-		Tween TweenZoom = CreateTween();
-		TweenZoom.TweenProperty(this, "zoom", PLANT_ZOOM, 0.4f);
+//		Tween TweenPos = CreateTween();
+//		TweenPos.TweenProperty(this, "position", PlantPos, 0.4f);
+//		Tween TweenZoom = CreateTween();
+//		TweenZoom.TweenProperty(this, "zoom", PLANT_ZOOM, 0.4f);
 	}
 	
 	// Arrow key camera movement

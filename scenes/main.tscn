@@ -1400,7 +1400,7 @@ libraries = {
 "": SubResource("AnimationLibrary_abmly")
 }
 
-[node name="Sprite" parent="World/Nuclear3" index="1"]
+[node name="Sprite" parent="World/Nuclear3" index="2"]
 texture = ExtResource("4_e6lsk")
 
 [node name="Smoke" type="Sprite2D" parent="World/Nuclear3/Sprite" index="0"]
@@ -1428,10 +1428,10 @@ texture = ExtResource("9_2lgj4")
 offset_top = -268.0
 offset_bottom = -228.0
 
-[node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="0"]
+[node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="1"]
 offset_top = -232.0
 
-[node name="ContainerL" parent="World/Nuclear3/BuildInfo/ColorRect" index="1"]
+[node name="ContainerL" parent="World/Nuclear3/BuildInfo/ColorRect" index="0"]
 offset_top = -59.0
 offset_right = 238.0
 offset_bottom = 213.0
@@ -1454,7 +1454,7 @@ libraries = {
 "": SubResource("AnimationLibrary_1shh4")
 }
 
-[node name="Sprite" parent="World/Nuclear2" index="1"]
+[node name="Sprite" parent="World/Nuclear2" index="2"]
 texture = ExtResource("4_e6lsk")
 
 [node name="Smoke" type="Sprite2D" parent="World/Nuclear2/Sprite" index="0"]
@@ -1478,10 +1478,10 @@ position = Vector2(50, -265)
 scale = Vector2(0.8, 1)
 texture = ExtResource("9_2lgj4")
 
-[node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="0"]
+[node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="1"]
 offset_top = -236.0
 
-[node name="ContainerL" parent="World/Nuclear2/BuildInfo/ColorRect" index="1"]
+[node name="ContainerL" parent="World/Nuclear2/BuildInfo/ColorRect" index="0"]
 offset_top = -60.0
 offset_right = 238.0
 offset_bottom = 212.0
@@ -1504,7 +1504,7 @@ libraries = {
 "": SubResource("AnimationLibrary_3k1tp")
 }
 
-[node name="Sprite" parent="World/Nuclear" index="1"]
+[node name="Sprite" parent="World/Nuclear" index="2"]
 texture = ExtResource("4_e6lsk")
 
 [node name="Smoke" type="Sprite2D" parent="World/Nuclear/Sprite" index="0"]
@@ -1537,10 +1537,10 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(57, -249.25)
 texture = ExtResource("8_jh2tr")
 
-[node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="0"]
+[node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="1"]
 offset_top = -241.0
 
-[node name="ContainerL" parent="World/Nuclear/BuildInfo/ColorRect" index="1"]
+[node name="ContainerL" parent="World/Nuclear/BuildInfo/ColorRect" index="0"]
 offset_top = -59.0
 offset_right = 238.0
 offset_bottom = 213.0
@@ -1569,7 +1569,7 @@ libraries = {
 "": SubResource("AnimationLibrary_pvye6")
 }
 
-[node name="Sprite" parent="World/Waste" index="1"]
+[node name="Sprite" parent="World/Waste" index="2"]
 texture = ExtResource("5_vx3tb")
 
 [node name="Smoke" type="Sprite2D" parent="World/Waste/Sprite" index="0"]
@@ -1599,7 +1599,7 @@ libraries = {
 "": SubResource("AnimationLibrary_tgvt4")
 }
 
-[node name="Sprite" parent="World/Biomass" index="1"]
+[node name="Sprite" parent="World/Biomass" index="2"]
 texture = ExtResource("6_q3df2")
 
 [node name="Smoke" type="Sprite2D" parent="World/Biomass/Sprite" index="0"]
@@ -1630,7 +1630,19 @@ position = Vector2(-556, 553)
 HasAnimation = true
 _PlantType = 5
 
-[node name="Sprite" parent="World/Wind" index="0"]
+[node name="Sprite2" type="Sprite2D" parent="World/Wind" index="1"]
+visible = false
+position = Vector2(24, 66)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("12_fhjpd")
+
+[node name="Sprite3" type="Sprite2D" parent="World/Wind" index="2"]
+visible = false
+position = Vector2(40, 56)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_n0wou")
+
+[node name="Sprite" parent="World/Wind" index="3"]
 texture = ExtResource("7_4q6ww")
 
 [node name="Turbine" type="Sprite2D" parent="World/Wind/Sprite" index="0"]
@@ -1653,18 +1665,6 @@ rotation = 1.39626
 scale = Vector2(1.25, 1.25)
 texture = SubResource("AtlasTexture_obbpa")
 offset = Vector2(3, 16)
-
-[node name="Sprite2" type="Sprite2D" parent="World/Wind" index="1"]
-visible = false
-position = Vector2(24, 66)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_fhjpd")
-
-[node name="Sprite3" type="Sprite2D" parent="World/Wind" index="2"]
-visible = false
-position = Vector2(40, 56)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("13_n0wou")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Wind" index="12"]
 autoplay = "Wind"
@@ -1690,17 +1690,6 @@ position = Vector2(2617, 1493)
 HasAnimation = true
 _PlantType = 2
 
-[node name="Sprite" parent="World/Solar" index="0"]
-texture = ExtResource("10_3byff")
-
-[node name="PointLight2D" type="PointLight2D" parent="World/Solar/Sprite" index="0"]
-position = Vector2(23.374, -85.6564)
-rotation = 0.523599
-scale = Vector2(1.87526, 2.35201)
-color = Color(1, 1, 0.823529, 1)
-energy = 0.0
-texture = SubResource("GradientTexture2D_mhl0d")
-
 [node name="Sprite2" type="Sprite2D" parent="World/Solar" index="1"]
 visible = false
 position = Vector2(0, 44)
@@ -1713,6 +1702,17 @@ position = Vector2(0, 6)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("16_luswp")
 
+[node name="Sprite" parent="World/Solar" index="3"]
+texture = ExtResource("10_3byff")
+
+[node name="PointLight2D" type="PointLight2D" parent="World/Solar/Sprite" index="0"]
+position = Vector2(23.374, -85.6564)
+rotation = 0.523599
+scale = Vector2(1.87526, 2.35201)
+color = Color(1, 1, 0.823529, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_mhl0d")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Solar" index="12"]
 autoplay = "Sun"
 libraries = {
@@ -1720,9 +1720,9 @@ libraries = {
 }
 
 [node name="Pump" parent="World" index="24" groups=["PP"]]
-_PlantType = 9
+_PlantType = 0
 
-[node name="Sprite" parent="World/Pump" index="0"]
+[node name="Sprite" parent="World/Pump" index="1"]
 position = Vector2(0, 0)
 texture = ExtResource("11_nggna")
 
@@ -1735,7 +1735,7 @@ position = Vector2(783, 1982)
 HasAnimation = true
 _PlantType = 0
 
-[node name="Sprite" parent="World/Hydro" index="0"]
+[node name="Sprite" parent="World/Hydro" index="1"]
 texture = ExtResource("11_nggna")
 flip_h = true
 
@@ -1769,10 +1769,10 @@ libraries = {
 HasAnimation = true
 _PlantType = 8
 
-[node name="Sprite" parent="World/River" index="0"]
+[node name="Sprite" parent="World/River" index="1"]
 texture = ExtResource("9_agn8w")
 
-[node name="HoverArea" parent="World/River" index="9"]
+[node name="HoverArea" parent="World/River" index="8"]
 visible = false
 
 [node name="Water" type="Sprite2D" parent="World/River" index="10"]
@@ -1793,6 +1793,13 @@ autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_5k73m")
 }
+
+[node name="River2" parent="World" index="30"]
+PlantName = "RIVER"
+_PlantType = 8
+
+[node name="Sprite" parent="World/River2" index="1"]
+texture = ExtResource("9_agn8w")
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false
@@ -1833,6 +1840,9 @@ visible = false
 
 [node name="Audio" parent="." instance=ExtResource("34_smnob")]
 
+[node name="ForestAmbiance" parent="Audio" index="0"]
+autoplay = false
+
 [node name="Water" parent="Audio" index="1"]
 position = Vector2(808, 2080)
 volume_db = -5.0
@@ -1858,4 +1868,5 @@ stream_paused = false
 [editable path="World/Pump"]
 [editable path="World/Hydro"]
 [editable path="World/River"]
+[editable path="World/River2"]
 [editable path="Audio"]
