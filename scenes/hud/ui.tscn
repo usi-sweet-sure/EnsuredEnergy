@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=98 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -163,6 +163,10 @@ _data = {
 [sub_resource type="FontVariation" id="FontVariation_rdii0"]
 base_font = ExtResource("40_knfjx")
 spacing_glyph = 1
+
+[sub_resource type="FontVariation" id="FontVariation_2wj7s"]
+base_font = ExtResource("53_v477p")
+spacing_glyph = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mw3r"]
 bg_color = Color(0.214844, 0.335938, 0.347656, 1)
@@ -862,6 +866,39 @@ theme_override_font_sizes/font_size = 12
 text = "ENERGY"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ImportEnergy-bar-metal"]
+position = Vector2(-161, 121)
+scale = Vector2(1.37209, 1)
+texture = ExtResource("54_7juy1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ImportEnergy-bar-metal"]
+position = Vector2(-116, 120)
+texture = ExtResource("55_5s2up")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ImportEnergy-bar-metal"]
+position = Vector2(-135, 120)
+texture = ExtResource("55_5s2up")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ImportEnergy-bar-metal"]
+position = Vector2(-154, 120)
+texture = ExtResource("55_5s2up")
+
+[node name="Label" type="Label" parent="ImportEnergy-bar-metal"]
+offset_left = -162.0
+offset_top = 105.0
+offset_right = -109.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0.0588235, 0.145098, 0.152941, 1)
+theme_override_fonts/font = SubResource("FontVariation_2wj7s")
+theme_override_font_sizes/font_size = 21
+text = "100"
+horizontal_alignment = 2
+
+[node name="Sprite2D5" type="Sprite2D" parent="ImportEnergy-bar-metal"]
+position = Vector2(-180, 121)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("33_my285")
 
 [node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
 offset_left = 303.0

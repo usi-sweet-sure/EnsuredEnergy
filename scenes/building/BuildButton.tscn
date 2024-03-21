@@ -2038,6 +2038,9 @@ visible = false
 [node name="HoverArea" parent="Gas" index="8"]
 visible = false
 
+[node name="Money" parent="Gas" index="11"]
+visible = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gas"]
 autoplay = "smoke"
 libraries = {
@@ -2101,6 +2104,9 @@ grow_vertical = 1
 [node name="Sprite" parent="Hydro" index="1"]
 texture = ExtResource("10_ueb8a")
 
+[node name="Money" parent="Hydro" index="11"]
+visible = false
+
 [node name="Water" type="Sprite2D" parent="Hydro"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(-40.2271, 108.085)
@@ -2134,6 +2140,7 @@ libraries = {
 visible = false
 position = Vector2(112, 88)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 2
 
 [node name="Price" parent="Solar/PreviewInfo" index="3"]
@@ -2156,6 +2163,9 @@ rotation = 0.558505
 scale = Vector2(1.88471, 2.38422)
 energy = 0.0
 texture = SubResource("GradientTexture2D_ekq5o")
+
+[node name="Money" parent="Solar" index="11"]
+visible = false
 
 [node name="Sprite2" type="Sprite2D" parent="Solar"]
 visible = false
@@ -2195,10 +2205,14 @@ grow_vertical = 1
 [node name="Sprite" parent="Tree" index="1"]
 texture = ExtResource("13_buqe2")
 
+[node name="Money" parent="Tree" index="11"]
+visible = false
+
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(112, 88)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 5
 
 [node name="Price" parent="Wind/PreviewInfo" index="3"]
@@ -2256,6 +2270,9 @@ position = Vector2(-136.25, -143.125)
 scale = Vector2(1.25, 1.25)
 texture = SubResource("AtlasTexture_tned4")
 offset = Vector2(0, 16)
+
+[node name="Money" parent="Wind" index="11"]
+visible = false
 
 [node name="Sprite2" type="Sprite2D" parent="Wind"]
 visible = false
@@ -2387,6 +2404,9 @@ modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(25, -345)
 texture = ExtResource("6_3vcfd")
 
+[node name="Money" parent="Waste" index="11"]
+visible = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Waste"]
 root_node = NodePath("../Sprite")
 autoplay = "Smoke"
@@ -2439,6 +2459,9 @@ modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(-115, -300)
 texture = ExtResource("5_s6f5j")
 
+[node name="Money" parent="Biomass" index="11"]
+visible = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Biomass"]
 root_node = NodePath("../Sprite")
 autoplay = "Smoke"
@@ -2486,6 +2509,9 @@ modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(77.25, 68.75)
 texture = ExtResource("21_g2ord")
 
+[node name="Money" parent="River" index="11"]
+visible = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="River"]
 root_node = NodePath("../Sprite")
 autoplay = "water"
@@ -2512,6 +2538,9 @@ grow_vertical = 1
 [node name="Sprite" parent="Pump" index="1"]
 texture = ExtResource("10_ueb8a")
 
+[node name="Money" parent="Pump" index="11"]
+visible = false
+
 [node name="Cancel" type="Button" parent="."]
 visible = false
 layout_mode = 0
@@ -2536,10 +2565,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = 68.0
-offset_right = 217.0
-offset_bottom = 157.0
+offset_left = -94.0
+offset_top = -83.0
+offset_right = 66.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)

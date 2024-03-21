@@ -150,7 +150,7 @@ public partial class BuildButton : TextureButton {
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
-			BL = new BuildLocation(Position, Building.Type.HYDRO, Building.Type.RIVER, Building.Type.PUMP);
+			BL = new BuildLocation(Position, Building.Type.HYDRO, Building.Type.RIVER);
 		} else {
 			BL = new BuildLocation(Position, Building.Type.GAS, Building.Type.SOLAR, Building.Type.TREE, Building.Type.WIND, Building.Type.WASTE, Building.Type.BIOMASS);
 		}

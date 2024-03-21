@@ -1443,6 +1443,9 @@ theme_override_font_sizes/font_size = 32
 [node name="LifeSpan" parent="World/Nuclear3/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
 
+[node name="Money" parent="World/Nuclear3" index="12"]
+visible = false
+
 [node name="Nuclear2" parent="World" index="6" groups=["PP"]]
 position = Vector2(1479, -248)
 HasAnimation = true
@@ -1492,6 +1495,9 @@ theme_override_font_sizes/font_size = 32
 
 [node name="LifeSpan" parent="World/Nuclear2/BuildInfo/ColorRect/ContainerN" index="0"]
 visible = true
+
+[node name="Money" parent="World/Nuclear2" index="12"]
+visible = false
 
 [node name="Nuclear" parent="World" index="7" groups=["PP"]]
 position = Vector2(1001, 130)
@@ -1557,6 +1563,9 @@ offset_top = 104.0
 offset_bottom = 133.0
 metadata/_edit_group_ = true
 
+[node name="Money" parent="World/Nuclear" index="12"]
+visible = false
+
 [node name="Waste" parent="World" index="8" groups=["PP"]]
 position = Vector2(380, 96)
 HasAnimation = true
@@ -1586,6 +1595,9 @@ texture = ExtResource("8_jh2tr")
 modulate = Color(0.345098, 0.345098, 0.345098, 0)
 position = Vector2(76, -330)
 texture = ExtResource("9_2lgj4")
+
+[node name="Money" parent="World/Waste" index="12"]
+visible = false
 
 [node name="Biomass" parent="World" index="10" groups=["PP"]]
 position = Vector2(-420, 1275)
@@ -1625,9 +1637,13 @@ texture = ExtResource("8_jh2tr")
 [node name="NameRect" parent="World/Biomass" index="4"]
 visible = false
 
+[node name="Money" parent="World/Biomass" index="12"]
+visible = false
+
 [node name="Wind" parent="World" index="11" groups=["PP"]]
 position = Vector2(-556, 553)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 5
 
 [node name="Sprite2" type="Sprite2D" parent="World/Wind" index="1"]
@@ -1672,6 +1688,9 @@ libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
 
+[node name="Money" parent="World/Wind" index="14"]
+visible = false
+
 [node name="BuildButton2" parent="World" index="14"]
 metadata/_edit_use_anchors_ = true
 
@@ -1688,6 +1707,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Solar" parent="World" index="21" groups=["PP"]]
 position = Vector2(2617, 1493)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 2
 
 [node name="Sprite2" type="Sprite2D" parent="World/Solar" index="1"]
@@ -1719,12 +1739,18 @@ libraries = {
 "": SubResource("AnimationLibrary_1rsdt")
 }
 
+[node name="Money" parent="World/Solar" index="14"]
+visible = false
+
 [node name="Pump" parent="World" index="24" groups=["PP"]]
 _PlantType = 0
 
 [node name="Sprite" parent="World/Pump" index="1"]
 position = Vector2(0, 0)
 texture = ExtResource("11_nggna")
+
+[node name="Money" parent="World/Pump" index="11"]
+visible = false
 
 [node name="BuildButton9" parent="World" index="25"]
 texture_pressed = ExtResource("14_eqh1c")
@@ -1765,6 +1791,9 @@ libraries = {
 "": SubResource("AnimationLibrary_7anxu")
 }
 
+[node name="Money" parent="World/Hydro" index="15"]
+visible = false
+
 [node name="River" parent="World" index="29" groups=["PP"]]
 HasAnimation = true
 _PlantType = 8
@@ -1794,12 +1823,18 @@ libraries = {
 "": SubResource("AnimationLibrary_5k73m")
 }
 
+[node name="Money" parent="World/River" index="15"]
+visible = false
+
 [node name="River2" parent="World" index="30"]
 PlantName = "RIVER"
 _PlantType = 8
 
 [node name="Sprite" parent="World/River2" index="1"]
 texture = ExtResource("9_agn8w")
+
+[node name="Money" parent="World/River2" index="11"]
+visible = false
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false

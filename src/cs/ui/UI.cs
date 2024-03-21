@@ -1057,6 +1057,14 @@ public partial class UI : CanvasLayer {
 		PayBackAmount.Text = ((int)(value + (value * InterestRate))).ToString(); // Add the interest rate
 	}
 	
+	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+				MoneyInfo.Hide();
+			}
+		}
+	}
+	
 	public void _OnScreenOption(bool Toggle) {
 		if(Toggle) {
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);

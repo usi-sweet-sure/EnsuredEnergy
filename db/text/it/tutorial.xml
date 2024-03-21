@@ -24,7 +24,7 @@ si possono costruire nuove centrali elettriche, ma questo costa tempo e denaro.<
 		per ridurre la domanda di energia o facilitare la costruzione di centrali elettriche.</text>
 	</group>
 	<group id="info_bubble">
-		<text id="0">Ogni turno, bisogna soddisfare la domanda per l'estate 🔆 e per l'inverno ❄️.</text>
+		<text id="0">Ogni turno, bisogna soddisfare la domanda per l'inverno ❄️ e per l'estate 🔆.</text>
 		<text id="1">Importa più energia qui</text>
 		<text id="2">Costruire nuove centrali elettriche</text>
 		<text id="3">Aggiornamento della centrale elettrica esistente</text>

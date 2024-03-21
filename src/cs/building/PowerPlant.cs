@@ -708,10 +708,10 @@ public partial class PowerPlant : Node2D {
 		// Set the labels correctly
 		NameL.Text = PlantName;
 		NameBI.Text = PlantName;
-		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
-		EnergySL.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
-		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		EnergyWL.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
+		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString("0");
+		EnergySL.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString("0");
+		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString("0");
+		EnergyWL.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString("0");
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
 		PollN.Text = Pollution.ToString("0.0");
@@ -837,9 +837,11 @@ public partial class PowerPlant : Node2D {
 		MultDec.Disabled = true;
 	}
 	
-	public void PlayAnimation() {
+	public async void PlayAnimation() {
 		// TODO set text in lang
 		//NoMoney.Text =
+		AP.Play("RESET");
+		await ToSignal(AP, "animation_finished");;
 		AP.Play("noMoney");
 	}
 	
@@ -982,7 +984,7 @@ public partial class PowerPlant : Node2D {
 
 	// Reacts to the increase request by requesting it to the game loop
 	// which will enact it if we have enough money
-	private void OnMultIncPressed() {
+	private async void OnMultIncPressed() {
 		Debug.Print("UPGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
@@ -992,6 +994,8 @@ public partial class PowerPlant : Node2D {
 			// check if the cost is more than 0 before playing the money anim
 			if(C._GetGL()._CheckBuildReq(mult.Cost)) {
 				AnimMoney.Text = "-" + mult.Cost.ToString() + "$";
+				AP.Play("RESET");
+				await ToSignal(AP, "animation_finished");
 				AP.Play("Money-");
 			}
 			
@@ -1004,7 +1008,7 @@ public partial class PowerPlant : Node2D {
 
 	// Reacts to the decrease request by requesting it to the game loop
 	// which will enact it if we have enough money
-	private void OnMultDecPressed() {
+	private async void OnMultDecPressed() {
 		Debug.Print("DOWNGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
@@ -1013,6 +1017,8 @@ public partial class PowerPlant : Node2D {
 		if(MultiplierValue > 1) {
 			if(mult.Cost > 0) {
 				AnimMoney.Text = "+" + mult.Cost.ToString() + "$";
+				AP.Play("RESET");
+				await ToSignal(AP, "animation_finished");
 				AP.Play("Money+");
 			}
 			// Signal the request to the game loop
