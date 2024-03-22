@@ -27,9 +27,13 @@ public partial class PolicyWindow : CanvasLayer {
 
 	// ==================== Constants ====================
 
+	private const string LABEL_FILENAME = "labels.xml";
 	private const string POLICY_GROUP = "policies";
 	private const string POLICY_SUCCESS = "policy_success";
 	private const string POLICY_FAILURE = "policy_failure";
+	private const string POP_LABEL = "label_popularity";
+	private const string CAMPAIGN_LABEL = "label_campaign";
+	private const string CAMPAIGN_START_LABEL = "label_camp_start";
 
 	// ==================== Children Nodes ====================
 
@@ -42,6 +46,7 @@ public partial class PolicyWindow : CanvasLayer {
 	private List<TextureButton> ImplementedPolicy;
 	private Label VoteResult;
 	private List<TextureButton> PolicyButtons;
+	private List<TextureButton> CampaignButtons;
 	private string SelectedPolicy;
 	private Label Implemented;
 
@@ -51,6 +56,9 @@ public partial class PolicyWindow : CanvasLayer {
 	private Label PT; // Policy Text
 	private Label ET; // Effects Text
 	private ProgressBar Pop; // Vote probability
+	private Label PopL; // Label above vote probability
+	private Label CampaignL; // Label describing campaign duration
+	private Label LengthL; // Campaing length
 
 	// ==================== Singletons ====================	
 
@@ -77,6 +85,9 @@ public partial class PolicyWindow : CanvasLayer {
 		PT = GetNode<Label>("Control/Policies-base-2/Text");
 		ET = GetNode<Label>("Control/Policies-base-2/EffectTitle/Text");
 		Pop = GetNode<ProgressBar>("Control/Policies-base-2/Vote/Popularity");
+		PopL = GetNode<Label>("Control/Policies-base-2/Vote/PopularityL");
+		CampaignL = GetNode<Label>("Control/Policies-base-2/Vote/CampaignL");
+		LengthL = GetNode<Label>("Control/Policies-base-2/Vote/Length");
 		
 		PolicyGroup = WindButton.ButtonGroup;
 		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
@@ -93,8 +104,16 @@ public partial class PolicyWindow : CanvasLayer {
 		
 		ImplementedPolicy = new(){};
 
+		CampaignButtons = new() 
+		{
+			// Fetch Campaign buttons
+			GetNode<TextureButton>("Control/PoliciesBase-1/campaign_env"),
+			GetNode<TextureButton>("Control/PoliciesBase-2/campaign_demand")
+		};
+
 		// Connect the policy button callbacks
 		PolicyButtons.ForEach(pb => pb.Pressed += _OnPolicyButtonPressed);
+		CampaignButtons.ForEach(cb => cb.Pressed += _OnCampaignButtonPressed);
 		
 		P.GuiInput += _OnPanelGuiInput;
 		Vote.Pressed += _OnVotePressed;
@@ -135,16 +154,56 @@ public partial class PolicyWindow : CanvasLayer {
 		}
 	} 
 
+	// When a campaign button is pressed, we simply show the vote button 
+	// We also need to update the window to display all of the specific data
+	public void _OnCampaignButtonPressed() {
+		// Allow for the user to trigger a vote
+		Vote.Show();
+
+		// Retrieve the policy information to use it to update the UI
+		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
+		if(PressedPolicy != null && CampaignButtons.Contains(PressedPolicy)) {
+			// Update the information related to the duration
+			CampaignL.Text = TC._GetText(LABEL_FILENAME, POLICY_GROUP, CAMPAIGN_LABEL);
+			LengthL.Text = PC._GetCampaignLength(PressedPolicy.Name).ToString();
+
+			PopL.Hide();
+			Pop.Hide();
+			CampaignL.Show();
+			LengthL.Show();
+
+			// Retrieve the UI infor such as name, text and effects
+			// and update the UI with them
+			PN.Text = PC._GetCampaigName(PressedPolicy.Name);
+			PT.Text = PC._GetCampaignText(PressedPolicy.Name);
+			ET.Text = PC._GetEffects("campaign", PressedPolicy.Name)
+				.Aggregate("", (acc, e) =>
+					 e.Text == "" ? acc : acc + "- " + e.Text + "\n"
+				);
+		}
+	}
+
 	// When a policy button is pressed, we simply show the vote button 
 	// We also need to update the window to display all of the specific data
 	public void _OnPolicyButtonPressed() {
 		// Retrieve the policy information to use it to update the UI
+		
 		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
-		if(PressedPolicy != null) {
+		if(PressedPolicy != null && PolicyButtons.Contains(PressedPolicy)) {
 			// Allow for the user to trigger a vote
 			Vote.Show();
 			Implemented.Hide();
 			if (!Vote.Disabled) {VoteResult.Hide();}
+
+			// Update the text that shows the info about the vote itself
+			PopL.Text = TC._GetText(LABEL_FILENAME, POLICY_GROUP, POP_LABEL);
+			Pop.Value = C._GetGL()._GetPM()._GetRealProb(PressedPolicy.Name) * 100.0f;
+
+			PopL.Show();
+			Pop.Show();
+			CampaignL.Hide();
+			LengthL.Hide();
+			
 			// Retrieve the UI infor such as name, text and effects
 			// and update the UI with them
 			PN.Text = PC._GetPolicyName(PressedPolicy.Name);
@@ -169,24 +228,36 @@ public partial class PolicyWindow : CanvasLayer {
 		// Check the vote result based on the selected policy
 		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
 		if (PressedPolicy != null) {
-			// Attempt the vote
-			bool success = C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
-			
-			if(success) {
-				ImplementedPolicy.Add(PressedPolicy);
-			}
-			// Disable the vote
-			Vote.Disabled = true;
-			VoteResult.Show();
+			// Check if it's a policy or a campaign
+			if(PolicyButtons.Contains(PressedPolicy)) {
+				// Attempt the vote
+				bool success = C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
 
-			// Show the result
-			VoteResult.Text = TC._GetText(
-				"labels.xml", POLICY_GROUP, 
-				success ? POLICY_SUCCESS : POLICY_FAILURE
-			);
-		} else {
-			VoteResult.Text = "Please select a policy.";
-			VoteResult.Show();
+				// Disable the vote
+				Vote.Disabled = true;
+				VoteResult.Show();
+
+				// Show the result
+				VoteResult.Text = TC._GetText(
+					LABEL_FILENAME, POLICY_GROUP, 
+					success ? POLICY_SUCCESS : POLICY_FAILURE
+				);
+			} else if(CampaignButtons.Contains(PressedPolicy)) {
+				// Schedule the campaign
+				C._GetGL()._GetPM()._ScheduleCampaign(PressedPolicy.Name);
+
+				// Disable the vote
+				Vote.Disabled = true;
+				VoteResult.Show();
+
+				VoteResult.Text = TC._GetText(
+					LABEL_FILENAME, POLICY_GROUP, CAMPAIGN_START_LABEL
+				);
+			} else {
+				VoteResult.Text = "Please select a policy.";
+				VoteResult.Show();
+				throw new Exception("Unknown Button was pressed!!");
+			}
 		}
 	}
 }

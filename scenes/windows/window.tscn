@@ -30,13 +30,13 @@ base_font = ExtResource("5_vm5n8")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vk0"]
 bg_color = Color(0.196078, 0.545098, 0.968627, 0.792157)
 
-[sub_resource type="FontVariation" id="FontVariation_trley"]
-base_font = ExtResource("5_vm5n8")
-
 [sub_resource type="FontVariation" id="FontVariation_5jnr5"]
 base_font = ExtResource("5_vm5n8")
 variation_embolden = 0.4
 spacing_glyph = 1
+
+[sub_resource type="FontVariation" id="FontVariation_trley"]
+base_font = ExtResource("5_vm5n8")
 
 [sub_resource type="FontVariation" id="FontVariation_o0ra6"]
 base_font = ExtResource("10_f2v4c")
@@ -223,10 +223,6 @@ grow_vertical = 0
 theme_override_fonts/font = SubResource("FontVariation_ysreq")
 text = "Estimated popularity with voters:"
 
-[node name="Popularity-" type="Sprite2D" parent="Control/Policies-base-2/Vote"]
-position = Vector2(101.5, -141)
-texture = ExtResource("8_mlb0j")
-
 [node name="Popularity" type="ProgressBar" parent="Control/Policies-base-2/Vote"]
 layout_mode = 1
 anchors_preset = 5
@@ -241,21 +237,21 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_3qlni")
 theme_override_styles/fill = SubResource("StyleBoxFlat_77vk0")
 value = 42.0
 
-[node name="Icon" type="Sprite2D" parent="Control/Policies-base-2/Vote"]
-position = Vector2(16.5, -144)
+[node name="Popularity-" type="Sprite2D" parent="Control/Policies-base-2/Vote/Popularity"]
+show_behind_parent = true
+position = Vector2(45, 19)
+texture = ExtResource("8_mlb0j")
+
+[node name="Icon" type="Sprite2D" parent="Control/Policies-base-2/Vote/Popularity"]
+position = Vector2(-40, 16)
 texture = ExtResource("5_iox1m")
 
 [node name="VoteResult" type="Label" parent="Control/Policies-base-2/Vote"]
-visible = false
 layout_mode = 0
-offset_left = -65.5
-offset_top = 100.0
-offset_right = 263.5
-offset_bottom = 180.0
-theme_override_fonts/font = SubResource("FontVariation_trley")
-theme_override_font_sizes/font_size = 20
-text = "Result"
-autowrap_mode = 2
+offset_left = -61.0
+offset_top = 110.5
+offset_right = -60.0
+offset_bottom = 133.5
 
 [node name="VoteL" type="Label" parent="Control/Policies-base-2/Vote"]
 layout_mode = 1
@@ -275,6 +271,51 @@ show_behind_parent = true
 position = Vector2(95, 42.5)
 scale = Vector2(1.47857, 1.35714)
 texture = ExtResource("3_34k6p")
+
+[node name="Length" type="Label" parent="Control/Policies-base-2/Vote"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 90.5
+offset_top = -280.5
+offset_right = 168.5
+offset_bottom = -254.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "1"
+horizontal_alignment = 2
+
+[node name="Duration" type="Label" parent="Control/Policies-base-2/Vote"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.5
+offset_top = -119.5
+offset_right = 15.5
+offset_bottom = -93.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Duration of campaign:"
+
+[node name="CampaignL" type="Label" parent="Control/Policies-base-2/Vote"]
+visible = false
+offset_left = -69.0
+offset_top = -201.5
+offset_right = 260.0
+offset_bottom = -121.5
+theme_override_fonts/font = SubResource("FontVariation_trley")
+theme_override_font_sizes/font_size = 20
+text = "Result"
+autowrap_mode = 2
 
 [node name="Implemented" type="Label" parent="Control/Policies-base-2"]
 visible = false
@@ -313,7 +354,6 @@ autowrap_mode = 2
 uppercase = true
 
 [node name="campaign_env" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
-modulate = Color(0.345098, 0.345098, 0.345098, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -322,7 +362,6 @@ offset_top = -264.5
 offset_right = -99.0
 offset_bottom = -136.5
 grow_horizontal = 2
-disabled = true
 button_group = ExtResource("4_wme6q")
 texture_normal = ExtResource("7_erhrg")
 texture_pressed = ExtResource("15_c1xso")
@@ -409,7 +448,6 @@ autowrap_mode = 2
 uppercase = true
 
 [node name="campaign_demand" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
-modulate = Color(0.380392, 0.380392, 0.380392, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -418,7 +456,6 @@ offset_top = -264.5
 offset_right = -99.0
 offset_bottom = -136.5
 grow_horizontal = 2
-disabled = true
 button_group = ExtResource("4_wme6q")
 texture_normal = ExtResource("9_q3xbc")
 texture_pressed = ExtResource("10_nfrkh")
