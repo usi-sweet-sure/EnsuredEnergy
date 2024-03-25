@@ -302,8 +302,8 @@
         </reaction>
         <reward>
             <text>If you can read this, there is a problem.</text>
-            <effect field="support" value="0"/>
-            <effect field="money" value="0"/>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
         </reward>
     </shock>
 -->
