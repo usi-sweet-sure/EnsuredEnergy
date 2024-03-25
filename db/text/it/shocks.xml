@@ -5,7 +5,7 @@
         <name>Inverno gelido</name>
         <img>cold</img>
         <!-- The description text that will be displayed in the shock window -->
-        <text>Gli ultimi inverni sono stati più freddi del solito. Questo ha aumentato la domanda di energia invernale del 5 ⚡.</text>
+        <text>Gli ultimi inverni sono stati più freddi del solito. Questo ha aumentato la domanda di energia invernale di 5 ⚡.</text>
         <!-- The requirements for said shock -->
         <!-- Here it means that the player needs to have a winter supply of at least 50 above the demand -->
         <requirement field="energyW" value="5" bound="min"/>
@@ -42,7 +42,7 @@
     <shock id="heat_wave" tag="env">
         <name>Ondata di calore</name>
         <img>hot</img>
-        <text>Le estati sono sempre più calde. La domanda di energia è aumentata del 5 ⚡.</text>
+        <text>Le estati sono sempre più calde. La domanda di energia è aumentata di 5 ⚡.</text>
         <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
             <text>Chiedete alle persone di bere più acqua e di ridurre uso dell'aria condizionata.
@@ -78,7 +78,7 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Produzione idraulica -1% per turno di gioco</text>
+            <text>Produzione idroelettica -1% per turno di gioco</text>
             <effect field="money" value="0"/>
             <effect field="env" value="0"/>
         </reward>
@@ -263,7 +263,7 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Chiusura della centrale nucleare di -1 Tour</text>
+            <text>Chiusura della centrale nucleare di -1 turno</text>
             <effect field="support" value="0"/>
             <effect field="money" value="0"/>
         </reward>

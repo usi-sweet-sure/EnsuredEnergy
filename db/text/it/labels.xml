@@ -90,7 +90,7 @@ Energy
         <text id="label_waste">Inceneritore</text>
         <text id="label_biomass">Biomassa</text>
         <text id="label_river">Fiume</text>
-        <text id="label_pump">Stoccaggio di energia</text>
+        <text id="label_pump">Idroelettrico + Pompaggio</text>
     </group>
 
         <!-- Labels for the main menu -->
