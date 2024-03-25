@@ -15,12 +15,12 @@
             <text>Chiedere alle persone di ridurre il loro consumo energetico.
 -10 👍 😡</text>
             <!-- The effect selecting this reaction will have on the player's resources -->
-            <effect field="support" value="-50"/>
+            <effect field="support" value="-10"/>
         </reaction>
         <reaction id="2">
             <text>Attivare l'impianto a gas di riserva.
 +10 inquinamento 🏭</text>
-            <effect field="env" value="-50"/>
+            <effect field="env" value="10"/>
         </reaction>
         <reaction id="3">
             <text>Importazione di energia elettrica dai paesi limitrofi.
@@ -46,7 +46,7 @@
         <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
             <text>Chiedete alle persone di bere più acqua e di ridurre uso dell'aria condizionata.
--20 👍😡</text>
+-15 👍😡</text>
             <effect field="support" value="-20"/>
         </reaction>
         <reaction id="1">
@@ -78,7 +78,7 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Produzione idroelettica -1% per turno di gioco</text>
+            <text></text>
             <effect field="money" value="0"/>
             <effect field="env" value="0"/>
         </reward>
@@ -94,7 +94,7 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Energia solare ed eolica -20% ⚡</text>
+            <text>Energia solare ed eolica -10% ⚡</text>
             <effect field="support" value="0"/>
             <effect field="money" value="0"/>
         </reward>
@@ -219,7 +219,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Aumento della domanda di energia +50⚡</text>
+            <text>Aumento della domanda di energia +5⚡</text>
             <effect field="energyS" value="0"/>
             <effect field="energyW" value="0"/>
         </reward>

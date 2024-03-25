@@ -354,6 +354,17 @@ public partial class PowerPlant : Node2D {
 	// Applies a multiplier overload to the current value
 	public void _OverloadMultiplier(int mo) {
 		MultiplierMax = mo;
+		Multiplier.Show();
+		// Check if we can still increase
+		if(MultiplierValue >= MultiplierMax) {
+			MultInc.Hide();
+			HideMultInfo();
+		} 
+
+		// Check if we can decrement now 
+		if(MultiplierValue > 1) {
+			MultDec.Show();
+		}
 	}
 
 	// Applies a build time overload to the powerplant
@@ -665,7 +676,7 @@ public partial class PowerPlant : Node2D {
 			Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
 			// Check if the multiplier window should be shown
-			if(mult.MaxElements <= 1) {
+			if(MultiplierMax <= 1) {
 				Multiplier.Hide();
 				HideMultInfo();
 			} else {
@@ -926,7 +937,7 @@ public partial class PowerPlant : Node2D {
 			Info.Visible = true;
 			//ResRect.Visible = true;
 			// Toggle multiplier state if several elements are available
-			if(mult.MaxElements > 1) {
+			if(MultiplierMax > 1) {
 				Multiplier.Visible = true;
 			}
 		}

@@ -374,13 +374,11 @@ texture = ExtResource("8_iiaj0")
 visible = false
 
 [node name="Upgrade_PV" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
-modulate = Color(0.364706, 0.364706, 0.364706, 1)
 offset_left = -59.0
 offset_top = 44.0
 offset_right = 70.0
 offset_bottom = 124.0
 theme = SubResource("Theme_6bviu")
-disabled = true
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-1/Upgrade_PV" index="1"]

@@ -58,10 +58,10 @@ public partial class BuildButton : TextureButton {
 
 	// Power Plants
 	private PowerPlant GasPlant;
-	private PowerPlant SolarPlant;
+	public PowerPlant SolarPlant;
 	private PowerPlant HydroPlant;
 	private PowerPlant TreePlant;
-	private PowerPlant WindPlant;
+	public PowerPlant WindPlant;
 	private PowerPlant WastePlant;
 	private PowerPlant BiomassPlant;
 	private PowerPlant RiverPlant;

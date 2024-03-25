@@ -233,6 +233,8 @@ public partial class GameLoop : Node2D {
 	// Apply the current overloads to all plants
 	public void _ApplyOverloads() {
 		PowerPlants.ForEach(pp => _ApplyOverload(ref pp));
+		BBs.ForEach(bb => _ApplyOverload(ref bb.SolarPlant));
+		BBs.ForEach(bb => _ApplyOverload(ref bb.WindPlant));
 	}
 
 	// Checks for overloads and applies then to the given plant if necessary
