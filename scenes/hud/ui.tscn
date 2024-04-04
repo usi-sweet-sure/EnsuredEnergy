@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=101 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -50,12 +50,14 @@
 [ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
 [ext_resource type="Texture2D" uid="uid://dvph1wklx4pfh" path="res://assets/UI Elements/Paper-Big.png" id="46_31xep"]
 [ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="46_mga3n"]
+[ext_resource type="Texture2D" uid="uid://djip1o5m4lpoe" path="res://assets/UI Elements/Single-Paper-Big.png" id="47_esdsk"]
 [ext_resource type="Texture2D" uid="uid://ckf6s1uhm87ae" path="res://assets/UI Elements/Policies_Base-1.png" id="50_inaxr"]
 [ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="51_joowr"]
 [ext_resource type="Texture2D" uid="uid://co2hnnf0cnn72" path="res://assets/UI Elements/Plant_Menu_Base.png" id="52_tsua8"]
 [ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="53_v477p"]
 [ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" id="54_7juy1"]
 [ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" id="55_5s2up"]
+[ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="55_5ylb2"]
 
 [sub_resource type="FontVariation" id="FontVariation_74xhr"]
 base_font = ExtResource("40_knfjx")
@@ -657,7 +659,7 @@ variation_embolden = 0.5
 spacing_glyph = 7
 
 [sub_resource type="FontVariation" id="FontVariation_lgwoq"]
-base_font = ExtResource("40_knfjx")
+base_font = ExtResource("53_v477p")
 variation_embolden = 0.2
 spacing_glyph = 2
 
@@ -959,10 +961,10 @@ position = Vector2(-195, -609.5)
 
 [node name="BarInfo" parent="EnergyBarWinter" index="1"]
 z_index = 1
-offset_left = 247.999
-offset_top = 186.001
-offset_right = 550.767
-offset_bottom = 310.054
+offset_left = 430.999
+offset_top = 169.002
+offset_right = 733.768
+offset_bottom = 293.055
 rotation = 1.5708
 
 [node name="InfoText" parent="EnergyBarWinter/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
@@ -986,10 +988,10 @@ position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummer" index="1"]
 z_index = 1
-offset_left = 248.0
-offset_top = 117.001
-offset_right = 550.768
-offset_bottom = 409.787
+offset_left = 429.0
+offset_top = 106.002
+offset_right = 731.768
+offset_bottom = 398.788
 rotation = 1.5708
 metadata/_edit_group_ = true
 
@@ -1299,6 +1301,7 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
+visible = false
 layout_mode = 1
 offset_left = 319.0
 offset_top = -48.0
@@ -1490,7 +1493,6 @@ offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
 
 [node name="MoneyInfo" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchor_left = 0.233
 anchor_top = 0.076
@@ -1511,9 +1513,19 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="InfoMoney" type="NinePatchRect" parent="MoneyInfo/MarginContainer"]
+[node name="InfoMoneyClosed" type="NinePatchRect" parent="MoneyInfo/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_31xep")
+region_rect = Rect2(0, 4, 566, 492)
+patch_margin_left = 42
+patch_margin_top = 92
+patch_margin_right = 40
+patch_margin_bottom = 80
+
+[node name="InfoMoneyOpen" type="NinePatchRect" parent="MoneyInfo/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("47_esdsk")
 region_rect = Rect2(0, 4, 566, 492)
 patch_margin_left = 42
 patch_margin_top = 92
@@ -1919,24 +1931,21 @@ texture_pressed = ExtResource("45_nhcbq")
 texture_hover = ExtResource("46_mga3n")
 ignore_texture_size = true
 
-[node name="Debt" type="ColorRect" parent="BorrowMoney"]
+[node name="Debt" type="Sprite2D" parent="BorrowMoney"]
 visible = false
-layout_mode = 0
-offset_left = 54.0
-offset_top = -2.0
-offset_right = 151.0
-offset_bottom = 41.0
-color = Color(0.443137, 0.564706, 0.580392, 1)
+position = Vector2(95, 19)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("55_5ylb2")
 
 [node name="DebtAmount" type="Label" parent="BorrowMoney/Debt"]
-layout_mode = 0
-offset_left = 23.0
-offset_top = 6.0
-offset_right = 73.0
-offset_bottom = 37.0
+offset_left = -113.333
+offset_top = -63.3333
+offset_right = -50.3333
+offset_bottom = -21.3333
+scale = Vector2(3, 3)
 theme_override_colors/font_color = Color(0.752941, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_lgwoq")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 28
 text = "-000"
 horizontal_alignment = 1
 vertical_alignment = 1

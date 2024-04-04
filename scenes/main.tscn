@@ -1435,17 +1435,13 @@ offset_bottom = -228.0
 [node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="1"]
 offset_top = -232.0
 
-[node name="ContainerL" parent="World/Nuclear3/BuildInfo/ColorRect" index="0"]
+[node name="LifeSpan" parent="World/Nuclear3/BuildInfo/ColorRect" index="0"]
+visible = true
+
+[node name="ContainerL" parent="World/Nuclear3/BuildInfo/ColorRect" index="1"]
 offset_top = -59.0
 offset_right = 238.0
 offset_bottom = 213.0
-
-[node name="LifeSpan2" parent="World/Nuclear3/BuildInfo/ColorRect/ContainerL" index="0"]
-visible = true
-theme_override_font_sizes/font_size = 32
-
-[node name="LifeSpan" parent="World/Nuclear3/BuildInfo/ColorRect/ContainerN" index="0"]
-visible = true
 
 [node name="Nuclear2" parent="World" index="6" groups=["PP"]]
 position = Vector2(1479, -248)
@@ -1485,17 +1481,13 @@ texture = ExtResource("7_vvt3h")
 [node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="1"]
 offset_top = -236.0
 
-[node name="ContainerL" parent="World/Nuclear2/BuildInfo/ColorRect" index="0"]
+[node name="LifeSpan" parent="World/Nuclear2/BuildInfo/ColorRect" index="0"]
+visible = true
+
+[node name="ContainerL" parent="World/Nuclear2/BuildInfo/ColorRect" index="1"]
 offset_top = -60.0
 offset_right = 238.0
 offset_bottom = 212.0
-
-[node name="LifeSpan2" parent="World/Nuclear2/BuildInfo/ColorRect/ContainerL" index="0"]
-visible = true
-theme_override_font_sizes/font_size = 32
-
-[node name="LifeSpan" parent="World/Nuclear2/BuildInfo/ColorRect/ContainerN" index="0"]
-visible = true
 
 [node name="Nuclear" parent="World" index="7" groups=["PP"]]
 position = Vector2(1001, 130)
@@ -1544,17 +1536,13 @@ texture = ExtResource("6_swuok")
 [node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="1"]
 offset_top = -241.0
 
-[node name="ContainerL" parent="World/Nuclear/BuildInfo/ColorRect" index="0"]
+[node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect" index="0"]
+visible = true
+
+[node name="ContainerL" parent="World/Nuclear/BuildInfo/ColorRect" index="1"]
 offset_top = -59.0
 offset_right = 238.0
 offset_bottom = 213.0
-
-[node name="LifeSpan2" parent="World/Nuclear/BuildInfo/ColorRect/ContainerL" index="0"]
-visible = true
-theme_override_font_sizes/font_size = 32
-
-[node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect/ContainerN" index="0"]
-visible = true
 
 [node name="ResRect" parent="World/Nuclear" index="5"]
 offset_top = 104.0
@@ -1567,6 +1555,7 @@ _PlantType = 10
 
 [node name="Sprite" parent="World/Geothermal" index="1"]
 texture = ExtResource("26_wcdn1")
+flip_h = true
 
 [node name="Waste" parent="World" index="9" groups=["PP"]]
 HasAnimation = true
@@ -1683,6 +1672,12 @@ libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
 
+[node name="Money" parent="World/BuildButton" index="13"]
+offset_left = 57.0
+offset_top = 68.0
+offset_right = 217.0
+offset_bottom = 157.0
+
 [node name="BuildButton2" parent="World" index="15"]
 metadata/_edit_use_anchors_ = true
 
@@ -1739,11 +1734,13 @@ position = Vector2(0, 0)
 texture = ExtResource("11_nggna")
 
 [node name="Hammer" parent="World/BuildButton9" index="0"]
-position = Vector2(359, 275)
+position = Vector2(308, 205)
 
 [node name="Money" parent="World/BuildButton9" index="13"]
-offset_top = -132.0
-offset_bottom = -43.0
+offset_left = 57.0
+offset_top = 68.0
+offset_right = 217.0
+offset_bottom = 157.0
 
 [node name="Hydro" parent="World" index="27" groups=["PP"]]
 position = Vector2(360, 1982)

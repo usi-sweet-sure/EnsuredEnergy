@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=48 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://b60o54o5riav8" path="res://assets/UI Elements/Build_Menu_0005_Build-Menu-Metal.png" id="2_ambcb"]
@@ -27,6 +27,12 @@
 [sub_resource type="FontVariation" id="FontVariation_us0ja"]
 base_font = ExtResource("8_a13i5")
 variation_embolden = 0.3
+
+[sub_resource type="FontVariation" id="FontVariation_soy2v"]
+base_font = ExtResource("15_6udtn")
+
+[sub_resource type="FontVariation" id="FontVariation_15ylr"]
+base_font = ExtResource("15_6udtn")
 
 [sub_resource type="FontVariation" id="FontVariation_62ju4"]
 base_font = ExtResource("8_a13i5")
@@ -463,21 +469,38 @@ offset_right = 310.0
 offset_bottom = 97.0
 color = Color(0.596078, 0.596078, 0.596078, 0)
 
+[node name="LifeSpan" type="Label" parent="BuildInfo/ColorRect"]
+visible = false
+layout_mode = 2
+offset_left = -37.0
+offset_top = 370.0
+offset_right = 405.0
+offset_bottom = 418.0
+theme_override_colors/font_color = Color(0.698039, 0, 0.00784314, 1)
+theme_override_fonts/font = SubResource("FontVariation_soy2v")
+theme_override_font_sizes/font_size = 32
+text = "333"
+horizontal_alignment = 2
+
+[node name="LifeSpanL" type="Label" parent="BuildInfo/ColorRect/LifeSpan"]
+layout_mode = 2
+offset_left = 53.0
+offset_top = -2.0
+offset_right = 362.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.698039, 0, 0.00784314, 1)
+theme_override_fonts/font = SubResource("FontVariation_15ylr")
+theme_override_font_sizes/font_size = 33
+text = "⚠️ Shutting down in"
+
 [node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
 layout_mode = 0
 offset_left = -24.0
-offset_top = -45.0
+offset_top = -42.0
 offset_right = 222.0
-offset_bottom = 204.0
+offset_bottom = 208.0
 theme_override_constants/separation = 0
 alignment = 2
-
-[node name="LifeSpan2" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 28
-text = "Shutting down in"
 
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
@@ -485,6 +508,7 @@ theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = SubResource("FontVariation_15ylr")
 theme_override_font_sizes/font_size = 35
 text = "$ / ⌛"
 
@@ -494,6 +518,7 @@ theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = SubResource("FontVariation_15ylr")
 theme_override_font_sizes/font_size = 35
 text = "CO2 Emissions"
 
@@ -503,6 +528,7 @@ theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = SubResource("FontVariation_15ylr")
 theme_override_font_sizes/font_size = 35
 text = "Land Use"
 
@@ -512,6 +538,7 @@ theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = SubResource("FontVariation_15ylr")
 theme_override_font_sizes/font_size = 35
 text = "Biodiversity"
 
@@ -522,25 +549,18 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 15.0
-offset_top = -282.0
+offset_top = -304.0
 offset_right = 15.0
-offset_bottom = -59.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="LifeSpan" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 28
-text = "3"
-horizontal_alignment = 2
-
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 1, 0.1, 1)
+theme_override_fonts/font = SubResource("FontVariation_soy2v")
 theme_override_font_sizes/font_size = 35
 text = "100"
 horizontal_alignment = 2
@@ -586,6 +606,7 @@ horizontal_alignment = 2
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.129412, 0.207843, 1)
+theme_override_fonts/font = SubResource("FontVariation_soy2v")
 theme_override_font_sizes/font_size = 35
 text = "10"
 horizontal_alignment = 2
@@ -624,6 +645,7 @@ horizontal_alignment = 2
 [node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.129412, 0.207843, 1)
+theme_override_fonts/font = SubResource("FontVariation_soy2v")
 theme_override_font_sizes/font_size = 35
 text = "3"
 horizontal_alignment = 2
@@ -662,6 +684,7 @@ horizontal_alignment = 2
 [node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.129412, 0.207843, 1)
+theme_override_fonts/font = SubResource("FontVariation_soy2v")
 theme_override_font_sizes/font_size = 35
 text = "3"
 horizontal_alignment = 2

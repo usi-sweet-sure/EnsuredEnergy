@@ -360,7 +360,8 @@ public partial class Context : Node {
 			{Building.Type.WASTE, 0},
 			{Building.Type.BIOMASS, 0},
 			{Building.Type.RIVER, 0},
-			{Building.Type.PUMP, 0}
+			{Building.Type.PUMP, 0},
+			{Building.Type.GEOTHERMAL, 0},
 		};
 	}
 }

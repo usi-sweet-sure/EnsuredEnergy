@@ -103,6 +103,8 @@ public partial class UI : CanvasLayer {
 	private Button MoneyButton;
 	private TextureButton MoneyInfoB;
 	private Control MoneyInfo;
+	private NinePatchRect MoneyInfoClosed;
+	private NinePatchRect MoneyInfoOpen;
 	private Label BudgetL;
 	private Label BuildL;
 	private Label ProdL;
@@ -132,7 +134,7 @@ public partial class UI : CanvasLayer {
 	private Button DebtCancelButton;
 	private ColorRect BorrowMoneyWindow;
 	private HSlider DebtSlider;
-	private ColorRect DebtResource;
+	private Sprite2D DebtResource;
 	private Label DebtResLabel;
 	private TextureButton BorrowMoneyButton;
 	private Button BorrowContainer;
@@ -229,6 +231,8 @@ public partial class UI : CanvasLayer {
 		MoneyL = GetNode<Label>("Money/money");
 		MoneyButton = GetNode<Button>("MoneyUI");
 		MoneyInfo = GetNode<Control>("MoneyInfo");
+		MoneyInfoClosed = GetNode<NinePatchRect>("MoneyInfo/MarginContainer/InfoMoneyClosed");
+		MoneyInfoOpen = GetNode<NinePatchRect>("MoneyInfo/MarginContainer/InfoMoneyOpen");
 		BudgetL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNow");
 		BuildL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName/build");
 		ProdL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName/prod");
@@ -257,7 +261,7 @@ public partial class UI : CanvasLayer {
 		DebtCancelButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Cancel");
 		BorrowMoneyWindow = GetNode<ColorRect>("BorrowContainer/BorrowMoneyWindow");
 		DebtSlider = GetNode<HSlider>("BorrowContainer/BorrowMoneyWindow/BorrowSlider");
-		DebtResource = GetNode<ColorRect>("BorrowMoney/Debt");
+		DebtResource = GetNode<Sprite2D>("BorrowMoney/Debt");
 		DebtResLabel = GetNode<Label>("BorrowMoney/Debt/DebtAmount");
 		BorrowMoneyButton = GetNode<TextureButton>("BorrowMoney");
 		BorrowContainer = GetNode<Button>("BorrowContainer");
@@ -817,6 +821,8 @@ public partial class UI : CanvasLayer {
 		BuildInfo.Visible = !BuildInfo.Visible;
 		ImportInfo.Visible = !ImportInfo.Visible;
 		if(Debt.Visible) {DebtInfo.Visible = !DebtInfo.Visible;}
+		MoneyInfoClosed.Visible = !MoneyInfoClosed.Visible;
+		MoneyInfoOpen.Visible = !MoneyInfoOpen.Visible;
 	}
 
 	// Updates the timelines and propagates the request up to the game loop

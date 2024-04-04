@@ -236,7 +236,7 @@ public partial class PowerPlant : Node2D {
 		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Land");
 		BioN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Bio");
-		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
+		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/LifeSpan");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 		AP = GetNode<AnimationPlayer>("AP");
 		AnimMoney = GetNode<Label>("Money");
