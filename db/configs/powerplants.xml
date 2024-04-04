@@ -275,4 +275,30 @@
         <param groupid="multiplier" id="capacity" type="int">5</param> <!-- The factor by which capacity is increased when a multiplier is applied -->
     
     </config>
+
+    <config id="geothermal">
+        <!-- Contains all of the parameters related to the powerplant -->
+        <!-- Such that they are grouped by parameter type -->
+        <param groupid="meta" id="build_cost" type="int">150</param> <!-- The cost of building this plant -->
+        <param groupid="meta" id="build_time" type="int">1</param> <!-- The number of turns the plant takes to be constructed -->
+        <param groupid="meta" id="life_cycle" type="int">11</param> <!-- The number of turns the plant will survive -->
+
+        <param groupid="energy" id="production_cost" type="int">0</param> <!-- The cost of maintaining this plant active every turn -->
+        <param groupid="energy" id="capacity" type="int">20</param> <!-- The capacity this plant has w.r.t. energy production -->
+        <param groupid="energy" id="availability_s" type="float">1</param> <!-- The percentage of the total capacity the plant can produce this turn -->
+        <param groupid="energy" id="availability_w" type="float">1</param>
+        
+        <param groupid="environment" id="pollution" type="int">0</param> <!-- The amount this plant pollutes -->
+        <param groupid="environment" id="land_use" type="float">0.02</param> <!-- The percentage of the total land area used up by this plant -->
+        <param groupid="environment" id="biodiversity" type="float">0.01</param> <!-- The amount by which this plant impacts the total biodiversity percentage -->
+
+        <param groupid="multiplier" id="max_elements" type="int">5</param> <!-- The maximum number of elements that this plant can contain --> 
+        <param groupid="multiplier" id="cost" type="int">50</param> <!-- The cost of adding an element to this power plant -->
+        <param groupid="multiplier" id="pollution" type="float">1.0</param> <!-- The factor by which pollution is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="land_use" type="float">1.2</param> <!-- The factor by which land use is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="biodiversity" type="float">1.1</param> <!-- The factor by which the biodiversity is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="production_cost" type="float">1.0</param> <!-- The factor by which the production cost is increased when a multiplier is applied -->
+        <param groupid="multiplier" id="capacity" type="int">2</param> <!-- The factor by which capacity is increased when a multiplier is applied -->
+    
+    </config>
 </db>

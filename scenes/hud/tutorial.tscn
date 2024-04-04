@@ -1,11 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://ciphd0cmpslrn"]
+[gd_scene load_steps=15 format=3 uid="uid://ciphd0cmpslrn"]
 
 [ext_resource type="Script" path="res://src/cs/ui/Tutorial.cs" id="1_xyv1m"]
+[ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="2_ob33a"]
 [ext_resource type="Texture2D" uid="uid://dyc87atrxvivu" path="res://assets/UI Elements/Paper_Info-1.png" id="2_rj886"]
 [ext_resource type="FontFile" uid="uid://deuo2u4mu60yb" path="res://assets/Fonts/static/OpenSans-Regular.ttf" id="3_llihj"]
 [ext_resource type="Texture2D" uid="uid://03lloca0uata" path="res://assets/Elements/ARROW INFO – 1.png" id="3_xv1gs"]
 [ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="4_ti5m6"]
+[ext_resource type="Texture2D" uid="uid://mwohu8ubla1b" path="res://assets/UpgradeSprite.png" id="4_yf1o7"]
 [ext_resource type="Texture2D" uid="uid://ikiclp3p8k8k" path="res://assets/key_tab_icon.png" id="5_mivsl"]
+
+[sub_resource type="Theme" id="Theme_dnnnk"]
 
 [sub_resource type="FontVariation" id="FontVariation_ha2te"]
 base_font = ExtResource("3_llihj")
@@ -60,6 +64,394 @@ offset_right = 1966.0
 offset_bottom = 1129.0
 color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
+
+[node name="InfoBubble" type="ColorRect" parent="."]
+visible = false
+show_behind_parent = true
+offset_left = 408.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = SubResource("Theme_dnnnk")
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="InfoBubble" type="MarginContainer" parent="InfoBubble"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 828.0
+offset_right = 391.0
+offset_bottom = 1032.0
+
+[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble/InfoBubble"]
+layout_mode = 2
+texture = ExtResource("2_ob33a")
+region_rect = Rect2(0, -2, 284, 192)
+patch_margin_left = 22
+patch_margin_top = 56
+patch_margin_right = 74
+patch_margin_bottom = 44
+metadata/_edit_group_ = true
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble/InfoBubble/InfoBubble"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-12, 66)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoBubble/InfoBubble"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 44
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble/InfoBubble/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Each turn, you have to reach the demand for summer and winter."
+fit_content = true
+scroll_active = false
+
+[node name="ColorRect" type="ColorRect" parent="InfoBubble"]
+layout_mode = 0
+offset_left = -408.0
+offset_bottom = 720.0
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect2" type="ColorRect" parent="InfoBubble"]
+layout_mode = 0
+offset_left = -408.0
+offset_top = 720.0
+offset_right = -217.0
+offset_bottom = 1080.0
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="InfoBubble2" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="InfoBubble2" type="MarginContainer" parent="InfoBubble2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 913.0
+offset_right = 253.0
+offset_bottom = 1033.0
+
+[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble2/InfoBubble2"]
+layout_mode = 2
+texture = ExtResource("2_ob33a")
+region_rect = Rect2(0, 0, 282, 190)
+patch_margin_left = 26
+patch_margin_top = 52
+patch_margin_right = 78
+patch_margin_bottom = 46
+metadata/_edit_group_ = true
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble2/InfoBubble2/InfoBubble"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-12, 66)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoBubble2/InfoBubble2"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 44
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble2/InfoBubble2/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Each turn, "
+fit_content = true
+scroll_active = false
+
+[node name="ColorRect3" type="ColorRect" parent="InfoBubble2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_right = -1728.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="InfoBubble3" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -512.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect3" type="ColorRect" parent="InfoBubble3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1408.0
+offset_right = 512.0
+offset_bottom = -440.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect4" type="ColorRect" parent="InfoBubble3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1408.0
+offset_top = 832.0
+offset_right = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect5" type="ColorRect" parent="InfoBubble3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1600.0
+offset_top = 640.0
+offset_right = 512.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="InfoBubble3" type="MarginContainer" parent="InfoBubble3"]
+layout_mode = 0
+offset_left = 1596.0
+offset_top = 667.0
+offset_right = 1834.0
+offset_bottom = 808.0
+
+[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble3/InfoBubble3"]
+layout_mode = 2
+texture = ExtResource("2_ob33a")
+region_rect = Rect2(0, -2, 282, 196)
+patch_margin_left = 48
+patch_margin_top = 50
+patch_margin_right = 66
+patch_margin_bottom = 50
+metadata/_edit_group_ = true
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble3/InfoBubble3/InfoBubble"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-12, 66)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoBubble3/InfoBubble3"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 44
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble3/InfoBubble3/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Each turn,"
+fit_content = true
+scroll_active = false
+
+[node name="InfoBubble4" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="Upgrade" type="Sprite2D" parent="InfoBubble4"]
+position = Vector2(-232, 168)
+texture = ExtResource("4_yf1o7")
+
+[node name="InfoBubble4" type="MarginContainer" parent="InfoBubble4"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 196.0
+offset_right = 288.0
+offset_bottom = 316.0
+
+[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble4/InfoBubble4"]
+layout_mode = 2
+texture = ExtResource("2_ob33a")
+region_rect = Rect2(0, 0, 280, 194)
+patch_margin_left = 22
+patch_margin_top = 46
+patch_margin_right = 64
+patch_margin_bottom = 46
+metadata/_edit_group_ = true
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble4/InfoBubble4/InfoBubble"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-12, 66)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoBubble4/InfoBubble4"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 44
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble4/InfoBubble4/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Each turn,"
+fit_content = true
+scroll_active = false
+
+[node name="ColorRect3" type="ColorRect" parent="InfoBubble4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -792.0
+offset_top = 336.0
+offset_right = -1128.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect4" type="ColorRect" parent="InfoBubble4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -792.0
+offset_right = -1272.0
+offset_bottom = -744.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect5" type="ColorRect" parent="InfoBubble4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_right = -1128.0
+offset_bottom = -880.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="InfoBubble5" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="InfoBubble5" type="MarginContainer" parent="InfoBubble5"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 22.0
+offset_right = 267.0
+offset_bottom = 142.0
+
+[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble5/InfoBubble5"]
+layout_mode = 2
+texture = ExtResource("2_ob33a")
+region_rect = Rect2(-2, 0, 284, 190)
+patch_margin_left = 28
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 44
+metadata/_edit_group_ = true
+
+[node name="Arrow" type="Sprite2D" parent="InfoBubble5/InfoBubble5/InfoBubble"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-12, 47)
+texture = ExtResource("3_xv1gs")
+region_rect = Rect2(24, 24, 30, 32)
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoBubble5/InfoBubble5"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 44
+
+[node name="Text" type="RichTextLabel" parent="InfoBubble5/InfoBubble5/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "Each turn"
+fit_content = true
+scroll_active = false
+
+[node name="ColorRect3" type="ColorRect" parent="InfoBubble5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -264.0
+offset_top = 112.0
+offset_right = -1704.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect4" type="ColorRect" parent="InfoBubble5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -264.0
+offset_right = -1800.0
+offset_bottom = -968.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
+
+[node name="ColorRect5" type="ColorRect" parent="InfoBubble5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_right = -1704.0
+offset_bottom = -1056.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 0.784314)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -152,203 +544,3 @@ autoplay = "Float"
 libraries = {
 "": SubResource("AnimationLibrary_b6dub")
 }
-
-[node name="InfoBubble" type="MarginContainer" parent="."]
-visible = false
-offset_left = 393.0
-offset_top = 828.0
-offset_right = 774.0
-offset_bottom = 1030.0
-
-[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble"]
-layout_mode = 2
-texture = ExtResource("2_rj886")
-region_rect = Rect2(0, 16, 592, 512)
-patch_margin_left = 48
-patch_margin_top = 56
-patch_margin_right = 48
-patch_margin_bottom = 64
-metadata/_edit_group_ = true
-
-[node name="Arrow" type="Sprite2D" parent="InfoBubble/InfoBubble"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-12, 66)
-texture = ExtResource("3_xv1gs")
-region_rect = Rect2(24, 24, 30, 32)
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoBubble"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 44
-
-[node name="Text" type="RichTextLabel" parent="InfoBubble/MarginContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-bbcode_enabled = true
-text = "Each turn, you have to reach the demand for summer and winter."
-fit_content = true
-scroll_active = false
-
-[node name="InfoBubble2" type="MarginContainer" parent="."]
-visible = false
-offset_left = 207.0
-offset_top = 913.0
-offset_right = 445.0
-offset_bottom = 1033.0
-
-[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble2"]
-layout_mode = 2
-texture = ExtResource("2_rj886")
-region_rect = Rect2(0, 16, 592, 512)
-patch_margin_left = 48
-patch_margin_top = 56
-patch_margin_right = 48
-patch_margin_bottom = 64
-metadata/_edit_group_ = true
-
-[node name="Arrow" type="Sprite2D" parent="InfoBubble2/InfoBubble"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-12, 66)
-texture = ExtResource("3_xv1gs")
-region_rect = Rect2(24, 24, 30, 32)
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoBubble2"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 44
-
-[node name="Text" type="RichTextLabel" parent="InfoBubble2/MarginContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-bbcode_enabled = true
-text = "Each turn, "
-fit_content = true
-scroll_active = false
-
-[node name="InfoBubble3" type="MarginContainer" parent="."]
-visible = false
-offset_left = 1596.0
-offset_top = 667.0
-offset_right = 1834.0
-offset_bottom = 787.0
-
-[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble3"]
-layout_mode = 2
-texture = ExtResource("2_rj886")
-region_rect = Rect2(0, 16, 592, 512)
-patch_margin_left = 48
-patch_margin_top = 56
-patch_margin_right = 48
-patch_margin_bottom = 64
-metadata/_edit_group_ = true
-
-[node name="Arrow" type="Sprite2D" parent="InfoBubble3/InfoBubble"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-12, 66)
-texture = ExtResource("3_xv1gs")
-region_rect = Rect2(24, 24, 30, 32)
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoBubble3"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 44
-
-[node name="Text" type="RichTextLabel" parent="InfoBubble3/MarginContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-bbcode_enabled = true
-text = "Each turn,"
-fit_content = true
-scroll_active = false
-
-[node name="InfoBubble4" type="MarginContainer" parent="."]
-visible = false
-offset_left = 875.0
-offset_top = 160.0
-offset_right = 1126.0
-offset_bottom = 280.0
-
-[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble4"]
-layout_mode = 2
-texture = ExtResource("2_rj886")
-region_rect = Rect2(0, 16, 592, 512)
-patch_margin_left = 48
-patch_margin_top = 56
-patch_margin_right = 48
-patch_margin_bottom = 64
-metadata/_edit_group_ = true
-
-[node name="Arrow" type="Sprite2D" parent="InfoBubble4/InfoBubble"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-12, 66)
-texture = ExtResource("3_xv1gs")
-region_rect = Rect2(24, 24, 30, 32)
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoBubble4"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 44
-
-[node name="Text" type="RichTextLabel" parent="InfoBubble4/MarginContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-bbcode_enabled = true
-text = "Each turn,"
-fit_content = true
-scroll_active = false
-
-[node name="InfoBubble5" type="MarginContainer" parent="."]
-visible = false
-offset_left = 249.0
-offset_top = 22.0
-offset_right = 496.0
-offset_bottom = 142.0
-
-[node name="InfoBubble" type="NinePatchRect" parent="InfoBubble5"]
-layout_mode = 2
-texture = ExtResource("2_rj886")
-region_rect = Rect2(0, 16, 592, 512)
-patch_margin_left = 48
-patch_margin_top = 56
-patch_margin_right = 48
-patch_margin_bottom = 64
-metadata/_edit_group_ = true
-
-[node name="Arrow" type="Sprite2D" parent="InfoBubble5/InfoBubble"]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-12, 47)
-texture = ExtResource("3_xv1gs")
-region_rect = Rect2(24, 24, 30, 32)
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoBubble5"]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 44
-
-[node name="Text" type="RichTextLabel" parent="InfoBubble5/MarginContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-bbcode_enabled = true
-text = "Each turn"
-fit_content = true
-scroll_active = false

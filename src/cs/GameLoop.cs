@@ -124,6 +124,7 @@ public partial class GameLoop : Node2D {
 		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Geothermal"));
 		
 
 		// Fill in build buttons
@@ -724,6 +725,7 @@ public partial class GameLoop : Node2D {
 		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Geothermal"));
 
 		// Fill in build buttons
 		BBs.Add(GetNode<BuildButton>("World/BuildButton"));

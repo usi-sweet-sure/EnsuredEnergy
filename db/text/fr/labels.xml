@@ -91,6 +91,7 @@ Energy
         <text id="label_biomass">Biomasse</text>
         <text id="label_river">Rivière</text>
         <text id="label_pump">Pompe</text>
+        <text id="label_geo">Geothermie</text>
     </group>
 
         <!-- Labels for the main menu -->

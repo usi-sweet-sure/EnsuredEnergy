@@ -937,6 +937,7 @@ public partial class PowerPlant : Node2D {
 			Info.Visible = true;
 			//ResRect.Visible = true;
 			// Toggle multiplier state if several elements are available
+			GD.Print(MultiplierMax);
 			if(MultiplierMax > 1) {
 				Multiplier.Visible = true;
 			}

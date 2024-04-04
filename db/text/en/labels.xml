@@ -109,6 +109,7 @@ Energy
         <text id="label_biomass">Biomass</text>
         <text id="label_river">River</text>
         <text id="label_pump">Pump</text>
+        <text id="label_geo">Geothermal</text>
     </group>
 
     <!-- Labels for the main menu -->

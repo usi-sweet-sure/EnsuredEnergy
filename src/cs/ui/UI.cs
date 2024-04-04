@@ -107,6 +107,7 @@ public partial class UI : CanvasLayer {
 	private Label BuildL;
 	private Label ProdL;
 	private Label ImportCostL;
+	private Label ImportCostL2;
 	private Label BudgetNext;
 	private Label TotalNow;
 	private Label TotalNext;
@@ -232,6 +233,7 @@ public partial class UI : CanvasLayer {
 		BuildL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName/build");
 		ProdL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName/prod");
 		ImportCostL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName/importamounts");
+		ImportCostL2 = GetNode<Label>("ImportEnergy-bar-metal/ImportCosts");
 		BudgetNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNext");
 		TotalNow = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNow");
 		TotalNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNext");
@@ -334,6 +336,7 @@ public partial class UI : CanvasLayer {
 		string biomass_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_biomass");
 		string river_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_river");
 		string pump_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_pump");
+		string geo_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_geo");
 
 		// Fetch the energy bar names
 		string WinterEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_w");
@@ -702,7 +705,7 @@ public partial class UI : CanvasLayer {
 	}
 
 	// Sets the information related to the money metric
-	private void SetMoneyInfo() {
+	public void SetMoneyInfo() {
 		// Query the label xml to get the names
 		string money_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_money");
 		string budget_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_budget");
@@ -724,7 +727,7 @@ public partial class UI : CanvasLayer {
 		ProdL.Text = "-" + Data.Production.ToString();
 		MoneyL.Text = Data.Money.ToString();
 		ImportCostL.Text = "-" + Data.Imports.ToString();
-		GD.Print(Data.Money, GameLoop.BUDGET_PER_TURN);
+		ImportCostL2.Text = Data.Imports.ToString();
 		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
 		BudgetNext.Text = BudgetNextN.ToString();
 		TotalNow.Text = Data.Money.ToString();

@@ -424,11 +424,10 @@ texture = ExtResource("7_fjg03")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 2
 position = Vector2(-1, 44)
-scale = Vector2(0.8, 0.8)
 
 [node name="BuildInfo" type="Control" parent="."]
 visible = false
-z_index = 1
+z_index = 2
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
@@ -1137,11 +1136,12 @@ script = ExtResource("3_runxt")
 
 [node name="Delete" type="Button" parent="."]
 z_index = 1
-offset_left = 106.0
-offset_top = -141.0
-offset_right = 137.0
-offset_bottom = -110.0
+offset_left = 143.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = -144.0
 focus_mode = 0
+theme_override_font_sizes/font_size = 30
 text = "X"
 
 [node name="InfoButton" type="Button" parent="."]

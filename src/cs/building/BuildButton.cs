@@ -37,6 +37,7 @@ public partial class BuildButton : TextureButton {
 	public const string BIOMASS_NAME = "Biomass";
 	public const string RIVER_NAME = "River";
 	public const string PUMP_NAME = "Pump";
+	public const string GEO_NAME = "Geothermal";
 
 	// Signal used to trigger the showing of the build menu
 	[Signal]
@@ -68,9 +69,11 @@ public partial class BuildButton : TextureButton {
 	private PowerPlant PumpPlant;
 	
 	// Building sprite
+	private ColorRect BuildingInfo;
 	private Sprite2D BuildSprite;
+	private Sprite2D PlantSprite;
 	private Label TL;
-	private Label Hammer;
+	private Sprite2D Hammer;
 
 	// Build cancellation button
 	private Button Cancel;
@@ -130,13 +133,15 @@ public partial class BuildButton : TextureButton {
 		RiverPlant._SetBuildButton(this);
 		PumpPlant._SetBuildButton(this);
 		
-		BuildSprite = GetNode<Sprite2D>("Building");
-		TL = GetNode<Label>("Building/ColorRect/TurnsLeft");
+		BuildSprite = GetNode<Sprite2D>("BuildingInfo/Building");
+		PlantSprite = GetNode<Sprite2D>("BuildingInfo/Planting");
+		BuildingInfo = GetNode<ColorRect>("BuildingInfo");
+		TL = GetNode<Label>("BuildingInfo/TurnsLeft");
 		Cancel = GetNode<Button>("Cancel");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 		AnimMoney = GetNode<Label>("Money");
 		BuildingSound = GetNode<AudioStreamPlayer2D>("BuildingSound");
-		Hammer = GetNode<Label>("Hammer");
+		Hammer = GetNode<Sprite2D>("Hammer");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -157,6 +162,7 @@ public partial class BuildButton : TextureButton {
 
 		// Connect the button press callback
 		Pressed += _OnPressed;
+		MouseEntered += _OnHover;
 	}
 
 	// ==================== Public API ====================
@@ -195,7 +201,7 @@ public partial class BuildButton : TextureButton {
 	// Resets the build button
 	public void _Reset() {
 		// Cancel all current builds
-		if(BuildSprite.Visible) {
+		if(BuildingInfo.Visible) {
 			_OnCancelPressed();
 		}
 		// Hide all associated plants
@@ -224,7 +230,11 @@ public partial class BuildButton : TextureButton {
 		TurnsToBuild = PP.BuildTime;
 
 		// Update the button
-		SetToBuild();
+		if(PP.PlantType.type == Building.Type.TREE) {
+			SetToBuild(true);
+		} else {
+			SetToBuild(false);
+		}
 	}
 
 	// Finalizes the current Build
@@ -274,9 +284,14 @@ public partial class BuildButton : TextureButton {
 	}
 
 	// Sets the button to the build state
-	private void SetToBuild() {
-		BuildingSound.Play();
-		BuildSprite.Show();
+	private void SetToBuild(bool tree = false) {
+		BuildingInfo.Show();
+		if(tree){
+			PlantSprite.Show();
+		} else {
+			BuildSprite.Show();
+			BuildingSound.Play();
+		}
 		TL.Text = TurnsToBuild.ToString() + "⌛";
 		Disabled = true;
 	}
@@ -294,7 +309,9 @@ public partial class BuildButton : TextureButton {
 		RiverPlant.Hide();
 		PumpPlant.Hide();
 		
+		BuildingInfo.Hide();
 		BuildSprite.Hide();
+		PlantSprite.Hide();
 	}
 
 	// Wrapper for a more specific call depending on the selected plant type
@@ -354,7 +371,7 @@ public partial class BuildButton : TextureButton {
 	// Updates a given power plant to match the received power plant
 	private void UpdatePowerPlant(ref PowerPlant PP, PowerPlant PPRec) {
 		// Set it up to display at our button's location
-		PP.Position = new Vector2(112,88);
+		PP.Position = new Vector2(370,80);
 		PP.Scale = new Vector2(1, 1);
 		PP.IsPreview = false;
 		PP.BuildCost = PPRec.BuildCost;
@@ -376,7 +393,7 @@ public partial class BuildButton : TextureButton {
 		// Make sure that the data is propagated to the UI
 		PP._UpdatePlantData();
 		PP.Show();
-		BuildSprite.Hide();
+		BuildingInfo.Hide();
 
 		// Add the building to the power plant list
 		EmitSignal(SignalName.UpdateBuildSlot, this, PP, false);
@@ -390,6 +407,12 @@ public partial class BuildButton : TextureButton {
 		if(BS == BuildState.IDLE) {
 			BM.Show();
 			EmitSignal(SignalName.ShowBuildMenu, this);
+		}
+	}
+	
+	public void _OnHover() {
+		if(!AP.IsPlaying()) {
+			AP.Play("HammerHit");
 		}
 	}
 

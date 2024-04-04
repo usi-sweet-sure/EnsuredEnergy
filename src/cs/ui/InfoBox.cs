@@ -41,6 +41,9 @@ public partial class InfoBox : Control {
 	private Label InfoText2;
 	private Label InfoN;
 	private Label InfoN2;
+	
+	private NinePatchRect BubbleClosed;
+	private NinePatchRect BubbleOpen;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -61,6 +64,8 @@ public partial class InfoBox : Control {
 		InfoText = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/InfoText");
 		InfoText2 = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/InfoText2");
 	
+		BubbleClosed = GetNode<NinePatchRect>("MarginContainer/BubbleClosed");
+		BubbleOpen = GetNode<NinePatchRect>("MarginContainer/BubbleOpen");
 		
 		InfoButton.Pressed += _OnMoreInfoPressed;
 	}
@@ -106,5 +111,7 @@ public partial class InfoBox : Control {
 		InfoText.Visible = !InfoText.Visible;
 		InfoText2.Visible = !InfoText2.Visible;
 		labels[0].Visible = !labels[0].Visible;
+		BubbleClosed.Visible = !BubbleClosed.Visible;
+		BubbleOpen.Visible = !BubbleOpen.Visible;
 	}
 }

@@ -58,13 +58,13 @@ public partial class Camera : Camera2D {
 			foreach (Node2D Plant in GetTree().GetNodesInGroup("PP")) {
 				// Create an animation for the zoom
 				Tween TweenScale = CreateTween();
-				TweenScale.TweenProperty(Plant, "scale", new Vector2(1,1) / (ZoomVal*2f), 0.3f);
+				TweenScale.TweenProperty(Plant, "scale", new Vector2(1,1) / (ZoomVal*2.5f), 0.3f);
 			}
 
 			// Do the same for all buildbuttons
 			foreach (TextureButton BuildButton in GetTree().GetNodesInGroup("BB")) {
 				Tween TweenScale = CreateTween();
-				TweenScale.TweenProperty(BuildButton, "scale", new Vector2(1,1) / (ZoomVal*2f), 0.3f);
+				TweenScale.TweenProperty(BuildButton, "scale", new Vector2(1,1) / (ZoomVal*2.5f), 0.3f);
 			}
 		}
 	}
@@ -105,7 +105,8 @@ public partial class Camera : Camera2D {
 					// Make sure that we clamp the zoom to avoid seeing out of the scene
 					if(Zoom > ZOOM_MIN) {
 						// Udpate the zoom using a fancy animation to smoothen the transition
-						ZoomVal = Zoom - ZOOM_SPEED;
+						var NewZoom = Zoom - ZOOM_SPEED;
+						ZoomVal = NewZoom.Clamp(ZOOM_MIN, ZOOM_MAX);
 						Tween TweenZoomIn = CreateTween();
 						TweenZoomIn.TweenProperty(this, "zoom", ZoomVal, 0.3f);
 						ScalePlants(ZoomVal);
@@ -116,7 +117,8 @@ public partial class Camera : Camera2D {
 					// Make sure we can't over zoom
 					if(Zoom < ZOOM_MAX) {
 						// Update the zoom using a fancy animation
-						ZoomVal = Zoom + ZOOM_SPEED;
+						var NewZoom = Zoom + ZOOM_SPEED;
+						ZoomVal = NewZoom.Clamp(ZOOM_MIN, ZOOM_MAX);
 						Tween TweenZoomOut = CreateTween();
 						TweenZoomOut.TweenProperty(this, "zoom", ZoomVal, 0.3f);
 						ScalePlants(ZoomVal);

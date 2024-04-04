@@ -91,6 +91,7 @@ Energy
         <text id="label_biomass">Biomassa</text>
         <text id="label_river">Fiume</text>
         <text id="label_pump">Idroelettrico + Pompaggio</text>
+        <text id="label_geo">Geothermal</text>
     </group>
 
         <!-- Labels for the main menu -->
