@@ -30,7 +30,36 @@
         <text id="label_budget">Budget</text>
         <text id="label_building">Construction</text>
         <text id="label_production">Production</text>
+        <text id="label_import">Import</text>
         <text id="label_import_pol">Pollution de l'importation</text>
+        <text id="label_now">Now</text>
+        <text id="label_next_turn">Next Turn</text>
+        <text id="label_total">Total</text>
+    </group>
+
+    <group id="moreinfo">
+        <text id="biodiversity_info">Biodiversity shows the environmental impact of the energy system. The higher the score, the more can animals and plants thrive in their natural habitats. Most power plants negatively affect biodiversity because they require lots of land and water.</text>
+        <text id="landuse_info">Land use shows how much land is used by the energy system. The smaller the indicator, the less impact from the energy system on land use. Some power plants need more land than others. This can negatively impact biodiversity.</text>
+        <text id="pollution_info">CO2 emission shows how much greenhouse gas is released by the energy system. Lower emissions mean a lower impact on global warming. Some power plants emit CO2. Switzerland has decided to be carbon neutral and reach net zero by 2050.</text>
+        <text id="importCO2_info">Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.</text>
+        <text id="support_info">Political support shows how popular your decisions are. The higher the support the more options in policy choices you have.</text>
+        <text id="demand_summer">Energy demand in summer tends to be lower than winter because the need for cooling is lower than the need for heating in winter.</text>
+        <text id="demand_winter">In winter, energy demand is higher due to the need for heating. Switzerland often has to import the missing energy supply.</text>
+        <text id="energy_goal">You need to reach the demand in energy. The target is the white line on the energy bar.</text>
+        <text id="budget_info">The budget shows you how much money you have and can spend. You start the game with 500.- and at the beginning of each turn receive 300.-.</text>
+        <text id="prod_info">Some power plants have production costs because they need materials to run.</text>
+        <text id="building_info">Indicates how much you have spent on building or upgrading power plants.</text>
+        <text id="import_info">Indicates how much you will be spending on imports. Clean imports cost N more.</text>
+        <text id="debt_info">Indicated how much money you owe.</text>
+        <text id="biomass_info">Biomass power plants use wood and organic waste to generate electricity.</text>
+        <text id="wind_info">Wind power plants use wind to create electricity.</text>
+        <text id="solar_info">Solar power plants use the sunlight to produce electricity.</text>
+        <text id="gas_info">Gas power plants burn natural gas to produce electricity.</text>
+        <text id="waste_info">Waste power plants burn waste from households and industries to produce electricity.</text>
+        <text id="hydro_info">Hydropower plants use dams to capture water and produce electricity.</text>
+        <text id="river_info">River power plants use the water flow in rivers to produce electricity.</text>
+        <text id="dam_info">Pump storages use gravity to store excess electricity and release electricity when it is needed subsequently.</text>
+        <text id="nuclear_info">Nuclear power plants use nuclear reactions to produce electricity.</text>
     </group>
 
     <!-- Labels used in the policies window -->
@@ -40,6 +69,8 @@
         <text id="label_popularity">Popularité estimée auprès des électeurs:</text>
         <text id="label_campaign">Durée de la campagne:</text>
         <text id="label_camp_start">La campagne a été lancée!</text>
+        <text id="label_vote">Vote</text>
+        <text id="label_start">Start</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -60,6 +91,8 @@
         <text id="label_debt">Remboursez (au prochain tour)</text>
         <text id="apply_button">Confirmer</text>
         <text id="cancel_button">Annuler</text>
+        <text id="nuclear_shutdown">Shutting down in</text>
+        <text id="nuclear_warning">Nuclear shutting down next turn ⚠️</text>
     </group>
 
      <!-- Labels for the main menu -->
