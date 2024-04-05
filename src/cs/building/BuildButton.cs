@@ -74,6 +74,11 @@ public partial class BuildButton : TextureButton {
 	private Sprite2D PlantSprite;
 	private Label TL;
 	private Sprite2D Hammer;
+	private Label PlantName;
+	private Label WinterE;
+	private Label SummerE;
+	private Button BuildInfoB;
+	private Sprite2D Plate;
 
 	// Build cancellation button
 	private Button Cancel;
@@ -142,6 +147,11 @@ public partial class BuildButton : TextureButton {
 		AnimMoney = GetNode<Label>("Money");
 		BuildingSound = GetNode<AudioStreamPlayer2D>("BuildingSound");
 		Hammer = GetNode<Sprite2D>("Hammer");
+		PlantName = GetNode<Label>("BuildingInfo/Building/Plate/PlantName");
+		WinterE = GetNode<Label>("BuildingInfo/Building/Plate/WinterE/WinterE");
+		SummerE = GetNode<Label>("BuildingInfo/Building/Plate/SummerE/SummerE");
+		BuildInfoB = GetNode<Button>("BuildingInfo/Building/BuildingInfo");
+		Plate = GetNode<Sprite2D>("BuildingInfo/Building/Plate");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -152,6 +162,7 @@ public partial class BuildButton : TextureButton {
 		// Connect the onShowBuildMenu callback to our signal
 		ShowBuildMenu += BM._OnShowBuildMenu;
 		Cancel.Pressed += _OnCancelPressed;
+		BuildInfoB.Pressed += _OnBuildInfoPressed;
 
 		// Make sure that the location is set correctly
 		if(AllowHydro) {
@@ -233,6 +244,10 @@ public partial class BuildButton : TextureButton {
 		if(PP.PlantType.type == Building.Type.TREE) {
 			SetToBuild(true);
 		} else {
+			PlantName.Text = PP.Name;
+			SummerE.Text = (PP._GetCapacity() * PP._GetAvailability().Item2).ToString("0");
+			WinterE.Text = (PP._GetCapacity() * PP._GetAvailability().Item1).ToString("0");
+			
 			SetToBuild(false);
 		}
 	}
@@ -502,5 +517,9 @@ public partial class BuildButton : TextureButton {
 
 		// Reset the build state
 		BS = BuildState.IDLE;
+	}
+	
+	private void _OnBuildInfoPressed() {
+		Plate.Visible = !Plate.Visible;
 	}
 }

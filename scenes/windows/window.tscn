@@ -267,6 +267,7 @@ theme_override_font_sizes/font_size = 25
 text = "VOTE"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="Button-hole" type="Sprite2D" parent="Control/Policies-base-2/Vote"]
 show_behind_parent = true

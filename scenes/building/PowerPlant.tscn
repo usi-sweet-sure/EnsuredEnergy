@@ -1185,13 +1185,13 @@ shape = SubResource("RectangleShape2D_hky5x")
 [node name="LifeSpanWarning" type="Label" parent="."]
 visible = false
 z_index = 1
-offset_left = 72.0
-offset_top = 64.0
-offset_right = 119.0
-offset_bottom = 111.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 205.0
+offset_bottom = 205.0
 tooltip_text = "Shutting down next turn"
 mouse_filter = 0
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 56
 text = "⚠️"
 
 [node name="NoMoney" type="Label" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=102 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -711,6 +711,9 @@ spacing_glyph = 1
 [sub_resource type="FontVariation" id="FontVariation_1sp4q"]
 base_font = ExtResource("53_v477p")
 
+[sub_resource type="FontVariation" id="FontVariation_lnt6a"]
+base_font = ExtResource("51_joowr")
+
 [node name="UI" type="CanvasLayer"]
 follow_viewport_enabled = true
 
@@ -914,7 +917,7 @@ offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
-max_value = 500.0
+max_value = 200.0
 
 [node name="Target" parent="EnergyBarSummerPredict" index="0"]
 visible = false
@@ -934,7 +937,7 @@ offset_left = 237.0
 offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
-max_value = 500.0
+max_value = 200.0
 
 [node name="Target" parent="EnergyBarWinterPredict" index="0"]
 visible = false
@@ -954,7 +957,7 @@ offset_top = 975.0
 offset_right = 428.0
 offset_bottom = 1016.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
-max_value = 500.0
+max_value = 200.0
 
 [node name="Target" parent="EnergyBarWinter" index="0"]
 position = Vector2(-195, -609.5)
@@ -981,7 +984,7 @@ offset_right = 494.0
 offset_bottom = 1017.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-max_value = 500.0
+max_value = 200.0
 
 [node name="Target" parent="EnergyBarSummer" index="0"]
 position = Vector2(-331, -609.5)
@@ -996,7 +999,7 @@ rotation = 1.5708
 metadata/_edit_group_ = true
 
 [node name="InfoText" parent="EnergyBarSummer/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
-text = "Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.
+text = "Energy demand in summer tends to be lower than winter because the need for cooling is lower than the need for heating in winter.
 "
 
 [node name="InfoText2" parent="EnergyBarSummer/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
@@ -1246,8 +1249,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InfoText" parent="Trust/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="1"]
-text = "Political support shows how popular your decisions are. The higher the support the more options in policy choices you have.
-"
+text = "Political support shows how popular your decisions are. The higher the support the more options in policy choices you have."
 
 [node name="InfoText2" parent="Trust/BarInfo/MarginContainer/MarginContainer/VBoxContainer" index="3"]
 text = ""
@@ -1351,7 +1353,6 @@ flat = true
 [node name="Bar" type="Sprite2D" parent="Env"]
 position = Vector2(45, 36)
 texture = ExtResource("38_jqypa")
-flip_h = true
 
 [node name="Arrow" type="Sprite2D" parent="Env"]
 position = Vector2(47, 63)
@@ -1621,7 +1622,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 14
-text = "The budget shows you how much money you have and can spend. You start the game with 700.- and at the beginning of each turn receive 280.-."
+text = "The budget shows you how much money you have and can spend. You start the game with 500.- and at the beginning of each turn receive 300.-."
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1752,7 +1753,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_aj2ar")
 theme_override_font_sizes/font_size = 20
-text = "Info about the loan blablablabla"
+text = "Indicated how much money you owe."
 autowrap_mode = 3
 
 [node name="TotalName" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer"]
@@ -2323,6 +2324,28 @@ texture = ExtResource("55_5s2up")
 visible = false
 position = Vector2(638, 380)
 texture = ExtResource("54_7juy1")
+
+[node name="NuclearWarning" type="Label" parent="."]
+offset_left = 1584.0
+offset_top = 824.0
+offset_right = 1880.0
+offset_bottom = 886.0
+theme_override_colors/font_shadow_color = Color(0.0745098, 0.0745098, 0.0745098, 0.905882)
+theme_override_fonts/font = SubResource("FontVariation_lnt6a")
+theme_override_font_sizes/font_size = 20
+text = "Nuclear plant shutting down next turn ⚠️"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="NuclearWarning"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.576471, 0.576471, 0.576471, 0.396078)
 
 [editable path="EnergyBarSummerPredict"]
 [editable path="EnergyBarWinterPredict"]

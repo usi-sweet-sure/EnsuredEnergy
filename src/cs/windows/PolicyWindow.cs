@@ -34,12 +34,15 @@ public partial class PolicyWindow : CanvasLayer {
 	private const string POP_LABEL = "label_popularity";
 	private const string CAMPAIGN_LABEL = "label_campaign";
 	private const string CAMPAIGN_START_LABEL = "label_camp_start";
+	private const string VOTE_LABEL = "label_vote";
+	private const string START_LABEL = "label_start";
 
 	// ==================== Children Nodes ====================
 
 	private ColorRect P;
 	private AnimationPlayer AP;
 	public TextureButton Vote;
+	private Label VoteL;
 	private TextureButton WindButton;
 	private ButtonGroup PolicyGroup;
 	private TextureButton PressedPolicy;
@@ -77,6 +80,7 @@ public partial class PolicyWindow : CanvasLayer {
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 		VoteResult = GetNode<Label>("Control/Policies-base-2/Vote/VoteResult");
 		Vote = GetNode<TextureButton>("Control/Policies-base-2/Vote");
+		VoteL = GetNode<Label>("Control/Policies-base-2/Vote/VoteL");
 		WindButton = GetNode<TextureButton>("Control/PoliciesBase-1/Wind_buildtime");
 		Implemented = GetNode<Label>("Control/Policies-base-2/Implemented");
 
@@ -166,6 +170,7 @@ public partial class PolicyWindow : CanvasLayer {
 			// Update the information related to the duration
 			CampaignL.Text = TC._GetText(LABEL_FILENAME, POLICY_GROUP, CAMPAIGN_LABEL);
 			LengthL.Text = PC._GetCampaignLength(PressedPolicy.Name).ToString();
+			VoteL.Text = TC._GetText(LABEL_FILENAME, POLICY_GROUP, START_LABEL);
 
 			PopL.Hide();
 			Pop.Hide();
@@ -198,6 +203,7 @@ public partial class PolicyWindow : CanvasLayer {
 			// Update the text that shows the info about the vote itself
 			PopL.Text = TC._GetText(LABEL_FILENAME, POLICY_GROUP, POP_LABEL);
 			Pop.Value = C._GetGL()._GetPM()._GetRealProb(PressedPolicy.Name) * 100.0f;
+			VoteL.Text = TC._GetText(LABEL_FILENAME, POLICY_GROUP, VOTE_LABEL);
 
 			PopL.Show();
 			Pop.Show();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=77 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://cscbpxipqlaqj" path="res://assets/new Power plants/Power plants/Power_Plants_4-Free-Slot.png" id="1_h0npr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
@@ -28,8 +28,15 @@
 [ext_resource type="Texture2D" uid="uid://tep3shxoy2eg" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0004_Water-2.png" id="20_h55rh"]
 [ext_resource type="Texture2D" uid="uid://doe7y0txnwax7" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0005_Water-3.png" id="21_g2ord"]
 [ext_resource type="AudioStream" uid="uid://xl4bsmv07wdo" path="res://assets/Sounds/Coin and Purse 09.wav" id="22_2vpu6"]
+[ext_resource type="Texture2D" uid="uid://xyxroar1ffyt" path="res://assets/UI Elements/Envirornment-Bar-Metal.png" id="22_bcf67"]
 [ext_resource type="AudioStream" uid="uid://c3jt3ou2rb68h" path="res://assets/Sounds/HammerHits.wav" id="22_pqfvq"]
+[ext_resource type="FontFile" uid="uid://deuo2u4mu60yb" path="res://assets/Fonts/static/OpenSans-Regular.ttf" id="23_eoefj"]
 [ext_resource type="AudioStream" uid="uid://bk0byrjhpqlci" path="res://assets/Sounds/Demolish 1_5.wav" id="23_jy6ch"]
+[ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" id="24_dflgu"]
+[ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" id="25_84rhs"]
+[ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="26_op5m0"]
+[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="27_7gwym"]
+[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="28_unkh5"]
 [ext_resource type="AudioStream" uid="uid://bh4vh46r7qk7l" path="res://assets/Sounds/Build Loop 11.wav" id="29_8u4wm"]
 
 [sub_resource type="Animation" id="Animation_q0r05"]
@@ -939,6 +946,17 @@ _data = {
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vwjw"]
 atlas = ExtResource("20_32s1v")
 region = Rect2(4, 194, 696, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24gml"]
+atlas = ExtResource("22_bcf67")
+region = Rect2(0, 6, 334, 150)
+
+[sub_resource type="FontVariation" id="FontVariation_trk67"]
+base_font = ExtResource("23_eoefj")
+
+[sub_resource type="FontVariation" id="FontVariation_b84m0"]
+base_font = ExtResource("26_op5m0")
+spacing_glyph = 6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k81xh"]
 atlas = ExtResource("20_110sn")
@@ -2337,7 +2355,6 @@ libraries = {
 }
 
 [node name="BuildingInfo" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -2366,12 +2383,95 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Building" type="Sprite2D" parent="BuildingInfo"]
-visible = false
 show_behind_parent = true
 position = Vector2(-213, -265)
 scale = Vector2(0.8, 0.8)
 texture = SubResource("AtlasTexture_6vwjw")
 centered = false
+
+[node name="Plate" type="Sprite2D" parent="BuildingInfo/Building"]
+visible = false
+position = Vector2(346.25, -140)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_24gml")
+
+[node name="PlantName" type="Label" parent="BuildingInfo/Building/Plate"]
+offset_left = -161.0
+offset_top = -60.0
+offset_right = 160.0
+offset_bottom = -4.0
+theme_override_fonts/font = SubResource("FontVariation_trk67")
+theme_override_font_sizes/font_size = 28
+text = "NAME"
+horizontal_alignment = 1
+
+[node name="WinterE" type="Sprite2D" parent="BuildingInfo/Building/Plate"]
+position = Vector2(-69, 18)
+texture = ExtResource("24_dflgu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BuildingInfo/Building/Plate/WinterE"]
+position = Vector2(9, 0)
+texture = ExtResource("25_84rhs")
+
+[node name="Sprite2D3" type="Sprite2D" parent="BuildingInfo/Building/Plate/WinterE"]
+position = Vector2(29, 0)
+texture = ExtResource("25_84rhs")
+
+[node name="WinterE" type="Label" parent="BuildingInfo/Building/Plate/WinterE"]
+offset_left = -11.0
+offset_top = -17.0
+offset_right = 37.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_fonts/font = SubResource("FontVariation_b84m0")
+theme_override_font_sizes/font_size = 24
+text = "10"
+horizontal_alignment = 2
+
+[node name="SummerE" type="Sprite2D" parent="BuildingInfo/Building/Plate"]
+position = Vector2(59, 18)
+texture = ExtResource("24_dflgu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BuildingInfo/Building/Plate/SummerE"]
+position = Vector2(9, 0)
+texture = ExtResource("25_84rhs")
+
+[node name="Sprite2D3" type="Sprite2D" parent="BuildingInfo/Building/Plate/SummerE"]
+position = Vector2(29, 0)
+texture = ExtResource("25_84rhs")
+
+[node name="SummerE" type="Label" parent="BuildingInfo/Building/Plate/SummerE"]
+offset_left = -11.0
+offset_top = -17.0
+offset_right = 37.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_fonts/font = SubResource("FontVariation_b84m0")
+theme_override_font_sizes/font_size = 24
+text = "10"
+horizontal_alignment = 2
+
+[node name="Summer" type="Sprite2D" parent="BuildingInfo/Building/Plate"]
+position = Vector2(27, 18)
+texture = ExtResource("27_7gwym")
+
+[node name="Winter" type="Sprite2D" parent="BuildingInfo/Building/Plate"]
+position = Vector2(-101, 18)
+texture = ExtResource("28_unkh5")
+
+[node name="BuildingInfo" type="Button" parent="BuildingInfo/Building"]
+anchors_preset = -1
+anchor_left = 0.052
+anchor_top = 0.089
+anchor_right = 0.957
+anchor_bottom = 0.867
+offset_left = -0.192001
+offset_top = -0.0499992
+offset_right = -0.0720215
+offset_bottom = -0.150024
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="Planting" type="Sprite2D" parent="BuildingInfo"]
 visible = false
@@ -2380,6 +2480,8 @@ position = Vector2(-242, -277)
 scale = Vector2(0.8, 0.8)
 texture = SubResource("AtlasTexture_k81xh")
 centered = false
+
+[node name="Area2D" type="Area2D" parent="BuildingInfo"]
 
 [node name="Waste" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
