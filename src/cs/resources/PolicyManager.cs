@@ -107,7 +107,7 @@ public partial class PolicyManager : Node {
 
 		// return the final result
 		return  Math.Max(0.0f, Math.Min(
-			baseWBonus - (baseWBonus * (req - support)),
+			baseWBonus - (0.01f * baseWBonus * (req - support)),
 		1.0f));
 	}
 

@@ -149,7 +149,7 @@
 
     <shock id="dec_raw_cost_20" tag="env">
         <name>Riduzione dei prezzi dei materiali</name>
-        <img>money</img>
+        <img>receive</img>
         <text>Il prezzo delle matere prime è dimumito. Il costo di produzione diminuisce del 10%.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -165,7 +165,7 @@
 
     <shock id="no_shock" tag="env">
         <name>In questi anni non ci sono variazioni signficative</name>
-        <img>money</img>
+        <img>sunrise</img>
         <text>Gli anni passati sono stati piu calmi del solito.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -271,7 +271,7 @@
 
     <shock id="renewables_support" tag="env">
         <name>La popolarità verso le rinnovabili è aumentata</name>
-        <img>people</img>
+        <img>flower</img>
         <text>C'è stato un aumento del supporto politico per l'energia rinnovabile.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">

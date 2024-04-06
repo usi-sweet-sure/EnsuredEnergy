@@ -389,21 +389,6 @@ button_group = ExtResource("4_wme6q")
 [node name="Label" parent="Control/PoliciesBase-1/Upgrade_PV" index="1"]
 text = "☀️"
 
-[node name="Upgrade_wind" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
-anchors_preset = -1
-anchor_left = 0.486
-anchor_top = 0.787
-anchor_right = 0.486
-anchor_bottom = 0.787
-offset_left = -217.922
-offset_top = -464.499
-offset_right = -88.922
-offset_bottom = -384.499
-button_group = ExtResource("4_wme6q")
-
-[node name="Label" parent="Control/PoliciesBase-1/Upgrade_wind" index="1"]
-text = "💨"
-
 [node name="Wind_buildtime" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
 anchors_preset = -1
 anchor_left = 0.472
@@ -411,13 +396,28 @@ anchor_top = 0.185
 anchor_right = 0.472
 anchor_bottom = 0.185
 offset_left = -213.344
-offset_top = 108.255
+offset_top = 4.255
 offset_right = -84.344
-offset_bottom = 188.255
+offset_bottom = 84.255
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-1/Wind_buildtime" index="1"]
 text = "🔨"
+
+[node name="Upgrade_wind" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
+anchors_preset = -1
+anchor_left = 0.486
+anchor_top = 0.787
+anchor_right = 0.486
+anchor_bottom = 0.787
+offset_left = -217.922
+offset_top = -359.499
+offset_right = -88.922
+offset_bottom = -279.499
+button_group = ExtResource("4_wme6q")
+
+[node name="Label" parent="Control/PoliciesBase-1/Upgrade_wind" index="1"]
+text = "💨"
 
 [node name="Icon-environment-" type="Sprite2D" parent="Control/PoliciesBase-1"]
 position = Vector2(-2, -208)
@@ -540,8 +540,8 @@ libraries = {
 
 [editable path="Control/PoliciesBase-1/campaign_env"]
 [editable path="Control/PoliciesBase-1/Upgrade_PV"]
-[editable path="Control/PoliciesBase-1/Upgrade_wind"]
 [editable path="Control/PoliciesBase-1/Wind_buildtime"]
+[editable path="Control/PoliciesBase-1/Upgrade_wind"]
 [editable path="Control/PoliciesBase-2/campaign_demand"]
 [editable path="Control/PoliciesBase-2/home_regulation"]
 [editable path="Control/PoliciesBase-2/industry_subsidy"]

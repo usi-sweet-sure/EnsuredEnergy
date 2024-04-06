@@ -163,7 +163,7 @@
 
     <shock id="dec_raw_cost_20" tag="env">
         <name>Reduction of material costs</name>
-        <img>money</img>
+        <img>receive</img>
         <text>The prices of raw material have decreased resulting in production costs going down by 10%.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -171,7 +171,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>- 10% production costs $</text>
+            <text>Receive + 50 $</text>
             <effect field="support" value="0"/>
             <effect field="money" value="50"/>
         </reward>
@@ -179,7 +179,7 @@
 
     <shock id="no_shock" tag="env">
         <name>Calm years</name>
-        <img>money</img>
+        <img>sunrise</img>
         <text>The past years were calmer than usual.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
@@ -285,7 +285,7 @@
 
     <shock id="renewables_support" tag="env">
         <name>Increase in support</name>
-        <img>people</img>
+        <img>flower</img>
         <text>There was an increase in political support for renewable energies.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
