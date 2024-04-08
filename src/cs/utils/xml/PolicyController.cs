@@ -83,7 +83,7 @@ public partial class PolicyController : XMLController {
 	public float _GetPolicyProba(string id) => float.Parse(GetField("policy", id, "probability"));
 
     // Retrieves the campaign's name from the policies xml file given the id
-	public string _GetCampaigName(string id) => GetField("campaign", id, "name");
+	public string _GetCampaignName(string id) => GetField("campaign", id, "name");
 
 	// Retrieve the tag associated with a given campaign
 	public string _GetCampaignTag(string id) => _GetTag("campaign", id);

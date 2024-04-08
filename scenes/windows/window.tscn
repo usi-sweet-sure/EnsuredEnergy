@@ -134,6 +134,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Text" type="Label" parent="Control/Policies-base-2/PolicyName"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 55.0
+offset_right = 160.0
+offset_bottom = 228.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
+theme_override_font_sizes/font_size = 15
+text = "Information campaigns help boost the popularity of your policies."
+autowrap_mode = 3
+
 [node name="SelectPolicy" type="Label" parent="Control/Policies-base-2"]
 visible = false
 offset_left = -148.0
@@ -145,20 +160,6 @@ theme_override_font_sizes/font_size = 25
 text = "- Select Policy -"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="Text" type="Label" parent="Control/Policies-base-2"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -387.5
-offset_top = -268.0
-offset_right = -67.5
-offset_bottom = -95.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
-theme_override_font_sizes/font_size = 15
-text = "Information campaigns help boost the popularity of your policies."
 autowrap_mode = 3
 
 [node name="EffectTitle" type="Label" parent="Control/Policies-base-2"]

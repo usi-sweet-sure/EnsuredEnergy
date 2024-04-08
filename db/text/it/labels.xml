@@ -71,9 +71,9 @@
         <text id="label_camp_start">La campagna è iniziata!</text>
         <text id="label_vote">Voto</text>
         <text id="label_start">Inizio</text>
-        <text id="env_camp_label">Environmental Campaign</text>
-        <text id="dem_camp_label">Demand Campaign</text>
-        <text id="policy_label">Policies</text>
+        <text id="env_camp_label">Campagna ambientale</text>
+        <text id="dem_camp_label">Campagna di richiesta</text>
+        <text id="policy_label">Politiche</text>
     </group>
     
     <!-- Labels for the resource bars -->

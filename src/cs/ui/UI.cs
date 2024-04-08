@@ -487,6 +487,8 @@ public partial class UI : CanvasLayer {
 
 		// Upate the money labels
 		SetMoneyInfo();
+
+		PW._UpdatePolicyUI();
 	}
 
 	// Updates the value of the a given bar

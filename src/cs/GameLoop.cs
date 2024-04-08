@@ -619,6 +619,7 @@ public partial class GameLoop : Node2D {
 		RM._UpdatePowerPlants(PowerPlants);
 		RM._UpdateBuildButtons(BBs);
 		RM._UpdateResourcesUI(true);
+		_ApplyOverloads();
 	}
 
 	// Triggers a new turn if the game is currently acitve
