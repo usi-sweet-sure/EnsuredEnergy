@@ -862,11 +862,11 @@ texture = ExtResource("11_qepre")
 position = Vector2(36, 155)
 texture = ExtResource("12_72t8i")
 
-[node name="Label" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
+[node name="EngLabel" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
 offset_left = -83.0
-offset_top = -120.0
+offset_top = -121.0
 offset_right = 85.0
-offset_bottom = -89.0
+offset_bottom = -90.0
 theme_override_fonts/font = SubResource("FontVariation_rdii0")
 theme_override_font_sizes/font_size = 12
 text = "ENERGY"
@@ -1056,11 +1056,13 @@ offset_top = 172.0
 offset_right = -39.0
 offset_bottom = 204.0
 
-[node name="Label" parent="Import" index="13"]
-offset_left = -21.0
-offset_top = -23.0
-offset_right = 39.0
-offset_bottom = 3.0
+[node name="ImportLabel" parent="Import" index="13"]
+offset_left = -72.0
+offset_top = -24.0
+offset_right = 106.0
+offset_bottom = 2.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TimePanelBlank" type="Sprite2D" parent="."]
 position = Vector2(1790, 130)
@@ -1303,7 +1305,6 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
-visible = false
 layout_mode = 1
 offset_left = 319.0
 offset_top = -48.0

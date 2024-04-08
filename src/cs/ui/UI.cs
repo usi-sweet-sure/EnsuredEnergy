@@ -27,6 +27,7 @@ public partial class UI : CanvasLayer {
 
 	// XML querying strings
 	private const string LABEL_FILENAME = "labels.xml";
+	private const string MOREINFO_GROUP = "moreinfo";
 	private const string INFOBAR_GROUP = "infobar";
 	private const string RES_GROUP = "resources";
 	private const string POWERPLANT_GROUP = "powerplants";	
@@ -141,6 +142,12 @@ public partial class UI : CanvasLayer {
 	private int DebtN = 0;
 	private int BorrowN = 0;
 
+	// Static UI Labels
+	private Label EnergyLabel;
+	private Label ImportLabel;
+	private Label OnLabel;
+	private Label OffLabel;
+	private Label NuclearWarnLabel;
 
 	// Window buttons
 	private TextureButton PolicyButton;
@@ -281,6 +288,13 @@ public partial class UI : CanvasLayer {
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
 
+		// Fetch static UI Labels
+		EnergyLabel = GetNode<Label>("ImportEnergy-bar-metal/Energy-base/EngLabel");
+		ImportLabel = GetNode<Label>("Import/ImportLabel");
+		OnLabel = GetNode<Label>("Import/ImportSwitch/OnL");
+		OffLabel = GetNode<Label>("Import/ImportSwitch/OffL");
+		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
+
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
 		MoneyInfoB.Pressed += _OnMoneyInfoPressed;
@@ -366,6 +380,20 @@ public partial class UI : CanvasLayer {
 		string debt_apply = TC._GetText(LABEL_FILENAME, UI_GROUP, "apply_button");
 		string debt_cancel = TC._GetText(LABEL_FILENAME, UI_GROUP, "cancel_button");
 
+		// Fetch UI names
+		string eng_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "energy_resource");
+		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "import_slider_label");
+		string on_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_on");
+		string off_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_off");
+		string nuclear_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "nuclear_warning");
+
+		// Update static UI text
+		EnergyLabel.Text = eng_label;
+		ImportLabel.Text = import_label;
+		OnLabel.Text = on_label;
+		OffLabel.Text = off_label;
+		NuclearWarnLabel.Text = nuclear_warning_label;
+
 		// Update debt texts
 		BorrowTitle.Text = debt_title;
 		BorrowText.Text = borrow_text;
@@ -434,6 +462,20 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar._UpdateBarName(EnvironmentBar_name);
 		SupportBar._UpdateBarName(SupportBar_name);
 		PollutionBar._UpdateBarName(PollutionBar_name);
+
+		// Update infobox ids
+		WinterEnergy._SetId("demandw_info", "energy_info");
+		SummerEnergy._SetId("demands_info", "energy_info");
+		PollutionBar._SetId("pollution_info", "importCO2_info");
+		EnvironmentBar._SetId("landuse_info", "biodiversity_info");
+		SupportBar._SetId("support_info");
+
+		// Update Money info
+		BudgetInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "budget_info");
+		ProdInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "prod_info");
+		BuildInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "building_info");
+		ImportInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "import_info");
+		DebtInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "debt_info");
 
 		// Update UI buttons
 		NextTurnL.Text = next_turn_name;

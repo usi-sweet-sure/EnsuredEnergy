@@ -1627,7 +1627,6 @@ visible = false
 [node name="Wind" parent="World" index="12" groups=["PP"]]
 position = Vector2(-556, 553)
 HasAnimation = true
-HasMultSprite = true
 _PlantType = 5
 
 [node name="Sprite2" type="Sprite2D" parent="World/Wind" index="1"]
@@ -1672,11 +1671,11 @@ libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
 
-[node name="Money" parent="World/BuildButton" index="13"]
-offset_left = 57.0
-offset_top = 68.0
-offset_right = 217.0
-offset_bottom = 157.0
+[node name="Solar" parent="World/BuildButton" index="3"]
+HasMultSprite = false
+
+[node name="Wind" parent="World/BuildButton" index="5"]
+HasMultSprite = false
 
 [node name="BuildButton2" parent="World" index="15"]
 metadata/_edit_use_anchors_ = true
@@ -1694,7 +1693,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Solar" parent="World" index="22" groups=["PP"]]
 position = Vector2(2617, 1493)
 HasAnimation = true
-HasMultSprite = true
 _PlantType = 2
 
 [node name="Sprite2" type="Sprite2D" parent="World/Solar" index="1"]
@@ -1736,11 +1734,11 @@ texture = ExtResource("11_nggna")
 [node name="Hammer" parent="World/BuildButton9" index="0"]
 position = Vector2(308, 205)
 
-[node name="Money" parent="World/BuildButton9" index="13"]
-offset_left = 57.0
-offset_top = 68.0
-offset_right = 217.0
-offset_bottom = 157.0
+[node name="Solar" parent="World/BuildButton9" index="3"]
+HasMultSprite = false
+
+[node name="Wind" parent="World/BuildButton9" index="5"]
+HasMultSprite = false
 
 [node name="Hydro" parent="World" index="27" groups=["PP"]]
 position = Vector2(360, 1982)
