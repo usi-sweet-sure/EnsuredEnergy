@@ -25,6 +25,9 @@ public partial class ImportSlider : VSlider {
 	/* Propagates a value update to the rest of the system */
 	public delegate void ImportUpdateEventHandler();
 
+	[Export]
+	public float MAX_ENERGY_IMPORT =  500.0f;
+
 	// Constants for target bar positions
 	private const int TARGET_100_Y_POS = 24;
 	private const int TARGET_0_Y_POS = 220;
@@ -86,13 +89,16 @@ public partial class ImportSlider : VSlider {
 	// Sets the value of the target based on a given demand percentage
 	// The given demand should represent the percentage of the total
 	// demand that would need to be imported to cover the lack of supply
-	public void _UpdateTargetImport(float demand) {
-		// Clamp demand to be in range [0, 1]
-		float _d = Math.Max(0.0f, Math.Min(demand, 1.0f));
+	public void _UpdateTargetImport(float diff) {
+		// Clamp diff to be in range [0, max]
+		float _d = Math.Max(0.0f, Math.Min(diff, MAX_ENERGY_IMPORT));
 
 		// Set the bar position based on the given percentage
-		int y_pos = TARGET_0_Y_POS + (int)(_d/2 * (TARGET_100_Y_POS - TARGET_0_Y_POS));
-		Target.Position = new Vector2(Target.Position.X, y_pos);
+		int y_pos = TARGET_0_Y_POS + (int)(_d/MAX_ENERGY_IMPORT * (TARGET_100_Y_POS - TARGET_0_Y_POS));
+		Target.Position = new Vector2(
+			Target.Position.X, 
+			y_pos
+		);
 	}
 
 	// Udpates the text to match the given string
@@ -102,7 +108,7 @@ public partial class ImportSlider : VSlider {
 	}
 
 	// Getter for the current value selected with the slider
-	public int _GetImportValue() => Math.Max(0, Math.Min((int) ImportAmount, 500));
+	public int _GetImportValue() => (int)Math.Max(0.0f, Math.Min(ImportAmount, MAX_ENERGY_IMPORT));
 
 	// Getter for the state of green imports
 	public bool _GetGreenImports() => GreenImports;

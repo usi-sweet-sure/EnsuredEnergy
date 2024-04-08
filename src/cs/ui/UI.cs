@@ -334,6 +334,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the language
 		C._UpdateLanguage(Language.Type.EN);
+		SetTargetImport();
 	}
 
 	// ==================== UI Update API ====================
@@ -572,7 +573,7 @@ public partial class UI : CanvasLayer {
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
-				SetTargetImport();
+				//SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -671,7 +672,7 @@ public partial class UI : CanvasLayer {
 	}
 
 	// Retrieves the import percentage selected by the user
-	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 250.0f;
+	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue();
 
 	// Getter for the green energy toggle state
 	public bool _GetGreenImportState() => Imports._GetGreenImports();
@@ -691,14 +692,11 @@ public partial class UI : CanvasLayer {
 
 		// Compute the different, clamped to 0 as no imports are required
 		// when the supply meets the demand
-		float imported = C._GetDemand().Item1 * Imports._GetImportValue() / 250;
-		float diff = Math.Max(0.0f, demand - (supply - imported)); 
-
-		// Compute the percentage of the total demand tha the diff represents
-		float diff_perc = diff / demand;
+		float imported = Imports._GetImportValue();
+		float diff = Math.Max(0.0f, demand + imported - supply); 
 
 		// Set the import target to that percentage
-		Imports._UpdateTargetImport(diff_perc);
+		Imports._UpdateTargetImport(diff);
 	}
 
 	// Sets the energy in
