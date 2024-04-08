@@ -1497,6 +1497,7 @@ offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
 
 [node name="MoneyInfo" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchor_left = 0.233
 anchor_top = 0.076
