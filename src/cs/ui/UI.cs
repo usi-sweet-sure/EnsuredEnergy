@@ -386,6 +386,7 @@ public partial class UI : CanvasLayer {
 		string on_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_on");
 		string off_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_off");
 		string nuclear_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "nuclear_warning");
+		string next_turn_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "next_turn_warning");
 
 		// Update static UI text
 		EnergyLabel.Text = eng_label;
@@ -393,6 +394,7 @@ public partial class UI : CanvasLayer {
 		OnLabel.Text = on_label;
 		OffLabel.Text = off_label;
 		NuclearWarnLabel.Text = nuclear_warning_label;
+		Warning.Text = next_turn_warning_label;
 
 		// Update debt texts
 		BorrowTitle.Text = debt_title;
@@ -671,6 +673,11 @@ public partial class UI : CanvasLayer {
 
 	// Getter for the green energy toggle state
 	public bool _GetGreenImportState() => Imports._GetGreenImports();
+
+	// Update the visibility of the nuclear warning
+	public void _UpdateNuclearWarning(bool show) {
+		NuclearWarnLabel.Visible = show;
+	}
 
 	// ==================== Internal Helpers ====================
 

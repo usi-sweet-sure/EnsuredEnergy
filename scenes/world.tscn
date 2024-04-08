@@ -49,7 +49,6 @@ texture = ExtResource("15_mndp2")
 position = Vector2(1241, -398)
 PlantName = "Nuclear"
 _PlantType = 4
-NUCLEAR_LIFE_SPAN = 9
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Nuclear3/PreviewInfo" index="3"]
@@ -67,7 +66,6 @@ grow_vertical = 1
 position = Vector2(1504, -103)
 PlantName = "Nuclear"
 _PlantType = 4
-NUCLEAR_LIFE_SPAN = 6
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Nuclear2/PreviewInfo" index="3"]
@@ -85,7 +83,6 @@ grow_vertical = 1
 position = Vector2(953, 215)
 PlantName = "Nuclear"
 _PlantType = 4
-NUCLEAR_LIFE_SPAN = 3
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Nuclear/PreviewInfo" index="3"]

@@ -68,6 +68,8 @@ public partial class InfoBox : Control {
 		labels[4] = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/Text1/n1");
 		//labels[5] = GetNode<Label>("Control/TextContainer/Text2");
 		//labels[6] = GetNode<Label>("Control/nContainer/n2");
+
+		labels[0].Hide();
 		
 		InfoButton = GetNode<TextureButton>("MoreInfo");
 		InfoText = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/InfoText");

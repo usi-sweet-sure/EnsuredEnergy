@@ -102,7 +102,7 @@
         <text id="energy_resource">Energy</text>
         <text id="energy_description">The energy supply needs to reach the energy demand.</text>
         <text id="pollution_description">Goal: Reach net zero by 2050</text>
-        
+        <text id="next_turn_warning">Not enough energy!</text>
     </group>
 
     <!-- Labels for the main menu -->

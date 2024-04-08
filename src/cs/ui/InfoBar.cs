@@ -109,6 +109,7 @@ public partial class InfoBar : ProgressBar {
 		BarButton.TooltipText = name;
 	}
 
+	// Updates the infobox text id associated to this infobar
 	public void _SetId(string _id1, string _id2 = "") {
 		Box._SetId(_id1, _id2);
 	}

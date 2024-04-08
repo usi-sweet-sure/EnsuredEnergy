@@ -307,6 +307,8 @@ public partial class GameLoop : Node2D {
 			RM._UpdateResourcesUI(false, ref Money);
 		}
 
+		_UI._UpdateNuclearWarning(C._GetTurn() - PowerPlant.NUCLEAR_LIFE_SPAN <= 1);
+		
 		// Update Money UI
 		_UI._UpdateData(
 			UI.InfoType.MONEY,
