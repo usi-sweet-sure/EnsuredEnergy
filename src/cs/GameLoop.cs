@@ -306,9 +306,18 @@ public partial class GameLoop : Node2D {
 		} else {
 			RM._UpdateResourcesUI(false, ref Money);
 		}
-
-		_UI._UpdateNuclearWarning(C._GetTurn() - PowerPlant.NUCLEAR_LIFE_SPAN <= 1);
 		
+		// Check when the different nuclear plants will shut down
+		if(PowerPlants[0].IsAlive) {
+			_UI._UpdateNuclearWarning(PowerPlants[0].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+		} else if(PowerPlants[1].IsAlive) {
+			_UI._UpdateNuclearWarning(PowerPlants[1].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+		} else if(PowerPlants[2].IsAlive) {
+			_UI._UpdateNuclearWarning(PowerPlants[2].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+		} else {
+			_UI._UpdateNuclearWarning(false);
+		}
+
 		// Update Money UI
 		_UI._UpdateData(
 			UI.InfoType.MONEY,

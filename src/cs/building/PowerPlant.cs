@@ -112,7 +112,7 @@ public partial class PowerPlant : Node2D {
 	private float Pollution = 10f;
 
 	// Life flag: Whether or not the plant is on
-	private bool IsAlive = true;
+	public bool IsAlive = true;
 	
 	// Power off modulate color
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
