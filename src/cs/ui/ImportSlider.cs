@@ -26,7 +26,7 @@ public partial class ImportSlider : VSlider {
 	public delegate void ImportUpdateEventHandler();
 
 	[Export]
-	public float MAX_ENERGY_IMPORT =  500.0f;
+	public float MAX_ENERGY_IMPORT =  100.0f;
 
 	// Constants for target bar positions
 	private const int TARGET_100_Y_POS = 24;
@@ -129,7 +129,7 @@ public partial class ImportSlider : VSlider {
 	// Confirms the selection of a specific import amount
 	public void _OnApplySelectionPressed(bool ValChanged) {
 		// Save the import amount
-		ImportAmount = Math.Max(0, Math.Min((int) Value, 500));
+		ImportAmount = Math.Max(0, Math.Min((int) Value, 100));
 
 		// Hide the apply selection button
 		//ApplySelection.Hide();

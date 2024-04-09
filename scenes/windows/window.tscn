@@ -452,6 +452,7 @@ autowrap_mode = 2
 uppercase = true
 
 [node name="campaign_demand" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -460,6 +461,7 @@ offset_top = -264.5
 offset_right = -99.0
 offset_bottom = -136.5
 grow_horizontal = 2
+disabled = true
 button_group = ExtResource("4_wme6q")
 texture_normal = ExtResource("19_pws74")
 texture_pressed = ExtResource("20_e53ft")
@@ -475,6 +477,7 @@ theme_override_font_sizes/font_size = 30
 text = "🏠"
 
 [node name="home_regulation" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -486,12 +489,14 @@ offset_right = -96.5
 offset_bottom = -232.5
 grow_horizontal = 2
 grow_vertical = 2
+disabled = true
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-2/home_regulation" index="1"]
 text = "♨️"
 
 [node name="industry_subsidy" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -503,6 +508,7 @@ offset_right = -96.0
 offset_bottom = -490.5
 grow_horizontal = 2
 grow_vertical = 0
+disabled = true
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-2/industry_subsidy" index="1"]

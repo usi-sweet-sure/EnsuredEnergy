@@ -334,7 +334,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the language
 		C._UpdateLanguage(Language.Type.EN);
-		SetTargetImport();
+		//SetTargetImport();
 	}
 
 	// ==================== UI Update API ====================
@@ -685,19 +685,19 @@ public partial class UI : CanvasLayer {
 	// ==================== Internal Helpers ====================
 
 	// Sets the required imports based on the demand
-	private void SetTargetImport() {
-		// Fetch the demand and supply
-		float demand  = C._GetDemand().Item1;
-		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
-
-		// Compute the different, clamped to 0 as no imports are required
-		// when the supply meets the demand
-		float imported = Imports._GetImportValue();
-		float diff = Math.Max(0.0f, demand + imported - supply); 
-
-		// Set the import target to that percentage
-		Imports._UpdateTargetImport(diff);
-	}
+//	private void SetTargetImport() {
+//		// Fetch the demand and supply
+//		float demand  = C._GetDemand().Item1;
+//		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
+//
+//		// Compute the different, clamped to 0 as no imports are required
+//		// when the supply meets the demand
+//		float imported = Imports._GetImportValue();
+//		float diff = Math.Max(0.0f, demand + imported - supply); 
+//
+//		// Set the import target to that percentage
+//		Imports._UpdateTargetImport(diff);
+//	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
@@ -714,7 +714,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the info
 		eng._UpdateInfo(
-			"The energy supply needs to reach the energy demand.", // N/Max TODO: Figure out what to use here
+			"", // N/Max TODO: Figure out what to use here
 			demand_label, demand.ToString(), // T0, N0
 			supply_label, supply.ToString() // T1, N1
 		);
@@ -751,7 +751,7 @@ public partial class UI : CanvasLayer {
 
 		PollutionBar._UpdateInfo(
 			// N/Max TODO: Figure out what to use here
-			"Goal: Reach net zero by 2050.",
+			"",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
@@ -897,7 +897,7 @@ public partial class UI : CanvasLayer {
 		EmitSignal(SignalName.NextTurn);
 
 		// Update the required import target (only in winter due to conservative estimates)
-		SetTargetImport();
+		//SetTargetImport();
 		
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 

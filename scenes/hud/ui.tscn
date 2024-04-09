@@ -965,10 +965,11 @@ max_value = 200.0
 position = Vector2(-195, -609.5)
 
 [node name="BarInfo" parent="EnergyBarWinter" index="1"]
+visible = true
 z_index = 1
-offset_left = 430.999
+offset_left = 523.999
 offset_top = 169.002
-offset_right = 733.768
+offset_right = 826.768
 offset_bottom = 293.055
 rotation = 1.5708
 
@@ -992,10 +993,11 @@ max_value = 200.0
 position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummer" index="1"]
+visible = true
 z_index = 1
-offset_left = 429.0
+offset_left = 525.0
 offset_top = 106.002
-offset_right = 731.768
+offset_right = 827.768
 offset_bottom = 398.788
 rotation = 1.5708
 metadata/_edit_group_ = true
@@ -1013,6 +1015,7 @@ offset_left = 128.0
 offset_top = 911.28
 offset_right = 143.96
 offset_bottom = 1007.0
+max_value = 100.0
 ticks_on_borders = false
 
 [node name="TargetLine" parent="Import" index="3"]
@@ -1309,9 +1312,9 @@ width = 1.0
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
 layout_mode = 1
 offset_left = 319.0
-offset_top = -48.0
+offset_top = -136.0
 offset_right = 621.2
-offset_bottom = 107.781
+offset_bottom = 19.781
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
@@ -1389,9 +1392,9 @@ width = 1.0
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
 layout_mode = 1
 offset_left = 181.0
-offset_top = -48.0
+offset_top = -141.0
 offset_right = 324.92
-offset_bottom = -28.355
+offset_bottom = -121.355
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
@@ -2330,6 +2333,7 @@ position = Vector2(638, 380)
 texture = ExtResource("54_7juy1")
 
 [node name="NuclearWarning" type="Label" parent="."]
+visible = false
 offset_left = 1584.0
 offset_top = 824.0
 offset_right = 1880.0

@@ -47,7 +47,7 @@ public partial class ResourceManager : Node {
 
 	[Export]
 	/* The base pollution of a kWh imported from abroad */
-	public float ImportPollution = 0.1f;
+	public float ImportPollution = 0.5f;
 
 	private float InitImportCost, InitImportPollution;
 

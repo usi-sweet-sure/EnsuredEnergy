@@ -1558,6 +1558,7 @@ texture = ExtResource("26_wcdn1")
 flip_h = true
 
 [node name="Waste" parent="World" index="9" groups=["PP"]]
+position = Vector2(-16, 1056)
 HasAnimation = true
 _PlantType = 6
 
@@ -1587,7 +1588,7 @@ position = Vector2(76, -330)
 texture = ExtResource("9_2lgj4")
 
 [node name="Biomass" parent="World" index="11" groups=["PP"]]
-position = Vector2(-420, 1275)
+position = Vector2(-784, 1288)
 HasAnimation = true
 _PlantType = 7
 
@@ -1678,20 +1679,40 @@ HasMultSprite = false
 HasMultSprite = false
 
 [node name="BuildButton2" parent="World" index="15"]
+offset_left = 624.0
+offset_top = 480.0
+offset_right = 1310.0
+offset_bottom = 880.0
 metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton4" parent="World" index="17"]
 texture_pressed = ExtResource("14_eqh1c")
 texture_hover = ExtResource("14_eqh1c")
 
+[node name="BuildButton5" parent="World" index="18"]
+offset_left = 72.0
+offset_top = 72.0
+offset_right = 758.0
+offset_bottom = 472.0
+
+[node name="BuildButton6" parent="World" index="19"]
+offset_left = -472.0
+offset_top = 1488.0
+offset_right = 214.0
+offset_bottom = 1888.0
+
 [node name="BuildButton7" parent="World" index="20"]
+offset_left = 2480.0
+offset_top = 1368.0
+offset_right = 3166.0
+offset_bottom = 1768.0
 metadata/_edit_use_anchors_ = true
 
 [node name="BuildButton8" parent="World" index="21"]
 metadata/_edit_use_anchors_ = true
 
 [node name="Solar" parent="World" index="22" groups=["PP"]]
-position = Vector2(2617, 1493)
+position = Vector2(3456, 1224)
 HasAnimation = true
 _PlantType = 2
 
