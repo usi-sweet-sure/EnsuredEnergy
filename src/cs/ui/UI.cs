@@ -27,6 +27,7 @@ public partial class UI : CanvasLayer {
 
 	// XML querying strings
 	private const string LABEL_FILENAME = "labels.xml";
+	private const string MOREINFO_GROUP = "moreinfo";
 	private const string INFOBAR_GROUP = "infobar";
 	private const string RES_GROUP = "resources";
 	private const string POWERPLANT_GROUP = "powerplants";	
@@ -141,6 +142,12 @@ public partial class UI : CanvasLayer {
 	private int DebtN = 0;
 	private int BorrowN = 0;
 
+	// Static UI Labels
+	private Label EnergyLabel;
+	private Label ImportLabel;
+	private Label OnLabel;
+	private Label OffLabel;
+	private Label NuclearWarnLabel;
 
 	// Window buttons
 	private TextureButton PolicyButton;
@@ -281,6 +288,13 @@ public partial class UI : CanvasLayer {
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
 
+		// Fetch static UI Labels
+		EnergyLabel = GetNode<Label>("ImportEnergy-bar-metal/Energy-base/EngLabel");
+		ImportLabel = GetNode<Label>("Import/ImportLabel");
+		OnLabel = GetNode<Label>("Import/ImportSwitch/OnL");
+		OffLabel = GetNode<Label>("Import/ImportSwitch/OffL");
+		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
+
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
 		MoneyInfoB.Pressed += _OnMoneyInfoPressed;
@@ -320,6 +334,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the language
 		C._UpdateLanguage(Language.Type.EN);
+		//SetTargetImport();
 	}
 
 	// ==================== UI Update API ====================
@@ -365,6 +380,22 @@ public partial class UI : CanvasLayer {
 		string debt_text = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_debt");
 		string debt_apply = TC._GetText(LABEL_FILENAME, UI_GROUP, "apply_button");
 		string debt_cancel = TC._GetText(LABEL_FILENAME, UI_GROUP, "cancel_button");
+
+		// Fetch UI names
+		string eng_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "energy_resource");
+		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "import_slider_label");
+		string on_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_on");
+		string off_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_off");
+		string nuclear_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "nuclear_warning");
+		string next_turn_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "next_turn_warning");
+
+		// Update static UI text
+		EnergyLabel.Text = eng_label;
+		ImportLabel.Text = import_label;
+		OnLabel.Text = on_label;
+		OffLabel.Text = off_label;
+		NuclearWarnLabel.Text = nuclear_warning_label;
+		Warning.Text = next_turn_warning_label;
 
 		// Update debt texts
 		BorrowTitle.Text = debt_title;
@@ -435,6 +466,20 @@ public partial class UI : CanvasLayer {
 		SupportBar._UpdateBarName(SupportBar_name);
 		PollutionBar._UpdateBarName(PollutionBar_name);
 
+		// Update infobox ids
+		WinterEnergy._SetId("demandw_info", "energy_info");
+		SummerEnergy._SetId("demands_info", "energy_info");
+		PollutionBar._SetId("pollution_info", "importCO2_info");
+		EnvironmentBar._SetId("landuse_info", "biodiversity_info");
+		SupportBar._SetId("support_info");
+
+		// Update Money info
+		BudgetInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "budget_info");
+		ProdInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "prod_info");
+		BuildInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "building_info");
+		ImportInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "import_info");
+		DebtInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "debt_info");
+
 		// Update UI buttons
 		NextTurnL.Text = next_turn_name;
 
@@ -443,6 +488,8 @@ public partial class UI : CanvasLayer {
 
 		// Upate the money labels
 		SetMoneyInfo();
+
+		PW._UpdatePolicyUI();
 	}
 
 	// Updates the value of the a given bar
@@ -526,7 +573,7 @@ public partial class UI : CanvasLayer {
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
-				SetTargetImport();
+				//SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -625,30 +672,32 @@ public partial class UI : CanvasLayer {
 	}
 
 	// Retrieves the import percentage selected by the user
-	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 250.0f;
+	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue();
 
 	// Getter for the green energy toggle state
 	public bool _GetGreenImportState() => Imports._GetGreenImports();
 
+	// Update the visibility of the nuclear warning
+	public void _UpdateNuclearWarning(bool show) {
+		NuclearWarnLabel.Visible = show;
+	}
+
 	// ==================== Internal Helpers ====================
 
 	// Sets the required imports based on the demand
-	private void SetTargetImport() {
-		// Fetch the demand and supply
-		float demand  = C._GetDemand().Item1;
-		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
-
-		// Compute the different, clamped to 0 as no imports are required
-		// when the supply meets the demand
-		float imported = C._GetDemand().Item1 * Imports._GetImportValue() / 250;
-		float diff = Math.Max(0.0f, demand - (supply - imported)); 
-
-		// Compute the percentage of the total demand tha the diff represents
-		float diff_perc = diff / demand;
-
-		// Set the import target to that percentage
-		Imports._UpdateTargetImport(diff_perc);
-	}
+//	private void SetTargetImport() {
+//		// Fetch the demand and supply
+//		float demand  = C._GetDemand().Item1;
+//		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
+//
+//		// Compute the different, clamped to 0 as no imports are required
+//		// when the supply meets the demand
+//		float imported = Imports._GetImportValue();
+//		float diff = Math.Max(0.0f, demand + imported - supply); 
+//
+//		// Set the import target to that percentage
+//		Imports._UpdateTargetImport(diff);
+//	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
@@ -665,7 +714,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the info
 		eng._UpdateInfo(
-			"The energy supply needs to reach the energy demand.", // N/Max TODO: Figure out what to use here
+			"", // N/Max TODO: Figure out what to use here
 			demand_label, demand.ToString(), // T0, N0
 			supply_label, supply.ToString() // T1, N1
 		);
@@ -702,7 +751,7 @@ public partial class UI : CanvasLayer {
 
 		PollutionBar._UpdateInfo(
 			// N/Max TODO: Figure out what to use here
-			"Goal: Reach net zero by 2050.",
+			"",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
@@ -848,7 +897,7 @@ public partial class UI : CanvasLayer {
 		EmitSignal(SignalName.NextTurn);
 
 		// Update the required import target (only in winter due to conservative estimates)
-		SetTargetImport();
+		//SetTargetImport();
 		
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 

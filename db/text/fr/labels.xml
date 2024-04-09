@@ -43,9 +43,9 @@
         <text id="pollution_info">CO2 emission shows how much greenhouse gas is released by the energy system. Lower emissions mean a lower impact on global warming. Some power plants emit CO2. Switzerland has decided to be carbon neutral and reach net zero by 2050.</text>
         <text id="importCO2_info">Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.</text>
         <text id="support_info">Political support shows how popular your decisions are. The higher the support the more options in policy choices you have.</text>
-        <text id="demand_summer">Energy demand in summer tends to be lower than winter because the need for cooling is lower than the need for heating in winter.</text>
-        <text id="demand_winter">In winter, energy demand is higher due to the need for heating. Switzerland often has to import the missing energy supply.</text>
-        <text id="energy_goal">You need to reach the demand in energy. The target is the white line on the energy bar.</text>
+        <text id="demands_info">Energy demand in summer tends to be lower than winter because the need for cooling is lower than the need for heating in winter.</text>
+        <text id="demandw_info">In winter, energy demand is higher due to the need for heating. Switzerland often has to import the missing energy supply.</text>
+        <text id="energy_info">You need to reach the demand in energy. The target is the white line on the energy bar.</text>
         <text id="budget_info">The budget shows you how much money you have and can spend. You start the game with 500.- and at the beginning of each turn receive 300.-.</text>
         <text id="prod_info">Some power plants have production costs because they need materials to run.</text>
         <text id="building_info">Indicates how much you have spent on building or upgrading power plants.</text>
@@ -71,6 +71,9 @@
         <text id="label_camp_start">La campagne a été lancée!</text>
         <text id="label_vote">Vote</text>
         <text id="label_start">Start</text>
+        <text id="env_camp_label">Environmental Campaign</text>
+        <text id="dem_camp_label">Demand Campaign</text>
+        <text id="policy_label">Policies</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -93,6 +96,13 @@
         <text id="cancel_button">Annuler</text>
         <text id="nuclear_shutdown">Shutting down in</text>
         <text id="nuclear_warning">Nuclear shutting down next turn ⚠️</text>
+        <text id="green_import_switch_on">On</text>
+        <text id="green_import_switch_off">Off</text>
+        <text id="import_slider_label">Import</text>
+        <text id="energy_resource">Energy</text>
+        <text id="energy_description">The energy supply needs to reach the energy demand.</text>
+        <text id="pollution_description">Goal: Reach net zero by 2050</text>
+        <text id="next_turn_warning">Not enough energy!</text>
     </group>
 
      <!-- Labels for the main menu -->

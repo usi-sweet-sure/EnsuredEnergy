@@ -163,6 +163,9 @@ offset_right = -155.0
 offset_bottom = -320.0
 scale = Vector2(0.7, 0.7)
 
+[node name="Name" parent="Container/Tree/BuildInfo" index="6"]
+theme_override_font_sizes/font_size = 20
+
 [node name="TreeButton" type="Button" parent="Container/Tree"]
 offset_left = -110.0
 offset_top = -143.0

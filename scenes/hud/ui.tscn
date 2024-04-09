@@ -115,7 +115,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-30, -40), Vector2(-30, -70)]
+"values": [Vector2(-134, -40), Vector2(-150, -70)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -833,7 +833,7 @@ visible = false
 layout_mode = 0
 offset_left = 25.0
 offset_top = -25.0
-offset_right = 291.0
+offset_right = 475.0
 offset_bottom = 10.0
 theme_override_colors/font_color = Color(0.683594, 0.238281, 0.195313, 1)
 theme_override_colors/font_shadow_color = Color(0.141176, 0.192157, 0.2, 0.592157)
@@ -841,6 +841,8 @@ theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("40_knfjx")
 theme_override_font_sizes/font_size = 23
 text = "Not enough energy!"
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="Error" type="AudioStreamPlayer" parent="NextTurn"]
@@ -862,11 +864,11 @@ texture = ExtResource("11_qepre")
 position = Vector2(36, 155)
 texture = ExtResource("12_72t8i")
 
-[node name="Label" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
+[node name="EngLabel" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
 offset_left = -83.0
-offset_top = -120.0
+offset_top = -121.0
 offset_right = 85.0
-offset_bottom = -89.0
+offset_bottom = -90.0
 theme_override_fonts/font = SubResource("FontVariation_rdii0")
 theme_override_font_sizes/font_size = 12
 text = "ENERGY"
@@ -963,10 +965,11 @@ max_value = 200.0
 position = Vector2(-195, -609.5)
 
 [node name="BarInfo" parent="EnergyBarWinter" index="1"]
+visible = true
 z_index = 1
-offset_left = 430.999
+offset_left = 523.999
 offset_top = 169.002
-offset_right = 733.768
+offset_right = 826.768
 offset_bottom = 293.055
 rotation = 1.5708
 
@@ -990,10 +993,11 @@ max_value = 200.0
 position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummer" index="1"]
+visible = true
 z_index = 1
-offset_left = 429.0
+offset_left = 525.0
 offset_top = 106.002
-offset_right = 731.768
+offset_right = 827.768
 offset_bottom = 398.788
 rotation = 1.5708
 metadata/_edit_group_ = true
@@ -1011,6 +1015,7 @@ offset_left = 128.0
 offset_top = 911.28
 offset_right = 143.96
 offset_bottom = 1007.0
+max_value = 100.0
 ticks_on_borders = false
 
 [node name="TargetLine" parent="Import" index="3"]
@@ -1056,11 +1061,13 @@ offset_top = 172.0
 offset_right = -39.0
 offset_bottom = 204.0
 
-[node name="Label" parent="Import" index="13"]
-offset_left = -21.0
-offset_top = -23.0
-offset_right = 39.0
-offset_bottom = 3.0
+[node name="ImportLabel" parent="Import" index="13"]
+offset_left = -72.0
+offset_top = -24.0
+offset_right = 106.0
+offset_bottom = 2.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TimePanelBlank" type="Sprite2D" parent="."]
 position = Vector2(1790, 130)
@@ -1303,12 +1310,11 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
-visible = false
 layout_mode = 1
 offset_left = 319.0
-offset_top = -48.0
+offset_top = -136.0
 offset_right = 621.2
-offset_bottom = 107.781
+offset_bottom = 19.781
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
@@ -1386,9 +1392,9 @@ width = 1.0
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
 layout_mode = 1
 offset_left = 181.0
-offset_top = -48.0
+offset_top = -141.0
 offset_right = 324.92
-offset_bottom = -28.355
+offset_bottom = -121.355
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_group_ = true
@@ -1494,6 +1500,7 @@ offset_bottom = 758.0
 texture_normal = ExtResource("7_7gbcu")
 
 [node name="MoneyInfo" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchor_left = 0.233
 anchor_top = 0.076
@@ -2326,6 +2333,7 @@ position = Vector2(638, 380)
 texture = ExtResource("54_7juy1")
 
 [node name="NuclearWarning" type="Label" parent="."]
+visible = false
 offset_left = 1584.0
 offset_top = 824.0
 offset_right = 1880.0

@@ -134,6 +134,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Text" type="Label" parent="Control/Policies-base-2/PolicyName"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 55.0
+offset_right = 160.0
+offset_bottom = 228.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
+theme_override_font_sizes/font_size = 15
+text = "Information campaigns help boost the popularity of your policies."
+autowrap_mode = 3
+
 [node name="SelectPolicy" type="Label" parent="Control/Policies-base-2"]
 visible = false
 offset_left = -148.0
@@ -145,20 +160,6 @@ theme_override_font_sizes/font_size = 25
 text = "- Select Policy -"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="Text" type="Label" parent="Control/Policies-base-2"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -387.5
-offset_top = -268.0
-offset_right = -67.5
-offset_bottom = -95.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
-theme_override_font_sizes/font_size = 15
-text = "Information campaigns help boost the popularity of your policies."
 autowrap_mode = 3
 
 [node name="EffectTitle" type="Label" parent="Control/Policies-base-2"]
@@ -451,6 +452,7 @@ autowrap_mode = 2
 uppercase = true
 
 [node name="campaign_demand" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -459,6 +461,7 @@ offset_top = -264.5
 offset_right = -99.0
 offset_bottom = -136.5
 grow_horizontal = 2
+disabled = true
 button_group = ExtResource("4_wme6q")
 texture_normal = ExtResource("19_pws74")
 texture_pressed = ExtResource("20_e53ft")
@@ -474,6 +477,7 @@ theme_override_font_sizes/font_size = 30
 text = "🏠"
 
 [node name="home_regulation" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -485,12 +489,14 @@ offset_right = -96.5
 offset_bottom = -232.5
 grow_horizontal = 2
 grow_vertical = 2
+disabled = true
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-2/home_regulation" index="1"]
 text = "♨️"
 
 [node name="industry_subsidy" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -502,6 +508,7 @@ offset_right = -96.0
 offset_bottom = -490.5
 grow_horizontal = 2
 grow_vertical = 0
+disabled = true
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-2/industry_subsidy" index="1"]

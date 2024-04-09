@@ -122,7 +122,7 @@ position = Vector2(-1265, 1085)
 texture = ExtResource("6_4yo2s")
 
 [node name="Biomass" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(-421, 1276)
+position = Vector2(-712, 1296)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
@@ -211,14 +211,14 @@ offset_bottom = 1352.0
 script = ExtResource("4_mo62v")
 
 [node name="BuildButton8" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = 1304.0
-offset_top = 896.0
-offset_right = 1990.0
-offset_bottom = 1296.0
+offset_left = 1136.0
+offset_top = 848.0
+offset_right = 1822.0
+offset_bottom = 1248.0
 script = ExtResource("4_mo62v")
 
 [node name="Solar" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(2697, 1446)
+position = Vector2(2864, 1568)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
@@ -287,7 +287,7 @@ position = Vector2(-314, -307)
 scale = Vector2(1, 1)
 
 [node name="Hydro" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(360, 1960)
+position = Vector2(384, 1864)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
@@ -311,7 +311,7 @@ position = Vector2(2152, 1807)
 texture = ExtResource("10_c3oti")
 
 [node name="River" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(2177, 1983)
+position = Vector2(2096, 2088)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
@@ -327,7 +327,7 @@ offset_bottom = 35.0
 grow_vertical = 1
 
 [node name="River2" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(2950, 943)
+position = Vector2(2816, 864)
 PlantName = "Gas"
 metadata/_edit_group_ = true
 
@@ -351,10 +351,10 @@ position = Vector2(521, 1220)
 texture = ExtResource("16_53p1h")
 
 [node name="BuildButton10" parent="." instance=ExtResource("16_pnu0i")]
-offset_left = -268.0
-offset_top = 2248.0
-offset_right = 418.0
-offset_bottom = 2648.0
+offset_left = -344.0
+offset_top = 2400.0
+offset_right = 342.0
+offset_bottom = 2800.0
 script = ExtResource("4_mo62v")
 
 [node name="Forest6" type="Sprite2D" parent="."]

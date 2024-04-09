@@ -64,7 +64,7 @@ public partial class PowerPlant : Node2D {
 	[Export]
 	// Life cycle of a nuclear power plant
 	public int NUCLEAR_LIFE_SPAN = 2; 
-	public int DEFAULT_LIFE_SPAN = 11;
+	public static int DEFAULT_LIFE_SPAN = 11;
 
 	[Export]
 	// Defines whether or not the building is a preview

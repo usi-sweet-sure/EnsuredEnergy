@@ -22,6 +22,13 @@ using System;
 public partial class InfoBox : Control {
 
 	private const int N_LABELS = 5;
+	private const string MOREINFO_GROUP = "moreinfo";
+	private const string LABEL_FILENAME = "labels.xml";
+
+	// Id used to fetch the description
+	[Export]
+	private string id1 = "energy_info";
+	private string id2 = "energy_info";
 
 	// Various text labels
 	private Label Text0;
@@ -45,6 +52,8 @@ public partial class InfoBox : Control {
 	private NinePatchRect BubbleClosed;
 	private NinePatchRect BubbleOpen;
 
+	private TextController TC;
+
 	// ==================== GODOT Method Overrides ====================
 
 	// Called when the node enters the scene tree for the first time.
@@ -59,6 +68,8 @@ public partial class InfoBox : Control {
 		labels[4] = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/Text1/n1");
 		//labels[5] = GetNode<Label>("Control/TextContainer/Text2");
 		//labels[6] = GetNode<Label>("Control/nContainer/n2");
+
+		labels[0].Hide();
 		
 		InfoButton = GetNode<TextureButton>("MoreInfo");
 		InfoText = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/InfoText");
@@ -66,8 +77,12 @@ public partial class InfoBox : Control {
 	
 		BubbleClosed = GetNode<NinePatchRect>("MarginContainer/BubbleClosed");
 		BubbleOpen = GetNode<NinePatchRect>("MarginContainer/BubbleOpen");
+
+		TC = GetNode<TextController>("/root/TextController");
 		
 		InfoButton.Pressed += _OnMoreInfoPressed;
+		InfoText.Hide();
+		InfoText2.Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,6 +106,15 @@ public partial class InfoBox : Control {
 		}
 	}
 
+	public void _SetId(string _id1, string _id2 = "") {
+		id1 = _id1;
+		id2 = _id2;
+
+		// Udpate text
+		InfoText.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, id1);
+		InfoText2.Text = id2 == "" ? "" : TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, id2);
+	}
+
 	// Fill in the information labels
 	// params: varargs in the form of N/Max, T0, N0, T1, N1, T2, N2
 	// If parameters are omitted than the label will not be shown
@@ -110,7 +134,7 @@ public partial class InfoBox : Control {
 	public void _OnMoreInfoPressed() {
 		InfoText.Visible = !InfoText.Visible;
 		InfoText2.Visible = !InfoText2.Visible;
-		labels[0].Visible = !labels[0].Visible;
+		//labels[0].Visible = !labels[0].Visible;
 		BubbleClosed.Visible = !BubbleClosed.Visible;
 		BubbleOpen.Visible = !BubbleOpen.Visible;
 	}
