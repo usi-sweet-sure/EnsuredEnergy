@@ -2333,27 +2333,25 @@ position = Vector2(638, 380)
 texture = ExtResource("54_7juy1")
 
 [node name="NuclearWarning" type="Label" parent="."]
-visible = false
-offset_left = 1584.0
-offset_top = 824.0
-offset_right = 1880.0
-offset_bottom = 886.0
-theme_override_colors/font_shadow_color = Color(0.0745098, 0.0745098, 0.0745098, 0.905882)
+offset_left = 1689.0
+offset_top = 740.0
+offset_right = 1889.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_lnt6a")
 theme_override_font_sizes/font_size = 20
 text = "Nuclear plant shutting down next turn ⚠️"
 horizontal_alignment = 2
+vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="NuclearWarning"]
+[node name="ColorRect" type="Sprite2D" parent="NuclearWarning"]
 show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.576471, 0.576471, 0.576471, 0.396078)
+position = Vector2(97, 55)
+texture = ExtResource("55_5ylb2")
+flip_h = true
+flip_v = true
+region_rect = Rect2(2, 0, 278, 194)
 
 [editable path="EnergyBarSummerPredict"]
 [editable path="EnergyBarWinterPredict"]

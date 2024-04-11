@@ -1013,10 +1013,6 @@ public partial class UI : CanvasLayer {
 			PW.Show();
 			PW._PlayAnim("popup");
 		}
-		if(PW.Vote.Disabled) {
-				GD.Print("vote disabled");
-				PolicyNotif.Hide();
-			}
 	}
 
 	// Toggles the settings box

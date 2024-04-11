@@ -73,6 +73,7 @@ public partial class PolicyWindow : CanvasLayer {
 	private Context C;
 	private PolicyController PC;
 	private TextController TC;
+	private UI UI;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -81,6 +82,7 @@ public partial class PolicyWindow : CanvasLayer {
 		C = GetNode<Context>("/root/Context");
 		PC = GetNode<PolicyController>("/root/PolicyController");
 		TC = GetNode<TextController>("/root/TextController");
+		UI = GetNode<UI>("/root/Main/UI");
 		P = GetNode<ColorRect>("ColorRect");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
 		VoteResult = GetNode<Label>("Control/Policies-base-2/Vote/VoteResult");
@@ -300,5 +302,6 @@ public partial class PolicyWindow : CanvasLayer {
 			}
 		}
 		SelectedPolicy = null;
+		UI.PolicyNotif.Hide();
 	}
 }
