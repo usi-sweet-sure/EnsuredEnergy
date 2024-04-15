@@ -241,25 +241,6 @@ texture = ExtResource("7_oigb5")
 position = Vector2(816, 1830)
 texture = ExtResource("9_6ffyi")
 
-[node name="Pump" parent="." instance=ExtResource("7_6x5m2")]
-position = Vector2(1757, 1602)
-PlantName = "Gas"
-metadata/_edit_group_ = true
-
-[node name="Price" parent="Pump/PreviewInfo" index="3"]
-layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 52.0
-offset_bottom = 35.0
-grow_vertical = 1
-
-[node name="Sprite" parent="Pump" index="1"]
-position = Vector2(42, -66)
-
 [node name="BuildButton9" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 747.0
 offset_top = 1944.0
@@ -309,6 +290,25 @@ texture = ExtResource("8_600g3")
 [node name="Mountain5" type="Sprite2D" parent="."]
 position = Vector2(2152, 1807)
 texture = ExtResource("10_c3oti")
+
+[node name="Pump" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(1757, 1602)
+PlantName = "Gas"
+metadata/_edit_group_ = true
+
+[node name="Price" parent="Pump/PreviewInfo" index="3"]
+layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 52.0
+offset_bottom = 35.0
+grow_vertical = 1
+
+[node name="Sprite" parent="Pump" index="1"]
+position = Vector2(42, -66)
 
 [node name="River" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(2096, 2088)
@@ -377,7 +377,6 @@ texture = ExtResource("19_2806d")
 [editable path="Biomass"]
 [editable path="Wind"]
 [editable path="Solar"]
-[editable path="Pump"]
 [editable path="BuildButton9"]
 [editable path="BuildButton9/Gas"]
 [editable path="BuildButton9/Hydro"]
@@ -389,5 +388,6 @@ texture = ExtResource("19_2806d")
 [editable path="BuildButton9/River"]
 [editable path="BuildButton9/Pump"]
 [editable path="Hydro"]
+[editable path="Pump"]
 [editable path="River"]
 [editable path="River2"]
