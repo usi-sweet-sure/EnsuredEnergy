@@ -354,17 +354,18 @@ public partial class PowerPlant : Node2D {
 	// Applies a multiplier overload to the current value
 	public void _OverloadMultiplier(int mo) {
 		MultiplierMax = mo;
-		Multiplier.Show();
-		// Check if we can still increase
-		if(MultiplierValue >= MultiplierMax) {
-			MultInc.Hide();
-			HideMultInfo();
-		} 
+		
+		
+		MultInc.Show();
+		MultDec.Hide();
+		 
 
 		// Check if we can decrement now 
 		if(MultiplierValue > 1) {
 			MultDec.Show();
 		}
+		
+		Multiplier.Show();
 	}
 
 	// Applies a build time overload to the powerplant
@@ -937,7 +938,6 @@ public partial class PowerPlant : Node2D {
 			Info.Visible = true;
 			//ResRect.Visible = true;
 			// Toggle multiplier state if several elements are available
-			GD.Print(MultiplierMax);
 			if(MultiplierMax > 1) {
 				Multiplier.Visible = true;
 			}
@@ -1053,8 +1053,8 @@ public partial class PowerPlant : Node2D {
 		PollN.Text = (Pollution * mult.Pollution).ToString("0.0");
 		MultLand.Text = LandN.Text;
 		LandN.Text = (LandUse * 100 * mult.LandUse).ToString("0.0");
-		MultWinterE.Text = "+" + (mult.Capacity * EnergyAvailability.Item1).ToString();
-		MultSummerE.Text = "+" + (mult.Capacity * EnergyAvailability.Item2).ToString();
+		MultWinterE.Text = "+" + (mult.Capacity * EnergyAvailability.Item1).ToString("0.0");
+		MultSummerE.Text = "+" + (mult.Capacity * EnergyAvailability.Item2).ToString("0.0");
 	}
 	
 	private void GetMultDecInfo() {
@@ -1069,8 +1069,8 @@ public partial class PowerPlant : Node2D {
 		PollN.Text = (Pollution / mult.Pollution).ToString("0.0");
 		MultLand.Text = LandN.Text;
 		LandN.Text = (LandUse * 100 / mult.LandUse).ToString("0.0");
-		MultWinterE.Text = "-" + (mult.Capacity * EnergyAvailability.Item1).ToString();
-		MultSummerE.Text = "-" + (mult.Capacity * EnergyAvailability.Item2).ToString();
+		MultWinterE.Text = "-" + (mult.Capacity * EnergyAvailability.Item1).ToString("0.0");
+		MultSummerE.Text = "-" + (mult.Capacity * EnergyAvailability.Item2).ToString("0.0");
 	}
 	
 	private void OnMultIncMouseEntered() {
