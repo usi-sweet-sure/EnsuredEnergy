@@ -174,6 +174,12 @@ public partial class UI : CanvasLayer {
 	private Label ResetConfirmL;
 	private Button ResetYes;
 	private Button ResetNo;
+	
+	// Turn info
+	private Label CurrentTurnL;
+	private Label CurrentTurnN;
+	private Label RemTurnL;
+	private Label RemTurnN;
 
 	// Game Loop
 	private GameLoop GL;
@@ -294,6 +300,12 @@ public partial class UI : CanvasLayer {
 		OnLabel = GetNode<Label>("Import/ImportSwitch/OnL");
 		OffLabel = GetNode<Label>("Import/ImportSwitch/OffL");
 		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
+		
+		// Turn info
+		CurrentTurnL = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/CurrentTurn");
+		CurrentTurnN = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/CurrentTurn/CTurn");
+		RemTurnL = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/RemainingTurns");
+		RemTurnN = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/RemainingTurns/RTurn");
 
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
@@ -482,6 +494,8 @@ public partial class UI : CanvasLayer {
 
 		// Update UI buttons
 		NextTurnL.Text = next_turn_name;
+		CurrentTurnN.Text = (C._GetTurn() + 1).ToString();
+		RemTurnN.Text = (C._GetRemainingTurns() - 1).ToString();
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
@@ -776,10 +790,22 @@ public partial class UI : CanvasLayer {
 		
 		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
-		BuildL.Text = "-" + Data.Building.ToString();
-		ProdL.Text = "-" + Data.Production.ToString();
+		if(Data.Building > 0) {
+			BuildL.Text = "-" + Data.Building.ToString();	
+		} else {
+			BuildL.Text = Data.Building.ToString();
+		}
+		if(Data.Production > 0) {
+			ProdL.Text = "-" + Data.Production.ToString();
+		} else {
+			ProdL.Text = Data.Production.ToString();	
+		}
 		MoneyL.Text = Data.Money.ToString();
-		ImportCostL.Text = "-" + Data.Imports.ToString();
+		if(Data.Imports > 0) {
+			ImportCostL.Text = "-" + Data.Imports.ToString();
+		} else {
+			ImportCostL.Text = Data.Imports.ToString();	
+		}
 		ImportCostL2.Text = Data.Imports.ToString();
 		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
 		BudgetNext.Text = BudgetNextN.ToString();
