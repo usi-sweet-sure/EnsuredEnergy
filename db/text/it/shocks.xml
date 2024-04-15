@@ -125,7 +125,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Costi di produzione +10%</text>
+            <text>-20 $</text>
             <effect field="support" value="0"/>
             <effect field="money" value="-20"/>
         </reward>
@@ -141,7 +141,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Costi di produzione +20%</text>
+            <text>-50 $</text>
             <effect field="support" value="0"/>
             <effect field="money" value="-50"/>
         </reward>
@@ -157,9 +157,9 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>- 10% al costo di produzione $</text>
+            <text>+20 $</text>
             <effect field="support" value="0"/>
-            <effect field="money" value="50"/>
+            <effect field="money" value="20"/>
         </reward>
     </shock>
 
@@ -220,8 +220,8 @@
         </reaction>
         <reward>
             <text>Aumento della domanda di energia +5⚡</text>
-            <effect field="energyS" value="0"/>
-            <effect field="energyW" value="0"/>
+            <effect field="energyS" value="5"/>
+            <effect field="energyW" value="5"/>
         </reward>
     </shock>
 
