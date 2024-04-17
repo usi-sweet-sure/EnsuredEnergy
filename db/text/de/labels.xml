@@ -35,6 +35,8 @@
         <text id="label_now">Jetzt</text>
         <text id="label_next_turn">Nächste</text>
         <text id="label_total">Insgesamt</text>
+        <text id="label_current_turn">Runde</text>
+        <text id="label_remaining_turn">Restliche Runden</text>
     </group>
 
     <group id="moreinfo">
@@ -71,9 +73,9 @@
         <text id="label_camp_start">Die Kampagne hat begonnen!</text>
         <text id="label_vote">Abstimmen</text>
         <text id="label_start">Start</text>
-        <text id="env_camp_label">Environmental Campaign</text>
-        <text id="dem_camp_label">Demand Campaign</text>
-        <text id="policy_label">Policies</text>
+        <text id="env_camp_label">Umwelt-Kampagne</text>
+        <text id="dem_camp_label">Bedarfskampagne</text>
+        <text id="policy_label">Politiken</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -99,10 +101,10 @@
         <text id="green_import_switch_on">On</text>
         <text id="green_import_switch_off">Off</text>
         <text id="import_slider_label">Import</text>
-        <text id="energy_resource">Energy</text>
-        <text id="energy_description">The energy supply needs to reach the energy demand.</text>
-        <text id="pollution_description">Goal: Reach net zero by 2050</text>
-        <text id="next_turn_warning">Not enough energy!</text>
+        <text id="energy_resource">Energie</text>
+        <text id="energy_description">Das Energieangebot muss den Energiebedarf decken.</text>
+        <text id="pollution_description">Ziel: Erreichen von Netto-Null bis 2050</text>
+        <text id="next_turn_warning">Nicht genug Energie!</text>
     </group>
 
     <!-- Labels for the main menu -->
@@ -120,6 +122,8 @@ Energy
         <text id="reset_prompt">Sind Sie sicher, dass Sie neu starten möchten?</text>
         <text id="reset_yes">Ja</text>
         <text id="reset_no">Nein</text>
+        <text id="hold_drag">Zum Verschieben halten und ziehen</text>
+        <text id="scroll_zoom">Scrollen zum Zoomen</text>
     </group>
 
     <!-- Labels for the different power plants -->
@@ -134,7 +138,7 @@ Energy
         <text id="label_biomass">Biomasse</text>
         <text id="label_river">Fluss</text>
         <text id="label_pump">Pumpe</text>
-        <text id="label_geo">Geothermal</text>
+        <text id="label_geo">Geothermie</text>
     </group>
 
         <!-- Labels for the main menu -->

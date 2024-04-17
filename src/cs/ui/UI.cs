@@ -180,6 +180,8 @@ public partial class UI : CanvasLayer {
 	private Label CurrentTurnN;
 	private Label RemTurnL;
 	private Label RemTurnN;
+	private Button TurnInfo;
+	private MarginContainer TurnInfoContainer;
 
 	// Game Loop
 	private GameLoop GL;
@@ -302,10 +304,12 @@ public partial class UI : CanvasLayer {
 		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
 		
 		// Turn info
-		CurrentTurnL = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/CurrentTurn");
-		CurrentTurnN = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/CurrentTurn/CTurn");
-		RemTurnL = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/RemainingTurns");
-		RemTurnN = GetNode<Label>("TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/RemainingTurns/RTurn");
+		CurrentTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn");
+		CurrentTurnN = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn/CTurn");
+		RemTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns");
+		RemTurnN = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns/RTurn");
+		TurnInfo = GetNode<Button>("TimePanelBlank/TurnInfo");
+		TurnInfoContainer = GetNode<MarginContainer>("TimePanelBlank/TurnInfoContainer");
 
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
@@ -328,6 +332,7 @@ public partial class UI : CanvasLayer {
 		BorrowContainer.Pressed += _OnDebtCancelPressed;
 		BorrowMoneyButton.Pressed += BorrowContainer.Show;
 		ScreenOption.Toggled += _OnScreenOption;
+		TurnInfo.Pressed += _OnTurnInfoPressed;
 
 		// Initially hide the borrow container
 		BorrowContainer.Hide();
@@ -400,6 +405,8 @@ public partial class UI : CanvasLayer {
 		string off_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_off");
 		string nuclear_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "nuclear_warning");
 		string next_turn_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "next_turn_warning");
+		string current_turn = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_current_turn");
+		string remaining_turns = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_remaining_turn");
 
 		// Update static UI text
 		EnergyLabel.Text = eng_label;
@@ -408,6 +415,9 @@ public partial class UI : CanvasLayer {
 		OffLabel.Text = off_label;
 		NuclearWarnLabel.Text = nuclear_warning_label;
 		Warning.Text = next_turn_warning_label;
+		RemTurnL.Text = remaining_turns;
+		CurrentTurnL.Text = current_turn;
+		
 
 		// Update debt texts
 		BorrowTitle.Text = debt_title;
@@ -1137,10 +1147,15 @@ public partial class UI : CanvasLayer {
 		PayBackAmount.Text = ((int)(value + (value * InterestRate))).ToString(); // Add the interest rate
 	}
 	
+	public void _OnTurnInfoPressed() {
+		TurnInfoContainer.Visible = !TurnInfoContainer.Visible;
+	}
+	
 	public override void _UnhandledInput(InputEvent E) {
 		if(E is InputEventMouseButton MouseButton) {
 			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
 				MoneyInfo.Hide();
+				TurnInfoContainer.Hide();
 			}
 		}
 	}

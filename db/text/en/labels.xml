@@ -35,6 +35,8 @@
         <text id="label_now">Now</text>
         <text id="label_next_turn">Next Turn</text>
         <text id="label_total">Total</text>
+        <text id="label_current_turn">Turn</text>
+        <text id="label_remaining_turn">Remaining Turns</text>
     </group>
 
     <!-- Texts for more info on resources -->

@@ -340,6 +340,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [-2.21657, -2.0944, -2.00713, -1.81514]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TurnInfoContainer:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_lrye6"]
 length = 0.001
@@ -462,6 +474,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [-2.21657]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("TurnInfoContainer:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08hvt"]
@@ -1208,7 +1232,8 @@ libraries = {
 "": SubResource("AnimationLibrary_5dlvf")
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="TimePanelBlank"]
+[node name="TurnInfoContainer" type="MarginContainer" parent="TimePanelBlank"]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -1220,7 +1245,7 @@ offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="TimePanelBlank/MarginContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="TimePanelBlank/TurnInfoContainer"]
 layout_mode = 2
 texture = ExtResource("34_yg0ni")
 patch_margin_left = 56
@@ -1228,17 +1253,17 @@ patch_margin_top = 96
 patch_margin_right = 54
 patch_margin_bottom = 107
 
-[node name="MarginContainer" type="MarginContainer" parent="TimePanelBlank/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TimePanelBlank/TurnInfoContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 70
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TimePanelBlank/MarginContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TimePanelBlank/TurnInfoContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="CurrentTurn" type="Label" parent="TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="CurrentTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1246,7 +1271,7 @@ theme_override_fonts/font = ExtResource("53_v477p")
 theme_override_font_sizes/font_size = 26
 text = "Turn"
 
-[node name="CTurn" type="Label" parent="TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/CurrentTurn"]
+[node name="CTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1263,14 +1288,14 @@ theme_override_fonts/font = ExtResource("53_v477p")
 theme_override_font_sizes/font_size = 26
 text = "N"
 
-[node name="RemainingTurns" type="Label" parent="TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="RemainingTurns" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("53_v477p")
 theme_override_font_sizes/font_size = 26
 text = "Remaining turns"
 
-[node name="RTurn" type="Label" parent="TimePanelBlank/MarginContainer/MarginContainer/VBoxContainer/RemainingTurns"]
+[node name="RTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1286,6 +1311,20 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("53_v477p")
 theme_override_font_sizes/font_size = 26
 text = "N"
+
+[node name="TurnInfo" type="Button" parent="TimePanelBlank"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -245.0
+offset_top = -245.5
+offset_right = -245.0
+offset_bottom = -245.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(216, 636)
