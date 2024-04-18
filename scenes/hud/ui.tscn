@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=115 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -59,6 +59,12 @@
 [ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" id="54_7juy1"]
 [ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" id="55_5s2up"]
 [ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="55_5ylb2"]
+[ext_resource type="FontFile" uid="uid://jsoamputail4" path="res://assets/Fonts/static/OpenSans-SemiBold.ttf" id="59_nmkxq"]
+[ext_resource type="Texture2D" uid="uid://bbjycbp8muvr1" path="res://assets/UI Elements/Import-bar-hole.png" id="60_gik5m"]
+[ext_resource type="Texture2D" uid="uid://behxblj10y4lm" path="res://assets/UI Elements/Build_Menu_0004_Build-Menu-Screen.png" id="61_ni5qv"]
+[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="62_orw34"]
+[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="63_c1xpc"]
+[ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="63_perny"]
 
 [sub_resource type="FontVariation" id="FontVariation_74xhr"]
 base_font = ExtResource("40_knfjx")
@@ -693,7 +699,22 @@ atlas = ExtResource("50_inaxr")
 region = Rect2(0, 0, 328, 776)
 
 [sub_resource type="FontVariation" id="FontVariation_2lxgj"]
-base_font = ExtResource("51_joowr")
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="FontVariation" id="FontVariation_efn7l"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="FontVariation" id="FontVariation_tjn0r"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="FontVariation" id="FontVariation_jfp53"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="FontVariation" id="FontVariation_2ju7n"]
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="FontVariation" id="FontVariation_kgd4n"]
+base_font = ExtResource("59_nmkxq")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
 bg_color = Color(0.988235, 0, 0, 1)
@@ -721,20 +742,24 @@ Button/styles/hover = SubResource("StyleBoxFlat_pwy5b")
 Button/styles/normal = SubResource("StyleBoxFlat_vka7n")
 Button/styles/pressed = SubResource("StyleBoxFlat_fgbvl")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2x8o"]
-bg_color = Color(0.45098, 0.45098, 0.45098, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnqwg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xki6c"]
-bg_color = Color(0.368627, 0.368627, 0.368627, 1)
-
 [sub_resource type="FontVariation" id="FontVariation_6evow"]
 base_font = ExtResource("51_joowr")
-spacing_glyph = 1
+
+[sub_resource type="FontVariation" id="FontVariation_ien0s"]
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="FontVariation" id="FontVariation_1lnka"]
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="FontVariation" id="FontVariation_jdqy5"]
+base_font = ExtResource("53_v477p")
+variation_embolden = 0.05
+spacing_glyph = 4
 
 [sub_resource type="FontVariation" id="FontVariation_1sp4q"]
 base_font = ExtResource("53_v477p")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2ty1"]
 
 [sub_resource type="FontVariation" id="FontVariation_lnt6a"]
 base_font = ExtResource("51_joowr")
@@ -990,7 +1015,6 @@ max_value = 200.0
 position = Vector2(-195, -609.5)
 
 [node name="BarInfo" parent="EnergyBarWinter" index="1"]
-visible = true
 z_index = 1
 offset_left = 523.999
 offset_top = 169.002
@@ -1018,7 +1042,6 @@ max_value = 200.0
 position = Vector2(-331, -609.5)
 
 [node name="BarInfo" parent="EnergyBarSummer" index="1"]
-visible = true
 z_index = 1
 offset_left = 525.0
 offset_top = 106.002
@@ -2085,7 +2108,6 @@ icon = ExtResource("7_mnpcp")
 flat = true
 
 [node name="ColorRect" type="ColorRect" parent="SettingsButton"]
-visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -2100,7 +2122,8 @@ grow_vertical = 2
 color = Color(0.313726, 0.313726, 0.313726, 0.345098)
 
 [node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect"]
-position = Vector2(958, 544)
+position = Vector2(959, 496)
+scale = Vector2(1, 1.17784)
 texture = SubResource("AtlasTexture_21dh1")
 
 [node name="SettingsBox" type="ColorRect" parent="SettingsButton/ColorRect"]
@@ -2137,9 +2160,9 @@ vertical_alignment = 1
 
 [node name="Close" type="Button" parent="SettingsButton/ColorRect/SettingsBox"]
 layout_mode = 0
-offset_left = -703.5
+offset_left = -817.0
 offset_top = -224.0
-offset_right = 1218.5
+offset_right = 1219.0
 offset_bottom = 860.0
 focus_mode = 0
 flat = true
@@ -2154,27 +2177,38 @@ offset_top = 42.0
 offset_right = 102.0
 offset_bottom = 636.0
 grow_horizontal = 2
-theme_override_constants/separation = 10
 
 [node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("FontVariation_efn7l")
 button_pressed = true
 text = "Fullscreen"
 icon_alignment = 2
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_tjn0r")
 text = "Music"
 
 [node name="VolMusic" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
+min_value = -24.0
+max_value = 15.0
+scrollable = false
 
 [node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_jfp53")
 text = "SFX"
 
 [node name="VolSound" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
+min_value = -24.0
+max_value = 15.0
+scrollable = false
 
 [node name="Space" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
@@ -2191,60 +2225,162 @@ layout_mode = 2
 [node name="Space5" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
 
-[node name="Language" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-text = "Language: English"
+[node name="BuildMenu0004Build-menu-screen" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+position = Vector2(96, 442.25)
+scale = Vector2(1.02525, 1.61211)
+texture = ExtResource("61_ni5qv")
 
-[node name="Instructions" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+[node name="Language" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 7.0
+offset_right = -9.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_2ju7n")
+theme_override_font_sizes/font_size = 20
+text = "Lang"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Instructions" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Instructions"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
-[node name="ColorRect" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions"]
+[node name="Tutorial" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions" instance=ExtResource("63_perny")]
 visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -4.638
-anchor_top = -9.333
-anchor_right = 5.66
-anchor_bottom = 13.292
-offset_left = -0.0559692
-offset_top = 7.98401
-offset_right = -16.0801
-offset_bottom = -0.0160522
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.184314, 0.184314, 0.184314, 0.470588)
 
-[node name="ColorRect" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions/ColorRect"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -724.0
-offset_top = -444.0
-offset_right = 724.0
-offset_bottom = 444.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.398438, 0.398438, 0.398438, 1)
-
-[node name="Credits" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+[node name="Credits" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -11.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_kgd4n")
+theme_override_font_sizes/font_size = 22
 text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Paper-big" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
+visible = false
+position = Vector2(85.5, -206)
+texture = ExtResource("46_31xep")
+
+[node name="Label3" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -328.5
+offset_top = -203.0
+offset_right = -241.5
+offset_bottom = -169.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_kgd4n")
+theme_override_font_sizes/font_size = 22
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
+offset_left = -208.0
+offset_top = -120.0
+offset_right = -165.0
+offset_bottom = -94.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("53_v477p")
+text = "Team"
+uppercase = true
+
+[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
+offset_left = -208.0
+offset_top = -56.0
+offset_right = -75.0
+offset_bottom = 178.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("53_v477p")
+text = "Amelia Dobis
+Borja Maol
+Saara Jones
+Toby Simpson
+Davide Baroli
+Michael Multerer
+Isabelle Stadelmann
+Gracia Brückmann
+Walid El-Ajou
+"
 
 [node name="Reset" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+focus_mode = 0
 theme = SubResource("Theme_4p1wg")
 texture_normal = ExtResource("2_aobed")
 texture_pressed = ExtResource("3_qtdni")
 texture_hover = ExtResource("4_mh4j1")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 183.0
+offset_bottom = 74.0
+theme_override_fonts/font = SubResource("FontVariation_6evow")
+theme_override_font_sizes/font_size = 23
+text = "Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="ResetConfirm" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
 visible = false
@@ -2260,47 +2396,70 @@ offset_right = 343.0
 offset_bottom = 172.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.560784, 0.560784, 0.560784, 1)
+color = Color(0.560784, 0.560784, 0.560784, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+position = Vector2(368, 187)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("18_oaaki")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 64.0
-offset_right = 637.0
-offset_bottom = 112.0
+offset_left = 125.0
+offset_top = 99.0
+offset_right = 565.0
+offset_bottom = 214.0
 theme_override_font_sizes/font_size = 32
 text = "Are you sure that you want to restart?"
+horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Yes" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+[node name="Yes" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 216.0
-offset_right = 234.0
-offset_bottom = 269.0
-text = "Yes
-"
+offset_left = 164.0
+offset_top = 222.0
+offset_right = 357.0
+offset_bottom = 305.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("2_aobed")
+texture_pressed = ExtResource("3_qtdni")
+texture_hover = ExtResource("4_mh4j1")
 
-[node name="No" type="Button" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 216.0
-offset_right = 546.0
-offset_bottom = 269.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_a2x8o")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xnqwg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xki6c")
-text = "No"
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_ien0s")
+theme_override_font_sizes/font_size = 22
+text = "RESET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
+[node name="No" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 10.0
-offset_right = 183.0
-offset_bottom = 74.0
-theme_override_fonts/font = SubResource("FontVariation_6evow")
-theme_override_font_sizes/font_size = 20
-text = "Reset"
+offset_left = 396.0
+offset_top = 222.0
+offset_right = 589.0
+offset_bottom = 305.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_1lnka")
+theme_override_font_sizes/font_size = 22
+text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -2325,6 +2484,22 @@ offset_right = 1483.0
 offset_bottom = 831.0
 color = Color(0.596078, 0.596078, 0.596078, 0)
 
+[node name="Bank" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_top = 45.0
+offset_right = 111.5
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_jdqy5")
+theme_override_font_sizes/font_size = 28
+text = "BANK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Title" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
 offset_left = 214.0
@@ -2338,12 +2513,19 @@ text = "How much would you like to borrow?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="Import-bar-hole" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+position = Vector2(494, 415)
+rotation = 1.5708
+scale = Vector2(1, 2.232)
+texture = ExtResource("60_gik5m")
+
 [node name="BorrowSlider" type="HSlider" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
 offset_left = 214.0
-offset_top = 404.0
+offset_top = 388.0
 offset_right = 774.0
-offset_bottom = 438.0
+offset_bottom = 422.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_r2ty1")
 max_value = 500.0
 step = 100.0
 rounded = true
@@ -2352,10 +2534,10 @@ ticks_on_borders = true
 
 [node name="Money" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 210.0
-offset_right = 399.0
-offset_bottom = 270.0
+offset_left = 278.0
+offset_top = 196.0
+offset_right = 471.0
+offset_bottom = 340.0
 theme_override_colors/font_color = Color(0.435294, 0.956863, 0.435294, 1)
 theme_override_fonts/font = SubResource("FontVariation_1sp4q")
 theme_override_font_sizes/font_size = 27
@@ -2376,13 +2558,14 @@ horizontal_alignment = 2
 [node name="Interest" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
 offset_left = 481.0
-offset_top = 210.0
-offset_right = 819.0
-offset_bottom = 257.0
+offset_top = 196.0
+offset_right = 775.0
+offset_bottom = 339.0
 theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_1sp4q")
 theme_override_font_sizes/font_size = 27
 text = "Pay Back (next turn)"
+autowrap_mode = 3
 
 [node name="InterestAmount" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Interest"]
 layout_mode = 0
@@ -2396,23 +2579,63 @@ theme_override_font_sizes/font_size = 27
 text = "0"
 horizontal_alignment = 2
 
-[node name="Apply" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
-layout_mode = 0
-offset_left = 270.0
-offset_top = 468.0
-offset_right = 432.0
-offset_bottom = 522.0
-theme_override_font_sizes/font_size = 27
-text = "Apply"
+[node name="BuildMenu0004Build-menu-screen" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+position = Vector2(349.5, 483.75)
+scale = Vector2(1.00505, 0.392377)
+texture = ExtResource("61_ni5qv")
 
-[node name="Cancel" type="Button" parent="BorrowContainer/BorrowMoneyWindow"]
+[node name="BuildMenu0004Build-menu-screen2" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
+position = Vector2(637, 484)
+scale = Vector2(1.00505, 0.392377)
+texture = ExtResource("61_ni5qv")
+
+[node name="Apply" type="TextureButton" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 566.0
-offset_top = 468.0
-offset_right = 725.0
-offset_bottom = 520.0
+offset_left = 254.0
+offset_top = 441.0
+offset_right = 447.0
+offset_bottom = 524.0
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Apply"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("53_v477p")
 theme_override_font_sizes/font_size = 28
-text = "Cancel"
+text = "apply"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Cancel" type="TextureButton" parent="BorrowContainer/BorrowMoneyWindow"]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 441.0
+offset_right = 735.0
+offset_bottom = 524.0
+texture_normal = ExtResource("2_aobed")
+texture_pressed = ExtResource("3_qtdni")
+texture_hover = ExtResource("4_mh4j1")
+
+[node name="Label2" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Cancel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("53_v477p")
+theme_override_font_sizes/font_size = 28
+text = "cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="BuildMenu0003Numbers-hole" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
 visible = false

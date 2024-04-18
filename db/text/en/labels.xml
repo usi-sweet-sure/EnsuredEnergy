@@ -129,6 +129,8 @@ Energy
         <text id="reset_prompt">Are you sure that you want to restart?</text>
         <text id="reset_yes">Yes</text>
         <text id="reset_no">No</text>
+        <text id="hold_drag">Hold and drag to move</text>
+        <text id="scroll_zoom">Scroll to zoom</text>
     </group>
 
     <!-- Labels for the different power plants -->

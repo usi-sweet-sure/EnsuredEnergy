@@ -131,8 +131,10 @@ public partial class UI : CanvasLayer {
 	private Label PayBackText;
 	private Label BorrowAmount;
 	private Label PayBackAmount;
-	private Button DebtApplyButton;
-	private Button DebtCancelButton;
+	private TextureButton DebtApplyButton;
+	private Label DebtApplyL;
+	private TextureButton DebtCancelButton;
+	private Label DebtCancelL;
 	private ColorRect BorrowMoneyWindow;
 	private HSlider DebtSlider;
 	private Sprite2D DebtResource;
@@ -163,17 +165,25 @@ public partial class UI : CanvasLayer {
 	// Settings
 	private Button SettingsButton;
 	private ColorRect SettingsBox;
-	private Button LanguageButton;
+	private TextureButton LanguageButton;
+	private Label LanguageL;
 	private Button SettingsClose;
 	private Button ScreenOption;
+	private TextureButton Instructions;
+	private Tutorial Tutorial;
+	private TextureButton CreditsButton;
+	private Label CreditsL;
+	private Sprite2D CreditsInfo;
 
 	// Reset button and confirmation
 	private TextureButton ResetButton;
 	private Label ResetButtonL;
 	private ColorRect ResetPrompt;
 	private Label ResetConfirmL;
-	private Button ResetYes;
-	private Button ResetNo;
+	private TextureButton ResetYes;
+	private TextureButton ResetNo;
+	private Label ResetYesL;
+	private Label ResetNoL;
 	
 	// Turn info
 	private Label CurrentTurnL;
@@ -182,6 +192,10 @@ public partial class UI : CanvasLayer {
 	private Label RemTurnN;
 	private Button TurnInfo;
 	private MarginContainer TurnInfoContainer;
+	
+	// Sound settings
+	private HSlider VolMusic;
+	private HSlider VolSound;
 
 	// Game Loop
 	private GameLoop GL;
@@ -209,17 +223,25 @@ public partial class UI : CanvasLayer {
 		// Settings
 		SettingsButton = GetNode<Button>("SettingsButton");
 		SettingsBox = GetNode<ColorRect>("SettingsButton/ColorRect");
-		LanguageButton = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
+		LanguageButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
+		LanguageL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language/Label");
 		SettingsClose = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/Close");
 		ScreenOption = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/ScreenOption");
+		Instructions = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions");
+		Tutorial = GetNode<Tutorial>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions/Tutorial");
+		CreditsButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits");
+		CreditsL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Label");
+		CreditsInfo = GetNode<Sprite2D>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big");
 
 		// Reset nodes
 		ResetButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset");
 		ResetButtonL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/Label");
 		ResetPrompt = GetNode<ColorRect>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm");
 		ResetConfirmL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
-		ResetYes = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
-		ResetNo = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+		ResetYes = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
+		ResetNo = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+		ResetYesL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes/Label");
+		ResetNoL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No/Label");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
@@ -272,8 +294,10 @@ public partial class UI : CanvasLayer {
 		BorrowAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Money/BorrowAmount");
 		PayBackText = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest");
 		PayBackAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest/InterestAmount");
-		DebtApplyButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Apply");
-		DebtCancelButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Cancel");
+		DebtApplyButton = GetNode<TextureButton>("BorrowContainer/BorrowMoneyWindow/Apply");
+		DebtApplyL = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Apply/Label");
+		DebtCancelButton = GetNode<TextureButton>("BorrowContainer/BorrowMoneyWindow/Cancel");
+		DebtCancelL = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Cancel/Label2");
 		BorrowMoneyWindow = GetNode<ColorRect>("BorrowContainer/BorrowMoneyWindow");
 		DebtSlider = GetNode<HSlider>("BorrowContainer/BorrowMoneyWindow/BorrowSlider");
 		DebtResource = GetNode<Sprite2D>("BorrowMoney/Debt");
@@ -310,6 +334,12 @@ public partial class UI : CanvasLayer {
 		RemTurnN = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns/RTurn");
 		TurnInfo = GetNode<Button>("TimePanelBlank/TurnInfo");
 		TurnInfoContainer = GetNode<MarginContainer>("TimePanelBlank/TurnInfoContainer");
+		
+		// Audio settings
+		VolMusic = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolMusic");
+		VolSound = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolSound");
+		VolMusic.Value = AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Music"));
+		VolSound.Value = AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Sound"));
 
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
@@ -333,6 +363,10 @@ public partial class UI : CanvasLayer {
 		BorrowMoneyButton.Pressed += BorrowContainer.Show;
 		ScreenOption.Toggled += _OnScreenOption;
 		TurnInfo.Pressed += _OnTurnInfoPressed;
+		VolMusic.DragEnded += _OnMusicDragEnded;
+		VolSound.DragEnded += _OnSoundDragEnded;
+		Instructions.Pressed += _OnInstructionsPressed;
+		CreditsButton.Pressed += _OnCreditsPressed;
 
 		// Initially hide the borrow container
 		BorrowContainer.Hide();
@@ -359,7 +393,7 @@ public partial class UI : CanvasLayer {
 	// Updates the various labels across the UI
 	public void _UpdateUI() {
 		// Updates the displayed language to match the selected one
-		LanguageButton.Text = C._GetLanguageName();
+		LanguageL.Text = C._GetLanguageName();
 
 		// Fetch the build menu names
 		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
@@ -423,14 +457,14 @@ public partial class UI : CanvasLayer {
 		BorrowTitle.Text = debt_title;
 		BorrowText.Text = borrow_text;
 		PayBackText.Text = debt_text;
-		DebtApplyButton.Text = debt_apply;
-		DebtCancelButton.Text = debt_cancel;
+		DebtApplyL.Text = debt_apply;
+		DebtCancelL.Text = debt_cancel;
 
 		// Update the reset texet
 		ResetButtonL.Text = reset_name;
 		ResetConfirmL.Text = reset_prompt;
-		ResetYes.Text = reset_yes;
-		ResetNo.Text = reset_no;
+		ResetYesL.Text = reset_name;
+		ResetNoL.Text = debt_cancel;
 
 		// Update the various plants
 		BM._UpdatePlantName(Building.Type.GAS, gas_name);
@@ -1073,6 +1107,7 @@ public partial class UI : CanvasLayer {
 	// Closes the language settings by clicking outside
 	public void _OnSettingsClosePressed() {
 		SettingsBox.Hide();
+		CreditsInfo.Hide();
 	}
 
 	// Propagates an import update to the rest of the system
@@ -1151,11 +1186,29 @@ public partial class UI : CanvasLayer {
 		TurnInfoContainer.Visible = !TurnInfoContainer.Visible;
 	}
 	
+	public void _OnMusicDragEnded(bool Changed) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), (float)VolMusic.Value);
+	}
+	
+	public void _OnSoundDragEnded(bool Changed) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sound"), (float)VolSound.Value);
+	}
+	
+	public void _OnInstructionsPressed() {
+		Tutorial._Reset();
+		Tutorial.Show();
+	}
+	
+	public void _OnCreditsPressed() {
+		CreditsInfo.Visible = !CreditsInfo.Visible;
+	}
+	
 	public override void _UnhandledInput(InputEvent E) {
 		if(E is InputEventMouseButton MouseButton) {
 			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
 				MoneyInfo.Hide();
 				TurnInfoContainer.Hide();
+				CreditsInfo.Hide();
 			}
 		}
 	}
