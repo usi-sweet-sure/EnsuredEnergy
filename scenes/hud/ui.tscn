@@ -2108,6 +2108,7 @@ icon = ExtResource("7_mnpcp")
 flat = true
 
 [node name="ColorRect" type="ColorRect" parent="SettingsButton"]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
