@@ -1628,6 +1628,7 @@ visible = false
 [node name="Wind" parent="World" index="12" groups=["PP"]]
 position = Vector2(-556, 553)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 5
 
 [node name="Sprite2" type="Sprite2D" parent="World/Wind" index="1"]
@@ -1678,12 +1679,6 @@ HasMultSprite = false
 [node name="Wind" parent="World/BuildButton" index="5"]
 HasMultSprite = false
 
-[node name="Money" parent="World/BuildButton" index="13"]
-offset_left = -286.0
-offset_top = -132.5
-offset_right = -126.0
-offset_bottom = -43.5
-
 [node name="BuildButton2" parent="World" index="15"]
 offset_left = 624.0
 offset_top = 480.0
@@ -1720,6 +1715,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Solar" parent="World" index="22" groups=["PP"]]
 position = Vector2(3456, 1224)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 2
 
 [node name="Sprite2" type="Sprite2D" parent="World/Solar" index="1"]
@@ -1766,12 +1762,6 @@ HasMultSprite = false
 
 [node name="Wind" parent="World/BuildButton9" index="5"]
 HasMultSprite = false
-
-[node name="Money" parent="World/BuildButton9" index="13"]
-offset_left = -279.0
-offset_top = -124.0
-offset_right = -119.0
-offset_bottom = -35.0
 
 [node name="Hydro" parent="World" index="27" groups=["PP"]]
 position = Vector2(360, 1982)

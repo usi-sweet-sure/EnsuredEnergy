@@ -2197,6 +2197,7 @@ icon = ExtResource("7_mnpcp")
 flat = true
 
 [node name="ColorRect" type="ColorRect" parent="SettingsButton"]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -2208,7 +2209,7 @@ offset_right = -47.024
 offset_bottom = -33.032
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.313726, 0.313726, 0.313726, 0.345098)
+color = Color(0.313726, 0.313726, 0.313726, 0.196078)
 
 [node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect"]
 position = Vector2(959, 496)
@@ -2262,9 +2263,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -91.0
-offset_top = 42.0
+offset_top = 36.0
 offset_right = 102.0
-offset_bottom = 636.0
+offset_bottom = 659.0
 grow_horizontal = 2
 
 [node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
@@ -2324,7 +2325,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="BuildMenu0004Build-menu-screen" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-position = Vector2(96, 442.25)
+position = Vector2(96, 451.25)
 scale = Vector2(1.02525, 1.61211)
 texture = ExtResource("61_ni5qv")
 

@@ -105,6 +105,7 @@
         <text id="energy_description">L'offerta deve raggiungere la domanda di energia.</text>
         <text id="pollution_description">Goal: Reach net zero by 2050</text>
         <text id="next_turn_warning">Non c'è abbastanza energia!</text>
+        <text id="no_money_warning">Non ci sono abbastanza soldi!</text>
     </group>
 
      <!-- Labels for the main menu -->

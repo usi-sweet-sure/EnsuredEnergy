@@ -105,6 +105,7 @@
         <text id="energy_description">Das Energieangebot muss den Energiebedarf decken.</text>
         <text id="pollution_description">Ziel: Erreichen von Netto-Null bis 2050</text>
         <text id="next_turn_warning">Nicht genug Energie!</text>
+        <text id="no_money_warning">Nicht genug Geld!</text>
     </group>
 
     <!-- Labels for the main menu -->
