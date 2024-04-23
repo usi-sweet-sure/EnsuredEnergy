@@ -160,6 +160,7 @@ public partial class PowerPlant : Node2D {
 	private Label MultWinterE;
 	private Label MultSummerE;
 	private Sprite2D NoMoneySprite;
+	private Label NoMoney;
 	
 	public AnimationPlayer AP;
 	private Label AnimMoney;
@@ -248,6 +249,7 @@ public partial class PowerPlant : Node2D {
 		MultWinterE = GetNode<Label>("BuildInfo/MultWinterE");
 		MultSummerE = GetNode<Label>("BuildInfo/MultSummerE");
 		NoMoneySprite = GetNode<Sprite2D>("NoMoneySprite");
+		NoMoney = GetNode<Label>("NoMoney");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -851,7 +853,7 @@ public partial class PowerPlant : Node2D {
 	
 	public async void PlayAnimation() {
 		// TODO set text in lang
-		//NoMoney.Text =
+		NoMoney.Text = TC._GetText("labels.xml", "ui", "no_money_warning");
 		AP.Play("RESET");
 		await ToSignal(AP, "animation_finished");;
 		AP.Play("noMoney");

@@ -35,6 +35,8 @@
         <text id="label_now">Now</text>
         <text id="label_next_turn">Next Turn</text>
         <text id="label_total">Total</text>
+        <text id="label_current_turn">Turn</text>
+        <text id="label_remaining_turn">Remaining Turns</text>
     </group>
 
     <!-- Texts for more info on resources -->
@@ -104,6 +106,7 @@
         <text id="energy_description">The energy supply needs to reach the energy demand.</text>
         <text id="pollution_description">Goal: Reach net zero by 2050</text>
         <text id="next_turn_warning">Not enough energy!</text>
+        <text id="no_money_warning">Not enough money!</text>
     </group>
 
     <group id="settings">
@@ -127,6 +130,8 @@ Energy
         <text id="reset_prompt">Are you sure that you want to restart?</text>
         <text id="reset_yes">Yes</text>
         <text id="reset_no">No</text>
+        <text id="hold_drag">Hold and drag to move</text>
+        <text id="scroll_zoom">Scroll to zoom</text>
     </group>
 
     <!-- Labels for the different power plants -->

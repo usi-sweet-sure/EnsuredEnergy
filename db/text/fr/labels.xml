@@ -35,6 +35,8 @@
         <text id="label_now">Now</text>
         <text id="label_next_turn">Next Turn</text>
         <text id="label_total">Total</text>
+        <text id="label_current_turn">Tour</text>
+        <text id="label_remaining_turn">Tours restants</text>
     </group>
 
     <group id="moreinfo">
@@ -70,10 +72,10 @@
         <text id="label_campaign">Durée de la campagne:</text>
         <text id="label_camp_start">La campagne a été lancée!</text>
         <text id="label_vote">Vote</text>
-        <text id="label_start">Start</text>
-        <text id="env_camp_label">Environmental Campaign</text>
-        <text id="dem_camp_label">Demand Campaign</text>
-        <text id="policy_label">Policies</text>
+        <text id="label_start">Commencer</text>
+        <text id="env_camp_label">Campagne environnementale</text>
+        <text id="dem_camp_label">Campagne d'information sur la demande</text>
+        <text id="policy_label">Politique</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -94,15 +96,16 @@
         <text id="label_debt">Remboursez (au prochain tour)</text>
         <text id="apply_button">Confirmer</text>
         <text id="cancel_button">Annuler</text>
-        <text id="nuclear_shutdown">Shutting down in</text>
-        <text id="nuclear_warning">Nuclear shutting down next turn ⚠️</text>
+        <text id="nuclear_shutdown">L'arrêt de la production dans</text>
+        <text id="nuclear_warning">L'arrêt du nucléaire au prochain tour ⚠️</text>
         <text id="green_import_switch_on">On</text>
         <text id="green_import_switch_off">Off</text>
         <text id="import_slider_label">Import</text>
-        <text id="energy_resource">Energy</text>
-        <text id="energy_description">The energy supply needs to reach the energy demand.</text>
-        <text id="pollution_description">Goal: Reach net zero by 2050</text>
-        <text id="next_turn_warning">Not enough energy!</text>
+        <text id="energy_resource">Energie</text>
+        <text id="energy_description">L'offre doit atteindre la demande d'énergie.</text>
+        <text id="pollution_description">Objectif : parvenir à une consommation nette zéro d'ici à 2050</text>
+        <text id="next_turn_warning">Pas assez d'énergie !</text>
+        <text id="no_money_warning">Pas assez d'argent !</text>
     </group>
 
      <!-- Labels for the main menu -->
@@ -120,6 +123,10 @@ Energy
         <text id="reset_prompt">Es-tu sûr(e) de vouloir redémarrer le jeu?</text>
         <text id="reset_yes">Oui</text>
         <text id="reset_no">Non</text>
+        <text id="hold_drag">Maintenir et faire glisser pour déplacer
+            
+        </text>
+        <text id="scroll_zoom">Utilise la molette pour zoomer</text>
     </group>
 
     <!-- Labels for the different power plants -->

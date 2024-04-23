@@ -2156,6 +2156,7 @@ visible = false
 [node name="Wind" parent="World" index="12" groups=["PP"]]
 position = Vector2(-556, 553)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 5
 
 [node name="Sprite2" type="Sprite2D" parent="World/Wind" index="1"]
@@ -2248,6 +2249,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Solar" parent="World" index="22" groups=["PP"]]
 position = Vector2(3456, 1224)
 HasAnimation = true
+HasMultSprite = true
 _PlantType = 2
 
 [node name="Sprite2" type="Sprite2D" parent="World/Solar" index="1"]
@@ -2560,20 +2562,24 @@ visible = false
 [node name="Audio" parent="." instance=ExtResource("34_smnob")]
 
 [node name="ForestAmbiance" parent="Audio" index="0"]
-autoplay = false
+bus = &"Sound"
 
 [node name="Water" parent="Audio" index="1"]
 position = Vector2(808, 2080)
 volume_db = -5.0
+autoplay = true
+bus = &"Sound"
 
 [node name="Water2" parent="Audio" index="2"]
 position = Vector2(2056, 2080)
+autoplay = true
+bus = &"Sound"
 
 [node name="Wind" parent="Audio" index="3"]
 position = Vector2(-568, 576)
 volume_db = 10.0
-autoplay = false
 stream_paused = false
+bus = &"Sound"
 
 [editable path="World"]
 [editable path="World/Nuclear3"]

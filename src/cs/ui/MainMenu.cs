@@ -41,6 +41,8 @@ public partial class MainMenu : CanvasLayer {
 	private Label PlayL;
 	private Label LangL;
 	private Label OfflineL;
+	private Label Drag;
+	private Label Scroll;
 
 	// Text Controller for dynamic localization
 	private TextController TC;
@@ -66,6 +68,8 @@ public partial class MainMenu : CanvasLayer {
 		PlayL = GetNode<Label>("Play/PlayL");
 		LangL = GetNode<Label>("Lang/LangL");
 		OfflineL = GetNode<Label>("Offline/OfflineL");
+		Drag = GetNode<Label>("BlueprintNormal/Drag");
+		Scroll = GetNode<Label>("BlueprintNormal/Scroll");
 		
 		// Connect button callbacks
 		Play.Pressed += _OnPlayPressed;
@@ -127,6 +131,8 @@ public partial class MainMenu : CanvasLayer {
 		Title.Text = TC._GetText(MENU_FILE, MENU_GROUP, TITLE_ID);
 		PlayL.Text = TC._GetText(MENU_FILE, MENU_GROUP, PLAY_ID);
 		LangL.Text = C._GetLanguageName();
+		Drag.Text = TC._GetText(MENU_FILE, MENU_GROUP, "hold_drag");
+		Scroll.Text = TC._GetText(MENU_FILE, MENU_GROUP, "scroll_zoom");
 		OfflineL.Text = TC._GetText(MENU_FILE, MENU_GROUP, MODE_ID) + ": " +
 			(C._GetOffline() ? TC._GetText(MENU_FILE, MENU_GROUP, OFFLINE_ID) :
 							   TC._GetText(MENU_FILE, MENU_GROUP, ONLINE_ID)

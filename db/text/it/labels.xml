@@ -35,6 +35,8 @@
         <text id="label_now">Ora</text>
         <text id="label_next_turn">Prossimo</text>
         <text id="label_total">Totale</text>
+        <text id="label_current_turn">Turno</text>
+        <text id="label_remaining_turn">Turni rimanenti</text>    
     </group>
 
     <group id="moreinfo">
@@ -100,9 +102,10 @@
         <text id="green_import_switch_off">No</text>
         <text id="import_slider_label">Importazione</text>
         <text id="energy_resource">Energia</text>
-        <text id="energy_description">The energy supply needs to reach the energy demand.</text>
+        <text id="energy_description">L'offerta deve raggiungere la domanda di energia.</text>
         <text id="pollution_description">Goal: Reach net zero by 2050</text>
         <text id="next_turn_warning">Non c'è abbastanza energia!</text>
+        <text id="no_money_warning">Non ci sono abbastanza soldi!</text>
     </group>
 
      <!-- Labels for the main menu -->
@@ -120,6 +123,8 @@ Energy
         <text id="reset_prompt">Sei sicur{o,a} di voler riavviare?</text>
         <text id="reset_yes">Si</text>
         <text id="reset_no">No</text>
+        <text id="hold_drag">tenere premuto e trascinare per spostare</text>
+        <text id="scroll_zoom">scorrere per ingrandire</text>
     </group>
 
     <!-- Labels for the different power plants -->
@@ -134,7 +139,7 @@ Energy
         <text id="label_biomass">Biomassa</text>
         <text id="label_river">Fiume</text>
         <text id="label_pump">Idroelettrico + Pompaggio</text>
-        <text id="label_geo">Geotermica</text>
+        <text id="label_geo">Geothermica</text>
     </group>
 
         <!-- Labels for the main menu -->

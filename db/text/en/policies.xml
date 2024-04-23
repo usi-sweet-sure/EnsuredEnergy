@@ -9,7 +9,7 @@
         <!-- The description text that will be displayed in the policy popup -->
         <text>Start an information campaign on the advantages of renewable energy.</text>
         <!-- The effect the campaign will have on the probability of passing the env policies -->
-        <effect field="tag" value="0.2">Increase environmental policy support by 20%</effect>
+        <effect field="tag" value="0.1">Increase environmental policy support by 10%</effect>
         <!-- Number of turns that the campaign will take -->
         <length>1</length>
     </campaign>
@@ -17,7 +17,7 @@
     <campaign id="campaign_demand" tag="demand">
         <name>Home insulation</name>
         <text>Start an information campaign explaining the advantages of home insulation.</text>
-        <effect field="tag" value="0.2">Increase energy policy support by 20%</effect>
+        <effect field="tag" value="0.1">Increase energy policy support by 10%</effect>
         <length>1</length>
     </campaign>
 
