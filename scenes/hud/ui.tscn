@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=124 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
@@ -61,9 +61,12 @@
 [ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="55_5ylb2"]
 [ext_resource type="FontFile" uid="uid://jsoamputail4" path="res://assets/Fonts/static/OpenSans-SemiBold.ttf" id="59_nmkxq"]
 [ext_resource type="Texture2D" uid="uid://bbjycbp8muvr1" path="res://assets/UI Elements/Import-bar-hole.png" id="60_gik5m"]
+[ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/Button-Play-normal.png" id="61_i4pr1"]
 [ext_resource type="Texture2D" uid="uid://behxblj10y4lm" path="res://assets/UI Elements/Build_Menu_0004_Build-Menu-Screen.png" id="61_ni5qv"]
+[ext_resource type="Texture2D" uid="uid://c5tgx0yng476j" path="res://assets/UI Elements/Button-Play-press.png" id="62_40aw8"]
 [ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="62_orw34"]
 [ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="63_c1xpc"]
+[ext_resource type="Texture2D" uid="uid://0od1i8cgelas" path="res://assets/UI Elements/Button-Play-hover.png" id="63_klrtp"]
 [ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="63_perny"]
 
 [sub_resource type="FontVariation" id="FontVariation_74xhr"]
@@ -707,8 +710,94 @@ base_font = ExtResource("53_v477p")
 [sub_resource type="FontVariation" id="FontVariation_tjn0r"]
 base_font = ExtResource("53_v477p")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exw71"]
+bg_color = Color(0.0703125, 0.191406, 0.203125, 1)
+border_width_left = 3
+border_width_top = 6
+border_width_right = 3
+border_width_bottom = 6
+border_color = Color(0.0703125, 0.191406, 0.203125, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.407843)
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmcqn"]
+bg_color = Color(0.278431, 0.772549, 0.803922, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.423529)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ast08"]
+bg_color = Color(0.458824, 0.898039, 0.929412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.356863)
+shadow_size = 1
+
 [sub_resource type="FontVariation" id="FontVariation_jfp53"]
 base_font = ExtResource("53_v477p")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrs1m"]
+bg_color = Color(0.0703125, 0.191406, 0.203125, 1)
+border_width_left = 3
+border_width_top = 6
+border_width_right = 3
+border_width_bottom = 6
+border_color = Color(0.0703125, 0.191406, 0.203125, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.419608)
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbbiv"]
+bg_color = Color(0.278431, 0.772549, 0.803922, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53y48"]
+bg_color = Color(0.396078, 0.870588, 0.901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.368627)
+shadow_size = 1
 
 [sub_resource type="FontVariation" id="FontVariation_2ju7n"]
 base_font = ExtResource("59_nmkxq")
@@ -2108,7 +2197,6 @@ icon = ExtResource("7_mnpcp")
 flat = true
 
 [node name="ColorRect" type="ColorRect" parent="SettingsButton"]
-visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -2195,8 +2283,12 @@ text = "Music"
 [node name="VolMusic" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-min_value = -24.0
-max_value = 15.0
+theme_override_styles/slider = SubResource("StyleBoxFlat_exw71")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_pmcqn")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ast08")
+max_value = 1.0
+step = 0.001
+value = 0.8
 scrollable = false
 
 [node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
@@ -2205,10 +2297,15 @@ theme_override_fonts/font = SubResource("FontVariation_jfp53")
 text = "SFX"
 
 [node name="VolSound" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 focus_mode = 0
-min_value = -24.0
-max_value = 15.0
+theme_override_styles/slider = SubResource("StyleBoxFlat_wrs1m")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_jbbiv")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_53y48")
+max_value = 1.0
+step = 0.001
+value = 0.8
 scrollable = false
 
 [node name="Space" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
@@ -2235,9 +2332,9 @@ texture = ExtResource("61_ni5qv")
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
+texture_normal = ExtResource("61_i4pr1")
+texture_pressed = ExtResource("62_40aw8")
+texture_hover = ExtResource("63_klrtp")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language"]
 layout_mode = 1

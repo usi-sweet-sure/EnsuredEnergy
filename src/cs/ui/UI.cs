@@ -338,8 +338,8 @@ public partial class UI : CanvasLayer {
 		// Audio settings
 		VolMusic = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolMusic");
 		VolSound = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolSound");
-		VolMusic.Value = AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Music"));
-		VolSound.Value = AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Sound"));
+		//VolMusic.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Music")));
+		//VolSound.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Sound")));
 
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
@@ -363,8 +363,8 @@ public partial class UI : CanvasLayer {
 		BorrowMoneyButton.Pressed += BorrowContainer.Show;
 		ScreenOption.Toggled += _OnScreenOption;
 		TurnInfo.Pressed += _OnTurnInfoPressed;
-		VolMusic.DragEnded += _OnMusicDragEnded;
-		VolSound.DragEnded += _OnSoundDragEnded;
+		VolMusic.ValueChanged += _OnMusicValueChanged;
+		VolSound.ValueChanged += _OnSoundValueChanged;
 		Instructions.Pressed += _OnInstructionsPressed;
 		CreditsButton.Pressed += _OnCreditsPressed;
 
@@ -1186,12 +1186,12 @@ public partial class UI : CanvasLayer {
 		TurnInfoContainer.Visible = !TurnInfoContainer.Visible;
 	}
 	
-	public void _OnMusicDragEnded(bool Changed) {
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), (float)VolMusic.Value);
+	public void _OnMusicValueChanged(double Value) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb((float)Value));
 	}
 	
-	public void _OnSoundDragEnded(bool Changed) {
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sound"), (float)VolSound.Value);
+	public void _OnSoundValueChanged(double Value) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sound"), Mathf.LinearToDb((float)Value));
 	}
 	
 	public void _OnInstructionsPressed() {
