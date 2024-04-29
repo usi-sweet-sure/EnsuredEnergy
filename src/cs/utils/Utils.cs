@@ -188,7 +188,7 @@ public readonly struct Building {
 	public readonly Type type;
 
 	// The various types of power plants
-	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, WIND, WASTE, BIOMASS, RIVER, PUMP, NONE };
+	public enum Type { HYDRO, GAS, SOLAR, TREE, NUCLEAR, WIND, WASTE, BIOMASS, RIVER, PUMP, GEOTHERMAL, NONE };
 
 	// Labels used as string representations of the types
 	public const string GAS_LABEL = "gas";
@@ -201,6 +201,7 @@ public readonly struct Building {
 	public const string BIOMASS_LABEL = "biomass";
 	public const string RIVER_LABEL = "river";
 	public const string PUMP_LABEL = "pump";
+	public const string GEO_LABEL = "geothermal";
 
 	// Base values for the model's building types
 	private const int GAS_ID_BASE = 1;
@@ -265,6 +266,9 @@ public readonly struct Building {
 		if(s_ == PUMP_LABEL) {
 			return new Building(Type.PUMP);
 		}
+		if(s_ == GEO_LABEL) {
+			return new Building(Type.GEOTHERMAL);
+		}
 
 		// The given string was invalid so we give it the impossible type
 		return new Building(Type.NONE);
@@ -282,6 +286,7 @@ public readonly struct Building {
 		type == Type.BIOMASS ? BIOMASS_LABEL : 
 		type == Type.RIVER ? RIVER_LABEL : 
 		type == Type.PUMP ? PUMP_LABEL : 
+		type == Type.GEOTHERMAL ? GEO_LABEL : 
 		"";
 
 	// Explicit conversion to an int

@@ -19,7 +19,7 @@
 <db id="labels" lang="en">
     <!-- Labels for the info bars -->
     <group id="infobar">
-        <text id="label_demand">Richiesta</text>
+        <text id="label_demand">Domanda</text>
         <text id="label_supply">Fornitura</text>
         <text id="label_afford">Convenienza</text>
         <text id="label_aesth">Estetica</text>
@@ -30,13 +30,52 @@
         <text id="label_budget">Bilancio</text>
         <text id="label_building">Costruzione</text>
         <text id="label_production">Produzione</text>
-        <text id="label_import_pol">Inquinamento delle Importazioni</text>
+        <text id="label_import">Importazione</text>
+        <text id="label_import_pol">Inquinamento dall'importazione</text>
+        <text id="label_now">Ora</text>
+        <text id="label_next_turn">Prossimo</text>
+        <text id="label_total">Totale</text>
+        <text id="label_current_turn">Turno</text>
+        <text id="label_remaining_turn">Turni rimanenti</text>    
+    </group>
+
+    <group id="moreinfo">
+        <text id="biodiversity_info">La biodiversità mostra l'impatto ambientale del sistema energetico. Più alto è il punteggio, più animali e piante possono prosperare nei loro habitat naturali. La maggior parte delle centrali elettriche influisce negativamente sulla biodiversità perché richiede molta terra e acqua.</text>
+        <text id="landuse_info">L'uso del suolo mostra la quantità di terra utilizzata dal sistema energetico. Più piccolo è l'indicatore, minore è l'impatto del sistema energetico sull'uso del suolo. Alcune centrali elettriche hanno bisogno di più terra di altre. Questo può avere un impatto negativo sulla biodiversità.</text>
+        <text id="pollution_info">L'emissione di CO2 indica la quantità di gas serra rilasciata dal sistema energetico. Emissioni più basse significano un minore impatto sul riscaldamento globale. Alcune centrali elettriche emettono CO2. La Svizzera ha deciso di essere neutrale dal punto di vista delle emissioni di carbonio e di raggiungere il livello zero entro il 2050.</text>
+        <text id="importCO2_info">Anche l'importazione di energia dai Paesi vicini può creare emissioni, a meno che non si paghi di più per le importazioni verdi.</text>
+        <text id="support_info">Il sostegno politico indica la popolarità delle vostre decisioni. Più alto è il sostegno, più opzioni di scelta politica avete.</text>
+        <text id="demands_info">La domanda di energia in estate tende a essere più bassa rispetto all'inverno, perché il fabbisogno di raffreddamento è inferiore a quello di riscaldamento in inverno.</text>
+        <text id="demandw_info">In inverno, la domanda di energia è più elevata a causa della necessità di riscaldamento. La Svizzera deve spesso importare l'energia mancante.</text>
+        <text id="energy_info">È necessario raggiungere la richiesta di energia. L'obiettivo è la linea bianca sulla barra dell'energia.</text>
+        <text id="budget_info">Il budget mostra quanto denaro si ha e si può spendere. Si inizia il gioco con 500.- e all'inizio di ogni turno si ricevono 300.-.</text>
+        <text id="prod_info">Alcune centrali elettriche hanno costi di produzione perché hanno bisogno di materiali per funzionare.</text>
+        <text id="building_info">Indica quanto si è speso per costruire o potenziare le centrali elettriche.</text>
+        <text id="import_info">Indica quanto si spenderà per le importazioni. Le importazioni pulite costano N di più.</text>
+        <text id="debt_info">Indica l'importo del debito.</text>
+        <text id="biomass_info">Le centrali elettriche a biomassa utilizzano legno e rifiuti organici per generare elettricità.</text>
+        <text id="wind_info">Le centrali eoliche utilizzano il vento per creare elettricità.</text>
+        <text id="solar_info">I pannelli solari fotovoltaici fruttano le radiazioni solari per produrre elettricità.</text>
+        <text id="gas_info">Le centrali solari utilizzano la luce del sole per produrre elettricità.</text>
+        <text id="waste_info">Le centrali elettriche a rifiuti bruciano i rifiuti domestici e industriali per produrre elettricità.</text>
+        <text id="hydro_info">Le centrali idroelettriche utilizzano dighe per catturare l'acqua e produrre elettricità.</text>
+        <text id="river_info">Le centrali elettriche fluviali sfruttano il flusso d'acqua dei fiumi per produrre elettricità.</text>
+        <text id="dam_info">Gli accumulatori a pompa sfruttano la gravità per immagazzinare l'elettricità in eccesso e rilasciarla quando è necessaria successivamente.</text>
+        <text id="nuclear_info">Le centrali nucleari utilizzano reazioni nucleari per produrre elettricità.</text>
     </group>
 
     <!-- Labels used in the policies window -->
     <group id="policies">
         <text id="policy_success">La politica è stata approvata con successo!</text>
         <text id="policy_failure">La politica non è passata...</text>
+        <text id="label_popularity">Stima della popolarità tra gli elettori:</text>
+        <text id="label_campaign">Durata della campagna:</text>
+        <text id="label_camp_start">La campagna è iniziata!</text>
+        <text id="label_vote">Voto</text>
+        <text id="label_start">Inizio</text>
+        <text id="env_camp_label">Campagna ambientale</text>
+        <text id="dem_camp_label">Campagna di richiesta</text>
+        <text id="policy_label">Politiche</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -50,13 +89,23 @@
 
      <!-- Labels for general UI buttons -->
     <group id="ui">
-        <text id="label_next_turn">Prossima svolta</text>
+        <text id="label_next_turn">Prossimo turno</text>
         <text id="label_import">Importazioni</text>
         <text id="debt_title">Quanto vuoi prendere in prestito?</text>
         <text id="label_borrow">Prestito</text>
         <text id="label_debt">Rimborsare (prossimo turno)</text>
         <text id="apply_button">Applica</text>
         <text id="cancel_button">Annulla</text>
+        <text id="nuclear_shutdown">Spegnimento in</text>
+        <text id="nuclear_warning">Spegnimento del nucleare il prossimo turno ⚠️</text>
+        <text id="green_import_switch_on">Si</text>
+        <text id="green_import_switch_off">No</text>
+        <text id="import_slider_label">Importazione</text>
+        <text id="energy_resource">Energia</text>
+        <text id="energy_description">L'offerta deve raggiungere la domanda di energia.</text>
+        <text id="pollution_description">Goal: Reach net zero by 2050</text>
+        <text id="next_turn_warning">Non c'è abbastanza energia!</text>
+        <text id="no_money_warning">Non ci sono abbastanza soldi!</text>
     </group>
 
      <!-- Labels for the main menu -->
@@ -67,27 +116,30 @@ Energy
         </text>
         <text id="label_play">Giocare</text>
         <text id="label_lang">Lingua</text>
-        <text id="label_mode">Mode</text>
+        <text id="label_mode">Modalita'</text>
         <text id="mode_offline">Offline</text>
         <text id="mode_online">Online</text>
         <text id="label_reset">Ricomincia</text>
         <text id="reset_prompt">Sei sicur{o,a} di voler riavviare?</text>
         <text id="reset_yes">Si</text>
         <text id="reset_no">No</text>
+        <text id="hold_drag">tenere premuto e trascinare per spostare</text>
+        <text id="scroll_zoom">scorrere per ingrandire</text>
     </group>
 
     <!-- Labels for the different power plants -->
     <group id="powerplants">
         <text id="label_gas">Gas</text>
-        <text id="label_hydro">Idraulico</text>
+        <text id="label_hydro">Idroelettrica</text>
         <text id="label_solar">Solare</text>
         <text id="label_wind">Eolica</text>
         <text id="label_tree">Albero</text>
         <text id="label_nuclear">Nucleare</text>
-        <text id="label_waste">Incenerimento</text>
+        <text id="label_waste">Inceneritore</text>
         <text id="label_biomass">Biomassa</text>
         <text id="label_river">Fiume</text>
-        <text id="label_pump">Pompa</text>
+        <text id="label_pump">Idroelettrico + Pompaggio</text>
+        <text id="label_geo">Geothermica</text>
     </group>
 
         <!-- Labels for the main menu -->
@@ -106,11 +158,11 @@ Energy
             </text>
             <text id="money_good">Avete evitato una crisi economica</text>
             <text id="money_bad">Avete distrutto l'economia</text>
-            <text id="support">Sostegno finale
+            <text id="support">Sostegno della popolazione finale
     
             </text>
-            <text id="pollution_good">Avete raggiunto lo zero netto entro il 2050</text>
-            <text id="pollution_bad">Non avete raggiunto lo zero netto entro il 2050</text>
+            <text id="pollution_good">Avete raggiunto emissioni nette zero entro il 2050</text>
+            <text id="pollution_bad">Non avete raggiunto emissioni nette zero entro il 2050</text>
             <text id="env">Punteggio ambientale
                 
             </text>

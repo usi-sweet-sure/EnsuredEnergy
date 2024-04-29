@@ -160,7 +160,7 @@ custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
-text = "You avoided an economical crisis
+text = "You avoided an economic crisis
 "
 horizontal_alignment = 1
 vertical_alignment = 1

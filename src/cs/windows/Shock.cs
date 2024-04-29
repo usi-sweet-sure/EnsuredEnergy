@@ -36,8 +36,9 @@ public partial class Shock : CanvasLayer {
 	private string[] SHOCKS = { 
 		"cold_spell", "heat_wave", "glaciers_melting", 
 		"severe_weather",
-		"inc_raw_cost_10", "inc_raw_cost_20", "mass_immigration",
-		 "pandemic", "nuc_accident"
+		"inc_raw_cost_10", "inc_raw_cost_20", "dec_raw_cost_20", 
+		"mass_immigration", 
+		"no_shock", "renewables_support"
 	};
 
 	// The currently displayed shock's ID
@@ -116,6 +117,10 @@ public partial class Shock : CanvasLayer {
 
 		// Pick the associated id
 		string next_shock = SHOCKS[next_idx];
+		// Remove the shock from the list so it can only happen once
+		List<string> shockList = SHOCKS.ToList();
+		shockList.RemoveAt(next_idx);
+		SHOCKS = shockList.ToArray();
 
 		// Sanity check: make sure we didn't pick the same one twice
 		while(next_shock == CurShock) {

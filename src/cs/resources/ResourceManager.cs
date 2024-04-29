@@ -47,7 +47,7 @@ public partial class ResourceManager : Node {
 
 	[Export]
 	/* The base pollution of a kWh imported from abroad */
-	public float ImportPollution = 0.1f;
+	public float ImportPollution = 0.5f;
 
 	private float InitImportCost, InitImportPollution;
 
@@ -315,7 +315,7 @@ public partial class ResourceManager : Node {
 		var (import_amount_w, import_amount_s) = EngM._ComputeImportAmount(C._GetDemand(), import_perc, ImportInSummer);
 
 		// Compute the final cost
-		return (int)((import_amount_w + import_amount_s * ImportCost) *
+		return (int)(((import_amount_w + import_amount_s) * ImportCost) *
 				(_UI._GetGreenImportState() ? GreenImportCostMultiplier : 1.0f));
 	}
 

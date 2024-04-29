@@ -47,8 +47,8 @@ public partial class Tutorial : CanvasLayer {
 	// Animation player
 	private AnimationPlayer AP;
 
-	// Array containing the various info bubbles and their texts
-	private List<(MarginContainer, RichTextLabel)> IBs;
+	// Array containing the various info bubbles and their texInfoBubble/ts
+	private List<(ColorRect, RichTextLabel)> IBs;
 
 	// ==================== GODOT Method Overrides ====================
 	
@@ -65,11 +65,11 @@ public partial class Tutorial : CanvasLayer {
 
 		// Build out the info bubble list
 		IBs = new () {
-			(GetNode<MarginContainer>("InfoBubble"), GetNode<RichTextLabel>("InfoBubble/MarginContainer/Text")),
-			(GetNode<MarginContainer>("InfoBubble2"), GetNode<RichTextLabel>("InfoBubble2/MarginContainer/Text")),
-			(GetNode<MarginContainer>("InfoBubble3"), GetNode<RichTextLabel>("InfoBubble3/MarginContainer/Text")),
-			(GetNode<MarginContainer>("InfoBubble4"), GetNode<RichTextLabel>("InfoBubble4/MarginContainer/Text")),
-			(GetNode<MarginContainer>("InfoBubble5"), GetNode<RichTextLabel>("InfoBubble5/MarginContainer/Text"))
+			(GetNode<ColorRect>("InfoBubble"), GetNode<RichTextLabel>("InfoBubble/InfoBubble/MarginContainer/Text")),
+			(GetNode<ColorRect>("InfoBubble2"), GetNode<RichTextLabel>("InfoBubble2/InfoBubble2/MarginContainer/Text")),
+			(GetNode<ColorRect>("InfoBubble3"), GetNode<RichTextLabel>("InfoBubble3/InfoBubble3/MarginContainer/Text")),
+			(GetNode<ColorRect>("InfoBubble4"), GetNode<RichTextLabel>("InfoBubble4/InfoBubble4/MarginContainer/Text")),
+			(GetNode<ColorRect>("InfoBubble5"), GetNode<RichTextLabel>("InfoBubble5/InfoBubble5/MarginContainer/Text"))
 		};
 
 		// Initialize the tutorial text

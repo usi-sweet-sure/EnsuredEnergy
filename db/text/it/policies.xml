@@ -3,25 +3,21 @@
     <!-- Campaigns -->
     <!-- ============================ -->
     <!-- The tag here represents where the policy button will be displayed in the policy window-->
-    <campaign id="renewables" tag="env">
+    <campaign id="campaign_env" tag="env">
         <!-- The title that will be displayed at the top of the policy -->
-        <name>Renewable energy</name>
+        <name>Energia rinnovabile</name>
         <!-- The description text that will be displayed in the policy popup -->
-        <text>Start an information campaign on the advantages of renewable energy.
-            Increases acceptance of renewable energy and their related policies by n %.
-        </text>
+        <text>Inizia una campagna di informazione sui vantaggi dell'energia rinnovabile.</text>
         <!-- The effect the campaign will have on the probability of passing the env policies -->
-        <effect field="tag" value="0.2"/>
+        <effect field="tag" value="0.1">Aumenta il supporto delle potiche ambientali del 10%</effect>
         <!-- Number of turns that the campaign will take -->
         <length>1</length>
     </campaign>
 
-    <campaign id="home" tag="demand">
-        <name>Home insulation</name>
-        <text>Start an information campaign explaining the advantages of home insulation.
-            Increases acceptance of home insulation and their related policies by n %.
-        </text>
-        <effect field="tag" value="0.2"/>
+    <campaign id="campaign_demand" tag="demand">
+        <name>Isolamento termico della casa</name>
+        <text>Inizia una campagna di informazione spiegando i vantaggi dell'isolamento termico della casa.</text>
+        <effect field="tag" value="0.1">Aumenta il supporto delle potiche energetiche del 10%</effect>
         <length>1</length>
     </campaign>
 
@@ -30,9 +26,9 @@
     <!-- ============================ -->
 
     <policy id="rooftop_PV" tag="env">
-        <name>Mandatory rooftop solar PV</name>
-        <text>Solar PV must be installed on all suitable rooftops within n turn.
-            Increase of solar energy production by n %.
+        <name>È obligatorio installare pannelli fotovoltaici sul tetto delle case</name>
+        <text>I pannelli fotovoltaici devono essere installati su tutti i tetti adatti in n turni. 
+Aumento della produzione solare di n %. 
         </text>
         <!-- A requirement on the amount of support needed to attempt the policy -->
         <requirement field="support" value="50" bound="min"/>
@@ -44,54 +40,44 @@
     </policy>
 
     <policy id="Upgrade_PV" tag="env">
-        <name>Enable alpine solar PV</name>
-        <text>Limitation of appeals to large scale solar projects.
-            Increase solar plant upgrades from 1 to 3.
-        </text>
-        <effect field="solar_mult_max" value="3"/>
-        <requirement field="support" value="70" bound="min"/>
-        <probability>0.5</probability>
+        <name>Permetti la costruzione di impianti solari alpini</name>
+        <text>Limitazione del sostegno alla costruzione di impianti solari di grandi dimensioni.</text>
+        <effect field="solar_mult_max" value="3">Incrementa innovazione degli impianti solari da 1 a 3.</effect>
+        <requirement field="support" value="40" bound="min"/>
+        <probability>0.6</probability>
     </policy>
 
     <policy id="Wind_buildtime" tag="env">
-        <name>Fast track wind parks</name>
-        <text>Limitation of the possibilities of appeal for wind parks.
-            Lowers required building time for wind parks from 2 to 0.
-        </text>
-        <effect field="wind_build_time" value="0"/>
-        <requirement field="support" value="70" bound="min" />
+        <name>Innovazione nei tempi di costruzione dei parchi eolici</name>
+        <text>Limitazione del sostegno alla costruzione di parchi eolici.</text>
+        <effect field="wind_build_time" value="0">Riduce il tempo per la costruzione di parchi eolici da 2 a 0.</effect>
+        <requirement field="support" value="50" bound="min" />
         <probability>0.5</probability>
     </policy>
 
     <policy id="Upgrade_wind" tag="env">
-        <name>Wind parks regulation</name>
-        <text>Limitation of the possibilities of appeal for wind parks.
-            Increase wind parks upgrades from 2 to 5.
-        </text>
-        <effect field="wind_mult_max" value="5"/>
-        <requirement field="support" value="70" bound="min" />
-        <probability>0.5</probability>
+        <name>Regolazione dei parchi eolici</name>
+        <text>Limitazione del sostegno alla costruzione di parchi eolici.</text>
+        <effect field="wind_mult_max" value="5">Aumenta innovazione dei parchi eolici da 2 a 5.</effect>
+        <requirement field="support" value="60" bound="min" />
+        <probability>0.4</probability>
     </policy>
 
     <policy id="home_regulation" tag="demand">
-        <name>Mandatory Building Insulation</name>
-        <text>All buildings must be insulated within n turns.
-            Lowers energy demand by n.
-        </text>
-        <effect field="energyW" value="-5"/>
-        <effect field="energyS" value="-5"/>
-        <requirement field="support" value="40" bound="min" />
+        <name>L'isolazione termica degli edifici è obligatoria</name>
+        <text>Tutti gli edifici devono essere termicamente isolati nei prossimi n turni di gioco.</text>
+        <effect field="energyDemandW" value="-5">La domanda di energia diminuisce di 5 in estate.</effect>
+        <effect field="energyDemandS" value="-5">La domanda di energia diminuisce di 5 in inverno.</effect>
+        <requirement field="support" value="45" bound="min" />
         <probability>0.5</probability>
     </policy>
 
     <policy id="industry_subsidy" tag="demand">
-        <name>Industry Subsidy</name>
-        <text>Provide industries with grants for less energy intensive production.
-            Lowers energy demand from Industry by n.
-        </text>
-        <effect field="energyW" value="-5"/>
-        <effect field="energyS" value="-5"/>
+        <name>Sussidi per industria</name>
+        <text>Fornisce alle industrie finanziamenti per ridurre la produzione energetica intesiva.</text>
+        <effect field="energyDemandW" value="-5">Riduce la domanda di energia di 5 in estate.</effect>
+        <effect field="energyDemandS" value="-5">Riduce la domanda di energia di 5 in inverno.</effect>
         <requirement field="support" value="60" bound="min"/>
-        <probability>0.5</probability>
+        <probability>0.3</probability>
     </policy>
 </db>

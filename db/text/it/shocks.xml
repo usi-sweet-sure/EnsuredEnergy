@@ -5,22 +5,22 @@
         <name>Inverno gelido</name>
         <img>cold</img>
         <!-- The description text that will be displayed in the shock window -->
-        <text>Gli ultimi inverni sono stati più freddi del solito. Questo ha aumentato la domanda di energia invernale del 50 ⚡.</text>
+        <text>Gli ultimi inverni sono stati più freddi del solito. Questo ha aumentato la domanda di energia invernale di 5 ⚡.</text>
         <!-- The requirements for said shock -->
         <!-- Here it means that the player needs to have a winter supply of at least 50 above the demand -->
-        <requirement field="energyW" value="50" bound="min"/>
+        <requirement field="energyW" value="5" bound="min"/>
         <!-- The list of ways the player can react to said shock -->
         <reaction id="1">
             <!-- The text that will be displayed in the reaction button (verbatim) -->
             <text>Chiedere alle persone di ridurre il loro consumo energetico.
 -10 👍 😡</text>
             <!-- The effect selecting this reaction will have on the player's resources -->
-            <effect field="support" value="-50"/>
+            <effect field="support" value="-10"/>
         </reaction>
         <reaction id="2">
             <text>Attivare l'impianto a gas di riserva.
 +10 inquinamento 🏭</text>
-            <effect field="env" value="-50"/>
+            <effect field="env" value="10"/>
         </reaction>
         <reaction id="3">
             <text>Importazione di energia elettrica dai paesi limitrofi.
@@ -42,11 +42,11 @@
     <shock id="heat_wave" tag="env">
         <name>Ondata di calore</name>
         <img>hot</img>
-        <text>Le estati sono sempre più calde. La domanda di energia è aumentata del 50 ⚡.</text>
-        <requirement id="0" field="energyS" value="50" bound="min"/>
+        <text>Le estati sono sempre più calde. La domanda di energia è aumentata di 5 ⚡.</text>
+        <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
-            <text>Chiedete alle persone di bere più acqua e di abbassare l'aria condizionata.
--20 👍😡</text>
+            <text>Chiedete alle persone di bere più acqua e di ridurre uso dell'aria condizionata.
+-15 👍😡</text>
             <effect field="support" value="-20"/>
         </reaction>
         <reaction id="1">
@@ -78,7 +78,7 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Produzione idraulica -1% per torre</text>
+            <text></text>
             <effect field="money" value="0"/>
             <effect field="env" value="0"/>
         </reward>
@@ -87,36 +87,36 @@
     <shock id="severe_weather" tag="env">
         <name>Maltempo</name>
         <img>weather</img>
-        <text>Le temps imprévisible a réduit la production d'énergie du solaire et du vent.</text>
+        <text>Il maltempo riduce la produzione di energia solare ed eolica.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Energia solare ed eolica -20% ⚡</text>
+            <text>Energia solare ed eolica -10% ⚡</text>
             <effect field="support" value="0"/>
             <effect field="money" value="0"/>
         </reward>
     </shock>
 <!-- Need geothermal
     <shock id="earthquake" tag="env">
-        <name>Earthquake</name>
-        <text>An earthquake has hit the area near the geothermal plant in construction, resulting in delays.</text>
+        <name>Terremoto</name>
+        <text>Un terremoto è avvenuto vicino a un impianto geotermico in costruzione. I tempi di completamento avranno un ritardo.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>+ 1 Turn to finish building the Geothermal plant.</text>
+            <text>+ 1 turno per completare la costruzione dell'impianto geotermico.</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
     </shock>
 -->
     <shock id="inc_raw_cost_10" tag="env">
-        <name>Aumenti di prezzo</name>
+        <name>Volatilita dei prezzi</name>
         <img>money</img>
         <text>Il prezzo delle materie prime è aumentato. Le centrali elettriche che le utilizzano costano di più.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
@@ -125,14 +125,14 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Costi di produzione +10%</text>
+            <text>-20 $</text>
             <effect field="support" value="0"/>
             <effect field="money" value="-20"/>
         </reward>
     </shock>
     
     <shock id="inc_raw_cost_20" tag="env">
-        <name>Aumenti di prezzo</name>
+        <name>Volatilita dei prezzi</name>
         <img>money</img>
         <text>Il prezzo delle materie prime è aumentato. Le centrali elettriche che le utilizzano costano di più.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
@@ -141,37 +141,69 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Costi di produzione +20%</text>
+            <text>-50 $</text>
             <effect field="support" value="0"/>
             <effect field="money" value="-50"/>
         </reward>
     </shock>
-<!-- Need policies
-    <shock id="protest_wind" tag="env">
-        <name>Protest</name>
-        <text>The population is protesting against the construction of new wind turbines.</text>
+
+    <shock id="dec_raw_cost_20" tag="env">
+        <name>Riduzione dei prezzi dei materiali</name>
+        <img>receive</img>
+        <text>Il prezzo delle matere prime è dimumito. Il costo di produzione diminuisce del 10%.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>You cannot build new ones until new policies have been implemented.</text>
+            <text>+20 $</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="20"/>
+        </reward>
+    </shock>
+
+    <shock id="no_shock" tag="env">
+        <name>In questi anni non ci sono variazioni signficative</name>
+        <img>sunrise</img>
+        <text>Gli anni passati sono stati piu calmi del solito.</text>
+        <requirement id="0" field="energyW" value="0" bound="min"/>
+        <reaction id="0">
+            <text>OK</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Niente è mutato.</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
+        </reward>
+    </shock>
+<!-- Need policies
+    <shock id="protest_wind" tag="env">
+        <name>Manifestazione contro l'eolico</name>
+        <text>La popolazione manifesta contro la costruzione di una nuove turbine eoliche.</text>
+        <requirement id="0" field="energyW" value="0" bound="min"/>
+        <reaction id="0">
+            <text>OK</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Non si potrà proseguire la costruzione di parchi eolici fino a che una nuova politica non sarà introdotta.</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
     </shock>
 
     <shock id="protest_solar" tag="env">
-        <name>Protest</name>
-        <text>The population is protesting against the construction of new solar panels.</text>
+        <name>Manifestazione contro l'energia solare</name>
+        <text>La popolazione manifesta contro la costruzione di una nuovi impianti solari.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>You cannot build new ones until new policies have been implemented.</text>
+            <text>Non si potrà proseguire la costruzione di impianti solari fino a che una nuova politica non sarà introdotta.</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -187,9 +219,9 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Aumento della domanda di energia +50⚡</text>
-            <effect field="energyS" value="0"/>
-            <effect field="energyW" value="0"/>
+            <text>Aumento della domanda di energia +5⚡</text>
+            <effect field="energyS" value="5"/>
+            <effect field="energyW" value="5"/>
         </reward>
     </shock>
 
@@ -231,8 +263,24 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Chiusura della centrale nucleare di -1 Tour</text>
+            <text>Chiusura della centrale nucleare di -1 turno</text>
             <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
+        </reward>
+    </shock>
+
+    <shock id="renewables_support" tag="env">
+        <name>La popolarità verso le rinnovabili è aumentata</name>
+        <img>flower</img>
+        <text>C'è stato un aumento del supporto politico per l'energia rinnovabile.</text>
+        <requirement id="0" field="energyW" value="0" bound="min"/>
+        <reaction id="0">
+            <text>OK</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reward>
+            <text>La popolarità della vostra proposta energetica è aumentata del +10.</text>
+            <effect field="support" value="10"/>
             <effect field="money" value="0"/>
         </reward>
     </shock>

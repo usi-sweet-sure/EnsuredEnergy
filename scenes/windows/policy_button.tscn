@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dna2006dnsx2x"]
+[gd_scene load_steps=5 format=3 uid="uid://dna2006dnsx2x"]
 
-[ext_resource type="Texture2D" uid="uid://dd0u0byc32nyg" path="res://assets/UI Elements/Policies_Button_small_Normal.png" id="1_ox18k"]
-[ext_resource type="Texture2D" uid="uid://d2l0lmv37o0pm" path="res://assets/UI Elements/Policies_Button_small_Press.png" id="2_er6v5"]
+[ext_resource type="Texture2D" uid="uid://ga6yaa7ss7pa" path="res://assets/UI Elements/Policies-Button-SmallNormal.png" id="1_tbkhm"]
+[ext_resource type="Texture2D" uid="uid://cihbwmo1t85av" path="res://assets/UI Elements/Policies-Button-Small-Press.png" id="2_daym8"]
+[ext_resource type="Texture2D" uid="uid://br23brh4f3qqe" path="res://assets/UI Elements/Policies-Button-Small-Hover.png" id="3_7eos0"]
 [ext_resource type="Texture2D" uid="uid://dnr3tvwn2pcnj" path="res://assets/UI Elements/Policies_Button_small_Hole.png" id="3_lax6w"]
 
 [node name="PolicyButton" type="TextureButton"]
@@ -13,8 +14,9 @@ offset_bottom = 120.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
-texture_normal = ExtResource("1_ox18k")
-texture_pressed = ExtResource("2_er6v5")
+texture_normal = ExtResource("1_tbkhm")
+texture_pressed = ExtResource("2_daym8")
+texture_hover = ExtResource("3_7eos0")
 
 [node name="PoliciesButtonSmallHole" type="Sprite2D" parent="."]
 show_behind_parent = true

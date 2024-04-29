@@ -5,10 +5,10 @@
         <name>Hiver Glacial</name>
         <img>cold</img>
         <!-- The description text that will be displayed in the shock window -->
-        <text>Ces derniers hivers ont été plus froids que d'habitude. Ceci a augmenté la demande d'énergie en hiver de 50 ⚡.</text>
+        <text>Ces derniers hivers ont été plus froids que d'habitude. Ceci a augmenté la demande d'énergie en hiver de 5 ⚡.</text>
         <!-- The requirements for said shock -->
         <!-- Here it means that the player needs to have a winter supply of at least 50 above the demand -->
-        <requirement field="energyW" value="50" bound="min"/>
+        <requirement field="energyW" value="5" bound="min"/>
         <!-- The list of ways the player can react to said shock -->
         <reaction id="1">
             <!-- The text that will be displayed in the reaction button (verbatim) -->
@@ -42,8 +42,8 @@
     <shock id="heat_wave" tag="env">
         <name>Canicule</name>
         <img>hot</img>
-        <text>Les étés sont de plus en plus chaud. La demande en énergie a augmenté de 50 ⚡.</text>
-        <requirement id="0" field="energyS" value="50" bound="min"/>
+        <text>Les étés sont de plus en plus chaud. La demande en énergie a augmenté de 5 ⚡.</text>
+        <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
             <text>Demander à la population de boire plus d'eau et de baisser leur climatisation.
 -20 👍</text>
@@ -76,7 +76,7 @@
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Production hydraulique -1% par tour</text>
+            <text></text>
             <effect field="money" value="0"/>
             <effect field="env" value="0"/>
         </reward>
@@ -123,7 +123,7 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Coûts de production +10%</text>
+            <text>-20 $</text>
             <effect field="support" value="0"/>
             <effect field="money" value="-20"/>
         </reward>
@@ -139,9 +139,41 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Coûts de production +20%</text>
+            <text>-50 $</text>
             <effect field="support" value="0"/>
             <effect field="money" value="-50"/>
+        </reward>
+    </shock>
+
+    <shock id="dec_raw_cost_20" tag="env">
+        <name>Reduction of material costs</name>
+        <img>receive</img>
+        <text>The prices of raw material have decreased resulting in production costs going down by 10%.</text>
+        <requirement id="0" field="energyW" value="0" bound="min"/>
+        <reaction id="0">
+            <text>OK</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reward>
+            <text>+20 $</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="20"/>
+        </reward>
+    </shock>
+
+    <shock id="no_shock" tag="env">
+        <name>Calm years</name>
+        <img>sunrise</img>
+        <text>The past years were calmer than usual.</text>
+        <requirement id="0" field="energyW" value="0" bound="min"/>
+        <reaction id="0">
+            <text>OK</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Nothing is affected.</text>
+            <effect field="support" value="0"/>
+            <effect field="money" value="0"/>
         </reward>
     </shock>
 <!-- Need policies
@@ -185,9 +217,9 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Augmentation de la demande en énergie +50⚡</text>
-            <effect field="energyS" value="0"/>
-            <effect field="energyW" value="0"/>
+            <text>Augmentation de la demande en énergie +5⚡</text>
+            <effect field="energyS" value="5"/>
+            <effect field="energyW" value="5"/>
         </reward>
     </shock>
 
@@ -234,6 +266,22 @@
             <effect field="money" value="0"/>
         </reward>
     </shock>
+
+    <shock id="renewables_support" tag="env">
+        <name>Increase in support</name>
+        <img>flower</img>
+        <text>There was an increase in political support for renewable energies.</text>
+        <requirement id="0" field="energyW" value="0" bound="min"/>
+        <reaction id="0">
+            <text>OK</text>
+            <effect field="support" value="-50"/>
+        </reaction>
+        <reward>
+            <text>Your support increases +10.</text>
+            <effect field="support" value="10"/>
+            <effect field="money" value="0"/>
+        </reward>
+    </shock>
 <!-- needs to be scripted
     <shock id="nuc_reintro" tag="env">
         <name>Ré-introduction du nucléaire</name>
@@ -254,8 +302,8 @@
         </reaction>
         <reward>
             <text>If you can read this, there is a problem.</text>
-            <effect field="support" value="0"/>
-            <effect field="money" value="0"/>
+            <effect field="support" value="50"/>
+            <effect field="money" value="50"/>
         </reward>
     </shock>
 -->

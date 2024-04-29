@@ -27,6 +27,7 @@ public partial class UI : CanvasLayer {
 
 	// XML querying strings
 	private const string LABEL_FILENAME = "labels.xml";
+	private const string MOREINFO_GROUP = "moreinfo";
 	private const string INFOBAR_GROUP = "infobar";
 	private const string RES_GROUP = "resources";
 	private const string POWERPLANT_GROUP = "powerplants";	
@@ -103,10 +104,13 @@ public partial class UI : CanvasLayer {
 	private Button MoneyButton;
 	private TextureButton MoneyInfoB;
 	private Control MoneyInfo;
+	private NinePatchRect MoneyInfoClosed;
+	private NinePatchRect MoneyInfoOpen;
 	private Label BudgetL;
 	private Label BuildL;
 	private Label ProdL;
 	private Label ImportCostL;
+	private Label ImportCostL2;
 	private Label BudgetNext;
 	private Label TotalNow;
 	private Label TotalNext;
@@ -127,17 +131,25 @@ public partial class UI : CanvasLayer {
 	private Label PayBackText;
 	private Label BorrowAmount;
 	private Label PayBackAmount;
-	private Button DebtApplyButton;
-	private Button DebtCancelButton;
+	private TextureButton DebtApplyButton;
+	private Label DebtApplyL;
+	private TextureButton DebtCancelButton;
+	private Label DebtCancelL;
 	private ColorRect BorrowMoneyWindow;
 	private HSlider DebtSlider;
-	private ColorRect DebtResource;
+	private Sprite2D DebtResource;
 	private Label DebtResLabel;
 	private TextureButton BorrowMoneyButton;
 	private Button BorrowContainer;
 	private int DebtN = 0;
 	private int BorrowN = 0;
 
+	// Static UI Labels
+	private Label EnergyLabel;
+	private Label ImportLabel;
+	private Label OnLabel;
+	private Label OffLabel;
+	private Label NuclearWarnLabel;
 
 	// Window buttons
 	private TextureButton PolicyButton;
@@ -153,17 +165,37 @@ public partial class UI : CanvasLayer {
 	// Settings
 	private Button SettingsButton;
 	private ColorRect SettingsBox;
-	private Button LanguageButton;
+	private TextureButton LanguageButton;
+	private Label LanguageL;
 	private Button SettingsClose;
 	private Button ScreenOption;
+	private TextureButton Instructions;
+	private Tutorial Tutorial;
+	private TextureButton CreditsButton;
+	private Label CreditsL;
+	private Sprite2D CreditsInfo;
 
 	// Reset button and confirmation
 	private TextureButton ResetButton;
 	private Label ResetButtonL;
 	private ColorRect ResetPrompt;
 	private Label ResetConfirmL;
-	private Button ResetYes;
-	private Button ResetNo;
+	private TextureButton ResetYes;
+	private TextureButton ResetNo;
+	private Label ResetYesL;
+	private Label ResetNoL;
+	
+	// Turn info
+	private Label CurrentTurnL;
+	private Label CurrentTurnN;
+	private Label RemTurnL;
+	private Label RemTurnN;
+	private Button TurnInfo;
+	private MarginContainer TurnInfoContainer;
+	
+	// Sound settings
+	private HSlider VolMusic;
+	private HSlider VolSound;
 
 	// Game Loop
 	private GameLoop GL;
@@ -191,17 +223,25 @@ public partial class UI : CanvasLayer {
 		// Settings
 		SettingsButton = GetNode<Button>("SettingsButton");
 		SettingsBox = GetNode<ColorRect>("SettingsButton/ColorRect");
-		LanguageButton = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
+		LanguageButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
+		LanguageL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language/Label");
 		SettingsClose = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/Close");
 		ScreenOption = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/ScreenOption");
+		Instructions = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions");
+		Tutorial = GetNode<Tutorial>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions/Tutorial");
+		CreditsButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits");
+		CreditsL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Label");
+		CreditsInfo = GetNode<Sprite2D>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big");
 
 		// Reset nodes
 		ResetButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset");
 		ResetButtonL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/Label");
 		ResetPrompt = GetNode<ColorRect>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm");
 		ResetConfirmL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
-		ResetYes = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
-		ResetNo = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+		ResetYes = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
+		ResetNo = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+		ResetYesL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes/Label");
+		ResetNoL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No/Label");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
@@ -228,10 +268,13 @@ public partial class UI : CanvasLayer {
 		MoneyL = GetNode<Label>("Money/money");
 		MoneyButton = GetNode<Button>("MoneyUI");
 		MoneyInfo = GetNode<Control>("MoneyInfo");
+		MoneyInfoClosed = GetNode<NinePatchRect>("MoneyInfo/MarginContainer/InfoMoneyClosed");
+		MoneyInfoOpen = GetNode<NinePatchRect>("MoneyInfo/MarginContainer/InfoMoneyOpen");
 		BudgetL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNow");
 		BuildL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName/build");
 		ProdL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName/prod");
 		ImportCostL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName/importamounts");
+		ImportCostL2 = GetNode<Label>("ImportEnergy-bar-metal/ImportCosts");
 		BudgetNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNext");
 		TotalNow = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNow");
 		TotalNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNext");
@@ -251,11 +294,13 @@ public partial class UI : CanvasLayer {
 		BorrowAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Money/BorrowAmount");
 		PayBackText = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest");
 		PayBackAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest/InterestAmount");
-		DebtApplyButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Apply");
-		DebtCancelButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Cancel");
+		DebtApplyButton = GetNode<TextureButton>("BorrowContainer/BorrowMoneyWindow/Apply");
+		DebtApplyL = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Apply/Label");
+		DebtCancelButton = GetNode<TextureButton>("BorrowContainer/BorrowMoneyWindow/Cancel");
+		DebtCancelL = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Cancel/Label2");
 		BorrowMoneyWindow = GetNode<ColorRect>("BorrowContainer/BorrowMoneyWindow");
 		DebtSlider = GetNode<HSlider>("BorrowContainer/BorrowMoneyWindow/BorrowSlider");
-		DebtResource = GetNode<ColorRect>("BorrowMoney/Debt");
+		DebtResource = GetNode<Sprite2D>("BorrowMoney/Debt");
 		DebtResLabel = GetNode<Label>("BorrowMoney/Debt/DebtAmount");
 		BorrowMoneyButton = GetNode<TextureButton>("BorrowMoney");
 		BorrowContainer = GetNode<Button>("BorrowContainer");
@@ -274,6 +319,27 @@ public partial class UI : CanvasLayer {
 
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
+
+		// Fetch static UI Labels
+		EnergyLabel = GetNode<Label>("ImportEnergy-bar-metal/Energy-base/EngLabel");
+		ImportLabel = GetNode<Label>("Import/ImportLabel");
+		OnLabel = GetNode<Label>("Import/ImportSwitch/OnL");
+		OffLabel = GetNode<Label>("Import/ImportSwitch/OffL");
+		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
+		
+		// Turn info
+		CurrentTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn");
+		CurrentTurnN = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn/CTurn");
+		RemTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns");
+		RemTurnN = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns/RTurn");
+		TurnInfo = GetNode<Button>("TimePanelBlank/TurnInfo");
+		TurnInfoContainer = GetNode<MarginContainer>("TimePanelBlank/TurnInfoContainer");
+		
+		// Audio settings
+		VolMusic = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolMusic");
+		VolSound = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolSound");
+		//VolMusic.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Music")));
+		//VolSound.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Sound")));
 
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
@@ -296,6 +362,11 @@ public partial class UI : CanvasLayer {
 		BorrowContainer.Pressed += _OnDebtCancelPressed;
 		BorrowMoneyButton.Pressed += BorrowContainer.Show;
 		ScreenOption.Toggled += _OnScreenOption;
+		TurnInfo.Pressed += _OnTurnInfoPressed;
+		VolMusic.ValueChanged += _OnMusicValueChanged;
+		VolSound.ValueChanged += _OnSoundValueChanged;
+		Instructions.Pressed += _OnInstructionsPressed;
+		CreditsButton.Pressed += _OnCreditsPressed;
 
 		// Initially hide the borrow container
 		BorrowContainer.Hide();
@@ -314,6 +385,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the language
 		C._UpdateLanguage(Language.Type.EN);
+		//SetTargetImport();
 	}
 
 	// ==================== UI Update API ====================
@@ -321,7 +393,7 @@ public partial class UI : CanvasLayer {
 	// Updates the various labels across the UI
 	public void _UpdateUI() {
 		// Updates the displayed language to match the selected one
-		LanguageButton.Text = C._GetLanguageName();
+		LanguageL.Text = C._GetLanguageName();
 
 		// Fetch the build menu names
 		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
@@ -334,6 +406,7 @@ public partial class UI : CanvasLayer {
 		string biomass_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_biomass");
 		string river_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_river");
 		string pump_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_pump");
+		string geo_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_geo");
 
 		// Fetch the energy bar names
 		string WinterEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_w");
@@ -359,18 +432,39 @@ public partial class UI : CanvasLayer {
 		string debt_apply = TC._GetText(LABEL_FILENAME, UI_GROUP, "apply_button");
 		string debt_cancel = TC._GetText(LABEL_FILENAME, UI_GROUP, "cancel_button");
 
+		// Fetch UI names
+		string eng_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "energy_resource");
+		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "import_slider_label");
+		string on_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_on");
+		string off_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_off");
+		string nuclear_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "nuclear_warning");
+		string next_turn_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "next_turn_warning");
+		string current_turn = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_current_turn");
+		string remaining_turns = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_remaining_turn");
+
+		// Update static UI text
+		EnergyLabel.Text = eng_label;
+		ImportLabel.Text = import_label;
+		OnLabel.Text = on_label;
+		OffLabel.Text = off_label;
+		NuclearWarnLabel.Text = nuclear_warning_label;
+		Warning.Text = next_turn_warning_label;
+		RemTurnL.Text = remaining_turns;
+		CurrentTurnL.Text = current_turn;
+		
+
 		// Update debt texts
 		BorrowTitle.Text = debt_title;
 		BorrowText.Text = borrow_text;
 		PayBackText.Text = debt_text;
-		DebtApplyButton.Text = debt_apply;
-		DebtCancelButton.Text = debt_cancel;
+		DebtApplyL.Text = debt_apply;
+		DebtCancelL.Text = debt_cancel;
 
 		// Update the reset texet
 		ResetButtonL.Text = reset_name;
 		ResetConfirmL.Text = reset_prompt;
-		ResetYes.Text = reset_yes;
-		ResetNo.Text = reset_no;
+		ResetYesL.Text = reset_name;
+		ResetNoL.Text = debt_cancel;
 
 		// Update the various plants
 		BM._UpdatePlantName(Building.Type.GAS, gas_name);
@@ -428,14 +522,32 @@ public partial class UI : CanvasLayer {
 		SupportBar._UpdateBarName(SupportBar_name);
 		PollutionBar._UpdateBarName(PollutionBar_name);
 
+		// Update infobox ids
+		WinterEnergy._SetId("demandw_info", "energy_info");
+		SummerEnergy._SetId("demands_info", "energy_info");
+		PollutionBar._SetId("pollution_info", "importCO2_info");
+		EnvironmentBar._SetId("landuse_info", "biodiversity_info");
+		SupportBar._SetId("support_info");
+
+		// Update Money info
+		BudgetInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "budget_info");
+		ProdInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "prod_info");
+		BuildInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "building_info");
+		ImportInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "import_info");
+		DebtInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "debt_info");
+
 		// Update UI buttons
 		NextTurnL.Text = next_turn_name;
+		CurrentTurnN.Text = (C._GetTurn() + 1).ToString();
+		RemTurnN.Text = (C._GetRemainingTurns() - 1).ToString();
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
 
 		// Upate the money labels
 		SetMoneyInfo();
+
+		PW._UpdatePolicyUI();
 	}
 
 	// Updates the value of the a given bar
@@ -519,7 +631,7 @@ public partial class UI : CanvasLayer {
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
-				SetTargetImport();
+				//SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -618,30 +730,32 @@ public partial class UI : CanvasLayer {
 	}
 
 	// Retrieves the import percentage selected by the user
-	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 250.0f;
+	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue();
 
 	// Getter for the green energy toggle state
 	public bool _GetGreenImportState() => Imports._GetGreenImports();
 
+	// Update the visibility of the nuclear warning
+	public void _UpdateNuclearWarning(bool show) {
+		NuclearWarnLabel.Visible = show;
+	}
+
 	// ==================== Internal Helpers ====================
 
 	// Sets the required imports based on the demand
-	private void SetTargetImport() {
-		// Fetch the demand and supply
-		float demand  = C._GetDemand().Item1;
-		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
-
-		// Compute the different, clamped to 0 as no imports are required
-		// when the supply meets the demand
-		float imported = C._GetDemand().Item1 * Imports._GetImportValue() / 250;
-		float diff = Math.Max(0.0f, demand - (supply - imported)); 
-
-		// Compute the percentage of the total demand tha the diff represents
-		float diff_perc = diff / demand;
-
-		// Set the import target to that percentage
-		Imports._UpdateTargetImport(diff_perc);
-	}
+//	private void SetTargetImport() {
+//		// Fetch the demand and supply
+//		float demand  = C._GetDemand().Item1;
+//		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
+//
+//		// Compute the different, clamped to 0 as no imports are required
+//		// when the supply meets the demand
+//		float imported = Imports._GetImportValue();
+//		float diff = Math.Max(0.0f, demand + imported - supply); 
+//
+//		// Set the import target to that percentage
+//		Imports._UpdateTargetImport(diff);
+//	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
@@ -658,7 +772,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the info
 		eng._UpdateInfo(
-			"The energy supply needs to reach the energy demand.", // N/Max TODO: Figure out what to use here
+			"", // N/Max TODO: Figure out what to use here
 			demand_label, demand.ToString(), // T0, N0
 			supply_label, supply.ToString() // T1, N1
 		);
@@ -695,14 +809,14 @@ public partial class UI : CanvasLayer {
 
 		PollutionBar._UpdateInfo(
 			// N/Max TODO: Figure out what to use here
-			"Goal: Reach net zero by 2050.",
+			"",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
 	}
 
 	// Sets the information related to the money metric
-	private void SetMoneyInfo() {
+	public void SetMoneyInfo() {
 		// Query the label xml to get the names
 		string money_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_money");
 		string budget_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_budget");
@@ -720,11 +834,23 @@ public partial class UI : CanvasLayer {
 		
 		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
-		BuildL.Text = "-" + Data.Building.ToString();
-		ProdL.Text = "-" + Data.Production.ToString();
+		if(Data.Building > 0) {
+			BuildL.Text = "-" + Data.Building.ToString();	
+		} else {
+			BuildL.Text = Data.Building.ToString();
+		}
+		if(Data.Production > 0) {
+			ProdL.Text = "-" + Data.Production.ToString();
+		} else {
+			ProdL.Text = Data.Production.ToString();	
+		}
 		MoneyL.Text = Data.Money.ToString();
-		ImportCostL.Text = "-" + Data.Imports.ToString();
-		GD.Print(Data.Money, GameLoop.BUDGET_PER_TURN);
+		if(Data.Imports > 0) {
+			ImportCostL.Text = "-" + Data.Imports.ToString();
+		} else {
+			ImportCostL.Text = Data.Imports.ToString();	
+		}
+		ImportCostL2.Text = Data.Imports.ToString();
 		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
 		BudgetNext.Text = BudgetNextN.ToString();
 		TotalNow.Text = Data.Money.ToString();
@@ -814,6 +940,8 @@ public partial class UI : CanvasLayer {
 		BuildInfo.Visible = !BuildInfo.Visible;
 		ImportInfo.Visible = !ImportInfo.Visible;
 		if(Debt.Visible) {DebtInfo.Visible = !DebtInfo.Visible;}
+		MoneyInfoClosed.Visible = !MoneyInfoClosed.Visible;
+		MoneyInfoOpen.Visible = !MoneyInfoOpen.Visible;
 	}
 
 	// Updates the timelines and propagates the request up to the game loop
@@ -839,7 +967,7 @@ public partial class UI : CanvasLayer {
 		EmitSignal(SignalName.NextTurn);
 
 		// Update the required import target (only in winter due to conservative estimates)
-		SetTargetImport();
+		//SetTargetImport();
 		
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 
@@ -955,10 +1083,6 @@ public partial class UI : CanvasLayer {
 			PW.Show();
 			PW._PlayAnim("popup");
 		}
-		if(PW.Vote.Disabled) {
-				GD.Print("vote disabled");
-				PolicyNotif.Hide();
-			}
 	}
 
 	// Toggles the settings box
@@ -983,6 +1107,7 @@ public partial class UI : CanvasLayer {
 	// Closes the language settings by clicking outside
 	public void _OnSettingsClosePressed() {
 		SettingsBox.Hide();
+		CreditsInfo.Hide();
 	}
 
 	// Propagates an import update to the rest of the system
@@ -1055,6 +1180,37 @@ public partial class UI : CanvasLayer {
 		BorrowAmount.Text = ((int)value).ToString();
 		BorrowN += (int)value;
 		PayBackAmount.Text = ((int)(value + (value * InterestRate))).ToString(); // Add the interest rate
+	}
+	
+	public void _OnTurnInfoPressed() {
+		TurnInfoContainer.Visible = !TurnInfoContainer.Visible;
+	}
+	
+	public void _OnMusicValueChanged(double Value) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb((float)Value));
+	}
+	
+	public void _OnSoundValueChanged(double Value) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sound"), Mathf.LinearToDb((float)Value));
+	}
+	
+	public void _OnInstructionsPressed() {
+		Tutorial._Reset();
+		Tutorial.Show();
+	}
+	
+	public void _OnCreditsPressed() {
+		CreditsInfo.Visible = !CreditsInfo.Visible;
+	}
+	
+	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+				MoneyInfo.Hide();
+				TurnInfoContainer.Hide();
+				CreditsInfo.Hide();
+			}
+		}
 	}
 	
 	public void _OnScreenOption(bool Toggle) {

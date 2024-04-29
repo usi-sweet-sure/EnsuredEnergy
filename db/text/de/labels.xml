@@ -30,13 +30,52 @@
         <text id="label_budget">Budget</text>
         <text id="label_building">Konstruktion</text>
         <text id="label_production">Produktion</text>
+        <text id="label_import">Import</text>
         <text id="label_import_pol">Imports verschmutzung</text>
+        <text id="label_now">Jetzt</text>
+        <text id="label_next_turn">Nächste</text>
+        <text id="label_total">Insgesamt</text>
+        <text id="label_current_turn">Runde</text>
+        <text id="label_remaining_turn">Restliche Runden</text>
+    </group>
+
+    <group id="moreinfo">
+        <text id="biodiversity_info">Biodiversity shows the environmental impact of the energy system. The higher the score, the more can animals and plants thrive in their natural habitats. Most power plants negatively affect biodiversity because they require lots of land and water.</text>
+        <text id="landuse_info">Land use shows how much land is used by the energy system. The smaller the indicator, the less impact from the energy system on land use. Some power plants need more land than others. This can negatively impact biodiversity.</text>
+        <text id="pollution_info">CO2 emission shows how much greenhouse gas is released by the energy system. Lower emissions mean a lower impact on global warming. Some power plants emit CO2. Switzerland has decided to be carbon neutral and reach net zero by 2050.</text>
+        <text id="importCO2_info">Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.</text>
+        <text id="support_info">Political support shows how popular your decisions are. The higher the support the more options in policy choices you have.</text>
+        <text id="demands_info">Energy demand in summer tends to be lower than winter because the need for cooling is lower than the need for heating in winter.</text>
+        <text id="demandw_info">In winter, energy demand is higher due to the need for heating. Switzerland often has to import the missing energy supply.</text>
+        <text id="energy_info">You need to reach the demand in energy. The target is the white line on the energy bar.</text>
+        <text id="budget_info">The budget shows you how much money you have and can spend. You start the game with 500.- and at the beginning of each turn receive 300.-.</text>
+        <text id="prod_info">Some power plants have production costs because they need materials to run.</text>
+        <text id="building_info">Indicates how much you have spent on building or upgrading power plants.</text>
+        <text id="import_info">Indicates how much you will be spending on imports. Clean imports cost N more.</text>
+        <text id="debt_info">Indicated how much money you owe.</text>
+        <text id="biomass_info">Biomass power plants use wood and organic waste to generate electricity.</text>
+        <text id="wind_info">Wind power plants use wind to create electricity.</text>
+        <text id="solar_info">Solar power plants use the sunlight to produce electricity.</text>
+        <text id="gas_info">Gas power plants burn natural gas to produce electricity.</text>
+        <text id="waste_info">Waste power plants burn waste from households and industries to produce electricity.</text>
+        <text id="hydro_info">Hydropower plants use dams to capture water and produce electricity.</text>
+        <text id="river_info">River power plants use the water flow in rivers to produce electricity.</text>
+        <text id="dam_info">Pump storages use gravity to store excess electricity and release electricity when it is needed subsequently.</text>
+        <text id="nuclear_info">Nuclear power plants use nuclear reactions to produce electricity.</text>
     </group>
 
     <!-- Labels used in the policies window -->
     <group id="policies">
         <text id="policy_success">Politik wurde erfolgreich bestanden!</text>
         <text id="policy_failure">Politik wurde nicht verabschiedet...</text>
+        <text id="label_popularity">Geschätzte Beliebtheit bei den Wählern:</text>
+        <text id="label_campaign">Dauer der Kampagne:</text>
+        <text id="label_camp_start">Die Kampagne hat begonnen!</text>
+        <text id="label_vote">Abstimmen</text>
+        <text id="label_start">Start</text>
+        <text id="env_camp_label">Umwelt-Kampagne</text>
+        <text id="dem_camp_label">Bedarfskampagne</text>
+        <text id="policy_label">Politiken</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -57,6 +96,16 @@
         <text id="label_debt">Zurückzahlen (nächste Runde)</text>
         <text id="apply_button">Anwenden</text>
         <text id="cancel_button">Stornieren</text>
+        <text id="nuclear_shutdown">Abschaltung in</text>
+        <text id="nuclear_warning">Kernkraftwerke werden in der nächsten Runde abgeschaltet ⚠️</text>
+        <text id="green_import_switch_on">On</text>
+        <text id="green_import_switch_off">Off</text>
+        <text id="import_slider_label">Import</text>
+        <text id="energy_resource">Energie</text>
+        <text id="energy_description">Das Energieangebot muss den Energiebedarf decken.</text>
+        <text id="pollution_description">Ziel: Erreichen von Netto-Null bis 2050</text>
+        <text id="next_turn_warning">Nicht genug Energie!</text>
+        <text id="no_money_warning">Nicht genug Geld!</text>
     </group>
 
     <!-- Labels for the main menu -->
@@ -74,6 +123,8 @@ Energy
         <text id="reset_prompt">Sind Sie sicher, dass Sie neu starten möchten?</text>
         <text id="reset_yes">Ja</text>
         <text id="reset_no">Nein</text>
+        <text id="hold_drag">Zum Verschieben halten und ziehen</text>
+        <text id="scroll_zoom">Scrollen zum Zoomen</text>
     </group>
 
     <!-- Labels for the different power plants -->
@@ -88,6 +139,7 @@ Energy
         <text id="label_biomass">Biomasse</text>
         <text id="label_river">Fluss</text>
         <text id="label_pump">Pumpe</text>
+        <text id="label_geo">Geothermie</text>
     </group>
 
         <!-- Labels for the main menu -->

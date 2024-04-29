@@ -41,6 +41,7 @@ ticks_on_borders = true
 script = ExtResource("1_3r6om")
 
 [node name="Target" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 position = Vector2(-5, 220)
 texture = ExtResource("2_mncwm")
@@ -190,7 +191,7 @@ show_behind_parent = true
 position = Vector2(29, 34)
 texture = ExtResource("9_o4d1x")
 
-[node name="Label" type="Label" parent="."]
+[node name="ImportLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = -24.0
 offset_top = 256.0

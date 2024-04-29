@@ -64,7 +64,7 @@ public partial class PowerPlant : Node2D {
 	[Export]
 	// Life cycle of a nuclear power plant
 	public int NUCLEAR_LIFE_SPAN = 2; 
-	public int DEFAULT_LIFE_SPAN = 11;
+	public static int DEFAULT_LIFE_SPAN = 11;
 
 	[Export]
 	// Defines whether or not the building is a preview
@@ -112,7 +112,7 @@ public partial class PowerPlant : Node2D {
 	private float Pollution = 10f;
 
 	// Life flag: Whether or not the plant is on
-	private bool IsAlive = true;
+	public bool IsAlive = true;
 	
 	// Power off modulate color
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
@@ -160,6 +160,7 @@ public partial class PowerPlant : Node2D {
 	private Label MultWinterE;
 	private Label MultSummerE;
 	private Sprite2D NoMoneySprite;
+	private Label NoMoney;
 	
 	public AnimationPlayer AP;
 	private Label AnimMoney;
@@ -236,7 +237,7 @@ public partial class PowerPlant : Node2D {
 		LandL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Land");
 		BioN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Bio");
-		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/ContainerN/LifeSpan");
+		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/LifeSpan");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 		AP = GetNode<AnimationPlayer>("AP");
 		AnimMoney = GetNode<Label>("Money");
@@ -248,6 +249,7 @@ public partial class PowerPlant : Node2D {
 		MultWinterE = GetNode<Label>("BuildInfo/MultWinterE");
 		MultSummerE = GetNode<Label>("BuildInfo/MultSummerE");
 		NoMoneySprite = GetNode<Sprite2D>("NoMoneySprite");
+		NoMoney = GetNode<Label>("NoMoney");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -354,6 +356,18 @@ public partial class PowerPlant : Node2D {
 	// Applies a multiplier overload to the current value
 	public void _OverloadMultiplier(int mo) {
 		MultiplierMax = mo;
+		
+		
+		MultInc.Show();
+		MultDec.Hide();
+		 
+
+		// Check if we can decrement now 
+		if(MultiplierValue > 1) {
+			MultDec.Show();
+		}
+		
+		Multiplier.Show();
 	}
 
 	// Applies a build time overload to the powerplant
@@ -665,7 +679,7 @@ public partial class PowerPlant : Node2D {
 			Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
 
 			// Check if the multiplier window should be shown
-			if(mult.MaxElements <= 1) {
+			if(MultiplierMax <= 1) {
 				Multiplier.Hide();
 				HideMultInfo();
 			} else {
@@ -708,10 +722,10 @@ public partial class PowerPlant : Node2D {
 		// Set the labels correctly
 		NameL.Text = PlantName;
 		NameBI.Text = PlantName;
-		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
-		EnergySL.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString();
-		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
-		EnergyWL.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString();
+		EnergyS.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString("0");
+		EnergySL.Text = (EnergyCapacity * EnergyAvailability.Item2).ToString("0");
+		EnergyW.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString("0");
+		EnergyWL.Text = (EnergyCapacity * EnergyAvailability.Item1).ToString("0");
 		MoneyL.Text = ProductionCost.ToString();
 		Price.Text = BuildCost.ToString() + "$";
 		PollN.Text = Pollution.ToString("0.0");
@@ -837,9 +851,11 @@ public partial class PowerPlant : Node2D {
 		MultDec.Disabled = true;
 	}
 	
-	public void PlayAnimation() {
+	public async void PlayAnimation() {
 		// TODO set text in lang
-		//NoMoney.Text =
+		NoMoney.Text = TC._GetText("labels.xml", "ui", "no_money_warning");
+		AP.Play("RESET");
+		await ToSignal(AP, "animation_finished");;
 		AP.Play("noMoney");
 	}
 	
@@ -924,7 +940,7 @@ public partial class PowerPlant : Node2D {
 			Info.Visible = true;
 			//ResRect.Visible = true;
 			// Toggle multiplier state if several elements are available
-			if(mult.MaxElements > 1) {
+			if(MultiplierMax > 1) {
 				Multiplier.Visible = true;
 			}
 		}
@@ -982,7 +998,7 @@ public partial class PowerPlant : Node2D {
 
 	// Reacts to the increase request by requesting it to the game loop
 	// which will enact it if we have enough money
-	private void OnMultIncPressed() {
+	private async void OnMultIncPressed() {
 		Debug.Print("UPGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
@@ -992,6 +1008,8 @@ public partial class PowerPlant : Node2D {
 			// check if the cost is more than 0 before playing the money anim
 			if(C._GetGL()._CheckBuildReq(mult.Cost)) {
 				AnimMoney.Text = "-" + mult.Cost.ToString() + "$";
+				AP.Play("RESET");
+				await ToSignal(AP, "animation_finished");
 				AP.Play("Money-");
 			}
 			
@@ -1004,7 +1022,7 @@ public partial class PowerPlant : Node2D {
 
 	// Reacts to the decrease request by requesting it to the game loop
 	// which will enact it if we have enough money
-	private void OnMultDecPressed() {
+	private async void OnMultDecPressed() {
 		Debug.Print("DOWNGRADE PLANT");
 		// Retrieve the multiplier
 		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
@@ -1013,6 +1031,8 @@ public partial class PowerPlant : Node2D {
 		if(MultiplierValue > 1) {
 			if(mult.Cost > 0) {
 				AnimMoney.Text = "+" + mult.Cost.ToString() + "$";
+				AP.Play("RESET");
+				await ToSignal(AP, "animation_finished");
 				AP.Play("Money+");
 			}
 			// Signal the request to the game loop
@@ -1035,8 +1055,8 @@ public partial class PowerPlant : Node2D {
 		PollN.Text = (Pollution * mult.Pollution).ToString("0.0");
 		MultLand.Text = LandN.Text;
 		LandN.Text = (LandUse * 100 * mult.LandUse).ToString("0.0");
-		MultWinterE.Text = "+" + (mult.Capacity * EnergyAvailability.Item1).ToString();
-		MultSummerE.Text = "+" + (mult.Capacity * EnergyAvailability.Item2).ToString();
+		MultWinterE.Text = "+" + (mult.Capacity * EnergyAvailability.Item1).ToString("0.0");
+		MultSummerE.Text = "+" + (mult.Capacity * EnergyAvailability.Item2).ToString("0.0");
 	}
 	
 	private void GetMultDecInfo() {
@@ -1051,8 +1071,8 @@ public partial class PowerPlant : Node2D {
 		PollN.Text = (Pollution / mult.Pollution).ToString("0.0");
 		MultLand.Text = LandN.Text;
 		LandN.Text = (LandUse * 100 / mult.LandUse).ToString("0.0");
-		MultWinterE.Text = "-" + (mult.Capacity * EnergyAvailability.Item1).ToString();
-		MultSummerE.Text = "-" + (mult.Capacity * EnergyAvailability.Item2).ToString();
+		MultWinterE.Text = "-" + (mult.Capacity * EnergyAvailability.Item1).ToString("0.0");
+		MultSummerE.Text = "-" + (mult.Capacity * EnergyAvailability.Item2).ToString("0.0");
 	}
 	
 	private void OnMultIncMouseEntered() {

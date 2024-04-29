@@ -109,6 +109,11 @@ public partial class InfoBar : ProgressBar {
 		BarButton.TooltipText = name;
 	}
 
+	// Updates the infobox text id associated to this infobar
+	public void _SetId(string _id1, string _id2 = "") {
+		Box._SetId(_id1, _id2);
+	}
+
 	// Updates the information of the associated info box 
 	// Follows the same calling semantics as the info box:
 	// params: varargs in the form of N/Max, T0, N0, T1, N1, T2, N2

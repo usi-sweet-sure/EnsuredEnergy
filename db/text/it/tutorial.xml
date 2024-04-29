@@ -1,7 +1,7 @@
 <db id="tutorial" lang="it">
 	<group id="tutorial_text">
 		<text id="0">Congratulazioni! 
-Siete stati incaricati di [b]gestire la rete energetica[/b] per garantire un settore sostenibile e resiliente per i prossimi 30 anni (10 torri).</text>
+Siete stati incaricati di [b]gestire la rete energetica[/b] per garantire un settore sostenibile e resiliente per i prossimi 30 anni (10 turni di gioco).</text>
 <text id="1">Puoi scegliere come sarà il sistema energetico futuro, 
 	ma deve comunque [b]coprire la domanda di energia[/b].</text>
 				<!-- <text id="1">Puoi scegliere come sarà il sistema energetico futuro, 
@@ -20,14 +20,14 @@ si possono costruire nuove centrali elettriche, ma questo costa tempo e denaro.<
 <text id="6">Ci sono diversi modi per fornire più energia:
 
 	- È possibile potenziare alcune delle centrali elettriche esistenti</text>.
-	<text id="7">Potete anche organizzare campagne di informazione o cercare di attuare varie politiche per ridurre la domanda di energia o facilitare la costruzione di centrali elettriche. 
-		per ridurre la domanda di energia o facilitare la costruzione di centrali elettriche.</text>
+	<text id="7">Potete anche organizzare campagne di informazione o cercare di attuare varie politiche per ridurre la domanda di energia 
+	o facilitare la costruzione di centrali elettriche! </text>
 	</group>
 	<group id="info_bubble">
-		<text id="0">Ogni turno, bisogna soddisfare la domanda per l'estate 🔆 e per l'inverno ❄️.</text>
+		<text id="0">Ad ogni turno, bisogna soddisfare la domanda per l'inverno ❄️ e per l'estate 🔆.</text>
 		<text id="1">Importa più energia qui</text>
 		<text id="2">Costruire nuove centrali elettriche</text>
-		<text id="3">Aggiornamento della centrale elettrica esistente</text>
+		<text id="3">Ampiamento della centrale elettrica esistente</text>
 		<text id="4">Implementare le politiche</text>
 	</group>
 </db>
