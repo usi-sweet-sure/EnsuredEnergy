@@ -197,7 +197,5 @@ offset_left = -24.0
 offset_top = 256.0
 offset_right = 30.0
 offset_bottom = 282.0
-theme_override_fonts/font = SubResource("FontVariation_afv1h")
-theme_override_font_sizes/font_size = 14
 text = "Import"
 uppercase = true

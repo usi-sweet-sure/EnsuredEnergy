@@ -114,6 +114,7 @@ public partial class UI : CanvasLayer {
 	private Label BudgetNext;
 	private Label TotalNow;
 	private Label TotalNext;
+	private Label TotalL;
 	private Label Debt;
 	private Label DebtAmount;
 	private Label BorrowL;
@@ -278,6 +279,7 @@ public partial class UI : CanvasLayer {
 		BudgetNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNext");
 		TotalNow = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNow");
 		TotalNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNext");
+		TotalL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName");
 		MoneyInfoB = GetNode<TextureButton>("MoneyInfo/MoneyInfoButton");
 		BudgetInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetInfo");
 		ProdInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdInfo");
@@ -853,6 +855,7 @@ public partial class UI : CanvasLayer {
 		ImportCostL2.Text = Data.Imports.ToString();
 		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
 		BudgetNext.Text = BudgetNextN.ToString();
+		TotalL.Text = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_total");
 		TotalNow.Text = Data.Money.ToString();
 		int TotalNextN = BudgetNextN - Data.Imports - Data.Production - DebtN;
 		TotalNext.Text = TotalNextN.ToString();

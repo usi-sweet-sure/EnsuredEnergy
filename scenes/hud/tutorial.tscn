@@ -1,21 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://ciphd0cmpslrn"]
+[gd_scene load_steps=12 format=3 uid="uid://ciphd0cmpslrn"]
 
 [ext_resource type="Script" path="res://src/cs/ui/Tutorial.cs" id="1_xyv1m"]
 [ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="2_ob33a"]
-[ext_resource type="Texture2D" uid="uid://dyc87atrxvivu" path="res://assets/UI Elements/Paper_Info-1.png" id="2_rj886"]
-[ext_resource type="FontFile" uid="uid://deuo2u4mu60yb" path="res://assets/Fonts/static/OpenSans-Regular.ttf" id="3_llihj"]
 [ext_resource type="Texture2D" uid="uid://03lloca0uata" path="res://assets/Elements/ARROW INFO – 1.png" id="3_xv1gs"]
-[ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="4_ti5m6"]
 [ext_resource type="Texture2D" uid="uid://mwohu8ubla1b" path="res://assets/UpgradeSprite.png" id="4_yf1o7"]
 [ext_resource type="Texture2D" uid="uid://ikiclp3p8k8k" path="res://assets/key_tab_icon.png" id="5_mivsl"]
+[ext_resource type="Texture2D" uid="uid://dvph1wklx4pfh" path="res://assets/UI Elements/Paper-Big.png" id="5_yecw8"]
+[ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="7_6e2hn"]
 
 [sub_resource type="Theme" id="Theme_dnnnk"]
-
-[sub_resource type="FontVariation" id="FontVariation_ha2te"]
-base_font = ExtResource("3_llihj")
-
-[sub_resource type="FontVariation" id="FontVariation_nalg5"]
-base_font = ExtResource("4_ti5m6")
 
 [sub_resource type="Animation" id="Animation_b0nkl"]
 resource_name = "Float"
@@ -472,7 +465,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="TutoPopUp" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_rj886")
+texture = ExtResource("5_yecw8")
 region_rect = Rect2(0, 8, 592, 520)
 patch_margin_left = 48
 patch_margin_top = 56
@@ -507,6 +500,8 @@ offset_top = 11.0
 offset_right = 620.0
 offset_bottom = 37.0
 grow_vertical = 0
+theme = ExtResource("7_6e2hn")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "to skip"
 
 [node name="KeyTabIcon" type="Sprite2D" parent="MarginContainer/TutoPopUp/Skip"]
@@ -517,15 +512,15 @@ texture = ExtResource("5_mivsl")
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 70
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_bottom = 80
 
 [node name="Text" type="RichTextLabel" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("7_6e2hn")
+theme_type_variation = &"Paper"
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_ha2te")
-theme_override_fonts/bold_font = SubResource("FontVariation_nalg5")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
