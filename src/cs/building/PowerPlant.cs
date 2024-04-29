@@ -108,6 +108,9 @@ public partial class PowerPlant : Node2D {
 	// Life flag: Whether or not the plant is on
 	private bool IsAlive = true;
 	
+	// Check whether we reintroduce nuc or not
+	private bool NucReintro = false;
+	
 	// Power off modulate color
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
 	private Color HOVER_COLOR = new Color(0.9f, 0.9f, 0.7f);
@@ -620,15 +623,22 @@ public partial class PowerPlant : Node2D {
 		}
 		
 		// Set the end turn based on the building type
-		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
-		
-		LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
-		
-		if (EndTurn - C._GetTurn() == 1) {
-			LifeSpanWarning.Show();
+		if (!NucReintro){
+			EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
+
+			LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
+
+			if (EndTurn - C._GetTurn() == 1) {
+				LifeSpanWarning.Show();
+			} else {
+				LifeSpanWarning.Hide();
+			}
 		} else {
 			LifeSpanWarning.Hide();
+			LifeSpan.Hide();
+			// TODO: hide "shutting down in"
 		}
+		
 	}
 
 	// ==================== Helper Methods ====================    
@@ -714,7 +724,7 @@ public partial class PowerPlant : Node2D {
 	// We chose to ignore the state of the toggle as it should be identical to the IsAlive field
 	public void _OnSwitchToggled(bool pressed) {
 		// Check the liveness of the current plant
-		if(IsAlive) {
+		if(!pressed) {
 			// If the plant is currently alive, then kill it
 			KillPowerPlant();
 		} else {
@@ -849,6 +859,7 @@ public partial class PowerPlant : Node2D {
 
 	// Reactivates dead nuclear plants
 	public void _OnReintroduceNuclear() {
+		NucReintro = true;
 		if(PlantType.type == Building.Type.NUCLEAR) {
 			Debug.Print("REACTIVATING PLANT");
 			EndTurn = DEFAULT_LIFE_SPAN;

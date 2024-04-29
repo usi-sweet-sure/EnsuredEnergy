@@ -375,7 +375,6 @@ public partial class Shock : CanvasLayer {
 		if(CurShock == "nuc_reintro") {
 			// Make sure that nuclear powerplants get turned back on
 			EmitSignal(SignalName.ReintroduceNuclear);
-			return;
 		}
 
 		// Signal that the first reaction was picked
