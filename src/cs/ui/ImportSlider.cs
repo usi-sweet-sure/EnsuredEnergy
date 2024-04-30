@@ -29,7 +29,7 @@ public partial class ImportSlider : VSlider {
 	public float MAX_ENERGY_IMPORT =  100.0f;
 
 	// Constants for target bar positions
-	private const int TARGET_100_Y_POS = 24;
+	private const int TARGET_100_Y_POS = 9;
 	private const int TARGET_0_Y_POS = 220;
 
 	// Various labels that need to be dynamic
@@ -39,6 +39,7 @@ public partial class ImportSlider : VSlider {
 	private Button Cancel; // Button that cancels the modification of the import slider
 	private TextureButton Up;
 	private TextureButton Down;
+	private Sprite2D LEDOn;
 
 	// Target import required to meet demand
 	private Sprite2D Target;
@@ -66,6 +67,7 @@ public partial class ImportSlider : VSlider {
 		ImportSwitch = GetNode<Button>("ImportSwitch");
 		Up = GetNode<TextureButton>("UpButton");
 		Down = GetNode<TextureButton>("DownButton");
+		LEDOn = GetNode<Sprite2D>("LEDOn");
 
 		// Initialize the import amount
 		ImportAmount = 0;
@@ -151,6 +153,7 @@ public partial class ImportSlider : VSlider {
 	
 	// Toggles the clean import that cost more but doesn't pollute
 	private void OnImportSwitchToggled(bool Toggled) {
+		LEDOn.Visible = Toggled;
 		GreenImports = ! GreenImports;
 		EmitSignal(SignalName.ImportUpdate);
 	}

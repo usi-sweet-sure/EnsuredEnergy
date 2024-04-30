@@ -1,12 +1,11 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://cj6gnnfa8ibb0"]
 
-[ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="1_nqjeo"]
+[ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="2_h51fi"]
 [ext_resource type="FontFile" uid="uid://c1dcad080fsul" path="res://assets/Fonts/Special_Elite/SpecialElite-Regular.ttf" id="3_f6d62"]
 [ext_resource type="FontFile" uid="uid://bt2f3flr7psn5" path="res://assets/Fonts/VT323/VT323-Regular.ttf" id="3_tk8xd"]
 
 [sub_resource type="FontVariation" id="FontVariation_3ifss"]
-base_font = ExtResource("1_nqjeo")
-spacing_glyph = 1
+base_font = ExtResource("2_h51fi")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nyqp5"]
 
@@ -32,7 +31,7 @@ Label/constants/outline_size = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/constants/shadow_outline_size = 1
-Label/font_sizes/font_size = 14
+Label/font_sizes/font_size = 16
 Label/fonts/font = SubResource("FontVariation_3ifss")
 Label/styles/normal = SubResource("StyleBoxEmpty_nyqp5")
 Paper/base_type = &"Label"
@@ -53,5 +52,5 @@ RichTextLabel/fonts/bold_font = SubResource("FontVariation_u3fkg")
 RichTextLabel/fonts/normal_font = SubResource("FontVariation_ule17")
 Screen/base_type = &"Label"
 Screen/colors/font_color = Color(0.219608, 0.756863, 0.788235, 1)
-Screen/font_sizes/font_size = 30
+Screen/font_sizes/font_size = 32
 Screen/fonts/font = SubResource("FontVariation_b0wbe")

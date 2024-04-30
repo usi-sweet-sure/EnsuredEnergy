@@ -88,7 +88,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="SolarButton" type="Button" parent="Container/Solar"]
 offset_left = -104.0
@@ -125,7 +125,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="Turbine" type="Sprite2D" parent="Container/Wind"]
 position = Vector2(-56.25, -57.5)
@@ -149,7 +149,6 @@ metadata/_edit_group_ = true
 [node name="Price" parent="Container/Tree/PreviewInfo" index="3"]
 offset_top = -281.0
 offset_right = 64.0
-offset_bottom = -246.0
 
 [node name="Sprite" parent="Container/Tree" index="1"]
 position = Vector2(-2.25, 44)
@@ -161,9 +160,9 @@ offset_left = -195.0
 offset_top = -360.0
 offset_right = -155.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
-[node name="Name" parent="Container/Tree/BuildInfo" index="6"]
+[node name="Name" parent="Container/Tree/BuildInfo" index="5"]
 theme_override_font_sizes/font_size = 20
 
 [node name="TreeButton" type="Button" parent="Container/Tree"]
@@ -182,7 +181,6 @@ metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Hydro/PreviewInfo" index="3"]
 offset_left = -11.0
-offset_top = -282.0
 offset_right = 61.0
 offset_bottom = -247.0
 
@@ -200,7 +198,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="HydroButton" type="Button" parent="Container/Hydro"]
 offset_left = -104.0
@@ -219,7 +217,6 @@ metadata/_edit_group_ = true
 offset_left = -7.0
 offset_top = -281.0
 offset_right = 65.0
-offset_bottom = -246.0
 
 [node name="Sprite" parent="Container/Gas" index="1"]
 position = Vector2(-1, 24)
@@ -231,7 +228,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="GasButton" type="Button" parent="Container/Gas"]
 offset_left = -102.0
@@ -250,7 +247,6 @@ _PlantType = 6
 offset_left = -13.0
 offset_top = -281.0
 offset_right = 59.0
-offset_bottom = -246.0
 
 [node name="Sprite" parent="Container/Waste" index="1"]
 position = Vector2(4, 10.25)
@@ -262,7 +258,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="WasteButton" type="Button" parent="Container/Waste"]
 offset_left = -101.0
@@ -280,7 +276,6 @@ _PlantType = 7
 offset_left = -11.0
 offset_top = -281.0
 offset_right = 61.0
-offset_bottom = -246.0
 
 [node name="Sprite" parent="Container/Biomass" index="1"]
 position = Vector2(0.25, 25.25)
@@ -292,7 +287,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="BiomassButton" type="Button" parent="Container/Biomass"]
 offset_left = -103.0
@@ -309,7 +304,6 @@ _PlantType = 8
 
 [node name="Price" parent="Container/River/PreviewInfo" index="3"]
 offset_left = -9.0
-offset_top = -282.0
 offset_right = 63.0
 offset_bottom = -247.0
 
@@ -327,7 +321,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="RiverButton" type="Button" parent="Container/River"]
 offset_left = -98.0
@@ -345,7 +339,6 @@ _PlantType = 9
 offset_left = -7.0
 offset_top = -281.0
 offset_right = 65.0
-offset_bottom = -246.0
 
 [node name="Sprite" parent="Container/Pump" index="1"]
 position = Vector2(-1, 24)
@@ -357,7 +350,7 @@ offset_left = -65.0
 offset_top = -360.0
 offset_right = -25.0
 offset_bottom = -320.0
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 
 [node name="PumpButton" type="Button" parent="Container/Pump"]
 offset_left = -90.0

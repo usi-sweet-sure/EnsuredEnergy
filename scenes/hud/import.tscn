@@ -1,18 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://c81iji81uc4g7"]
+[gd_scene load_steps=19 format=3 uid="uid://c81iji81uc4g7"]
 
 [ext_resource type="Script" path="res://src/cs/ui/ImportSlider.cs" id="1_3r6om"]
 [ext_resource type="Texture2D" uid="uid://dm24o8isvyq3f" path="res://assets/UI Elements/Import-Slider.png" id="1_wlgbb"]
 [ext_resource type="Texture2D" uid="uid://bticb2k83c61t" path="res://assets/UI Elements/Import-line-limit.png" id="2_mncwm"]
 [ext_resource type="Texture2D" uid="uid://dwys7y27kiabl" path="res://assets/UI Elements/Import-Switch-On.png" id="3_5cyy2"]
-[ext_resource type="Texture2D" uid="uid://bbjycbp8muvr1" path="res://assets/UI Elements/Import-bar-hole.png" id="3_xcc16"]
 [ext_resource type="Texture2D" uid="uid://dhxkhfg2qxlgx" path="res://assets/UI Elements/Import-Switch-Off.png" id="4_h7pam"]
-[ext_resource type="Texture2D" uid="uid://ftccvuweij8o" path="res://assets/UI Elements/Import-line.png" id="7_ielfg"]
+[ext_resource type="Texture2D" uid="uid://ftccvuweij8o" path="res://assets/UI Elements/Import-Line.png" id="7_ielfg"]
 [ext_resource type="Texture2D" uid="uid://djt8tok2g8xsq" path="res://assets/UI Elements/Icon-Import.png" id="8_mstc7"]
+[ext_resource type="Texture2D" uid="uid://naxt3sfw64c6" path="res://assets/UI Elements/Import-bar.png" id="8_ok1f3"]
 [ext_resource type="Texture2D" uid="uid://cokx22pm0fqii" path="res://assets/UI Elements/Button-arrow-Hole.png" id="9_o4d1x"]
 [ext_resource type="Texture2D" uid="uid://br8x77xbqv6ru" path="res://assets/UI Elements/Button-arrow-normal.png" id="10_2eakc"]
 [ext_resource type="Texture2D" uid="uid://dn55t3gtpb3f8" path="res://assets/UI Elements/Button-arrow-press.png" id="11_yk6ot"]
 [ext_resource type="Texture2D" uid="uid://d2tmcpmc7mb3o" path="res://assets/UI Elements/Button-arrow-hover.png" id="12_d2wnx"]
 [ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="13_fjyei"]
+[ext_resource type="Texture2D" uid="uid://cy2dqdgln1uij" path="res://assets/UI Elements/LED-Off.png" id="14_buq8p"]
+[ext_resource type="Texture2D" uid="uid://bdifhvhbdals5" path="res://assets/UI Elements/LED-On.png" id="15_exvbt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8dnj"]
 atlas = ExtResource("1_wlgbb")
@@ -49,7 +51,6 @@ texture = ExtResource("2_mncwm")
 [node name="Import-line" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(-8, 123)
-scale = Vector2(1.5, 0.8)
 texture = ExtResource("7_ielfg")
 
 [node name="Text" type="Label" parent="."]
@@ -67,7 +68,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="TargetLine" type="Line2D" parent="."]
-position = Vector2(-112, -16)
+position = Vector2(-111, 9)
 points = PackedVector2Array(144, 16, 120, 16)
 width = 2.0
 
@@ -151,7 +152,7 @@ uppercase = true
 [node name="Import-bar-hole" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(26, 122)
-texture = ExtResource("3_xcc16")
+texture = ExtResource("8_ok1f3")
 
 [node name="Icon-import" type="Sprite2D" parent="."]
 position = Vector2(-24, 289)
@@ -199,3 +200,12 @@ offset_right = 30.0
 offset_bottom = 282.0
 text = "Import"
 uppercase = true
+
+[node name="LEDOff" type="Sprite2D" parent="."]
+position = Vector2(111, 308)
+texture = ExtResource("14_buq8p")
+
+[node name="LEDOn" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(111, 308)
+texture = ExtResource("15_exvbt")

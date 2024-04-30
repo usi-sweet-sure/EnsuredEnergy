@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://jj476u8yn2g8"]
+[gd_scene load_steps=30 format=3 uid="uid://jj476u8yn2g8"]
 
 [ext_resource type="Script" path="res://src/cs/windows/PolicyWindow.cs" id="1_is3ep"]
 [ext_resource type="Texture2D" uid="uid://clbiqmgbfxn1r" path="res://assets/UI Elements/Policies-middle.png" id="2_5macm"]
@@ -9,11 +9,9 @@
 [ext_resource type="ButtonGroup" uid="uid://ei788aoab46g" path="res://scenes/windows/policyButtonGroup.tres" id="4_wme6q"]
 [ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="5_dqo5y"]
 [ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="5_iox1m"]
-[ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="5_vm5n8"]
 [ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="6_8ixy2"]
 [ext_resource type="Texture2D" uid="uid://ddd6qplj5q6p4" path="res://assets/UI Elements/Policies_Button_Hole.png" id="8_iiaj0"]
 [ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/Popularity-.png" id="8_mlb0j"]
-[ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="10_f2v4c"]
 [ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="10_oxitu"]
 [ext_resource type="Texture2D" uid="uid://y6or6vfnua40" path="res://assets/UI Elements/Policies_Metal-cover.png" id="11_4fuh8"]
 [ext_resource type="Texture2D" uid="uid://q0302v26c3j6" path="res://assets/UI Elements/Policies-left&right.png" id="12_cagmv"]
@@ -25,27 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://cufu62j0t1t6p" path="res://assets/UI Elements/Policies-Button-yellow-Press.png" id="20_e53ft"]
 [ext_resource type="Texture2D" uid="uid://cltrnfisw3ald" path="res://assets/UI Elements/Policies-Button-yellow-Hover.png" id="21_n5r62"]
 
-[sub_resource type="FontVariation" id="FontVariation_ysreq"]
-base_font = ExtResource("5_vm5n8")
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3qlni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77vk0"]
 bg_color = Color(0.196078, 0.545098, 0.968627, 0.792157)
-
-[sub_resource type="FontVariation" id="FontVariation_5jnr5"]
-base_font = ExtResource("5_vm5n8")
-variation_embolden = 0.4
-spacing_glyph = 1
-
-[sub_resource type="FontVariation" id="FontVariation_trley"]
-base_font = ExtResource("5_vm5n8")
-
-[sub_resource type="FontVariation" id="FontVariation_o0ra6"]
-base_font = ExtResource("10_f2v4c")
-
-[sub_resource type="FontVariation" id="FontVariation_y6q6m"]
-base_font = ExtResource("5_vm5n8")
 
 [sub_resource type="Theme" id="Theme_6bviu"]
 
@@ -123,16 +104,15 @@ texture = ExtResource("2_5macm")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -416.5
-offset_top = -320.5
-offset_right = -64.5
-offset_bottom = -273.5
+offset_left = -404.0
+offset_top = -320.0
+offset_right = -75.0
+offset_bottom = -244.0
 grow_horizontal = 2
 theme = ExtResource("3_yevmu")
 theme_type_variation = &"Screen"
 text = "- Campaign -"
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Text" type="Label" parent="Control/Policies-base-2/PolicyName"]
@@ -141,9 +121,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -160.0
-offset_top = 45.0
+offset_top = 59.0
 offset_right = 160.0
-offset_bottom = 218.0
+offset_bottom = 232.0
 grow_horizontal = 2
 theme = ExtResource("3_yevmu")
 theme_type_variation = &"Screen"
@@ -202,9 +182,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -324.0
+offset_left = -338.0
 offset_top = -599.0
-offset_right = -131.0
+offset_right = -145.0
 offset_bottom = -516.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -226,8 +206,9 @@ offset_right = 129.0
 offset_bottom = -257.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = SubResource("FontVariation_ysreq")
-text = "Estimated popularity with voters:"
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Estimated popularity with voters"
 
 [node name="Popularity" type="ProgressBar" parent="Control/Policies-base-2/Vote"]
 layout_mode = 1
@@ -245,7 +226,7 @@ value = 42.0
 
 [node name="Popularity-" type="Sprite2D" parent="Control/Policies-base-2/Vote/Popularity"]
 show_behind_parent = true
-position = Vector2(45, 19)
+position = Vector2(41, 21)
 texture = ExtResource("8_mlb0j")
 
 [node name="Icon" type="Sprite2D" parent="Control/Policies-base-2/Vote/Popularity"]
@@ -258,6 +239,7 @@ offset_left = -61.0
 offset_top = 110.5
 offset_right = -60.0
 offset_bottom = 133.5
+theme = ExtResource("3_yevmu")
 
 [node name="VoteL" type="Label" parent="Control/Policies-base-2/Vote"]
 layout_mode = 1
@@ -266,8 +248,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_5jnr5")
-theme_override_font_sizes/font_size = 25
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "VOTE"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -293,6 +275,8 @@ offset_right = 168.5
 offset_bottom = -254.5
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "1"
 horizontal_alignment = 2
 
@@ -310,7 +294,8 @@ offset_right = 15.5
 offset_bottom = -93.5
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Duration of campaign:"
 
 [node name="CampaignL" type="Label" parent="Control/Policies-base-2/Vote"]
@@ -320,8 +305,8 @@ offset_left = -69.0
 offset_top = -201.5
 offset_right = 260.0
 offset_bottom = -121.5
-theme_override_fonts/font = SubResource("FontVariation_trley")
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Result"
 autowrap_mode = 2
 
@@ -331,7 +316,8 @@ offset_left = -160.0
 offset_top = 143.0
 offset_right = 167.0
 offset_bottom = 169.0
-theme_override_fonts/font = SubResource("FontVariation_o0ra6")
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "This policy is already implemented."
 
 [node name="PoliciesBase-1" type="Sprite2D" parent="Control"]
@@ -343,7 +329,8 @@ offset_left = -62.0
 offset_top = -367.0
 offset_right = 66.0
 offset_bottom = -315.0
-theme_override_fonts/font = SubResource("FontVariation_y6q6m")
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 15
 text = "Environmental campaign"
 horizontal_alignment = 1
@@ -355,7 +342,8 @@ offset_left = -62.0
 offset_top = -45.0
 offset_right = 66.0
 offset_bottom = -19.0
-theme_override_fonts/font = SubResource("FontVariation_y6q6m")
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Policies"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -365,9 +353,9 @@ uppercase = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -228.0
+offset_left = -240.0
 offset_top = -264.5
-offset_right = -99.0
+offset_right = -111.0
 offset_bottom = -136.5
 grow_horizontal = 2
 button_group = ExtResource("4_wme6q")
@@ -399,10 +387,10 @@ anchor_left = 0.472
 anchor_top = 0.185
 anchor_right = 0.472
 anchor_bottom = 0.185
-offset_left = -213.344
-offset_top = 4.255
-offset_right = -84.344
-offset_bottom = 84.255
+offset_left = -225.344
+offset_top = -0.74498
+offset_right = -96.344
+offset_bottom = 79.255
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-1/Wind_buildtime" index="1"]
@@ -414,17 +402,17 @@ anchor_left = 0.486
 anchor_top = 0.787
 anchor_right = 0.486
 anchor_bottom = 0.787
-offset_left = -217.922
-offset_top = -359.499
-offset_right = -88.922
-offset_bottom = -279.499
+offset_left = -229.922
+offset_top = -376.499
+offset_right = -100.922
+offset_bottom = -296.499
 button_group = ExtResource("4_wme6q")
 
 [node name="Label" parent="Control/PoliciesBase-1/Upgrade_wind" index="1"]
 text = "💨"
 
 [node name="Icon-environment-" type="Sprite2D" parent="Control/PoliciesBase-1"]
-position = Vector2(-2, -208)
+position = Vector2(-2, -207)
 texture = ExtResource("10_oxitu")
 
 [node name="PoliciesBase-2" type="Sprite2D" parent="Control"]
@@ -436,7 +424,8 @@ offset_left = -58.0
 offset_top = -364.0
 offset_right = 62.0
 offset_bottom = -312.0
-theme_override_fonts/font = SubResource("FontVariation_y6q6m")
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 15
 text = "Demand campaign"
 horizontal_alignment = 1
@@ -448,7 +437,8 @@ offset_left = -58.0
 offset_top = -44.0
 offset_right = 62.0
 offset_bottom = -18.0
-theme_override_fonts/font = SubResource("FontVariation_y6q6m")
+theme = ExtResource("3_yevmu")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Policies"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -458,9 +448,9 @@ uppercase = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -228.0
+offset_left = -237.0
 offset_top = -264.5
-offset_right = -99.0
+offset_right = -108.0
 offset_bottom = -136.5
 grow_horizontal = 2
 button_group = ExtResource("4_wme6q")
@@ -483,9 +473,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -225.5
+offset_left = -231.5
 offset_top = -312.5
-offset_right = -96.5
+offset_right = -102.5
 offset_bottom = -232.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -500,10 +490,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -225.0
-offset_top = -570.5
-offset_right = -96.0
-offset_bottom = -490.5
+offset_left = -232.0
+offset_top = -586.5
+offset_right = -103.0
+offset_bottom = -506.5
 grow_horizontal = 2
 grow_vertical = 0
 button_group = ExtResource("4_wme6q")

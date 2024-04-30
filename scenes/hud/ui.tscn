@@ -1,6 +1,7 @@
 [gd_scene load_steps=120 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/Profil-metal.png" id="1_ooswe"]
+[ext_resource type="Texture2D" uid="uid://c3e2r6qjw4kti" path="res://assets/Gameplay_UI_Reference-03.jpg" id="1_rcpup"]
 [ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
 [ext_resource type="Texture2D" uid="uid://biq6v1m7nc6l" path="res://assets/UI Elements/Button-Next-Press.png" id="3_qtdni"]
@@ -173,7 +174,7 @@ _data = {
 }
 
 [sub_resource type="FontVariation" id="FontVariation_n3vpe"]
-base_font = ExtResource("53_v477p")
+base_font = ExtResource("51_joowr")
 spacing_glyph = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mw3r"]
@@ -282,7 +283,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.8, 1.25, 1.26, 2, 2.01, 2.76),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(40, 87), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 29)]
+"values": [Vector2(40, 85), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 29)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -306,7 +307,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.7, 3.4, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1790, 130), Vector2(1024, 568), Vector2(1024, 568), Vector2(1790, 130)]
+"values": [Vector2(1739, 141), Vector2(1024, 568), Vector2(1024, 568), Vector2(1739, 141)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -429,7 +430,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(40, 90)]
+"values": [Vector2(40, 86)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -520,7 +521,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.8, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 87), Vector2(0, 31)]
+"values": [Vector2(0, 86), Vector2(0, 31)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -571,7 +572,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 90)]
+"values": [Vector2(0, 86)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -615,11 +616,6 @@ _data = {
 "NextDecade": SubResource("Animation_xtl2t"),
 "RESET": SubResource("Animation_qpho6")
 }
-
-[sub_resource type="FontVariation" id="FontVariation_kjeuh"]
-base_font = ExtResource("40_knfjx")
-variation_embolden = 0.2
-spacing_glyph = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0)
@@ -669,7 +665,7 @@ base_font = ExtResource("40_knfjx")
 variation_embolden = 0.2
 
 [sub_resource type="FontVariation" id="FontVariation_15ni2"]
-base_font = ExtResource("53_v477p")
+base_font = ExtResource("51_joowr")
 spacing_glyph = 7
 
 [sub_resource type="FontVariation" id="FontVariation_lgwoq"]
@@ -833,12 +829,17 @@ base_font = ExtResource("53_v477p")
 [node name="UI" type="CanvasLayer"]
 follow_viewport_enabled = true
 
+[node name="GameplayUiReference-03" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("1_rcpup")
+
 [node name="Profil-bar-metal" type="Sprite2D" parent="."]
-position = Vector2(152, 168)
+position = Vector2(202, 178.5)
 texture = ExtResource("1_ooswe")
 
 [node name="Money-counter-hole" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(1, 34)
+position = Vector2(1, 39)
 texture = ExtResource("31_jcf3k")
 
 [node name="Money-counter-1" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
@@ -858,22 +859,22 @@ position = Vector2(30, 0)
 texture = ExtResource("32_2wt40")
 
 [node name="Icon-money" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(-76.5, 32)
+position = Vector2(-71, 40)
 texture = ExtResource("33_my285")
 
 [node name="Icon-popularity" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(-75.5, 94)
+position = Vector2(-71, 91)
 texture = ExtResource("34_xcgyc")
 
 [node name="Popularity-" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(0.5, 91)
+position = Vector2(3.5, 91)
 texture = ExtResource("35_qiawk")
 
 [node name="TextureButton" type="TextureButton" parent="Profil-bar-metal"]
-offset_left = -91.0
-offset_top = -104.0
-offset_right = -25.0
-offset_bottom = -40.0
+offset_left = -89.0
+offset_top = -106.0
+offset_right = -23.0
+offset_bottom = -42.0
 texture_normal = ExtResource("36_xxsv6")
 texture_pressed = ExtResource("37_533gb")
 texture_hover = ExtResource("38_7v12r")
@@ -884,10 +885,10 @@ position = Vector2(32, 32)
 texture = ExtResource("39_jsaox")
 
 [node name="TextureButton2" type="TextureButton" parent="Profil-bar-metal"]
-offset_left = 24.0
-offset_top = -104.0
-offset_right = 90.0
-offset_bottom = -40.0
+offset_left = 26.0
+offset_top = -104.5
+offset_right = 92.0
+offset_bottom = -40.5
 texture_normal = ExtResource("36_xxsv6")
 texture_pressed = ExtResource("37_533gb")
 texture_hover = ExtResource("38_7v12r")
@@ -898,14 +899,50 @@ position = Vector2(32, 32)
 texture = ExtResource("39_jsaox")
 
 [node name="Sprite2D" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(92, 51)
+position = Vector2(93, 56)
 texture = ExtResource("11_i0u5d")
 
+[node name="Policies" type="Label" parent="Profil-bar-metal"]
+offset_left = 14.0
+offset_top = -138.0
+offset_right = 102.0
+offset_bottom = -112.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "POLICIES"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Settings" type="Label" parent="Profil-bar-metal"]
+offset_left = -101.0
+offset_top = -138.0
+offset_right = -13.0
+offset_bottom = -112.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Resources" type="Label" parent="Profil-bar-metal"]
+offset_left = -98.0
+offset_top = -10.0
+offset_right = 102.0
+offset_bottom = 16.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Resources"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="NextTurn" type="TextureButton" parent="."]
-offset_left = 1664.0
-offset_top = 936.0
-offset_right = 1856.0
-offset_bottom = 1022.0
+offset_left = 1639.0
+offset_top = 938.0
+offset_right = 1831.0
+offset_bottom = 1024.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_aobed")
@@ -921,14 +958,13 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
-offset_top = 8.0
+offset_top = 5.0
 offset_right = -10.0
-offset_bottom = -9.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(0.964706, 0.964706, 0.964706, 1)
-theme_override_font_sizes/font_size = 23
 text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -956,7 +992,6 @@ theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(0.683594, 0.238281, 0.195313, 1)
 theme_override_colors/font_shadow_color = Color(0.141176, 0.192157, 0.2, 0.592157)
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 23
 text = "Not enough energy!"
 vertical_alignment = 1
 uppercase = true
@@ -964,27 +999,27 @@ uppercase = true
 [node name="Error" type="AudioStreamPlayer" parent="NextTurn"]
 
 [node name="ImportEnergy-bar-metal" type="Sprite2D" parent="."]
-position = Vector2(252, 842)
+position = Vector2(245, 856)
 texture = ExtResource("19_1inpw")
 
 [node name="Energy-base" type="Sprite2D" parent="ImportEnergy-bar-metal"]
 z_index = 1
-position = Vector2(108, -10)
+position = Vector2(107, -23)
 texture = ExtResource("28_mr6x7")
 
 [node name="Icon-wind" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
-position = Vector2(-35, 174)
+position = Vector2(-36, 184)
 texture = ExtResource("11_qepre")
 
 [node name="Icon-solar" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
-position = Vector2(36, 174)
+position = Vector2(36, 184)
 texture = ExtResource("12_72t8i")
 
 [node name="EngLabel" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
 offset_left = -85.0
-offset_top = -172.0
+offset_top = -164.0
 offset_right = 83.0
-offset_bottom = -141.0
+offset_bottom = -133.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "ENERGY"
@@ -993,31 +1028,28 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="NumberHole" type="Sprite2D" parent="ImportEnergy-bar-metal"]
-position = Vector2(-159, 121.5)
+position = Vector2(-119, 112.5)
 scale = Vector2(1.37209, 1)
 texture = ExtResource("54_7juy1")
 
 [node name="NumberCounter1" type="Sprite2D" parent="ImportEnergy-bar-metal"]
-modulate = Color(1, 0.588235, 0.588235, 1)
-position = Vector2(-114, 120.5)
+position = Vector2(-74.0001, 111.5)
 texture = ExtResource("55_5s2up")
 
 [node name="NumberCounter2" type="Sprite2D" parent="ImportEnergy-bar-metal"]
-modulate = Color(1, 0.588235, 0.588235, 1)
-position = Vector2(-133, 120.5)
+position = Vector2(-93.0001, 111.5)
 texture = ExtResource("55_5s2up")
 
 [node name="NumberCounter3" type="Sprite2D" parent="ImportEnergy-bar-metal"]
-modulate = Color(1, 0.588235, 0.588235, 1)
-position = Vector2(-152, 120.5)
+position = Vector2(-112, 111.5)
 texture = ExtResource("55_5s2up")
 
 [node name="ImportCosts" type="Label" parent="ImportEnergy-bar-metal"]
-offset_left = -160.0
-offset_top = 105.5
-offset_right = -107.0
-offset_bottom = 139.5
-theme = ExtResource("23_2rsct")
+offset_left = -120.0
+offset_top = 97.0
+offset_right = -67.0
+offset_bottom = 131.0
+theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(0.0588235, 0.145098, 0.152941, 1)
 theme_override_fonts/font = SubResource("FontVariation_n3vpe")
 theme_override_font_sizes/font_size = 21
@@ -1025,15 +1057,14 @@ text = "100"
 horizontal_alignment = 2
 
 [node name="CHF" type="Sprite2D" parent="ImportEnergy-bar-metal"]
-position = Vector2(-178, 121.5)
-scale = Vector2(0.6, 0.6)
+position = Vector2(-155, 113)
 texture = ExtResource("33_my285")
 
 [node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 373.001
-offset_top = 927.0
-offset_right = 564.001
-offset_bottom = 969.0
+offset_left = 364.001
+offset_top = 928.0
+offset_right = 555.001
+offset_bottom = 970.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8mw3r")
@@ -1053,10 +1084,10 @@ rotation = 1.5708
 metadata/_edit_group_ = true
 
 [node name="EnergyBarWinterPredict" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 307.001
-offset_top = 927.0
-offset_right = 498.001
-offset_bottom = 968.0
+offset_left = 298.001
+offset_top = 928.0
+offset_right = 489.001
+offset_bottom = 969.0
 max_value = 200.0
 
 [node name="Target" parent="EnergyBarWinterPredict" index="0"]
@@ -1072,10 +1103,10 @@ offset_bottom = 113.053
 rotation = 1.5708
 
 [node name="EnergyBarWinter" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 307.001
-offset_top = 927.0
-offset_right = 498.001
-offset_bottom = 968.0
+offset_left = 298.001
+offset_top = 928.0
+offset_right = 489.001
+offset_bottom = 969.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qglqh")
 max_value = 200.0
 
@@ -1098,10 +1129,10 @@ text = "You need to reach the demand in energy. The target is the white line on 
 "
 
 [node name="EnergyBarSummer" parent="." instance=ExtResource("3_fm1y6")]
-offset_left = 373.001
-offset_top = 927.0
-offset_right = 564.001
-offset_bottom = 969.0
+offset_left = 364.001
+offset_top = 928.0
+offset_right = 555.001
+offset_bottom = 970.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
 max_value = 200.0
@@ -1127,12 +1158,15 @@ text = "You need to reach the demand in energy. The target is the white line on 
 "
 
 [node name="Import" parent="." instance=ExtResource("5_ps4b6")]
-offset_left = 160.0
-offset_top = 856.28
-offset_right = 175.96
-offset_bottom = 952.0
+offset_left = 176.0
+offset_top = 853.28
+offset_right = 191.96
+offset_bottom = 949.0
 max_value = 100.0
 ticks_on_borders = false
+
+[node name="Import-line" parent="Import" index="1"]
+position = Vector2(-26, 120)
 
 [node name="TargetLine" parent="Import" index="3"]
 visible = false
@@ -1157,47 +1191,63 @@ offset_right = 36.0
 offset_bottom = 218.0
 
 [node name="ImportSwitch" parent="Import" index="8"]
-offset_left = -96.0
-offset_top = 41.0
-offset_right = -16.0
-offset_bottom = 117.0
+offset_left = -31.0
+offset_top = 296.0
+offset_right = 49.0
+offset_bottom = 372.0
 
 [node name="OnL" parent="Import/ImportSwitch" index="0"]
+offset_left = 58.0
+offset_top = 21.0
+offset_right = 112.0
+offset_bottom = 47.0
 theme = ExtResource("23_2rsct")
+theme_override_font_sizes/font_size = 10
 
 [node name="OffL" parent="Import/ImportSwitch" index="1"]
+offset_left = 58.0
+offset_top = 45.0
+offset_right = 112.0
+offset_bottom = 71.0
 theme = ExtResource("23_2rsct")
+theme_override_font_sizes/font_size = 10
 
 [node name="Icon-import" parent="Import" index="10"]
-position = Vector2(-16, 312)
+position = Vector2(-33, 333)
 
 [node name="UpButton" parent="Import" index="11"]
-offset_left = -40.0
-offset_top = 169.0
-offset_right = -8.0
-offset_bottom = 201.0
+offset_left = -70.0
+offset_top = 120.0
+offset_right = -38.0
+offset_bottom = 152.0
 
 [node name="Button-arrow-hole2" parent="Import/UpButton" index="0"]
 position = Vector2(14, 15)
 
 [node name="DownButton" parent="Import" index="12"]
-offset_left = -71.0
-offset_top = 172.0
-offset_right = -39.0
-offset_bottom = 204.0
+offset_left = -101.0
+offset_top = 124.0
+offset_right = -69.0
+offset_bottom = 156.0
 
 [node name="Button-arrow-hole" parent="Import/DownButton" index="0"]
 position = Vector2(17, 18)
 
 [node name="ImportLabel" parent="Import" index="13"]
-offset_left = -96.0
-offset_top = -40.0
-offset_right = 82.0
-offset_bottom = -14.0
+offset_left = -123.0
+offset_top = -29.0
+offset_right = 55.0
+offset_bottom = -3.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LEDOff" parent="Import" index="14"]
+position = Vector2(66, 296)
+
+[node name="LEDOn" parent="Import" index="15"]
+position = Vector2(66, 296)
 
 [node name="TimePanelBlank" type="Sprite2D" parent="."]
 position = Vector2(1790, 130)
@@ -1221,7 +1271,8 @@ offset_right = 85.0
 offset_bottom = 158.0
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
 theme_override_font_sizes/font_size = 48
-text = "2020"
+text = "2023
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1247,9 +1298,9 @@ position = Vector2(58, 36)
 texture = ExtResource("19_bcm0u")
 
 [node name="Year3" type="Label" parent="TimePanelBlank"]
-offset_top = 90.0
+offset_top = 86.0
 offset_right = 40.0
-offset_bottom = 160.0
+offset_bottom = 156.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
 theme_override_font_sizes/font_size = 46
@@ -1292,14 +1343,14 @@ vertical_alignment = 1
 
 [node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year4"]
 show_behind_parent = true
-position = Vector2(20, 36)
+position = Vector2(20, 32)
 texture = ExtResource("19_bcm0u")
 
 [node name="Year5" type="Label" parent="TimePanelBlank"]
 offset_left = 40.0
-offset_top = 90.0
+offset_top = 86.0
 offset_right = 80.0
-offset_bottom = 160.005
+offset_bottom = 156.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
 theme_override_font_sizes/font_size = 46
@@ -1309,7 +1360,7 @@ vertical_alignment = 1
 
 [node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year5"]
 show_behind_parent = true
-position = Vector2(20, 35)
+position = Vector2(20, 36)
 texture = ExtResource("19_bcm0u")
 
 [node name="HideNum" type="Sprite2D" parent="TimePanelBlank"]
@@ -1429,9 +1480,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -245.0
-offset_top = -245.5
+offset_top = -247.5
 offset_right = -245.0
-offset_bottom = -245.5
+offset_bottom = -247.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -1439,16 +1490,16 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
-position = Vector2(264, 528)
+position = Vector2(258, 558)
 texture = ExtResource("37_q7ul8")
 
 [node name="Trust" type="ProgressBar" parent="."]
-offset_left = 112.0
-offset_top = 240.0
-offset_right = 192.0
-offset_bottom = 278.0
-theme_override_fonts/font = SubResource("FontVariation_kjeuh")
-theme_override_font_sizes/font_size = 18
+offset_left = 164.0
+offset_top = 250.5
+offset_right = 244.0
+offset_bottom = 288.5
+theme = ExtResource("70_2ktfd")
+theme_override_font_sizes/font_size = 23
 theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
@@ -1510,16 +1561,17 @@ theme = ExtResource("23_2rsct")
 flat = true
 
 [node name="Env" type="ProgressBar" parent="."]
-offset_left = 121.0
-offset_top = 464.0
-offset_right = 221.0
-offset_bottom = 521.0
+offset_left = 115.0
+offset_top = 496.0
+offset_right = 215.0
+offset_bottom = 553.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nm6d8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
+EnergyBar = false
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Env"]
@@ -1582,25 +1634,26 @@ position = Vector2(45, 36)
 texture = ExtResource("38_jqypa")
 
 [node name="Arrow" type="Sprite2D" parent="Env"]
-position = Vector2(47, 63)
+position = Vector2(47, 61)
 texture = ExtResource("23_3qgyr")
-offset = Vector2(-1.5, -30)
+offset = Vector2(0, -22)
 
 [node name="Icon" type="Sprite2D" parent="Env"]
 position = Vector2(46, 70)
 texture = ExtResource("24_t8vy5")
 
 [node name="Poll" type="ProgressBar" parent="."]
-offset_left = 291.0
-offset_top = 464.0
-offset_right = 351.0
-offset_bottom = 529.0
+offset_left = 285.0
+offset_top = 496.0
+offset_right = 345.0
+offset_bottom = 561.0
 theme_override_styles/background = SubResource("StyleBoxFlat_0vvqt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
 value = 50.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("4_e5tgv")
+EnergyBar = false
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Poll"]
@@ -1670,19 +1723,19 @@ position = Vector2(49, 37)
 texture = ExtResource("41_ctrnv")
 
 [node name="Arrow" type="Sprite2D" parent="Poll"]
-position = Vector2(49, 64)
+position = Vector2(49, 62)
 texture = ExtResource("23_3qgyr")
-offset = Vector2(-1.5, -30)
+offset = Vector2(0, -22)
 
 [node name="Icon" type="Sprite2D" parent="Poll"]
 position = Vector2(49, 67)
 texture = ExtResource("25_7q1c5")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
-offset_left = 187.0
-offset_top = 73.0
-offset_right = 230.0
-offset_bottom = 116.0
+offset_left = 238.0
+offset_top = 82.0
+offset_right = 281.0
+offset_bottom = 125.0
 texture_normal = SubResource("AtlasTexture_0dajl")
 ignore_texture_size = true
 
@@ -1728,10 +1781,10 @@ anchor_left = 0.233
 anchor_top = 0.076
 anchor_right = 0.233
 anchor_bottom = 0.076
-offset_left = -175.36
-offset_top = -34.08
-offset_right = 56.64
-offset_bottom = 139.92
+offset_left = -87.36
+offset_top = -74.08
+offset_right = 144.64
+offset_bottom = 99.92
 grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MoneyInfo"]
@@ -2041,10 +2094,10 @@ horizontal_alignment = 2
 
 [node name="MoneyInfoButton" type="TextureButton" parent="MoneyInfo"]
 layout_mode = 0
-offset_left = 288.0
-offset_top = -36.0
-offset_right = 368.0
-offset_bottom = 44.0
+offset_left = 400.0
+offset_top = -8.0
+offset_right = 480.0
+offset_bottom = 72.0
 texture_normal = ExtResource("42_v8iq7")
 texture_pressed = ExtResource("42_v8iq7")
 texture_hover = ExtResource("42_v8iq7")
@@ -2072,10 +2125,10 @@ text = "?"
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1818.0
-offset_top = 177.0
-offset_right = -1725.0
-offset_bottom = 225.0
+offset_left = -1768.0
+offset_top = 192.5
+offset_right = -1675.0
+offset_bottom = 240.5
 grow_horizontal = 0
 color = Color(0.596078, 0.596078, 0.596078, 0)
 
@@ -2107,10 +2160,10 @@ vertical_alignment = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1877.0
-offset_top = 173.0
-offset_right = -1715.0
-offset_bottom = 228.0
+offset_left = -1827.0
+offset_top = 187.5
+offset_right = -1665.0
+offset_bottom = 242.5
 grow_horizontal = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -2175,10 +2228,10 @@ offset_bottom = 1225.0
 color = Color(1, 1, 1, 0)
 
 [node name="BorrowMoney" type="TextureButton" parent="."]
-offset_left = 214.0
-offset_top = 185.0
-offset_right = 245.0
-offset_bottom = 217.0
+offset_left = 265.0
+offset_top = 199.5
+offset_right = 296.0
+offset_bottom = 231.5
 texture_normal = ExtResource("44_5a58h")
 texture_pressed = ExtResource("45_nhcbq")
 texture_hover = ExtResource("46_mga3n")
@@ -2217,10 +2270,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="."]
-offset_left = 49.0
-offset_top = 51.0
-offset_right = 137.0
-offset_bottom = 139.0
+offset_left = 102.0
+offset_top = 60.5
+offset_right = 190.0
+offset_bottom = 148.5
 focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("7_mnpcp")
