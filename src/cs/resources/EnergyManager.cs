@@ -25,7 +25,7 @@ using System.Linq;
 public partial class EnergyManager : Node {
 
 	// Max value allowed by the UI
-	public const int MAX_ENERGY_BAR_VAL = 600;
+	public const int MAX_ENERGY_BAR_VAL = 200;
 
 	// Keep track of all of the placed power plants
 	private List<PowerPlant> PowerPlants;
@@ -92,8 +92,8 @@ public partial class EnergyManager : Node {
 	// The given amount is the percentage of the total demand that is imported
 	// The importSummer flag reprensents whether or not we import in the summer
 	public (int, int) _ComputeImportAmount((float, float) Ds, float import_perc, bool importSummer=false) => (
-		(int)(import_perc * Ds.Item1),
-		importSummer ? (int)(import_perc * Ds.Item2) : 0
+		(int)(import_perc),
+		importSummer ? (int)(import_perc) : 0
 	);
 
 	// Computes the total imported energy amount

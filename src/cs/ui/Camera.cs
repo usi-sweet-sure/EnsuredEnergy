@@ -23,11 +23,15 @@ using System;
 public partial class Camera : Camera2D {
 
 	// Camera control parameters
-	private Vector2 ZOOM_MIN = new (0.5f,0.5f);
+	private Vector2 ZOOM_MIN = new (0.3f,0.3f);
 	private Vector2 ZOOM_MAX = new (0.8f,0.8f);
 	private Vector2 ZOOM_SPEED = new (0.2f,0.2f);
 	private Vector2 ZoomVal = new (0.8f,0.8f);
-	private Vector2 SCALE_LIMIT = new (1f, 1f);
+	private Vector2 SCALE_LIMIT = new (0.65f, 0.65f);
+	private Vector2 PLANT_ZOOM = new (0.55f, 0.55f);
+	private Vector2 TargetZoom = new (1f, 1f);
+	private int CAMERA_SPEED = 40;
+	private float zoom_sensitivity = 0.05f;
 
 	// Record initial position and zoom for reset
 	private Vector2 InitPos;
@@ -40,6 +44,10 @@ public partial class Camera : Camera2D {
 		// Record initial position and zoom
 		InitPos = Position;
 		InitZoom = Zoom;
+		
+		foreach (PowerPlant Plant in GetTree().GetNodesInGroup("PP")) {
+			Plant.ZoomSignal += PlantZoom;
+			}
 	}
 	
 	// Updates the size of the plants to follow the zoom amount
@@ -50,13 +58,13 @@ public partial class Camera : Camera2D {
 			foreach (Node2D Plant in GetTree().GetNodesInGroup("PP")) {
 				// Create an animation for the zoom
 				Tween TweenScale = CreateTween();
-				TweenScale.TweenProperty(Plant, "scale", new Vector2(1,1) / (ZoomVal*2f), 0.3f);
+				TweenScale.TweenProperty(Plant, "scale", new Vector2(1,1) / (ZoomVal*2.5f), 0.3f);
 			}
 
 			// Do the same for all buildbuttons
 			foreach (TextureButton BuildButton in GetTree().GetNodesInGroup("BB")) {
 				Tween TweenScale = CreateTween();
-				TweenScale.TweenProperty(BuildButton, "scale", new Vector2(1,1) / (ZoomVal*2f), 0.3f);
+				TweenScale.TweenProperty(BuildButton, "scale", new Vector2(1,1) / (ZoomVal*2.5f), 0.3f);
 			}
 		}
 	}
@@ -66,6 +74,22 @@ public partial class Camera : Camera2D {
 	//     1) When the player clicks the screen, in which case we want to drag the camera around
 	//     2) When the player uses the mouse wheel, in which case we want to zoom in or out
 	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMagnifyGesture Magnify) {
+			var zoom_factor = Zoom;
+			zoom_factor *= Magnify.Factor;
+			TargetZoom = zoom_factor.Clamp(ZOOM_MIN, ZOOM_MAX);
+			Zoom = TargetZoom;
+			ScalePlants(TargetZoom);
+		}
+		if(E is InputEventPanGesture Pan) {
+			var zoom_factor = Zoom;
+			zoom_factor.Y += Pan.Delta.Y * zoom_sensitivity;
+			zoom_factor.X += Pan.Delta.Y * zoom_sensitivity;
+			TargetZoom = zoom_factor.Clamp(ZOOM_MIN, ZOOM_MAX);
+			Zoom = TargetZoom;
+			ScalePlants(TargetZoom);
+		}
+		
 		// Camera can be moved by holding left click and dragging the mouse
 		if(E is InputEventMouseMotion MouseMotion) {
 			if(MouseMotion.ButtonMask == MouseButtonMask.Left) {
@@ -81,7 +105,8 @@ public partial class Camera : Camera2D {
 					// Make sure that we clamp the zoom to avoid seeing out of the scene
 					if(Zoom > ZOOM_MIN) {
 						// Udpate the zoom using a fancy animation to smoothen the transition
-						ZoomVal = Zoom - ZOOM_SPEED;
+						var NewZoom = Zoom - ZOOM_SPEED;
+						ZoomVal = NewZoom.Clamp(ZOOM_MIN, ZOOM_MAX);
 						Tween TweenZoomIn = CreateTween();
 						TweenZoomIn.TweenProperty(this, "zoom", ZoomVal, 0.3f);
 						ScalePlants(ZoomVal);
@@ -92,7 +117,8 @@ public partial class Camera : Camera2D {
 					// Make sure we can't over zoom
 					if(Zoom < ZOOM_MAX) {
 						// Update the zoom using a fancy animation
-						ZoomVal = Zoom + ZOOM_SPEED;
+						var NewZoom = Zoom + ZOOM_SPEED;
+						ZoomVal = NewZoom.Clamp(ZOOM_MIN, ZOOM_MAX);
 						Tween TweenZoomOut = CreateTween();
 						TweenZoomOut.TweenProperty(this, "zoom", ZoomVal, 0.3f);
 						ScalePlants(ZoomVal);
@@ -100,6 +126,21 @@ public partial class Camera : Camera2D {
 			}
 		}
 	}
+	
+	// When the player clicks on a power plant, zoom and move the camera to the selected power plant
+	public void PlantZoom(Vector2 PlantPos) {
+//		Tween TweenPos = CreateTween();
+//		TweenPos.TweenProperty(this, "position", PlantPos, 0.4f);
+//		Tween TweenZoom = CreateTween();
+//		TweenZoom.TweenProperty(this, "zoom", PLANT_ZOOM, 0.4f);
+	}
+	
+	// Arrow key camera movement
+	public override void _PhysicsProcess(double delta) {
+		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		Position = Position.Lerp(Position + direction*CAMERA_SPEED * Zoom, CAMERA_SPEED * (float)delta);
+	}
+  
 
 	// ==================== Public API ====================
 

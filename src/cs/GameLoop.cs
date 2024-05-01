@@ -29,7 +29,7 @@ public partial class GameLoop : Node2D {
 	public enum GameState { NOT_STARTED, PLAYING, ENDED };
 
 	// Start year const
-	private const int START_YEAR = 2020;
+	private const int START_YEAR = 2022;
 
 	// Context of the game
 	private Context C;
@@ -40,10 +40,10 @@ public partial class GameLoop : Node2D {
 
 	// The amount of money the player starts with (in millions of CHF)
 	[Export]
-	public int START_MONEY = 420;
+	public int START_MONEY = 200;
 
 	[Export]
-	public static int BUDGET_PER_TURN = 280;
+	public static int BUDGET_PER_TURN = 300;
 
 	// Internal game state
 	private GameState GS;
@@ -119,10 +119,12 @@ public partial class GameLoop : Node2D {
 		PowerPlants.Add(GetNode<PowerPlant>("World/Hydro"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Pump"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/River"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/River2"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Waste"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Geothermal"));
 		
 
 		// Fill in build buttons
@@ -235,6 +237,8 @@ public partial class GameLoop : Node2D {
 	// Apply the current overloads to all plants
 	public void _ApplyOverloads() {
 		PowerPlants.ForEach(pp => _ApplyOverload(ref pp));
+		BBs.ForEach(bb => _ApplyOverload(ref bb.SolarPlant));
+		BBs.ForEach(bb => _ApplyOverload(ref bb.WindPlant));
 	}
 
 	// Checks for overloads and applies then to the given plant if necessary
@@ -304,6 +308,17 @@ public partial class GameLoop : Node2D {
 			RM._NextTurn(ref Money);
 		} else {
 			RM._UpdateResourcesUI(false, ref Money);
+		}
+		
+		// Check when the different nuclear plants will shut down
+		if(PowerPlants[0].IsAlive) {
+			_UI._UpdateNuclearWarning(PowerPlants[0].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+		} else if(PowerPlants[1].IsAlive) {
+			_UI._UpdateNuclearWarning(PowerPlants[1].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+		} else if(PowerPlants[2].IsAlive) {
+			_UI._UpdateNuclearWarning(PowerPlants[2].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+		} else {
+			_UI._UpdateNuclearWarning(false);
 		}
 
 		// Update Money UI
@@ -500,8 +515,15 @@ public partial class GameLoop : Node2D {
 
 		// Deactivate all buttons
 		foreach(var bb in BBs) {
-			bb._Disable();
+			bb._Disable(PowerPlants);
 		}
+		
+		// Disable powerplant buttons
+		GetTree().CallGroup("PP", "Disable");
+			
+		
+		// Hide next turn button
+		_UI.NextTurnButton.Hide();
 
 		// Retrieve the current resources
 		(Energy Eng, Environment Env, Support Sup) = RM._GetResources();
@@ -612,10 +634,14 @@ public partial class GameLoop : Node2D {
 		RM._UpdatePowerPlants(PowerPlants);
 		RM._UpdateBuildButtons(BBs);
 		RM._UpdateResourcesUI(true);
+		_ApplyOverloads();
 	}
 
 	// Triggers a new turn if the game is currently acitve
 	public void _OnNextTurn() {
+		// Update the policy manager
+		PM._NextTurn();
+		
 		// Display a shock
 		// If no shock was selected go to the next turn
 		if(!DisplayShock()) {
@@ -725,6 +751,7 @@ public partial class GameLoop : Node2D {
 		PowerPlants.Add(GetNode<PowerPlant>("World/Biomass"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Geothermal"));
 
 		// Fill in build buttons
 		BBs.Add(GetNode<BuildButton>("World/BuildButton"));
@@ -801,6 +828,12 @@ public partial class GameLoop : Node2D {
 		// Reset the tutorial and main menu
 		Tuto._Reset();
 		MM._Reset();
+		
+		// Hide End scene
+		EndScreen.Hide();
+		
+		// Show Next Turn button
+		_UI.NextTurnButton.Show();
 	}
 
 	// Reacts to the reception of a debt request
@@ -835,6 +868,8 @@ public partial class GameLoop : Node2D {
 				pp._DecMultiplier();
 			}
 			_UpdateResourcesUI();
+		} else {
+			pp.PlayAnimation();
 		}
 	}
 	

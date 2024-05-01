@@ -21,7 +21,14 @@ using System;
 // Represents the UI box containing additional information about a certain resource
 public partial class InfoBox : Control {
 
-	private const int N_LABELS = 7;
+	private const int N_LABELS = 5;
+	private const string MOREINFO_GROUP = "moreinfo";
+	private const string LABEL_FILENAME = "labels.xml";
+
+	// Id used to fetch the description
+	[Export]
+	private string id1 = "energy_info";
+	private string id2 = "energy_info";
 
 	// Various text labels
 	private Label Text0;
@@ -35,6 +42,17 @@ public partial class InfoBox : Control {
 	private Label NOvMax;
 
 	private Label[] labels;
+	
+	private TextureButton InfoButton;
+	private Label InfoText;
+	private Label InfoText2;
+	private Label InfoN;
+	private Label InfoN2;
+	
+	private NinePatchRect BubbleClosed;
+	private NinePatchRect BubbleOpen;
+
+	private TextController TC;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -43,13 +61,28 @@ public partial class InfoBox : Control {
 		labels = new Label[N_LABELS];
 		
 		// Create label array by fetching nodes
-		labels[0] = GetNode<Label>("Control/nContainer/n_ov_max");
-		labels[1] = GetNode<Label>("Control/TextContainer/Text0");
-		labels[2] = GetNode<Label>("Control/nContainer/n");
-		labels[3] = GetNode<Label>("Control/TextContainer/Text1");
-		labels[4] = GetNode<Label>("Control/nContainer/n1");
-		labels[5] = GetNode<Label>("Control/TextContainer/Text2");
-		labels[6] = GetNode<Label>("Control/nContainer/n2");
+		labels[0] = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/n_ov_max");
+		labels[1] = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/Text0");
+		labels[2] = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/Text0/n");
+		labels[3] = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/Text1");
+		labels[4] = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/Text1/n1");
+		//labels[5] = GetNode<Label>("Control/TextContainer/Text2");
+		//labels[6] = GetNode<Label>("Control/nContainer/n2");
+
+		labels[0].Hide();
+		
+		InfoButton = GetNode<TextureButton>("MoreInfo");
+		InfoText = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/InfoText");
+		InfoText2 = GetNode<Label>("MarginContainer/MarginContainer/VBoxContainer/InfoText2");
+	
+		BubbleClosed = GetNode<NinePatchRect>("MarginContainer/BubbleClosed");
+		BubbleOpen = GetNode<NinePatchRect>("MarginContainer/BubbleOpen");
+
+		TC = GetNode<TextController>("/root/TextController");
+		
+		InfoButton.Pressed += _OnMoreInfoPressed;
+		InfoText.Hide();
+		InfoText2.Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,6 +106,15 @@ public partial class InfoBox : Control {
 		}
 	}
 
+	public void _SetId(string _id1, string _id2 = "") {
+		id1 = _id1;
+		id2 = _id2;
+
+		// Udpate text
+		InfoText.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, id1);
+		InfoText2.Text = id2 == "" ? "" : TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, id2);
+	}
+
 	// Fill in the information labels
 	// params: varargs in the form of N/Max, T0, N0, T1, N1, T2, N2
 	// If parameters are omitted than the label will not be shown
@@ -87,5 +129,13 @@ public partial class InfoBox : Control {
 		for(; i < labels.Length; ++i) {
 			labels[i].Text = "";
 		}
+	}
+	
+	public void _OnMoreInfoPressed() {
+		InfoText.Visible = !InfoText.Visible;
+		InfoText2.Visible = !InfoText2.Visible;
+		//labels[0].Visible = !labels[0].Visible;
+		BubbleClosed.Visible = !BubbleClosed.Visible;
+		BubbleOpen.Visible = !BubbleOpen.Visible;
 	}
 }

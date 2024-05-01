@@ -25,24 +25,32 @@ public partial class ImportSlider : VSlider {
 	/* Propagates a value update to the rest of the system */
 	public delegate void ImportUpdateEventHandler();
 
+	[Export]
+	public float MAX_ENERGY_IMPORT =  100.0f;
+
 	// Constants for target bar positions
-	private const int TARGET_100_Y_POS = -8;
-	private const int TARGET_0_Y_POS = 124;
+	private const int TARGET_100_Y_POS = 24;
+	private const int TARGET_0_Y_POS = 220;
 
 	// Various labels that need to be dynamic
 	private Label Amount; // Current selected import percentage
 	private Label Text; // The text label describing the slider
 	private Button ApplySelection; // Button that confirms the selected import amount
 	private Button Cancel; // Button that cancels the modification of the import slider
+	private TextureButton Up;
+	private TextureButton Down;
 
 	// Target import required to meet demand
-	private Line2D Target;
+	private Sprite2D Target;
 
 	// The confirmed import amount
 	private int ImportAmount;
 
-	// The import display button
-	private Button ImportsButton;
+	// The clean import toggle switch
+	private Button ImportSwitch;
+	private bool GreenImports;
+	
+	private UI _UI;
 
 	// ==================== GODOT Method Overrides ====================
 
@@ -52,13 +60,18 @@ public partial class ImportSlider : VSlider {
 		//  Fetch nodes
 		Amount = GetNode<Label>("Amount");
 		Text = GetNode<Label>("Text");
-		Target = GetNode<Line2D>("Target");
+		Target = GetNode<Sprite2D>("Target");
 		ApplySelection = GetNode<Button>("Apply");
 		Cancel = GetNode<Button>("Cancel");
-		ImportsButton = GetNode<Button>("../ImportsB");
+		ImportSwitch = GetNode<Button>("ImportSwitch");
+		Up = GetNode<TextureButton>("UpButton");
+		Down = GetNode<TextureButton>("DownButton");
 
 		// Initialize the import amount
 		ImportAmount = 0;
+		GreenImports = false;
+		
+		_UI = GetNode<UI>("/root/Main/UI");
 
 		// Connect the various callbacks
 		ValueChanged += OnSliderRangeValueChanged;
@@ -66,7 +79,9 @@ public partial class ImportSlider : VSlider {
 		//Keeping it just in case for now
 		//ApplySelection.Pressed += OnApplySelectionPressed;
 		Cancel.Pressed += OnCancelPressed;
-		ImportsButton.Pressed += OnImportsButtonPressed;
+		ImportSwitch.Toggled += OnImportSwitchToggled;
+		Up.Pressed += OnUpPressed;
+		Down.Pressed += OnDownPressed;
 	}
 
 	// ==================== Public API ====================
@@ -74,13 +89,16 @@ public partial class ImportSlider : VSlider {
 	// Sets the value of the target based on a given demand percentage
 	// The given demand should represent the percentage of the total
 	// demand that would need to be imported to cover the lack of supply
-	public void _UpdateTargetImport(float demand) {
-		// Clamp demand to be in range [0, 1]
-		float _d = Math.Max(0.0f, Math.Min(demand, 1.0f));
+	public void _UpdateTargetImport(float diff) {
+		// Clamp diff to be in range [0, max]
+		float _d = Math.Max(0.0f, Math.Min(diff, MAX_ENERGY_IMPORT));
 
 		// Set the bar position based on the given percentage
-		int y_pos = TARGET_0_Y_POS + (int)(_d * (TARGET_100_Y_POS - TARGET_0_Y_POS));
-		Target.Position = new Vector2(Target.Position.X, y_pos);
+		int y_pos = TARGET_0_Y_POS + (int)(_d/MAX_ENERGY_IMPORT * (TARGET_100_Y_POS - TARGET_0_Y_POS));
+		Target.Position = new Vector2(
+			Target.Position.X, 
+			y_pos
+		);
 	}
 
 	// Udpates the text to match the given string
@@ -90,7 +108,10 @@ public partial class ImportSlider : VSlider {
 	}
 
 	// Getter for the current value selected with the slider
-	public int _GetImportValue() => Math.Max(0, Math.Min((int) ImportAmount, 100));
+	public int _GetImportValue() => (int)Math.Max(0.0f, Math.Min(ImportAmount, MAX_ENERGY_IMPORT));
+
+	// Getter for the state of green imports
+	public bool _GetGreenImports() => GreenImports;
 
 	// ==================== Signal Callbacks ====================
 
@@ -128,9 +149,20 @@ public partial class ImportSlider : VSlider {
 		Cancel.Hide();
 	}
 	
-	// Toggles the import slider's visibility when the label button is pressed
-	private void OnImportsButtonPressed() {
-		Visible = !Visible;
+	// Toggles the clean import that cost more but doesn't pollute
+	private void OnImportSwitchToggled(bool Toggled) {
+		GreenImports = ! GreenImports;
+		EmitSignal(SignalName.ImportUpdate);
+	}
+	
+	private void OnUpPressed() {
+		Value += Step;
+		_OnApplySelectionPressed(true);
+	}
+	
+	private void OnDownPressed() {
+		Value -= Step;
+		_OnApplySelectionPressed(true);
 	}
 }
 

@@ -27,6 +27,7 @@ public partial class UI : CanvasLayer {
 
 	// XML querying strings
 	private const string LABEL_FILENAME = "labels.xml";
+	private const string MOREINFO_GROUP = "moreinfo";
 	private const string INFOBAR_GROUP = "infobar";
 	private const string RES_GROUP = "resources";
 	private const string POWERPLANT_GROUP = "powerplants";	
@@ -64,7 +65,7 @@ public partial class UI : CanvasLayer {
 	private TextController TC;
 
 	// Button that triggers the passage to a next turn
-	private TextureButton NextTurnButton;
+	public TextureButton NextTurnButton;
 	private Label NextTurnL;
 	private AnimationPlayer NextTurnAP;
 	private Label Warning;
@@ -74,11 +75,16 @@ public partial class UI : CanvasLayer {
 	private InfoBar WinterEnergyPredict;
 	private InfoBar SummerEnergy;
 	private InfoBar SummerEnergyPredict;
+	private Button WinterButton;
+	private Button SummerButton;
 	
 	// The two information bars
 	private InfoBar EnvironmentBar;
 	private InfoBar SupportBar;
 	private InfoBar PollutionBar;
+	private Button EnvButton;
+	private Button SuppButton;
+	private Button PollButton;
 
 	// Date progression
 	private HSlider Timeline;
@@ -96,11 +102,28 @@ public partial class UI : CanvasLayer {
 	private Label ProdNameL;
 	private Label ImportCostNameL;
 	private Button MoneyButton;
-	private ColorRect MoneyInfo;
+	private TextureButton MoneyInfoB;
+	private Control MoneyInfo;
+	private NinePatchRect MoneyInfoClosed;
+	private NinePatchRect MoneyInfoOpen;
 	private Label BudgetL;
 	private Label BuildL;
 	private Label ProdL;
 	private Label ImportCostL;
+	private Label ImportCostL2;
+	private Label BudgetNext;
+	private Label TotalNow;
+	private Label TotalNext;
+	private Label Debt;
+	private Label DebtAmount;
+	private Label BorrowL;
+	
+	// Money info nodes
+	private Label BudgetInfo;
+	private Label ProdInfo;
+	private Label BuildInfo;
+	private Label ImportInfo;
+	private Label DebtInfo;
 
 	// Borrow related fields
 	private Label BorrowTitle;
@@ -108,19 +131,30 @@ public partial class UI : CanvasLayer {
 	private Label PayBackText;
 	private Label BorrowAmount;
 	private Label PayBackAmount;
-	private Button DebtApplyButton;
-	private Button DebtCancelButton;
+	private TextureButton DebtApplyButton;
+	private Label DebtApplyL;
+	private TextureButton DebtCancelButton;
+	private Label DebtCancelL;
 	private ColorRect BorrowMoneyWindow;
 	private HSlider DebtSlider;
-	private ColorRect DebtResource;
+	private Sprite2D DebtResource;
 	private Label DebtResLabel;
-	private Button BorrowMoneyButton;
+	private TextureButton BorrowMoneyButton;
 	private Button BorrowContainer;
+	private int DebtN = 0;
+	private int BorrowN = 0;
 
+	// Static UI Labels
+	private Label EnergyLabel;
+	private Label ImportLabel;
+	private Label OnLabel;
+	private Label OffLabel;
+	private Label NuclearWarnLabel;
 
 	// Window buttons
 	private TextureButton PolicyButton;
 	private TextureButton StatsButton;
+	public Label PolicyNotif;
 
 	// Windows
 	private PolicyWindow PW;
@@ -131,15 +165,37 @@ public partial class UI : CanvasLayer {
 	// Settings
 	private Button SettingsButton;
 	private ColorRect SettingsBox;
-	private Button LanguageButton;
+	private TextureButton LanguageButton;
+	private Label LanguageL;
 	private Button SettingsClose;
+	private Button ScreenOption;
+	private TextureButton Instructions;
+	private Tutorial Tutorial;
+	private TextureButton CreditsButton;
+	private Label CreditsL;
+	private Sprite2D CreditsInfo;
 
 	// Reset button and confirmation
-	private Button ResetButton;
+	private TextureButton ResetButton;
+	private Label ResetButtonL;
 	private ColorRect ResetPrompt;
 	private Label ResetConfirmL;
-	private Button ResetYes;
-	private Button ResetNo;
+	private TextureButton ResetYes;
+	private TextureButton ResetNo;
+	private Label ResetYesL;
+	private Label ResetNoL;
+	
+	// Turn info
+	private Label CurrentTurnL;
+	private Label CurrentTurnN;
+	private Label RemTurnL;
+	private Label RemTurnN;
+	private Button TurnInfo;
+	private MarginContainer TurnInfoContainer;
+	
+	// Sound settings
+	private HSlider VolMusic;
+	private HSlider VolSound;
 
 	// Game Loop
 	private GameLoop GL;
@@ -166,16 +222,26 @@ public partial class UI : CanvasLayer {
 
 		// Settings
 		SettingsButton = GetNode<Button>("SettingsButton");
-		SettingsBox = GetNode<ColorRect>("SettingsButton/SettingsBox");
-		LanguageButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Language");
-		SettingsClose = GetNode<Button>("SettingsButton/SettingsBox/Close");
+		SettingsBox = GetNode<ColorRect>("SettingsButton/ColorRect");
+		LanguageButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
+		LanguageL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language/Label");
+		SettingsClose = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/Close");
+		ScreenOption = GetNode<Button>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/ScreenOption");
+		Instructions = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions");
+		Tutorial = GetNode<Tutorial>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions/Tutorial");
+		CreditsButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits");
+		CreditsL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Label");
+		CreditsInfo = GetNode<Sprite2D>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big");
 
 		// Reset nodes
-		ResetButton = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset");
-		ResetPrompt = GetNode<ColorRect>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm");
-		ResetConfirmL = GetNode<Label>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
-		ResetYes = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
-		ResetNo = GetNode<Button>("SettingsButton/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+		ResetButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset");
+		ResetButtonL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/Label");
+		ResetPrompt = GetNode<ColorRect>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm");
+		ResetConfirmL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Label");
+		ResetYes = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes");
+		ResetNo = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No");
+		ResetYesL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes/Label");
+		ResetNoL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No/Label");
 
 		// Info Bars
 		WinterEnergy = GetNode<InfoBar>("EnergyBarWinter");
@@ -185,6 +251,11 @@ public partial class UI : CanvasLayer {
 		EnvironmentBar = GetNode<InfoBar>("Env");
 		SupportBar = GetNode<InfoBar>("Trust");
 		PollutionBar = GetNode<InfoBar>("Poll");
+		WinterButton = GetNode<Button>("EnergyBarWinter/Button");
+		SummerButton = GetNode<Button>("EnergyBarSummer/Button");
+		EnvButton = GetNode<Button>("Env/Button");
+		SuppButton = GetNode<Button>("Trust/Button");
+		PollButton = GetNode<Button>("Poll/Button");
 
 		// Sliders
 		Timeline = GetNode<HSlider>("Top/Timeline");
@@ -196,11 +267,26 @@ public partial class UI : CanvasLayer {
 		// Money Nodes
 		MoneyL = GetNode<Label>("Money/money");
 		MoneyButton = GetNode<Button>("MoneyUI");
-		MoneyInfo = GetNode<ColorRect>("MoneyInfo");
-		BudgetL = GetNode<Label>("MoneyInfo/budget");
-		BuildL = GetNode<Label>("MoneyInfo/build");
-		ProdL = GetNode<Label>("MoneyInfo/prod");
-		ImportCostL = GetNode<Label>("MoneyInfo/importamounts");
+		MoneyInfo = GetNode<Control>("MoneyInfo");
+		MoneyInfoClosed = GetNode<NinePatchRect>("MoneyInfo/MarginContainer/InfoMoneyClosed");
+		MoneyInfoOpen = GetNode<NinePatchRect>("MoneyInfo/MarginContainer/InfoMoneyOpen");
+		BudgetL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNow");
+		BuildL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName/build");
+		ProdL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName/prod");
+		ImportCostL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName/importamounts");
+		ImportCostL2 = GetNode<Label>("ImportEnergy-bar-metal/ImportCosts");
+		BudgetNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNext");
+		TotalNow = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNow");
+		TotalNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNext");
+		MoneyInfoB = GetNode<TextureButton>("MoneyInfo/MoneyInfoButton");
+		BudgetInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetInfo");
+		ProdInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdInfo");
+		BuildInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildInfo");
+		ImportInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportInfo");
+		DebtInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/DebtInfo");
+		Debt = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt");
+		DebtAmount = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt/debtamount");
+		BorrowL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt/borrowamount");
 
 		// Borrow Nodes
 		BorrowTitle = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Title");
@@ -208,57 +294,79 @@ public partial class UI : CanvasLayer {
 		BorrowAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Money/BorrowAmount");
 		PayBackText = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest");
 		PayBackAmount = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Interest/InterestAmount");
-		DebtApplyButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Apply");
-		DebtCancelButton = GetNode<Button>("BorrowContainer/BorrowMoneyWindow/Cancel");
+		DebtApplyButton = GetNode<TextureButton>("BorrowContainer/BorrowMoneyWindow/Apply");
+		DebtApplyL = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Apply/Label");
+		DebtCancelButton = GetNode<TextureButton>("BorrowContainer/BorrowMoneyWindow/Cancel");
+		DebtCancelL = GetNode<Label>("BorrowContainer/BorrowMoneyWindow/Cancel/Label2");
 		BorrowMoneyWindow = GetNode<ColorRect>("BorrowContainer/BorrowMoneyWindow");
 		DebtSlider = GetNode<HSlider>("BorrowContainer/BorrowMoneyWindow/BorrowSlider");
-		DebtResource = GetNode<ColorRect>("BorrowMoney/Debt");
+		DebtResource = GetNode<Sprite2D>("BorrowMoney/Debt");
 		DebtResLabel = GetNode<Label>("BorrowMoney/Debt/DebtAmount");
-		BorrowMoneyButton = GetNode<Button>("BorrowMoney");
+		BorrowMoneyButton = GetNode<TextureButton>("BorrowMoney");
 		BorrowContainer = GetNode<Button>("BorrowContainer");
 
 		// Name labels
 		MoneyNameL = GetNode<Label>("Money/Label");
-		BudgetNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label3");
-		BuildNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label4");
-		ProdNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Label2");
-		ImportCostNameL = GetNode<Label>("MoneyInfo/VBoxContainer/Import");
+		BudgetNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName");
+		BuildNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BuildName");
+		ProdNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdName");
+		ImportCostNameL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName");
 
 		// Window buttons
 		PolicyButton = GetNode<TextureButton>("PolicyButton");
 		StatsButton = GetNode<TextureButton>("Stats");
+		PolicyNotif = GetNode<Label>("PolicyButton/Notif");
 
 		// Windows
 		PW = GetNode<PolicyWindow>("Window");
 
+		// Fetch static UI Labels
+		EnergyLabel = GetNode<Label>("ImportEnergy-bar-metal/Energy-base/EngLabel");
+		ImportLabel = GetNode<Label>("Import/ImportLabel");
+		OnLabel = GetNode<Label>("Import/ImportSwitch/OnL");
+		OffLabel = GetNode<Label>("Import/ImportSwitch/OffL");
+		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
+		
+		// Turn info
+		CurrentTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn");
+		CurrentTurnN = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn/CTurn");
+		RemTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns");
+		RemTurnN = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns/RTurn");
+		TurnInfo = GetNode<Button>("TimePanelBlank/TurnInfo");
+		TurnInfoContainer = GetNode<MarginContainer>("TimePanelBlank/TurnInfoContainer");
+		
+		// Audio settings
+		VolMusic = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolMusic");
+		VolSound = GetNode<HSlider>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/VolSound");
+		//VolMusic.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Music")));
+		//VolSound.Value = Mathf.DbToLinear(AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Sound")));
+
 		// Connect Various signals
 		MoneyButton.Pressed += _OnMoneyButtonPressed;
+		MoneyInfoB.Pressed += _OnMoneyInfoPressed;
 		NextTurnButton.Pressed += _OnNextTurnPressed;
 		NextTurnButton.GuiInput += _OnNextTurnGuiInput;
 		SettingsButton.Pressed += _OnSettingsButtonPressed;
 		LanguageButton.Pressed += _OnLanguageButtonPressed;
 		SettingsClose.Pressed += _OnSettingsClosePressed;
 		PolicyButton.Pressed += _OnPolicyButtonPressed;
-		WinterEnergy.MouseEntered += _OnWinterEnergyMouseEntered;
-		WinterEnergy.MouseExited += _OnWinterEnergyMouseExited;
-		WinterEnergyPredict.MouseEntered += _OnWinterEnergyMouseEntered;
-		WinterEnergyPredict.MouseExited += _OnWinterEnergyMouseExited;
-		SummerEnergy.MouseEntered += _OnSummerEnergyMouseEntered;
-		SummerEnergy.MouseExited += _OnSummerEnergyMouseExited;
-		SummerEnergyPredict.MouseEntered += _OnSummerEnergyMouseEntered;
-		SummerEnergyPredict.MouseExited += _OnSummerEnergyMouseExited;
-		EnvironmentBar.MouseEntered += _OnEnvironmentMouseEntered;
-		EnvironmentBar.MouseExited += _OnEnvironmentMouseExited;
-		SupportBar.MouseEntered += _OnSupportMouseEntered;
-		SupportBar.MouseExited += _OnSupportMouseExited;
-		PollutionBar.MouseEntered += _OnPollutionMouseEntered;
-		PollutionBar.MouseExited += _OnPollutionMouseExited;
+		WinterButton.Pressed += _OnWinterEnergyPressed;
+		SummerButton.Pressed += _OnSummerEnergyPressed;
+		EnvButton.Pressed += _OnEnvButtonPressed;
+		SuppButton.Pressed += _OnSuppButtonPressed;
+		PollButton.Pressed += _OnPollButtonPressed;
 		Imports.ImportUpdate += _OnImportUpdate;
 		DebtApplyButton.Pressed += _OnDebtApplyPressed;
 		DebtCancelButton.Pressed += _OnDebtCancelPressed;
 		DebtSlider.ValueChanged += _OnDebtSliderValueChanged;
 		BorrowContainer.Pressed += _OnDebtCancelPressed;
 		BorrowMoneyButton.Pressed += BorrowContainer.Show;
+		ScreenOption.Toggled += _OnScreenOption;
+		TurnInfo.Pressed += _OnTurnInfoPressed;
+		VolMusic.ValueChanged += _OnMusicValueChanged;
+		VolSound.ValueChanged += _OnSoundValueChanged;
+		Instructions.Pressed += _OnInstructionsPressed;
+		CreditsButton.Pressed += _OnCreditsPressed;
 
 		// Initially hide the borrow container
 		BorrowContainer.Hide();
@@ -277,6 +385,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the language
 		C._UpdateLanguage(Language.Type.EN);
+		//SetTargetImport();
 	}
 
 	// ==================== UI Update API ====================
@@ -284,7 +393,7 @@ public partial class UI : CanvasLayer {
 	// Updates the various labels across the UI
 	public void _UpdateUI() {
 		// Updates the displayed language to match the selected one
-		LanguageButton.Text = C._GetLanguageName();
+		LanguageL.Text = C._GetLanguageName();
 
 		// Fetch the build menu names
 		string gas_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_gas");
@@ -297,6 +406,7 @@ public partial class UI : CanvasLayer {
 		string biomass_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_biomass");
 		string river_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_river");
 		string pump_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_pump");
+		string geo_name = TC._GetText(LABEL_FILENAME, POWERPLANT_GROUP, "label_geo");
 
 		// Fetch the energy bar names
 		string WinterEnergy_name = TC._GetText(LABEL_FILENAME, RES_GROUP, "label_energy_w");
@@ -322,18 +432,39 @@ public partial class UI : CanvasLayer {
 		string debt_apply = TC._GetText(LABEL_FILENAME, UI_GROUP, "apply_button");
 		string debt_cancel = TC._GetText(LABEL_FILENAME, UI_GROUP, "cancel_button");
 
+		// Fetch UI names
+		string eng_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "energy_resource");
+		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "import_slider_label");
+		string on_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_on");
+		string off_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "green_import_switch_off");
+		string nuclear_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "nuclear_warning");
+		string next_turn_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "next_turn_warning");
+		string current_turn = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_current_turn");
+		string remaining_turns = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_remaining_turn");
+
+		// Update static UI text
+		EnergyLabel.Text = eng_label;
+		ImportLabel.Text = import_label;
+		OnLabel.Text = on_label;
+		OffLabel.Text = off_label;
+		NuclearWarnLabel.Text = nuclear_warning_label;
+		Warning.Text = next_turn_warning_label;
+		RemTurnL.Text = remaining_turns;
+		CurrentTurnL.Text = current_turn;
+		
+
 		// Update debt texts
 		BorrowTitle.Text = debt_title;
 		BorrowText.Text = borrow_text;
 		PayBackText.Text = debt_text;
-		DebtApplyButton.Text = debt_apply;
-		DebtCancelButton.Text = debt_cancel;
+		DebtApplyL.Text = debt_apply;
+		DebtCancelL.Text = debt_cancel;
 
 		// Update the reset texet
-		ResetButton.Text = reset_name;
+		ResetButtonL.Text = reset_name;
 		ResetConfirmL.Text = reset_prompt;
-		ResetYes.Text = reset_yes;
-		ResetNo.Text = reset_no;
+		ResetYesL.Text = reset_name;
+		ResetNoL.Text = debt_cancel;
 
 		// Update the various plants
 		BM._UpdatePlantName(Building.Type.GAS, gas_name);
@@ -391,14 +522,32 @@ public partial class UI : CanvasLayer {
 		SupportBar._UpdateBarName(SupportBar_name);
 		PollutionBar._UpdateBarName(PollutionBar_name);
 
+		// Update infobox ids
+		WinterEnergy._SetId("demandw_info", "energy_info");
+		SummerEnergy._SetId("demands_info", "energy_info");
+		PollutionBar._SetId("pollution_info", "importCO2_info");
+		EnvironmentBar._SetId("landuse_info", "biodiversity_info");
+		SupportBar._SetId("support_info");
+
+		// Update Money info
+		BudgetInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "budget_info");
+		ProdInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "prod_info");
+		BuildInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "building_info");
+		ImportInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "import_info");
+		DebtInfo.Text = TC._GetText(LABEL_FILENAME, MOREINFO_GROUP, "debt_info");
+
 		// Update UI buttons
 		NextTurnL.Text = next_turn_name;
+		CurrentTurnN.Text = (C._GetTurn() + 1).ToString();
+		RemTurnN.Text = (C._GetRemainingTurns() - 1).ToString();
 
 		// Update the import slider
 		Imports._UpdateLabel(import_name);
 
 		// Upate the money labels
 		SetMoneyInfo();
+
+		PW._UpdatePolicyUI();
 	}
 
 	// Updates the value of the a given bar
@@ -482,7 +631,7 @@ public partial class UI : CanvasLayer {
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
-				SetTargetImport();
+				//SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -568,7 +717,9 @@ public partial class UI : CanvasLayer {
 	// Shows the debt label when debt was acquired
 	public void _UpdateDebtResource(int debt) {
 		// Propagate the new amount to the label
+		DebtN = debt;
 		DebtResLabel.Text = "-" + debt.ToString();
+		DebtAmount.Text = DebtResLabel.Text;
 
 		// Check if there is any debt to show
 		if(debt > 0) {
@@ -579,27 +730,32 @@ public partial class UI : CanvasLayer {
 	}
 
 	// Retrieves the import percentage selected by the user
-	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue() / 100.0f;
+	public float _GetImportSliderPercentage() => (float)Imports._GetImportValue();
+
+	// Getter for the green energy toggle state
+	public bool _GetGreenImportState() => Imports._GetGreenImports();
+
+	// Update the visibility of the nuclear warning
+	public void _UpdateNuclearWarning(bool show) {
+		NuclearWarnLabel.Visible = show;
+	}
 
 	// ==================== Internal Helpers ====================
 
 	// Sets the required imports based on the demand
-	private void SetTargetImport() {
-		// Fetch the demand and supply
-		float demand  = C._GetDemand().Item1;
-		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
-
-		// Compute the different, clamped to 0 as no imports are required
-		// when the supply meets the demand
-		float imported = C._GetDemand().Item1 * Imports._GetImportValue() / 100;
-		float diff = Math.Max(0.0f, demand - (supply - imported)); 
-
-		// Compute the percentage of the total demand tha the diff represents
-		float diff_perc = diff / demand;
-
-		// Set the import target to that percentage
-		Imports._UpdateTargetImport(diff_perc);
-	}
+//	private void SetTargetImport() {
+//		// Fetch the demand and supply
+//		float demand  = C._GetDemand().Item1;
+//		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
+//
+//		// Compute the different, clamped to 0 as no imports are required
+//		// when the supply meets the demand
+//		float imported = Imports._GetImportValue();
+//		float diff = Math.Max(0.0f, demand + imported - supply); 
+//
+//		// Set the import target to that percentage
+//		Imports._UpdateTargetImport(diff);
+//	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
@@ -616,7 +772,7 @@ public partial class UI : CanvasLayer {
 
 		// Set the info
 		eng._UpdateInfo(
-			" ", // N/Max TODO: Figure out what to use here
+			"", // N/Max TODO: Figure out what to use here
 			demand_label, demand.ToString(), // T0, N0
 			supply_label, supply.ToString() // T1, N1
 		);
@@ -640,7 +796,7 @@ public partial class UI : CanvasLayer {
 		string buidiv_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_biodiversity");
 
 		EnvironmentBar._UpdateInfo(
-			" ", // N/Max TODO: Figure out what to use here
+			"", // N/Max TODO: Figure out what to use here
 			land_label, Data.LandUse.ToString() + "%", // T0, N0
 			buidiv_label, Data.Biodiversity.ToString() + "%" // T2, N2
 		);
@@ -649,18 +805,18 @@ public partial class UI : CanvasLayer {
 	// Sets the information fields for the pollution bar
 	private void SetPollutionInfo() {
 		string poll_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_pollution");
-		string import_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "label_import");
+		string import_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_import_pol");
 
 		PollutionBar._UpdateInfo(
 			// N/Max TODO: Figure out what to use here
-			" ",
+			"",
 			poll_label, Data.Pollution.ToString(), // T0, N0
 			import_label, Data.ImportPollution.ToString() // T2, N2
 		);
 	}
 
 	// Sets the information related to the money metric
-	private void SetMoneyInfo() {
+	public void SetMoneyInfo() {
 		// Query the label xml to get the names
 		string money_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_money");
 		string budget_label = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_budget");
@@ -678,10 +834,28 @@ public partial class UI : CanvasLayer {
 		
 		// Set Values
 		BudgetL.Text = Data.Budget.ToString();
-		BuildL.Text = Data.Building.ToString();
-		ProdL.Text = Data.Production.ToString();
+		if(Data.Building > 0) {
+			BuildL.Text = "-" + Data.Building.ToString();	
+		} else {
+			BuildL.Text = Data.Building.ToString();
+		}
+		if(Data.Production > 0) {
+			ProdL.Text = "-" + Data.Production.ToString();
+		} else {
+			ProdL.Text = Data.Production.ToString();	
+		}
 		MoneyL.Text = Data.Money.ToString();
-		ImportCostL.Text = Data.Imports.ToString();
+		if(Data.Imports > 0) {
+			ImportCostL.Text = "-" + Data.Imports.ToString();
+		} else {
+			ImportCostL.Text = Data.Imports.ToString();	
+		}
+		ImportCostL2.Text = Data.Imports.ToString();
+		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
+		BudgetNext.Text = BudgetNextN.ToString();
+		TotalNow.Text = Data.Money.ToString();
+		int TotalNextN = BudgetNextN - Data.Imports - Data.Production - DebtN;
+		TotalNext.Text = TotalNextN.ToString();
 	}
 
 	// Sets the correct years without the Next Turn Animation
@@ -694,20 +868,51 @@ public partial class UI : CanvasLayer {
 	public void SetNextYears() {
 		// Retrieve the current year
 		double Year = Timeline.Value;
+		
+		string LastDecade = Year.ToString();
 
 		// Set up the animation for the year progression
 		Animation Anim = TimelineAP.GetAnimation("NextTurnAnim");
+		// Set up decade change animation player
+		AnimationPlayer DecadeAP = GetNode<AnimationPlayer>("TimePanelBlank/NextDecadeAP");
+		Animation DecadeAnim = DecadeAP.GetAnimation("NextDecade");
 
 		// Retrieve the animation track related to our current turn progression
 		int Track = Anim.FindTrack("Year:text", Animation.TrackType.Value);
+		// Retrieve the animation track related to the arrow's rotation
+		int ArrowTrack = Anim.FindTrack("Arrow:rotation", Animation.TrackType.Value);
+		int ShadowTrack = Anim.FindTrack("Shadow:rotation", Animation.TrackType.Value);
+		// Retrieve the animation track related to year's numbers
+		int YearTrack = Anim.FindTrack("Year4:text", Animation.TrackType.Value);
+		int Year2Track = Anim.FindTrack("Year5:text", Animation.TrackType.Value);
 
 		// Retrieve the number of animation keypoints in the current track
 		int NKeys = Anim.TrackGetKeyCount(Track);
 
-		// Update the year incrementally during the animation
+		// Update the year incrementally during the animation and move the clock's arrow
 		for (int i = 0; i < NKeys; i++) {
 			Anim.TrackSetKeyValue(Track, i, (Year + i).ToString());
+			Anim.TrackSetKeyValue(ArrowTrack, i, (Mathf.Remap(Year+i, 2022, 2052, -2.18, 2.18)));
+			Anim.TrackSetKeyValue(ShadowTrack, i, (Mathf.Remap(Year+i, 2022, 2052, -2.22, 2.22)));
+			string YearNum = (Year + i).ToString();
+			Anim.TrackSetKeyValue(YearTrack, i, YearNum[3].ToString());
+			if (i < NKeys-1) {
+				string YearNum2 = (Year + i + 1).ToString();
+				Anim.TrackSetKeyValue(Year2Track, i, YearNum2[3].ToString());
+				if(YearNum2[3].ToString() == "0") {
+					// Retrieve the animation track related to decade's year numbers
+					int DecadeTrack = DecadeAnim.FindTrack("Year3:text", Animation.TrackType.Value);
+					int Decade2Track = DecadeAnim.FindTrack("Year6:text", Animation.TrackType.Value);
+					// Set the decade track numbers to the right tracks
+					DecadeAnim.TrackSetKeyValue(DecadeTrack, 0, LastDecade[2].ToString());
+					DecadeAnim.TrackSetKeyValue(Decade2Track, 0, YearNum2[2].ToString());
+					DecadeAP.Play("NextDecade");
+				}
+			}
 		}
+		
+			
+			
 	}
 
 	// ==================== Interaction Callbacks ====================
@@ -717,16 +922,26 @@ public partial class UI : CanvasLayer {
 		// Simply toggle the money info
 		if(MoneyInfo.Visible) {
 			MoneyInfo.Hide();
-			DebtResource.Position = new Vector2(4,47);
+			if(DebtN > 0) {DebtResource.Show();}
 		} else {
 			// Set the info first
 			SetMoneyInfo();
 			
-			DebtResource.Position = new Vector2(244,37);
+			DebtResource.Hide();
 
 			// Finally display it
 			MoneyInfo.Show();
 		}
+	}
+	
+	public void _OnMoneyInfoPressed() {
+		BudgetInfo.Visible = !BudgetInfo.Visible;
+		ProdInfo.Visible = !ProdInfo.Visible;
+		BuildInfo.Visible = !BuildInfo.Visible;
+		ImportInfo.Visible = !ImportInfo.Visible;
+		if(Debt.Visible) {DebtInfo.Visible = !DebtInfo.Visible;}
+		MoneyInfoClosed.Visible = !MoneyInfoClosed.Visible;
+		MoneyInfoOpen.Visible = !MoneyInfoOpen.Visible;
 	}
 
 	// Updates the timelines and propagates the request up to the game loop
@@ -740,11 +955,19 @@ public partial class UI : CanvasLayer {
 		
 		// Waits for the next turn animation before sending the next turn signal
 		await ToSignal(TimelineAP, "animation_finished");
+		
+		// reset policy vote button
+		PW._ResetVote();
+		PolicyNotif.Show();
+		
+		// Hides debt in money UI
+		Debt.Hide();
+		
 		// Trigger the next turn
 		EmitSignal(SignalName.NextTurn);
 
 		// Update the required import target (only in winter due to conservative estimates)
-		SetTargetImport();
+		//SetTargetImport();
 		
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 
@@ -758,69 +981,96 @@ public partial class UI : CanvasLayer {
 					NextTurnAP.Play("warning");
 		}
 	}
+	
+	public void _OnWinterEnergyPressed() {
+		if(WinterEnergy.Box.Visible) {
+			WinterEnergy._HideInfo();
+		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			
+			SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
 
-	// Displays the information box related to the winter energy
-	public void _OnWinterEnergyMouseEntered() {
-		 SetEnergyInfo(ref WinterEnergy, InfoType.W_ENGERGY);
-
-		 // Display the energy info
-		 WinterEnergy._DisplayInfo();
+		 	// Display the energy info
+		 	WinterEnergy._DisplayInfo();
+		}
 	}
-	// Hides the information box related to the winter energy
-	public void _OnWinterEnergyMouseExited() {
-		WinterEnergy._HideInfo();
+	
+	public void _OnSummerEnergyPressed() {
+		if(SummerEnergy.Box.Visible) {
+			SummerEnergy._HideInfo();
+		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			
+			SetEnergyInfo(ref SummerEnergy, InfoType.S_ENGERGY);
+
+		 	// Display the energy info
+		 	SummerEnergy._DisplayInfo();
+		}
 	}
+	
+	public void _OnEnvButtonPressed() {
+		if(EnvironmentBar.Box.Visible) {
+			EnvironmentBar._HideInfo();
+		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			// Set the information first
+			SetEnvironmentInfo();
 
-	// Displays the information box related to the summer energy
-	public void _OnSummerEnergyMouseEntered() {
-		SetEnergyInfo(ref SummerEnergy, InfoType.S_ENGERGY);
-
-		// Display the energy info
-		SummerEnergy._DisplayInfo();
+			// Then show the info
+			EnvironmentBar._DisplayInfo();
+		}
 	}
-	// Hides the information box related to the summer energy
-	public void _OnSummerEnergyMouseExited() {
-		SummerEnergy._HideInfo();
+	
+	public void _OnSuppButtonPressed() {
+		if(SupportBar.Box.Visible) {
+			SupportBar._HideInfo();
+		} else  {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			// Set the information first
+			SetSupportInfo();
+
+			// Show the new info
+			SupportBar._DisplayInfo();
+		}
 	}
+	
+	public void _OnPollButtonPressed() {
+		if(PollutionBar.Box.Visible) {
+			PollutionBar._HideInfo();
+		} else {
+			// Hide other infos first
+			WinterEnergy._HideInfo();
+			SummerEnergy._HideInfo();
+			EnvironmentBar._HideInfo();
+			PollutionBar._HideInfo();
+			SupportBar._HideInfo();
+			
+			// Make sure that the pollution info is up to date
+			SetPollutionInfo();
 
-	// Displays the information box related to the environment bar
-	public void _OnEnvironmentMouseEntered() {
-		// Set the information first
-		SetEnvironmentInfo();
-
-		// Then show the info
-		EnvironmentBar._DisplayInfo();
-	}
-	// Hides the information box related to the environment bar
-	public void _OnEnvironmentMouseExited() {
-		EnvironmentBar._HideInfo();
-	}
-
-	// Displays the information box related to the Support bar
-	public void _OnSupportMouseEntered() {
-		// Set the information first
-		SetSupportInfo();
-
-		// Show the new info
-		SupportBar._DisplayInfo();
-	}
-	// Hides the information box related to the Support bar
-	public void _OnSupportMouseExited() {
-		SupportBar._HideInfo();
-	}
-
-	// Displays the information box related to the pollution bar
-	public void _OnPollutionMouseEntered() {
-		// Make sure that the pollution info is up to date
-		SetPollutionInfo();
-
-		// Show the new info
-		PollutionBar._DisplayInfo();
-	}
-
-	// Hides the information box related to the Pollution bar
-	public void _OnPollutionMouseExited() {
-		PollutionBar._HideInfo();
+			// Show the new info
+			PollutionBar._DisplayInfo();
+		}
 	}
 
 	// Shows the policy window
@@ -857,6 +1107,7 @@ public partial class UI : CanvasLayer {
 	// Closes the language settings by clicking outside
 	public void _OnSettingsClosePressed() {
 		SettingsBox.Hide();
+		CreditsInfo.Hide();
 	}
 
 	// Propagates an import update to the rest of the system
@@ -911,6 +1162,8 @@ public partial class UI : CanvasLayer {
 		// Send the amount of debt to the game loop to be applied and update the debt resource
 		DebtResLabel.Text = "-" + PayBackAmount.Text;
 		BorrowContainer.Hide();
+		Debt.Show();
+		BorrowL.Text = BorrowN.ToString();
 		EmitSignal(SignalName.DebtRequest, (int)(DebtSlider.Value + (InterestRate * DebtSlider.Value)), (int)DebtSlider.Value);
 	}
 
@@ -925,6 +1178,47 @@ public partial class UI : CanvasLayer {
 	public void _OnDebtSliderValueChanged(double value) {
 		// Update the borrow and pay back amounts to reflect the new values
 		BorrowAmount.Text = ((int)value).ToString();
+		BorrowN += (int)value;
 		PayBackAmount.Text = ((int)(value + (value * InterestRate))).ToString(); // Add the interest rate
 	}
+	
+	public void _OnTurnInfoPressed() {
+		TurnInfoContainer.Visible = !TurnInfoContainer.Visible;
+	}
+	
+	public void _OnMusicValueChanged(double Value) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), Mathf.LinearToDb((float)Value));
+	}
+	
+	public void _OnSoundValueChanged(double Value) {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sound"), Mathf.LinearToDb((float)Value));
+	}
+	
+	public void _OnInstructionsPressed() {
+		Tutorial._Reset();
+		Tutorial.Show();
+	}
+	
+	public void _OnCreditsPressed() {
+		CreditsInfo.Visible = !CreditsInfo.Visible;
+	}
+	
+	public override void _UnhandledInput(InputEvent E) {
+		if(E is InputEventMouseButton MouseButton) {
+			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
+				MoneyInfo.Hide();
+				TurnInfoContainer.Hide();
+				CreditsInfo.Hide();
+			}
+		}
+	}
+	
+	public void _OnScreenOption(bool Toggle) {
+		if(Toggle) {
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+		} else {
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+		}
+	}
+	
 }

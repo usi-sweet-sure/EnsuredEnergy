@@ -28,10 +28,10 @@ using System.Collections.Generic;
 // ...
 public partial class Context : Node {
 
-	private const float DEMAND_INC_S = 9;
-	private const float DEMAND_INC_W = 22;
-	private const float DEMAND_INIT_S = 240;
-	private const float DEMAND_INIT_W = 260;
+	private const float DEMAND_INC_S = 4;
+	private const float DEMAND_INC_W = 4;
+	private const float DEMAND_INIT_S = 115;
+	private const float DEMAND_INIT_W = 130;
 
     [Signal]
     // Signals that the context has been updated by an external actor
@@ -360,7 +360,8 @@ public partial class Context : Node {
 			{Building.Type.WASTE, 0},
 			{Building.Type.BIOMASS, 0},
 			{Building.Type.RIVER, 0},
-			{Building.Type.PUMP, 0}
+			{Building.Type.PUMP, 0},
+			{Building.Type.GEOTHERMAL, 0},
 		};
 	}
 }

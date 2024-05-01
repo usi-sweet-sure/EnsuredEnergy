@@ -30,13 +30,52 @@
         <text id="label_budget">Budget</text>
         <text id="label_building">Construction</text>
         <text id="label_production">Production</text>
+        <text id="label_import">Import</text>
         <text id="label_import_pol">Pollution de l'importation</text>
+        <text id="label_now">Now</text>
+        <text id="label_next_turn">Next Turn</text>
+        <text id="label_total">Total</text>
+        <text id="label_current_turn">Tour</text>
+        <text id="label_remaining_turn">Tours restants</text>
+    </group>
+
+    <group id="moreinfo">
+        <text id="biodiversity_info">Biodiversity shows the environmental impact of the energy system. The higher the score, the more can animals and plants thrive in their natural habitats. Most power plants negatively affect biodiversity because they require lots of land and water.</text>
+        <text id="landuse_info">Land use shows how much land is used by the energy system. The smaller the indicator, the less impact from the energy system on land use. Some power plants need more land than others. This can negatively impact biodiversity.</text>
+        <text id="pollution_info">CO2 emission shows how much greenhouse gas is released by the energy system. Lower emissions mean a lower impact on global warming. Some power plants emit CO2. Switzerland has decided to be carbon neutral and reach net zero by 2050.</text>
+        <text id="importCO2_info">Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.</text>
+        <text id="support_info">Political support shows how popular your decisions are. The higher the support the more options in policy choices you have.</text>
+        <text id="demands_info">Energy demand in summer tends to be lower than winter because the need for cooling is lower than the need for heating in winter.</text>
+        <text id="demandw_info">In winter, energy demand is higher due to the need for heating. Switzerland often has to import the missing energy supply.</text>
+        <text id="energy_info">You need to reach the demand in energy. The target is the white line on the energy bar.</text>
+        <text id="budget_info">The budget shows you how much money you have and can spend. You start the game with 500.- and at the beginning of each turn receive 300.-.</text>
+        <text id="prod_info">Some power plants have production costs because they need materials to run.</text>
+        <text id="building_info">Indicates how much you have spent on building or upgrading power plants.</text>
+        <text id="import_info">Indicates how much you will be spending on imports. Clean imports cost N more.</text>
+        <text id="debt_info">Indicated how much money you owe.</text>
+        <text id="biomass_info">Biomass power plants use wood and organic waste to generate electricity.</text>
+        <text id="wind_info">Wind power plants use wind to create electricity.</text>
+        <text id="solar_info">Solar power plants use the sunlight to produce electricity.</text>
+        <text id="gas_info">Gas power plants burn natural gas to produce electricity.</text>
+        <text id="waste_info">Waste power plants burn waste from households and industries to produce electricity.</text>
+        <text id="hydro_info">Hydropower plants use dams to capture water and produce electricity.</text>
+        <text id="river_info">River power plants use the water flow in rivers to produce electricity.</text>
+        <text id="dam_info">Pump storages use gravity to store excess electricity and release electricity when it is needed subsequently.</text>
+        <text id="nuclear_info">Nuclear power plants use nuclear reactions to produce electricity.</text>
     </group>
 
     <!-- Labels used in the policies window -->
     <group id="policies">
         <text id="policy_success">La politique a été adoptée avec succès!</text>
         <text id="policy_failure">La politique n'a pas été adoptée...</text>
+        <text id="label_popularity">Popularité estimée auprès des électeurs:</text>
+        <text id="label_campaign">Durée de la campagne:</text>
+        <text id="label_camp_start">La campagne a été lancée!</text>
+        <text id="label_vote">Vote</text>
+        <text id="label_start">Commencer</text>
+        <text id="env_camp_label">Campagne environnementale</text>
+        <text id="dem_camp_label">Campagne d'information sur la demande</text>
+        <text id="policy_label">Politique</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -50,13 +89,23 @@
 
     <!-- Labels for general UI buttons -->
     <group id="ui">
-        <text id="label_next_turn">Prochain Tour ⌛</text>
+        <text id="label_next_turn">Prochain Tour</text>
         <text id="label_import">Imports</text>
         <text id="debt_title">Combien voulez-vous emprunter?</text>
         <text id="label_borrow">Emprunter</text>
         <text id="label_debt">Remboursez (au prochain tour)</text>
         <text id="apply_button">Confirmer</text>
         <text id="cancel_button">Annuler</text>
+        <text id="nuclear_shutdown">L'arrêt de la production dans</text>
+        <text id="nuclear_warning">L'arrêt du nucléaire au prochain tour ⚠️</text>
+        <text id="green_import_switch_on">On</text>
+        <text id="green_import_switch_off">Off</text>
+        <text id="import_slider_label">Import</text>
+        <text id="energy_resource">Energie</text>
+        <text id="energy_description">L'offre doit atteindre la demande d'énergie.</text>
+        <text id="pollution_description">Objectif : parvenir à une consommation nette zéro d'ici à 2050</text>
+        <text id="next_turn_warning">Pas assez d'énergie !</text>
+        <text id="no_money_warning">Pas assez d'argent !</text>
     </group>
 
      <!-- Labels for the main menu -->
@@ -74,6 +123,10 @@ Energy
         <text id="reset_prompt">Es-tu sûr(e) de vouloir redémarrer le jeu?</text>
         <text id="reset_yes">Oui</text>
         <text id="reset_no">Non</text>
+        <text id="hold_drag">Maintenir et faire glisser pour déplacer
+            
+        </text>
+        <text id="scroll_zoom">Utilise la molette pour zoomer</text>
     </group>
 
     <!-- Labels for the different power plants -->
@@ -88,6 +141,7 @@ Energy
         <text id="label_biomass">Biomasse</text>
         <text id="label_river">Rivière</text>
         <text id="label_pump">Pompe</text>
+        <text id="label_geo">Geothermie</text>
     </group>
 
         <!-- Labels for the main menu -->
