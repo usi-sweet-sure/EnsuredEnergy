@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bticb2k83c61t" path="res://assets/UI Elements/Import-line-limit.png" id="2_mncwm"]
 [ext_resource type="Texture2D" uid="uid://dwys7y27kiabl" path="res://assets/UI Elements/Import-Switch-On.png" id="3_5cyy2"]
 [ext_resource type="Texture2D" uid="uid://dhxkhfg2qxlgx" path="res://assets/UI Elements/Import-Switch-Off.png" id="4_h7pam"]
-[ext_resource type="Texture2D" uid="uid://ftccvuweij8o" path="res://assets/UI Elements/Import-Line.png" id="7_ielfg"]
+[ext_resource type="Texture2D" uid="uid://ftccvuweij8o" path="res://assets/UI Elements/Import-line.png" id="7_ielfg"]
 [ext_resource type="Texture2D" uid="uid://djt8tok2g8xsq" path="res://assets/UI Elements/Icon-Import.png" id="8_mstc7"]
 [ext_resource type="Texture2D" uid="uid://naxt3sfw64c6" path="res://assets/UI Elements/Import-bar.png" id="8_ok1f3"]
 [ext_resource type="Texture2D" uid="uid://cokx22pm0fqii" path="res://assets/UI Elements/Button-arrow-Hole.png" id="9_o4d1x"]

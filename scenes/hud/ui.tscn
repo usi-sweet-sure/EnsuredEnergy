@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=123 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/Profil-metal.png" id="1_ooswe"]
 [ext_resource type="Texture2D" uid="uid://c3e2r6qjw4kti" path="res://assets/Gameplay_UI_Reference-03.jpg" id="1_rcpup"]
@@ -29,11 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://bu3fwwb31gmuw" path="res://assets/UI Elements/Import_energy-Metal.png" id="19_1inpw"]
 [ext_resource type="Texture2D" uid="uid://52o3k8juwbmd" path="res://assets/UI Elements/Clock_Meter-1.png" id="19_bcm0u"]
 [ext_resource type="Texture2D" uid="uid://bmjee8ocqy0ge" path="res://assets/UI Elements/Enviornment-Base.png" id="21_i8c3o"]
-[ext_resource type="Theme" uid="uid://c5211uw7th4e8" path="res://scenes/windows/paper_label.tres" id="23_2rsct"]
 [ext_resource type="Texture2D" uid="uid://bwmnloeklg76n" path="res://assets/UI Elements/Enviornment-Hand.png" id="23_3qgyr"]
 [ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="24_t8vy5"]
 [ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/Icon-Pollution-.png" id="25_7q1c5"]
 [ext_resource type="Texture2D" uid="uid://vff0e83ytund" path="res://assets/UI Elements/Energy-base.png" id="28_mr6x7"]
+[ext_resource type="FontFile" uid="uid://c1dcad080fsul" path="res://assets/Fonts/Special_Elite/SpecialElite-Regular.ttf" id="30_d1m8l"]
 [ext_resource type="Texture2D" uid="uid://h78kteff8v5d" path="res://assets/UI Elements/Money-counter-hole.png" id="31_jcf3k"]
 [ext_resource type="Texture2D" uid="uid://p2nyvgv4j2ll" path="res://assets/UI Elements/Money-counter-1.png" id="32_2wt40"]
 [ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/Icon-Money.png" id="33_my285"]
@@ -188,6 +188,21 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qglqh"]
 bg_color = Color(0.214844, 0.335938, 0.347656, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_bwdpt"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="FontVariation" id="FontVariation_t46uf"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="Theme" id="Theme_yjcuk"]
+/font_sizes/Big = 22
+/fonts/font = SubResource("FontVariation_bwdpt")
+MetalLabel/colors/White = Color(1, 1, 1, 1)
+MetalLabel/font_sizes/size = 22
+MetalLabel/fonts/font = SubResource("FontVariation_t46uf")
+PaperLabel/font_sizes/size = 22
+PaperLabel/fonts/font = ExtResource("30_d1m8l")
 
 [sub_resource type="Animation" id="Animation_f32o7"]
 resource_name = "NextTurnAnim"
@@ -1201,7 +1216,7 @@ offset_left = 58.0
 offset_top = 21.0
 offset_right = 112.0
 offset_bottom = 47.0
-theme = ExtResource("23_2rsct")
+theme = SubResource("Theme_yjcuk")
 theme_override_font_sizes/font_size = 10
 
 [node name="OffL" parent="Import/ImportSwitch" index="1"]
@@ -1209,7 +1224,7 @@ offset_left = 58.0
 offset_top = 45.0
 offset_right = 112.0
 offset_bottom = 71.0
-theme = ExtResource("23_2rsct")
+theme = SubResource("Theme_yjcuk")
 theme_override_font_sizes/font_size = 10
 
 [node name="Icon-import" parent="Import" index="10"]
@@ -1279,11 +1294,12 @@ vertical_alignment = 1
 [node name="Year2" type="Label" parent="TimePanelBlank"]
 offset_left = -78.0
 offset_top = 86.0
+offset_right = -42.0
 offset_bottom = 156.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
 theme_override_font_sizes/font_size = 46
-text = "2 0"
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1296,6 +1312,18 @@ texture = ExtResource("19_bcm0u")
 show_behind_parent = true
 position = Vector2(58, 36)
 texture = ExtResource("19_bcm0u")
+
+[node name="Year7" type="Label" parent="TimePanelBlank"]
+offset_left = -38.0
+offset_top = 86.0
+offset_right = -2.0
+offset_bottom = 156.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Year3" type="Label" parent="TimePanelBlank"]
 offset_top = 86.0
@@ -1557,7 +1585,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource("23_2rsct")
+theme = SubResource("Theme_yjcuk")
 flat = true
 
 [node name="Env" type="ProgressBar" parent="."]
@@ -1581,7 +1609,6 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
-visible = false
 layout_mode = 1
 offset_left = 415.0
 offset_top = -80.0
@@ -1663,7 +1690,6 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
-visible = false
 layout_mode = 1
 offset_left = 245.0
 offset_top = -80.0
@@ -2286,10 +2312,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 21.898
 anchor_bottom = 12.364
-offset_left = -39.0
-offset_top = -25.0
-offset_right = -47.024
-offset_bottom = -33.032
+offset_left = -102.0
+offset_top = -60.5
+offset_right = -110.024
+offset_bottom = -68.532
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.313726, 0.313726, 0.313726, 0.196078)

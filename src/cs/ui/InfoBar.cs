@@ -106,7 +106,7 @@ public partial class InfoBar : ProgressBar {
 
 	// Updates the bar name (for localization)
 	public void _UpdateBarName(string name) {
-		BarButton.TooltipText = name;
+		BarName.Text = name;
 	}
 
 	// Updates the infobox text id associated to this infobar

@@ -82,7 +82,7 @@ public partial class PolicyController : XMLController {
 	// Retrieves the policy's probability from the policies xml file given the id
 	public float _GetPolicyProba(string id) => float.Parse(GetField("policy", id, "probability"));
 
-    // Retrieves the campaign's name from the policies xml file given the id
+	// Retrieves the campaign's name from the policies xml file given the id
 	public string _GetCampaignName(string id) => GetField("campaign", id, "name");
 
 	// Retrieve the tag associated with a given campaign
@@ -94,8 +94,8 @@ public partial class PolicyController : XMLController {
 	// Retrieves the campaign's probability from the policies xml file given the id
 	public float _GetCampaigProba(string id) => float.Parse(GetField("campaign", id, "probability"));
 
-    // Retrieves the campaign's length from the policies xml file give the id
-    public int _GetCampaignLength(string id) => int.Parse(GetField("campaign", id, "length"));
+	// Retrieves the campaign's length from the policies xml file give the id
+	public int _GetCampaignLength(string id) => int.Parse(GetField("campaign", id, "length"));
 
 	// Retrieves the text from a requirement given the id of the policy 
 	public List<Requirement> _GetRequirements(string policyId) {
@@ -123,8 +123,8 @@ public partial class PolicyController : XMLController {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-        // Sanity check: Make sure the type is valid
-        Debug.Assert(type == "policy" || type == "campaign");
+		// Sanity check: Make sure the type is valid
+		Debug.Assert(type == "policy" || type == "campaign");
 
 		// Retrieve the policy from the currently parsed xml file
 		IEnumerable<XElement> policy = 
@@ -137,20 +137,20 @@ public partial class PolicyController : XMLController {
 			RTM.ResourceTypeFromString(e.Attribute("field").Value),
 			e.Attribute("value").Value.ToFloat(),
 			e.Value ?? ""
-        )).ToList();
+		)).ToList();
 	}
 
 
 	// ==================== Internal Helpers ====================
 
 	// Retrives a first-level field's content given an id and the field string
-    // A type (policy or campaign) is also required
+	// A type (policy or campaign) is also required
 	private string GetField(string type, string id, string field) {
 		// Start by checking if the file is loaded in or not
 		CheckXML();
 
-        // Sanity check: make sure that type is valid
-        Debug.Assert(type == "policy" || type == "campaign");
+		// Sanity check: make sure that type is valid
+		Debug.Assert(type == "policy" || type == "campaign");
 
 		// Retrieve the policy from the currently parsed xml file
 		return (
@@ -160,19 +160,19 @@ public partial class PolicyController : XMLController {
 		).ElementAt(0);
 	}
 
-    // Retrieves the policy's tag given its id
-    private string _GetTag(string type, string id) {
-        // Start by checking if the file is loaded in or not
-        CheckXML();
+	// Retrieves the policy's tag given its id
+	private string _GetTag(string type, string id) {
+		// Start by checking if the file is loaded in or not
+		CheckXML();
 
-        // Sanity check: make sure that type is valid
-        Debug.Assert(type == "policy" || type == "campaign");
+		// Sanity check: make sure that type is valid
+		Debug.Assert(type == "policy" || type == "campaign");
 
-        return (from s in LoadedXML.Root.Descendants(type)
-            where s.Attribute("id").Value == id
-            select s.Attribute("tag").Value
-        ).ElementAt(0);
-    }
+		return (from s in LoadedXML.Root.Descendants(type)
+			where s.Attribute("id").Value == id
+			select s.Attribute("tag").Value
+		).ElementAt(0);
+	}
 
 	// Checks if the currently loaded xml is up to date
 	private void CheckXML() {

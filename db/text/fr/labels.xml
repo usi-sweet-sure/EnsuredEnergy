@@ -106,6 +106,8 @@
         <text id="pollution_description">Objectif : parvenir à une consommation nette zéro d'ici à 2050</text>
         <text id="next_turn_warning">Pas assez d'énergie !</text>
         <text id="no_money_warning">Pas assez d'argent !</text>
+        <text id="settings">Réglages</text>
+        <text id="resources">Ressources</text>
     </group>
 
      <!-- Labels for the main menu -->

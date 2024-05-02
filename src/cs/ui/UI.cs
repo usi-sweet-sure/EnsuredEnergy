@@ -151,6 +151,9 @@ public partial class UI : CanvasLayer {
 	private Label OnLabel;
 	private Label OffLabel;
 	private Label NuclearWarnLabel;
+	private Label Policies;
+	private Label Settings;
+	private Label Resources;
 
 	// Window buttons
 	private TextureButton PolicyButton;
@@ -328,6 +331,9 @@ public partial class UI : CanvasLayer {
 		OnLabel = GetNode<Label>("Import/ImportSwitch/OnL");
 		OffLabel = GetNode<Label>("Import/ImportSwitch/OffL");
 		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
+		Policies = GetNode<Label>("Profil-bar-metal/Policies");
+		Settings = GetNode<Label>("Profil-bar-metal/Settings");
+		Resources = GetNode<Label>("Profil-bar-metal/Resources");
 		
 		// Turn info
 		CurrentTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn");
@@ -443,6 +449,9 @@ public partial class UI : CanvasLayer {
 		string next_turn_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "next_turn_warning");
 		string current_turn = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_current_turn");
 		string remaining_turns = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_remaining_turn");
+		string policies = TC._GetText(LABEL_FILENAME, "policies", "policy_label");
+		string settings = TC._GetText(LABEL_FILENAME, UI_GROUP, "settings");
+		string resources = TC._GetText(LABEL_FILENAME, UI_GROUP, "resources");
 
 		// Update static UI text
 		EnergyLabel.Text = eng_label;
@@ -453,6 +462,9 @@ public partial class UI : CanvasLayer {
 		Warning.Text = next_turn_warning_label;
 		RemTurnL.Text = remaining_turns;
 		CurrentTurnL.Text = current_turn;
+		Policies.Text = policies;
+		Settings.Text = settings;
+		Resources.Text = resources;
 		
 
 		// Update debt texts

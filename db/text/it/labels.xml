@@ -106,6 +106,8 @@
         <text id="pollution_description">Goal: Reach net zero by 2050</text>
         <text id="next_turn_warning">Non c'è abbastanza energia!</text>
         <text id="no_money_warning">Non ci sono abbastanza soldi!</text>
+        <text id="settings">Impostazioni</text>
+        <text id="resources">Risorse</text>
     </group>
 
      <!-- Labels for the main menu -->
