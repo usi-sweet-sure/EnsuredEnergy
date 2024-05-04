@@ -39,6 +39,7 @@ public partial class ModelController : Node {
 	private const string INSERT_METHOD = "mth=ins";
 	private const string UPDATE_METHOD = "mth=upd";
 	private const string DISP_METHOD = "mth=dsp";
+	private const string EDIT_METHOD = "mth=edt";
 	private const string UPSERT_METHOD = "mth=ups";
 	private const string GET_XML_METHOD = "mth=xml";
 	private const string NO_XLS = "xls=0";
@@ -67,20 +68,6 @@ public partial class ModelController : Node {
 	private const string COL_CAP_RIV = "32";
 	private const string COL_CAP_SOL = "35";
 	private const string COL_CAP_WND = "36";
-
-	// Transformation data codes: allow us to access the plant capacities
-	// These must be retrieved at the start of the game and updated each turn
-	// The retrieved capacity must be divided by 100 to be used in game
-	// When sent back, the associated multipliers must be taken into account
-	private const string CAP_GAS_ID = "186";
-	private const string CAP_NUCLEAR_ID = "151";
-	private const string CAP_RIVER_ID = "162";
-	private const string CAP_HYDRO_ID = "163";
-	private const string CAP_PUMP_ID = "379";
-	private const string CAP_WASTE_ID = "189";
-	private const string CAP_BIOMASS_ID = "192";
-	private const string CAP_SOLAR_ID = "170";
-	private const string CAP_WIND_ID = "171";
 
 	// Requirements for demand: 
 	// DEMAND = (TOTAL_ELEC + TOTAL_HEAT) / 100
@@ -163,7 +150,7 @@ public partial class ModelController : Node {
 					
 					// Call the FetchModelData Method
 					case RequestType.FETCH_ASYNC:
-						_FetchModelDataAsync();
+						_FetchModelCapacityAsync(par.First());
 						break;
 
 					// Synchronous fetch case
@@ -348,6 +335,69 @@ public partial class ModelController : Node {
 		// Update the Model's state
 		State = ModelState.IDLE;
 	}
+
+	/** Retrieves the capacity of the given building type from the model
+	 * @param B: The building type
+	 * This method will generate the following two GET requests:
+	 * URL = https://sure.euler.usi.ch/prm.php?mth=edt&res_id=Content.Id&prm_id=B.Id&xsl=0
+	 */
+	public async void _FetchModelCapacityAsync(Building B) {
+
+		// Check model availability
+		if(State != ModelState.IDLE) {
+			// Enqueue the request in case that the model is busy
+			RequestQ.Enqueue((RequestType.FETCH_ASYNC, new List<string>{ B.ToString() }));
+			return;
+		}
+
+		// Claim the model
+		State = ModelState.PENDING;
+
+		// Create the parameters
+		string resid = GetParam(RES_ID, C._GetGameID());
+		string prmid = GetParam(PRM_ID, B.ToId());
+
+		try {
+			// Signal that the request was sent
+			Debug.Print("Fetch request sent");  
+
+			// Send GET requests for both peak winter and peak summer
+			string res = await _HTTPC.GetStringAsync(
+				ModelURL(PRM_FILE, EDIT_METHOD, resid, prmid, NO_XLS)
+			);
+
+			// Check that the results aren't empty
+			Debug.Print("CAPACITY FETCH FOR " + B.ToString() + " IS " + res);
+
+			// Parse the received data to an XML tree
+			XDocument XmlResp = XDocument.Parse(res);
+
+			// Convert the given xml into a model struct
+			float cap = (
+				from s in XmlResp.Descendants("tbl").Descendants("row")
+				where s.Attribute("yr").Value == C._GetYear().ToString()
+				select s.Attribute("v").Value.ToFloat()
+			).ElementAt(0);
+
+			// Update the internal state of the context
+			C._UpdateModelCapacity(B, cap / 100.0f);
+
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+		} catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+			// Log the error data from the request
+			throw new Exception(
+				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
+				" Error: " + e.Message.ToString()
+			);
+		}
+	}
+
+
 	// ==================== OLD Server Interaction Methods (LEGACY) ====================
 
 
@@ -616,7 +666,7 @@ public partial class ModelController : Node {
 
 	// Retrives the value associated to the given model column and building type
 	private float GetModelValue(ModelCol mc, Building b) => 
-		C._GetModel(ModelSeason.WINTER)._GetColumn(mc)._GetField(b);
+		C._GetModel()._GetColumn(mc)._GetField(b);
 
 	// Converts a model XML into a Model Struct
 	// The given xml is expected to be the response from the bal.disp() server method
@@ -635,8 +685,7 @@ public partial class ModelController : Node {
 			AvailabilityFromRow(row),
 			CapacityFromRow(row),
 			DemandFromRow(row),
-			ModelCoherencyState.SHARED,
-			MS
+			ModelCoherencyState.SHARED
 		);
 	}
 

@@ -116,8 +116,8 @@ public partial class EnergyManager : Node {
 		} 
 
 		// If online, fetch the current model data assuming it's coherent 
-		(Model MW, Model MS) = C._GetModels();
-		return ComputeEnergy(MW, MS, import_perc, importSummer);
+		Model M = C._GetModel();
+		return ComputeEnergy(M, import_perc, importSummer);
 	}
 
 	// ==================== Helper Methods ====================  
@@ -167,28 +167,24 @@ public partial class EnergyManager : Node {
 	}
 
 	// Estimate the values for the next turn (in case of no network or demo)
-	private Energy ComputeEnergy(Model MW, Model MS, float import_perc, bool importSummer=false) {
+	private Energy ComputeEnergy(Model M, float import_perc, bool importSummer=false) {
 		// Compute the imported supply
 		int imported = _ComputeTotalImportAmount(import_perc, importSummer);
 
 		// Aggregate supply and take the imports into account
-		float supply_w = MW._GetTotalSupply() + imported;
-		float supply_s = MS._GetTotalSupply() + (importSummer ? imported : 0);
+		float supply = M._GetTotalSupply() + imported;
 
 		// Compute the Excess and store it in a separate field
-		float excess_w = supply_w - MAX_ENERGY_BAR_VAL;
-		float excess_s = supply_s - MAX_ENERGY_BAR_VAL;
+		float excess = supply - MAX_ENERGY_BAR_VAL;
 		
 		// Normalize the supply
-		supply_w = Math.Max(0, Math.Min(supply_w, MAX_ENERGY_BAR_VAL));
-		supply_s = Math.Max(0, Math.Min(supply_s, MAX_ENERGY_BAR_VAL));
+		supply = Math.Max(0, Math.Min(supply, MAX_ENERGY_BAR_VAL));
 
 		// Extract the demand from the model
-		float demand_w = MW._Demand.Base;
-		float demand_s = MS._Demand.Base;
+		float demand = M._Demand.Base;
 
 		// The current demand is a fixed value
-		return new Energy(supply_s, supply_w, demand_s, demand_w, excess_s, excess_w);
+		return new Energy(supply, supply, demand, demand, excess, excess);
 	}
 
 }

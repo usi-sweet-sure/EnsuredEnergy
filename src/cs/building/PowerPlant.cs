@@ -22,6 +22,9 @@ using System.Diagnostics;
 // Represents a Power Plant object in the game
 public partial class PowerPlant : Node2D {
 
+	private const float SUMMER_DEMAND_MULT = 0.4f;
+	private const float WINTER_DEMAND_MULT = 0.6f;
+
 
 	[Signal]
 	public delegate void UpdatePlantEventHandler();
@@ -589,14 +592,13 @@ public partial class PowerPlant : Node2D {
 	// This method does that set.
 	public void _SetAvailabilityFromContext() {
 		// Get the model from the context
-		(Model MW, Model MS)  = C._GetModels();
+		Model M = C._GetModel();
 		
 		// Extract the availability
-		float avw = MW._Availability._GetField(PlantType);
-		float avs = MS._Availability._GetField(PlantType);
+		float av = M._Availability._GetField(PlantType) / C._GetPPStat(PlantType);
 
 		// Based on the number of built plants of this type, divide the availability
-		EnergyAvailability = (avw / C._GetPPStat(PlantType), avs / C._GetPPStat(PlantType));
+		EnergyAvailability = (av , av );
 	}
 
 	// Reacts to a new turn taking place

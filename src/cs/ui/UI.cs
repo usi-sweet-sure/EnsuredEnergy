@@ -1119,11 +1119,11 @@ public partial class UI : CanvasLayer {
 	// Propagates a predictive update to the UI
 	public void _OnUpdatePrediction() {
 		// Get predictive values
-		var (MW, MS) = C._GetModels();
+		Model M = C._GetModel();
 
 		// Update prediction bars
-		WinterEnergyPredict._UpdateProgress((int)MW._GetTotalSupply());
-		SummerEnergyPredict._UpdateProgress((int)MS._GetTotalSupply());
+		WinterEnergyPredict._UpdateProgress((int)M._GetTotalSupply());
+		SummerEnergyPredict._UpdateProgress((int)M._GetTotalSupply());
 
 	}
 

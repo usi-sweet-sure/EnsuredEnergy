@@ -209,6 +209,20 @@ public readonly struct Building {
 	private const int RIV_ID_BASE = 3;
 	private const int SOL_ID_BASE = 6;
 	private const int WND_ID_BASE = 7;
+
+	// Transformation data codes for model: allow us to access the plant capacities
+	// These must be retrieved at the start of the game and updated each turn
+	// The retrieved capacity must be divided by 100 to be used in game
+	// When sent back, the associated multipliers must be taken into account
+	private const string CAP_GAS_ID = "186";
+	private const string CAP_NUCLEAR_ID = "151";
+	private const string CAP_RIVER_ID = "162";
+	private const string CAP_HYDRO_ID = "163";
+	private const string CAP_PUMP_ID = "379";
+	private const string CAP_WASTE_ID = "189";
+	private const string CAP_BIOMASS_ID = "192";
+	private const string CAP_SOLAR_ID = "170";
+	private const string CAP_WIND_ID = "171";
 	// Could you fill this ?
 
 	// Basic constructor for the Building type
@@ -296,6 +310,18 @@ public readonly struct Building {
 		type == Type.SOLAR ? SOL_ID_BASE :
 		type == Type.NUCLEAR ? NUC_ID_BASE : 
 		-1;
+
+	public string ToId() =>
+		type == Type.GAS ? CAP_GAS_ID :
+		type == Type.NUCLEAR ? CAP_NUCLEAR_ID :
+		type == Type.RIVER ? CAP_RIVER_ID :
+		type == Type.HYDRO ? CAP_HYDRO_ID :
+		type == Type.PUMP ? CAP_PUMP_ID :
+		type == Type.WASTE ? CAP_WASTE_ID :
+		type == Type.BIOMASS ? CAP_BIOMASS_ID :
+		type == Type.SOLAR ? CAP_SOLAR_ID :
+		type == Type.WIND ? CAP_WIND_ID : 
+		"";
 
 	// Performs the same check as the == operator, but with a run-time check on the type
 	public override bool Equals(object obj) {
