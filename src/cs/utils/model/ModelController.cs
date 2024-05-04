@@ -31,14 +31,18 @@ using System.Threading.Tasks;
 public partial class ModelController : Node {
 
 	// Model URL Constants
-	private const string MODEL_BASE_URL = "https://toby.euler.usi.ch";
+	private const string MODEL_BASE_URL = "https://sure.euler.usi.ch";
 	private const string RES_FILE = "res.php";
 	private const string BAL_FILE = "bal.php";
 	private const string EVT_FILE = "evt.php";
-	private const string INSERT_METHOD = "mth=insert";
-	private const string UPDATE_METHOD = "mth=update";
-	private const string DISP_METHOD = "mth=disp";
-	private const string UPSERT_METHOD = "mth=upsert";
+	private const string PRM_FILE = "prm.php";
+	private const string INSERT_METHOD = "mth=ins";
+	private const string UPDATE_METHOD = "mth=upd";
+	private const string DISP_METHOD = "mth=dsp";
+	private const string UPSERT_METHOD = "mth=ups";
+	private const string GET_XML_METHOD = "mth=xml";
+	private const string NO_XLS = "xls=0";
+	private const string PRM_ID = "prm_id";
 	private const string RES_ID = "res_id";
 	private const string COL_ID = "col_id";
 	private const string RES_NAME = "res_name";
@@ -63,6 +67,34 @@ public partial class ModelController : Node {
 	private const string COL_CAP_RIV = "32";
 	private const string COL_CAP_SOL = "35";
 	private const string COL_CAP_WND = "36";
+
+	// Transformation data codes: allow us to access the plant capacities
+	// These must be retrieved at the start of the game and updated each turn
+	// The retrieved capacity must be divided by 100 to be used in game
+	// When sent back, the associated multipliers must be taken into account
+	private const string CAP_GAS_ID = "186";
+	private const string CAP_NUCLEAR_ID = "151";
+	private const string CAP_RIVER_ID = "162";
+	private const string CAP_HYDRO_ID = "163";
+	private const string CAP_PUMP_ID = "379";
+	private const string CAP_WASTE_ID = "189";
+	private const string CAP_BIOMASS_ID = "192";
+	private const string CAP_SOLAR_ID = "170";
+	private const string CAP_WIND_ID = "171";
+
+	// Requirements for demand: 
+	// DEMAND = (TOTAL_ELEC + TOTAL_HEAT) / 100
+	// SUMMER_D = DEMAND * 0.4f
+	// WINTER_D = DEMAND * 0.6f
+	private const string TOTAL_ELEC_ID = "220";
+	private const string TOTAL_HEAT_ELEC = "221";
+	private const float SUMMER_DEMAND_MULT = 0.4f;
+	private const float WINTER_DEMAND_MULT = 0.6f;
+
+	// Starting data: divide the starting demand by these numbers
+	private const int N_START_NUC = 3;
+	private const int N_START_HYDRO = 2;
+	private const int N_START_RIVER = 2;
 
 	// Game value constants
 	private const int YEARS_PER_TURN = 3;
@@ -175,12 +207,12 @@ public partial class ModelController : Node {
 	// Returns true if the model can handle a new request, false otherwise
 	public bool _CheckState() => State == ModelState.IDLE;
 
-	// ==================== Server Interaction Methods ====================
+	// ==================== Server Interaction Methods  ====================
 
 	// Initializes a connection with the model by creating a new game instance
 	// Returns whether or not the request was filed
 	// This method will generate the following POST request :
-	// - URL: https://toby.euler.usi.ch/res.php?mth=insert&res_id=Content.ResId 
+	// - URL: https://toby.euler.usi.ch/res.php?mth=ins&res_id=Content.ResId 
 	// - HEADER: Null
 	// - DATA: Null
 	public void _InitModel() {
@@ -211,6 +243,7 @@ public partial class ModelController : Node {
 			
 			// Get the Serialized result
 			string SRes = SReq.Result; 
+			Debug.Print(SRes);
 
 			// Parse the resceived data to an XML tree
 			XDocument XmlResp = XDocument.Parse(SRes);
@@ -268,9 +301,7 @@ public partial class ModelController : Node {
 		// Create the data package
 		var Data = new Dictionary<string, string> {
 			{ RES_ID, C._GetGameID().ToString() },
-			{ RES_NAME, new_name },
-			{ RES_V1, 42.ToString() }, // Arbitrary values for now
-			{ RES_V2, 9001.ToString() } // Arbitrary values for now
+			{ RES_NAME, new_name }
 		};
 
 		// Encode it in a content header
@@ -317,6 +348,8 @@ public partial class ModelController : Node {
 		// Update the Model's state
 		State = ModelState.IDLE;
 	}
+	// ==================== OLD Server Interaction Methods (LEGACY) ====================
+
 
 	// Retrieves all of the data from the model and stores it in the context in a synchronous manner
 	// Warning: This will override all of the data in the context with the data 
@@ -536,11 +569,11 @@ public partial class ModelController : Node {
 	// Generate a random name for the model
 	private string GenerateName() {
 		// Random Dictionnary of words
-		string[] words = {"pocket", "club", "thing", "seat", "roll", "button", "size", "move", "year", "sticks", "trousers", "rule", "transport", "kitty", "north", "pump", "can", "bucket", "clam", "day", "dock", "wind", "pies", "room", "grass", "girls", "songs", "curve", "giraffe", "plane", "channel", "play", "art", "back", "amount", "instrument", "week", "change", "person", "lock", "class", "look", "sleet", "pear", "toe", "haircut", "underwear", "tongue", "experience", "dogs", "uncle", "birds", "spoon", "airport", "desk", "glass", "cherry", "trouble", "cakes", "rabbits", "soup", "team", "eggnog", "stocking", "icicle", "ring", "bath", "daughter", "company", "baseball", "brass", "car", "hot", "blow", "afternoon", "judge", "use", "selection", "cobweb", "temper", "jam", "mass", "snake", "agreement", "rhythm", "mind", "pie", "town", "spiders", "show", "partner", "fork", "queen", "bubble", "end", "language", "book", "marble", "writing", "match"};
+		string[] words = {"pocket", "funky", "test", "scribbles", "club", "thing", "seat", "roll", "button", "size", "move", "year", "sticks", "trousers", "rule", "transport", "kitty", "north", "pump", "can", "bucket", "clam", "day", "dock", "wind", "pies", "room", "grass", "girls", "songs", "curve", "giraffe", "plane", "channel", "play", "art", "back", "amount", "instrument", "week", "change", "person", "lock", "class", "look", "sleet", "pear", "toe", "haircut", "underwear", "tongue", "experience", "dogs", "uncle", "birds", "spoon", "airport", "desk", "glass", "cherry", "trouble", "cakes", "rabbits", "soup", "team", "eggnog", "stocking", "icicle", "ring", "bath", "daughter", "company", "baseball", "brass", "car", "hot", "blow", "afternoon", "judge", "use", "selection", "cobweb", "temper", "jam", "mass", "snake", "agreement", "rhythm", "mind", "pie", "town", "spiders", "show", "partner", "fork", "queen", "bubble", "end", "language", "book", "marble", "writing", "match"};
 
 		// Pick a word at random and concatenate an arbitrary number to it
 		Random rnd = new Random();
-		return words[rnd.Next(100) % 100] + "_" + rnd.Next().ToString();
+		return words[rnd.Next(words.Length) % words.Length] + "_" + rnd.Next().ToString();
 	}
 
 	// Groups the URL bits into a usable URL string
