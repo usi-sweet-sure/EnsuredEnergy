@@ -158,8 +158,14 @@ public partial class Context : Node {
         EmitSignal(SignalName.UpdateContext);
     }
 
+    // Updates the locally stored capacity for a given building type
     public void _UpdateModelCapacity(Building B, float cap) {
         M._ModifyField(ModelCol.Type.CAP, B, cap);
+    }
+
+    // Updates the locally stored global demand
+    public void _UpdateModelDemand(float demand)  {
+        M._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, demand);
     }
 
     // Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method

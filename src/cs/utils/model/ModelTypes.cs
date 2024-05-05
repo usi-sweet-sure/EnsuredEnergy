@@ -18,6 +18,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Godot {
 
@@ -357,6 +358,7 @@ namespace Godot {
             Building.Type.SOLAR   => Solar,
             Building.Type.WIND    => Wind,
             Building.Type.TREE    => 0.0f,
+            Building.Type.NONE    => 0.0f,
             _ => throw new ArgumentException("No field is associated to the given type!")
         };
 

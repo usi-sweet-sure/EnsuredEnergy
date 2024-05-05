@@ -74,7 +74,7 @@ public partial class ModelController : Node {
 	// SUMMER_D = DEMAND * 0.4f
 	// WINTER_D = DEMAND * 0.6f
 	private const string TOTAL_ELEC_ID = "220";
-	private const string TOTAL_HEAT_ELEC = "221";
+	private const string TOTAL_HEAT_ID = "221";
 	private const float SUMMER_DEMAND_MULT = 0.4f;
 	private const float WINTER_DEMAND_MULT = 0.6f;
 
@@ -105,7 +105,7 @@ public partial class ModelController : Node {
 
 	// ModelController Queue
 	// This is used to store pending requests from the model
-	private enum RequestType { INIT, FETCH, FETCH_ASYNC, NAME, EVENT };
+	private enum RequestType { INIT, FETCH, FETCH_DEMAND, FETCH_ASYNC, NAME, EVENT };
 
 	// The request queue contains the following information:
 	// 1) The type of request being queued  
@@ -148,9 +148,14 @@ public partial class ModelController : Node {
 						_InitModel();
 						break;
 					
-					// Call the FetchModelData Method
+					// Call the FetchModelCapacity Method
 					case RequestType.FETCH_ASYNC:
 						_FetchModelCapacityAsync(par.First());
+						break;
+
+					// Call the FetchDemand Method
+					case RequestType.FETCH_DEMAND:
+						_FetchModelDemandAsync();
 						break;
 
 					// Synchronous fetch case
@@ -373,11 +378,7 @@ public partial class ModelController : Node {
 			XDocument XmlResp = XDocument.Parse(res);
 
 			// Convert the given xml into a model struct
-			float cap = (
-				from s in XmlResp.Descendants("tbl").Descendants("row")
-				where s.Attribute("yr").Value == C._GetYear().ToString()
-				select s.Attribute("v").Value.ToFloat()
-			).ElementAt(0);
+			float cap = XmlToValue(XmlResp);
 
 			// Update the internal state of the context
 			C._UpdateModelCapacity(B, cap / 100.0f);
@@ -397,9 +398,69 @@ public partial class ModelController : Node {
 		}
 	}
 
+	/** Retrieves the demand given by the model
+	 * This method will generate the following two GET requests:
+	 * GET_REQUEST1 = https://sure.euler.usi.ch/prm.php?mth=edt&res_id=Content.Id&prm_id=TOTAL_ELEC_ID&xsl=0
+	 * GET_REQUEST2 = https://sure.euler.usi.ch/prm.php?mth=edt&res_id=Content.Id&prm_id=TOTAL_HEAT_ID&xsl=0
+	 */
+	public async void _FetchModelDemandAsync() {
 
+		// Check model availability
+		if(State != ModelState.IDLE) {
+			// Enqueue the request in case that the model is busy
+			RequestQ.Enqueue((RequestType.FETCH_DEMAND, new ()));
+			return;
+		}
+
+		// Claim the model
+		State = ModelState.PENDING;
+
+		// Create the parameters
+		string resid = GetParam(RES_ID, C._GetGameID());
+		string elec_prmid = GetParam(PRM_ID, TOTAL_ELEC_ID);
+		string heat_prmid = GetParam(PRM_ID, TOTAL_HEAT_ID);
+
+		try {
+			// Signal that the request was sent
+			Debug.Print("Fetch request sent");  
+
+			// Send GET requests for both elec and heat
+			string res_elec = await _HTTPC.GetStringAsync(
+				ModelURL(PRM_FILE, EDIT_METHOD, resid, elec_prmid, NO_XLS)
+			);
+			string res_heat = await _HTTPC.GetStringAsync(
+				ModelURL(PRM_FILE, EDIT_METHOD, resid, heat_prmid, NO_XLS)
+			);
+
+			// Parse the received data to an XML tree
+			XDocument XmlResp_elec = XDocument.Parse(res_elec);
+			XDocument XmlResp_heat = XDocument.Parse(res_heat);
+
+			// Convert the given xml into a model struct
+			float cap_elec = XmlToValue(XmlResp_elec);
+			float cap_heat = XmlToValue(XmlResp_heat);
+
+			// Update the internal state of the context
+			C._UpdateModelDemand((cap_elec + cap_heat) / 100.0f);
+
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+		} catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+			// Log the error data from the request
+			throw new Exception(
+				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
+				" Error: " + e.Message.ToString()
+			);
+		}
+	}
+
+	// =================================================================================
 	// ==================== OLD Server Interaction Methods (LEGACY) ====================
-
+	// =================================================================================
 
 	// Retrieves all of the data from the model and stores it in the context in a synchronous manner
 	// Warning: This will override all of the data in the context with the data 
@@ -659,6 +720,13 @@ public partial class ModelController : Node {
 			throw e;
 		}
 	} 
+
+	// Retrieves the value of the current year from a given prm xml
+	private float XmlToValue(XDocument xml) => (
+			from s in xml.Descendants("tbl").Descendants("row")
+			where s.Attribute("yr").Value == C._GetYear().ToString()
+			select s.Attribute("v").Value.ToFloat()
+		).ElementAt(0); 
 
 	// Retrieves an int attribute from a specific xml row
 	private int GetIntAttr(IEnumerable<XElement> row, string attr) => 
