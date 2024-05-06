@@ -29,7 +29,7 @@ public partial class ImportSlider : VSlider {
 	public float MAX_ENERGY_IMPORT =  100.0f;
 
 	// Constants for target bar positions
-	private const int TARGET_100_Y_POS = 9;
+	private const int TARGET_100_Y_POS = 21;
 	private const int TARGET_0_Y_POS = 220;
 
 	// Various labels that need to be dynamic
@@ -43,6 +43,7 @@ public partial class ImportSlider : VSlider {
 
 	// Target import required to meet demand
 	private Sprite2D Target;
+	private float Max = 0;
 
 	// The confirmed import amount
 	private int ImportAmount;
@@ -92,6 +93,7 @@ public partial class ImportSlider : VSlider {
 	// The given demand should represent the percentage of the total
 	// demand that would need to be imported to cover the lack of supply
 	public void _UpdateTargetImport(float diff) {
+		Max = diff;
 		// Clamp diff to be in range [0, max]
 		float _d = Math.Max(0.0f, Math.Min(diff, MAX_ENERGY_IMPORT));
 
@@ -101,6 +103,7 @@ public partial class ImportSlider : VSlider {
 			Target.Position.X, 
 			y_pos
 		);
+		_OnApplySelectionPressed(true);
 	}
 
 	// Udpates the text to match the given string
@@ -131,7 +134,13 @@ public partial class ImportSlider : VSlider {
 	// Confirms the selection of a specific import amount
 	public void _OnApplySelectionPressed(bool ValChanged) {
 		// Save the import amount
-		ImportAmount = Math.Max(0, Math.Min((int) Value, 100));
+		if(Max <= 0) {
+			ImportAmount = 0;
+		} else {
+			ImportAmount = Math.Max(0, Math.Min((int) Value, (int)Max + 1));
+			}
+		
+		Value = ImportAmount;
 
 		// Hide the apply selection button
 		//ApplySelection.Hide();

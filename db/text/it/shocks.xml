@@ -45,9 +45,9 @@
         <text>Le estati sono sempre più calde. La domanda di energia è aumentata di 5 ⚡.</text>
         <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
-            <text>Chiedete alle persone di bere più acqua e di ridurre uso dell'aria condizionata.
+            <text>Chiedete alle persone di ridurre uso dell'aria condizionata.
 -15 👍😡</text>
-            <effect field="support" value="-20"/>
+            <effect field="support" value="-15"/>
         </reaction>
         <reaction id="1">
             <text>Attivare l'impianto a gas di riserva.

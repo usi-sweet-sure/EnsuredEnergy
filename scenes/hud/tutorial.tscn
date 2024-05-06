@@ -69,10 +69,10 @@ color = Color(0.156863, 0.156863, 0.156863, 0.784314)
 
 [node name="InfoBubble" type="MarginContainer" parent="InfoBubble"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 828.0
-offset_right = 391.0
-offset_bottom = 1032.0
+offset_left = 5.0
+offset_top = 801.0
+offset_right = 449.0
+offset_bottom = 1005.0
 
 [node name="InfoBubble" type="NinePatchRect" parent="InfoBubble/InfoBubble"]
 layout_mode = 2
@@ -85,6 +85,7 @@ patch_margin_bottom = 44
 metadata/_edit_group_ = true
 
 [node name="Arrow" type="Sprite2D" parent="InfoBubble/InfoBubble/InfoBubble"]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-12, 66)
 texture = ExtResource("3_xv1gs")
@@ -94,14 +95,15 @@ region_rect = Rect2(24, 24, 30, 32)
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 44
 
 [node name="Text" type="RichTextLabel" parent="InfoBubble/InfoBubble/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("7_6e2hn")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "Each turn, you have to reach the demand for summer and winter."
 fit_content = true
@@ -134,10 +136,10 @@ color = Color(0.156863, 0.156863, 0.156863, 0.784314)
 
 [node name="InfoBubble2" type="MarginContainer" parent="InfoBubble2"]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 913.0
-offset_right = 253.0
-offset_bottom = 1033.0
+offset_left = 4.0
+offset_top = 829.0
+offset_right = 304.0
+offset_bottom = 957.0
 
 [node name="InfoBubble" type="NinePatchRect" parent="InfoBubble2/InfoBubble2"]
 layout_mode = 2
@@ -150,6 +152,7 @@ patch_margin_bottom = 46
 metadata/_edit_group_ = true
 
 [node name="Arrow" type="Sprite2D" parent="InfoBubble2/InfoBubble2/InfoBubble"]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-12, 66)
 texture = ExtResource("3_xv1gs")
@@ -159,14 +162,15 @@ region_rect = Rect2(24, 24, 30, 32)
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 44
 
 [node name="Text" type="RichTextLabel" parent="InfoBubble2/InfoBubble2/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("7_6e2hn")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "Each turn, "
 fit_content = true
@@ -234,9 +238,9 @@ color = Color(0.156863, 0.156863, 0.156863, 0.784314)
 [node name="InfoBubble3" type="MarginContainer" parent="InfoBubble3"]
 layout_mode = 0
 offset_left = 1558.0
-offset_top = 684.0
-offset_right = 1796.0
-offset_bottom = 825.0
+offset_top = 654.0
+offset_right = 1834.0
+offset_bottom = 795.0
 
 [node name="InfoBubble" type="NinePatchRect" parent="InfoBubble3/InfoBubble3"]
 layout_mode = 2
@@ -249,6 +253,7 @@ patch_margin_bottom = 50
 metadata/_edit_group_ = true
 
 [node name="Arrow" type="Sprite2D" parent="InfoBubble3/InfoBubble3/InfoBubble"]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-12, 66)
 texture = ExtResource("3_xv1gs")
@@ -258,14 +263,15 @@ region_rect = Rect2(24, 24, 30, 32)
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 44
 
 [node name="Text" type="RichTextLabel" parent="InfoBubble3/InfoBubble3/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("7_6e2hn")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "Each turn,"
 fit_content = true
@@ -287,10 +293,10 @@ texture = ExtResource("4_yf1o7")
 
 [node name="InfoBubble4" type="MarginContainer" parent="InfoBubble4"]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 196.0
-offset_right = 288.0
-offset_bottom = 316.0
+offset_left = 2.0
+offset_top = 172.0
+offset_right = 384.0
+offset_bottom = 300.0
 
 [node name="InfoBubble" type="NinePatchRect" parent="InfoBubble4/InfoBubble4"]
 layout_mode = 2
@@ -303,6 +309,7 @@ patch_margin_bottom = 46
 metadata/_edit_group_ = true
 
 [node name="Arrow" type="Sprite2D" parent="InfoBubble4/InfoBubble4/InfoBubble"]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-12, 66)
 texture = ExtResource("3_xv1gs")
@@ -312,14 +319,15 @@ region_rect = Rect2(24, 24, 30, 32)
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 44
 
 [node name="Text" type="RichTextLabel" parent="InfoBubble4/InfoBubble4/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("7_6e2hn")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "Each turn,"
 fit_content = true
@@ -373,10 +381,10 @@ color = Color(0.156863, 0.156863, 0.156863, 0.784314)
 
 [node name="InfoBubble5" type="MarginContainer" parent="InfoBubble5"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 22.0
-offset_right = 267.0
-offset_bottom = 142.0
+offset_left = 6.0
+offset_top = 9.0
+offset_right = 296.0
+offset_bottom = 137.0
 
 [node name="InfoBubble" type="NinePatchRect" parent="InfoBubble5/InfoBubble5"]
 layout_mode = 2
@@ -389,6 +397,7 @@ patch_margin_bottom = 44
 metadata/_edit_group_ = true
 
 [node name="Arrow" type="Sprite2D" parent="InfoBubble5/InfoBubble5/InfoBubble"]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-12, 47)
 texture = ExtResource("3_xv1gs")
@@ -398,14 +407,15 @@ region_rect = Rect2(24, 24, 30, 32)
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 44
 
 [node name="Text" type="RichTextLabel" parent="InfoBubble5/InfoBubble5/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("7_6e2hn")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "Each turn"
 fit_content = true
@@ -453,10 +463,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -282.0
-offset_top = -166.0
-offset_right = 283.0
-offset_bottom = 182.0
+offset_left = -305.0
+offset_top = -179.0
+offset_right = 305.0
+offset_bottom = 179.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 4
@@ -497,9 +507,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 63.0
-offset_top = 11.0
+offset_top = -20.0
 offset_right = 620.0
-offset_bottom = 37.0
+offset_bottom = 6.0
 grow_vertical = 0
 theme = ExtResource("7_6e2hn")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -522,8 +532,8 @@ layout_mode = 2
 theme = ExtResource("7_6e2hn")
 theme_type_variation = &"Paper"
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 30
-theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
 text = "Congratulations ! You have been designated to [b]manage the power grid[/b] and ensure a sustainable and resilient energy sector."
 fit_content = true

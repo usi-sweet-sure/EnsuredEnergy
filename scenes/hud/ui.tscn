@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=124 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/Profil-metal.png" id="1_ooswe"]
 [ext_resource type="Texture2D" uid="uid://c3e2r6qjw4kti" path="res://assets/Gameplay_UI_Reference-03.jpg" id="1_rcpup"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="24_t8vy5"]
 [ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/Icon-Pollution-.png" id="25_7q1c5"]
 [ext_resource type="Texture2D" uid="uid://vff0e83ytund" path="res://assets/UI Elements/Energy-base.png" id="28_mr6x7"]
+[ext_resource type="Texture2D" uid="uid://dm24o8isvyq3f" path="res://assets/UI Elements/Import-Slider.png" id="29_j3wwc"]
 [ext_resource type="FontFile" uid="uid://c1dcad080fsul" path="res://assets/Fonts/Special_Elite/SpecialElite-Regular.ttf" id="30_d1m8l"]
 [ext_resource type="Texture2D" uid="uid://h78kteff8v5d" path="res://assets/UI Elements/Money-counter-hole.png" id="31_jcf3k"]
 [ext_resource type="Texture2D" uid="uid://p2nyvgv4j2ll" path="res://assets/UI Elements/Money-counter-1.png" id="32_2wt40"]
@@ -204,6 +205,57 @@ MetalLabel/fonts/font = SubResource("FontVariation_t46uf")
 PaperLabel/font_sizes/size = 22
 PaperLabel/fonts/font = ExtResource("30_d1m8l")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 0)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mru71"]
+bg_color = Color(0.137255, 0.470588, 0.760784, 0.701961)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm6d8"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldrdn"]
+bg_color = Color(0.152941, 0.658824, 0.152941, 1)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vvqt"]
+bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvfnp"]
+bg_color = Color(0.627451, 0.627451, 0.627451, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dajl"]
+atlas = ExtResource("6_ivien")
+region = Rect2(48, 49, 43, 44)
+
+[sub_resource type="FontVariation" id="FontVariation_4ww80"]
+base_font = ExtResource("40_knfjx")
+variation_embolden = 0.2
+
+[sub_resource type="FontVariation" id="FontVariation_15ni2"]
+base_font = ExtResource("51_joowr")
+spacing_glyph = 7
+
 [sub_resource type="Animation" id="Animation_f32o7"]
 resource_name = "NextTurnAnim"
 length = 4.0
@@ -298,7 +350,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.8, 1.25, 1.26, 2, 2.01, 2.76),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(40, 85), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 29)]
+"values": [Vector2(40, 85), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 32), Vector2(40, 90), Vector2(40, 31)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -632,57 +684,6 @@ _data = {
 "RESET": SubResource("Animation_qpho6")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 0)
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mru71"]
-bg_color = Color(0.137255, 0.470588, 0.760784, 0.701961)
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm6d8"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldrdn"]
-bg_color = Color(0.152941, 0.658824, 0.152941, 1)
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vvqt"]
-bg_color = Color(0.317647, 0.317647, 0.317647, 0.87451)
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvfnp"]
-bg_color = Color(0.627451, 0.627451, 0.627451, 1)
-border_color = Color(0, 0, 0, 1)
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0dajl"]
-atlas = ExtResource("6_ivien")
-region = Rect2(48, 49, 43, 44)
-
-[sub_resource type="FontVariation" id="FontVariation_4ww80"]
-base_font = ExtResource("40_knfjx")
-variation_embolden = 0.2
-
-[sub_resource type="FontVariation" id="FontVariation_15ni2"]
-base_font = ExtResource("51_joowr")
-spacing_glyph = 7
-
 [sub_resource type="FontVariation" id="FontVariation_lgwoq"]
 base_font = ExtResource("53_v477p")
 variation_embolden = 0.2
@@ -858,19 +859,19 @@ position = Vector2(1, 39)
 texture = ExtResource("31_jcf3k")
 
 [node name="Money-counter-1" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(-30, 0)
+position = Vector2(-30, -1)
 texture = ExtResource("32_2wt40")
 
 [node name="Money-counter-2" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(-10, 0)
+position = Vector2(-10, -1)
 texture = ExtResource("32_2wt40")
 
 [node name="Money-counter-3" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(10, 0)
+position = Vector2(10, -1)
 texture = ExtResource("32_2wt40")
 
 [node name="Money-counter-4" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
-position = Vector2(30, 0)
+position = Vector2(30, -1)
 texture = ExtResource("32_2wt40")
 
 [node name="Icon-money" type="Sprite2D" parent="Profil-bar-metal"]
@@ -914,7 +915,7 @@ position = Vector2(32, 32)
 texture = ExtResource("39_jsaox")
 
 [node name="Sprite2D" type="Sprite2D" parent="Profil-bar-metal"]
-position = Vector2(93, 56)
+position = Vector2(93, 55)
 texture = ExtResource("11_i0u5d")
 
 [node name="Policies" type="Label" parent="Profil-bar-metal"]
@@ -924,6 +925,7 @@ offset_right = 102.0
 offset_bottom = -112.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
 text = "POLICIES"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -936,6 +938,7 @@ offset_right = -13.0
 offset_bottom = -112.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
 text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -948,6 +951,7 @@ offset_right = 102.0
 offset_bottom = 16.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
 text = "Resources"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1037,6 +1041,7 @@ offset_right = 83.0
 offset_bottom = -133.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
 text = "ENERGY"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1177,11 +1182,16 @@ offset_left = 176.0
 offset_top = 853.28
 offset_right = 191.96
 offset_bottom = 949.0
+theme_override_icons/grabber = ExtResource("29_j3wwc")
 max_value = 100.0
 ticks_on_borders = false
 
+[node name="Target" parent="Import" index="0"]
+position = Vector2(-24, 220)
+
 [node name="Import-line" parent="Import" index="1"]
-position = Vector2(-26, 120)
+position = Vector2(-26, 121)
+scale = Vector2(1, 0.903766)
 
 [node name="TargetLine" parent="Import" index="3"]
 visible = false
@@ -1206,12 +1216,13 @@ offset_right = 36.0
 offset_bottom = 218.0
 
 [node name="ImportSwitch" parent="Import" index="8"]
-offset_left = -31.0
+offset_left = -3.0
 offset_top = 296.0
-offset_right = 49.0
+offset_right = 77.0
 offset_bottom = 372.0
 
 [node name="OnL" parent="Import/ImportSwitch" index="0"]
+visible = false
 offset_left = 58.0
 offset_top = 21.0
 offset_right = 112.0
@@ -1220,6 +1231,7 @@ theme = SubResource("Theme_yjcuk")
 theme_override_font_sizes/font_size = 10
 
 [node name="OffL" parent="Import/ImportSwitch" index="1"]
+visible = false
 offset_left = 58.0
 offset_top = 45.0
 offset_right = 112.0
@@ -1228,7 +1240,7 @@ theme = SubResource("Theme_yjcuk")
 theme_override_font_sizes/font_size = 10
 
 [node name="Icon-import" parent="Import" index="10"]
-position = Vector2(-33, 333)
+position = Vector2(-59, 333)
 
 [node name="UpButton" parent="Import" index="11"]
 offset_left = -70.0
@@ -1255,6 +1267,7 @@ offset_right = 55.0
 offset_bottom = -3.0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1263,259 +1276,6 @@ position = Vector2(66, 296)
 
 [node name="LEDOn" parent="Import" index="15"]
 position = Vector2(66, 296)
-
-[node name="TimePanelBlank" type="Sprite2D" parent="."]
-position = Vector2(1790, 130)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_m0dc4")
-
-[node name="TimelineAnimation" type="AnimationPlayer" parent="TimePanelBlank"]
-libraries = {
-"": SubResource("AnimationLibrary_08hvt")
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TimePanelBlank"]
-volume_db = -20.0
-pitch_scale = 0.5
-
-[node name="Year" type="Label" parent="TimePanelBlank"]
-visible = false
-offset_left = -78.0
-offset_top = 88.0
-offset_right = 85.0
-offset_bottom = 158.0
-theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_font_sizes/font_size = 48
-text = "2023
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Year2" type="Label" parent="TimePanelBlank"]
-offset_left = -78.0
-offset_top = 86.0
-offset_right = -42.0
-offset_bottom = 156.0
-theme = ExtResource("70_2ktfd")
-theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_font_sizes/font_size = 46
-text = "2"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Num1" type="Sprite2D" parent="TimePanelBlank/Year2"]
-show_behind_parent = true
-position = Vector2(18, 36)
-texture = ExtResource("19_bcm0u")
-
-[node name="Num2" type="Sprite2D" parent="TimePanelBlank/Year2"]
-show_behind_parent = true
-position = Vector2(58, 36)
-texture = ExtResource("19_bcm0u")
-
-[node name="Year7" type="Label" parent="TimePanelBlank"]
-offset_left = -38.0
-offset_top = 86.0
-offset_right = -2.0
-offset_bottom = 156.0
-theme = ExtResource("70_2ktfd")
-theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_font_sizes/font_size = 46
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Year3" type="Label" parent="TimePanelBlank"]
-offset_top = 86.0
-offset_right = 40.0
-offset_bottom = 156.0
-theme = ExtResource("70_2ktfd")
-theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_font_sizes/font_size = 46
-text = "2"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year3"]
-show_behind_parent = true
-position = Vector2(20, 36)
-texture = ExtResource("19_bcm0u")
-
-[node name="Year6" type="Label" parent="TimePanelBlank"]
-offset_top = 146.0
-offset_right = 40.0
-offset_bottom = 216.0
-theme = ExtResource("70_2ktfd")
-theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_font_sizes/font_size = 46
-text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year6"]
-show_behind_parent = true
-position = Vector2(20, 35)
-texture = ExtResource("19_bcm0u")
-
-[node name="Year4" type="Label" parent="TimePanelBlank"]
-offset_left = 40.0
-offset_top = 90.0
-offset_right = 80.0
-offset_bottom = 160.0
-theme = ExtResource("70_2ktfd")
-theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_font_sizes/font_size = 46
-text = "2"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year4"]
-show_behind_parent = true
-position = Vector2(20, 32)
-texture = ExtResource("19_bcm0u")
-
-[node name="Year5" type="Label" parent="TimePanelBlank"]
-offset_left = 40.0
-offset_top = 86.0
-offset_right = 80.0
-offset_bottom = 156.0
-theme = ExtResource("70_2ktfd")
-theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
-theme_override_font_sizes/font_size = 46
-text = "2"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year5"]
-show_behind_parent = true
-position = Vector2(20, 36)
-texture = ExtResource("19_bcm0u")
-
-[node name="HideNum" type="Sprite2D" parent="TimePanelBlank"]
-position = Vector2(41, 66.5)
-texture = SubResource("AtlasTexture_2dw2x")
-
-[node name="HideNum2" type="Sprite2D" parent="TimePanelBlank"]
-position = Vector2(41.5, 179.5)
-texture = SubResource("AtlasTexture_ou8cv")
-
-[node name="Shadow" type="Sprite2D" parent="TimePanelBlank"]
-modulate = Color(1, 1, 1, 0.780392)
-position = Vector2(4, 4)
-rotation = -2.21657
-texture = ExtResource("18_183xf")
-offset = Vector2(0, -40)
-
-[node name="Arrow" type="Sprite2D" parent="TimePanelBlank"]
-rotation = -2.18166
-texture = ExtResource("17_8ninl")
-offset = Vector2(0, -40)
-
-[node name="NextDecadeAP" type="AnimationPlayer" parent="TimePanelBlank"]
-libraries = {
-"": SubResource("AnimationLibrary_5dlvf")
-}
-
-[node name="TurnInfoContainer" type="MarginContainer" parent="TimePanelBlank"]
-visible = false
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -316.0
-offset_top = -239.0
-offset_right = -433.0
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(1.5, 1.5)
-
-[node name="NinePatchRect" type="NinePatchRect" parent="TimePanelBlank/TurnInfoContainer"]
-layout_mode = 2
-texture = ExtResource("36_vc5yj")
-patch_margin_left = 56
-patch_margin_top = 96
-patch_margin_right = 54
-patch_margin_bottom = 107
-
-[node name="MarginContainer" type="MarginContainer" parent="TimePanelBlank/TurnInfoContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 70
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TimePanelBlank/TurnInfoContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="CurrentTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme = ExtResource("70_2ktfd")
-theme_type_variation = &"Paper"
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 34
-text = "Turn"
-
-[node name="CTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -19.5
-offset_bottom = 19.5
-grow_horizontal = 0
-grow_vertical = 2
-theme = ExtResource("70_2ktfd")
-theme_type_variation = &"Paper"
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 34
-text = "N"
-
-[node name="RemainingTurns" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("70_2ktfd")
-theme_type_variation = &"Paper"
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 34
-text = "Remaining turns"
-autowrap_mode = 2
-
-[node name="RTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -19.5
-offset_bottom = 19.5
-grow_horizontal = 0
-grow_vertical = 2
-theme = ExtResource("70_2ktfd")
-theme_type_variation = &"Paper"
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 34
-text = "N"
-
-[node name="TurnInfo" type="Button" parent="TimePanelBlank"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -245.0
-offset_top = -247.5
-offset_right = -245.0
-offset_bottom = -247.5
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-mouse_default_cursor_shape = 2
-flat = true
 
 [node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(258, 558)
@@ -1634,6 +1394,7 @@ offset_bottom = -6.0
 size_flags_horizontal = 0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
 text = "Environment"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1721,6 +1482,7 @@ offset_bottom = -6.0
 size_flags_horizontal = 0
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
 text = "Pollution"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1898,7 +1660,7 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "  Budget:"
 vertical_alignment = 1
 
@@ -1911,7 +1673,7 @@ offset_bottom = 37.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0.701961, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -1925,7 +1687,7 @@ offset_bottom = 37.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0.701961, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -1936,7 +1698,6 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
 text = "The budget shows you how much money you have and can spend. You start the game with 500.- and at the beginning of each turn receive 300.-."
 vertical_alignment = 1
 autowrap_mode = 3
@@ -1946,7 +1707,7 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "  Production: "
 vertical_alignment = 1
 
@@ -1959,7 +1720,7 @@ offset_bottom = 35.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -1970,7 +1731,6 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
 text = "Some power plants have production costs because they need materials to run."
 vertical_alignment = 1
 autowrap_mode = 3
@@ -1980,7 +1740,7 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "  Building: "
 vertical_alignment = 1
 
@@ -1993,7 +1753,7 @@ offset_bottom = 36.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -2004,7 +1764,6 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
 text = "Indicates how much you have spent on building or upgrading power plants."
 vertical_alignment = 1
 autowrap_mode = 3
@@ -2014,7 +1773,7 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = " Import:"
 
 [node name="importamounts" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ImportName"]
@@ -2026,7 +1785,7 @@ offset_bottom = 33.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 
@@ -2036,7 +1795,6 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
 text = "Indicates how much you will be spending on imports. Clean imports cost N more."
 autowrap_mode = 3
 
@@ -2045,7 +1803,7 @@ visible = false
 layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = " Loan:"
 
 [node name="debtamount" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/Debt"]
@@ -2057,7 +1815,7 @@ offset_bottom = 33.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0.945098, 0, 0.0705882, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 
@@ -2070,7 +1828,7 @@ offset_bottom = 33.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0.0156863, 0.819608, 0.00392157, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 
@@ -2080,7 +1838,6 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 16
 text = "Indicated how much money you owe."
 autowrap_mode = 3
 
@@ -2089,7 +1846,7 @@ layout_mode = 2
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "Total"
 
 [node name="TotalNow" type="Label" parent="MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName"]
@@ -2101,7 +1858,7 @@ offset_bottom = 33.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 
@@ -2114,7 +1871,7 @@ offset_bottom = 33.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Paper"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "000"
 horizontal_alignment = 2
 
@@ -2239,6 +1996,262 @@ offset_right = 664.0
 offset_bottom = 22.0
 text = "2050"
 
+[node name="TimePanelBlank" type="Sprite2D" parent="."]
+position = Vector2(1790, 130)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_m0dc4")
+
+[node name="TimelineAnimation" type="AnimationPlayer" parent="TimePanelBlank"]
+libraries = {
+"": SubResource("AnimationLibrary_08hvt")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TimePanelBlank"]
+volume_db = -20.0
+pitch_scale = 0.5
+
+[node name="Year" type="Label" parent="TimePanelBlank"]
+visible = false
+offset_left = -78.0
+offset_top = 88.0
+offset_right = 85.0
+offset_bottom = 158.0
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 48
+text = "2022"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Year2" type="Label" parent="TimePanelBlank"]
+offset_left = -78.0
+offset_top = 86.0
+offset_right = -42.0
+offset_bottom = 156.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num1" type="Sprite2D" parent="TimePanelBlank/Year2"]
+show_behind_parent = true
+position = Vector2(18, 36)
+texture = ExtResource("19_bcm0u")
+
+[node name="Num2" type="Sprite2D" parent="TimePanelBlank/Year2"]
+show_behind_parent = true
+position = Vector2(58, 36)
+texture = ExtResource("19_bcm0u")
+
+[node name="Year7" type="Label" parent="TimePanelBlank"]
+offset_left = -38.0
+offset_top = 86.0
+offset_right = -2.0
+offset_bottom = 156.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Year3" type="Label" parent="TimePanelBlank"]
+offset_top = 86.0
+offset_right = 40.0
+offset_bottom = 156.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year3"]
+show_behind_parent = true
+position = Vector2(20, 36)
+texture = ExtResource("19_bcm0u")
+
+[node name="Year6" type="Label" parent="TimePanelBlank"]
+offset_top = 146.0
+offset_right = 40.0
+offset_bottom = 216.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year6"]
+show_behind_parent = true
+position = Vector2(20, 35)
+texture = ExtResource("19_bcm0u")
+
+[node name="Year4" type="Label" parent="TimePanelBlank"]
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 80.0
+offset_bottom = 160.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year4"]
+show_behind_parent = true
+position = Vector2(20, 35)
+texture = ExtResource("19_bcm0u")
+
+[node name="Year5" type="Label" parent="TimePanelBlank"]
+offset_left = 40.0
+offset_top = 86.0
+offset_right = 80.0
+offset_bottom = 156.0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(0.0390625, 0.160156, 0.171875, 1)
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year5"]
+show_behind_parent = true
+position = Vector2(20, 36)
+texture = ExtResource("19_bcm0u")
+
+[node name="HideNum" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(41, 66.5)
+texture = SubResource("AtlasTexture_2dw2x")
+
+[node name="HideNum2" type="Sprite2D" parent="TimePanelBlank"]
+position = Vector2(41.5, 179.5)
+texture = SubResource("AtlasTexture_ou8cv")
+
+[node name="Shadow" type="Sprite2D" parent="TimePanelBlank"]
+modulate = Color(1, 1, 1, 0.780392)
+position = Vector2(4, 4)
+rotation = -2.21657
+texture = ExtResource("18_183xf")
+offset = Vector2(0, -40)
+
+[node name="Arrow" type="Sprite2D" parent="TimePanelBlank"]
+rotation = -2.18166
+texture = ExtResource("17_8ninl")
+offset = Vector2(0, -40)
+
+[node name="NextDecadeAP" type="AnimationPlayer" parent="TimePanelBlank"]
+libraries = {
+"": SubResource("AnimationLibrary_5dlvf")
+}
+
+[node name="TurnInfoContainer" type="MarginContainer" parent="TimePanelBlank"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -316.0
+offset_top = -239.0
+offset_right = -433.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TimePanelBlank/TurnInfoContainer"]
+layout_mode = 2
+texture = ExtResource("36_vc5yj")
+patch_margin_left = 56
+patch_margin_top = 96
+patch_margin_right = 54
+patch_margin_bottom = 107
+
+[node name="MarginContainer" type="MarginContainer" parent="TimePanelBlank/TurnInfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 70
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TimePanelBlank/TurnInfoContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CurrentTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("70_2ktfd")
+theme_type_variation = &"Paper"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Turn"
+
+[node name="CTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -22.665
+offset_top = -19.5
+offset_right = 17.335
+offset_bottom = 19.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("70_2ktfd")
+theme_type_variation = &"Paper"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "N"
+horizontal_alignment = 2
+
+[node name="RemainingTurns" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("70_2ktfd")
+theme_type_variation = &"Paper"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Remaining turns"
+autowrap_mode = 2
+
+[node name="RTurn" type="Label" parent="TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/RemainingTurns"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -22.665
+offset_top = -19.5
+offset_right = 17.335
+offset_bottom = 19.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("70_2ktfd")
+theme_type_variation = &"Paper"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "N"
+horizontal_alignment = 2
+
+[node name="TurnInfo" type="Button" parent="TimePanelBlank"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -245.0
+offset_top = -247.5
+offset_right = -245.0
+offset_bottom = -247.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
 [node name="Shock" parent="." instance=ExtResource("5_tj765")]
 visible = false
 
@@ -2255,9 +2268,9 @@ color = Color(1, 1, 1, 0)
 
 [node name="BorrowMoney" type="TextureButton" parent="."]
 offset_left = 265.0
-offset_top = 199.5
+offset_top = 198.5
 offset_right = 296.0
-offset_bottom = 231.5
+offset_bottom = 230.5
 texture_normal = ExtResource("44_5a58h")
 texture_pressed = ExtResource("45_nhcbq")
 texture_hover = ExtResource("46_mga3n")

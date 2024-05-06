@@ -151,6 +151,7 @@ public partial class PowerPlant : Node2D {
 	private Label LandL;
 	private Label BioL;
 	private Label LifeSpan;
+	private Label LifeSpanL;
 	private Label LifeSpanWarning;
 	private Label MultProd;
 	private Label MultPoll;
@@ -161,6 +162,7 @@ public partial class PowerPlant : Node2D {
 	private Label MultSummerE;
 	private Sprite2D NoMoneySprite;
 	private Label NoMoney;
+	private Sprite2D LEDOn;
 	
 	public AnimationPlayer AP;
 	private Label AnimMoney;
@@ -238,6 +240,7 @@ public partial class PowerPlant : Node2D {
 		BioN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Bio");
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/LifeSpan");
+		LifeSpanL = GetNode<Label>("BuildInfo/ColorRect/LifeSpan/LifeSpanL");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 		AP = GetNode<AnimationPlayer>("AP");
 		AnimMoney = GetNode<Label>("Money");
@@ -250,6 +253,7 @@ public partial class PowerPlant : Node2D {
 		MultSummerE = GetNode<Label>("BuildInfo/MultSummerE");
 		NoMoneySprite = GetNode<Sprite2D>("NoMoneySprite");
 		NoMoney = GetNode<Label>("NoMoney");
+		LEDOn = GetNode<Sprite2D>("BuildInfo/Switch/LEDOn");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -705,6 +709,7 @@ public partial class PowerPlant : Node2D {
 		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
 		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
 		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
+		LifeSpanL.Text = TC._GetText("labels.xml", "ui", "nuclear_shutdown");
 	}
 
 	// Updates the UI to match the internal state of the plant
@@ -737,6 +742,7 @@ public partial class PowerPlant : Node2D {
 		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
 		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
 		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
+		LifeSpanL.Text = TC._GetText("labels.xml", "ui", "nuclear_shutdown");
 		
 		// Update label colors to represent levels
 		if (BiodiversityImpact < 0) {
@@ -888,9 +894,11 @@ public partial class PowerPlant : Node2D {
 		if(IsAlive) {
 			// If the plant is currently alive, then kill it
 			KillPowerPlant();
+			LEDOn.Hide();
 		} else {
 			// If the plant is currently dead, then activate it
 			ActivatePowerPlant();
+			LEDOn.Show();
 		}
 
 		// Update the UI

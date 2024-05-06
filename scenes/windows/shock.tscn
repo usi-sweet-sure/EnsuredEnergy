@@ -1,10 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://885lty3v1qbq"]
+[gd_scene load_steps=18 format=3 uid="uid://885lty3v1qbq"]
 
 [ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
-[ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="2_i1jhu"]
-[ext_resource type="Texture2D" uid="uid://bbnrrcffpjcdk" path="res://assets/Elements/INFO MONEY.png" id="2_qaski"]
+[ext_resource type="Texture2D" uid="uid://burmdec041k3k" path="res://assets/UI Elements/Shocks-Metal.png" id="2_37dlb"]
 [ext_resource type="Texture2D" uid="uid://dddi6bd53d7t" path="res://assets/Icons/ice.png" id="3_fweec"]
+[ext_resource type="Texture2D" uid="uid://djviaoys4utb" path="res://assets/UI Elements/Shocks-Screen.png" id="3_jcd22"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="4_gcg7v"]
+[ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="5_0qiv1"]
+[ext_resource type="Texture2D" uid="uid://d1or1v15j7r7u" path="res://assets/UI Elements/Shocks-Button-Hole.png" id="6_021ab"]
+[ext_resource type="Texture2D" uid="uid://bukhhwmu7717r" path="res://assets/UI Elements/Shocks-Button-normal.png" id="7_st5u1"]
+[ext_resource type="Texture2D" uid="uid://dqu1ja5c2h00" path="res://assets/UI Elements/Shocks-Button-press.png" id="8_7oeqa"]
+[ext_resource type="Texture2D" uid="uid://bamjrehqkvnrd" path="res://assets/UI Elements/Shocks-Button-hover.png" id="9_kf34e"]
+[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="10_hydvu"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="11_are4j"]
+[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="12_hwdxm"]
 
 [sub_resource type="Theme" id="Theme_jkqh0"]
 
@@ -22,18 +30,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NinePatchRect:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_0i7qt"]
 resource_name = "popUp"
@@ -49,18 +45,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NinePatchRect:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wm02j"]
@@ -80,93 +64,83 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -268.0
-offset_top = -188.0
-offset_right = 268.0
-offset_bottom = 188.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
-pivot_offset = Vector2(268, 188)
-texture = ExtResource("2_qaski")
-region_rect = Rect2(26, 26, 298, 220)
-patch_margin_left = 22
-patch_margin_top = 22
-patch_margin_right = 22
-patch_margin_bottom = 18
+[node name="NinePatchRect" type="Sprite2D" parent="."]
+position = Vector2(920, 584)
+texture = ExtResource("2_37dlb")
 
 [node name="ColorRect" type="ColorRect" parent="NinePatchRect"]
-layout_mode = 1
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -164.0
-offset_right = 243.0
-offset_bottom = 164.0
+offset_left = -653.0
+offset_top = -448.5
+offset_right = -166.0
+offset_bottom = -120.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_jkqh0")
 color = Color(0.597656, 0.597656, 0.597656, 1)
 
+[node name="Shocks-screen" type="Sprite2D" parent="NinePatchRect/ColorRect"]
+position = Vector2(248, 40)
+texture = ExtResource("3_jcd22")
+
 [node name="Img" type="Sprite2D" parent="NinePatchRect/ColorRect"]
-position = Vector2(89, 117)
+visible = false
+position = Vector2(-13, 47)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_fweec")
 
 [node name="Title" type="Label" parent="NinePatchRect/ColorRect"]
 layout_mode = 1
-offset_left = 30.0
-offset_top = -6.0
-offset_right = 204.0
-offset_bottom = 58.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
+offset_left = 80.0
+offset_top = -72.0
+offset_right = 416.0
+offset_bottom = -34.0
+theme = ExtResource("5_0qiv1")
+theme_type_variation = &"Screen"
 text = "Cold Spell"
-vertical_alignment = 1
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Text" type="Label" parent="NinePatchRect/ColorRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -59.5
-offset_top = 59.0
-offset_right = 228.5
-offset_bottom = 189.0
+offset_left = -155.5
+offset_right = 164.5
+offset_bottom = 144.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme = ExtResource("5_0qiv1")
+theme_type_variation = &"Screen"
+theme_override_font_sizes/font_size = 22
 text = "The past few winters have been colder than usual, increasing the energy demand in winter by 
 50 ⚡."
-vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Reward" type="Label" parent="NinePatchRect/ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -187.5
-offset_top = 44.0
-offset_right = 188.5
-offset_bottom = 151.0
+offset_left = -155.5
+offset_top = -84.0
+offset_right = 169.5
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("5_0qiv1")
+theme_type_variation = &"Screen"
 text = "+ 50 Money"
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="Result" type="Label" parent="NinePatchRect/ColorRect"]
@@ -187,15 +161,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "..."
 autowrap_mode = 3
 
-[node name="EnergyBar" parent="NinePatchRect/ColorRect/Result" instance=ExtResource("2_i1jhu")]
-layout_mode = 0
-offset_left = 136.0
-offset_top = 48.0
-offset_right = 272.0
-offset_bottom = 74.0
-
 [node name="Reactions" type="Control" parent="NinePatchRect/ColorRect"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -206,73 +172,154 @@ offset_right = -80.0
 offset_bottom = 109.0
 grow_horizontal = 2
 
-[node name="Button" type="Button" parent="NinePatchRect/ColorRect/Reactions"]
+[node name="Shocks-button-hole" type="Sprite2D" parent="NinePatchRect/ColorRect/Reactions"]
+position = Vector2(124.5, 211)
+texture = ExtResource("6_021ab")
+
+[node name="Button" type="TextureButton" parent="NinePatchRect/ColorRect/Reactions"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -87.0
-offset_top = 82.0
-offset_right = 293.0
-offset_bottom = 130.0
+offset_left = -70.5
+offset_top = 69.0
+offset_right = 309.5
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 14
-text = "Ask the population to lower their energy consumption.
-- 50 Support 😡"
+texture_normal = ExtResource("7_st5u1")
+texture_pressed = ExtResource("8_7oeqa")
+texture_hover = ExtResource("9_kf34e")
 
-[node name="Button2" type="Button" parent="NinePatchRect/ColorRect/Reactions"]
+[node name="Label" type="Label" parent="NinePatchRect/ColorRect/Reactions/Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.182
+anchor_right = 0.903
+anchor_bottom = 0.805
+offset_left = -4.82
+offset_top = -0.0140009
+offset_right = -0.140015
+offset_bottom = 0.0149956
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_0qiv1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "frehuswilgruvhbiswedfgaq"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button2" type="TextureButton" parent="NinePatchRect/ColorRect/Reactions"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -87.0
-offset_top = 134.0
-offset_right = 293.0
-offset_bottom = 182.0
+offset_left = -71.5
+offset_top = 136.0
+offset_right = 308.5
+offset_bottom = 213.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 14
-text = "Turn on the spare coal plant.
-- 50 Environment 🏭"
+texture_normal = ExtResource("7_st5u1")
+texture_pressed = ExtResource("8_7oeqa")
+texture_hover = ExtResource("9_kf34e")
 
-[node name="Button3" type="Button" parent="NinePatchRect/ColorRect/Reactions"]
+[node name="Label" type="Label" parent="NinePatchRect/ColorRect/Reactions/Button2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.143
+anchor_right = 0.895
+anchor_bottom = 0.753
+offset_left = -0.0200005
+offset_top = -0.0110006
+offset_right = -0.100006
+offset_bottom = 0.0189972
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_0qiv1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button3" type="TextureButton" parent="NinePatchRect/ColorRect/Reactions"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -87.0
-offset_top = 186.0
-offset_right = 293.0
-offset_bottom = 234.0
+offset_left = -71.5
+offset_top = 204.0
+offset_right = 308.5
+offset_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 14
-text = "Import electricity from neighbouring countries.
-- 50 💰"
+texture_normal = ExtResource("7_st5u1")
+texture_pressed = ExtResource("8_7oeqa")
+texture_hover = ExtResource("9_kf34e")
 
-[node name="Continue" type="Button" parent="NinePatchRect/ColorRect"]
+[node name="Label" type="Label" parent="NinePatchRect/ColorRect/Reactions/Button3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = -39.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_0qiv1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Continue" type="TextureButton" parent="NinePatchRect/ColorRect"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -79.0
-offset_top = -31.0
+offset_left = -331.0
+offset_top = -88.0
+offset_right = -138.0
+offset_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2
+texture_normal = ExtResource("10_hydvu")
+texture_pressed = ExtResource("11_are4j")
+texture_hover = ExtResource("12_hwdxm")
+
+[node name="Label" type="Label" parent="NinePatchRect/ColorRect/Continue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_0qiv1")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="ShockController" type="Node" parent="."]
 script = ExtResource("4_gcg7v")
@@ -281,5 +328,3 @@ script = ExtResource("4_gcg7v")
 libraries = {
 "": SubResource("AnimationLibrary_wm02j")
 }
-
-[editable path="NinePatchRect/ColorRect/Result/EnergyBar"]

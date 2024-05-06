@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=44 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://b60o54o5riav8" path="res://assets/UI Elements/Build_Menu_0005_Build-Menu-Metal.png" id="2_ambcb"]
@@ -26,6 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="19_pbahr"]
 [ext_resource type="Texture2D" uid="uid://bjeebs7uy4hpn" path="res://assets/UI Elements/Button-small-Hole.png" id="20_6s7vn"]
 [ext_resource type="Texture2D" uid="uid://bi5hfr0hha1w0" path="res://assets/UI Elements/Post-it-red.png" id="21_baxyr"]
+[ext_resource type="Texture2D" uid="uid://cy2dqdgln1uij" path="res://assets/UI Elements/LED-Off.png" id="21_owd4v"]
+[ext_resource type="Texture2D" uid="uid://bdifhvhbdals5" path="res://assets/UI Elements/LED-On.png" id="22_0ieop"]
 
 [sub_resource type="FontVariation" id="FontVariation_ji1at"]
 base_font = ExtResource("15_6udtn")
@@ -447,32 +449,31 @@ color = Color(0.596078, 0.596078, 0.596078, 0)
 [node name="LifeSpan" type="Label" parent="BuildInfo/ColorRect"]
 visible = false
 layout_mode = 2
-offset_left = -37.0
-offset_top = 370.0
-offset_right = 405.0
-offset_bottom = 418.0
+offset_left = 21.0
+offset_top = 371.0
+offset_right = 348.0
+offset_bottom = 419.0
 theme = ExtResource("11_iy3hd")
 theme_override_colors/font_color = Color(0.698039, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "333"
 horizontal_alignment = 2
 
 [node name="LifeSpanL" type="Label" parent="BuildInfo/ColorRect/LifeSpan"]
 layout_mode = 2
 offset_left = 53.0
-offset_top = -2.0
 offset_right = 362.0
-offset_bottom = 47.0
+offset_bottom = 49.0
 theme = ExtResource("11_iy3hd")
 theme_override_colors/font_color = Color(0.698039, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 33
+theme_override_font_sizes/font_size = 24
 text = "⚠️ Shutting down in"
 
 [node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
 layout_mode = 0
-offset_left = -24.0
+offset_left = -70.0
 offset_top = -42.0
-offset_right = 222.0
+offset_right = 190.0
 offset_bottom = 208.0
 theme_override_constants/separation = 0
 alignment = 2
@@ -481,7 +482,8 @@ alignment = 2
 layout_mode = 2
 theme = ExtResource("11_iy3hd")
 theme_type_variation = &"Screen"
-theme_override_colors/font_shadow_color = Color(1, 0.929412, 0.72549, 0.517647)
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
 theme_override_font_sizes/font_size = 50
 text = "$ / ⌛"
 
@@ -489,7 +491,9 @@ text = "$ / ⌛"
 layout_mode = 2
 theme = ExtResource("11_iy3hd")
 theme_type_variation = &"Screen"
-theme_override_colors/font_shadow_color = Color(1, 0.929412, 0.72549, 0.517647)
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 50
 text = "CO2 Emissions"
 
@@ -497,7 +501,9 @@ text = "CO2 Emissions"
 layout_mode = 2
 theme = ExtResource("11_iy3hd")
 theme_type_variation = &"Screen"
-theme_override_colors/font_shadow_color = Color(1, 0.929412, 0.72549, 0.517647)
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 50
 text = "Land Use"
 
@@ -505,7 +511,9 @@ text = "Land Use"
 layout_mode = 2
 theme = ExtResource("11_iy3hd")
 theme_type_variation = &"Screen"
-theme_override_colors/font_shadow_color = Color(1, 0.929412, 0.72549, 0.517647)
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 50
 text = "Biodiversity"
 
@@ -993,6 +1001,14 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 11
 text = "OFF"
 uppercase = true
+
+[node name="LEDOff" type="Sprite2D" parent="BuildInfo/Switch"]
+position = Vector2(24.5, 74)
+texture = ExtResource("21_owd4v")
+
+[node name="LEDOn" type="Sprite2D" parent="BuildInfo/Switch"]
+position = Vector2(24.5, 74)
+texture = ExtResource("22_0ieop")
 
 [node name="NameRect" type="ColorRect" parent="."]
 z_index = 1

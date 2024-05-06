@@ -2662,11 +2662,12 @@ texture = ExtResource("10_ueb8a")
 [node name="Cancel" type="Button" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 494.0
-offset_top = 46.0
-offset_right = 527.0
-offset_bottom = 77.0
+offset_left = 521.0
+offset_top = -24.0
+offset_right = 577.0
+offset_bottom = 32.0
 theme = SubResource("Theme_6inie")
+theme_override_font_sizes/font_size = 25
 text = "X"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -2683,10 +2684,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = 68.0
-offset_right = 217.0
-offset_bottom = 157.0
+offset_left = -286.0
+offset_top = -132.5
+offset_right = -126.0
+offset_bottom = -43.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)

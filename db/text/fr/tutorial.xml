@@ -2,15 +2,12 @@
 	<group id="tutorial_text">
 		<text id="0">Félicitations ! 
 Tu as été désigné pour [b]gérer le réseau énergétique[/b] afin de garantir un secteur durable et résilient pour les 30 prochaines années (10 tours).</text>
-		<text id="1">Tu peux choisir à quoi le futur système énergétique ressemblera, 
-mais tu dois toujours [b]couvrir la demande d'énergie[/b].</text>
+		<text id="1">Tu peux choisir à quoi le futur système énergétique ressemblera, mais tu dois toujours [b]couvrir la demande d'énergie[/b].</text>
 			<!-- <text id="1">Tu peux choisir à quoi le futur système énergétique ressemblera, 
 				mais la Suisse s'est engagée à être ne plus émettre de CO2 d'ici 2050.
 				Une majorité d'élécteurs a approuvé cet objectif lors d'un référendum.</text>-->
-		<text id="2">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population.
-Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.</text>
-		<text id="3">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population.
-Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.</text>
+		<text id="2">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population. Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.</text>
+		<text id="3">Tu dois [b]fournir[/b] suffisamment d'[b]énergie[/b] pour toute la population. Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vidéo préférés.</text>
 		<text id="4">Il existe différentes façons d'approvisionner plus d'énergie :
 
 - Tu peux importer de l'énergie, mais cela pollue et peut être coûteux.</text>
@@ -20,11 +17,10 @@ Les gens ont besoin de charger leurs téléphones et de jouer à leurs jeux vid�
 <text id="6">Il existe différentes façons d'approvisionner plus d'énergie :
 
 	- Tu peux améliorer les centrales existantes</text>
-	<text id="7">Tu peux également organiser des campagnes d'information ou tenter de mettre en oeuvre différentes politiques 
-	visant à réduire la demande d'énergie ou à faciliter la construction de centrales électriques.</text>
+	<text id="7">Tu peux également organiser des campagnes d'information ou tenter de mettre en oeuvre différentes politiques visant à réduire la demande d'énergie ou à faciliter la construction de centrales électriques.</text>
 	</group>
 	<group id="info_bubble">
-		<text id="0">Chaque tour, tu dois atteindre la demande pour l'hiver ❄️ et l'été 🔆.</text>
+		<text id="0">Chaque tour, tu dois atteindre la demande pour l'hiver ❄️ et l'été 🔆</text>
 		<text id="1">Voici la barre d'importation</text>
 		<text id="2">Le bouton de construction</text>
 		<text id="3">Améliorer les centrales existantes</text>

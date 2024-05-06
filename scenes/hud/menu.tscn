@@ -56,8 +56,6 @@ offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_l0e0n")
-theme_override_colors/font_color = Color(0.992157, 0.811765, 0.152941, 1)
-theme_override_colors/font_shadow_color = Color(0.341176, 0.254902, 0, 0.670588)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 5
@@ -193,22 +191,24 @@ frame_progress = 0.665593
 
 [node name="Drag" type="Label" parent="BlueprintNormal"]
 offset_left = -220.0
-offset_top = -104.0
+offset_top = -112.0
 offset_right = -80.0
-offset_bottom = -16.0
+offset_bottom = -24.0
 theme = ExtResource("3_l0e0n")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 4
 text = "Hold & drag to move"
 autowrap_mode = 3
 uppercase = true
 
 [node name="Scroll" type="Label" parent="BlueprintNormal"]
 offset_left = -220.0
-offset_top = 59.0
+offset_top = 42.0
 offset_right = -80.0
-offset_bottom = 152.0
+offset_bottom = 135.0
 theme = ExtResource("3_l0e0n")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 4
 text = "Scroll to zoom"
 autowrap_mode = 3
 uppercase = true

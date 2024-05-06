@@ -118,6 +118,7 @@ public partial class UI : CanvasLayer {
 	private Label Debt;
 	private Label DebtAmount;
 	private Label BorrowL;
+	private float LastDiff;
 	
 	// Money info nodes
 	private Label BudgetInfo;
@@ -645,7 +646,7 @@ public partial class UI : CanvasLayer {
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
-				//SetTargetImport();
+				SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -757,19 +758,21 @@ public partial class UI : CanvasLayer {
 	// ==================== Internal Helpers ====================
 
 	// Sets the required imports based on the demand
-//	private void SetTargetImport() {
-//		// Fetch the demand and supply
-//		float demand  = C._GetDemand().Item1;
-//		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
-//
-//		// Compute the different, clamped to 0 as no imports are required
-//		// when the supply meets the demand
-//		float imported = Imports._GetImportValue();
-//		float diff = Math.Max(0.0f, demand + imported - supply); 
-//
-//		// Set the import target to that percentage
-//		Imports._UpdateTargetImport(diff);
-//	}
+	private void SetTargetImport() {
+		// Fetch the demand and supply
+		float demand  = C._GetDemand().Item1;
+		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
+
+		// Compute the different, clamped to 0 as no imports are required
+		// when the supply meets the demand
+		float imported = Imports._GetImportValue();
+		float diff = Math.Max(0.0f, demand + imported - supply);
+		// Set the import target to that percentage
+		if(diff != LastDiff) {
+			LastDiff = diff;
+			Imports._UpdateTargetImport(diff);
+		}
+	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
@@ -982,7 +985,7 @@ public partial class UI : CanvasLayer {
 		EmitSignal(SignalName.NextTurn);
 
 		// Update the required import target (only in winter due to conservative estimates)
-		//SetTargetImport();
+		SetTargetImport();
 		
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 
