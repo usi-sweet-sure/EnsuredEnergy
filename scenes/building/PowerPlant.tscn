@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=43 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://b60o54o5riav8" path="res://assets/UI Elements/Build_Menu_0005_Build-Menu-Metal.png" id="2_ambcb"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://d0mx81kv2vlha" path="res://assets/Sounds/Negative 2_1.wav" id="6_5wr63"]
 [ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="6_qkc2p"]
 [ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="7_fjg03"]
-[ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="8_a13i5"]
 [ext_resource type="Texture2D" uid="uid://dnpo4r8q4rf5q" path="res://assets/UI Elements/Plant_Menu-Metal.png" id="9_08ajv"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="11_iy3hd"]
 [ext_resource type="Texture2D" uid="uid://dwys7y27kiabl" path="res://assets/UI Elements/Import-Switch-On.png" id="11_o2k5p"]
@@ -51,14 +50,12 @@ atlas = ExtResource("2_nry78")
 region = Rect2(58, 262, 162, 46)
 
 [sub_resource type="FontVariation" id="FontVariation_nky5f"]
-base_font = ExtResource("8_a13i5")
 
 [sub_resource type="FontVariation" id="FontVariation_uwmcg"]
 base_font = SubResource("FontVariation_nky5f")
 spacing_glyph = 6
 
 [sub_resource type="FontVariation" id="FontVariation_r1iqv"]
-base_font = ExtResource("8_a13i5")
 spacing_glyph = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hky5x"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://jj476u8yn2g8"]
+[gd_scene load_steps=29 format=3 uid="uid://jj476u8yn2g8"]
 
 [ext_resource type="Script" path="res://src/cs/windows/PolicyWindow.cs" id="1_is3ep"]
 [ext_resource type="Texture2D" uid="uid://clbiqmgbfxn1r" path="res://assets/UI Elements/Policies-middle.png" id="2_5macm"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="10_oxitu"]
 [ext_resource type="Texture2D" uid="uid://y6or6vfnua40" path="res://assets/UI Elements/Policies_Metal-cover.png" id="11_4fuh8"]
 [ext_resource type="Texture2D" uid="uid://q0302v26c3j6" path="res://assets/UI Elements/Policies-left&right.png" id="12_cagmv"]
-[ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="12_pqndw"]
 [ext_resource type="Texture2D" uid="uid://ib8vmuvdtmtt" path="res://assets/UI Elements/Policies-Button-green-Normal.png" id="14_noxck"]
 [ext_resource type="Texture2D" uid="uid://b0tnnwt624fhu" path="res://assets/UI Elements/Policies-Button-green-Press.png" id="15_whec6"]
 [ext_resource type="Texture2D" uid="uid://ir1mqepln7p7" path="res://assets/UI Elements/Policies-Button-green-Hover.png" id="16_scuxu"]
@@ -31,7 +30,6 @@ bg_color = Color(0.196078, 0.545098, 0.968627, 0.792157)
 [sub_resource type="Theme" id="Theme_6bviu"]
 
 [sub_resource type="FontVariation" id="FontVariation_epad3"]
-base_font = ExtResource("12_pqndw")
 
 [sub_resource type="Animation" id="Animation_wviye"]
 length = 0.001
@@ -264,6 +262,7 @@ scale = Vector2(1.47857, 1.35714)
 texture = ExtResource("3_34k6p")
 
 [node name="Length" type="Label" parent="Control/Policies-base-2/Vote"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -283,6 +282,7 @@ text = "1"
 horizontal_alignment = 2
 
 [node name="CampaignL" type="Label" parent="Control/Policies-base-2/Vote"]
+visible = false
 layout_mode = 0
 offset_left = -19.0
 offset_top = -167.5

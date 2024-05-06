@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=123 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/Profil-metal.png" id="1_ooswe"]
 [ext_resource type="Texture2D" uid="uid://c3e2r6qjw4kti" path="res://assets/Gameplay_UI_Reference-03.jpg" id="1_rcpup"]
@@ -49,7 +49,6 @@
 [ext_resource type="Texture2D" uid="uid://bttco1oeukpbq" path="res://assets/UI Elements/Environment-Bar.png" id="38_jqypa"]
 [ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/Button-Hole.png" id="39_jsaox"]
 [ext_resource type="Texture2D" uid="uid://bfa7b1e5e7hxc" path="res://assets/CANCEL ICON.png" id="40_h6a6a"]
-[ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="40_knfjx"]
 [ext_resource type="Texture2D" uid="uid://b34opid7c6qf6" path="res://assets/UI Elements/Pollution-Bar.png" id="41_ctrnv"]
 [ext_resource type="Texture2D" uid="uid://dcbjy5kxo2vbm" path="res://assets/Elements/INFO ICON.png" id="42_v8iq7"]
 [ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
@@ -249,7 +248,6 @@ atlas = ExtResource("6_ivien")
 region = Rect2(48, 49, 43, 44)
 
 [sub_resource type="FontVariation" id="FontVariation_4ww80"]
-base_font = ExtResource("40_knfjx")
 variation_embolden = 0.2
 
 [sub_resource type="FontVariation" id="FontVariation_15ni2"]
@@ -1533,17 +1531,19 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = 3.0
-offset_top = -16.0
+offset_top = -21.0
 offset_right = 43.0
-offset_bottom = 10.0
+offset_bottom = 5.0
 grow_horizontal = 0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("FontVariation_4ww80")
 text = "1"
 
 [node name="CancelIcon" type="Sprite2D" parent="PolicyButton/Notif"]
 self_modulate = Color(1, 0, 0, 1)
 show_behind_parent = true
-position = Vector2(5, 7)
+position = Vector2(5, 12)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("40_h6a6a")
 

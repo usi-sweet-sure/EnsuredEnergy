@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cej4dlw11su6f"]
+[gd_scene load_steps=6 format=3 uid="uid://cej4dlw11su6f"]
 
 [ext_resource type="Script" path="res://src/cs/ui/End.cs" id="1_dvce5"]
-[ext_resource type="FontFile" uid="uid://dgb2xwp51s2cc" path="res://assets/Fonts/HeavyEquipment.otf" id="1_rfnjf"]
 [ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="3_8mcym"]
 [ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="4_e0pjh"]
 [ext_resource type="Texture2D" uid="uid://sob7pstxhrp" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="5_pyjgd"]
@@ -35,7 +34,6 @@ offset_right = 10.0
 offset_bottom = -747.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 122
 text = "Well Done !
 "
@@ -57,7 +55,6 @@ offset_bottom = -38.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 100
 text = "You ensured enough energy 
 for 30 years
@@ -87,7 +84,6 @@ alignment = 1
 visible = false
 custom_minimum_size = Vector2(290, 250)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "Resisted shocks
 
@@ -111,7 +107,6 @@ color = Color(1, 0.305882, 0.176471, 1)
 [node name="Energy" type="Label" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "Final Energy Supply
 &
@@ -135,7 +130,6 @@ color = Color(1, 0.470588, 0.180392, 1)
 [node name="Import" type="Label" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "You imported %
 "
@@ -158,7 +152,6 @@ color = Color(0.921569, 0.407843, 0.909804, 1)
 [node name="Money" type="Label" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "You avoided an economic crisis
 "
@@ -181,7 +174,6 @@ color = Color(0.827451, 0.819608, 0.0313726, 1)
 [node name="Support" type="Label" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "Final 
 Support
@@ -206,7 +198,6 @@ color = Color(0.466667, 0.607843, 0.917647, 1)
 [node name="Poll" type="Label" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "You (did not) reached net zero by 2050
 "
@@ -229,7 +220,6 @@ color = Color(0.501961, 0.501961, 0.501961, 1)
 [node name="Env" type="Label" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 46
 text = "Environmental Score
 
@@ -276,7 +266,6 @@ offset_right = -761.0
 offset_bottom = 408.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 80
 text = "N
 "
@@ -297,7 +286,6 @@ offset_right = -617.0
 offset_bottom = 439.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 57
 text = "700
 "
@@ -318,7 +306,6 @@ offset_right = -768.0
 offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 57
 text = "900
 "
@@ -338,7 +325,6 @@ offset_right = 228.0
 offset_bottom = 461.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 80
 text = "60%
 "
@@ -359,7 +345,6 @@ offset_right = 835.0
 offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_rfnjf")
 theme_override_font_sizes/font_size = 80
 text = "50%
 "

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c81iji81uc4g7"]
+[gd_scene load_steps=18 format=3 uid="uid://c81iji81uc4g7"]
 
 [ext_resource type="Script" path="res://src/cs/ui/ImportSlider.cs" id="1_3r6om"]
 [ext_resource type="Texture2D" uid="uid://dm24o8isvyq3f" path="res://assets/UI Elements/Import-Slider.png" id="1_wlgbb"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://br8x77xbqv6ru" path="res://assets/UI Elements/Button-arrow-normal.png" id="10_2eakc"]
 [ext_resource type="Texture2D" uid="uid://dn55t3gtpb3f8" path="res://assets/UI Elements/Button-arrow-press.png" id="11_yk6ot"]
 [ext_resource type="Texture2D" uid="uid://d2tmcpmc7mb3o" path="res://assets/UI Elements/Button-arrow-hover.png" id="12_d2wnx"]
-[ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="13_fjyei"]
 [ext_resource type="Texture2D" uid="uid://cy2dqdgln1uij" path="res://assets/UI Elements/LED-Off.png" id="14_buq8p"]
 [ext_resource type="Texture2D" uid="uid://bdifhvhbdals5" path="res://assets/UI Elements/LED-On.png" id="15_exvbt"]
 
@@ -23,7 +22,6 @@ region = Rect2(2, 1, 37, 50)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03nlt"]
 
 [sub_resource type="FontVariation" id="FontVariation_afv1h"]
-base_font = ExtResource("13_fjyei")
 spacing_glyph = 1
 
 [node name="Import" type="VSlider"]
