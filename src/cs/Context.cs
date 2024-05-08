@@ -64,8 +64,8 @@ public partial class Context : Node {
     private Model MSummer;
     private Model MWinter;
 
-    // To estimate the demand
-    private (float, float) DemandEstimate; // (DemandWinter, DemandSummer)
+	// To estimate the demand
+	public (float, float) DemandEstimate; // (DemandWinter, DemandSummer)
 
     // Dictionary to link power plant type to the number of plants
     private Dictionary<Building.Type, int> PPStats; 

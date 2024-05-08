@@ -269,6 +269,7 @@ public partial class GameLoop : Node2D {
 			case ResourceType.ENVIRONMENT:
 			case ResourceType.SUPPORT:
 				RM._ApplyEffect(e);
+				UpdateResources();
 			break;
 
 			// The other types must be handled separately
