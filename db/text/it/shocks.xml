@@ -282,7 +282,7 @@
             <effect field="money" value="0"/>
         </reward>
     </shock>
-<!--
+    
     <shock id="nuc_reintro" tag="env">
         <name>Reintroduzione dell'energia nucleare</name>
         <img>vote</img>
@@ -290,15 +290,11 @@
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
             <text>Sì alla reintroduzione dell'energia nucleare.</text>
-            <effect field="support" value="-50"/>
+            <effect field="support" value="0"/>
         </reaction>
         <reaction id="1">
-            <text>Sì, per prolungare la durata di vita delle centrali elettriche ancora attive.</text>
-            <effect field="env" value="-50"/>
-        </reaction>
-        <reaction id="2">
             <text>No, è ora di abbandonare il nucleare.</text>
-            <effect field="money" value="-50"/>
+            <effect field="env" value="0"/>
         </reaction>
         <reward>
             <text>If you can read this, there is a problem.</text>
@@ -306,7 +302,7 @@
             <effect field="money" value="50"/>
         </reward>
     </shock>
--->
+
 <!--
     <shock id="remote_jobs" tag="env">
         <name>Remote Jobs</name>

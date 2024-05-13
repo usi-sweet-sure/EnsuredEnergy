@@ -160,6 +160,9 @@ public partial class GameLoop : Node2D {
 				pp.UpgradePlant += _OnUpgradePlant;
 				pp._SetUpgradeConnectFlag(true);
 			}
+
+			// Make sure that nuclear plants can be reactivated
+			ShockWindow.ReintroduceNuclear += pp._OnReintroduceNuclear;
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
@@ -340,15 +343,18 @@ public partial class GameLoop : Node2D {
 	private int GetTurn() => N_TURNS - RemainingTurns;
 
 	// Triggers the selection and display of a new shock
-	private void DisplayShock() {
+	private bool DisplayShock() {
 		// Retrieve the resources
 		(Energy E, Environment Env, Support Sup) = RM._GetResources();
 
 		// Select a new shock
-		ShockWindow._SelectNewShock(Money, E, Env, Sup);
+		if(!ShockWindow._SelectNewShock(Money, E, Env, Sup)) {
+			return false;
+		}
 
 		// Show the shock
 		ShockWindow._Show(Money, E, Env, Sup);
+		return true;
 	}
 
 	// ==================== Main Game Loop Methods ====================  
@@ -638,7 +644,15 @@ public partial class GameLoop : Node2D {
 		PM._NextTurn();
 		
 		// Display a shock
-		DisplayShock();
+		// If no shock was selected go to the next turn
+		if(!DisplayShock()) {
+			// Check wether or not offline mode is active
+			if(C._GetOffline()) {
+				NewTurnOffline();
+			} else {
+				NewTurn();
+			}
+		}
 	}
 
 	// Reacts to a context update
