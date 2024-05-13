@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://ci6ene0gm5o8m"
+path="res://.godot/imported/Power_Plants_4-Free-Slot_clickmask.png-75edc19cd59b69008785422e05b55fa6.res"
+
+[deps]
+
+source_file="res://assets/new Power plants/Power plants/Power_Plants_4-Free-Slot_clickmask.png"
+dest_files=["res://.godot/imported/Power_Plants_4-Free-Slot_clickmask.png-75edc19cd59b69008785422e05b55fa6.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

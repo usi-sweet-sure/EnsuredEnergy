@@ -1,8 +1,9 @@
-[gd_scene load_steps=77 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=78 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://cscbpxipqlaqj" path="res://assets/new Power plants/Power plants/Power_Plants_4-Free-Slot.png" id="1_h0npr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
 [ext_resource type="Texture2D" uid="uid://bjgxdwbo7ji5p" path="res://assets/UI Elements/Icon-Hammer.png" id="2_1brcf"]
+[ext_resource type="BitMap" uid="uid://ci6ene0gm5o8m" path="res://assets/new Power plants/Power plants/Power_Plants_4-Free-Slot_clickmask.png" id="2_m3jap"]
 [ext_resource type="Texture2D" uid="uid://blskwje2kl2w5" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0000_Smoke-1.png" id="4_xclwe"]
 [ext_resource type="Texture2D" uid="uid://cigv4d5ij1ymx" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0011_Gas.png" id="5_4jvt0"]
 [ext_resource type="Texture2D" uid="uid://cehdhadcxkehx" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0001_Smoke-2.png" id="5_s6f5j"]
@@ -2053,6 +2054,7 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_h0npr")
 texture_pressed = ExtResource("1_h0npr")
 texture_hover = ExtResource("1_h0npr")
+texture_click_mask = ExtResource("2_m3jap")
 ignore_texture_size = true
 stretch_mode = 0
 
