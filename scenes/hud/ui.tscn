@@ -204,6 +204,152 @@ MetalLabel/fonts/font = SubResource("FontVariation_t46uf")
 PaperLabel/font_sizes/size = 22
 PaperLabel/fonts/font = ExtResource("30_d1m8l")
 
+[sub_resource type="FontVariation" id="FontVariation_4ww80"]
+variation_embolden = 0.2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21dh1"]
+atlas = ExtResource("50_inaxr")
+region = Rect2(0, 0, 328, 776)
+
+[sub_resource type="FontVariation" id="FontVariation_2lxgj"]
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="FontVariation" id="FontVariation_efn7l"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="FontVariation" id="FontVariation_tjn0r"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exw71"]
+bg_color = Color(0.0703125, 0.191406, 0.203125, 1)
+border_width_left = 3
+border_width_top = 6
+border_width_right = 3
+border_width_bottom = 6
+border_color = Color(0.0703125, 0.191406, 0.203125, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.407843)
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmcqn"]
+bg_color = Color(0.278431, 0.772549, 0.803922, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.423529)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ast08"]
+bg_color = Color(0.458824, 0.898039, 0.929412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.356863)
+shadow_size = 1
+
+[sub_resource type="FontVariation" id="FontVariation_jfp53"]
+base_font = ExtResource("53_v477p")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrs1m"]
+bg_color = Color(0.0703125, 0.191406, 0.203125, 1)
+border_width_left = 3
+border_width_top = 6
+border_width_right = 3
+border_width_bottom = 6
+border_color = Color(0.0703125, 0.191406, 0.203125, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.419608)
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbbiv"]
+bg_color = Color(0.278431, 0.772549, 0.803922, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.396078)
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53y48"]
+bg_color = Color(0.396078, 0.870588, 0.901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.368627)
+shadow_size = 1
+
+[sub_resource type="FontVariation" id="FontVariation_2ju7n"]
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="FontVariation" id="FontVariation_kgd4n"]
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
+bg_color = Color(0.988235, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vka7n"]
+bg_color = Color(0.709804, 0.176471, 0.113725, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgbvl"]
+bg_color = Color(0.509804, 0, 0.117647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_4p1wg"]
+Button/styles/hover = SubResource("StyleBoxFlat_pwy5b")
+Button/styles/normal = SubResource("StyleBoxFlat_vka7n")
+Button/styles/pressed = SubResource("StyleBoxFlat_fgbvl")
+
+[sub_resource type="FontVariation" id="FontVariation_6evow"]
+base_font = ExtResource("51_joowr")
+
+[sub_resource type="FontVariation" id="FontVariation_ien0s"]
+base_font = ExtResource("59_nmkxq")
+
+[sub_resource type="FontVariation" id="FontVariation_1lnka"]
+base_font = ExtResource("59_nmkxq")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqc36"]
 bg_color = Color(0.317647, 0.317647, 0.317647, 0)
 border_color = Color(0, 0, 0, 1)
@@ -246,9 +392,6 @@ corner_radius_bottom_left = 8
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dajl"]
 atlas = ExtResource("6_ivien")
 region = Rect2(48, 49, 43, 44)
-
-[sub_resource type="FontVariation" id="FontVariation_4ww80"]
-variation_embolden = 0.2
 
 [sub_resource type="FontVariation" id="FontVariation_15ni2"]
 base_font = ExtResource("51_joowr")
@@ -687,149 +830,6 @@ base_font = ExtResource("53_v477p")
 variation_embolden = 0.2
 spacing_glyph = 2
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_21dh1"]
-atlas = ExtResource("50_inaxr")
-region = Rect2(0, 0, 328, 776)
-
-[sub_resource type="FontVariation" id="FontVariation_2lxgj"]
-base_font = ExtResource("59_nmkxq")
-
-[sub_resource type="FontVariation" id="FontVariation_efn7l"]
-base_font = ExtResource("53_v477p")
-
-[sub_resource type="FontVariation" id="FontVariation_tjn0r"]
-base_font = ExtResource("53_v477p")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exw71"]
-bg_color = Color(0.0703125, 0.191406, 0.203125, 1)
-border_width_left = 3
-border_width_top = 6
-border_width_right = 3
-border_width_bottom = 6
-border_color = Color(0.0703125, 0.191406, 0.203125, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.407843)
-shadow_size = 1
-shadow_offset = Vector2(0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmcqn"]
-bg_color = Color(0.278431, 0.772549, 0.803922, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.423529)
-shadow_size = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ast08"]
-bg_color = Color(0.458824, 0.898039, 0.929412, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.356863)
-shadow_size = 1
-
-[sub_resource type="FontVariation" id="FontVariation_jfp53"]
-base_font = ExtResource("53_v477p")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrs1m"]
-bg_color = Color(0.0703125, 0.191406, 0.203125, 1)
-border_width_left = 3
-border_width_top = 6
-border_width_right = 3
-border_width_bottom = 6
-border_color = Color(0.0703125, 0.191406, 0.203125, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.419608)
-shadow_size = 1
-shadow_offset = Vector2(0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbbiv"]
-bg_color = Color(0.278431, 0.772549, 0.803922, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.396078)
-shadow_size = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53y48"]
-bg_color = Color(0.396078, 0.870588, 0.901961, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.368627)
-shadow_size = 1
-
-[sub_resource type="FontVariation" id="FontVariation_2ju7n"]
-base_font = ExtResource("59_nmkxq")
-
-[sub_resource type="FontVariation" id="FontVariation_kgd4n"]
-base_font = ExtResource("59_nmkxq")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwy5b"]
-bg_color = Color(0.988235, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vka7n"]
-bg_color = Color(0.709804, 0.176471, 0.113725, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgbvl"]
-bg_color = Color(0.509804, 0, 0.117647, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Theme" id="Theme_4p1wg"]
-Button/styles/hover = SubResource("StyleBoxFlat_pwy5b")
-Button/styles/normal = SubResource("StyleBoxFlat_vka7n")
-Button/styles/pressed = SubResource("StyleBoxFlat_fgbvl")
-
-[sub_resource type="FontVariation" id="FontVariation_6evow"]
-base_font = ExtResource("51_joowr")
-
-[sub_resource type="FontVariation" id="FontVariation_ien0s"]
-base_font = ExtResource("59_nmkxq")
-
-[sub_resource type="FontVariation" id="FontVariation_1lnka"]
-base_font = ExtResource("59_nmkxq")
-
 [sub_resource type="FontVariation" id="FontVariation_jdqy5"]
 base_font = ExtResource("53_v477p")
 variation_embolden = 0.05
@@ -883,34 +883,6 @@ texture = ExtResource("34_xcgyc")
 [node name="Popularity-" type="Sprite2D" parent="Profil-bar-metal"]
 position = Vector2(3.5, 91)
 texture = ExtResource("35_qiawk")
-
-[node name="TextureButton" type="TextureButton" parent="Profil-bar-metal"]
-offset_left = -89.0
-offset_top = -106.0
-offset_right = -23.0
-offset_bottom = -42.0
-texture_normal = ExtResource("36_xxsv6")
-texture_pressed = ExtResource("37_533gb")
-texture_hover = ExtResource("38_7v12r")
-
-[node name="Button-hole" type="Sprite2D" parent="Profil-bar-metal/TextureButton"]
-show_behind_parent = true
-position = Vector2(32, 32)
-texture = ExtResource("39_jsaox")
-
-[node name="TextureButton2" type="TextureButton" parent="Profil-bar-metal"]
-offset_left = 26.0
-offset_top = -104.5
-offset_right = 92.0
-offset_bottom = -40.5
-texture_normal = ExtResource("36_xxsv6")
-texture_pressed = ExtResource("37_533gb")
-texture_hover = ExtResource("38_7v12r")
-
-[node name="Button-hole2" type="Sprite2D" parent="Profil-bar-metal/TextureButton2"]
-show_behind_parent = true
-position = Vector2(32, 32)
-texture = ExtResource("39_jsaox")
 
 [node name="Sprite2D" type="Sprite2D" parent="Profil-bar-metal"]
 position = Vector2(93, 55)
@@ -1279,6 +1251,462 @@ position = Vector2(66, 296)
 position = Vector2(258, 558)
 texture = ExtResource("37_q7ul8")
 
+[node name="PolicyButton" type="TextureButton" parent="."]
+offset_left = 228.0
+offset_top = 74.0
+offset_right = 294.0
+offset_bottom = 138.0
+texture_normal = ExtResource("36_xxsv6")
+texture_pressed = ExtResource("37_533gb")
+texture_hover = ExtResource("38_7v12r")
+
+[node name="Button-hole2" type="Sprite2D" parent="PolicyButton"]
+show_behind_parent = true
+position = Vector2(32, 32)
+texture = ExtResource("39_jsaox")
+
+[node name="Notif" type="Label" parent="PolicyButton"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = -13.0
+offset_right = 30.0
+offset_bottom = 13.0
+grow_horizontal = 0
+theme = ExtResource("70_2ktfd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_4ww80")
+text = "1"
+
+[node name="CancelIcon" type="Sprite2D" parent="PolicyButton/Notif"]
+self_modulate = Color(1, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(5, 12)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("40_h6a6a")
+
+[node name="ColorRect" type="ColorRect" parent="PolicyButton/Notif/CancelIcon"]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(0.580392, 0, 0, 1)
+
+[node name="Label" type="Label" parent="PolicyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = -1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "🏛️"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+offset_left = 113.0
+offset_top = 72.5
+offset_right = 179.0
+offset_bottom = 136.5
+texture_normal = ExtResource("36_xxsv6")
+texture_pressed = ExtResource("37_533gb")
+texture_hover = ExtResource("38_7v12r")
+
+[node name="Button-hole" type="Sprite2D" parent="SettingsButton"]
+show_behind_parent = true
+position = Vector2(32, 32)
+texture = ExtResource("39_jsaox")
+
+[node name="ColorRect" type="ColorRect" parent="SettingsButton"]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 21.898
+anchor_bottom = 12.364
+offset_left = -113.0
+offset_top = -72.5
+offset_right = -121.024
+offset_bottom = -80.532
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.313726, 0.313726, 0.313726, 0.196078)
+
+[node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect"]
+position = Vector2(959, 496)
+scale = Vector2(1, 1.17784)
+texture = SubResource("AtlasTexture_21dh1")
+
+[node name="SettingsBox" type="ColorRect" parent="SettingsButton/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = -316.0
+offset_right = 154.5
+offset_bottom = 316.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.4, 0.4, 0)
+
+[node name="Title" type="Label" parent="SettingsButton/ColorRect/SettingsBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = -49.0
+offset_right = 192.0
+offset_bottom = 19.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_2lxgj")
+theme_override_font_sizes/font_size = 22
+text = "ENSURED
+ENERGY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="SettingsButton/ColorRect/SettingsBox"]
+layout_mode = 0
+offset_left = -817.0
+offset_top = -224.0
+offset_right = 1219.0
+offset_bottom = 860.0
+focus_mode = 0
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsButton/ColorRect/SettingsBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.0
+offset_top = 36.0
+offset_right = 102.0
+offset_bottom = 659.0
+grow_horizontal = 2
+
+[node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = SubResource("FontVariation_efn7l")
+button_pressed = true
+text = "Fullscreen"
+icon_alignment = 2
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_tjn0r")
+text = "Music"
+
+[node name="VolMusic" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/slider = SubResource("StyleBoxFlat_exw71")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_pmcqn")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ast08")
+max_value = 1.0
+step = 0.001
+value = 0.8
+scrollable = false
+
+[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_jfp53")
+text = "SFX"
+
+[node name="VolSound" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/slider = SubResource("StyleBoxFlat_wrs1m")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_jbbiv")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_53y48")
+max_value = 1.0
+step = 0.001
+value = 0.8
+scrollable = false
+
+[node name="Space" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space3" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space4" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space5" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="BuildMenu0004Build-menu-screen" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+position = Vector2(96, 451.25)
+scale = Vector2(1.02525, 1.61211)
+texture = ExtResource("61_ni5qv")
+
+[node name="Language" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("61_i4pr1")
+texture_pressed = ExtResource("62_40aw8")
+texture_hover = ExtResource("63_klrtp")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 7.0
+offset_right = -9.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_2ju7n")
+theme_override_font_sizes/font_size = 20
+text = "Lang"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Instructions" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Instructions"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Tutorial" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions" instance=ExtResource("63_perny")]
+visible = false
+
+[node name="Credits" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -11.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_kgd4n")
+theme_override_font_sizes/font_size = 22
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Paper-big" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
+visible = false
+position = Vector2(85.5, -206)
+texture = ExtResource("46_31xep")
+
+[node name="Label3" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -328.5
+offset_top = -203.0
+offset_right = -241.5
+offset_bottom = -169.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_kgd4n")
+theme_override_font_sizes/font_size = 22
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
+offset_left = -208.0
+offset_top = -120.0
+offset_right = -165.0
+offset_bottom = -94.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("53_v477p")
+text = "Team"
+uppercase = true
+
+[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
+offset_left = -208.0
+offset_top = -56.0
+offset_right = -75.0
+offset_bottom = 178.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("53_v477p")
+text = "Amelia Dobis
+Borja Maol
+Saara Jones
+Toby Simpson
+Davide Baroli
+Michael Multerer
+Isabelle Stadelmann
+Gracia Brückmann
+Walid El-Ajou
+"
+
+[node name="Reset" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_4p1wg")
+texture_normal = ExtResource("2_aobed")
+texture_pressed = ExtResource("3_qtdni")
+texture_hover = ExtResource("4_mh4j1")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 183.0
+offset_bottom = 74.0
+theme_override_fonts/font = SubResource("FontVariation_6evow")
+theme_override_font_sizes/font_size = 23
+text = "Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ResetConfirm" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -343.0
+offset_top = -172.5
+offset_right = 343.0
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.560784, 0.560784, 0.560784, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+position = Vector2(368, 187)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("18_oaaki")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 99.0
+offset_right = 565.0
+offset_bottom = 214.0
+theme_override_font_sizes/font_size = 32
+text = "Are you sure that you want to restart?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Yes" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 222.0
+offset_right = 357.0
+offset_bottom = 305.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("2_aobed")
+texture_pressed = ExtResource("3_qtdni")
+texture_hover = ExtResource("4_mh4j1")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_ien0s")
+theme_override_font_sizes/font_size = 22
+text = "RESET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="No" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 222.0
+offset_right = 589.0
+offset_bottom = 305.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("62_orw34")
+texture_pressed = ExtResource("5_hh5pc")
+texture_hover = ExtResource("63_c1xpc")
+
+[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_1lnka")
+theme_override_font_sizes/font_size = 22
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label" type="Label" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "⚙️"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Trust" type="ProgressBar" parent="."]
 offset_left = 164.0
 offset_top = 250.5
@@ -1517,42 +1945,14 @@ offset = Vector2(0, -22)
 position = Vector2(49, 67)
 texture = ExtResource("25_7q1c5")
 
-[node name="PolicyButton" type="TextureButton" parent="."]
+[node name="PolicyButton2" type="TextureButton" parent="."]
+visible = false
 offset_left = 238.0
 offset_top = 82.0
 offset_right = 281.0
 offset_bottom = 125.0
 texture_normal = SubResource("AtlasTexture_0dajl")
 ignore_texture_size = true
-
-[node name="Notif" type="Label" parent="PolicyButton"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 3.0
-offset_top = -21.0
-offset_right = 43.0
-offset_bottom = 5.0
-grow_horizontal = 0
-theme = ExtResource("70_2ktfd")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("FontVariation_4ww80")
-text = "1"
-
-[node name="CancelIcon" type="Sprite2D" parent="PolicyButton/Notif"]
-self_modulate = Color(1, 0, 0, 1)
-show_behind_parent = true
-position = Vector2(5, 12)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("40_h6a6a")
-
-[node name="ColorRect" type="ColorRect" parent="PolicyButton/Notif/CancelIcon"]
-offset_left = -12.0
-offset_top = -12.0
-offset_right = 12.0
-offset_bottom = 12.0
-color = Color(0.580392, 0, 0, 1)
 
 [node name="Stats" type="TextureButton" parent="."]
 visible = false
@@ -2308,7 +2708,8 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SettingsButton" type="Button" parent="."]
+[node name="SettingsButton2" type="Button" parent="."]
+visible = false
 offset_left = 102.0
 offset_top = 60.5
 offset_right = 190.0
@@ -2317,373 +2718,6 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 icon = ExtResource("7_mnpcp")
 flat = true
-
-[node name="ColorRect" type="ColorRect" parent="SettingsButton"]
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 21.898
-anchor_bottom = 12.364
-offset_left = -102.0
-offset_top = -60.5
-offset_right = -110.024
-offset_bottom = -68.532
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.313726, 0.313726, 0.313726, 0.196078)
-
-[node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect"]
-position = Vector2(959, 496)
-scale = Vector2(1, 1.17784)
-texture = SubResource("AtlasTexture_21dh1")
-
-[node name="SettingsBox" type="ColorRect" parent="SettingsButton/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -158.5
-offset_top = -316.0
-offset_right = 154.5
-offset_bottom = 316.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.4, 0.4, 0.4, 0)
-
-[node name="Title" type="Label" parent="SettingsButton/ColorRect/SettingsBox"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -192.0
-offset_top = -49.0
-offset_right = 192.0
-offset_bottom = 19.0
-grow_horizontal = 2
-theme_override_fonts/font = SubResource("FontVariation_2lxgj")
-theme_override_font_sizes/font_size = 22
-text = "ENSURED
-ENERGY"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Close" type="Button" parent="SettingsButton/ColorRect/SettingsBox"]
-layout_mode = 0
-offset_left = -817.0
-offset_top = -224.0
-offset_right = 1219.0
-offset_bottom = 860.0
-focus_mode = 0
-flat = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsButton/ColorRect/SettingsBox"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -91.0
-offset_top = 36.0
-offset_right = 102.0
-offset_bottom = 659.0
-grow_horizontal = 2
-
-[node name="ScreenOption" type="CheckBox" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_fonts/font = SubResource("FontVariation_efn7l")
-button_pressed = true
-text = "Fullscreen"
-icon_alignment = 2
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_tjn0r")
-text = "Music"
-
-[node name="VolMusic" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_styles/slider = SubResource("StyleBoxFlat_exw71")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_pmcqn")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ast08")
-max_value = 1.0
-step = 0.001
-value = 0.8
-scrollable = false
-
-[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_jfp53")
-text = "SFX"
-
-[node name="VolSound" type="HSlider" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-focus_mode = 0
-theme_override_styles/slider = SubResource("StyleBoxFlat_wrs1m")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_jbbiv")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_53y48")
-max_value = 1.0
-step = 0.001
-value = 0.8
-scrollable = false
-
-[node name="Space" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="Space2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="Space3" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="Space4" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="Space5" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="BuildMenu0004Build-menu-screen" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-position = Vector2(96, 451.25)
-scale = Vector2(1.02525, 1.61211)
-texture = ExtResource("61_ni5qv")
-
-[node name="Language" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-focus_mode = 0
-texture_normal = ExtResource("61_i4pr1")
-texture_pressed = ExtResource("62_40aw8")
-texture_hover = ExtResource("63_klrtp")
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 7.0
-offset_right = -9.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_2ju7n")
-theme_override_font_sizes/font_size = 20
-text = "Lang"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-uppercase = true
-
-[node name="Instructions" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-focus_mode = 0
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Instructions"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Tutorial" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions" instance=ExtResource("63_perny")]
-visible = false
-
-[node name="Credits" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-focus_mode = 0
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 10.0
-offset_right = -11.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_kgd4n")
-theme_override_font_sizes/font_size = 22
-text = "Credits"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Paper-big" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
-visible = false
-position = Vector2(85.5, -206)
-texture = ExtResource("46_31xep")
-
-[node name="Label3" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -328.5
-offset_top = -203.0
-offset_right = -241.5
-offset_bottom = -169.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("FontVariation_kgd4n")
-theme_override_font_sizes/font_size = 22
-text = "Credits"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
-offset_left = -208.0
-offset_top = -120.0
-offset_right = -165.0
-offset_bottom = -94.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("53_v477p")
-text = "Team"
-uppercase = true
-
-[node name="Label2" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
-offset_left = -208.0
-offset_top = -56.0
-offset_right = -75.0
-offset_bottom = 178.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("53_v477p")
-text = "Amelia Dobis
-Borja Maol
-Saara Jones
-Toby Simpson
-Davide Baroli
-Michael Multerer
-Isabelle Stadelmann
-Gracia Brückmann
-Walid El-Ajou
-"
-
-[node name="Reset" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-focus_mode = 0
-theme = SubResource("Theme_4p1wg")
-texture_normal = ExtResource("2_aobed")
-texture_pressed = ExtResource("3_qtdni")
-texture_hover = ExtResource("4_mh4j1")
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 10.0
-offset_right = 183.0
-offset_bottom = 74.0
-theme_override_fonts/font = SubResource("FontVariation_6evow")
-theme_override_font_sizes/font_size = 23
-text = "Reset"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="ResetConfirm" type="ColorRect" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -343.0
-offset_top = -172.5
-offset_right = 343.0
-offset_bottom = 172.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.560784, 0.560784, 0.560784, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
-position = Vector2(368, 187)
-scale = Vector2(1.7, 1.7)
-texture = ExtResource("18_oaaki")
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
-layout_mode = 0
-offset_left = 125.0
-offset_top = 99.0
-offset_right = 565.0
-offset_bottom = 214.0
-theme_override_font_sizes/font_size = 32
-text = "Are you sure that you want to restart?"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Yes" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
-layout_mode = 0
-offset_left = 164.0
-offset_top = 222.0
-offset_right = 357.0
-offset_bottom = 305.0
-scale = Vector2(0.7, 0.7)
-texture_normal = ExtResource("2_aobed")
-texture_pressed = ExtResource("3_qtdni")
-texture_hover = ExtResource("4_mh4j1")
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_ien0s")
-theme_override_font_sizes/font_size = 22
-text = "RESET"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="No" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
-layout_mode = 0
-offset_left = 396.0
-offset_top = 222.0
-offset_right = 589.0
-offset_bottom = 305.0
-scale = Vector2(0.7, 0.7)
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
-
-[node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_1lnka")
-theme_override_font_sizes/font_size = 22
-text = "Cancel"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
 
 [node name="BorrowContainer" type="Button" parent="."]
 visible = false

@@ -168,7 +168,7 @@ public partial class UI : CanvasLayer {
 	private BuildMenu BM;
 
 	// Settings
-	private Button SettingsButton;
+	private TextureButton SettingsButton;
 	private ColorRect SettingsBox;
 	private TextureButton LanguageButton;
 	private Label LanguageL;
@@ -226,7 +226,7 @@ public partial class UI : CanvasLayer {
 		C = GetNode<Context>("/root/Context");
 
 		// Settings
-		SettingsButton = GetNode<Button>("SettingsButton");
+		SettingsButton = GetNode<TextureButton>("SettingsButton");
 		SettingsBox = GetNode<ColorRect>("SettingsButton/ColorRect");
 		LanguageButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
 		LanguageL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language/Label");
