@@ -295,7 +295,7 @@
             <effect field="money" value="0"/>
         </reward>
     </shock>
-<!-- Needs to be scripted
+    
     <shock id="nuc_reintro" tag="env">
         <name>Nuclear Re-introduction</name>
         <img>vote</img>
@@ -303,15 +303,11 @@
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
             <text>Yes for reintroducig nuclear power.</text>
-            <effect field="support" value="-50"/>
+            <effect field="support" value="0"/>
         </reaction>
         <reaction id="1">
-            <text>Yes for extending the nuclear plants we have now.</text>
-            <effect field="env" value="-50"/>
-        </reaction>
-        <reaction id="2">
             <text>No, it's time to de-transition from nuclear.</text>
-            <effect field="money" value="-50"/>
+            <effect field="env" value="0"/>
         </reaction>
         <reward>
             <text>If you can read this, there is a problem.</text>
@@ -319,7 +315,7 @@
             <effect field="money" value="50"/>
         </reward>
     </shock>
--->
+
 <!--
     <shock id="remote_jobs" tag="env">
         <name>Remote Jobs</name>
