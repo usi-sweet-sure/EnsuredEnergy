@@ -138,6 +138,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_0qiv1")
 theme_type_variation = &"Screen"
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "+ 50 Money"
 horizontal_alignment = 1
@@ -159,7 +160,6 @@ offset_bottom = -34.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "..."
 text = "Enreugiwrug
 rgehuife7u8rhgw
 grwehug9iew"

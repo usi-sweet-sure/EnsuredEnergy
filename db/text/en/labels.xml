@@ -165,15 +165,16 @@ You ensured enough energy for 30 years.
         <text id="energy">Final Energy Supply
         </text>
         <text id="money_good">You avoided an economic crisis</text>
-            <text id="money_loan">You had to take a loan to provide enough energy</text>
+        <text id="money_loan">You had to take a loan</text>
         <text id="money_bad">You destroyed the economy</text>
         <text id="support">Final Support
 
         </text>
-        <text id="pollution_good">You reached net zero by 2050</text>
-        <text id="pollution_bad">You did not reach net zero by 2050</text>
+        <text id="pollution_good">You reached net zero</text>
+        <text id="pollution_bad">You did not reach net zero</text>
         <text id="env">Environmental score
             
         </text>
+        <text id="import">of energy in Winter is imported</text>
     </group>
 </db>

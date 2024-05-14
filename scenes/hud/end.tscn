@@ -195,12 +195,13 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
 [node name="Import" type="Label" parent="EndWindow/HBoxContainer/Import/MarginContainer"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "You imported %
 "
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 autowrap_mode = 3
 uppercase = true
 

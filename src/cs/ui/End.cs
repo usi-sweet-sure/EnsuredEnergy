@@ -55,6 +55,7 @@ public partial class End : CanvasLayer {
 	private Label SupportT;
 	private Label PollT;
 	private Label EnvT;
+	private Label ImportT;
 	
 	private TextureButton ScoreToggle;
 
@@ -84,6 +85,7 @@ public partial class End : CanvasLayer {
 		SupportT = GetNode<Label>("EndWindow/HBoxContainer/Support/MarginContainer/Support");
 		PollT = GetNode<Label>("EndWindow/HBoxContainer/Poll/MarginContainer/Poll");
 		EnvT = GetNode<Label>("EndWindow/HBoxContainer/Env/MarginContainer/Env");
+		ImportT = GetNode<Label>("EndWindow/HBoxContainer/Import/MarginContainer/Import");
 		
 		ScoreToggle = GetNode<TextureButton>("Score");
 
@@ -109,13 +111,13 @@ public partial class End : CanvasLayer {
 		EnergyS.Text = ens.ToString("0");
 		Support.Text = sup.ToString() + "%";
 		EnvScore.Text = ((int)(env_ * 100)).ToString()+ "%";
-		ImportScore.Text = (impt / enw * 100).ToString() + "%";
+		ImportScore.Text = (impt / enw * 100).ToString("0") + "%";
 
 		// Set textual stats
 		if(!bor) {
 			MoneyT.Text = TC._GetText(END_FILE, END_GROUP, debt ? MONEY_DEBT_ID : MONEY_NO_DEBT_ID);
 		} else {
-			MoneyT.Text = "You took a loan";
+			MoneyT.Text = TC._GetText(END_FILE, END_GROUP, "money_loan");
 		}
 		
 		PollT.Text = TC._GetText(END_FILE, END_GROUP, netz ? ENV_NETZ_ID : ENV_NO_NETZ_ID);
@@ -127,6 +129,7 @@ public partial class End : CanvasLayer {
 		EnergyT.Text = TC._GetText(END_FILE, END_GROUP, ENERGY_ID);
 		SupportT.Text = TC._GetText(END_FILE, END_GROUP, SUPPORT_ID);
 		EnvT.Text = TC._GetText(END_FILE, END_GROUP, ENV_TEXT_ID);
+		ImportT.Text = TC._GetText(END_FILE, END_GROUP, "import");
 	}
 	
 	private void _OnScorePressed() {

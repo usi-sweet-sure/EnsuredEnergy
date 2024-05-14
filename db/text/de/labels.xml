@@ -159,6 +159,7 @@ Energy
             </text>
             <text id="money_good">Du hast eine Wirtschaftskrise verhindert</text>
             <text id="money_bad">Du hast die Wirtschaft zerstört</text>
+            <text id="money_loan">You had to take a loan</text>
             <text id="support">Endgültige Unterstützung
     
             </text>
@@ -167,5 +168,6 @@ Energy
             <text id="env">Punktzahl Umwelt
                 
             </text>
+            <text id="import">of energy in Winter is imported</text>
         </group>
 </db>

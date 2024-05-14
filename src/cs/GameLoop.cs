@@ -163,6 +163,7 @@ public partial class GameLoop : Node2D {
 
 			// Make sure that nuclear plants can be reactivated
 			ShockWindow.ReintroduceNuclear += pp._OnReintroduceNuclear;
+			ShockWindow.WeatherShock += pp._OnWeatherShock;
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop

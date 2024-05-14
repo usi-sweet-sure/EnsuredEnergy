@@ -161,6 +161,7 @@ Energy
             </text>
             <text id="money_good">Tu as évité une crise économique</text>
             <text id="money_bad">Tu as détruit l'économie</text>
+            <text id="money_loan">You had to take a loan</text>
             <text id="support">Soutien final
     
             </text>
@@ -169,5 +170,6 @@ Energy
             <text id="env">Score environmental
                 
             </text>
+            <text id="import">of energy in Winter is imported</text>
         </group>
 </db>

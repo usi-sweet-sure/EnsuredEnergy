@@ -34,8 +34,11 @@ public partial class Shock : CanvasLayer {
 	public delegate void ApplyRewardEventHandler();
 
 	[Signal]
-	public delegate void ReintroduceNuclearEventHandler()
-;
+	public delegate void ReintroduceNuclearEventHandler();
+	
+	[Signal]
+	public delegate void WeatherShockEventHandler();
+	
 	[Export]
 	// Probability of getting a shock
 	public int ShockProba = 70;
@@ -111,9 +114,9 @@ public partial class Shock : CanvasLayer {
 		R3.Pressed += _OnR3Pressed;
 
 		SHOCKS = new() { 
-			"cold_spell", "heat_wave", "glaciers_melting", 
-			"severe_weather",
-			"inc_raw_cost_10", "inc_raw_cost_20", "dec_raw_cost_20", "mass_immigration"
+			"cold_spell", "cold_spell", "heat_wave", "glaciers_melting", 
+			"severe_weather", "severe_weather",
+			"inc_raw_cost_10", "inc_raw_cost_10", "inc_raw_cost_20", "dec_raw_cost_20", "mass_immigration"
 		};
 	
 		// Set the initial shock
@@ -154,6 +157,11 @@ public partial class Shock : CanvasLayer {
 
 			// Update the fields to match the new shock
 			SetFields(M, E, Env, S);
+			
+			if(CurShock == "severe_weather") {
+			// Make sure that the weather shock happens
+			EmitSignal(SignalName.WeatherShock);
+			}
 
 			// Decide whether or not to show a shock
 			// There is a 50% chance of getting a shock
@@ -330,6 +338,10 @@ public partial class Shock : CanvasLayer {
 
 		// Set the reward text
 		Reward.Text = CurReward.Text;
+		if(CurShock == "dec_raw_cost_20") {
+			GD.Print("Change color!!!");
+			Reward.Set("theme_override_colors/font_color", new Color(0,1,0,1));
+		}
 
 		// Retrieve the current reactions
 		CurReactions = SC._GetReactions(CurShock);

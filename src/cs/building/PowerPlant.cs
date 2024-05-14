@@ -1132,4 +1132,13 @@ public partial class PowerPlant : Node2D {
 			_OnSwitchToggled(true);
 		}
 	}
+	
+	public void _OnWeatherShock() {
+		if(PlantType.type == Building.Type.WIND) {
+			EnergyAvailability = (0f,0f);
+		}
+		if(PlantType.type == Building.Type.SOLAR) {
+			EnergyAvailability = (0f,0.5f);
+		}
+	}
 }
