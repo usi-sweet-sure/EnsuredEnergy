@@ -313,11 +313,11 @@ public partial class GameLoop : Node2D {
 		
 		// Check when the different nuclear plants will shut down
 		if(PowerPlants[0].IsAlive) {
-			_UI._UpdateNuclearWarning(PowerPlants[0].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+			_UI._UpdateNuclearWarning(PowerPlants[0].EndTurn - C._GetTurn() <= 1);
 		} else if(PowerPlants[1].IsAlive) {
-			_UI._UpdateNuclearWarning(PowerPlants[1].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+			_UI._UpdateNuclearWarning(PowerPlants[1].EndTurn - C._GetTurn() <= 1);
 		} else if(PowerPlants[2].IsAlive) {
-			_UI._UpdateNuclearWarning(PowerPlants[2].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+			_UI._UpdateNuclearWarning(PowerPlants[2].EndTurn - C._GetTurn() <= 1);
 		} else {
 			_UI._UpdateNuclearWarning(false);
 		}
@@ -537,7 +537,9 @@ public partial class GameLoop : Node2D {
 			Money.Money < 0, // Are we currently in debt?
 			Sup.Value,
 			Env.PollutionBarValue() <= 0, // Check that the pollution is below 0 (netzero)
-			Env.EnvBarValue()
+			Env.EnvBarValue(),
+			_UI._GetImportSliderPercentage(),
+			_UI._GetBorrowStatus()
 		);
 		EndScreen.Show();
 	}

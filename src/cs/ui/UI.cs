@@ -145,6 +145,7 @@ public partial class UI : CanvasLayer {
 	private Button BorrowContainer;
 	private int DebtN = 0;
 	private int BorrowN = 0;
+	private bool Borrowed = false;
 
 	// Static UI Labels
 	private Label EnergyLabel;
@@ -754,6 +755,9 @@ public partial class UI : CanvasLayer {
 	public void _UpdateNuclearWarning(bool show) {
 		NuclearWarnLabel.Visible = show;
 	}
+	
+	// Getter for borrow status
+	public bool _GetBorrowStatus() => Borrowed;
 
 	// ==================== Internal Helpers ====================
 
@@ -1182,6 +1186,7 @@ public partial class UI : CanvasLayer {
 		BorrowContainer.Hide();
 		Debt.Show();
 		BorrowL.Text = BorrowN.ToString();
+		Borrowed = true;
 		EmitSignal(SignalName.DebtRequest, (int)(DebtSlider.Value + (InterestRate * DebtSlider.Value)), (int)DebtSlider.Value);
 	}
 

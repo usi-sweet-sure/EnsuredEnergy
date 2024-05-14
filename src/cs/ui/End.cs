@@ -41,6 +41,7 @@ public partial class End : CanvasLayer {
 	private Label EnergyS;
 	private Label Support;
 	private Label EnvScore;
+	private Label ImportScore;
 
 	// End Screen text labels
 	private ColorRect EndWindow;
@@ -71,17 +72,18 @@ public partial class End : CanvasLayer {
 		EnergyS = GetNode<Label>("EndWindow/Stats/EnergyS");
 		Support = GetNode<Label>("EndWindow/Stats/Support");
 		EnvScore = GetNode<Label>("EndWindow/Stats/Env");
+		ImportScore = GetNode<Label>("EndWindow/Stats/Import");
 
 		// Fetch Text Label Nodes
 		EndWindow = GetNode<ColorRect>("EndWindow");
 		Bravo = GetNode<Label>("EndWindow/Bravo");
 		EndText = GetNode<Label>("EndWindow/EndText");
 		ShockT = GetNode<Label>("EndWindow/HBoxContainer/Shock");
-		EnergyT = GetNode<Label>("EndWindow/HBoxContainer/Energy");
-		MoneyT = GetNode<Label>("EndWindow/HBoxContainer/Money");
-		SupportT = GetNode<Label>("EndWindow/HBoxContainer/Support");
-		PollT = GetNode<Label>("EndWindow/HBoxContainer/Poll");
-		EnvT = GetNode<Label>("EndWindow/HBoxContainer/Env");
+		EnergyT = GetNode<Label>("EndWindow/HBoxContainer/Energy/MarginContainer/Energy");
+		MoneyT = GetNode<Label>("EndWindow/HBoxContainer/Money/MarginContainer/Money");
+		SupportT = GetNode<Label>("EndWindow/HBoxContainer/Support/MarginContainer/Support");
+		PollT = GetNode<Label>("EndWindow/HBoxContainer/Poll/MarginContainer/Poll");
+		EnvT = GetNode<Label>("EndWindow/HBoxContainer/Env/MarginContainer/Env");
 		
 		ScoreToggle = GetNode<TextureButton>("Score");
 
@@ -100,16 +102,22 @@ public partial class End : CanvasLayer {
 	// @param sup, the amount of support the player had during the last turn
 	// @param netz, wether or not the player reached net zero pollution
 	// @param env_, the percentage at which the environment score was at at the end of the last turn
-	public void _SetEndStats(int nShocks, float enw, float ens, bool debt, float sup, bool netz, double env_) {
+	public void _SetEndStats(int nShocks, float enw, float ens, bool debt, float sup, bool netz, double env_, float impt, bool bor) {
 		// Set the numerical stats
 		Shocks.Text = nShocks.ToString();
-		EnergyW.Text = enw.ToString();
-		EnergyS.Text = ens.ToString();
+		EnergyW.Text = enw.ToString("0");
+		EnergyS.Text = ens.ToString("0");
 		Support.Text = sup.ToString() + "%";
 		EnvScore.Text = ((int)(env_ * 100)).ToString()+ "%";
+		ImportScore.Text = (impt / enw * 100).ToString() + "%";
 
 		// Set textual stats
-		MoneyT.Text = TC._GetText(END_FILE, END_GROUP, debt ? MONEY_DEBT_ID : MONEY_NO_DEBT_ID);
+		if(!bor) {
+			MoneyT.Text = TC._GetText(END_FILE, END_GROUP, debt ? MONEY_DEBT_ID : MONEY_NO_DEBT_ID);
+		} else {
+			MoneyT.Text = "You took a loan";
+		}
+		
 		PollT.Text = TC._GetText(END_FILE, END_GROUP, netz ? ENV_NETZ_ID : ENV_NO_NETZ_ID);
 
 		// Set all other texts

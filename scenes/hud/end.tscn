@@ -1,9 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cej4dlw11su6f"]
+[gd_scene load_steps=14 format=3 uid="uid://cej4dlw11su6f"]
 
 [ext_resource type="Script" path="res://src/cs/ui/End.cs" id="1_dvce5"]
-[ext_resource type="Texture2D" uid="uid://b7nmuayewqbbg" path="res://assets/Elements/NEXT TURN - BUTTON.png" id="3_8mcym"]
-[ext_resource type="Texture2D" uid="uid://djj2k1h7yrhsy" path="res://assets/Elements/NEXTTURNBUTTONPressed.png" id="4_e0pjh"]
-[ext_resource type="Texture2D" uid="uid://sob7pstxhrp" path="res://assets/Elements/NEXTTURNBUTTONHover.png" id="5_pyjgd"]
+[ext_resource type="Texture2D" uid="uid://dyyio7rs1i1l6" path="res://assets/UI Elements/Import_energy-Bar-Metal.png" id="2_27rt7"]
+[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="3_g4lp6"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="4_wpw57"]
+[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="5_3yvol"]
+[ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/Icon-Pollution-.png" id="6_vhvio"]
+[ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/Icon-Money.png" id="7_vf71k"]
+[ext_resource type="Texture2D" uid="uid://djt8tok2g8xsq" path="res://assets/UI Elements/Icon-Import.png" id="8_fbglj"]
+[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="9_linj2"]
+[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="10_p8k2p"]
+[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="11_4kvee"]
+[ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="12_dufsc"]
 
 [sub_resource type="Theme" id="Theme_yg7sq"]
 
@@ -20,7 +28,7 @@ offset_right = 2.0
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.596078, 0.596078, 0.596078, 0.917647)
+color = Color(0.321569, 0.321569, 0.321569, 0.509804)
 
 [node name="Bravo" type="Label" parent="EndWindow"]
 visible = false
@@ -48,14 +56,14 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 338.0
-offset_top = -412.5
-offset_right = -332.0
-offset_bottom = -38.5
+offset_left = 394.0
+offset_top = -450.5
+offset_right = -386.0
+offset_bottom = -76.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 72
 text = "You ensured enough energy 
 for 30 years
 "
@@ -63,6 +71,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
+
+[node name="NinePatchRect7" type="NinePatchRect" parent="EndWindow/EndText"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_27rt7")
+region_rect = Rect2(-2, 6, 394, 362)
+patch_margin_left = 42
+patch_margin_top = 36
+patch_margin_right = 44
+patch_margin_bottom = 38
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EndWindow"]
 custom_minimum_size = Vector2(55, 0)
@@ -72,9 +97,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -494.0
+offset_top = -312.0
 offset_right = 10.0
-offset_bottom = -6.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 22
@@ -104,10 +129,30 @@ grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(1, 0.305882, 0.176471, 1)
 
-[node name="Energy" type="Label" parent="EndWindow/HBoxContainer"]
+[node name="Energy" type="NinePatchRect" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-theme_override_font_sizes/font_size = 46
+texture = ExtResource("2_27rt7")
+region_rect = Rect2(-2, 6, 394, 362)
+patch_margin_left = 42
+patch_margin_top = 36
+patch_margin_right = 44
+patch_margin_bottom = 38
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/HBoxContainer/Energy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Energy" type="Label" parent="EndWindow/HBoxContainer/Energy/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "Final Energy Supply
 &
 "
@@ -116,7 +161,8 @@ vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
 
-[node name="ColorRect3" type="ColorRect" parent="EndWindow/HBoxContainer/Energy"]
+[node name="ColorRect3" type="ColorRect" parent="EndWindow/HBoxContainer/Energy/MarginContainer/Energy"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -127,10 +173,30 @@ grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(1, 0.470588, 0.180392, 1)
 
-[node name="Import" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(280, 250)
+[node name="Import" type="NinePatchRect" parent="EndWindow/HBoxContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 46
+texture = ExtResource("2_27rt7")
+region_rect = Rect2(-2, 6, 394, 362)
+patch_margin_left = 42
+patch_margin_top = 36
+patch_margin_right = 44
+patch_margin_bottom = 38
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/HBoxContainer/Import"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Import" type="Label" parent="EndWindow/HBoxContainer/Import/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "You imported %
 "
 horizontal_alignment = 1
@@ -138,7 +204,8 @@ vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
 
-[node name="ColorRect3" type="ColorRect" parent="EndWindow/HBoxContainer/Import"]
+[node name="ColorRect3" type="ColorRect" parent="EndWindow/HBoxContainer/Import/MarginContainer/Import"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -149,10 +216,30 @@ grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(0.921569, 0.407843, 0.909804, 1)
 
-[node name="Money" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(280, 250)
+[node name="Money" type="NinePatchRect" parent="EndWindow/HBoxContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 46
+texture = ExtResource("2_27rt7")
+region_rect = Rect2(-2, 6, 394, 362)
+patch_margin_left = 42
+patch_margin_top = 36
+patch_margin_right = 44
+patch_margin_bottom = 38
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/HBoxContainer/Money"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Money" type="Label" parent="EndWindow/HBoxContainer/Money/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "You avoided an economic crisis
 "
 horizontal_alignment = 1
@@ -160,7 +247,8 @@ vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
 
-[node name="ColorRect4" type="ColorRect" parent="EndWindow/HBoxContainer/Money"]
+[node name="ColorRect4" type="ColorRect" parent="EndWindow/HBoxContainer/Money/MarginContainer/Money"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -169,12 +257,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
-color = Color(0.827451, 0.819608, 0.0313726, 1)
+color = Color(1, 1, 0.0313726, 1)
 
-[node name="Support" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(280, 250)
+[node name="Support" type="NinePatchRect" parent="EndWindow/HBoxContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 46
+texture = ExtResource("2_27rt7")
+region_rect = Rect2(-2, 6, 394, 362)
+patch_margin_left = 42
+patch_margin_top = 36
+patch_margin_right = 44
+patch_margin_bottom = 38
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/HBoxContainer/Support"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Support" type="Label" parent="EndWindow/HBoxContainer/Support/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "Final 
 Support
 
@@ -184,7 +292,8 @@ vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
 
-[node name="ColorRect5" type="ColorRect" parent="EndWindow/HBoxContainer/Support"]
+[node name="ColorRect5" type="ColorRect" parent="EndWindow/HBoxContainer/Support/MarginContainer/Support"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -195,10 +304,30 @@ grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(0.466667, 0.607843, 0.917647, 1)
 
-[node name="Poll" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(280, 250)
+[node name="Poll" type="NinePatchRect" parent="EndWindow/HBoxContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 46
+texture = ExtResource("2_27rt7")
+region_rect = Rect2(-2, 6, 394, 362)
+patch_margin_left = 42
+patch_margin_top = 36
+patch_margin_right = 44
+patch_margin_bottom = 38
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/HBoxContainer/Poll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Poll" type="Label" parent="EndWindow/HBoxContainer/Poll/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "You (did not) reached net zero by 2050
 "
 horizontal_alignment = 1
@@ -206,7 +335,8 @@ vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
-[node name="ColorRect6" type="ColorRect" parent="EndWindow/HBoxContainer/Poll"]
+[node name="ColorRect6" type="ColorRect" parent="EndWindow/HBoxContainer/Poll/MarginContainer/Poll"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -217,10 +347,30 @@ grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(0.501961, 0.501961, 0.501961, 1)
 
-[node name="Env" type="Label" parent="EndWindow/HBoxContainer"]
-custom_minimum_size = Vector2(280, 250)
+[node name="Env" type="NinePatchRect" parent="EndWindow/HBoxContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 46
+texture = ExtResource("2_27rt7")
+region_rect = Rect2(-2, 6, 394, 362)
+patch_margin_left = 42
+patch_margin_top = 36
+patch_margin_right = 44
+patch_margin_bottom = 38
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/HBoxContainer/Env"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Env" type="Label" parent="EndWindow/HBoxContainer/Env/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "Environmental Score
 
 "
@@ -229,7 +379,8 @@ vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
-[node name="ColorRect7" type="ColorRect" parent="EndWindow/HBoxContainer/Env"]
+[node name="ColorRect7" type="ColorRect" parent="EndWindow/HBoxContainer/Env/MarginContainer/Env"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -240,15 +391,43 @@ grow_vertical = 2
 theme = SubResource("Theme_yg7sq")
 color = Color(0.317647, 0.721569, 0.294118, 1)
 
+[node name="Icon-pollution-" type="Sprite2D" parent="EndWindow"]
+position = Vector2(1466, 721)
+texture = ExtResource("6_vhvio")
+
+[node name="Icon-money" type="Sprite2D" parent="EndWindow"]
+position = Vector2(906, 877)
+texture = ExtResource("7_vf71k")
+
+[node name="Icon-import" type="Sprite2D" parent="EndWindow"]
+position = Vector2(450, 733)
+texture = ExtResource("8_fbglj")
+
+[node name="Icon-solar" type="Sprite2D" parent="EndWindow"]
+position = Vector2(282, 885)
+texture = ExtResource("9_linj2")
+
+[node name="Icon-wind" type="Sprite2D" parent="EndWindow"]
+position = Vector2(154, 884)
+texture = ExtResource("10_p8k2p")
+
+[node name="Icon-popularity" type="Sprite2D" parent="EndWindow"]
+position = Vector2(1058, 869)
+texture = ExtResource("11_4kvee")
+
+[node name="Icon-environment-" type="Sprite2D" parent="EndWindow"]
+position = Vector2(1650, 861)
+texture = ExtResource("12_dufsc")
+
 [node name="Stats" type="Control" parent="EndWindow"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -91.0
+offset_top = -18.0
 offset_right = 10.0
-offset_bottom = -91.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -266,30 +445,30 @@ offset_right = -761.0
 offset_bottom = 408.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 30
 text = "N
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="EnergyW" type="Label" parent="EndWindow/Stats"]
+[node name="Import" type="Label" parent="EndWindow/Stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -729.0
-offset_top = 356.0
-offset_right = -617.0
-offset_bottom = 439.0
+offset_left = -486.0
+offset_top = 213.5
+offset_right = -422.0
+offset_bottom = 296.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 57
-text = "700
+theme_override_font_sizes/font_size = 30
+text = "N
 "
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
@@ -300,13 +479,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -880.0
-offset_top = 357.0
-offset_right = -768.0
-offset_bottom = 440.0
+offset_left = -766.0
+offset_top = 319.5
+offset_right = -654.0
+offset_bottom = 402.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 57
+theme_override_font_sizes/font_size = 30
+text = "700
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="EnergyW" type="Label" parent="EndWindow/Stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -862.0
+offset_top = 318.5
+offset_right = -750.0
+offset_bottom = 401.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
 text = "900
 "
 vertical_alignment = 1
@@ -322,10 +521,10 @@ anchor_bottom = 0.5
 offset_left = 82.0
 offset_top = 350.5
 offset_right = 228.0
-offset_bottom = 461.5
+offset_bottom = 437.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 30
 text = "60%
 "
 horizontal_alignment = 1
@@ -339,13 +538,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 690.0
+offset_left = 682.0
 offset_top = 358.5
 offset_right = 835.0
-offset_bottom = 469.5
+offset_bottom = 437.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 30
 text = "50%
 "
 horizontal_alignment = 1
@@ -361,14 +560,14 @@ offset_bottom = 138.0
 text = "x"
 
 [node name="Score" type="TextureButton" parent="."]
-offset_left = 856.0
-offset_top = -16.0
-offset_right = 992.0
-offset_bottom = 106.0
+offset_left = 896.0
+offset_top = 24.0
+offset_right = 1040.0
+offset_bottom = 114.0
 toggle_mode = true
-texture_normal = ExtResource("3_8mcym")
-texture_pressed = ExtResource("4_e0pjh")
-texture_hover = ExtResource("5_pyjgd")
+texture_normal = ExtResource("3_g4lp6")
+texture_pressed = ExtResource("4_wpw57")
+texture_hover = ExtResource("5_3yvol")
 ignore_texture_size = true
 stretch_mode = 0
 

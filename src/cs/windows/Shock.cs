@@ -113,8 +113,7 @@ public partial class Shock : CanvasLayer {
 		SHOCKS = new() { 
 			"cold_spell", "heat_wave", "glaciers_melting", 
 			"severe_weather",
-			"inc_raw_cost_10", "inc_raw_cost_20", "mass_immigration",
-			"pandemic", "nuc_accident"
+			"inc_raw_cost_10", "inc_raw_cost_20", "dec_raw_cost_20", "mass_immigration"
 		};
 	
 		// Set the initial shock
