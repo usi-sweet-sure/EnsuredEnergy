@@ -169,7 +169,7 @@ public partial class GameLoop : Node2D {
 		// Connect Callback to each build button and give them a reference to the loop
 		foreach(BuildButton bb in BBs) {
 			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
-
+			ShockWindow.WeatherShock += bb._OnWeatherShock;
 			// Record a reference to the game loop
 			bb._RecordGameLoopRef(this);
 		}

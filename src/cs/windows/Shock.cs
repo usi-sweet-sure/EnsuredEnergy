@@ -39,9 +39,12 @@ public partial class Shock : CanvasLayer {
 	[Signal]
 	public delegate void WeatherShockEventHandler();
 	
+	[Signal]
+	public delegate void ResetWeatherEventHandler();
+	
 	[Export]
 	// Probability of getting a shock
-	public int ShockProba = 70;
+	public int ShockProba = 80;
 
 	// Big list of shock ids
 	private List<string> SHOCKS;
@@ -115,7 +118,7 @@ public partial class Shock : CanvasLayer {
 
 		SHOCKS = new() { 
 			"cold_spell", "cold_spell", "heat_wave", "glaciers_melting", 
-			"severe_weather", "severe_weather", "renewables_support",
+			"severe_weather", "renewables_support",
 			"inc_raw_cost_10", "inc_raw_cost_10", "inc_raw_cost_20", 
 			"dec_raw_cost_20", "mass_immigration"
 		};
@@ -153,16 +156,17 @@ public partial class Shock : CanvasLayer {
 			// Remove the shock from the list
 			SHOCKS.RemoveAt(next_idx);
 
+			if(CurShock == "severe_weather" || next_shock == "severe_weather") {
+				// Make sure that the weather shock happens
+				EmitSignal(SignalName.WeatherShock);
+			}
+			
 			// Set the next shock
 			CurShock = next_shock;
 
 			// Update the fields to match the new shock
 			SetFields(M, E, Env, S);
 			
-			if(CurShock == "severe_weather") {
-				// Make sure that the weather shock happens
-				EmitSignal(SignalName.WeatherShock);
-			}
 
 			// Decide whether or not to show a shock
 			// There is a 50% chance of getting a shock

@@ -522,4 +522,10 @@ public partial class BuildButton : TextureButton {
 	private void _OnBuildInfoPressed() {
 		Plate.Visible = !Plate.Visible;
 	}
+	
+	public void _OnWeatherShock() {
+			SolarPlant._OnWeatherShock();
+			WindPlant._OnWeatherShock();
+		}
+	
 }

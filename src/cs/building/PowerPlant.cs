@@ -1133,12 +1133,17 @@ public partial class PowerPlant : Node2D {
 		}
 	}
 	
+	// Set weather shock energy availability to wind and solar
 	public void _OnWeatherShock() {
-		if(PlantType.type == Building.Type.WIND) {
-			EnergyAvailability = (0f,0f);
+		if(EnergyAvailability == (0f,0.5f) || EnergyAvailability == (0.4f,0f)) {
+			GD.Print("reset weather");
+			ActivatePowerPlant();
 		}
-		if(PlantType.type == Building.Type.SOLAR) {
+		else if(PlantType.type == Building.Type.WIND) {
+			EnergyAvailability = (0.4f,0f);
+		}
+		else if(PlantType.type == Building.Type.SOLAR) {
 			EnergyAvailability = (0f,0.5f);
-		}
+		} 
 	}
 }
