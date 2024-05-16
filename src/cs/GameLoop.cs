@@ -40,10 +40,10 @@ public partial class GameLoop : Node2D {
 
 	// The amount of money the player starts with (in millions of CHF)
 	[Export]
-	public int START_MONEY = 200;
+	public int START_MONEY = 250;
 
 	[Export]
-	public static int BUDGET_PER_TURN = 300;
+	public static int BUDGET_PER_TURN = 250;
 
 	// Internal game state
 	private GameState GS;

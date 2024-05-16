@@ -115,8 +115,9 @@ public partial class Shock : CanvasLayer {
 
 		SHOCKS = new() { 
 			"cold_spell", "cold_spell", "heat_wave", "glaciers_melting", 
-			"severe_weather", "severe_weather",
-			"inc_raw_cost_10", "inc_raw_cost_10", "inc_raw_cost_20", "dec_raw_cost_20", "mass_immigration"
+			"severe_weather", "severe_weather", "renewables_support",
+			"inc_raw_cost_10", "inc_raw_cost_10", "inc_raw_cost_20", 
+			"dec_raw_cost_20", "mass_immigration"
 		};
 	
 		// Set the initial shock
@@ -159,8 +160,8 @@ public partial class Shock : CanvasLayer {
 			SetFields(M, E, Env, S);
 			
 			if(CurShock == "severe_weather") {
-			// Make sure that the weather shock happens
-			EmitSignal(SignalName.WeatherShock);
+				// Make sure that the weather shock happens
+				EmitSignal(SignalName.WeatherShock);
 			}
 
 			// Decide whether or not to show a shock
@@ -259,6 +260,14 @@ public partial class Shock : CanvasLayer {
 
 		// Set the reward text
 		Reward.Text = CurReward.Text;
+		
+		// Change reward color
+		if(CurShock == "dec_raw_cost_20" || CurShock == "renewables_support"
+		|| CurShock == "cold_spell" || CurShock == "heat_wave") {
+			Reward.Set("theme_override_colors/font_color", new Color(0,1,0,1));
+		} else {
+			Reward.Set("theme_override_colors/font_color", new Color(1,0,0,1));
+		}
 
 		// Retrieve the current reactions
 		CurReactions = SC._GetReactions(CurShock);
@@ -338,10 +347,6 @@ public partial class Shock : CanvasLayer {
 
 		// Set the reward text
 		Reward.Text = CurReward.Text;
-		if(CurShock == "dec_raw_cost_20") {
-			GD.Print("Change color!!!");
-			Reward.Set("theme_override_colors/font_color", new Color(0,1,0,1));
-		}
 
 		// Retrieve the current reactions
 		CurReactions = SC._GetReactions(CurShock);

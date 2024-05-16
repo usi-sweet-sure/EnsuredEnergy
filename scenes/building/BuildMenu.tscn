@@ -74,7 +74,8 @@ offset_bottom = 1452.0
 color = Color(0.180392, 0.180392, 0.180392, 0)
 
 [node name="Solar" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(156, 142)
+position = Vector2(194, 167)
+scale = Vector2(0.9, 0.9)
 PlantName = "Solar Plant"
 _PlantType = 2
 metadata/_edit_group_ = true
@@ -99,7 +100,8 @@ focus_mode = 0
 flat = true
 
 [node name="Wind" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(402, 142)
+position = Vector2(420, 167)
+scale = Vector2(0.9, 0.9)
 PlantName = "Wind"
 _PlantType = 5
 metadata/_edit_group_ = true
@@ -109,10 +111,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
-offset_left = -9.0
-offset_top = -249.0
-offset_right = 55.0
-offset_bottom = -217.0
+offset_left = -1.0
+offset_top = -250.0
+offset_right = 63.0
+offset_bottom = -214.0
 grow_vertical = 1
 
 [node name="Sprite" parent="Container/Wind" index="1"]
@@ -141,7 +143,8 @@ focus_mode = 0
 flat = true
 
 [node name="Tree" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(1385, 141)
+position = Vector2(1322, 166)
+scale = Vector2(0.9, 0.9)
 PlantName = "Trees"
 _PlantType = 3
 metadata/_edit_group_ = true
@@ -174,15 +177,17 @@ focus_mode = 0
 flat = true
 
 [node name="Hydro" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(156, 142)
+position = Vector2(194, 167)
+scale = Vector2(0.9, 0.9)
 PlantName = "Hydro Plant"
 _PlantType = 0
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Hydro/PreviewInfo" index="3"]
-offset_left = -11.0
-offset_right = 61.0
-offset_bottom = -247.0
+offset_left = -4.0
+offset_top = -282.5
+offset_right = 68.0
+offset_bottom = -246.5
 
 [node name="Sprite" parent="Container/Hydro" index="1"]
 position = Vector2(-1, 24)
@@ -209,14 +214,15 @@ focus_mode = 0
 flat = true
 
 [node name="Gas" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(648, 141)
+position = Vector2(647, 166)
+scale = Vector2(0.9, 0.9)
 PlantName = "Gas Plant"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Gas/PreviewInfo" index="3"]
-offset_left = -7.0
-offset_top = -281.0
-offset_right = 65.0
+offset_top = -281.5
+offset_right = 70.0
+offset_bottom = -245.5
 
 [node name="Sprite" parent="Container/Gas" index="1"]
 position = Vector2(-1, 24)
@@ -239,14 +245,26 @@ focus_mode = 0
 flat = true
 
 [node name="Waste" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(894, 141)
+position = Vector2(872.001, 166)
+scale = Vector2(0.9, 0.9)
 PlantName = "Waste"
 _PlantType = 6
+metadata/_edit_group_ = true
+
+[node name="PreviewInfo" parent="Container/Waste" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" parent="Container/Waste/PreviewInfo" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time3" parent="Container/Waste/PreviewInfo" index="2"]
+metadata/_edit_use_anchors_ = true
 
 [node name="Price" parent="Container/Waste/PreviewInfo" index="3"]
-offset_left = -13.0
-offset_top = -281.0
-offset_right = 59.0
+offset_top = -281.5
+offset_right = 70.0
+offset_bottom = -245.5
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite" parent="Container/Waste" index="1"]
 position = Vector2(4, 10.25)
@@ -260,6 +278,21 @@ offset_right = -25.0
 offset_bottom = -320.0
 scale = Vector2(0.5, 0.5)
 
+[node name="NameRect" parent="Container/Waste" index="3"]
+metadata/_edit_use_anchors_ = true
+
+[node name="ResRect" parent="Container/Waste" index="4"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyS" parent="Container/Waste/ResRect" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyW" parent="Container/Waste/ResRect" index="7"]
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoButton" parent="Container/Waste" index="7"]
+metadata/_edit_use_anchors_ = true
+
 [node name="WasteButton" type="Button" parent="Container/Waste"]
 offset_left = -101.0
 offset_top = -144.0
@@ -267,15 +300,29 @@ offset_right = 104.0
 offset_bottom = 143.0
 focus_mode = 0
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Biomass" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(1140, 141)
+position = Vector2(1097, 166)
+scale = Vector2(0.9, 0.9)
 _PlantType = 7
+metadata/_edit_group_ = true
+
+[node name="PreviewInfo" parent="Container/Biomass" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" parent="Container/Biomass/PreviewInfo" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time3" parent="Container/Biomass/PreviewInfo" index="2"]
+metadata/_edit_use_anchors_ = true
 
 [node name="Price" parent="Container/Biomass/PreviewInfo" index="3"]
-offset_left = -11.0
-offset_top = -281.0
-offset_right = 61.0
+offset_left = -3.0
+offset_top = -281.5
+offset_right = 69.0
+offset_bottom = -245.5
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite" parent="Container/Biomass" index="1"]
 position = Vector2(0.25, 25.25)
@@ -289,6 +336,21 @@ offset_right = -25.0
 offset_bottom = -320.0
 scale = Vector2(0.5, 0.5)
 
+[node name="NameRect" parent="Container/Biomass" index="3"]
+metadata/_edit_use_anchors_ = true
+
+[node name="ResRect" parent="Container/Biomass" index="4"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyS" parent="Container/Biomass/ResRect" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyW" parent="Container/Biomass/ResRect" index="7"]
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoButton" parent="Container/Biomass" index="7"]
+metadata/_edit_use_anchors_ = true
+
 [node name="BiomassButton" type="Button" parent="Container/Biomass"]
 offset_left = -103.0
 offset_top = -148.0
@@ -296,16 +358,28 @@ offset_right = 96.0
 offset_bottom = 141.0
 focus_mode = 0
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="River" parent="Container" instance=ExtResource("2_236y8")]
-visible = false
-position = Vector2(402, 142)
+position = Vector2(420, 167)
+scale = Vector2(0.9, 0.9)
 _PlantType = 8
+metadata/_edit_group_ = true
+
+[node name="PreviewInfo" parent="Container/River" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" parent="Container/River/PreviewInfo" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time3" parent="Container/River/PreviewInfo" index="2"]
+metadata/_edit_use_anchors_ = true
 
 [node name="Price" parent="Container/River/PreviewInfo" index="3"]
 offset_left = -9.0
 offset_right = 63.0
 offset_bottom = -247.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite" parent="Container/River" index="1"]
 position = Vector2(9, 32.75)
@@ -323,6 +397,21 @@ offset_right = -25.0
 offset_bottom = -320.0
 scale = Vector2(0.5, 0.5)
 
+[node name="NameRect" parent="Container/River" index="3"]
+metadata/_edit_use_anchors_ = true
+
+[node name="ResRect" parent="Container/River" index="4"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyS" parent="Container/River/ResRect" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyW" parent="Container/River/ResRect" index="7"]
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoButton" parent="Container/River" index="7"]
+metadata/_edit_use_anchors_ = true
+
 [node name="RiverButton" type="Button" parent="Container/River"]
 offset_left = -98.0
 offset_top = -120.0
@@ -330,15 +419,28 @@ offset_right = 108.0
 offset_bottom = 146.0
 focus_mode = 0
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Pump" parent="Container" instance=ExtResource("2_236y8")]
-position = Vector2(648, 141)
+position = Vector2(647, 166)
+scale = Vector2(0.9, 0.9)
 _PlantType = 9
+metadata/_edit_group_ = true
+
+[node name="PreviewInfo" parent="Container/Pump" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" parent="Container/Pump/PreviewInfo" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Time3" parent="Container/Pump/PreviewInfo" index="2"]
+metadata/_edit_use_anchors_ = true
 
 [node name="Price" parent="Container/Pump/PreviewInfo" index="3"]
 offset_left = -7.0
 offset_top = -281.0
 offset_right = 65.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite" parent="Container/Pump" index="1"]
 position = Vector2(-1, 24)
@@ -352,6 +454,21 @@ offset_right = -25.0
 offset_bottom = -320.0
 scale = Vector2(0.5, 0.5)
 
+[node name="NameRect" parent="Container/Pump" index="3"]
+metadata/_edit_use_anchors_ = true
+
+[node name="ResRect" parent="Container/Pump" index="4"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyS" parent="Container/Pump/ResRect" index="6"]
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyW" parent="Container/Pump/ResRect" index="7"]
+metadata/_edit_use_anchors_ = true
+
+[node name="InfoButton" parent="Container/Pump" index="7"]
+metadata/_edit_use_anchors_ = true
+
 [node name="PumpButton" type="Button" parent="Container/Pump"]
 offset_left = -90.0
 offset_top = -120.0
@@ -359,6 +476,7 @@ offset_right = 93.0
 offset_bottom = 144.0
 focus_mode = 0
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [editable path="Container/Solar"]
 [editable path="Container/Wind"]

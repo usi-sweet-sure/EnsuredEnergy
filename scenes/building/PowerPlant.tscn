@@ -1080,7 +1080,7 @@ offset_bottom = 186.0
 color = Color(0.4, 0.4, 0.4, 0)
 
 [node name="BuildMenuNumHole" type="Sprite2D" parent="ResRect"]
-position = Vector2(91, -4)
+position = Vector2(91, -3)
 texture = ExtResource("4_ovnj6")
 
 [node name="BuildMenuNumCounter" type="Sprite2D" parent="ResRect/BuildMenuNumHole"]
@@ -1152,9 +1152,9 @@ vertical_alignment = 1
 [node name="EnergyS" type="Label" parent="ResRect"]
 layout_mode = 0
 offset_left = 89.0
-offset_top = -14.0
+offset_top = -21.0
 offset_right = 128.0
-offset_bottom = 20.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0.0352941, 0.156863, 0.168627, 1)
 theme_override_fonts/font = SubResource("FontVariation_uwmcg")
 theme_override_font_sizes/font_size = 25
@@ -1164,9 +1164,9 @@ horizontal_alignment = 2
 [node name="EnergyW" type="Label" parent="ResRect"]
 layout_mode = 0
 offset_left = -11.0
-offset_top = -14.0
+offset_top = -21.0
 offset_right = 28.0003
-offset_bottom = 20.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0.0352941, 0.156863, 0.168627, 1)
 theme_override_fonts/font = SubResource("FontVariation_r1iqv")
 theme_override_font_sizes/font_size = 25
@@ -1214,6 +1214,7 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="HoverArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 position = Vector2(0, 4)

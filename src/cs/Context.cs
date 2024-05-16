@@ -30,7 +30,7 @@ public partial class Context : Node {
 
 	private const float DEMAND_INC_S = 4;
 	private const float DEMAND_INC_W = 4;
-	private const float DEMAND_INIT_S = 115;
+	private const float DEMAND_INIT_S = 122;
 	private const float DEMAND_INIT_W = 130;
 
 	[Signal]
