@@ -18,33 +18,33 @@
 <db id="tutorial" lang="de">
 	<group id="tutorial_text">
 		<text id="0">Glückwunsch !
-Sie wurden dazu ausgewählt, [b]das Stromnetz[/b] zu steuern und einen nachhaltigen und widerstandsfähigen Energiesektor sicherzustellen für die nächsten 30 Jahre (10 Runden).</text>
-<text id="1">Sie können entscheiden, wie das zukünftige Energiesystem aussehen soll, 
-	aber denken Sie immer daran, dass Sie [b]den Energiebedarf[/b] decken müssen.</text>
-				<!-- <text id="1">Sie können entscheiden, wie das künftige Energiesystem aussehen soll, 
-					aber seien Sie sich bewusst, dass die Schweiz sich verpflichtet hat, bis 2050 CO2-neutral zu sein. 
+Du wurdest dazu ausgewählt, [b]das Stromnetz[/b] zu managen und einen nachhaltigen und widerstandsfähigen Energiesektor für die nächsten 30 Jahre (10 Runden) sicherzustellen.</text>
+<text id="1">Du kannst entscheiden, wie das zukünftige Energiesystem aussehen soll, 
+	aber denke immer daran, dass du [b]genügend Energie produzieren musst, um den Energiebedarf[/b] zu decken.</text>
+				<!-- <text id="1">Du kannst entscheiden, wie das künftige Energiesystem aussehen soll, 
+					aber sei dir bewusst, dass die Schweiz sich verpflichtet hat, bis 2050 CO2-neutral zu sein. 
 					Eine Mehrheit der Stimmbürgerinnen und Stimmbürger hat diesem Ziel in einer Volksabstimmung zugestimmt.</text>-->
-		<text id="2">Sie müssen genügend [b]Energie[/b] für Ihre Bevölkerung zur Verfügung stellen.
-Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
-		<text id="3">Sie müssen genügend [b]Energie[/b] für Ihre Bevölkerung zur Verfügung stellen.
-Sie müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
-		<text id="4">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:
+		<text id="2">Du musst genügend [b]Energie[/b] für deine Bevölkerung zur Verfügung stellen.
+Die Menschen müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
+		<text id="3">Du musst genügend [b]Energie[/b] für deine Bevölkerung zur Verfügung stellen.
+Die Menschen müssen ihre Telefone aufladen und ihre Lieblingsvideospiele spielen können.</text>
+		<text id="4">Es gibt verschiedene Möglichkeiten, mehr Energie zur Verfügung zu stellen:
 
-- Man kann Energie importieren, aber das verschmutzt und kann teuer sein.</text>
+- Man kann Energie importieren, aber das führt zu Verschmutzung und kann teuer sein.</text>
 		<text id="5">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:
 
 - Man kann neue Kraftwerke bauen, aber das kostet Zeit und Geld.</text>
 <text id="6">Es gibt verschiedene Möglichkeiten, mehr Energie zu liefern:
 
-	- Sie können einige der bestehenden Kraftwerke aufrüsten</text>
-	<text id="7">Sie können auch Informationskampagnen durchführen oder versuchen, verschiedene politische Maßnahmen umzusetzen, um 
+	- Du kannst einige der bestehenden Kraftwerke aufrüsten</text>
+	<text id="7">Du kannst auch Informationskampagnen durchführen oder versuchen, politische Maßnahmen umzusetzen, um 
 		den Energiebedarf zu senken oder den Bau von Kraftwerken zu erleichtern.</text>
 	</group>
 	<group id="info_bubble">
-		<text id="0">Für jede Runde muss man den Bedarf für Winter ❄️ und Sommer 🔆 erreichen.</text>
-		<text id="1">Importiere mehr Energie hier</text>
-		<text id="2">Neue Kraftwerke bauen</text>
-		<text id="3">Aufrüstung des bestehenden Kraftwerks</text>
-		<text id="4">Umsetzung der Politik</text>
+		<text id="0">In jeder Runde musst du den Strombedarf für den Winter ❄️ und den Sommer 🔆 erreichen.</text>
+		<text id="1">Hier kannst du mehr Strom importieren</text>
+		<text id="2">Du kannst neue Kraftwerke bauen</text>
+		<text id="3">Du kannst bestehende Kraftwerk aufrüsten</text>
+		<text id="4">Du kannst politische Massnahmen ergreifen</text>
 	</group>
 </db>
