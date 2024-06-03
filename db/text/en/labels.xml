@@ -69,7 +69,7 @@
     <group id="policies">
         <text id="policy_success">Policy was passed successfully!</text>
         <text id="policy_failure">Policy failed to be passed...</text>
-        <text id="label_popularity">Estimated popularity with voters:</text>
+        <text id="label_popularity">Estimated acceptance chance:</text>
         <text id="label_campaign">Duration of campaign:</text>
         <text id="label_camp_start">The campaign has started!</text>
         <text id="label_vote">Vote</text>
@@ -85,7 +85,7 @@
         <text id="label_energy_s">Energy 🔆</text>
         <text id="label_support">Support</text>
         <text id="label_environment">Environment</text>
-        <text id="label_pollution">Pollution</text>
+        <text id="label_pollution">Emissions</text>
     </group>
 
      <!-- Labels for general UI buttons -->

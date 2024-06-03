@@ -102,10 +102,10 @@ texture = ExtResource("2_5macm")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -404.0
-offset_top = -320.0
-offset_right = -68.0
-offset_bottom = -244.0
+offset_left = -412.0
+offset_top = -316.0
+offset_right = -67.0
+offset_bottom = -243.0
 grow_horizontal = 2
 theme = ExtResource("3_yevmu")
 theme_type_variation = &"Screen"
@@ -118,10 +118,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -159.0
+offset_left = -158.5
 offset_top = 72.0
-offset_right = 160.0
-offset_bottom = 237.0
+offset_right = 160.5
+offset_bottom = 141.0
 grow_horizontal = 2
 theme = ExtResource("3_yevmu")
 theme_type_variation = &"Screen"
@@ -129,24 +129,11 @@ theme_override_font_sizes/font_size = 20
 text = "Information campaigns help boost the popularity of your policies."
 autowrap_mode = 3
 
-[node name="SelectPolicy" type="Label" parent="Control/Policies-base-2"]
-visible = false
-offset_left = -148.0
-offset_top = -103.0
-offset_right = 139.0
-offset_bottom = -48.0
-theme_override_colors/font_color = Color(0.552941, 0.85098, 0.839216, 1)
-theme_override_font_sizes/font_size = 25
-text = "- Select Policy -"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
 [node name="EffectTitle" type="Label" parent="Control/Policies-base-2"]
 offset_left = -165.0
-offset_top = -172.0
+offset_top = -181.0
 offset_right = 163.0
-offset_bottom = -40.0
+offset_bottom = -49.0
 theme = ExtResource("3_yevmu")
 theme_type_variation = &"Screen"
 text = "Effects:
@@ -303,6 +290,21 @@ offset_bottom = 169.0
 theme = ExtResource("3_yevmu")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "This policy is already implemented."
+
+[node name="PolicyExplanation" type="Label" parent="Control/Policies-base-2"]
+offset_left = -173.0
+offset_top = -316.0
+offset_right = 171.0
+offset_bottom = -28.0
+theme = ExtResource("3_yevmu")
+theme_type_variation = &"Screen"
+theme_override_font_sizes/font_size = 20
+text = "- Campaigns -
+Information campaigns help boost the popularity of your policies.
+- Policies -
+Policies can help improve existing renewable power plants or lower demand in energy. The population gets to decide, so your support score needs to be good if you want to implement policies."
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PoliciesBase-1" type="Sprite2D" parent="Control"]
 position = Vector2(163.5, 388.5)

@@ -67,6 +67,7 @@ public partial class PolicyWindow : CanvasLayer {
 	private Label DemandCampaign;
 	private Label EnvPolicy;
 	private Label EnvPolicy2;
+	private Label PolicyExpl;
 
 	// ==================== Singletons ====================	
 
@@ -104,6 +105,7 @@ public partial class PolicyWindow : CanvasLayer {
 		DemandCampaign = GetNode<Label>("Control/PoliciesBase-2/DemandCampaign");
 		EnvPolicy = GetNode<Label>("Control/PoliciesBase-1/EnvPolicy");
 		EnvPolicy2 = GetNode<Label>("Control/PoliciesBase-2/EnvPolicy2");
+		PolicyExpl = GetNode<Label>("Control/Policies-base-2/PolicyExplanation");
 		
 		PolicyGroup = WindButton.ButtonGroup;
 		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
@@ -178,6 +180,9 @@ public partial class PolicyWindow : CanvasLayer {
 	public void _OnPanelGuiInput(InputEvent input) {
 		if(input.GetType() == new InputEventMouseButton().GetType()) {
 			Hide();
+			PolicyExpl.Show();
+			PN.Hide();
+			ETitle.Hide();
 			PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
 			if (PressedPolicy != null) {
 				Vote.Hide();
@@ -191,6 +196,7 @@ public partial class PolicyWindow : CanvasLayer {
 	public void _OnCampaignButtonPressed() {
 		// Allow for the user to trigger a vote
 		Vote.Show();
+		PolicyExpl.Hide();
 
 		// Retrieve the policy information to use it to update the UI
 		PressedPolicy = PolicyGroup.GetPressedButton() as TextureButton;
@@ -228,6 +234,7 @@ public partial class PolicyWindow : CanvasLayer {
 		if(PressedPolicy != null && PolicyButtons.Contains(PressedPolicy)) {
 			// Allow for the user to trigger a vote
 			Vote.Show();
+			PolicyExpl.Hide();
 			Implemented.Hide();
 			if (!Vote.Disabled) {VoteResult.Hide();}
 
@@ -274,6 +281,13 @@ public partial class PolicyWindow : CanvasLayer {
 			if(PolicyButtons.Contains(PressedPolicy)) {
 				// Attempt the vote
 				bool success = C._GetGL()._GetPM()._RequestPolicy(PressedPolicy.Name);
+				
+				// Disables the button if the policy is accepted
+				PressedPolicy.Disabled = success;
+				if(success){
+					PressedPolicy.Modulate = new Color(0.5f,0.5f,0.5f);
+				}
+				
 
 				// Disable the vote
 				Vote.Disabled = true;
