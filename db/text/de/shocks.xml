@@ -29,7 +29,7 @@
         <!-- The list of ways the player can react to said shock -->
         <reaction id="1">
             <!-- The text that will be displayed in the reaction button (verbatim) -->
-            <text>Fordern Sie die Bevölkerung auf, ihren Energieverbrauch zu senken.
+            <text>Fordere die Bevölkerung auf, ihren Energieverbrauch zu senken.
 -10 👍</text>
             <!-- The effect selecting this reaction will have on the player's resources -->
             <effect field="support" value="-10"/>
@@ -57,7 +57,7 @@
     <shock id="heat_wave" tag="env">
         <name>Hitzewelle</name>
         <img>hot</img>
-        <text>Die Sommer waren heißer als üblich, was den Energiebedarf im Sommer um 5 ⚡ erhöhte.</text>
+        <text>Die Sommer waren heisser als üblich, was den Energiebedarf im Sommer um 5 ⚡ erhöhte.</text>
         <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
             <text>Aufforderung an die Bevölkerung, ihre Klimaanlagen herunterzudrehen 
@@ -85,14 +85,14 @@
     <shock id="glaciers_melting" tag="env">
         <name>Gletscher schmelzen</name>
         <img>ice</img>
-        <text>Die Wasserwerke sind vom Zustand der Gletscher abhängig. Solange der Netto-Nullpunkt nicht erreicht ist, schmelzen die Gletscher weiter, wodurch die Verfügbarkeit der hydraulischen Wasserversorgung abnimmt.</text>
+        <text>Die Wasserkraftwerke sind vom Zustand der Gletscher abhängig. Solange der Netto-Nullpunkt nicht erreicht ist, schmelzen die Gletscher weiter, wodurch die Verfügbarkeit der Wasserkraft abnimmt.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>Hydraulische Energieerzeugung -1% pro Umdrehung</text>
+            <text>Energieerzeugung durch Wasserkraft -1% pro Umdrehung</text>
             <effect field="money" value="0"/>
             <effect field="env" value="0"/>
         </reward>
@@ -115,15 +115,15 @@
     </shock>
 <!-- Need geothermal
     <shock id="earthquake" tag="env">
-        <name>Earthquake</name>
-        <text>An earthquake has hit the area near the geothermal plant in construction, resulting in delays.</text>
+        <name>Erdbeben</name>
+        <text>Ein Erdbeben hat die Gegend getroffen, in der eine Geothermieanlage gebaut wird, und zu Verzögerungen geführt.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="0"/>
         </reaction>
         <reward>
-            <text>+ 1 Turn to finish building the Geothermal plant.</text>
+            <text>+ 1 Runde, um die Geothermieanlage fertigzustellen.</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -162,9 +162,9 @@
     </shock>
 
     <shock id="dec_raw_cost_20" tag="env">
-        <name>Reduction of material costs</name>
+        <name>Reduktion der Materialkosten</name>
         <img>receive</img>
-        <text>The prices of raw material have decreased resulting in production costs going down by 10%.</text>
+        <text>Die Preise für Rohstoffe sind gesunken, was zu einer Verminderung der Produktionskosten um 10% geführt hat.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
@@ -178,16 +178,16 @@
     </shock>
 
     <shock id="no_shock" tag="env">
-        <name>Calm years</name>
+        <name>Ruhige Jahre</name>
         <img>sunrise</img>
-        <text>The past years were calmer than usual.</text>
+        <text>Die letzten Jahre waren ruhiger als gewöhnlich.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Nothing is affected.</text>
+            <text>Nichts is betroffen.</text>
             <effect field="support" value="0"/>
             <effect field="money" value="0"/>
         </reward>
@@ -195,14 +195,14 @@
 <!-- Need policies
     <shock id="protest_wind" tag="env">
         <name>Protest</name>
-        <text>The population is protesting against the construction of new wind turbines.</text>
+        <text>Die Bevölkerung protestiert gegen den Bau neuer Windturbinen.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>You cannot build new ones until new policies have been implemented.</text>
+            <text>Du kannst keine neuen Windturbinen bauen, ohne vorher neue politische Massnahmen einzuführen.</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -210,14 +210,14 @@
 
     <shock id="protest_solar" tag="env">
         <name>Protest</name>
-        <text>The population is protesting against the construction of new solar panels.</text>
+        <text>Die Bevölkerung protestiert gegen den Bau neuer Solaranlagen.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>You cannot build new ones until new policies have been implemented.</text>
+            <text>Du kannst keine neuen Solaranlagen bauen, ohne vorher neue politische Massnahmen einzuführen.</text>
             <effect field="support" value="50"/>
             <effect field="money" value="50"/>
         </reward>
@@ -242,22 +242,22 @@
     <shock id="pandemic" tag="env">
         <name>Pandemie</name>
         <img>virus</img>
-        <text>Ein neues Virus breitet sich rasant in der Welt aus. Was sollten wir tun?</text>
+        <text>Ein neues Virus breitet sich rasant in der Welt aus. Was sollen wir tun?</text>
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
-            <text>Beschränkungen einrichten. 
+            <text>Beschränkungen einführen. 
 -10 👍 +50 ⚡</text>
             <effect field="support" value="-10"/>
             <effect field="support" value="0"/>
         </reaction>
         <reaction id="1">
-            <text>Legen Sie eine Impfkampagne fest.
+            <text>Eine Impfkampagne durchführen.
 -20 👍 -50$</text>
             <effect field="support" value="-20"/>
             <effect field="money" value="-50"/>
         </reaction>
         <reaction id="2">
-            <text>Warten Sie auf die Herdenimmunität.</text>
+            <text>Auf die Herdenimmunität warten.</text>
             <effect field="support" value="0"/>
         </reaction>
         <reward>
@@ -277,23 +277,23 @@
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Ihre Kernkraftwerke werden 1 Runde früher abgeschaltet.</text>
+            <text>Deine Kernkraftwerke werden 1 Runde früher abgeschaltet.</text>
             <effect field="support" value="0"/>
             <effect field="money" value="0"/>
         </reward>
     </shock>
 
     <shock id="renewables_support" tag="env">
-        <name>Increase in support</name>
+        <name>Bevölkerung für Erneuerbare</name>
         <img>flower</img>
-        <text>There was an increase in political support for renewable energies.</text>
+        <text>Die Unterstützung für erneuerbare Energien in der Bevölkerung hat zugenommen.</text>
         <requirement id="0" field="energyW" value="0" bound="min"/>
         <reaction id="0">
             <text>OK</text>
             <effect field="support" value="-50"/>
         </reaction>
         <reward>
-            <text>Your support increases +10.</text>
+            <text>Dein Support nimmt um +10 zu.</text>
             <effect field="support" value="10"/>
             <effect field="money" value="0"/>
         </reward>
@@ -308,7 +308,7 @@
             <effect field="support" value="0"/>
         </reaction>
         <reaction id="1">
-            <text>Nein, es ist Zeit, aus der Kernenergie auszusteigen.</text>
+            <text>Nein, es ist Zeit, definitiv aus der Kernenergie auszusteigen.</text>
             <effect field="env" value="0"/>
         </reaction>
         <reward>

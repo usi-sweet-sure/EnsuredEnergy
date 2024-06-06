@@ -23,7 +23,7 @@
         <text id="label_supply">Energieversorgung</text>
         <text id="label_afford">Erschwinglichkeit</text>
         <text id="label_aesth">Ästhetik</text>
-        <text id="label_land">Bodennutzung</text>
+        <text id="label_land">Landverbrauch</text>
         <text id="label_pollution">Verschmutzung</text>
         <text id="label_biodiversity">Biodiversität</text>
         <text id="label_money">Geld</text>
@@ -31,7 +31,7 @@
         <text id="label_building">Konstruktion</text>
         <text id="label_production">Produktion</text>
         <text id="label_import">Import</text>
-        <text id="label_import_pol">Imports verschmutzung</text>
+        <text id="label_import_pol">Import Verschmutzung</text>
         <text id="label_now">Jetzt</text>
         <text id="label_next_turn">Nächste</text>
         <text id="label_total">Insgesamt</text>
@@ -40,42 +40,42 @@
     </group>
 
     <group id="moreinfo">
-        <text id="biodiversity_info">Biodiversity shows the environmental impact of the energy system. The higher the score, the more can animals and plants thrive in their natural habitats. Most power plants negatively affect biodiversity because they require lots of land and water.</text>
-        <text id="landuse_info">Land use shows how much land is used by the energy system. The smaller the indicator, the less impact from the energy system on land use. Some power plants need more land than others. This can negatively impact biodiversity.</text>
-        <text id="pollution_info">CO2 emission shows how much greenhouse gas is released by the energy system. Lower emissions mean a lower impact on global warming. Some power plants emit CO2. Switzerland has decided to be carbon neutral and reach net zero by 2050.</text>
-        <text id="importCO2_info">Importing energy from neighbouring countries can also create emissions unless you pay more for green imports.</text>
-        <text id="support_info">Political support shows how popular your decisions are. The higher the support the more options in policy choices you have.</text>
-        <text id="demands_info">Energy demand in summer tends to be lower than winter because the need for cooling is lower than the need for heating in winter.</text>
-        <text id="demandw_info">In winter, energy demand is higher due to the need for heating. Switzerland often has to import the missing energy supply.</text>
-        <text id="energy_info">You need to reach the demand in energy. The target is the white line on the energy bar.</text>
-        <text id="budget_info">The budget shows you how much money you have and can spend. You start the game with 500.- and at the beginning of each turn receive 300.-.</text>
-        <text id="prod_info">Some power plants have production costs because they need materials to run.</text>
-        <text id="building_info">Indicates how much you have spent on building or upgrading power plants.</text>
-        <text id="import_info">Indicates how much you will be spending on imports. Clean imports cost N more.</text>
-        <text id="debt_info">Indicated how much money you owe.</text>
-        <text id="biomass_info">Biomass power plants use wood and organic waste to generate electricity.</text>
-        <text id="wind_info">Wind power plants use wind to create electricity.</text>
-        <text id="solar_info">Solar power plants use the sunlight to produce electricity.</text>
-        <text id="gas_info">Gas power plants burn natural gas to produce electricity.</text>
-        <text id="waste_info">Waste power plants burn waste from households and industries to produce electricity.</text>
-        <text id="hydro_info">Hydropower plants use dams to capture water and produce electricity.</text>
-        <text id="river_info">River power plants use the water flow in rivers to produce electricity.</text>
-        <text id="dam_info">Pump storages use gravity to store excess electricity and release electricity when it is needed subsequently.</text>
-        <text id="nuclear_info">Nuclear power plants use nuclear reactions to produce electricity.</text>
+        <text id="biodiversity_info">Die Biodiversität zeigt die Umweltauswirkungen des Energiesystems. Je höher der Wert, desto mehr können Tiere und Pflanzen in ihren natürlichen Lebensräumen gedeihen. Die meisten Kraftwerke wirken sich negativ auf die Artenvielfalt aus, weil sie viel Land und Wasser benötigen.</text>
+        <text id="landuse_info">Der Landverbrauch gibt an, wie viel Land durch das Energiesystem genutzt wird. Je kleiner der Indikator ist, desto geringer sind die Auswirkungen des Energiesystems auf den Landverbrauch. Einige Kraftwerke benötigen mehr Land als andere. Dies kann sich negativ auf die Artenvielfalt auswirken.</text>
+        <text id="pollution_info">Die CO2-Emissionen zeigen, wie viel Treibhausgas durch das Energiesystem freigesetzt wird. Geringere Emissionen bedeuten eine geringere Auswirkung auf die globale Erwärmung. Einige Kraftwerke stossen CO2 aus. Die Schweiz hat beschlossen, bis zum Jahr 2050 CO2-neutral zu sein und Netto-Null Treibhausgase zu erreichen.</text>
+        <text id="importCO2_info">Der Import von Energie aus Nachbarländern kann ebenfalls zu Emissionen führen, es sei denn, du zahlst einen Aufpreis für grüne Importe.</text>
+        <text id="support_info">Die politische Unterstützung zeigt, wie populär deine Entscheidungen sind. Je höher die Unterstützung, desto mehr Optionen hast du bei deinen politischen Entscheidungen.</text>
+        <text id="demands_info">Der Energiebedarf im Sommer ist tendenziell niedriger als im Winter, weil der Kühlbedarf geringer ist als der Heizbedarf im Winter.</text>
+        <text id="demandw_info">Im Winter ist die Energienachfrage aufgrund des Heizbedarfs höher. Die Schweiz muss das fehlende Energieangebot oft importieren.</text>
+        <text id="energy_info">Du musst die geforderte Energiemenge erreichen. Das Ziel ist die weisse Linie auf dem Energiebalken.</text>
+        <text id="budget_info">Das Budget zeigt dir, wie viel Geld du hast und ausgeben kannst. Du beginnst das Spiel mit 500,- und erhältst zu Beginn jeder Runde 300-.</text>
+        <text id="prod_info">Einige Kraftwerke haben Produktionskosten, weil sie Materialien zum Betrieb benötigen.</text>
+        <text id="building_info">Gibt an, wie viel du für den Bau oder die Modernisierung von Kraftwerken ausgegeben hast.</text>
+        <text id="import_info">Gibt an, wie viel du für Importe ausgeben wirst. Grünere Importe kosten N mehr.</text>
+        <text id="debt_info">Gibt an, wieviel Schulden zu hast.</text>
+        <text id="biomass_info">Biomassekraftwerke nutzen Holz und organische Abfälle zur Stromerzeugung.</text>
+        <text id="wind_info">Windkraftanlagen nutzen den Wind zur Stromerzeugung.</text>
+        <text id="solar_info">Solaranlagen nutzen das Sonnenlicht zur Stromerzeugung.</text>
+        <text id="gas_info">Gaskraftwerke verbrennen Erdgas zur Stromerzeugung.</text>
+        <text id="waste_info">Müllkraftwerke verbrennen Abfälle aus Haushalten und Industrie zur Stromerzeugung.</text>
+        <text id="hydro_info">Wasserkraftwerke nutzen Dämme, um Wasser zu stauen und Strom zu erzeugen.</text>
+        <text id="river_info">Flusskraftwerke nutzen den Wasserfluss in Flüssen zur Stromerzeugung.</text>
+        <text id="dam_info">Pumpspeicher nutzen die Schwerkraft, um überschüssigen Strom zu speichern und geben ihn dann ab, wenn er benötigt wird.</text>
+        <text id="nuclear_info">Kernkraftwerke nutzen Kernreaktionen zur Stromerzeugung.</text>
     </group>
 
     <!-- Labels used in the policies window -->
     <group id="policies">
-        <text id="policy_success">Politik wurde erfolgreich bestanden!</text>
-        <text id="policy_failure">Politik wurde nicht verabschiedet...</text>
-        <text id="label_popularity">Geschätzte Beliebtheit bei den Wählern:</text>
+        <text id="policy_success">Politik wurde von der Bevölkerung angenommen!</text>
+        <text id="policy_failure">Politik wurde von der Bevölkerung abgelehnt...</text>
+        <text id="label_popularity">Geschätzte Beliebtheit in der Wählerschaft:</text>
         <text id="label_campaign">Dauer der Kampagne:</text>
         <text id="label_camp_start">Die Kampagne hat begonnen!</text>
         <text id="label_vote">Abstimmen</text>
         <text id="label_start">Start</text>
         <text id="env_camp_label">Umwelt-Kampagne</text>
-        <text id="dem_camp_label">Bedarfskampagne</text>
-        <text id="policy_label">Politiken</text>
+        <text id="dem_camp_label">BedarfskampagneWHAT IS THIS??</text>
+        <text id="policy_label">Politische Massnahmen</text>
     </group>
     
     <!-- Labels for the resource bars -->
@@ -122,7 +122,7 @@ Energy
         <text id="mode_offline">Offline</text>
         <text id="mode_online">Online</text>
         <text id="label_reset">Neu Starten</text>
-        <text id="reset_prompt">Sind Sie sicher, dass Sie neu starten möchten?</text>
+        <text id="reset_prompt">Bist du sicher, dass du neu starten möchtest?</text>
         <text id="reset_yes">Ja</text>
         <text id="reset_no">Nein</text>
         <text id="hold_drag">Zum Verschieben halten und ziehen</text>
@@ -136,7 +136,7 @@ Energy
         <text id="label_solar">Solar</text>
         <text id="label_wind">Windrad</text>
         <text id="label_tree">Baum</text>
-        <text id="label_nuclear">Atomwerk</text>
+        <text id="label_nuclear">Atomkraftwerk</text>
         <text id="label_waste">Abfallverbrennung</text>
         <text id="label_biomass">Biomasse</text>
         <text id="label_river">Fluss</text>
@@ -150,7 +150,7 @@ Energy
     BRAVO !
             </text>
             <text id="subtitle">
-    Du hast bis 2050 ausreichend Energie garantiert.
+    Du hast bis 2050 ausreichend Energie gesichert.
             </text>
             <text id="shock">Unvorhergesehenes vermieden
     
@@ -160,11 +160,9 @@ Energy
             <text id="money_good">Du hast eine Wirtschaftskrise verhindert</text>
             <text id="money_bad">Du hast die Wirtschaft zerstört</text>
             <text id="money_loan">You had to take a loan</text>
-            <text id="support">Endgültige Unterstützung
-    
-            </text>
-            <text id="pollution_good">Du hast im Jahr 2050 Net Zero erreicht</text>
-            <text id="pollution_bad">Du hast im Jahr 2050 nicht Net Zero erreicht</text>
+            <text id="support">Finale Bevölkerungsunterstützung</text>
+            <text id="pollution_good">Du hast im Jahr 2050 Netto-Null erreicht</text>
+            <text id="pollution_bad">Du hast im Jahr 2050 Netto-Null nicht erreicht</text>
             <text id="env">Punktzahl Umwelt
                 
             </text>
