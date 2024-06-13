@@ -338,6 +338,7 @@ public partial class Context : Node {
 
 	// Getter for the demand
 	public (float, float) _GetDemand() => DemandEstimate;
+	public (float, float) _GetDemandInc() => (DEMAND_INC_W, DEMAND_INC_S);
 	
 
 	// ==================== Internal Helpers ====================

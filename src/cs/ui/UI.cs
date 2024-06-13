@@ -160,6 +160,7 @@ public partial class UI : CanvasLayer {
 	// Window buttons
 	private TextureButton PolicyButton;
 	private TextureButton StatsButton;
+	private Graphs Graphs;
 	public Label PolicyNotif;
 
 	// Windows
@@ -225,6 +226,7 @@ public partial class UI : CanvasLayer {
 		BM = GetNode<BuildMenu>("../BuildMenu");
 		GL = GetOwner<GameLoop>();
 		C = GetNode<Context>("/root/Context");
+		Graphs = GetNode<Graphs>("Stats/Graphs");
 
 		// Settings
 		SettingsButton = GetNode<TextureButton>("SettingsButton");
@@ -377,6 +379,7 @@ public partial class UI : CanvasLayer {
 		VolSound.ValueChanged += _OnSoundValueChanged;
 		Instructions.Pressed += _OnInstructionsPressed;
 		CreditsButton.Pressed += _OnCreditsPressed;
+		StatsButton.Pressed += _OnStatsPressed;
 
 		// Initially hide the borrow container
 		BorrowContainer.Hide();
@@ -1207,6 +1210,10 @@ public partial class UI : CanvasLayer {
 	
 	public void _OnTurnInfoPressed() {
 		TurnInfoContainer.Visible = !TurnInfoContainer.Visible;
+	}
+	
+	public void _OnStatsPressed() {
+		Graphs.Show();
 	}
 	
 	public void _OnMusicValueChanged(double Value) {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=116 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/Profil-metal.png" id="1_ooswe"]
 [ext_resource type="Texture2D" uid="uid://c3e2r6qjw4kti" path="res://assets/Gameplay_UI_Reference-03.jpg" id="1_rcpup"]
@@ -62,6 +62,7 @@
 [ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" id="54_7juy1"]
 [ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" id="55_5s2up"]
 [ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="55_5ylb2"]
+[ext_resource type="PackedScene" uid="uid://w3o3uiekvy4q" path="res://scenes/windows/graphs.tscn" id="55_ah3sc"]
 [ext_resource type="FontFile" uid="uid://jsoamputail4" path="res://assets/Fonts/static/OpenSans-SemiBold.ttf" id="59_nmkxq"]
 [ext_resource type="Texture2D" uid="uid://bbjycbp8muvr1" path="res://assets/UI Elements/Import-bar-hole.png" id="60_gik5m"]
 [ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/Button-Play-normal.png" id="61_i4pr1"]
@@ -821,7 +822,7 @@ position = Vector2(960, 540)
 texture = ExtResource("1_rcpup")
 
 [node name="Profil-bar-metal" type="Sprite2D" parent="."]
-position = Vector2(202, 178.5)
+position = Vector2(168, 178.5)
 texture = ExtResource("1_ooswe")
 
 [node name="Money-counter-hole" type="Sprite2D" parent="Profil-bar-metal"]
@@ -900,9 +901,9 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="NextTurn" type="TextureButton" parent="."]
-offset_left = 1639.0
+offset_left = 1666.0
 offset_top = 938.0
-offset_right = 1831.0
+offset_right = 1858.0
 offset_bottom = 1024.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -918,10 +919,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 5.0
+offset_left = 9.0
+offset_top = 7.0
 offset_right = -10.0
-offset_bottom = -12.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("70_2ktfd")
@@ -1222,9 +1223,9 @@ position = Vector2(66, 296)
 position = Vector2(66, 296)
 
 [node name="Trust" type="ProgressBar" parent="."]
-offset_left = 164.0
+offset_left = 130.0
 offset_top = 250.5
-offset_right = 244.0
+offset_right = 210.0
 offset_bottom = 288.5
 theme = ExtResource("70_2ktfd")
 theme_override_font_sizes/font_size = 23
@@ -1294,9 +1295,9 @@ position = Vector2(251, 558)
 texture = ExtResource("37_q7ul8")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
-offset_left = 228.0
+offset_left = 194.0
 offset_top = 74.0
-offset_right = 294.0
+offset_right = 260.0
 offset_bottom = 138.0
 texture_normal = ExtResource("36_xxsv6")
 texture_pressed = ExtResource("37_533gb")
@@ -1353,9 +1354,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SettingsButton" type="TextureButton" parent="."]
-offset_left = 113.0
+offset_left = 79.0
 offset_top = 72.5
-offset_right = 179.0
+offset_right = 145.0
 offset_bottom = 136.5
 texture_normal = ExtResource("36_xxsv6")
 texture_pressed = ExtResource("37_533gb")
@@ -1934,12 +1935,15 @@ texture_normal = SubResource("AtlasTexture_0dajl")
 ignore_texture_size = true
 
 [node name="Stats" type="TextureButton" parent="."]
-visible = false
-offset_left = 293.0
-offset_top = 610.0
-offset_right = 441.0
-offset_bottom = 758.0
+offset_left = 320.0
+offset_top = 24.0
+offset_right = 468.0
+offset_bottom = 172.0
 texture_normal = ExtResource("7_7gbcu")
+
+[node name="Graphs" parent="Stats" instance=ExtResource("55_ah3sc")]
+layer = 2
+visible = false
 
 [node name="MoneyInfo" type="Control" parent="."]
 visible = false
@@ -2287,9 +2291,9 @@ text = "?"
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1768.0
+offset_left = -1802.0
 offset_top = 192.5
-offset_right = -1675.0
+offset_right = -1709.0
 offset_bottom = 240.5
 grow_horizontal = 0
 color = Color(0.596078, 0.596078, 0.596078, 0)
@@ -2322,9 +2326,9 @@ vertical_alignment = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1827.0
+offset_left = -1861.0
 offset_top = 187.5
-offset_right = -1665.0
+offset_right = -1699.0
 offset_bottom = 242.5
 grow_horizontal = 0
 focus_mode = 0
@@ -2412,6 +2416,7 @@ theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Num1" type="Sprite2D" parent="TimePanelBlank/Year2"]
 show_behind_parent = true
@@ -2434,6 +2439,7 @@ theme_override_font_sizes/font_size = 46
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Year3" type="Label" parent="TimePanelBlank"]
 offset_top = 86.0
@@ -2445,6 +2451,7 @@ theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year3"]
 show_behind_parent = true
@@ -2461,6 +2468,7 @@ theme_override_font_sizes/font_size = 46
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year6"]
 show_behind_parent = true
@@ -2478,6 +2486,7 @@ theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year4"]
 show_behind_parent = true
@@ -2495,6 +2504,7 @@ theme_override_font_sizes/font_size = 46
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year5"]
 show_behind_parent = true
@@ -2630,6 +2640,7 @@ grow_vertical = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Shock" parent="." instance=ExtResource("5_tj765")]
 visible = false
@@ -2646,9 +2657,9 @@ offset_bottom = 1225.0
 color = Color(1, 1, 1, 0)
 
 [node name="BorrowMoney" type="TextureButton" parent="."]
-offset_left = 265.0
+offset_left = 231.0
 offset_top = 198.5
-offset_right = 296.0
+offset_right = 262.0
 offset_bottom = 230.5
 texture_normal = ExtResource("44_5a58h")
 texture_pressed = ExtResource("45_nhcbq")
@@ -2684,7 +2695,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.0196078, 0.101961, 0.109804, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 25
 text = "+"
 horizontal_alignment = 1
@@ -2920,6 +2931,11 @@ texture = ExtResource("55_5ylb2")
 flip_h = true
 flip_v = true
 region_rect = Rect2(2, 0, 278, 194)
+
+[node name="GameplayUiReference-04" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(961, 539)
+texture = ExtResource("1_rcpup")
 
 [editable path="EnergyBarSummerPredict"]
 [editable path="EnergyBarWinterPredict"]

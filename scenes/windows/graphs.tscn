@@ -1,0 +1,171 @@
+[gd_scene load_steps=2 format=3 uid="uid://w3o3uiekvy4q"]
+
+[ext_resource type="Script" path="res://scenes/windows/Graphs.cs" id="1_jjscl"]
+
+[node name="Graphs" type="CanvasLayer"]
+script = ExtResource("1_jjscl")
+
+[node name="Close" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+
+[node name="Screen" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -348.0
+offset_right = 640.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.176471, 0.235294, 0.294118, 1)
+
+[node name="Line2D" type="Line2D" parent="Screen"]
+points = PackedVector2Array(128, 704, 128, 0)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D2" type="Line2D" parent="Screen"]
+position = Vector2(128, 0)
+points = PackedVector2Array(128, 704, 128, 0)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D3" type="Line2D" parent="Screen"]
+position = Vector2(256, 8)
+points = PackedVector2Array(128, 696, 128, -8)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D4" type="Line2D" parent="Screen"]
+position = Vector2(384, 16)
+points = PackedVector2Array(128, 688, 128, -16)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D5" type="Line2D" parent="Screen"]
+position = Vector2(512, 16)
+points = PackedVector2Array(128, 688, 128, -16)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D6" type="Line2D" parent="Screen"]
+position = Vector2(640, 8)
+points = PackedVector2Array(128, 696, 128, -8)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D7" type="Line2D" parent="Screen"]
+position = Vector2(768, 8)
+points = PackedVector2Array(128, 696, 128, -8)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D8" type="Line2D" parent="Screen"]
+position = Vector2(896, 0)
+points = PackedVector2Array(128, 704, 128, 0)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Line2D9" type="Line2D" parent="Screen"]
+position = Vector2(1024, 8)
+points = PackedVector2Array(128, 696, 128, -8)
+width = 2.0
+default_color = Color(1, 1, 1, 0.427451)
+
+[node name="Label" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 672.0
+offset_right = 152.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Label2" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 672.0
+offset_right = 272.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Label3" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 672.0
+offset_right = 400.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Label4" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 672.0
+offset_right = 536.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Label5" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 672.0
+offset_right = 664.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Label6" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 752.0
+offset_top = 672.0
+offset_right = 792.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Label7" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 880.0
+offset_top = 672.0
+offset_right = 920.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Label8" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = 672.0
+offset_right = 1048.0
+offset_bottom = 698.0
+text = "2022"
+
+[node name="Demand" type="Control" parent="Screen"]
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 704.0
+
+[node name="DemandW" type="Line2D" parent="Screen/Demand"]
+points = PackedVector2Array(0, 0, 80, 136, 328, 232, 384, 128, 512, 216, 640, 168, 768, 224, 952, 112, 1024, 208, 1152, 152)
+width = 4.0
+default_color = Color(0, 0.568627, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="DemandS" type="Line2D" parent="Screen/Demand"]
+points = PackedVector2Array(0, 0, 48, 208, 328, 232, 504, 120, 512, 216, 640, 168, 768, 224, 952, 112, 1024, 208, 1152, 152)
+width = 4.0
+default_color = Color(1, 0.701961, 0.254902, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PowerPlants" type="Control" parent="Screen"]
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 704.0
