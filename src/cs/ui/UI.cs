@@ -114,9 +114,11 @@ public partial class UI : CanvasLayer {
 	private Label BudgetNext;
 	private Label TotalNow;
 	private Label TotalNext;
+	private Label TotalL;
 	private Label Debt;
 	private Label DebtAmount;
 	private Label BorrowL;
+	private float LastDiff;
 	
 	// Money info nodes
 	private Label BudgetInfo;
@@ -143,6 +145,7 @@ public partial class UI : CanvasLayer {
 	private Button BorrowContainer;
 	private int DebtN = 0;
 	private int BorrowN = 0;
+	private bool Borrowed = false;
 
 	// Static UI Labels
 	private Label EnergyLabel;
@@ -150,6 +153,9 @@ public partial class UI : CanvasLayer {
 	private Label OnLabel;
 	private Label OffLabel;
 	private Label NuclearWarnLabel;
+	private Label Policies;
+	private Label Settings;
+	private Label Resources;
 
 	// Window buttons
 	private TextureButton PolicyButton;
@@ -163,7 +169,7 @@ public partial class UI : CanvasLayer {
 	private BuildMenu BM;
 
 	// Settings
-	private Button SettingsButton;
+	private TextureButton SettingsButton;
 	private ColorRect SettingsBox;
 	private TextureButton LanguageButton;
 	private Label LanguageL;
@@ -221,7 +227,7 @@ public partial class UI : CanvasLayer {
 		C = GetNode<Context>("/root/Context");
 
 		// Settings
-		SettingsButton = GetNode<Button>("SettingsButton");
+		SettingsButton = GetNode<TextureButton>("SettingsButton");
 		SettingsBox = GetNode<ColorRect>("SettingsButton/ColorRect");
 		LanguageButton = GetNode<TextureButton>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language");
 		LanguageL = GetNode<Label>("SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language/Label");
@@ -278,6 +284,7 @@ public partial class UI : CanvasLayer {
 		BudgetNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetName/budgetNext");
 		TotalNow = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNow");
 		TotalNext = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName/TotalNext");
+		TotalL = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/TotalName");
 		MoneyInfoB = GetNode<TextureButton>("MoneyInfo/MoneyInfoButton");
 		BudgetInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/BudgetInfo");
 		ProdInfo = GetNode<Label>("MoneyInfo/MarginContainer/MarginContainer/VBoxContainer/ProdInfo");
@@ -326,6 +333,9 @@ public partial class UI : CanvasLayer {
 		OnLabel = GetNode<Label>("Import/ImportSwitch/OnL");
 		OffLabel = GetNode<Label>("Import/ImportSwitch/OffL");
 		NuclearWarnLabel = GetNode<Label>("NuclearWarning");
+		Policies = GetNode<Label>("Profil-bar-metal/Policies");
+		Settings = GetNode<Label>("Profil-bar-metal/Settings");
+		Resources = GetNode<Label>("Profil-bar-metal/Resources");
 		
 		// Turn info
 		CurrentTurnL = GetNode<Label>("TimePanelBlank/TurnInfoContainer/MarginContainer/VBoxContainer/CurrentTurn");
@@ -441,6 +451,9 @@ public partial class UI : CanvasLayer {
 		string next_turn_warning_label = TC._GetText(LABEL_FILENAME, UI_GROUP, "next_turn_warning");
 		string current_turn = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_current_turn");
 		string remaining_turns = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_remaining_turn");
+		string policies = TC._GetText(LABEL_FILENAME, "policies", "policy_label");
+		string settings = TC._GetText(LABEL_FILENAME, UI_GROUP, "settings");
+		string resources = TC._GetText(LABEL_FILENAME, UI_GROUP, "resources");
 
 		// Update static UI text
 		EnergyLabel.Text = eng_label;
@@ -451,6 +464,9 @@ public partial class UI : CanvasLayer {
 		Warning.Text = next_turn_warning_label;
 		RemTurnL.Text = remaining_turns;
 		CurrentTurnL.Text = current_turn;
+		Policies.Text = policies;
+		Settings.Text = settings;
+		Resources.Text = resources;
 		
 
 		// Update debt texts
@@ -631,7 +647,7 @@ public partial class UI : CanvasLayer {
 				WinterEnergy._UpdateColor(Data.W_EnergySupply < Data.W_EnergyDemand);
 
 				// Update the required import target (only in winter due to conservative estimates)
-				//SetTargetImport();
+				SetTargetImport();
 				break;
 			case InfoType.S_ENGERGY:
 				// Sanity check, make sure that you were given enough fields
@@ -739,23 +755,28 @@ public partial class UI : CanvasLayer {
 	public void _UpdateNuclearWarning(bool show) {
 		NuclearWarnLabel.Visible = show;
 	}
+	
+	// Getter for borrow status
+	public bool _GetBorrowStatus() => Borrowed;
 
 	// ==================== Internal Helpers ====================
 
 	// Sets the required imports based on the demand
-//	private void SetTargetImport() {
-//		// Fetch the demand and supply
-//		float demand  = C._GetDemand().Item1;
-//		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
-//
-//		// Compute the different, clamped to 0 as no imports are required
-//		// when the supply meets the demand
-//		float imported = Imports._GetImportValue();
-//		float diff = Math.Max(0.0f, demand + imported - supply); 
-//
-//		// Set the import target to that percentage
-//		Imports._UpdateTargetImport(diff);
-//	}
+	private void SetTargetImport() {
+		// Fetch the demand and supply
+		float demand  = C._GetDemand().Item1;
+		float supply = C._GetGL()._GetResources().Item1.SupplyWinter;
+
+		// Compute the different, clamped to 0 as no imports are required
+		// when the supply meets the demand
+		float imported = Imports._GetImportValue();
+		float diff = Math.Max(0.0f, demand + imported - supply);
+		// Set the import target to that percentage
+		if(diff != LastDiff) {
+			LastDiff = diff;
+			Imports._UpdateTargetImport(diff);
+		}
+	}
 
 	// Sets the energy in
 	private void SetEnergyInfo(ref InfoBar eng, InfoType t) {
@@ -853,6 +874,7 @@ public partial class UI : CanvasLayer {
 		ImportCostL2.Text = Data.Imports.ToString();
 		int BudgetNextN = Data.Money + GameLoop.BUDGET_PER_TURN;
 		BudgetNext.Text = BudgetNextN.ToString();
+		TotalL.Text = TC._GetText(LABEL_FILENAME, INFOBAR_GROUP, "label_total");
 		TotalNow.Text = Data.Money.ToString();
 		int TotalNextN = BudgetNextN - Data.Imports - Data.Production - DebtN;
 		TotalNext.Text = TotalNextN.ToString();
@@ -967,7 +989,7 @@ public partial class UI : CanvasLayer {
 		EmitSignal(SignalName.NextTurn);
 
 		// Update the required import target (only in winter due to conservative estimates)
-		//SetTargetImport();
+		SetTargetImport();
 		
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 
@@ -1164,6 +1186,7 @@ public partial class UI : CanvasLayer {
 		BorrowContainer.Hide();
 		Debt.Show();
 		BorrowL.Text = BorrowN.ToString();
+		Borrowed = true;
 		EmitSignal(SignalName.DebtRequest, (int)(DebtSlider.Value + (InterestRate * DebtSlider.Value)), (int)DebtSlider.Value);
 	}
 

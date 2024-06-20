@@ -5,19 +5,19 @@
     <!-- The tag here represents where the policy button will be displayed in the policy window-->
     <campaign id="campaign_env" tag="env">
         <!-- The title that will be displayed at the top of the policy -->
-        <name>Renewable energy</name>
+        <name>Erneuerbare Energie</name>
         <!-- The description text that will be displayed in the policy popup -->
-        <text>Start an information campaign on the advantages of renewable energy.</text>
+        <text>Start einer Informationskampagne über die Vorteile der erneuerbaren Energien.</text>
         <!-- The effect the campaign will have on the probability of passing the env policies -->
-        <effect field="tag" value="0.1">Increase environmental policy support by 10%</effect>
+        <effect field="tag" value="0.1">Erhöhung der Unterstützung für Umweltpolitik um 10%</effect>
         <!-- Number of turns that the campaign will take -->
         <length>1</length>
     </campaign>
 
     <campaign id="campaign_demand" tag="demand">
-        <name>Home insulation</name>
-        <text>Start an information campaign explaining the advantages of home insulation.</text>
-        <effect field="tag" value="0.1">Increase energy policy support by 10%</effect>
+        <name>Hausisolierungen</name>
+        <text>Start einer Informationskampagne über die Vorteile der Gebäudeisolierung.</text>
+        <effect field="tag" value="0.1">Erhöhung der Unterstützung für Energiepolitik um 10%</effect>
         <length>1</length>
     </campaign>
 
@@ -26,9 +26,9 @@
     <!-- ============================ -->
 
     <policy id="rooftop_PV" tag="env">
-        <name>Mandatory rooftop solar PV</name>
-        <text>Solar PV must be installed on all suitable rooftops within n turn.
-Increase of solar energy production by n %.
+        <name>PV Obligatorium</name>
+        <text>Auf allen geeigneten Dächern muss innerhalb einer Runde eine PV-Anlage installiert werden.
+Ausbau der Solarstromproduktion um n %.
         </text>
         <!-- A requirement on the amount of support needed to attempt the policy -->
         <requirement field="support" value="50" bound="min"/>
@@ -40,43 +40,43 @@ Increase of solar energy production by n %.
     </policy>
 
     <policy id="Upgrade_PV" tag="env">
-        <name>Enable alpine solar PV</name>
-        <text>Limitation of appeals to large scale solar projects.</text>
-        <effect field="solar_mult_max" value="3">Increase solar plant upgrades from 1 to 3.</effect>
+        <name>Alpine PV ermöglichen</name>
+        <text>Beschränkung der Einspachemöglichkeiten bei grossen Solarprojekten.</text>
+        <effect field="solar_mult_max" value="3">Erhöht Solaranlagen-Upgrades von 1 auf 3.</effect>
         <requirement field="support" value="40" bound="min"/>
         <probability>0.6</probability>
     </policy>
 
     <policy id="Wind_buildtime" tag="env">
-        <name>Fast track wind parks</name>
-        <text>Limitation of the possibilities of appeal for wind parks.</text>
-        <effect field="wind_build_time" value="0">Lowers required building time for wind parks from 2 to 0.</effect>
+        <name>Schneller zu neuen Windparks</name>
+        <text>Beschränkung der Einspachemöglichkeiten bei Windpark-Projekten.</text>
+        <effect field="wind_build_time" value="0">Verringert die Wartezeit für den Bau von Windparsk von 2 auf 0.</effect>
         <requirement field="support" value="50" bound="min" />
         <probability>0.5</probability>
     </policy>
 
     <policy id="Upgrade_wind" tag="env">
-        <name>Wind parks regulation</name>
-        <text>Limitation of the possibilities of appeal for wind parks.</text>
-        <effect field="wind_mult_max" value="5">Increase wind parks upgrades from 2 to 5.</effect>
+        <name>Windpark-Regulierung</name>
+        <text>Beschränkung der Einspachemöglichkeiten bei Windpark-Projekten.</text>
+        <effect field="wind_mult_max" value="5">Erhöht Windpart-Upgrades von 2 auf 5.</effect>
         <requirement field="support" value="60" bound="min" />
         <probability>0.4</probability>
     </policy>
 
     <policy id="home_regulation" tag="demand">
-        <name>Mandatory Building Insulation</name>
-        <text>All buildings must be insulated within n turns.</text>
-        <effect field="energyDemandW" value="-5">Lowers energy demand by 5 in the Summer.</effect>
-        <effect field="energyDemandS" value="-5">Lowers energy demand by 5 in the Winter</effect>
+        <name>Obligatorische Gebäudeisolierung</name>
+        <text>Alle Gebäude müssen innerhalb von n Runden isoliert werden.</text>
+        <effect field="energyDemandW" value="-5">Reduziert den Energiebedarf im Sommer um 5.</effect>
+        <effect field="energyDemandS" value="-5">Reduziert den Energiebedarf im Winter um 5</effect>
         <requirement field="support" value="45" bound="min" />
         <probability>0.5</probability>
     </policy>
 
     <policy id="industry_subsidy" tag="demand">
-        <name>Industry Subsidy</name>
-        <text>Provide industries with grants for less energy intensive production.</text>
-        <effect field="energyDemandW" value="-5">Lowers energy demand by 5 in the Summer.</effect>
-        <effect field="energyDemandS" value="-5">Lowers energy demand by 5 in the Winter</effect>
+        <name>Unterstützung für die Industrie</name>
+        <text>Gewährung von Subventionen an die Industrie, um eine weniger energieintensive Produktion zu fördern.</text>
+        <effect field="energyDemandW" value="-5">Reduziert den Energiebedarf im Sommer um 5.</effect>
+        <effect field="energyDemandS" value="-5">Reduziert den Energiebedarf im Winter um 5</effect>
         <requirement field="support" value="60" bound="min"/>
         <probability>0.3</probability>
     </policy>

@@ -117,6 +117,9 @@ public partial class PowerPlant : Node2D {
 	// Life flag: Whether or not the plant is on
 	public bool IsAlive = true;
 	
+	// Check whether we reintroduce nuc or not
+	private bool NucReintro = false;
+	
 	// Power off modulate color
 	private Color GRAY = new Color(0.7f, 0.7f, 0.7f);
 	private Color HOVER_COLOR = new Color(0.9f, 0.9f, 0.7f);
@@ -154,6 +157,7 @@ public partial class PowerPlant : Node2D {
 	private Label LandL;
 	private Label BioL;
 	private Label LifeSpan;
+	private Label LifeSpanL;
 	private Label LifeSpanWarning;
 	private Label MultProd;
 	private Label MultPoll;
@@ -164,6 +168,7 @@ public partial class PowerPlant : Node2D {
 	private Label MultSummerE;
 	private Sprite2D NoMoneySprite;
 	private Label NoMoney;
+	private Sprite2D LEDOn;
 	
 	public AnimationPlayer AP;
 	private Label AnimMoney;
@@ -241,6 +246,7 @@ public partial class PowerPlant : Node2D {
 		BioN = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Bio");
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Bio");
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/LifeSpan");
+		LifeSpanL = GetNode<Label>("BuildInfo/ColorRect/LifeSpan/LifeSpanL");
 		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
 		AP = GetNode<AnimationPlayer>("AP");
 		AnimMoney = GetNode<Label>("Money");
@@ -253,6 +259,7 @@ public partial class PowerPlant : Node2D {
 		MultSummerE = GetNode<Label>("BuildInfo/MultSummerE");
 		NoMoneySprite = GetNode<Sprite2D>("NoMoneySprite");
 		NoMoney = GetNode<Label>("NoMoney");
+		LEDOn = GetNode<Sprite2D>("BuildInfo/Switch/LEDOn");
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
@@ -707,6 +714,7 @@ public partial class PowerPlant : Node2D {
 		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
 		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
 		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
+		LifeSpanL.Text = TC._GetText("labels.xml", "ui", "nuclear_shutdown");
 	}
 
 	// Updates the UI to match the internal state of the plant
@@ -739,6 +747,7 @@ public partial class PowerPlant : Node2D {
 		PollL.Text = TC._GetText("labels.xml", "infobar", "label_pollution");
 		LandL.Text = TC._GetText("labels.xml", "infobar", "label_land");
 		BioL.Text = TC._GetText("labels.xml", "infobar", "label_biodiversity");
+		LifeSpanL.Text = TC._GetText("labels.xml", "ui", "nuclear_shutdown");
 		
 		// Update label colors to represent levels
 		if (BiodiversityImpact < 0) {
@@ -760,15 +769,22 @@ public partial class PowerPlant : Node2D {
 		}
 		
 		// Set the end turn based on the building type
-		EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
-		
-		LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
-		
-		if (EndTurn - C._GetTurn() == 1) {
-			LifeSpanWarning.Show();
+		if (!NucReintro){
+			EndTurn = (PlantType == Building.Type.NUCLEAR) ? NUCLEAR_LIFE_SPAN : DEFAULT_LIFE_SPAN;
+
+			LifeSpan.Text = (EndTurn - C._GetTurn()).ToString() + "⌛";
+
+			if (EndTurn - C._GetTurn() == 1) {
+				LifeSpanWarning.Show();
+			} else {
+				LifeSpanWarning.Hide();
+			}
 		} else {
 			LifeSpanWarning.Hide();
+			LifeSpan.Hide();
+			// TODO: hide "shutting down in"
 		}
+		
 	}
 
 	// ==================== Helper Methods ====================    
@@ -887,12 +903,14 @@ public partial class PowerPlant : Node2D {
 	// We chose to ignore the state of the toggle as it should be identical to the IsAlive field
 	public void _OnSwitchToggled(bool pressed) {
 		// Check the liveness of the current plant
-		if(IsAlive) {
+		if(!pressed) {
 			// If the plant is currently alive, then kill it
 			KillPowerPlant();
+			LEDOn.Hide();
 		} else {
 			// If the plant is currently dead, then activate it
 			ActivatePowerPlant();
+			LEDOn.Show();
 		}
 
 		// Update the UI
@@ -1095,5 +1113,39 @@ public partial class PowerPlant : Node2D {
 	private void OnMultDecMouseExited() {
 		HideMultInfo();
 		_UpdatePlantData();
+	}
+
+	// Reactivates dead nuclear plants
+	public void _OnReintroduceNuclear() {
+		NucReintro = true;
+		if(PlantType.type == Building.Type.NUCLEAR) {
+			Debug.Print("REACTIVATING PLANT");
+			EndTurn = DEFAULT_LIFE_SPAN;
+
+			// Reactivate the plant
+			ActivatePowerPlant();
+
+			// Disable the switch
+			Switch.ButtonPressed = true;
+			Switch.Disabled = false;
+			
+			// Workaround to allow for an immediate update
+			IsAlive = true;
+			_OnSwitchToggled(true);
+		}
+	}
+	
+	// Set weather shock energy availability to wind and solar
+	public void _OnWeatherShock() {
+		if(EnergyAvailability == (0f,0.5f) || EnergyAvailability == (0.4f,0f)) {
+			GD.Print("reset weather");
+			ActivatePowerPlant();
+		}
+		else if(PlantType.type == Building.Type.WIND) {
+			EnergyAvailability = (0.4f,0f);
+		}
+		else if(PlantType.type == Building.Type.SOLAR) {
+			EnergyAvailability = (0f,0.5f);
+		} 
 	}
 }

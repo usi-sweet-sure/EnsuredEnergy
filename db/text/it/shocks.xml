@@ -30,8 +30,7 @@
         <!-- Reward to the player in case they met the requirements -->
         <reward>
             <text>La produzione di energia è stata sufficientemente elevata da attutire gli imprevisti.
-+ 5 👍 
-+ 50 $</text>
++ 5 👍    + 50 $</text>
             <effect field="support" value="5"/>
             <effect field="money" value="50"/>
         </reward>
@@ -45,9 +44,9 @@
         <text>Le estati sono sempre più calde. La domanda di energia è aumentata di 5 ⚡.</text>
         <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
-            <text>Chiedete alle persone di bere più acqua e di ridurre uso dell'aria condizionata.
+            <text>Chiedete alle persone di ridurre uso dell'aria condizionata.
 -15 👍😡</text>
-            <effect field="support" value="-20"/>
+            <effect field="support" value="-15"/>
         </reaction>
         <reaction id="1">
             <text>Attivare l'impianto a gas di riserva.
@@ -61,8 +60,7 @@
         </reaction>
         <reward>
             <text>La produzione di energia è stata sufficientemente elevata da attutire gli imprevisti.
-+10 👍 
-+50 $</text>
++10 👍    +50 $</text>
             <effect field="support" value="5"/>
             <effect field="money" value="50"/>
         </reward>
@@ -284,7 +282,7 @@
             <effect field="money" value="0"/>
         </reward>
     </shock>
-<!--
+    
     <shock id="nuc_reintro" tag="env">
         <name>Reintroduzione dell'energia nucleare</name>
         <img>vote</img>
@@ -292,15 +290,11 @@
         <requirement id="0" field="energyW" value="5000" bound="min"/>
         <reaction id="0">
             <text>Sì alla reintroduzione dell'energia nucleare.</text>
-            <effect field="support" value="-50"/>
+            <effect field="support" value="0"/>
         </reaction>
         <reaction id="1">
-            <text>Sì, per prolungare la durata di vita delle centrali elettriche ancora attive.</text>
-            <effect field="env" value="-50"/>
-        </reaction>
-        <reaction id="2">
             <text>No, è ora di abbandonare il nucleare.</text>
-            <effect field="money" value="-50"/>
+            <effect field="env" value="0"/>
         </reaction>
         <reward>
             <text>If you can read this, there is a problem.</text>
@@ -308,7 +302,7 @@
             <effect field="money" value="50"/>
         </reward>
     </shock>
--->
+
 <!--
     <shock id="remote_jobs" tag="env">
         <name>Remote Jobs</name>

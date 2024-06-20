@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=43 format=3 uid="uid://ct4blqwh4y6ab"]
 
 [ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://b60o54o5riav8" path="res://assets/UI Elements/Build_Menu_0005_Build-Menu-Metal.png" id="2_ambcb"]
@@ -12,10 +12,11 @@
 [ext_resource type="AudioStream" uid="uid://d0mx81kv2vlha" path="res://assets/Sounds/Negative 2_1.wav" id="6_5wr63"]
 [ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="6_qkc2p"]
 [ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="7_fjg03"]
-[ext_resource type="FontFile" uid="uid://doaord8a13muh" path="res://assets/Fonts/Helvetica.ttc" id="8_a13i5"]
-[ext_resource type="Texture2D" uid="uid://co2hnnf0cnn72" path="res://assets/UI Elements/Plant_Menu_Base.png" id="9_r47k3"]
+[ext_resource type="Texture2D" uid="uid://dnpo4r8q4rf5q" path="res://assets/UI Elements/Plant_Menu-Metal.png" id="9_08ajv"]
+[ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="11_iy3hd"]
 [ext_resource type="Texture2D" uid="uid://dwys7y27kiabl" path="res://assets/UI Elements/Import-Switch-On.png" id="11_o2k5p"]
 [ext_resource type="Texture2D" uid="uid://dhxkhfg2qxlgx" path="res://assets/UI Elements/Import-Switch-Off.png" id="12_yxhto"]
+[ext_resource type="Texture2D" uid="uid://cslvh11lib8sy" path="res://assets/UI Elements/Post-it-yellow.png" id="14_12evj"]
 [ext_resource type="Texture2D" uid="uid://c42n2mmget4xn" path="res://assets/no-money.png" id="14_x1bya"]
 [ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="15_6udtn"]
 [ext_resource type="Texture2D" uid="uid://cdn0h6b873gbk" path="res://assets/UI Elements/Build_Menu_counter_yellow-1.png" id="16_svf0w"]
@@ -23,30 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="18_ni8pb"]
 [ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="19_pbahr"]
 [ext_resource type="Texture2D" uid="uid://bjeebs7uy4hpn" path="res://assets/UI Elements/Button-small-Hole.png" id="20_6s7vn"]
-
-[sub_resource type="FontVariation" id="FontVariation_us0ja"]
-base_font = ExtResource("8_a13i5")
-variation_embolden = 0.3
-
-[sub_resource type="FontVariation" id="FontVariation_soy2v"]
-base_font = ExtResource("15_6udtn")
-
-[sub_resource type="FontVariation" id="FontVariation_15ylr"]
-base_font = ExtResource("15_6udtn")
-
-[sub_resource type="FontVariation" id="FontVariation_62ju4"]
-base_font = ExtResource("8_a13i5")
-variation_embolden = 0.3
-
-[sub_resource type="Theme" id="Theme_f6ssq"]
-
-[sub_resource type="FontVariation" id="FontVariation_q0ye0"]
-base_font = ExtResource("8_a13i5")
-variation_embolden = 0.2
-spacing_glyph = 3
-
-[sub_resource type="FontVariation" id="FontVariation_g0hl7"]
-base_font = ExtResource("15_6udtn")
+[ext_resource type="Texture2D" uid="uid://bi5hfr0hha1w0" path="res://assets/UI Elements/Post-it-red.png" id="21_baxyr"]
+[ext_resource type="Texture2D" uid="uid://cy2dqdgln1uij" path="res://assets/UI Elements/LED-Off.png" id="21_owd4v"]
+[ext_resource type="Texture2D" uid="uid://bdifhvhbdals5" path="res://assets/UI Elements/LED-On.png" id="22_0ieop"]
 
 [sub_resource type="FontVariation" id="FontVariation_ji1at"]
 base_font = ExtResource("15_6udtn")
@@ -61,14 +41,6 @@ base_font = ExtResource("15_6udtn")
 [sub_resource type="FontVariation" id="FontVariation_bcams"]
 base_font = ExtResource("15_6udtn")
 
-[sub_resource type="FontVariation" id="FontVariation_vvvj4"]
-base_font = ExtResource("8_a13i5")
-variation_embolden = 0.2
-
-[sub_resource type="FontVariation" id="FontVariation_tek51"]
-base_font = ExtResource("8_a13i5")
-spacing_glyph = 1
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ted5n"]
 atlas = ExtResource("3_sgdtt")
 region = Rect2(22, 24, 116, 72)
@@ -78,14 +50,12 @@ atlas = ExtResource("2_nry78")
 region = Rect2(58, 262, 162, 46)
 
 [sub_resource type="FontVariation" id="FontVariation_nky5f"]
-base_font = ExtResource("8_a13i5")
 
 [sub_resource type="FontVariation" id="FontVariation_uwmcg"]
 base_font = SubResource("FontVariation_nky5f")
 spacing_glyph = 6
 
 [sub_resource type="FontVariation" id="FontVariation_r1iqv"]
-base_font = ExtResource("8_a13i5")
 spacing_glyph = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hky5x"]
@@ -336,13 +306,13 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -40.0
-offset_top = -246.0
+offset_top = -249.0
 offset_right = 24.0
-offset_bottom = -188.0
+offset_bottom = -191.0
 grow_horizontal = 0
-theme_override_colors/font_color = Color(0.258824, 0.87451, 0.847059, 1)
-theme_override_fonts/font = SubResource("FontVariation_us0ja")
-theme_override_font_sizes/font_size = 28
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
+theme_override_font_sizes/font_size = 32
 text = "0"
 
 [node name="Time2" type="Label" parent="PreviewInfo"]
@@ -352,6 +322,8 @@ offset_left = 138.0
 offset_top = 15.0
 offset_right = 174.0
 offset_bottom = 51.0
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_font_sizes/font_size = 26
 text = "🔨"
 
@@ -363,11 +335,13 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -24.0
-offset_top = -277.0
+offset_top = -275.0
 offset_right = 20.0
-offset_bottom = -222.0
+offset_bottom = -220.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_font_sizes/font_size = 20
 text = "⌛"
 
@@ -376,14 +350,14 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -280.0
-offset_right = 84.0
-offset_bottom = -248.0
+offset_left = -2.0
+offset_top = -282.0
+offset_right = 90.0
+offset_bottom = -246.0
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.258824, 0.87451, 0.847059, 1)
-theme_override_fonts/font = SubResource("FontVariation_us0ja")
-theme_override_font_sizes/font_size = 28
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
+theme_override_font_sizes/font_size = 32
 text = "1000"
 
 [node name="BuildMenuBG" type="Sprite2D" parent="PreviewInfo"]
@@ -438,14 +412,14 @@ z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -86.0
-offset_top = -440.0
+offset_top = -475.0
 offset_right = -46.0
-offset_bottom = -400.0
+offset_bottom = -435.0
 
 [node name="PlantMenuBase" type="Sprite2D" parent="BuildInfo"]
 position = Vector2(86, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("9_r47k3")
+texture = ExtResource("9_08ajv")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BuildInfo"]
 visible = false
@@ -472,74 +446,72 @@ color = Color(0.596078, 0.596078, 0.596078, 0)
 [node name="LifeSpan" type="Label" parent="BuildInfo/ColorRect"]
 visible = false
 layout_mode = 2
-offset_left = -37.0
-offset_top = 370.0
-offset_right = 405.0
-offset_bottom = 418.0
+offset_left = 21.0
+offset_top = 371.0
+offset_right = 348.0
+offset_bottom = 419.0
+theme = ExtResource("11_iy3hd")
 theme_override_colors/font_color = Color(0.698039, 0, 0.00784314, 1)
-theme_override_fonts/font = SubResource("FontVariation_soy2v")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "333"
 horizontal_alignment = 2
 
 [node name="LifeSpanL" type="Label" parent="BuildInfo/ColorRect/LifeSpan"]
 layout_mode = 2
 offset_left = 53.0
-offset_top = -2.0
 offset_right = 362.0
-offset_bottom = 47.0
+offset_bottom = 49.0
+theme = ExtResource("11_iy3hd")
 theme_override_colors/font_color = Color(0.698039, 0, 0.00784314, 1)
-theme_override_fonts/font = SubResource("FontVariation_15ylr")
-theme_override_font_sizes/font_size = 33
+theme_override_font_sizes/font_size = 24
 text = "⚠️ Shutting down in"
 
 [node name="ContainerL" type="VBoxContainer" parent="BuildInfo/ColorRect"]
 layout_mode = 0
-offset_left = -24.0
+offset_left = -70.0
 offset_top = -42.0
-offset_right = 222.0
+offset_right = 190.0
 offset_bottom = 208.0
 theme_override_constants/separation = 0
 alignment = 2
 
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = SubResource("FontVariation_15ylr")
-theme_override_font_sizes/font_size = 35
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
+theme_override_font_sizes/font_size = 50
 text = "$ / ⌛"
 
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = SubResource("FontVariation_15ylr")
-theme_override_font_sizes/font_size = 35
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_font_sizes/font_size = 50
 text = "CO2 Emissions"
 
 [node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = SubResource("FontVariation_15ylr")
-theme_override_font_sizes/font_size = 35
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_font_sizes/font_size = 50
 text = "Land Use"
 
 [node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerL"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.615686, 1, 0.996078, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = SubResource("FontVariation_15ylr")
-theme_override_font_sizes/font_size = 35
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
+theme_override_colors/font_shadow_color = Color(1, 0.541176, 0.596078, 0.517647)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_font_sizes/font_size = 50
 text = "Biodiversity"
 
 [node name="ContainerN" type="VBoxContainer" parent="BuildInfo/ColorRect"]
@@ -559,9 +531,10 @@ alignment = 2
 
 [node name="Prod" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.3, 1, 0.1, 1)
-theme_override_fonts/font = SubResource("FontVariation_soy2v")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "100"
 horizontal_alignment = 2
 
@@ -574,15 +547,18 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -249.0
-offset_top = -26.0
+offset_top = -28.5
 offset_right = -149.0
-offset_bottom = 26.0
+offset_bottom = 24.5
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.0627451, 0.572549, 0, 1)
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "10"
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="arrow" type="Label" parent="BuildInfo/ColorRect/ContainerN/Prod/MultProd"]
 layout_mode = 1
@@ -592,22 +568,24 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -242.0
-offset_top = -22.0
+offset_top = -39.0
 offset_right = 70.0
-offset_bottom = 30.0
+offset_bottom = 31.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.699219, 0.824219, 0.835938, 1)
-theme_override_fonts/font = SubResource("FontVariation_62ju4")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "→"
 horizontal_alignment = 2
 
 [node name="Poll" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(1, 0.129412, 0.207843, 1)
-theme_override_fonts/font = SubResource("FontVariation_soy2v")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "10"
 horizontal_alignment = 2
 
@@ -615,11 +593,12 @@ horizontal_alignment = 2
 visible = false
 layout_mode = 2
 offset_left = 193.0
-offset_top = 4.0
 offset_right = 293.0
-offset_bottom = 56.0
+offset_bottom = 53.0
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "10"
 horizontal_alignment = 2
 
@@ -631,22 +610,24 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -242.0
-offset_top = -21.0
+offset_top = -38.0
 offset_right = 70.0
-offset_bottom = 31.0
+offset_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.699219, 0.824219, 0.835938, 1)
-theme_override_fonts/font = SubResource("FontVariation_62ju4")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "→"
 horizontal_alignment = 2
 
 [node name="Land" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(1, 0.129412, 0.207843, 1)
-theme_override_fonts/font = SubResource("FontVariation_soy2v")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "3"
 horizontal_alignment = 2
 
@@ -654,11 +635,12 @@ horizontal_alignment = 2
 visible = false
 layout_mode = 2
 offset_left = 193.0
-offset_top = 2.0
 offset_right = 293.0
-offset_bottom = 54.0
+offset_bottom = 53.0
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "3"
 horizontal_alignment = 2
 
@@ -670,22 +652,24 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -242.0
-offset_top = -22.0
+offset_top = -39.0
 offset_right = 70.0
-offset_bottom = 30.0
+offset_bottom = 31.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.699219, 0.824219, 0.835938, 1)
-theme_override_fonts/font = SubResource("FontVariation_62ju4")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "→"
 horizontal_alignment = 2
 
 [node name="Bio" type="Label" parent="BuildInfo/ColorRect/ContainerN"]
 layout_mode = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(1, 0.129412, 0.207843, 1)
-theme_override_fonts/font = SubResource("FontVariation_soy2v")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "3"
 horizontal_alignment = 2
 
@@ -693,11 +677,12 @@ horizontal_alignment = 2
 visible = false
 layout_mode = 2
 offset_left = 193.0
-offset_top = 1.0
 offset_right = 293.0
 offset_bottom = 53.0
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.560784, 0, 0.00784314, 1)
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "3"
 horizontal_alignment = 2
 
@@ -709,76 +694,68 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -242.0
-offset_top = -22.0
+offset_top = -39.0
 offset_right = 70.0
-offset_bottom = 30.0
+offset_bottom = 31.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("11_iy3hd")
+theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.699219, 0.824219, 0.835938, 1)
-theme_override_fonts/font = SubResource("FontVariation_62ju4")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 50
 text = "→"
 horizontal_alignment = 2
-
-[node name="Switch" type="CheckButton" parent="BuildInfo"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -322.0
-offset_top = -33.0
-offset_right = -242.0
-offset_bottom = 43.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-focus_mode = 0
-mouse_default_cursor_shape = 2
-theme = SubResource("Theme_f6ssq")
-theme_override_icons/checked = ExtResource("11_o2k5p")
-theme_override_icons/unchecked = ExtResource("12_yxhto")
-button_pressed = true
-action_mode = 0
-keep_pressed_outside = true
-flat = true
-alignment = 1
-expand_icon = true
 
 [node name="MultWinterE" type="Label" parent="BuildInfo"]
 visible = false
 layout_mode = 0
 offset_left = -58.0
-offset_top = 192.0
+offset_top = 244.0
 offset_right = -18.0
-offset_bottom = 220.0
+offset_bottom = 272.0
+rotation = -0.261799
+theme = ExtResource("11_iy3hd")
 theme_override_colors/font_color = Color(0.113725, 0.215686, 0.227451, 1)
-theme_override_fonts/font = SubResource("FontVariation_q0ye0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 25
 text = "+ 2"
-horizontal_alignment = 2
+horizontal_alignment = 1
+
+[node name="PostitE" type="Sprite2D" parent="BuildInfo/MultWinterE"]
+show_behind_parent = true
+position = Vector2(21.3705, 12.9731)
+rotation = 0.261799
+scale = Vector2(2, 2)
+texture = ExtResource("14_12evj")
 
 [node name="MultSummerE" type="Label" parent="BuildInfo"]
 visible = false
 layout_mode = 0
-offset_left = 150.0
-offset_top = 192.0
-offset_right = 190.0
-offset_bottom = 220.0
+offset_left = 172.0
+offset_top = 233.0
+offset_right = 215.0
+offset_bottom = 266.0
+rotation = -0.261799
+theme = ExtResource("11_iy3hd")
 theme_override_colors/font_color = Color(0.113725, 0.215686, 0.227451, 1)
-theme_override_fonts/font = SubResource("FontVariation_q0ye0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 25
 text = "+ 2"
-horizontal_alignment = 2
+horizontal_alignment = 1
+
+[node name="PostitE2" type="Sprite2D" parent="BuildInfo/MultSummerE"]
+show_behind_parent = true
+position = Vector2(18.2139, 13.1626)
+rotation = 0.261799
+scale = Vector2(2, 2)
+texture = ExtResource("14_12evj")
 
 [node name="Name" type="Label" parent="BuildInfo"]
 layout_mode = 0
 offset_left = -218.0
-offset_top = -248.0
+offset_top = -273.0
 offset_right = 382.0
-offset_bottom = -184.0
-theme_override_fonts/font = SubResource("FontVariation_g0hl7")
+offset_bottom = -209.0
+theme = ExtResource("11_iy3hd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "1234"
 horizontal_alignment = 1
@@ -791,7 +768,7 @@ offset_left = -258.0
 offset_top = 64.0
 offset_right = 270.0
 offset_bottom = 256.0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 8
 alignment = 2
 
 [node name="Winter" type="Control" parent="BuildInfo/EnergyContainer"]
@@ -863,7 +840,7 @@ texture = ExtResource("6_qkc2p")
 [node name="Multiplier" type="ColorRect" parent="BuildInfo/EnergyContainer"]
 visible = false
 z_index = 1
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 color = Color(0.596078, 0.596078, 0.596078, 0)
 
@@ -955,16 +932,80 @@ texture = ExtResource("20_6s7vn")
 [node name="MultPrice" type="Label" parent="BuildInfo/EnergyContainer/Multiplier"]
 visible = false
 layout_mode = 0
-offset_left = 146.0
-offset_top = 80.0
-offset_right = 191.0
-offset_bottom = 110.0
-theme_override_colors/font_color = Color(0.745098, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.121569, 0.223529, 0.235294, 0.784314)
-theme_override_fonts/font = SubResource("FontVariation_vvvj4")
-theme_override_font_sizes/font_size = 26
+offset_left = 201.0
+offset_top = 90.0
+offset_right = 246.0
+offset_bottom = 120.0
+rotation = -0.261799
+theme = ExtResource("11_iy3hd")
+theme_override_colors/font_color = Color(0.529412, 0.129412, 0.0901961, 1)
+theme_override_font_sizes/font_size = 25
 text = "$$$"
-horizontal_alignment = 2
+horizontal_alignment = 1
+
+[node name="Postit" type="Sprite2D" parent="BuildInfo/EnergyContainer/Multiplier/MultPrice"]
+show_behind_parent = true
+position = Vector2(21.8188, 15.1638)
+rotation = 0.261799
+scale = Vector2(2, 2)
+texture = ExtResource("21_baxyr")
+
+[node name="Switch" type="CheckButton" parent="BuildInfo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.0
+offset_top = 59.0
+offset_right = -239.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = ExtResource("11_o2k5p")
+theme_override_icons/unchecked = ExtResource("12_yxhto")
+button_pressed = true
+action_mode = 0
+keep_pressed_outside = true
+flat = true
+alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="BuildInfo/Switch"]
+visible = false
+layout_mode = 0
+offset_top = 13.5
+offset_right = 40.0
+offset_bottom = 36.5
+theme = ExtResource("11_iy3hd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "ON"
+uppercase = true
+
+[node name="Label2" type="Label" parent="BuildInfo/Switch"]
+visible = false
+layout_mode = 0
+offset_top = 46.0
+offset_right = 40.0
+offset_bottom = 69.0
+theme = ExtResource("11_iy3hd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "OFF"
+uppercase = true
+
+[node name="LEDOff" type="Sprite2D" parent="BuildInfo/Switch"]
+position = Vector2(24.5, 74)
+texture = ExtResource("21_owd4v")
+
+[node name="LEDOn" type="Sprite2D" parent="BuildInfo/Switch"]
+position = Vector2(24.5, 74)
+texture = ExtResource("22_0ieop")
 
 [node name="NameRect" type="ColorRect" parent="."]
 z_index = 1
@@ -989,12 +1030,8 @@ offset_top = 7.0
 offset_right = 81.0
 offset_bottom = 43.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.815686, 0.937255, 0.94902, 1)
-theme_override_colors/font_shadow_color = Color(0.0352941, 0.156863, 0.168627, 0.698039)
-theme_override_constants/shadow_offset_x = -1
-theme_override_constants/shadow_offset_y = -1
-theme_override_fonts/font = SubResource("FontVariation_tek51")
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("11_iy3hd")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1043,7 +1080,7 @@ offset_bottom = 186.0
 color = Color(0.4, 0.4, 0.4, 0)
 
 [node name="BuildMenuNumHole" type="Sprite2D" parent="ResRect"]
-position = Vector2(91, -4)
+position = Vector2(91, -3)
 texture = ExtResource("4_ovnj6")
 
 [node name="BuildMenuNumCounter" type="Sprite2D" parent="ResRect/BuildMenuNumHole"]
@@ -1115,9 +1152,9 @@ vertical_alignment = 1
 [node name="EnergyS" type="Label" parent="ResRect"]
 layout_mode = 0
 offset_left = 89.0
-offset_top = -14.0
+offset_top = -21.0
 offset_right = 128.0
-offset_bottom = 20.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0.0352941, 0.156863, 0.168627, 1)
 theme_override_fonts/font = SubResource("FontVariation_uwmcg")
 theme_override_font_sizes/font_size = 25
@@ -1127,9 +1164,9 @@ horizontal_alignment = 2
 [node name="EnergyW" type="Label" parent="ResRect"]
 layout_mode = 0
 offset_left = -11.0
-offset_top = -14.0
+offset_top = -21.0
 offset_right = 28.0003
-offset_bottom = 20.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0.0352941, 0.156863, 0.168627, 1)
 theme_override_fonts/font = SubResource("FontVariation_r1iqv")
 theme_override_font_sizes/font_size = 25
@@ -1177,6 +1214,7 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="HoverArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 position = Vector2(0, 4)

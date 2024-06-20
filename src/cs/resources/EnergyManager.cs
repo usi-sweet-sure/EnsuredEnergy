@@ -67,10 +67,10 @@ public partial class EnergyManager : Node {
 		switch(e.RT) {
 			case ResourceType.ENERGY_S:
 				// Update the summer model's demand
-				E.DemandSummer += e.Value;
+				C.DemandEstimate.Item2 += e.Value;
 				break;
 			case ResourceType.ENERGY_W:
-				E.DemandWinter += e.Value;
+				C.DemandEstimate.Item1 += e.Value;
 				break;
 			default: 
 				break;

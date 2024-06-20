@@ -69,7 +69,7 @@
     <group id="policies">
         <text id="policy_success">Policy was passed successfully!</text>
         <text id="policy_failure">Policy failed to be passed...</text>
-        <text id="label_popularity">Estimated popularity with voters:</text>
+        <text id="label_popularity">Estimated acceptance chance:</text>
         <text id="label_campaign">Duration of campaign:</text>
         <text id="label_camp_start">The campaign has started!</text>
         <text id="label_vote">Vote</text>
@@ -85,7 +85,7 @@
         <text id="label_energy_s">Energy 🔆</text>
         <text id="label_support">Support</text>
         <text id="label_environment">Environment</text>
-        <text id="label_pollution">Pollution</text>
+        <text id="label_pollution">Emissions</text>
     </group>
 
      <!-- Labels for general UI buttons -->
@@ -107,6 +107,8 @@
         <text id="pollution_description">Goal: Reach net zero by 2050</text>
         <text id="next_turn_warning">Not enough energy!</text>
         <text id="no_money_warning">Not enough money!</text>
+        <text id="settings">Settings</text>
+        <text id="resources">Resources</text>
     </group>
 
     <group id="settings">
@@ -161,18 +163,18 @@ You ensured enough energy for 30 years.
 
         </text>
         <text id="energy">Final Energy Supply
-and
         </text>
         <text id="money_good">You avoided an economic crisis</text>
-            <text id="money_loan">You had to take a loan to provide enough energy</text>
+        <text id="money_loan">You had to take a loan</text>
         <text id="money_bad">You destroyed the economy</text>
         <text id="support">Final Support
 
         </text>
-        <text id="pollution_good">You reached net zero by 2050</text>
-        <text id="pollution_bad">You did not reach net zero by 2050</text>
+        <text id="pollution_good">You reached net zero</text>
+        <text id="pollution_bad">You did not reach net zero</text>
         <text id="env">Environmental score
             
         </text>
+        <text id="import">of energy in Winter is imported</text>
     </group>
 </db>

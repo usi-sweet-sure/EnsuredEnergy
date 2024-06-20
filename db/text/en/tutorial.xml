@@ -23,15 +23,12 @@
 	<group id="tutorial_text">
 		<text id="0">Congratulations !
 You have been designated to [b]manage the Swiss power supply[/b] and to ensure a sustainable and resilient energy sector for the next 30 years (10 turns).</text>
-		<text id="1">You can decide what the future energy system will look like, 
-but always keep in mind that you need to [b]cover the Energy demand[/b].</text>
+		<text id="1">You can decide what the future energy system will look like, but always keep in mind that you need to [b]cover the Energy demand[/b].</text>
 		<!-- <text id="1">You can decide what the future energy system will look like, 
 			but be aware that Switzerland has committed to being CO2-neutral by 2050. 
 			A majority of voters approved this goal in a referendum.</text>-->
-		<text id="2">You need to [b]supply[/b] enough [b]energy[/b] for your population.
-They need to charge their phones and play their favourite video games.</text>
-		<text id="3">You need to [b]supply[/b] enough [b]energy[/b] for your population.
-They need to charge their phones and play their favourite video games.</text>
+		<text id="2">You need to [b]supply[/b] enough [b]energy[/b] for your population. They need to charge their phones and play their favourite video games.</text>
+		<text id="3">You need to [b]supply[/b] enough [b]energy[/b] for your population. They need to charge their phones and play their favourite video games.</text>
 		<text id="4">There are different ways to supply more energy:
 
 - You can import energy in winter, but it creates pollution and can be expensive.</text>
@@ -41,11 +38,10 @@ They need to charge their phones and play their favourite video games.</text>
 		<text id="6">There are different ways to supply more energy:
 
 	- You can upgrade some of the existing power plants</text>
-	<text id="7">You can also hold information campaigns or try to implement different policies to 
-reduce energy demand or facilitate the construction of power plants.</text>
+	<text id="7">You can also hold information campaigns or try to implement different policies to reduce energy demand or facilitate the construction of power plants.</text>
 	</group>
 	<group id="info_bubble">
-		<text id="0">Each turn, you have to reach the demand for winter ❄️ and summer 🔆.</text>
+		<text id="0">Each turn, you have to reach the demand for winter ❄️ and summer 🔆</text>
 		<text id="1">Import more energy here</text>
 		<text id="2">Build new power plants</text>
 		<text id="3">Upgrade existing power plant</text>
