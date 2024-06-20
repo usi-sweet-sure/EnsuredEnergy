@@ -106,6 +106,8 @@
         <text id="pollution_description">Ziel: Erreichen von Netto-Null bis 2050</text>
         <text id="next_turn_warning">Nicht genug Energie!</text>
         <text id="no_money_warning">Nicht genug Geld!</text>
+        <text id="settings">Einstellungen</text>
+        <text id="resources">Ressourcen</text>
     </group>
 
     <!-- Labels for the main menu -->
@@ -154,17 +156,16 @@ Energy
     
             </text>
             <text id="energy">Zufuhr von Endenergie
-                und
             </text>
             <text id="money_good">Du hast eine Wirtschaftskrise verhindert</text>
             <text id="money_bad">Du hast die Wirtschaft zerstört</text>
-            <text id="support">Finale Bevölkerungsunterstützung
-    
-            </text>
+            <text id="money_loan">Du musstest einen Kredit aufnehmen</text>
+            <text id="support">Finale Bevölkerungsunterstützung</text>
             <text id="pollution_good">Du hast im Jahr 2050 Netto-Null erreicht</text>
             <text id="pollution_bad">Du hast im Jahr 2050 Netto-Null nicht erreicht</text>
             <text id="env">Punktzahl Umwelt
                 
             </text>
+            <text id="import">der Energie im Winter wird importiert</text>
         </group>
 </db>

@@ -40,10 +40,10 @@ public partial class GameLoop : Node2D {
 
 	// The amount of money the player starts with (in millions of CHF)
 	[Export]
-	public int START_MONEY = 200;
+	public int START_MONEY = 250;
 
 	[Export]
-	public static int BUDGET_PER_TURN = 300;
+	public static int BUDGET_PER_TURN = 250;
 
 	// Internal game state
 	private GameState GS;
@@ -163,12 +163,13 @@ public partial class GameLoop : Node2D {
 
 			// Make sure that nuclear plants can be reactivated
 			ShockWindow.ReintroduceNuclear += pp._OnReintroduceNuclear;
+			ShockWindow.WeatherShock += pp._OnWeatherShock;
 		}
 
 		// Connect Callback to each build button and give them a reference to the loop
 		foreach(BuildButton bb in BBs) {
 			bb.UpdateBuildSlot += _OnUpdateBuildSlot;
-
+			ShockWindow.WeatherShock += bb._OnWeatherShock;
 			// Record a reference to the game loop
 			bb._RecordGameLoopRef(this);
 		}
@@ -272,6 +273,7 @@ public partial class GameLoop : Node2D {
 			case ResourceType.ENVIRONMENT:
 			case ResourceType.SUPPORT:
 				RM._ApplyEffect(e);
+				UpdateResources();
 			break;
 
 			// The other types must be handled separately
@@ -312,11 +314,11 @@ public partial class GameLoop : Node2D {
 		
 		// Check when the different nuclear plants will shut down
 		if(PowerPlants[0].IsAlive) {
-			_UI._UpdateNuclearWarning(PowerPlants[0].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+			_UI._UpdateNuclearWarning(PowerPlants[0].EndTurn - C._GetTurn() <= 1);
 		} else if(PowerPlants[1].IsAlive) {
-			_UI._UpdateNuclearWarning(PowerPlants[1].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+			_UI._UpdateNuclearWarning(PowerPlants[1].EndTurn - C._GetTurn() <= 1);
 		} else if(PowerPlants[2].IsAlive) {
-			_UI._UpdateNuclearWarning(PowerPlants[2].NUCLEAR_LIFE_SPAN - C._GetTurn() <= 1);
+			_UI._UpdateNuclearWarning(PowerPlants[2].EndTurn - C._GetTurn() <= 1);
 		} else {
 			_UI._UpdateNuclearWarning(false);
 		}
@@ -536,7 +538,9 @@ public partial class GameLoop : Node2D {
 			Money.Money < 0, // Are we currently in debt?
 			Sup.Value,
 			Env.PollutionBarValue() <= 0, // Check that the pollution is below 0 (netzero)
-			Env.EnvBarValue()
+			Env.EnvBarValue(),
+			_UI._GetImportSliderPercentage(),
+			_UI._GetBorrowStatus()
 		);
 		EndScreen.Show();
 	}

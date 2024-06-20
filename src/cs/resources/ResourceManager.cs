@@ -39,7 +39,7 @@ public partial class ResourceManager : Node {
 
 	[Export]
 	/* The base cost of a kWh imported from abroad */
-	public float ImportCost = 5.0f;
+	public float ImportCost = 3.5f;
 
 	[Export]
 	/* Additional cost of importing green energy */

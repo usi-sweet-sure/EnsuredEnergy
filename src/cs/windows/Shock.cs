@@ -34,11 +34,17 @@ public partial class Shock : CanvasLayer {
 	public delegate void ApplyRewardEventHandler();
 
 	[Signal]
-	public delegate void ReintroduceNuclearEventHandler()
-;
+	public delegate void ReintroduceNuclearEventHandler();
+	
+	[Signal]
+	public delegate void WeatherShockEventHandler();
+	
+	[Signal]
+	public delegate void ResetWeatherEventHandler();
+	
 	[Export]
 	// Probability of getting a shock
-	public int ShockProba = 70;
+	public int ShockProba = 80;
 
 	// Big list of shock ids
 	private List<string> SHOCKS;
@@ -58,12 +64,16 @@ public partial class Shock : CanvasLayer {
 	private Control Reactions;
 
 	// Buttons for each potential reaction
-	private Button R1;
-	private Button R2;
-	private Button R3;
+	private TextureButton R1;
+	private TextureButton R2;
+	private TextureButton R3;
+	private Label L1;
+	private Label L2;
+	private Label L3;
 
 	// Continue button to pass if no reaction is available
-	public Button Continue;
+	public TextureButton Continue;
+	private Label ContinueL;
 
 	// Controller used to access the config files
 	private ShockController SC;
@@ -86,13 +96,17 @@ public partial class Shock : CanvasLayer {
 		Result = GetNode<Label>("NinePatchRect/ColorRect/Result");
 		Reward = GetNode<Label>("NinePatchRect/ColorRect/Reward");
 		Reactions = GetNode<Control>("NinePatchRect/ColorRect/Reactions");
-		R1 = GetNode<Button>("NinePatchRect/ColorRect/Reactions/Button");
-		R2 = GetNode<Button>("NinePatchRect/ColorRect/Reactions/Button2");
-		R3 = GetNode<Button>("NinePatchRect/ColorRect/Reactions/Button3");
-		Continue = GetNode<Button>("NinePatchRect/ColorRect/Continue");
+		R1 = GetNode<TextureButton>("NinePatchRect/ColorRect/Reactions/Button");
+		R2 = GetNode<TextureButton>("NinePatchRect/ColorRect/Reactions/Button2");
+		R3 = GetNode<TextureButton>("NinePatchRect/ColorRect/Reactions/Button3");
+		Continue = GetNode<TextureButton>("NinePatchRect/ColorRect/Continue");
 		SC = GetNode<ShockController>("ShockController");
 		Img = GetNode<Sprite2D>("NinePatchRect/ColorRect/Img");
 		AP = GetNode<AnimationPlayer>("AnimationPlayer");
+		L1 = GetNode<Label>("NinePatchRect/ColorRect/Reactions/Button/Label");
+		L2 = GetNode<Label>("NinePatchRect/ColorRect/Reactions/Button2/Label");
+		L3 = GetNode<Label>("NinePatchRect/ColorRect/Reactions/Button3/Label");
+		ContinueL = GetNode<Label>("NinePatchRect/ColorRect/Continue/Label");
 
 		// Fetch the context
 		C = GetNode<Context>("/root/Context");
@@ -103,10 +117,10 @@ public partial class Shock : CanvasLayer {
 		R3.Pressed += _OnR3Pressed;
 
 		SHOCKS = new() { 
-			"cold_spell", "heat_wave", "glaciers_melting", 
-			"severe_weather",
-			"inc_raw_cost_10", "inc_raw_cost_20", "mass_immigration",
-			"pandemic", "nuc_accident"
+			"cold_spell", "cold_spell", "heat_wave", "glaciers_melting", 
+			"severe_weather", "renewables_support",
+			"inc_raw_cost_10", "inc_raw_cost_10", "inc_raw_cost_20", 
+			"dec_raw_cost_20", "mass_immigration"
 		};
 	
 		// Set the initial shock
@@ -142,11 +156,17 @@ public partial class Shock : CanvasLayer {
 			// Remove the shock from the list
 			SHOCKS.RemoveAt(next_idx);
 
+			if(CurShock == "severe_weather" || next_shock == "severe_weather") {
+				// Make sure that the weather shock happens
+				EmitSignal(SignalName.WeatherShock);
+			}
+			
 			// Set the next shock
 			CurShock = next_shock;
 
 			// Update the fields to match the new shock
 			SetFields(M, E, Env, S);
+			
 
 			// Decide whether or not to show a shock
 			// There is a 50% chance of getting a shock
@@ -244,6 +264,14 @@ public partial class Shock : CanvasLayer {
 
 		// Set the reward text
 		Reward.Text = CurReward.Text;
+		
+		// Change reward color
+		if(CurShock == "dec_raw_cost_20" || CurShock == "renewables_support"
+		|| CurShock == "cold_spell" || CurShock == "heat_wave") {
+			Reward.Set("theme_override_colors/font_color", new Color(0,1,0,1));
+		} else {
+			Reward.Set("theme_override_colors/font_color", new Color(1,0,0,1));
+		}
 
 		// Retrieve the current reactions
 		CurReactions = SC._GetReactions(CurShock);
@@ -251,7 +279,7 @@ public partial class Shock : CanvasLayer {
 		// Set the individual buttons if they have associated reactions
 		if(CurReactions.Count > 0) {
 			// Set the button's text and enable it
-			R1.Text = CurReactions[0].Text;
+			L1.Text = CurReactions[0].Text;
 			R1.Disabled = false;
 			R1.Show();
 			R2.Hide();
@@ -263,7 +291,7 @@ public partial class Shock : CanvasLayer {
 		}
 		if(CurReactions.Count > 1) {
 			// Set the button's text and enable it
-			R2.Text = CurReactions[1].Text;
+			L2.Text = CurReactions[1].Text;
 			R2.Disabled = false;
 			R2.Show();
 			R3.Hide();
@@ -273,7 +301,7 @@ public partial class Shock : CanvasLayer {
 		}
 		if(CurReactions.Count > 2) {
 			// Set the button's text and enable it
-			R3.Text = CurReactions[2].Text;
+			L3.Text = CurReactions[2].Text;
 			R3.Disabled = false;
 			R3.Show();
 
@@ -283,7 +311,7 @@ public partial class Shock : CanvasLayer {
 	}
 
 	// Checks the validity of the reaction based on current resources
-	private void CheckAllEffectReqs(Reward se, ref Button react, (MoneyData, Energy, Environment, Support) res) {
+	private void CheckAllEffectReqs(Reward se, ref TextureButton react, (MoneyData, Energy, Environment, Support) res) {
 		
 		// We start looking at if our effect requirements are all met
 		bool AllReqsMet = se.ToRequirements().Aggregate(true, (acc, req) => 
@@ -330,7 +358,7 @@ public partial class Shock : CanvasLayer {
 		// Set the individual buttons if they have associated reactions
 		if(CurReactions.Count > 0) {
 			// Set the button's text and enable it
-			R1.Text = CurReactions[0].Text;
+			L1.Text = CurReactions[0].Text;
 			R1.Disabled = false;
 			R1.Show();
 			R2.Hide();
@@ -338,14 +366,14 @@ public partial class Shock : CanvasLayer {
 		}
 		if(CurReactions.Count > 1) {
 			// Set the button's text and enable it
-			R2.Text = CurReactions[1].Text;
+			L2.Text = CurReactions[1].Text;
 			R2.Disabled = false;
 			R2.Show();
 			R3.Hide();
 		}
 		if(CurReactions.Count > 2) {
 			// Set the button's text and enable it
-			R3.Text = CurReactions[2].Text;
+			L3.Text = CurReactions[2].Text;
 			R3.Disabled = false;
 			R3.Show();
 		}

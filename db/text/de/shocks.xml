@@ -46,8 +46,7 @@
         <!-- Reward to the player in case they met the requirements -->
         <reward>
             <text>Die Energieproduktion war hoch genug, um den Schock zu überstehen.
-+5 👍 
-+50 $</text>
++5 👍    +50 $</text>
             <effect field="support" value="5"/>
             <effect field="money" value="50"/>
         </reward>
@@ -61,22 +60,23 @@
         <text>Die Sommer waren heisser als üblich, was den Energiebedarf im Sommer um 5 ⚡ erhöhte.</text>
         <requirement id="0" field="energyS" value="5" bound="min"/>
         <reaction id="0">
-            <text>Aufforderung an die Bevölkerung, mehr Wasser zu trinken und ihre Klimaanlagen herunterzudrehen 
--20 👍</text>
-            <effect field="support" value="-20"/>
+            <text>Aufforderung an die Bevölkerung, ihre Klimaanlagen herunterzudrehen 
+-15 👍</text>
+            <effect field="support" value="-15"/>
         </reaction>
         <reaction id="1">
-            <text>Einschalten der Ersatzgasanlage +10 Verschmutzung 🏭.</text>
+            <text>Einschalten der Ersatzgasanlage 
++10 Verschmutzung 🏭.</text>
             <effect field="env" value="10"/>
         </reaction>
         <reaction id="2">
-            <text>Stromimport aus Nachbarländern -50 $</text>
+            <text>Stromimport aus Nachbarländern 
+-50 $</text>
             <effect field="money" value="-50"/>
         </reaction>
         <reward>
             <text>Die Energieproduktion war hoch genug, um den Schock zu überstehen.
-+5 👍 
-+50 $</text>
++5 👍    +50 $</text>
             <effect field="support" value="5"/>
             <effect field="money" value="50"/>
         </reward>

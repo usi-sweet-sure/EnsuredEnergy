@@ -24,7 +24,7 @@
         <text id="label_afford">Convenienza</text>
         <text id="label_aesth">Estetica</text>
         <text id="label_land">Uso del Terreno</text>
-        <text id="label_pollution">Inquinamento</text>
+        <text id="label_pollution">Emissioni</text>
         <text id="label_biodiversity">Biodiversità</text>
         <text id="label_money">Soldi</text>
         <text id="label_budget">Bilancio</text>
@@ -68,7 +68,7 @@
     <group id="policies">
         <text id="policy_success">La politica è stata approvata con successo!</text>
         <text id="policy_failure">La politica non è passata...</text>
-        <text id="label_popularity">Stima della popolarità tra gli elettori:</text>
+        <text id="label_popularity">Possibilità di accettazione:</text>
         <text id="label_campaign">Durata della campagna:</text>
         <text id="label_camp_start">La campagna è iniziata!</text>
         <text id="label_vote">Voto</text>
@@ -84,7 +84,7 @@
         <text id="label_energy_s">Energia 🔆</text>
         <text id="label_support">Supporto</text>
         <text id="label_environment">Ambiente</text>
-        <text id="label_pollution">Inquinamento</text>
+        <text id="label_pollution">Emissioni</text>
     </group>
 
      <!-- Labels for general UI buttons -->
@@ -106,6 +106,8 @@
         <text id="pollution_description">Goal: Reach net zero by 2050</text>
         <text id="next_turn_warning">Non c'è abbastanza energia!</text>
         <text id="no_money_warning">Non ci sono abbastanza soldi!</text>
+        <text id="settings">Impostazioni</text>
+        <text id="resources">Risorse</text>
     </group>
 
      <!-- Labels for the main menu -->
@@ -154,10 +156,10 @@ Energy
     
             </text>
             <text id="energy">Contributo energetico finale
-                e
             </text>
             <text id="money_good">Avete evitato una crisi economica</text>
             <text id="money_bad">Avete distrutto l'economia</text>
+            <text id="money_loan">Hai dovuto chiedere un prestito</text>
             <text id="support">Sostegno della popolazione finale
     
             </text>
@@ -166,5 +168,6 @@ Energy
             <text id="env">Punteggio ambientale
                 
             </text>
+            <text id="import">dell'energia in inverno è importata</text>
         </group>
 </db>
