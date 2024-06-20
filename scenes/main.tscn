@@ -1918,10 +1918,10 @@ HasAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Nuclear3" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_abmly")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Nuclear3" index="2"]
 texture = ExtResource("4_e6lsk")
@@ -1978,10 +1978,10 @@ HasAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Nuclear2" index="0"]
 root_node = NodePath("../Sprite/Smoke")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_1shh4")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Nuclear2" index="2"]
 texture = ExtResource("4_e6lsk")
@@ -2026,10 +2026,10 @@ HasAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Nuclear" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_3k1tp")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Nuclear" index="2"]
 texture = ExtResource("4_e6lsk")
@@ -2100,10 +2100,10 @@ _PlantType = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Waste" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_pvye6")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Waste" index="2"]
 texture = ExtResource("5_vx3tb")
@@ -2130,10 +2130,10 @@ _PlantType = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Biomass" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_tgvt4")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Biomass" index="2"]
 texture = ExtResource("6_q3df2")
@@ -2203,10 +2203,16 @@ texture = SubResource("AtlasTexture_obbpa")
 offset = Vector2(3, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Wind" index="12"]
-autoplay = "Wind"
 libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
+autoplay = "Wind"
+
+[node name="Money" parent="World/BuildButton" index="13"]
+offset_left = -286.0
+offset_top = -132.5
+offset_right = -126.0
+offset_bottom = -43.5
 
 [node name="BuildButton2" parent="World" index="15"]
 offset_left = 624.0
@@ -2270,13 +2276,19 @@ energy = 0.0
 texture = SubResource("GradientTexture2D_mhl0d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Solar" index="12"]
-autoplay = "Sun"
 libraries = {
 "": SubResource("AnimationLibrary_1rsdt")
 }
+autoplay = "Sun"
 
 [node name="Hammer" parent="World/BuildButton9" index="0"]
 position = Vector2(308, 205)
+
+[node name="Money" parent="World/BuildButton9" index="13"]
+offset_left = -279.0
+offset_top = -124.0
+offset_right = -119.0
+offset_bottom = -35.0
 
 [node name="Hydro" parent="World" index="26" groups=["PP"]]
 position = Vector2(360, 1982)
@@ -2288,9 +2300,6 @@ texture = ExtResource("11_nggna")
 flip_h = true
 
 [node name="ResRect" parent="World/Hydro" index="4"]
-visible = false
-
-[node name="HoverArea" parent="World/Hydro" index="8"]
 visible = false
 
 [node name="Water" type="Sprite2D" parent="World/Hydro" index="10"]
@@ -2346,10 +2355,10 @@ texture = ExtResource("24_xuhq5")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Hydro" index="19"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_7anxu")
 }
+autoplay = "Water"
 
 [node name="Pump" parent="World" index="29" groups=["PP"]]
 _PlantType = 0
@@ -2359,9 +2368,6 @@ position = Vector2(0, 0)
 texture = ExtResource("11_nggna")
 
 [node name="ResRect" parent="World/Pump" index="4"]
-visible = false
-
-[node name="HoverArea" parent="World/Pump" index="8"]
 visible = false
 
 [node name="Water13" type="Sprite2D" parent="World/Pump" index="14"]
@@ -2397,10 +2403,10 @@ texture = ExtResource("26_fkwhx")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Pump" index="20"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_lb77a")
 }
+autoplay = "Water"
 
 [node name="River" parent="World" index="30" groups=["PP"]]
 HasAnimation = true
@@ -2410,9 +2416,6 @@ _PlantType = 8
 texture = ExtResource("9_agn8w")
 
 [node name="ResRect" parent="World/River" index="4"]
-visible = false
-
-[node name="HoverArea" parent="World/River" index="8"]
 visible = false
 
 [node name="Water" type="Sprite2D" parent="World/River" index="10"]
@@ -2461,10 +2464,10 @@ flip_h = true
 flip_v = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/River" index="17"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_5k73m")
 }
+autoplay = "Water"
 
 [node name="River2" parent="World" index="31" groups=["PP"]]
 scale = Vector2(0.8, 0.8)
@@ -2477,14 +2480,11 @@ texture = ExtResource("9_agn8w")
 [node name="ResRect" parent="World/River2" index="4"]
 visible = false
 
-[node name="HoverArea" parent="World/River2" index="8"]
-visible = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/River2" index="14"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_a8121")
 }
+autoplay = "Water"
 
 [node name="Water3" type="Sprite2D" parent="World/River2" index="15"]
 modulate = Color(1, 1, 1, 0.662745)
