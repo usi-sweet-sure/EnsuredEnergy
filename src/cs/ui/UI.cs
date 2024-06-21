@@ -161,6 +161,7 @@ public partial class UI : CanvasLayer {
 	private TextureButton PolicyButton;
 	private TextureButton StatsButton;
 	private Graphs Graphs;
+	private bool first = true;
 	public Label PolicyNotif;
 
 	// Windows
@@ -994,6 +995,8 @@ public partial class UI : CanvasLayer {
 		// Update the required import target (only in winter due to conservative estimates)
 		SetTargetImport();
 		
+		first = true;
+		
 		// Update the Timeline
 		Timeline.Value = Math.Min(Timeline.Value + TIMELINE_STEP_SIZE, TIMELINE_MAX_VALUE); 
 	}
@@ -1214,6 +1217,8 @@ public partial class UI : CanvasLayer {
 	
 	public void _OnStatsPressed() {
 		Graphs.Show();
+		Graphs._InstancePPLines(first);
+		first = false;
 	}
 	
 	public void _OnMusicValueChanged(double Value) {
