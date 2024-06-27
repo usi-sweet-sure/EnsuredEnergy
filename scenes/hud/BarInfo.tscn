@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://u1nvhv5ceok"]
 
 [ext_resource type="Script" path="res://src/cs/ui/InfoBox.cs" id="1_oefrc"]
-[ext_resource type="Texture2D" uid="uid://bu7evhjgyjni6" path="res://assets/UI Elements/Paper-Middle-Rolled.png" id="2_c7jry"]
-[ext_resource type="Texture2D" uid="uid://bx1g8oiuxi2mk" path="res://assets/UI Elements/Paper-Middle.png" id="3_rmg6x"]
+[ext_resource type="Texture2D" uid="uid://bu7evhjgyjni6" path="res://assets/UI Elements/UI/Paper-Middle-Rolled.png" id="2_c7jry"]
+[ext_resource type="Texture2D" uid="uid://bx1g8oiuxi2mk" path="res://assets/UI Elements/UI/Paper-Middle.png" id="3_rmg6x"]
 [ext_resource type="Texture2D" uid="uid://dcbjy5kxo2vbm" path="res://assets/Elements/INFO ICON.png" id="3_wryn5"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="4_3f2or"]
 

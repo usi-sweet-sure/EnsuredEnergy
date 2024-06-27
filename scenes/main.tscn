@@ -1961,7 +1961,7 @@ flip_h = true
 offset_top = -268.0
 offset_bottom = -228.0
 
-[node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="1"]
+[node name="NinePatchRect" parent="World/Nuclear3/BuildInfo" index="2"]
 offset_top = -232.0
 
 [node name="LifeSpan" parent="World/Nuclear3/BuildInfo/ColorRect" index="0"]
@@ -2009,7 +2009,7 @@ position = Vector2(50, -265)
 scale = Vector2(0.647423, 1.21787)
 texture = ExtResource("7_vvt3h")
 
-[node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="1"]
+[node name="NinePatchRect" parent="World/Nuclear2/BuildInfo" index="2"]
 offset_top = -236.0
 
 [node name="LifeSpan" parent="World/Nuclear2/BuildInfo/ColorRect" index="0"]
@@ -2069,7 +2069,7 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(57, -249.25)
 texture = ExtResource("6_swuok")
 
-[node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="1"]
+[node name="NinePatchRect" parent="World/Nuclear/BuildInfo" index="2"]
 offset_top = -241.0
 
 [node name="LifeSpan" parent="World/Nuclear/BuildInfo/ColorRect" index="0"]
@@ -2290,9 +2290,6 @@ flip_h = true
 [node name="ResRect" parent="World/Hydro" index="4"]
 visible = false
 
-[node name="HoverArea" parent="World/Hydro" index="8"]
-visible = false
-
 [node name="Water" type="Sprite2D" parent="World/Hydro" index="10"]
 position = Vector2(32, 130)
 rotation = -0.016075
@@ -2361,9 +2358,6 @@ texture = ExtResource("11_nggna")
 [node name="ResRect" parent="World/Pump" index="4"]
 visible = false
 
-[node name="HoverArea" parent="World/Pump" index="8"]
-visible = false
-
 [node name="Water13" type="Sprite2D" parent="World/Pump" index="14"]
 position = Vector2(-37, 86)
 texture = ExtResource("11_y3iyb")
@@ -2410,9 +2404,6 @@ _PlantType = 8
 texture = ExtResource("9_agn8w")
 
 [node name="ResRect" parent="World/River" index="4"]
-visible = false
-
-[node name="HoverArea" parent="World/River" index="8"]
 visible = false
 
 [node name="Water" type="Sprite2D" parent="World/River" index="10"]
@@ -2475,9 +2466,6 @@ _PlantType = 8
 texture = ExtResource("9_agn8w")
 
 [node name="ResRect" parent="World/River2" index="4"]
-visible = false
-
-[node name="HoverArea" parent="World/River2" index="8"]
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/River2" index="14"]

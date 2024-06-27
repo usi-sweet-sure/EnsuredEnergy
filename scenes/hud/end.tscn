@@ -1,17 +1,24 @@
-[gd_scene load_steps=14 format=3 uid="uid://cej4dlw11su6f"]
+[gd_scene load_steps=21 format=3 uid="uid://cej4dlw11su6f"]
 
 [ext_resource type="Script" path="res://src/cs/ui/End.cs" id="1_dvce5"]
-[ext_resource type="Texture2D" uid="uid://dyyio7rs1i1l6" path="res://assets/UI Elements/Import_energy-Bar-Metal.png" id="2_27rt7"]
-[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="3_g4lp6"]
-[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="4_wpw57"]
-[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="5_3yvol"]
-[ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/Icon-Pollution-.png" id="6_vhvio"]
-[ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/Icon-Money.png" id="7_vf71k"]
-[ext_resource type="Texture2D" uid="uid://djt8tok2g8xsq" path="res://assets/UI Elements/Icon-Import.png" id="8_fbglj"]
-[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="9_linj2"]
-[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="10_p8k2p"]
-[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="11_4kvee"]
-[ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="12_dufsc"]
+[ext_resource type="Texture2D" uid="uid://dyyio7rs1i1l6" path="res://assets/UI Elements/UI/Import_energy-Bar-Metal.png" id="2_ehf8r"]
+[ext_resource type="Texture2D" uid="uid://dk3m6yvqlarm" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0006s_0001_Stats-metal-base.png" id="2_ff2m1"]
+[ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/UI/Icon-Pollution-.png" id="3_aidyr"]
+[ext_resource type="Texture2D" uid="uid://dmdlwssgl7ibc" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0005s_0002_Stats-screen.png" id="3_g7ref"]
+[ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="4_0wku2"]
+[ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/UI/Icon-Money.png" id="4_xebyd"]
+[ext_resource type="Texture2D" uid="uid://djt8tok2g8xsq" path="res://assets/UI Elements/UI/Icon-Import.png" id="5_0gdng"]
+[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/UI/Icon-Solar.png" id="6_ckoqi"]
+[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/UI/Icon-Wind.png" id="7_bipqh"]
+[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/UI/Icon-Popularity.png" id="8_ogewp"]
+[ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/UI/Icon-Environment-.png" id="9_elmyt"]
+[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/UI/Button-normal.png" id="10_cfhq7"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/UI/Button-press.png" id="11_hwokn"]
+[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/UI/Button-hover.png" id="12_0osps"]
+[ext_resource type="Texture2D" uid="uid://doxae7r0y5mj3" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0009s_0006_Environment-metal-plate.png" id="16_ngytb"]
+[ext_resource type="Texture2D" uid="uid://cc7i1f7kgwwt6" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0009s_0007_Pollution-metal-plate.png" id="17_ogbrh"]
+[ext_resource type="Texture2D" uid="uid://cc71j5ujaky4v" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0009s_0003_Stats-(side)-metal-plate.png" id="18_gehk6"]
+[ext_resource type="Texture2D" uid="uid://c68n63ybvkgoj" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0009s_0002_Stats-metal-plate.png" id="19_q2vfj"]
 
 [sub_resource type="Theme" id="Theme_yg7sq"]
 
@@ -50,20 +57,29 @@ vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
 
+[node name="MetalPlate" type="Sprite2D" parent="EndWindow"]
+position = Vector2(978, 413)
+texture = ExtResource("2_ff2m1")
+
+[node name="Screen" type="Sprite2D" parent="EndWindow"]
+position = Vector2(978, 329)
+texture = ExtResource("3_g7ref")
+
 [node name="EndText" type="Label" parent="EndWindow"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 394.0
-offset_top = -450.5
-offset_right = -386.0
-offset_bottom = -76.5
+offset_left = 650.0
+offset_top = -388.5
+offset_right = -642.0
+offset_bottom = -228.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 72
+theme = ExtResource("4_0wku2")
+theme_type_variation = &"Screen"
 text = "You ensured enough energy 
 for 30 years
 "
@@ -71,23 +87,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
-
-[node name="NinePatchRect7" type="NinePatchRect" parent="EndWindow/EndText"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_right = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_27rt7")
-region_rect = Rect2(-2, 6, 394, 362)
-patch_margin_left = 42
-patch_margin_top = 36
-patch_margin_right = 44
-patch_margin_bottom = 38
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EndWindow"]
 custom_minimum_size = Vector2(55, 0)
@@ -132,7 +131,7 @@ color = Color(1, 0.305882, 0.176471, 1)
 [node name="Energy" type="NinePatchRect" parent="EndWindow/HBoxContainer"]
 custom_minimum_size = Vector2(280, 250)
 layout_mode = 2
-texture = ExtResource("2_27rt7")
+texture = ExtResource("2_ehf8r")
 region_rect = Rect2(-2, 6, 394, 362)
 patch_margin_left = 42
 patch_margin_top = 36
@@ -177,7 +176,7 @@ color = Color(1, 0.470588, 0.180392, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-texture = ExtResource("2_27rt7")
+texture = ExtResource("2_ehf8r")
 region_rect = Rect2(-2, 6, 394, 362)
 patch_margin_left = 42
 patch_margin_top = 36
@@ -221,7 +220,7 @@ color = Color(0.921569, 0.407843, 0.909804, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-texture = ExtResource("2_27rt7")
+texture = ExtResource("2_ehf8r")
 region_rect = Rect2(-2, 6, 394, 362)
 patch_margin_left = 42
 patch_margin_top = 36
@@ -264,7 +263,7 @@ color = Color(1, 1, 0.0313726, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-texture = ExtResource("2_27rt7")
+texture = ExtResource("2_ehf8r")
 region_rect = Rect2(-2, 6, 394, 362)
 patch_margin_left = 42
 patch_margin_top = 36
@@ -309,7 +308,7 @@ color = Color(0.466667, 0.607843, 0.917647, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-texture = ExtResource("2_27rt7")
+texture = ExtResource("2_ehf8r")
 region_rect = Rect2(-2, 6, 394, 362)
 patch_margin_left = 42
 patch_margin_top = 36
@@ -352,7 +351,7 @@ color = Color(0.501961, 0.501961, 0.501961, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-texture = ExtResource("2_27rt7")
+texture = ExtResource("2_ehf8r")
 region_rect = Rect2(-2, 6, 394, 362)
 patch_margin_left = 42
 patch_margin_top = 36
@@ -394,31 +393,31 @@ color = Color(0.317647, 0.721569, 0.294118, 1)
 
 [node name="Icon-pollution-" type="Sprite2D" parent="EndWindow"]
 position = Vector2(1466, 721)
-texture = ExtResource("6_vhvio")
+texture = ExtResource("3_aidyr")
 
 [node name="Icon-money" type="Sprite2D" parent="EndWindow"]
 position = Vector2(906, 877)
-texture = ExtResource("7_vf71k")
+texture = ExtResource("4_xebyd")
 
 [node name="Icon-import" type="Sprite2D" parent="EndWindow"]
 position = Vector2(450, 733)
-texture = ExtResource("8_fbglj")
+texture = ExtResource("5_0gdng")
 
 [node name="Icon-solar" type="Sprite2D" parent="EndWindow"]
 position = Vector2(282, 885)
-texture = ExtResource("9_linj2")
+texture = ExtResource("6_ckoqi")
 
 [node name="Icon-wind" type="Sprite2D" parent="EndWindow"]
 position = Vector2(154, 884)
-texture = ExtResource("10_p8k2p")
+texture = ExtResource("7_bipqh")
 
 [node name="Icon-popularity" type="Sprite2D" parent="EndWindow"]
 position = Vector2(1058, 869)
-texture = ExtResource("11_4kvee")
+texture = ExtResource("8_ogewp")
 
 [node name="Icon-environment-" type="Sprite2D" parent="EndWindow"]
 position = Vector2(1650, 861)
-texture = ExtResource("12_dufsc")
+texture = ExtResource("9_elmyt")
 
 [node name="Stats" type="Control" parent="EndWindow"]
 layout_mode = 1
@@ -566,9 +565,9 @@ offset_top = 24.0
 offset_right = 1040.0
 offset_bottom = 114.0
 toggle_mode = true
-texture_normal = ExtResource("3_g4lp6")
-texture_pressed = ExtResource("4_wpw57")
-texture_hover = ExtResource("5_3yvol")
+texture_normal = ExtResource("10_cfhq7")
+texture_pressed = ExtResource("11_hwokn")
+texture_hover = ExtResource("12_0osps")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -586,3 +585,19 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Score"
+
+[node name="All-hq-assets-d0009s0006Environment-metal-plate" type="Sprite2D" parent="."]
+position = Vector2(160, 440)
+texture = ExtResource("16_ngytb")
+
+[node name="All-hq-assets-d0009s0007Pollution-metal-plate" type="Sprite2D" parent="."]
+position = Vector2(160, 264)
+texture = ExtResource("17_ogbrh")
+
+[node name="All-hq-assets-d0009s0003Stats-(side)-metal-plate" type="Sprite2D" parent="."]
+position = Vector2(1016, 760)
+texture = ExtResource("18_gehk6")
+
+[node name="All-hq-assets-d0009s0002Stats-metal-plate" type="Sprite2D" parent="."]
+position = Vector2(624, 760)
+texture = ExtResource("19_q2vfj")

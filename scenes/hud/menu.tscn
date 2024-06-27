@@ -1,31 +1,31 @@
 [gd_scene load_steps=16 format=3 uid="uid://pvoi2mcc3oc1"]
 
 [ext_resource type="Script" path="res://src/cs/ui/MainMenu.cs" id="1_acmck"]
-[ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/MAP-BG.png" id="2_rie33"]
+[ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/Map/MAP-BG.png" id="2_rdm2u"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="3_l0e0n"]
-[ext_resource type="Texture2D" uid="uid://bfeet7msl5o2h" path="res://assets/UI Elements/Start_Menu_Base-01.png" id="4_hviw1"]
+[ext_resource type="Texture2D" uid="uid://bfeet7msl5o2h" path="res://assets/UI Elements/UI/Start_Menu_Base-01.png" id="4_c0vxx"]
+[ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/UI/Button-Play-normal.png" id="5_ccjax"]
 [ext_resource type="Texture2D" uid="uid://d2dxa7x362j3j" path="res://assets/Elements/NEXTTURNBUTTONDisabled.png" id="5_gh7te"]
-[ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/Button-Play-normal.png" id="11_v1gn1"]
-[ext_resource type="Texture2D" uid="uid://c5tgx0yng476j" path="res://assets/UI Elements/Button-Play-press.png" id="12_2e306"]
-[ext_resource type="Texture2D" uid="uid://id0egjudmljv" path="res://assets/UI Elements/Blueprint_normal.png" id="12_eqfmq"]
-[ext_resource type="Texture2D" uid="uid://bhipsxe5qj5kh" path="res://assets/UI Elements/Blueprint_active_1.png" id="13_bf784"]
-[ext_resource type="Texture2D" uid="uid://0od1i8cgelas" path="res://assets/UI Elements/Button-Play-hover.png" id="13_ngmjh"]
-[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="14_38vq8"]
-[ext_resource type="Texture2D" uid="uid://bdqqnt7g3ojt8" path="res://assets/UI Elements/Blueprint_active_2.png" id="14_wbube"]
-[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="15_4vyug"]
-[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="16_gqjv5"]
+[ext_resource type="Texture2D" uid="uid://c5tgx0yng476j" path="res://assets/UI Elements/UI/Button-Play-press.png" id="6_vsqft"]
+[ext_resource type="Texture2D" uid="uid://0od1i8cgelas" path="res://assets/UI Elements/UI/Button-Play-hover.png" id="7_xp1ku"]
+[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/UI/Button-normal.png" id="8_16121"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/UI/Button-press.png" id="9_pw8pp"]
+[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/UI/Button-hover.png" id="10_as3s1"]
+[ext_resource type="Texture2D" uid="uid://id0egjudmljv" path="res://assets/UI Elements/UI/Blueprint_normal.png" id="12_ghmrj"]
+[ext_resource type="Texture2D" uid="uid://bhipsxe5qj5kh" path="res://assets/UI Elements/UI/Blueprint_active_1.png" id="13_nkydi"]
+[ext_resource type="Texture2D" uid="uid://bdqqnt7g3ojt8" path="res://assets/UI Elements/UI/Blueprint_active_2.png" id="14_ku00j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fibyn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("12_eqfmq")
+"texture": ExtResource("12_ghmrj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_bf784")
+"texture": ExtResource("13_nkydi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_wbube")
+"texture": ExtResource("14_ku00j")
 }],
 "loop": true,
 "name": &"default",
@@ -45,7 +45,7 @@ color = Color(0.596078, 0.596078, 0.596078, 1)
 
 [node name="Map-matternhorn" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_rie33")
+texture = ExtResource("2_rdm2u")
 centered = false
 
 [node name="Title" type="Label" parent="."]
@@ -68,7 +68,7 @@ uppercase = true
 
 [node name="StartMenuBase" type="Sprite2D" parent="."]
 position = Vector2(696, 680)
-texture = ExtResource("4_hviw1")
+texture = ExtResource("4_c0vxx")
 
 [node name="Play" type="TextureButton" parent="."]
 anchors_preset = 8
@@ -83,9 +83,9 @@ offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("11_v1gn1")
-texture_pressed = ExtResource("12_2e306")
-texture_hover = ExtResource("13_ngmjh")
+texture_normal = ExtResource("5_ccjax")
+texture_pressed = ExtResource("6_vsqft")
+texture_hover = ExtResource("7_xp1ku")
 ignore_texture_size = true
 stretch_mode = 3
 
@@ -119,9 +119,9 @@ offset_bottom = 169.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("14_38vq8")
-texture_pressed = ExtResource("15_4vyug")
-texture_hover = ExtResource("16_gqjv5")
+texture_normal = ExtResource("8_16121")
+texture_pressed = ExtResource("9_pw8pp")
+texture_hover = ExtResource("10_as3s1")
 texture_disabled = ExtResource("5_gh7te")
 ignore_texture_size = true
 stretch_mode = 3
@@ -158,10 +158,10 @@ offset_bottom = 257.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("14_38vq8")
-texture_pressed = ExtResource("15_4vyug")
-texture_hover = ExtResource("16_gqjv5")
-texture_disabled = ExtResource("15_4vyug")
+texture_normal = ExtResource("8_16121")
+texture_pressed = ExtResource("9_pw8pp")
+texture_hover = ExtResource("10_as3s1")
+texture_disabled = ExtResource("9_pw8pp")
 ignore_texture_size = true
 stretch_mode = 3
 metadata/_edit_group_ = true

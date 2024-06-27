@@ -1,78 +1,81 @@
-[gd_scene load_steps=116 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=119 format=3 uid="uid://bs48lirfn2fp2"]
 
-[ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/Profil-metal.png" id="1_ooswe"]
 [ext_resource type="Texture2D" uid="uid://c3e2r6qjw4kti" path="res://assets/Gameplay_UI_Reference-03.jpg" id="1_rcpup"]
-[ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/Button-Next-Normal.png" id="2_aobed"]
+[ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/UI/Profil-metal.png" id="2_0lban"]
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
-[ext_resource type="Texture2D" uid="uid://biq6v1m7nc6l" path="res://assets/UI Elements/Button-Next-Press.png" id="3_qtdni"]
+[ext_resource type="Texture2D" uid="uid://h78kteff8v5d" path="res://assets/UI Elements/UI/Money-counter-hole.png" id="3_poyyj"]
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="4_67rbh"]
 [ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="4_e5tgv"]
-[ext_resource type="Texture2D" uid="uid://c25aef4m4yd40" path="res://assets/UI Elements/Button-Next-Hover.png" id="4_mh4j1"]
-[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="5_hh5pc"]
+[ext_resource type="Texture2D" uid="uid://p2nyvgv4j2ll" path="res://assets/UI Elements/UI/Money-counter-1.png" id="4_mojll"]
+[ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/UI/Icon-Money.png" id="5_8wyh1"]
 [ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/hud/import.tscn" id="5_ps4b6"]
 [ext_resource type="PackedScene" uid="uid://885lty3v1qbq" path="res://scenes/windows/shock.tscn" id="5_tj765"]
 [ext_resource type="Texture2D" uid="uid://dddt3hgvf20b6" path="res://assets/Elements/POLICIES BUTTON.png" id="6_ivien"]
 [ext_resource type="AudioStream" uid="uid://d0mx81kv2vlha" path="res://assets/Sounds/Negative 2_1.wav" id="6_jw1cb"]
+[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/UI/Icon-Popularity.png" id="6_r02pc"]
 [ext_resource type="Texture2D" uid="uid://d01b6u4flcphj" path="res://assets/Elements/GRAPH BUTTON.png" id="7_7gbcu"]
-[ext_resource type="Texture2D" uid="uid://cgf1xjsx0mfot" path="res://assets/UI Elements/Button-Next-Base.png" id="7_g7ih8"]
-[ext_resource type="Texture2D" uid="uid://b8lwrin3nxbmj" path="res://assets/Elements/SETTINGS BUTTON.png" id="7_mnpcp"]
+[ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/UI/Popularity-.png" id="7_tmfof"]
 [ext_resource type="PackedScene" uid="uid://jj476u8yn2g8" path="res://scenes/windows/window.tscn" id="7_yu7g8"]
+[ext_resource type="Texture2D" uid="uid://bjeebs7uy4hpn" path="res://assets/UI Elements/UI/Button-small-Hole.png" id="8_28aa7"]
 [ext_resource type="AudioStream" uid="uid://ben5r72x0p8pr" path="res://assets/Sounds/Move_03.wav" id="10_po2ll"]
-[ext_resource type="Texture2D" uid="uid://bjeebs7uy4hpn" path="res://assets/UI Elements/Button-small-Hole.png" id="11_i0u5d"]
-[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="11_qepre"]
+[ext_resource type="Texture2D" uid="uid://c0rjlvrr2ncy1" path="res://assets/UI Elements/UI/Button-Next-Normal.png" id="10_w1bfn"]
 [ext_resource type="AudioStream" uid="uid://00apgxjmwgw0" path="res://assets/Sounds/Click_020.wav" id="11_tr1n1"]
-[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="12_72t8i"]
-[ext_resource type="Texture2D" uid="uid://cp5u5s0g7ff24" path="res://assets/UI Elements/Clock_Case.png" id="14_m0dc4"]
-[ext_resource type="Texture2D" uid="uid://ck62bj2g88e8t" path="res://assets/UI Elements/Clock_Hand.png" id="17_8ninl"]
-[ext_resource type="Texture2D" uid="uid://d313vvhrt0dso" path="res://assets/UI Elements/Clock_Hand-Shadow.png" id="18_183xf"]
-[ext_resource type="Texture2D" uid="uid://xyxroar1ffyt" path="res://assets/UI Elements/Envirornment-Bar-Metal.png" id="18_oaaki"]
-[ext_resource type="Texture2D" uid="uid://bu3fwwb31gmuw" path="res://assets/UI Elements/Import_energy-Metal.png" id="19_1inpw"]
-[ext_resource type="Texture2D" uid="uid://52o3k8juwbmd" path="res://assets/UI Elements/Clock_Meter-1.png" id="19_bcm0u"]
-[ext_resource type="Texture2D" uid="uid://bmjee8ocqy0ge" path="res://assets/UI Elements/Enviornment-Base.png" id="21_i8c3o"]
-[ext_resource type="Texture2D" uid="uid://bwmnloeklg76n" path="res://assets/UI Elements/Enviornment-Hand.png" id="23_3qgyr"]
-[ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="24_t8vy5"]
-[ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/Icon-Pollution-.png" id="25_7q1c5"]
-[ext_resource type="Texture2D" uid="uid://vff0e83ytund" path="res://assets/UI Elements/Energy-base.png" id="28_mr6x7"]
-[ext_resource type="Texture2D" uid="uid://dm24o8isvyq3f" path="res://assets/UI Elements/Import-Slider.png" id="29_j3wwc"]
+[ext_resource type="Texture2D" uid="uid://biq6v1m7nc6l" path="res://assets/UI Elements/UI/Button-Next-Press.png" id="11_y3ogr"]
+[ext_resource type="Texture2D" uid="uid://c25aef4m4yd40" path="res://assets/UI Elements/UI/Button-Next-Hover.png" id="12_3yuhv"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/UI/Button-press.png" id="13_xlobi"]
+[ext_resource type="Texture2D" uid="uid://cgf1xjsx0mfot" path="res://assets/UI Elements/UI/Button-Next-Base.png" id="15_7w8gv"]
+[ext_resource type="Texture2D" uid="uid://bu3fwwb31gmuw" path="res://assets/UI Elements/UI/Import_energy-Metal.png" id="16_qw7m4"]
+[ext_resource type="Texture2D" uid="uid://vff0e83ytund" path="res://assets/UI Elements/UI/Energy-base.png" id="17_i762u"]
+[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/UI/Icon-Wind.png" id="18_i0nih"]
+[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/UI/Icon-Solar.png" id="19_wbdsp"]
+[ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/UI/Build_Menu_0003_Numbers-hole.png" id="20_qu1fi"]
+[ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/UI/Build_Menu_0002_Numbers-counter-1.png" id="21_lfjy2"]
+[ext_resource type="Texture2D" uid="uid://dm24o8isvyq3f" path="res://assets/UI Elements/UI/Import-Slider.png" id="25_fjhbt"]
 [ext_resource type="FontFile" uid="uid://c1dcad080fsul" path="res://assets/Fonts/Special_Elite/SpecialElite-Regular.ttf" id="30_d1m8l"]
-[ext_resource type="Texture2D" uid="uid://h78kteff8v5d" path="res://assets/UI Elements/Money-counter-hole.png" id="31_jcf3k"]
-[ext_resource type="Texture2D" uid="uid://p2nyvgv4j2ll" path="res://assets/UI Elements/Money-counter-1.png" id="32_2wt40"]
-[ext_resource type="Texture2D" uid="uid://sopgul71025f" path="res://assets/UI Elements/Icon-Money.png" id="33_my285"]
-[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="34_xcgyc"]
-[ext_resource type="Texture2D" uid="uid://bu7evhjgyjni6" path="res://assets/UI Elements/Paper-Middle-Rolled.png" id="34_yg0ni"]
-[ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/Popularity-.png" id="35_qiawk"]
-[ext_resource type="Texture2D" uid="uid://bx1g8oiuxi2mk" path="res://assets/UI Elements/Paper-Middle.png" id="36_vc5yj"]
-[ext_resource type="Texture2D" uid="uid://clnitajx25spt" path="res://assets/UI Elements/Button-Square-normal.png" id="36_xxsv6"]
-[ext_resource type="Texture2D" uid="uid://4dcp6f66sdeo" path="res://assets/UI Elements/Button-Square-press.png" id="37_533gb"]
-[ext_resource type="Texture2D" uid="uid://crbym71styska" path="res://assets/UI Elements/Environment-Metal.png" id="37_q7ul8"]
-[ext_resource type="Texture2D" uid="uid://dlccss1xvy8tb" path="res://assets/UI Elements/Button-Square-hover.png" id="38_7v12r"]
-[ext_resource type="Texture2D" uid="uid://bttco1oeukpbq" path="res://assets/UI Elements/Environment-Bar.png" id="38_jqypa"]
-[ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/Button-Hole.png" id="39_jsaox"]
-[ext_resource type="Texture2D" uid="uid://bfa7b1e5e7hxc" path="res://assets/CANCEL ICON.png" id="40_h6a6a"]
-[ext_resource type="Texture2D" uid="uid://b34opid7c6qf6" path="res://assets/UI Elements/Pollution-Bar.png" id="41_ctrnv"]
+[ext_resource type="Texture2D" uid="uid://crbym71styska" path="res://assets/UI Elements/UI/Environment-Metal.png" id="30_qtu2h"]
+[ext_resource type="Texture2D" uid="uid://clnitajx25spt" path="res://assets/UI Elements/UI/Button-Square-normal.png" id="31_5elld"]
+[ext_resource type="Texture2D" uid="uid://4dcp6f66sdeo" path="res://assets/UI Elements/UI/Button-Square-press.png" id="32_4ktxp"]
+[ext_resource type="Texture2D" uid="uid://dlccss1xvy8tb" path="res://assets/UI Elements/UI/Button-Square-hover.png" id="33_f2fxh"]
+[ext_resource type="Texture2D" uid="uid://bj6ubksmn350n" path="res://assets/UI Elements/UI/Button-Hole.png" id="34_5l83k"]
+[ext_resource type="Texture2D" uid="uid://cn2vrolhnlyee" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0016_Icon-Notification.png" id="35_n20g1"]
+[ext_resource type="Texture2D" uid="uid://ckf6s1uhm87ae" path="res://assets/UI Elements/UI/Policies_Base-1.png" id="36_0ovy7"]
+[ext_resource type="Texture2D" uid="uid://dq0weixw5m2l0" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0014_Policies-symbol.png" id="36_edxni"]
+[ext_resource type="Texture2D" uid="uid://behxblj10y4lm" path="res://assets/UI Elements/UI/Build_Menu_0004_Build-Menu-Screen.png" id="38_wl5jx"]
+[ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/UI/Button-Play-normal.png" id="39_cwso6"]
+[ext_resource type="Texture2D" uid="uid://c5tgx0yng476j" path="res://assets/UI Elements/UI/Button-Play-press.png" id="40_sa714"]
+[ext_resource type="Texture2D" uid="uid://0od1i8cgelas" path="res://assets/UI Elements/UI/Button-Play-hover.png" id="41_jnvn8"]
+[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/UI/Button-normal.png" id="42_5q81x"]
 [ext_resource type="Texture2D" uid="uid://dcbjy5kxo2vbm" path="res://assets/Elements/INFO ICON.png" id="42_v8iq7"]
-[ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/Button-small-normal.png" id="44_5a58h"]
-[ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/Button-small-press.png" id="45_nhcbq"]
-[ext_resource type="Texture2D" uid="uid://dvph1wklx4pfh" path="res://assets/UI Elements/Paper-Big.png" id="46_31xep"]
-[ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/Button-small-hover.png" id="46_mga3n"]
-[ext_resource type="Texture2D" uid="uid://ckf6s1uhm87ae" path="res://assets/UI Elements/Policies_Base-1.png" id="50_inaxr"]
+[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/UI/Button-hover.png" id="43_reygp"]
+[ext_resource type="Texture2D" uid="uid://dvph1wklx4pfh" path="res://assets/UI Elements/UI/Paper-Big.png" id="45_v247h"]
+[ext_resource type="Texture2D" uid="uid://xyxroar1ffyt" path="res://assets/UI Elements/UI/Envirornment-Bar-Metal.png" id="46_cgqec"]
+[ext_resource type="Texture2D" uid="uid://bmjee8ocqy0ge" path="res://assets/UI Elements/UI/Enviornment-Base.png" id="47_tjksx"]
+[ext_resource type="Texture2D" uid="uid://bttco1oeukpbq" path="res://assets/UI Elements/UI/Environment-Bar.png" id="48_stx4k"]
+[ext_resource type="Texture2D" uid="uid://bwmnloeklg76n" path="res://assets/UI Elements/UI/Enviornment-Hand.png" id="49_ehbvf"]
+[ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/UI/Icon-Environment-.png" id="50_ebti7"]
+[ext_resource type="Texture2D" uid="uid://b34opid7c6qf6" path="res://assets/UI Elements/UI/Pollution-Bar.png" id="51_51o8p"]
 [ext_resource type="FontFile" uid="uid://dxtsp51pqna2o" path="res://assets/Fonts/static/OpenSans-Bold.ttf" id="51_joowr"]
-[ext_resource type="Texture2D" uid="uid://co2hnnf0cnn72" path="res://assets/UI Elements/Plant_Menu_Base.png" id="52_tsua8"]
+[ext_resource type="Texture2D" uid="uid://0mihvtaw003w" path="res://assets/UI Elements/UI/Icon-Pollution-.png" id="52_5e1ry"]
 [ext_resource type="FontFile" uid="uid://bwuskgw4ek8y" path="res://assets/Fonts/static/OpenSans-Medium.ttf" id="53_v477p"]
-[ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" id="54_7juy1"]
-[ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" id="55_5s2up"]
-[ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="55_5ylb2"]
 [ext_resource type="PackedScene" uid="uid://w3o3uiekvy4q" path="res://scenes/windows/graphs.tscn" id="55_ah3sc"]
+[ext_resource type="Texture2D" uid="uid://ch08d7jleppvu" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0008s_0002_Middle-Rolled-paper.png" id="57_cho1y"]
+[ext_resource type="Texture2D" uid="uid://bup5jegnvmklr" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0008s_0003_Middle-paper.png" id="58_xfpur"]
 [ext_resource type="FontFile" uid="uid://jsoamputail4" path="res://assets/Fonts/static/OpenSans-SemiBold.ttf" id="59_nmkxq"]
-[ext_resource type="Texture2D" uid="uid://bbjycbp8muvr1" path="res://assets/UI Elements/Import-bar-hole.png" id="60_gik5m"]
-[ext_resource type="Texture2D" uid="uid://cqekiqjn8gvh7" path="res://assets/UI Elements/Button-Play-normal.png" id="61_i4pr1"]
-[ext_resource type="Texture2D" uid="uid://behxblj10y4lm" path="res://assets/UI Elements/Build_Menu_0004_Build-Menu-Screen.png" id="61_ni5qv"]
-[ext_resource type="Texture2D" uid="uid://c5tgx0yng476j" path="res://assets/UI Elements/Button-Play-press.png" id="62_40aw8"]
-[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="62_orw34"]
-[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="63_c1xpc"]
-[ext_resource type="Texture2D" uid="uid://0od1i8cgelas" path="res://assets/UI Elements/Button-Play-hover.png" id="63_klrtp"]
+[ext_resource type="Texture2D" uid="uid://cp5u5s0g7ff24" path="res://assets/UI Elements/UI/Clock_Case.png" id="59_tyxi7"]
+[ext_resource type="Texture2D" uid="uid://52o3k8juwbmd" path="res://assets/UI Elements/UI/Clock_Meter-1.png" id="62_3xuka"]
+[ext_resource type="Texture2D" uid="uid://d313vvhrt0dso" path="res://assets/UI Elements/UI/Clock_Hand-Shadow.png" id="63_casku"]
 [ext_resource type="PackedScene" uid="uid://ciphd0cmpslrn" path="res://scenes/hud/tutorial.tscn" id="63_perny"]
+[ext_resource type="Texture2D" uid="uid://ck62bj2g88e8t" path="res://assets/UI Elements/UI/Clock_Hand.png" id="64_ripro"]
+[ext_resource type="Texture2D" uid="uid://4d0v2815ojfa" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0008s_0006_Small-down-paper.png" id="66_78805"]
+[ext_resource type="Texture2D" uid="uid://duxc28wuegrwc" path="res://assets/UI Elements/UI/Button-small-normal.png" id="67_1igp7"]
+[ext_resource type="Texture2D" uid="uid://bvgpy40ml2nxm" path="res://assets/UI Elements/UI/Button-small-press.png" id="68_v7bte"]
+[ext_resource type="Texture2D" uid="uid://cuvs42pma25xn" path="res://assets/UI Elements/UI/Button-small-hover.png" id="69_rurw4"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="70_2ktfd"]
+[ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/UI/Paper-Small.png" id="70_40jkn"]
+[ext_resource type="Texture2D" uid="uid://dmff0twb6vsfl" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0006s_0008_Borrow-money-metal-base.png" id="72_d48p7"]
+[ext_resource type="Texture2D" uid="uid://bbjycbp8muvr1" path="res://assets/UI Elements/UI/Import-bar-hole.png" id="73_bgeny"]
+[ext_resource type="Texture2D" uid="uid://ckwimi2r4h1i8" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0005s_0006_Borrow-money-screen.png" id="73_def73"]
+[ext_resource type="Texture2D" uid="uid://u43ixjsaunqr" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0008s_0007_Small-left-paper.png" id="75_341s6"]
 
 [sub_resource type="Animation" id="Animation_pjxim"]
 length = 0.001
@@ -218,7 +221,7 @@ border_color = Color(0, 0, 0, 1)
 variation_embolden = 0.2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21dh1"]
-atlas = ExtResource("50_inaxr")
+atlas = ExtResource("36_0ovy7")
 region = Rect2(0, 0, 328, 776)
 
 [sub_resource type="FontVariation" id="FontVariation_2lxgj"]
@@ -694,11 +697,11 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dw2x"]
-atlas = ExtResource("14_m0dc4")
+atlas = ExtResource("59_tyxi7")
 region = Rect2(241, 283, 90, 58)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ou8cv"]
-atlas = ExtResource("14_m0dc4")
+atlas = ExtResource("59_tyxi7")
 region = Rect2(237, 395, 99, 60)
 
 [sub_resource type="Animation" id="Animation_xtl2t"]
@@ -823,43 +826,43 @@ texture = ExtResource("1_rcpup")
 
 [node name="Profil-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(168, 178.5)
-texture = ExtResource("1_ooswe")
+texture = ExtResource("2_0lban")
 
 [node name="Money-counter-hole" type="Sprite2D" parent="Profil-bar-metal"]
 position = Vector2(1, 39)
-texture = ExtResource("31_jcf3k")
+texture = ExtResource("3_poyyj")
 
 [node name="Money-counter-1" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
 position = Vector2(-30, -1)
-texture = ExtResource("32_2wt40")
+texture = ExtResource("4_mojll")
 
 [node name="Money-counter-2" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
 position = Vector2(-10, -1)
-texture = ExtResource("32_2wt40")
+texture = ExtResource("4_mojll")
 
 [node name="Money-counter-3" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
 position = Vector2(10, -1)
-texture = ExtResource("32_2wt40")
+texture = ExtResource("4_mojll")
 
 [node name="Money-counter-4" type="Sprite2D" parent="Profil-bar-metal/Money-counter-hole"]
 position = Vector2(30, -1)
-texture = ExtResource("32_2wt40")
+texture = ExtResource("4_mojll")
 
 [node name="Icon-money" type="Sprite2D" parent="Profil-bar-metal"]
 position = Vector2(-71, 40)
-texture = ExtResource("33_my285")
+texture = ExtResource("5_8wyh1")
 
 [node name="Icon-popularity" type="Sprite2D" parent="Profil-bar-metal"]
 position = Vector2(-71, 91)
-texture = ExtResource("34_xcgyc")
+texture = ExtResource("6_r02pc")
 
 [node name="Popularity-" type="Sprite2D" parent="Profil-bar-metal"]
 position = Vector2(3.5, 91)
-texture = ExtResource("35_qiawk")
+texture = ExtResource("7_tmfof")
 
 [node name="Sprite2D" type="Sprite2D" parent="Profil-bar-metal"]
 position = Vector2(93, 55)
-texture = ExtResource("11_i0u5d")
+texture = ExtResource("8_28aa7")
 
 [node name="Policies" type="Label" parent="Profil-bar-metal"]
 offset_left = 14.0
@@ -907,10 +910,10 @@ offset_right = 1858.0
 offset_bottom = 1024.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_aobed")
-texture_pressed = ExtResource("3_qtdni")
-texture_hover = ExtResource("4_mh4j1")
-texture_disabled = ExtResource("5_hh5pc")
+texture_normal = ExtResource("10_w1bfn")
+texture_pressed = ExtResource("11_y3ogr")
+texture_hover = ExtResource("12_3yuhv")
+texture_disabled = ExtResource("13_xlobi")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -941,7 +944,7 @@ libraries = {
 [node name="Button-next-base" type="Sprite2D" parent="NextTurn"]
 show_behind_parent = true
 position = Vector2(95, 43)
-texture = ExtResource("7_g7ih8")
+texture = ExtResource("15_7w8gv")
 
 [node name="Warning" type="Label" parent="NextTurn"]
 visible = false
@@ -962,20 +965,20 @@ uppercase = true
 
 [node name="ImportEnergy-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(238, 856)
-texture = ExtResource("19_1inpw")
+texture = ExtResource("16_qw7m4")
 
 [node name="Energy-base" type="Sprite2D" parent="ImportEnergy-bar-metal"]
 z_index = 1
 position = Vector2(107, -23)
-texture = ExtResource("28_mr6x7")
+texture = ExtResource("17_i762u")
 
 [node name="Icon-wind" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
 position = Vector2(-36, 184)
-texture = ExtResource("11_qepre")
+texture = ExtResource("18_i0nih")
 
 [node name="Icon-solar" type="Sprite2D" parent="ImportEnergy-bar-metal/Energy-base"]
 position = Vector2(36, 184)
-texture = ExtResource("12_72t8i")
+texture = ExtResource("19_wbdsp")
 
 [node name="EngLabel" type="Label" parent="ImportEnergy-bar-metal/Energy-base"]
 offset_left = -85.0
@@ -993,19 +996,19 @@ uppercase = true
 [node name="NumberHole" type="Sprite2D" parent="ImportEnergy-bar-metal"]
 position = Vector2(-119, 112.5)
 scale = Vector2(1.37209, 1)
-texture = ExtResource("54_7juy1")
+texture = ExtResource("20_qu1fi")
 
 [node name="NumberCounter1" type="Sprite2D" parent="ImportEnergy-bar-metal"]
 position = Vector2(-74.0001, 111.5)
-texture = ExtResource("55_5s2up")
+texture = ExtResource("21_lfjy2")
 
 [node name="NumberCounter2" type="Sprite2D" parent="ImportEnergy-bar-metal"]
 position = Vector2(-93.0001, 111.5)
-texture = ExtResource("55_5s2up")
+texture = ExtResource("21_lfjy2")
 
 [node name="NumberCounter3" type="Sprite2D" parent="ImportEnergy-bar-metal"]
 position = Vector2(-112, 111.5)
-texture = ExtResource("55_5s2up")
+texture = ExtResource("21_lfjy2")
 
 [node name="ImportCosts" type="Label" parent="ImportEnergy-bar-metal"]
 offset_left = -120.0
@@ -1021,7 +1024,7 @@ horizontal_alignment = 2
 
 [node name="CHF" type="Sprite2D" parent="ImportEnergy-bar-metal"]
 position = Vector2(-155, 113)
-texture = ExtResource("33_my285")
+texture = ExtResource("5_8wyh1")
 
 [node name="EnergyBarSummerPredict" parent="." instance=ExtResource("3_fm1y6")]
 offset_left = 357.001
@@ -1127,7 +1130,7 @@ offset_left = 169.0
 offset_top = 853.28
 offset_right = 184.96
 offset_bottom = 949.0
-theme_override_icons/grabber = ExtResource("29_j3wwc")
+theme_override_icons/grabber = ExtResource("25_fjhbt")
 max_value = 100.0
 ticks_on_borders = false
 
@@ -1188,13 +1191,13 @@ theme_override_font_sizes/font_size = 10
 position = Vector2(-59, 333)
 
 [node name="UpButton" parent="Import" index="11"]
-offset_left = -70.0
-offset_top = 120.0
-offset_right = -38.0
-offset_bottom = 152.0
+offset_left = -101.0
+offset_top = 87.0
+offset_right = -69.0
+offset_bottom = 119.0
 
 [node name="Button-arrow-hole2" parent="Import/UpButton" index="0"]
-position = Vector2(14, 15)
+position = Vector2(14, 16)
 
 [node name="DownButton" parent="Import" index="12"]
 offset_left = -101.0
@@ -1292,21 +1295,21 @@ flat = true
 
 [node name="Envirornment-bar-metal" type="Sprite2D" parent="."]
 position = Vector2(251, 558)
-texture = ExtResource("37_q7ul8")
+texture = ExtResource("30_qtu2h")
 
 [node name="PolicyButton" type="TextureButton" parent="."]
 offset_left = 194.0
 offset_top = 74.0
 offset_right = 260.0
 offset_bottom = 138.0
-texture_normal = ExtResource("36_xxsv6")
-texture_pressed = ExtResource("37_533gb")
-texture_hover = ExtResource("38_7v12r")
+texture_normal = ExtResource("31_5elld")
+texture_pressed = ExtResource("32_4ktxp")
+texture_hover = ExtResource("33_f2fxh")
 
 [node name="Button-hole2" type="Sprite2D" parent="PolicyButton"]
 show_behind_parent = true
 position = Vector2(32, 32)
-texture = ExtResource("39_jsaox")
+texture = ExtResource("34_5l83k")
 
 [node name="Notif" type="Label" parent="PolicyButton"]
 layout_mode = 1
@@ -1326,46 +1329,26 @@ text = "1"
 [node name="CancelIcon" type="Sprite2D" parent="PolicyButton/Notif"]
 self_modulate = Color(1, 0, 0, 1)
 show_behind_parent = true
-position = Vector2(5, 12)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("40_h6a6a")
+position = Vector2(6, 13)
+texture = ExtResource("35_n20g1")
 
-[node name="ColorRect" type="ColorRect" parent="PolicyButton/Notif/CancelIcon"]
-offset_left = -12.0
-offset_top = -12.0
-offset_right = 12.0
-offset_bottom = 12.0
-color = Color(0.580392, 0, 0, 1)
-
-[node name="Label" type="Label" parent="PolicyButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 3.0
-offset_right = -1.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 36
-text = "🏛️"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Sprite2D" type="Sprite2D" parent="PolicyButton"]
+position = Vector2(32, 31)
+texture = ExtResource("36_edxni")
 
 [node name="SettingsButton" type="TextureButton" parent="."]
 offset_left = 79.0
 offset_top = 72.5
 offset_right = 145.0
 offset_bottom = 136.5
-texture_normal = ExtResource("36_xxsv6")
-texture_pressed = ExtResource("37_533gb")
-texture_hover = ExtResource("38_7v12r")
+texture_normal = ExtResource("31_5elld")
+texture_pressed = ExtResource("32_4ktxp")
+texture_hover = ExtResource("33_f2fxh")
 
 [node name="Button-hole" type="Sprite2D" parent="SettingsButton"]
 show_behind_parent = true
 position = Vector2(32, 32)
-texture = ExtResource("39_jsaox")
+texture = ExtResource("34_5l83k")
 
 [node name="ColorRect" type="ColorRect" parent="SettingsButton"]
 visible = false
@@ -1498,15 +1481,15 @@ layout_mode = 2
 [node name="BuildMenu0004Build-menu-screen" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 position = Vector2(96, 451.25)
 scale = Vector2(1.02525, 1.61211)
-texture = ExtResource("61_ni5qv")
+texture = ExtResource("38_wl5jx")
 
 [node name="Language" type="TextureButton" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("61_i4pr1")
-texture_pressed = ExtResource("62_40aw8")
-texture_hover = ExtResource("63_klrtp")
+texture_normal = ExtResource("39_cwso6")
+texture_pressed = ExtResource("40_sa714")
+texture_hover = ExtResource("41_jnvn8")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Language"]
 layout_mode = 1
@@ -1531,9 +1514,9 @@ uppercase = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
+texture_normal = ExtResource("42_5q81x")
+texture_pressed = ExtResource("13_xlobi")
+texture_hover = ExtResource("43_reygp")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Instructions"]
 layout_mode = 1
@@ -1560,9 +1543,9 @@ visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
+texture_normal = ExtResource("42_5q81x")
+texture_pressed = ExtResource("13_xlobi")
+texture_hover = ExtResource("43_reygp")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
 layout_mode = 1
@@ -1585,7 +1568,7 @@ uppercase = true
 [node name="Paper-big" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits"]
 visible = false
 position = Vector2(85.5, -206)
-texture = ExtResource("46_31xep")
+texture = ExtResource("45_v247h")
 
 [node name="Label3" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Credits/Paper-big"]
 anchors_preset = 5
@@ -1637,9 +1620,9 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 focus_mode = 0
 theme = SubResource("Theme_4p1wg")
-texture_normal = ExtResource("2_aobed")
-texture_pressed = ExtResource("3_qtdni")
-texture_hover = ExtResource("4_mh4j1")
+texture_normal = ExtResource("10_w1bfn")
+texture_pressed = ExtResource("11_y3ogr")
+texture_hover = ExtResource("12_3yuhv")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset"]
 layout_mode = 0
@@ -1673,7 +1656,7 @@ color = Color(0.560784, 0.560784, 0.560784, 0)
 [node name="Sprite2D" type="Sprite2D" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 position = Vector2(368, 187)
 scale = Vector2(1.7, 1.7)
-texture = ExtResource("18_oaaki")
+texture = ExtResource("46_cgqec")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm"]
 layout_mode = 0
@@ -1695,9 +1678,9 @@ offset_top = 222.0
 offset_right = 357.0
 offset_bottom = 305.0
 scale = Vector2(0.7, 0.7)
-texture_normal = ExtResource("2_aobed")
-texture_pressed = ExtResource("3_qtdni")
-texture_hover = ExtResource("4_mh4j1")
+texture_normal = ExtResource("10_w1bfn")
+texture_pressed = ExtResource("11_y3ogr")
+texture_hover = ExtResource("12_3yuhv")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/Yes"]
 layout_mode = 1
@@ -1720,9 +1703,9 @@ offset_top = 222.0
 offset_right = 589.0
 offset_bottom = 305.0
 scale = Vector2(0.7, 0.7)
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
+texture_normal = ExtResource("42_5q81x")
+texture_pressed = ExtResource("13_xlobi")
+texture_hover = ExtResource("43_reygp")
 
 [node name="Label" type="Label" parent="SettingsButton/ColorRect/SettingsBox/VBoxContainer/Reset/ResetConfirm/No"]
 layout_mode = 1
@@ -1808,7 +1791,7 @@ uppercase = true
 
 [node name="Enviornment-base" type="Sprite2D" parent="Env"]
 position = Vector2(45, 46)
-texture = ExtResource("21_i8c3o")
+texture = ExtResource("47_tjksx")
 
 [node name="Button" type="Button" parent="Env"]
 layout_mode = 1
@@ -1825,16 +1808,16 @@ flat = true
 
 [node name="Bar" type="Sprite2D" parent="Env"]
 position = Vector2(45, 36)
-texture = ExtResource("38_jqypa")
+texture = ExtResource("48_stx4k")
 
 [node name="Arrow" type="Sprite2D" parent="Env"]
 position = Vector2(47, 61)
-texture = ExtResource("23_3qgyr")
+texture = ExtResource("49_ehbvf")
 offset = Vector2(0, -22)
 
 [node name="Icon" type="Sprite2D" parent="Env"]
 position = Vector2(46, 70)
-texture = ExtResource("24_t8vy5")
+texture = ExtResource("50_ebti7")
 
 [node name="Poll" type="ProgressBar" parent="."]
 offset_left = 278.0
@@ -1910,20 +1893,20 @@ flat = true
 
 [node name="Base" type="Sprite2D" parent="Poll"]
 position = Vector2(48, 47)
-texture = ExtResource("21_i8c3o")
+texture = ExtResource("47_tjksx")
 
 [node name="Bar" type="Sprite2D" parent="Poll"]
 position = Vector2(49, 37)
-texture = ExtResource("41_ctrnv")
+texture = ExtResource("51_51o8p")
 
 [node name="Arrow" type="Sprite2D" parent="Poll"]
 position = Vector2(49, 62)
-texture = ExtResource("23_3qgyr")
+texture = ExtResource("49_ehbvf")
 offset = Vector2(0, -22)
 
 [node name="Icon" type="Sprite2D" parent="Poll"]
 position = Vector2(49, 67)
-texture = ExtResource("25_7q1c5")
+texture = ExtResource("52_5e1ry")
 
 [node name="PolicyButton2" type="TextureButton" parent="."]
 visible = false
@@ -1969,7 +1952,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="InfoMoneyClosed" type="NinePatchRect" parent="MoneyInfo/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("34_yg0ni")
+texture = ExtResource("57_cho1y")
 region_rect = Rect2(0, 0, 390, 244)
 patch_margin_left = 42
 patch_margin_top = 92
@@ -1979,7 +1962,7 @@ patch_margin_bottom = 102
 [node name="InfoMoneyOpen" type="NinePatchRect" parent="MoneyInfo/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("36_vc5yj")
+texture = ExtResource("58_xfpur")
 region_rect = Rect2(0, 2, 386, 398)
 patch_margin_left = 52
 patch_margin_top = 92
@@ -2382,7 +2365,7 @@ text = "2050"
 [node name="TimePanelBlank" type="Sprite2D" parent="."]
 position = Vector2(1790, 130)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_m0dc4")
+texture = ExtResource("59_tyxi7")
 
 [node name="TimelineAnimation" type="AnimationPlayer" parent="TimePanelBlank"]
 libraries = {
@@ -2421,12 +2404,12 @@ metadata/_edit_use_anchors_ = true
 [node name="Num1" type="Sprite2D" parent="TimePanelBlank/Year2"]
 show_behind_parent = true
 position = Vector2(18, 36)
-texture = ExtResource("19_bcm0u")
+texture = ExtResource("62_3xuka")
 
 [node name="Num2" type="Sprite2D" parent="TimePanelBlank/Year2"]
 show_behind_parent = true
 position = Vector2(58, 36)
-texture = ExtResource("19_bcm0u")
+texture = ExtResource("62_3xuka")
 
 [node name="Year7" type="Label" parent="TimePanelBlank"]
 offset_left = -38.0
@@ -2456,7 +2439,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year3"]
 show_behind_parent = true
 position = Vector2(20, 36)
-texture = ExtResource("19_bcm0u")
+texture = ExtResource("62_3xuka")
 
 [node name="Year6" type="Label" parent="TimePanelBlank"]
 offset_top = 146.0
@@ -2473,7 +2456,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Num3" type="Sprite2D" parent="TimePanelBlank/Year6"]
 show_behind_parent = true
 position = Vector2(20, 35)
-texture = ExtResource("19_bcm0u")
+texture = ExtResource("62_3xuka")
 
 [node name="Year4" type="Label" parent="TimePanelBlank"]
 offset_left = 40.0
@@ -2491,7 +2474,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year4"]
 show_behind_parent = true
 position = Vector2(20, 35)
-texture = ExtResource("19_bcm0u")
+texture = ExtResource("62_3xuka")
 
 [node name="Year5" type="Label" parent="TimePanelBlank"]
 offset_left = 40.0
@@ -2509,7 +2492,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Num4" type="Sprite2D" parent="TimePanelBlank/Year5"]
 show_behind_parent = true
 position = Vector2(20, 36)
-texture = ExtResource("19_bcm0u")
+texture = ExtResource("62_3xuka")
 
 [node name="HideNum" type="Sprite2D" parent="TimePanelBlank"]
 position = Vector2(41, 66.5)
@@ -2523,12 +2506,12 @@ texture = SubResource("AtlasTexture_ou8cv")
 modulate = Color(1, 1, 1, 0.780392)
 position = Vector2(4, 4)
 rotation = -2.21657
-texture = ExtResource("18_183xf")
+texture = ExtResource("63_casku")
 offset = Vector2(0, -40)
 
 [node name="Arrow" type="Sprite2D" parent="TimePanelBlank"]
 rotation = -2.18166
-texture = ExtResource("17_8ninl")
+texture = ExtResource("64_ripro")
 offset = Vector2(0, -40)
 
 [node name="NextDecadeAP" type="AnimationPlayer" parent="TimePanelBlank"]
@@ -2545,18 +2528,18 @@ anchor_bottom = 1.0
 offset_left = -316.0
 offset_top = -239.0
 offset_right = -433.0
-offset_bottom = 26.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="TimePanelBlank/TurnInfoContainer"]
 layout_mode = 2
-texture = ExtResource("36_vc5yj")
-patch_margin_left = 56
-patch_margin_top = 96
-patch_margin_right = 54
-patch_margin_bottom = 107
+texture = ExtResource("66_78805")
+patch_margin_left = 42
+patch_margin_top = 146
+patch_margin_right = 44
+patch_margin_bottom = 193
 
 [node name="MarginContainer" type="MarginContainer" parent="TimePanelBlank/TurnInfoContainer"]
 layout_mode = 2
@@ -2661,9 +2644,9 @@ offset_left = 231.0
 offset_top = 198.5
 offset_right = 262.0
 offset_bottom = 230.5
-texture_normal = ExtResource("44_5a58h")
-texture_pressed = ExtResource("45_nhcbq")
-texture_hover = ExtResource("46_mga3n")
+texture_normal = ExtResource("67_1igp7")
+texture_pressed = ExtResource("68_v7bte")
+texture_hover = ExtResource("69_rurw4")
 ignore_texture_size = true
 
 [node name="Debt" type="Sprite2D" parent="BorrowMoney"]
@@ -2671,7 +2654,7 @@ visible = false
 z_index = -1
 position = Vector2(117, 19)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("55_5ylb2")
+texture = ExtResource("70_40jkn")
 
 [node name="DebtAmount" type="Label" parent="BorrowMoney/Debt"]
 offset_left = -113.333
@@ -2701,17 +2684,6 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SettingsButton2" type="Button" parent="."]
-visible = false
-offset_left = 102.0
-offset_top = 60.5
-offset_right = 190.0
-offset_bottom = 148.5
-focus_mode = 0
-mouse_default_cursor_shape = 2
-icon = ExtResource("7_mnpcp")
-flat = true
-
 [node name="BorrowContainer" type="Button" parent="."]
 visible = false
 offset_left = -8.0
@@ -2721,8 +2693,12 @@ flat = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BorrowContainer"]
 position = Vector2(968, 520)
-scale = Vector2(2, 2)
-texture = ExtResource("52_tsua8")
+texture = ExtResource("72_d48p7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BorrowContainer"]
+position = Vector2(968, 432)
+scale = Vector2(1, 1.51389)
+texture = ExtResource("73_def73")
 
 [node name="BorrowMoneyWindow" type="ColorRect" parent="BorrowContainer"]
 layout_mode = 0
@@ -2738,23 +2714,22 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -129.5
-offset_top = 45.0
+offset_top = 36.0
 offset_right = 111.5
-offset_bottom = 115.0
+offset_bottom = 106.0
 grow_horizontal = 2
 theme = ExtResource("70_2ktfd")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 26
 text = "BANK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Title" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 164.0
-offset_right = 774.0
-offset_bottom = 258.0
+offset_left = 334.0
+offset_top = 127.0
+offset_right = 646.0
+offset_bottom = 199.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Screen"
 text = "How much would you like to borrow?"
@@ -2762,17 +2737,17 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Import-bar-hole" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
-position = Vector2(494, 415)
+position = Vector2(492.316, 379)
 rotation = 1.5708
-scale = Vector2(1, 2.232)
-texture = ExtResource("60_gik5m")
+scale = Vector2(1, 1.15893)
+texture = ExtResource("73_bgeny")
 
 [node name="BorrowSlider" type="HSlider" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 388.0
-offset_right = 774.0
-offset_bottom = 422.0
+offset_left = 350.0
+offset_top = 352.0
+offset_right = 638.0
+offset_bottom = 386.0
 theme_override_styles/slider = SubResource("StyleBoxEmpty_r2ty1")
 max_value = 500.0
 step = 100.0
@@ -2782,10 +2757,10 @@ ticks_on_borders = true
 
 [node name="Money" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 278.0
-offset_top = 227.0
-offset_right = 471.0
-offset_bottom = 371.0
+offset_left = 350.0
+offset_top = 199.0
+offset_right = 543.0
+offset_bottom = 343.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0, 81.07, 0.01, 1)
@@ -2793,10 +2768,9 @@ text = "Borrow"
 
 [node name="BorrowAmount" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Money"]
 layout_mode = 0
-offset_left = -8.0
-offset_top = 50.0
-offset_right = 73.0
-offset_bottom = 101.0
+offset_top = 72.0
+offset_right = 81.0
+offset_bottom = 123.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0, 81.07, 0.01, 1)
@@ -2805,10 +2779,10 @@ horizontal_alignment = 2
 
 [node name="Interest" type="Label" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 481.0
-offset_top = 227.0
-offset_right = 775.0
-offset_bottom = 370.0
+offset_left = 510.0
+offset_top = 199.0
+offset_right = 643.0
+offset_bottom = 342.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
@@ -2817,10 +2791,10 @@ autowrap_mode = 3
 
 [node name="InterestAmount" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Interest"]
 layout_mode = 0
-offset_left = 144.0
-offset_top = 52.0
-offset_right = 223.0
-offset_bottom = 94.0
+offset_left = 32.0
+offset_top = 72.0
+offset_right = 111.0
+offset_bottom = 114.0
 theme = ExtResource("70_2ktfd")
 theme_type_variation = &"Screen"
 theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
@@ -2828,24 +2802,24 @@ text = "0"
 horizontal_alignment = 2
 
 [node name="BuildMenu0004Build-menu-screen" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
-position = Vector2(349.5, 483.75)
+position = Vector2(489.5, 375.75)
 scale = Vector2(1.00505, 0.392377)
-texture = ExtResource("61_ni5qv")
+texture = ExtResource("38_wl5jx")
 
 [node name="BuildMenu0004Build-menu-screen2" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
-position = Vector2(637, 484)
+position = Vector2(489.5, 471.75)
 scale = Vector2(1.00505, 0.392377)
-texture = ExtResource("61_ni5qv")
+texture = ExtResource("38_wl5jx")
 
 [node name="Apply" type="TextureButton" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 254.0
-offset_top = 441.0
-offset_right = 447.0
-offset_bottom = 524.0
-texture_normal = ExtResource("62_orw34")
-texture_pressed = ExtResource("5_hh5pc")
-texture_hover = ExtResource("63_c1xpc")
+offset_left = 394.0
+offset_top = 333.0
+offset_right = 587.0
+offset_bottom = 416.0
+texture_normal = ExtResource("42_5q81x")
+texture_pressed = ExtResource("13_xlobi")
+texture_hover = ExtResource("43_reygp")
 
 [node name="Label" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Apply"]
 layout_mode = 1
@@ -2863,13 +2837,13 @@ uppercase = true
 
 [node name="Cancel" type="TextureButton" parent="BorrowContainer/BorrowMoneyWindow"]
 layout_mode = 0
-offset_left = 542.0
-offset_top = 441.0
-offset_right = 735.0
-offset_bottom = 524.0
-texture_normal = ExtResource("2_aobed")
-texture_pressed = ExtResource("3_qtdni")
-texture_hover = ExtResource("4_mh4j1")
+offset_left = 394.5
+offset_top = 428.75
+offset_right = 587.5
+offset_bottom = 511.75
+texture_normal = ExtResource("10_w1bfn")
+texture_pressed = ExtResource("11_y3ogr")
+texture_hover = ExtResource("12_3yuhv")
 
 [node name="Label2" type="Label" parent="BorrowContainer/BorrowMoneyWindow/Cancel"]
 layout_mode = 1
@@ -2889,27 +2863,27 @@ uppercase = true
 visible = false
 position = Vector2(303.5, 380)
 scale = Vector2(1.52326, 1)
-texture = ExtResource("54_7juy1")
+texture = ExtResource("20_qu1fi")
 
 [node name="BuildMenu0002Numbers-counter-1" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
 visible = false
 position = Vector2(333, 380)
-texture = ExtResource("55_5s2up")
+texture = ExtResource("21_lfjy2")
 
 [node name="BuildMenu0002Numbers-counter-2" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
 visible = false
 position = Vector2(353.058, 380)
-texture = ExtResource("55_5s2up")
+texture = ExtResource("21_lfjy2")
 
 [node name="BuildMenu0002Numbers-counter-3" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
 visible = false
 position = Vector2(313.058, 380)
-texture = ExtResource("55_5s2up")
+texture = ExtResource("21_lfjy2")
 
 [node name="BuildMenu0003Numbers-hole2" type="Sprite2D" parent="BorrowContainer/BorrowMoneyWindow"]
 visible = false
 position = Vector2(638, 380)
-texture = ExtResource("54_7juy1")
+texture = ExtResource("20_qu1fi")
 
 [node name="NuclearWarning" type="Label" parent="."]
 offset_left = 1689.0
@@ -2927,9 +2901,7 @@ autowrap_mode = 2
 [node name="ColorRect" type="Sprite2D" parent="NuclearWarning"]
 show_behind_parent = true
 position = Vector2(97, 55)
-texture = ExtResource("55_5ylb2")
-flip_h = true
-flip_v = true
+texture = ExtResource("75_341s6")
 region_rect = Rect2(2, 0, 278, 194)
 
 [node name="GameplayUiReference-04" type="Sprite2D" parent="."]

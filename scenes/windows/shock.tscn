@@ -1,18 +1,18 @@
 [gd_scene load_steps=18 format=3 uid="uid://885lty3v1qbq"]
 
 [ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
-[ext_resource type="Texture2D" uid="uid://burmdec041k3k" path="res://assets/UI Elements/Shocks-Metal.png" id="2_37dlb"]
+[ext_resource type="Texture2D" uid="uid://burmdec041k3k" path="res://assets/UI Elements/UI/Shocks-Metal.png" id="2_t07ek"]
 [ext_resource type="Texture2D" uid="uid://dddi6bd53d7t" path="res://assets/Icons/ice.png" id="3_fweec"]
-[ext_resource type="Texture2D" uid="uid://djviaoys4utb" path="res://assets/UI Elements/Shocks-Screen.png" id="3_jcd22"]
+[ext_resource type="Texture2D" uid="uid://djviaoys4utb" path="res://assets/UI Elements/UI/Shocks-Screen.png" id="3_wf3vf"]
 [ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="4_gcg7v"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="5_0qiv1"]
-[ext_resource type="Texture2D" uid="uid://d1or1v15j7r7u" path="res://assets/UI Elements/Shocks-Button-Hole.png" id="6_021ab"]
-[ext_resource type="Texture2D" uid="uid://bukhhwmu7717r" path="res://assets/UI Elements/Shocks-Button-normal.png" id="7_st5u1"]
-[ext_resource type="Texture2D" uid="uid://dqu1ja5c2h00" path="res://assets/UI Elements/Shocks-Button-press.png" id="8_7oeqa"]
-[ext_resource type="Texture2D" uid="uid://bamjrehqkvnrd" path="res://assets/UI Elements/Shocks-Button-hover.png" id="9_kf34e"]
-[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="10_hydvu"]
-[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="11_are4j"]
-[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="12_hwdxm"]
+[ext_resource type="Texture2D" uid="uid://d1or1v15j7r7u" path="res://assets/UI Elements/UI/Shocks-Button-Hole.png" id="6_sfyqo"]
+[ext_resource type="Texture2D" uid="uid://bukhhwmu7717r" path="res://assets/UI Elements/UI/Shocks-Button-normal.png" id="7_vuwmu"]
+[ext_resource type="Texture2D" uid="uid://dqu1ja5c2h00" path="res://assets/UI Elements/UI/Shocks-Button-press.png" id="8_2mjks"]
+[ext_resource type="Texture2D" uid="uid://bamjrehqkvnrd" path="res://assets/UI Elements/UI/Shocks-Button-hover.png" id="9_drpsa"]
+[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/UI/Button-normal.png" id="10_h4trl"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/UI/Button-press.png" id="11_0v5ar"]
+[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/UI/Button-hover.png" id="12_68w6v"]
 
 [sub_resource type="Theme" id="Theme_jkqh0"]
 
@@ -66,7 +66,7 @@ grow_vertical = 2
 
 [node name="NinePatchRect" type="Sprite2D" parent="."]
 position = Vector2(920, 584)
-texture = ExtResource("2_37dlb")
+texture = ExtResource("2_t07ek")
 
 [node name="ColorRect" type="ColorRect" parent="NinePatchRect"]
 self_modulate = Color(1, 1, 1, 0)
@@ -86,7 +86,7 @@ color = Color(0.597656, 0.597656, 0.597656, 1)
 
 [node name="Shocks-screen" type="Sprite2D" parent="NinePatchRect/ColorRect"]
 position = Vector2(248, 40)
-texture = ExtResource("3_jcd22")
+texture = ExtResource("3_wf3vf")
 
 [node name="Img" type="Sprite2D" parent="NinePatchRect/ColorRect"]
 visible = false
@@ -178,7 +178,7 @@ grow_horizontal = 2
 
 [node name="Shocks-button-hole" type="Sprite2D" parent="NinePatchRect/ColorRect/Reactions"]
 position = Vector2(124.5, 211)
-texture = ExtResource("6_021ab")
+texture = ExtResource("6_sfyqo")
 
 [node name="Button" type="TextureButton" parent="NinePatchRect/ColorRect/Reactions"]
 layout_mode = 1
@@ -194,9 +194,9 @@ offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("7_st5u1")
-texture_pressed = ExtResource("8_7oeqa")
-texture_hover = ExtResource("9_kf34e")
+texture_normal = ExtResource("7_vuwmu")
+texture_pressed = ExtResource("8_2mjks")
+texture_hover = ExtResource("9_drpsa")
 
 [node name="Label" type="Label" parent="NinePatchRect/ColorRect/Reactions/Button"]
 layout_mode = 1
@@ -233,9 +233,9 @@ offset_bottom = 213.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("7_st5u1")
-texture_pressed = ExtResource("8_7oeqa")
-texture_hover = ExtResource("9_kf34e")
+texture_normal = ExtResource("7_vuwmu")
+texture_pressed = ExtResource("8_2mjks")
+texture_hover = ExtResource("9_drpsa")
 
 [node name="Label" type="Label" parent="NinePatchRect/ColorRect/Reactions/Button2"]
 layout_mode = 1
@@ -271,9 +271,9 @@ offset_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("7_st5u1")
-texture_pressed = ExtResource("8_7oeqa")
-texture_hover = ExtResource("9_kf34e")
+texture_normal = ExtResource("7_vuwmu")
+texture_pressed = ExtResource("8_2mjks")
+texture_hover = ExtResource("9_drpsa")
 
 [node name="Label" type="Label" parent="NinePatchRect/ColorRect/Reactions/Button3"]
 layout_mode = 1
@@ -307,9 +307,9 @@ offset_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("10_hydvu")
-texture_pressed = ExtResource("11_are4j")
-texture_hover = ExtResource("12_hwdxm")
+texture_normal = ExtResource("10_h4trl")
+texture_pressed = ExtResource("11_0v5ar")
+texture_hover = ExtResource("12_68w6v")
 
 [node name="Label" type="Label" parent="NinePatchRect/ColorRect/Continue"]
 layout_mode = 1

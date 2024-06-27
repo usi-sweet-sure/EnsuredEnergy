@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://w3o3uiekvy4q"]
+[gd_scene load_steps=11 format=3 uid="uid://w3o3uiekvy4q"]
 
-[ext_resource type="Script" path="res://scenes/windows/Graphs.cs" id="1_jjscl"]
-[ext_resource type="Texture2D" uid="uid://dwys7y27kiabl" path="res://assets/UI Elements/Import-Switch-On.png" id="2_ki338"]
-[ext_resource type="Texture2D" uid="uid://dhxkhfg2qxlgx" path="res://assets/UI Elements/Import-Switch-Off.png" id="3_lkaid"]
-[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="4_ln55b"]
-[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="5_mt0t1"]
+[ext_resource type="Script" path="res://src/cs/windows/Graphs.cs" id="1_vg1gj"]
+[ext_resource type="Texture2D" uid="uid://dk3m6yvqlarm" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0006s_0001_Stats-metal-base.png" id="2_vvsc6"]
+[ext_resource type="Texture2D" uid="uid://dwys7y27kiabl" path="res://assets/UI Elements/UI/Import-Switch-On.png" id="2_xf2x6"]
+[ext_resource type="Texture2D" uid="uid://dhxkhfg2qxlgx" path="res://assets/UI Elements/UI/Import-Switch-Off.png" id="3_d2v5n"]
+[ext_resource type="Texture2D" uid="uid://dmdlwssgl7ibc" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0005s_0002_Stats-screen.png" id="3_ecrpt"]
+[ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/UI/Icon-Solar.png" id="4_m0igv"]
+[ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/UI/Icon-Wind.png" id="5_brc6b"]
+[ext_resource type="Texture2D" uid="uid://cq634jyx5pm0c" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0034_Policies-normal-(small)-button.png" id="8_qj6k2"]
+[ext_resource type="Texture2D" uid="uid://rptb0vcihbps" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0035_Policies-press-(small)-button.png" id="9_p3e6e"]
+[ext_resource type="Texture2D" uid="uid://b2w2mbkosuem6" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0033_Policies-hover-(small)-button.png" id="10_4ws5c"]
 
 [node name="Graphs" type="CanvasLayer"]
-script = ExtResource("1_jjscl")
+script = ExtResource("1_vg1gj")
 
 [node name="Close" type="Button" parent="."]
 anchors_preset = 15
@@ -17,111 +22,47 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -645.5
+offset_top = -436.5
+offset_right = 645.5
+offset_bottom = 436.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vvsc6")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -552.0
+offset_top = -356.0
+offset_right = 400.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ecrpt")
+
 [node name="Screen" type="ColorRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -348.0
-offset_right = 640.0
-offset_bottom = 356.0
+offset_left = -426.0
+offset_top = -355.0
+offset_right = 486.0
+offset_bottom = 357.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.176471, 0.235294, 0.294118, 1)
-
-[node name="Line2D" type="Line2D" parent="Screen"]
-points = PackedVector2Array(128, 704, 128, 0)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D2" type="Line2D" parent="Screen"]
-position = Vector2(128, 0)
-points = PackedVector2Array(128, 704, 128, 0)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D3" type="Line2D" parent="Screen"]
-position = Vector2(256, 8)
-points = PackedVector2Array(128, 696, 128, -8)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D4" type="Line2D" parent="Screen"]
-position = Vector2(384, 16)
-points = PackedVector2Array(128, 688, 128, -16)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D5" type="Line2D" parent="Screen"]
-position = Vector2(512, 16)
-points = PackedVector2Array(128, 688, 128, -16)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D6" type="Line2D" parent="Screen"]
-position = Vector2(640, 8)
-points = PackedVector2Array(128, 696, 128, -8)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D7" type="Line2D" parent="Screen"]
-position = Vector2(768, 8)
-points = PackedVector2Array(128, 696, 128, -8)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D8" type="Line2D" parent="Screen"]
-position = Vector2(896, 0)
-points = PackedVector2Array(128, 704, 128, 0)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Line2D9" type="Line2D" parent="Screen"]
-position = Vector2(1024, 8)
-points = PackedVector2Array(128, 696, 128, -8)
-width = 2.0
-default_color = Color(1, 1, 1, 0.427451)
-
-[node name="Years" type="HBoxContainer" parent="Screen"]
-layout_mode = 0
-offset_top = 704.0
-offset_right = 1280.0
-offset_bottom = 744.0
-theme_override_constants/separation = 90
-
-[node name="Label" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
-
-[node name="Label2" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
-
-[node name="Label3" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
-
-[node name="Label4" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
-
-[node name="Label5" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
-
-[node name="Label6" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
-
-[node name="Label7" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
-
-[node name="Label8" type="Label" parent="Screen/Years"]
-layout_mode = 2
-text = "2022"
+color = Color(0.176471, 0.235294, 0.294118, 0)
 
 [node name="Demand" type="Control" parent="Screen"]
 anchors_preset = 0
@@ -129,7 +70,7 @@ offset_right = 1280.0
 offset_bottom = 704.0
 
 [node name="DemandW" type="Line2D" parent="Screen/Demand"]
-points = PackedVector2Array(0, 0, 80, 136, 328, 232, 384, 128, 512, 216, 640, 168, 768, 224, 952, 112, 1024, 208, 1152, 152)
+points = PackedVector2Array(0, 0, 80, 136, 328, 232, 384, 128, 512, 216, 640, 168, 768, 224, 952, 112, 1024, 208, 1152, 152, 0, 0)
 width = 4.0
 default_color = Color(0, 0.568627, 1, 1)
 joint_mode = 2
@@ -137,32 +78,112 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="DemandS" type="Line2D" parent="Screen/Demand"]
-points = PackedVector2Array(0, 0, 48, 208, 328, 232, 504, 120, 512, 216, 640, 168, 768, 224, 952, 112, 1024, 208, 1152, 152)
+visible = false
+points = PackedVector2Array(0, 0, 48, 208, 328, 232, 504, 120, 512, 216, 640, 168, 768, 224, 952, 112, 1024, 208, 1152, 152, 0, 0)
 width = 4.0
 default_color = Color(1, 0.701961, 0.254902, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="PowerPlants" type="Control" parent="Screen"]
+[node name="PowerPlantsW" type="Control" parent="Screen"]
+anchors_preset = 0
+offset_right = 818.0
+offset_bottom = 704.0
+
+[node name="PowerPlantsS" type="Control" parent="Screen"]
+visible = false
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 704.0
 
+[node name="Pollution" type="Control" parent="Screen"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Economy" type="Control" parent="Screen"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="SeasonSwitch" type="CheckButton" parent="."]
-offset_left = 1640.0
-offset_top = 760.0
-offset_right = 1720.0
-offset_bottom = 836.0
-theme_override_icons/checked = ExtResource("2_ki338")
-theme_override_icons/checked_disabled = ExtResource("2_ki338")
-theme_override_icons/unchecked = ExtResource("3_lkaid")
-theme_override_icons/unchecked_disabled = ExtResource("3_lkaid")
+offset_left = 1416.0
+offset_top = 768.0
+offset_right = 1496.0
+offset_bottom = 844.0
+theme_override_icons/checked = ExtResource("2_xf2x6")
+theme_override_icons/checked_disabled = ExtResource("2_xf2x6")
+theme_override_icons/unchecked = ExtResource("3_d2v5n")
+theme_override_icons/unchecked_disabled = ExtResource("3_d2v5n")
 
 [node name="Icon-solar" type="Sprite2D" parent="SeasonSwitch"]
 position = Vector2(40, -16)
-texture = ExtResource("4_ln55b")
+texture = ExtResource("4_m0igv")
 
 [node name="Icon-wind" type="Sprite2D" parent="SeasonSwitch"]
 position = Vector2(40, 104)
-texture = ExtResource("5_mt0t1")
+texture = ExtResource("5_brc6b")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 1392.0
+offset_top = 432.0
+offset_right = 1521.0
+offset_bottom = 495.0
+texture_normal = ExtResource("8_qj6k2")
+texture_pressed = ExtResource("9_p3e6e")
+texture_hover = ExtResource("10_4ws5c")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Environment"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 1392.0
+offset_top = 512.0
+offset_right = 1521.0
+offset_bottom = 575.0
+texture_normal = ExtResource("8_qj6k2")
+texture_pressed = ExtResource("9_p3e6e")
+texture_hover = ExtResource("10_4ws5c")
+
+[node name="Label" type="Label" parent="TextureButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Economy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+offset_left = 1392.0
+offset_top = 592.0
+offset_right = 1521.0
+offset_bottom = 655.0
+texture_normal = ExtResource("8_qj6k2")
+texture_pressed = ExtResource("9_p3e6e")
+texture_hover = ExtResource("10_4ws5c")
+
+[node name="Label" type="Label" parent="TextureButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Energy"
+horizontal_alignment = 1
+vertical_alignment = 1

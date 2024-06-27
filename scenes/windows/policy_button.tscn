@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dna2006dnsx2x"]
+[gd_scene load_steps=6 format=3 uid="uid://dna2006dnsx2x"]
 
-[ext_resource type="Texture2D" uid="uid://ga6yaa7ss7pa" path="res://assets/UI Elements/Policies-Button-SmallNormal.png" id="1_tbkhm"]
-[ext_resource type="Texture2D" uid="uid://cihbwmo1t85av" path="res://assets/UI Elements/Policies-Button-Small-Press.png" id="2_daym8"]
-[ext_resource type="Texture2D" uid="uid://br23brh4f3qqe" path="res://assets/UI Elements/Policies-Button-Small-Hover.png" id="3_7eos0"]
-[ext_resource type="Texture2D" uid="uid://dnr3tvwn2pcnj" path="res://assets/UI Elements/Policies_Button_small_Hole.png" id="3_lax6w"]
+[ext_resource type="Texture2D" uid="uid://ga6yaa7ss7pa" path="res://assets/UI Elements/UI/Policies-Button-SmallNormal.png" id="1_ja6gc"]
+[ext_resource type="Texture2D" uid="uid://cihbwmo1t85av" path="res://assets/UI Elements/UI/Policies-Button-Small-Press.png" id="2_ebmwy"]
+[ext_resource type="Texture2D" uid="uid://br23brh4f3qqe" path="res://assets/UI Elements/UI/Policies-Button-Small-Hover.png" id="3_j8f4c"]
+[ext_resource type="Texture2D" uid="uid://dnr3tvwn2pcnj" path="res://assets/UI Elements/UI/Policies_Button_small_Hole.png" id="4_vpnsl"]
+[ext_resource type="Texture2D" uid="uid://cwb32b12r7hcp" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0011_House-symbol.png" id="5_56ukt"]
 
 [node name="PolicyButton" type="TextureButton"]
 custom_minimum_size = Vector2(0, 80)
@@ -14,22 +15,16 @@ offset_bottom = 120.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
-texture_normal = ExtResource("1_tbkhm")
-texture_pressed = ExtResource("2_daym8")
-texture_hover = ExtResource("3_7eos0")
+texture_normal = ExtResource("1_ja6gc")
+texture_pressed = ExtResource("2_ebmwy")
+texture_hover = ExtResource("3_j8f4c")
 
 [node name="PoliciesButtonSmallHole" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(63, 33)
-texture = ExtResource("3_lax6w")
+texture = ExtResource("4_vpnsl")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.6
-grow_horizontal = 2
-grow_vertical = 2
-text = "Policy"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(63, 24)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_56ukt")

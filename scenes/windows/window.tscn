@@ -1,26 +1,31 @@
-[gd_scene load_steps=29 format=3 uid="uid://jj476u8yn2g8"]
+[gd_scene load_steps=34 format=3 uid="uid://jj476u8yn2g8"]
 
 [ext_resource type="Script" path="res://src/cs/windows/PolicyWindow.cs" id="1_is3ep"]
-[ext_resource type="Texture2D" uid="uid://clbiqmgbfxn1r" path="res://assets/UI Elements/Policies-middle.png" id="2_5macm"]
-[ext_resource type="Texture2D" uid="uid://dnr3tvwn2pcnj" path="res://assets/UI Elements/Policies_Button_small_Hole.png" id="3_34k6p"]
+[ext_resource type="Texture2D" uid="uid://clbiqmgbfxn1r" path="res://assets/UI Elements/UI/Policies-middle.png" id="2_ra5a2"]
 [ext_resource type="PackedScene" uid="uid://dna2006dnsx2x" path="res://scenes/windows/policy_button.tscn" id="3_wnx31"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="3_yevmu"]
-[ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="4_b2slr"]
+[ext_resource type="Texture2D" uid="uid://ddmpbok1xnkc7" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0044_CTA-Normal-blue.png" id="4_kykat"]
 [ext_resource type="ButtonGroup" uid="uid://ei788aoab46g" path="res://scenes/windows/policyButtonGroup.tres" id="4_wme6q"]
-[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="5_dqo5y"]
-[ext_resource type="Texture2D" uid="uid://bam7su0aw6q65" path="res://assets/UI Elements/Icon-Popularity.png" id="5_iox1m"]
-[ext_resource type="Texture2D" uid="uid://cuhckno2t6g0r" path="res://assets/UI Elements/Button-hover.png" id="6_8ixy2"]
-[ext_resource type="Texture2D" uid="uid://ddd6qplj5q6p4" path="res://assets/UI Elements/Policies_Button_Hole.png" id="8_iiaj0"]
-[ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/Popularity-.png" id="8_mlb0j"]
-[ext_resource type="Texture2D" uid="uid://lxqt8kspr35q" path="res://assets/UI Elements/Icon-Environment-.png" id="10_oxitu"]
-[ext_resource type="Texture2D" uid="uid://y6or6vfnua40" path="res://assets/UI Elements/Policies_Metal-cover.png" id="11_4fuh8"]
-[ext_resource type="Texture2D" uid="uid://q0302v26c3j6" path="res://assets/UI Elements/Policies-left&right.png" id="12_cagmv"]
-[ext_resource type="Texture2D" uid="uid://ib8vmuvdtmtt" path="res://assets/UI Elements/Policies-Button-green-Normal.png" id="14_noxck"]
-[ext_resource type="Texture2D" uid="uid://b0tnnwt624fhu" path="res://assets/UI Elements/Policies-Button-green-Press.png" id="15_whec6"]
-[ext_resource type="Texture2D" uid="uid://ir1mqepln7p7" path="res://assets/UI Elements/Policies-Button-green-Hover.png" id="16_scuxu"]
-[ext_resource type="Texture2D" uid="uid://m8sqi2c1vb8w" path="res://assets/UI Elements/Policies-Button-yellow-Normal.png" id="19_pws74"]
-[ext_resource type="Texture2D" uid="uid://cufu62j0t1t6p" path="res://assets/UI Elements/Policies-Button-yellow-Press.png" id="20_e53ft"]
-[ext_resource type="Texture2D" uid="uid://cltrnfisw3ald" path="res://assets/UI Elements/Policies-Button-yellow-Hover.png" id="21_n5r62"]
+[ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/UI/Button-press.png" id="5_eap5j"]
+[ext_resource type="Texture2D" uid="uid://do3g0dp53q4ok" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0043_CTA-Press-blue.png" id="5_lcdng"]
+[ext_resource type="Texture2D" uid="uid://b17ssuesrntw8" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0042_CTA-Hover-blue.png" id="6_ry6s7"]
+[ext_resource type="Texture2D" uid="uid://b2g8qas0h64m8" path="res://assets/UI Elements/UI/Popularity-.png" id="7_kkoov"]
+[ext_resource type="Texture2D" uid="uid://3eyoh8ko5w4g" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0022_Icon-Popularity.png" id="9_7wpu5"]
+[ext_resource type="Texture2D" uid="uid://dnr3tvwn2pcnj" path="res://assets/UI Elements/UI/Policies_Button_small_Hole.png" id="9_obntp"]
+[ext_resource type="Texture2D" uid="uid://q0302v26c3j6" path="res://assets/UI Elements/UI/Policies-left&right.png" id="10_dowgb"]
+[ext_resource type="Texture2D" uid="uid://bnpkfc7hd2tll" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0028_Policies-normal-green-button.png" id="14_4xedk"]
+[ext_resource type="Texture2D" uid="uid://desc3xbjnmhm2" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0029_Policies-press-green-button.png" id="15_f3wsr"]
+[ext_resource type="Texture2D" uid="uid://bkb0grnv7g0ur" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0027_Policies-hover-green-button.png" id="16_5j4e0"]
+[ext_resource type="Texture2D" uid="uid://ddd6qplj5q6p4" path="res://assets/UI Elements/UI/Policies_Button_Hole.png" id="16_pma4h"]
+[ext_resource type="Texture2D" uid="uid://tldrruh0jmyy" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0007_Enviorment-symbol.png" id="18_r5g5l"]
+[ext_resource type="Texture2D" uid="uid://ciwqph5q7oofm" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0008_Solar-symbol.png" id="19_yotoa"]
+[ext_resource type="Texture2D" uid="uid://y64ee4ne5her" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0010_Hammer-symbol.png" id="20_fn8sg"]
+[ext_resource type="Texture2D" uid="uid://dy3mlg323kg6l" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0009_Wind-symbol.png" id="21_dixcn"]
+[ext_resource type="Texture2D" uid="uid://y6or6vfnua40" path="res://assets/UI Elements/UI/Policies_Metal-cover.png" id="21_qe7w4"]
+[ext_resource type="Texture2D" uid="uid://cpi20ex4xbpsh" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0031_Policies-normal-yellow-button.png" id="22_6rve5"]
+[ext_resource type="Texture2D" uid="uid://sa710krw6b62" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0032_Policies-press-yellow-button.png" id="23_7kj3q"]
+[ext_resource type="Texture2D" uid="uid://dj0v2yce664op" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0000s_0030_Policies-hover-yellow-button.png" id="24_o8q6v"]
+[ext_resource type="Texture2D" uid="uid://x7x470vqeohe" path="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0012_Heat-symbol.png" id="25_mhu6t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3qlni"]
 
@@ -96,7 +101,7 @@ size_flags_horizontal = 4
 
 [node name="Policies-base-2" type="Sprite2D" parent="Control"]
 position = Vector2(549.5, 388.5)
-texture = ExtResource("2_5macm")
+texture = ExtResource("2_ra5a2")
 
 [node name="PolicyName" type="Label" parent="Control/Policies-base-2"]
 anchors_preset = 5
@@ -173,10 +178,10 @@ offset_right = -145.0
 offset_bottom = -529.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("4_b2slr")
-texture_pressed = ExtResource("5_dqo5y")
-texture_hover = ExtResource("6_8ixy2")
-texture_disabled = ExtResource("5_dqo5y")
+texture_normal = ExtResource("4_kykat")
+texture_pressed = ExtResource("5_lcdng")
+texture_hover = ExtResource("6_ry6s7")
+texture_disabled = ExtResource("5_eap5j")
 
 [node name="PopularityL" type="Label" parent="Control/Policies-base-2/Vote"]
 layout_mode = 1
@@ -212,11 +217,11 @@ value = 42.0
 [node name="Popularity-" type="Sprite2D" parent="Control/Policies-base-2/Vote/Popularity"]
 show_behind_parent = true
 position = Vector2(41, 21)
-texture = ExtResource("8_mlb0j")
+texture = ExtResource("7_kkoov")
 
 [node name="Icon" type="Sprite2D" parent="Control/Policies-base-2/Vote/Popularity"]
 position = Vector2(-40, 16)
-texture = ExtResource("5_iox1m")
+texture = ExtResource("9_7wpu5")
 
 [node name="VoteResult" type="Label" parent="Control/Policies-base-2/Vote"]
 layout_mode = 0
@@ -246,7 +251,7 @@ uppercase = true
 show_behind_parent = true
 position = Vector2(95, 42.5)
 scale = Vector2(1.47857, 1.35714)
-texture = ExtResource("3_34k6p")
+texture = ExtResource("9_obntp")
 
 [node name="Length" type="Label" parent="Control/Policies-base-2/Vote"]
 visible = false
@@ -308,7 +313,7 @@ autowrap_mode = 3
 
 [node name="PoliciesBase-1" type="Sprite2D" parent="Control"]
 position = Vector2(163.5, 388.5)
-texture = ExtResource("12_cagmv")
+texture = ExtResource("10_dowgb")
 
 [node name="EnvCampaign" type="Label" parent="Control/PoliciesBase-1"]
 offset_left = -62.0
@@ -345,16 +350,18 @@ offset_right = -111.0
 offset_bottom = -136.5
 grow_horizontal = 2
 button_group = ExtResource("4_wme6q")
-texture_normal = ExtResource("14_noxck")
-texture_pressed = ExtResource("15_whec6")
-texture_hover = ExtResource("16_scuxu")
+texture_normal = ExtResource("14_4xedk")
+texture_pressed = ExtResource("15_f3wsr")
+texture_hover = ExtResource("16_5j4e0")
 
 [node name="PoliciesButtonSmallHole" parent="Control/PoliciesBase-1/campaign_env" index="0"]
 position = Vector2(65, 65)
-texture = ExtResource("8_iiaj0")
+texture = ExtResource("16_pma4h")
 
-[node name="Label" parent="Control/PoliciesBase-1/campaign_env" index="1"]
-visible = false
+[node name="Icon" parent="Control/PoliciesBase-1/campaign_env" index="1"]
+position = Vector2(63, 55)
+scale = Vector2(1, 1)
+texture = ExtResource("18_r5g5l")
 
 [node name="Upgrade_PV" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
 offset_left = -59.0
@@ -364,8 +371,8 @@ offset_bottom = 124.0
 theme = SubResource("Theme_6bviu")
 button_group = ExtResource("4_wme6q")
 
-[node name="Label" parent="Control/PoliciesBase-1/Upgrade_PV" index="1"]
-text = "☀️"
+[node name="Icon" parent="Control/PoliciesBase-1/Upgrade_PV" index="1"]
+texture = ExtResource("19_yotoa")
 
 [node name="Wind_buildtime" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
 anchors_preset = -1
@@ -379,8 +386,8 @@ offset_right = -96.344
 offset_bottom = 79.255
 button_group = ExtResource("4_wme6q")
 
-[node name="Label" parent="Control/PoliciesBase-1/Wind_buildtime" index="1"]
-text = "🔨"
+[node name="Icon" parent="Control/PoliciesBase-1/Wind_buildtime" index="1"]
+texture = ExtResource("20_fn8sg")
 
 [node name="Upgrade_wind" parent="Control/PoliciesBase-1" instance=ExtResource("3_wnx31")]
 anchors_preset = -1
@@ -394,16 +401,12 @@ offset_right = -100.922
 offset_bottom = -296.499
 button_group = ExtResource("4_wme6q")
 
-[node name="Label" parent="Control/PoliciesBase-1/Upgrade_wind" index="1"]
-text = "💨"
-
-[node name="Icon-environment-" type="Sprite2D" parent="Control/PoliciesBase-1"]
-position = Vector2(-2, -207)
-texture = ExtResource("10_oxitu")
+[node name="Icon" parent="Control/PoliciesBase-1/Upgrade_wind" index="1"]
+texture = ExtResource("21_dixcn")
 
 [node name="PoliciesBase-2" type="Sprite2D" parent="Control"]
 position = Vector2(935.5, 388.5)
-texture = ExtResource("12_cagmv")
+texture = ExtResource("10_dowgb")
 
 [node name="DemandCampaign" type="Label" parent="Control/PoliciesBase-2"]
 offset_left = -58.0
@@ -440,18 +443,17 @@ offset_right = -108.0
 offset_bottom = -136.5
 grow_horizontal = 2
 button_group = ExtResource("4_wme6q")
-texture_normal = ExtResource("19_pws74")
-texture_pressed = ExtResource("20_e53ft")
-texture_hover = ExtResource("21_n5r62")
+texture_normal = ExtResource("22_6rve5")
+texture_pressed = ExtResource("23_7kj3q")
+texture_hover = ExtResource("24_o8q6v")
 
 [node name="PoliciesButtonSmallHole" parent="Control/PoliciesBase-2/campaign_demand" index="0"]
 position = Vector2(65, 65)
-texture = ExtResource("8_iiaj0")
+texture = ExtResource("16_pma4h")
 
-[node name="Label" parent="Control/PoliciesBase-2/campaign_demand" index="1"]
-offset_bottom = 32.2
-theme_override_font_sizes/font_size = 30
-text = "🏠"
+[node name="Icon" parent="Control/PoliciesBase-2/campaign_demand" index="1"]
+position = Vector2(63, 52)
+scale = Vector2(1, 1)
 
 [node name="home_regulation" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
 anchors_preset = 8
@@ -467,8 +469,8 @@ grow_horizontal = 2
 grow_vertical = 2
 button_group = ExtResource("4_wme6q")
 
-[node name="Label" parent="Control/PoliciesBase-2/home_regulation" index="1"]
-text = "♨️"
+[node name="Icon" parent="Control/PoliciesBase-2/home_regulation" index="1"]
+texture = ExtResource("25_mhu6t")
 
 [node name="industry_subsidy" parent="Control/PoliciesBase-2" instance=ExtResource("3_wnx31")]
 anchors_preset = 7
@@ -484,13 +486,10 @@ grow_horizontal = 2
 grow_vertical = 0
 button_group = ExtResource("4_wme6q")
 
-[node name="Label" parent="Control/PoliciesBase-2/industry_subsidy" index="1"]
-text = "🌇"
-
 [node name="PoliciesMetal-cover" type="Sprite2D" parent="Control"]
 visible = false
 position = Vector2(579, 706)
-texture = ExtResource("11_4fuh8")
+texture = ExtResource("21_qe7w4")
 
 [node name="Policies" type="Label" parent="Control"]
 visible = false

@@ -155,7 +155,7 @@ public partial class PowerPlant : Node2D {
 	private Label BioL;
 	private Label LifeSpan;
 	private Label LifeSpanL;
-	private Label LifeSpanWarning;
+	private Sprite2D LifeSpanWarning;
 	private Label MultProd;
 	private Label MultPoll;
 	private Label MultLand;
@@ -244,7 +244,7 @@ public partial class PowerPlant : Node2D {
 		BioL = GetNode<Label>("BuildInfo/ColorRect/ContainerL/Bio");
 		LifeSpan = GetNode<Label>("BuildInfo/ColorRect/LifeSpan");
 		LifeSpanL = GetNode<Label>("BuildInfo/ColorRect/LifeSpan/LifeSpanL");
-		LifeSpanWarning = GetNode<Label>("LifeSpanWarning");
+		LifeSpanWarning = GetNode<Sprite2D>("LifeSpanWarning");
 		AP = GetNode<AnimationPlayer>("AP");
 		AnimMoney = GetNode<Label>("Money");
 		MultProd = GetNode<Label>("BuildInfo/ColorRect/ContainerN/Prod/MultProd");
