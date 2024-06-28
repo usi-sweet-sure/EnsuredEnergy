@@ -332,7 +332,7 @@ public partial class PowerPlant : Node2D {
 
 		// Check if the multiplier window should be shown
 		if(MultiplierMax <= 1) {
-			Multiplier.Hide();
+			//Multiplier.Hide();
 		} else {
 			//Multiplier.Show();
 			MultInc.Show();
@@ -346,7 +346,7 @@ public partial class PowerPlant : Node2D {
 			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
 				Info.Hide();
 				ResRect.Hide();
-				Multiplier.Hide();
+				//Multiplier.Hide();
 			}
 		}
 	}
@@ -380,6 +380,26 @@ public partial class PowerPlant : Node2D {
 	// Applies a build time overload to the powerplant
 	public void _OverloadBuildTime(int mo) {
 		BuildTime = mo;
+	}
+	
+	public void _OverloadUpgrade(int mo) {
+		MultiplierValue = mo;
+		// Retrieve the multiplier
+		Multiplier mult = CC._ReadMultiplier(Config.Type.POWER_PLANT, PlantType.ToString());
+
+		// Apply the multiplier
+		Pollution *= mult.Pollution;
+		LandUse *= mult.LandUse;
+		BiodiversityImpact *= mult.Biodiversity;
+		ProductionCost = (int)(ProductionCost * mult.ProductionCost);
+		EnergyCapacity += mult.Capacity;
+
+		// Propagate update to the ui
+		_UpdatePlantData();
+
+		// Update the label and make sure that it is shown
+		MultiplierL.Text = MultiplierValue.ToString();
+		Multiplier.Show();
 	}
 
 	// Increases the multiplier amount for the current plant 
@@ -687,7 +707,7 @@ public partial class PowerPlant : Node2D {
 
 			// Check if the multiplier window should be shown
 			if(MultiplierMax <= 1) {
-				Multiplier.Hide();
+				//Multiplier.Hide();
 				HideMultInfo();
 			} else {
 				Multiplier.Show();

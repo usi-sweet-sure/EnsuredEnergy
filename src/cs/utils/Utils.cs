@@ -167,12 +167,14 @@ public struct MultiplierOverloads {
 	public int WindBuildTime;
 	public int SolarMax;
 	public int SolarBuildTime;
+	public int GasUpgrade;
 
 	public MultiplierOverloads() {
 		WindMax = -1;
 		WindBuildTime = -1;
 		SolarMax = -1;
 		SolarBuildTime = -1;
+		GasUpgrade = -1;
 	}
 }
 
@@ -560,7 +562,7 @@ public enum ResourceType {
 	ENERGY_W, ENERGY_S, DEMAND_W,
 	DEMAND_S, ENVIRONMENT, SUPPORT,
 	MONEY, TAG, WIND_MULT_MAX,
-	WIND_BUILD_TIME, SOLAR_MULT_MAX, SOLAR_BUILD_TIME
+	WIND_BUILD_TIME, SOLAR_MULT_MAX, SOLAR_BUILD_TIME, GAS_UPGRADE
 };
 
 // Struct simply containing the couple of methods useful for the resource type enum
@@ -576,6 +578,7 @@ public readonly struct RTM {
 		"wind_build_time" => ResourceType.WIND_BUILD_TIME,
 		"solar_mult_max" => ResourceType.SOLAR_MULT_MAX,
 		"solar_buildtime" => ResourceType.SOLAR_BUILD_TIME,
+		"gas_upgrade" => ResourceType.GAS_UPGRADE,
 		"env" => ResourceType.ENVIRONMENT,
 		"support" => ResourceType.SUPPORT,
 		"money" => ResourceType.MONEY,
