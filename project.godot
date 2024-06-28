@@ -36,6 +36,7 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://assets/UI Elements/New UI/All-HQ-Assets-D_0004s_0021_Icon-Pointer.png"
+mouse_cursor/tooltip_position_offset=Vector2(-20, -20)
 
 [dotnet]
 

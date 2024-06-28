@@ -111,6 +111,15 @@ public partial class Graphs : CanvasLayer
 	private void _AddPoint(Line2D line, int init, int turn, int scale) {
 		int point = (int)Mathf.Remap(init, 0, scale, Screen.Size.Y, 0);
 		line.AddPoint(new Vector2(YearX[turn], point), turn);
+		
+		// create info button
+		Button new_button = new Button();
+		//new_button.FocusMode = FocusMode.FocusNone;
+		//new_button.Flat = true;
+		new_button.CustomMinimumSize = new Vector2(10, 10);
+		new_button.Position = new Vector2(YearX[turn], point);
+		new_button.TooltipText = init.ToString();
+		line.AddChild(new_button);
 	}
 	
 	// Shocks or events can change the Y values of a line, either as a one off event or long term
