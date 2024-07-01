@@ -36,7 +36,7 @@
         </reaction>
         <reaction id="2">
             <text>Einschalten der Ersatzgasanlage +10 Verschmutzung 🏭.</text>
-            <effect field="env" value="10"/>
+            <effect field="gas_upgrade" value="2"/>
         </reaction>
         <reaction id="3">
             <text>Strom aus Nachbarländern importieren.
@@ -67,7 +67,7 @@
         <reaction id="1">
             <text>Einschalten der Ersatzgasanlage 
 +10 Verschmutzung 🏭.</text>
-            <effect field="env" value="10"/>
+        <effect field="gas_upgrade" value="2"/>
         </reaction>
         <reaction id="2">
             <text>Stromimport aus Nachbarländern 
