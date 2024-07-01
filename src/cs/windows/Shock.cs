@@ -390,6 +390,7 @@ public partial class Shock : CanvasLayer {
 			// Support and money are straightforward
 			ResourceType.SUPPORT => S.Value >= SR.Value,
 			ResourceType.MONEY => M.Money >= SR.Value,
+			ResourceType.GAS_UPGRADE => M.Money >= SR.Value,
 			// This should never happen
 			_ => throw new ArgumentException("Invalid Resource type was given !")
 		};
