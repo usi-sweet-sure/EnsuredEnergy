@@ -82,10 +82,10 @@ public partial class MainMenu : CanvasLayer {
 
 		//////////////////////////////////////////
 		//////////For Demo, remove later//////////
-		Mode.Disabled = true;
+		/*Mode.Disabled = true;
 		bool off = C._ToggleOffline();
 		if(!off) C._ToggleOffline();
-		SetLabels();
+		SetLabels();*/
 		//////////////////////////////////////////
 		//////////////////////////////////////////
 	}

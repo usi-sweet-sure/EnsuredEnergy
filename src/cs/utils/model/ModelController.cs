@@ -31,14 +31,19 @@ using System.Threading.Tasks;
 public partial class ModelController : Node {
 
 	// Model URL Constants
-	private const string MODEL_BASE_URL = "https://toby.euler.usi.ch";
+	private const string MODEL_BASE_URL = "https://sure.euler.usi.ch";
 	private const string RES_FILE = "res.php";
 	private const string BAL_FILE = "bal.php";
 	private const string EVT_FILE = "evt.php";
-	private const string INSERT_METHOD = "mth=insert";
-	private const string UPDATE_METHOD = "mth=update";
-	private const string DISP_METHOD = "mth=disp";
-	private const string UPSERT_METHOD = "mth=upsert";
+	private const string PRM_FILE = "prm.php";
+	private const string INSERT_METHOD = "mth=ins";
+	private const string UPDATE_METHOD = "mth=upd";
+	private const string DISP_METHOD = "mth=dsp";
+	private const string EDIT_METHOD = "mth=edt";
+	private const string UPSERT_METHOD = "mth=ups";
+	private const string GET_XML_METHOD = "mth=xml";
+	private const string NO_XLS = "xls=0";
+	private const string PRM_ID = "prm_id";
 	private const string RES_ID = "res_id";
 	private const string COL_ID = "col_id";
 	private const string RES_NAME = "res_name";
@@ -64,6 +69,20 @@ public partial class ModelController : Node {
 	private const string COL_CAP_SOL = "35";
 	private const string COL_CAP_WND = "36";
 
+	// Requirements for demand: 
+	// DEMAND = (TOTAL_ELEC + TOTAL_HEAT) / 100
+	// SUMMER_D = DEMAND * 0.4f
+	// WINTER_D = DEMAND * 0.6f
+	private const string TOTAL_ELEC_ID = "220";
+	private const string TOTAL_HEAT_ID = "221";
+	private const float SUMMER_DEMAND_MULT = 0.4f;
+	private const float WINTER_DEMAND_MULT = 0.6f;
+
+	// Starting data: divide the starting demand by these numbers
+	private const int N_START_NUC = 3;
+	private const int N_START_HYDRO = 2;
+	private const int N_START_RIVER = 2;
+
 	// Game value constants
 	private const int YEARS_PER_TURN = 3;
 	private const int WEEKS_PER_YEAR = 52;
@@ -86,7 +105,7 @@ public partial class ModelController : Node {
 
 	// ModelController Queue
 	// This is used to store pending requests from the model
-	private enum RequestType { INIT, FETCH, FETCH_ASYNC, NAME, EVENT };
+	private enum RequestType { INIT, FETCH, FETCH_DEMAND, FETCH_ASYNC, NAME, EVENT };
 
 	// The request queue contains the following information:
 	// 1) The type of request being queued  
@@ -129,9 +148,14 @@ public partial class ModelController : Node {
 						_InitModel();
 						break;
 					
-					// Call the FetchModelData Method
+					// Call the FetchModelCapacity Method
 					case RequestType.FETCH_ASYNC:
-						_FetchModelDataAsync();
+						_FetchModelCapacityAsync(par.First());
+						break;
+
+					// Call the FetchDemand Method
+					case RequestType.FETCH_DEMAND:
+						_FetchModelDemandAsync();
 						break;
 
 					// Synchronous fetch case
@@ -175,12 +199,12 @@ public partial class ModelController : Node {
 	// Returns true if the model can handle a new request, false otherwise
 	public bool _CheckState() => State == ModelState.IDLE;
 
-	// ==================== Server Interaction Methods ====================
+	// ==================== Server Interaction Methods  ====================
 
 	// Initializes a connection with the model by creating a new game instance
 	// Returns whether or not the request was filed
 	// This method will generate the following POST request :
-	// - URL: https://toby.euler.usi.ch/res.php?mth=insert&res_id=Content.ResId 
+	// - URL: https://toby.euler.usi.ch/res.php?mth=ins&res_id=Content.ResId 
 	// - HEADER: Null
 	// - DATA: Null
 	public void _InitModel() {
@@ -211,6 +235,7 @@ public partial class ModelController : Node {
 			
 			// Get the Serialized result
 			string SRes = SReq.Result; 
+			Debug.Print(SRes);
 
 			// Parse the resceived data to an XML tree
 			XDocument XmlResp = XDocument.Parse(SRes);
@@ -268,9 +293,7 @@ public partial class ModelController : Node {
 		// Create the data package
 		var Data = new Dictionary<string, string> {
 			{ RES_ID, C._GetGameID().ToString() },
-			{ RES_NAME, new_name },
-			{ RES_V1, 42.ToString() }, // Arbitrary values for now
-			{ RES_V2, 9001.ToString() } // Arbitrary values for now
+			{ RES_NAME, new_name }
 		};
 
 		// Encode it in a content header
@@ -317,6 +340,127 @@ public partial class ModelController : Node {
 		// Update the Model's state
 		State = ModelState.IDLE;
 	}
+
+	/** Retrieves the capacity of the given building type from the model
+	 * @param B: The building type
+	 * This method will generate the following two GET requests:
+	 * URL = https://sure.euler.usi.ch/prm.php?mth=edt&res_id=Content.Id&prm_id=B.Id&xsl=0
+	 */
+	public async void _FetchModelCapacityAsync(Building B) {
+
+		// Check model availability
+		if(State != ModelState.IDLE) {
+			// Enqueue the request in case that the model is busy
+			RequestQ.Enqueue((RequestType.FETCH_ASYNC, new List<string>{ B.ToString() }));
+			return;
+		}
+
+		// Claim the model
+		State = ModelState.PENDING;
+
+		// Create the parameters
+		string resid = GetParam(RES_ID, C._GetGameID());
+		string prmid = GetParam(PRM_ID, B.ToId());
+
+		try {
+			// Signal that the request was sent
+			Debug.Print("Fetch request sent");  
+
+			// Send GET requests for both peak winter and peak summer
+			string res = await _HTTPC.GetStringAsync(
+				ModelURL(PRM_FILE, EDIT_METHOD, resid, prmid, NO_XLS)
+			);
+
+			// Check that the results aren't empty
+			Debug.Print("CAPACITY FETCH FOR " + B.ToString() + " IS " + res);
+
+			// Parse the received data to an XML tree
+			XDocument XmlResp = XDocument.Parse(res);
+
+			// Convert the given xml into a model struct
+			float cap = XmlToValue(XmlResp);
+
+			// Update the internal state of the context
+			C._UpdateModelCapacity(B, cap / 100.0f);
+
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+		} catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+			// Log the error data from the request
+			throw new Exception(
+				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
+				" Error: " + e.Message.ToString()
+			);
+		}
+	}
+
+	/** Retrieves the demand given by the model
+	 * This method will generate the following two GET requests:
+	 * GET_REQUEST1 = https://sure.euler.usi.ch/prm.php?mth=edt&res_id=Content.Id&prm_id=TOTAL_ELEC_ID&xsl=0
+	 * GET_REQUEST2 = https://sure.euler.usi.ch/prm.php?mth=edt&res_id=Content.Id&prm_id=TOTAL_HEAT_ID&xsl=0
+	 */
+	public async void _FetchModelDemandAsync() {
+
+		// Check model availability
+		if(State != ModelState.IDLE) {
+			// Enqueue the request in case that the model is busy
+			RequestQ.Enqueue((RequestType.FETCH_DEMAND, new ()));
+			return;
+		}
+
+		// Claim the model
+		State = ModelState.PENDING;
+
+		// Create the parameters
+		string resid = GetParam(RES_ID, C._GetGameID());
+		string elec_prmid = GetParam(PRM_ID, TOTAL_ELEC_ID);
+		string heat_prmid = GetParam(PRM_ID, TOTAL_HEAT_ID);
+
+		try {
+			// Signal that the request was sent
+			Debug.Print("Fetch request sent");  
+
+			// Send GET requests for both elec and heat
+			string res_elec = await _HTTPC.GetStringAsync(
+				ModelURL(PRM_FILE, EDIT_METHOD, resid, elec_prmid, NO_XLS)
+			);
+			string res_heat = await _HTTPC.GetStringAsync(
+				ModelURL(PRM_FILE, EDIT_METHOD, resid, heat_prmid, NO_XLS)
+			);
+
+			// Parse the received data to an XML tree
+			XDocument XmlResp_elec = XDocument.Parse(res_elec);
+			XDocument XmlResp_heat = XDocument.Parse(res_heat);
+
+			// Convert the given xml into a model struct
+			float cap_elec = XmlToValue(XmlResp_elec);
+			float cap_heat = XmlToValue(XmlResp_heat);
+
+			// Update the internal state of the context
+			C._UpdateModelDemand((cap_elec + cap_heat) / 100.0f);
+
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+		} catch(HttpRequestException e) {
+			// Reset the model state in case of a crash
+			State = ModelState.IDLE;
+
+			// Log the error data from the request
+			throw new Exception(
+				"Unable to connect to model, status code = " + e.StatusCode.ToString() + 
+				" Error: " + e.Message.ToString()
+			);
+		}
+	}
+
+	// =================================================================================
+	// ==================== OLD Server Interaction Methods (LEGACY) ====================
+	// =================================================================================
 
 	// Retrieves all of the data from the model and stores it in the context in a synchronous manner
 	// Warning: This will override all of the data in the context with the data 
@@ -536,11 +680,11 @@ public partial class ModelController : Node {
 	// Generate a random name for the model
 	private string GenerateName() {
 		// Random Dictionnary of words
-		string[] words = {"pocket", "club", "thing", "seat", "roll", "button", "size", "move", "year", "sticks", "trousers", "rule", "transport", "kitty", "north", "pump", "can", "bucket", "clam", "day", "dock", "wind", "pies", "room", "grass", "girls", "songs", "curve", "giraffe", "plane", "channel", "play", "art", "back", "amount", "instrument", "week", "change", "person", "lock", "class", "look", "sleet", "pear", "toe", "haircut", "underwear", "tongue", "experience", "dogs", "uncle", "birds", "spoon", "airport", "desk", "glass", "cherry", "trouble", "cakes", "rabbits", "soup", "team", "eggnog", "stocking", "icicle", "ring", "bath", "daughter", "company", "baseball", "brass", "car", "hot", "blow", "afternoon", "judge", "use", "selection", "cobweb", "temper", "jam", "mass", "snake", "agreement", "rhythm", "mind", "pie", "town", "spiders", "show", "partner", "fork", "queen", "bubble", "end", "language", "book", "marble", "writing", "match"};
+		string[] words = {"pocket", "funky", "test", "scribbles", "club", "thing", "seat", "roll", "button", "size", "move", "year", "sticks", "trousers", "rule", "transport", "kitty", "north", "pump", "can", "bucket", "clam", "day", "dock", "wind", "pies", "room", "grass", "girls", "songs", "curve", "giraffe", "plane", "channel", "play", "art", "back", "amount", "instrument", "week", "change", "person", "lock", "class", "look", "sleet", "pear", "toe", "haircut", "underwear", "tongue", "experience", "dogs", "uncle", "birds", "spoon", "airport", "desk", "glass", "cherry", "trouble", "cakes", "rabbits", "soup", "team", "eggnog", "stocking", "icicle", "ring", "bath", "daughter", "company", "baseball", "brass", "car", "hot", "blow", "afternoon", "judge", "use", "selection", "cobweb", "temper", "jam", "mass", "snake", "agreement", "rhythm", "mind", "pie", "town", "spiders", "show", "partner", "fork", "queen", "bubble", "end", "language", "book", "marble", "writing", "match"};
 
 		// Pick a word at random and concatenate an arbitrary number to it
 		Random rnd = new Random();
-		return words[rnd.Next(100) % 100] + "_" + rnd.Next().ToString();
+		return words[rnd.Next(words.Length) % words.Length] + "_" + rnd.Next().ToString();
 	}
 
 	// Groups the URL bits into a usable URL string
@@ -577,13 +721,20 @@ public partial class ModelController : Node {
 		}
 	} 
 
+	// Retrieves the value of the current year from a given prm xml
+	private float XmlToValue(XDocument xml) => (
+			from s in xml.Descendants("tbl").Descendants("row")
+			where s.Attribute("yr").Value == C._GetYear().ToString()
+			select s.Attribute("v").Value.ToFloat()
+		).ElementAt(0); 
+
 	// Retrieves an int attribute from a specific xml row
 	private int GetIntAttr(IEnumerable<XElement> row, string attr) => 
 		(from r in row select r.Attribute(attr).Value.ToInt()).ElementAt(0);
 
 	// Retrives the value associated to the given model column and building type
 	private float GetModelValue(ModelCol mc, Building b) => 
-		C._GetModel(ModelSeason.WINTER)._GetColumn(mc)._GetField(b);
+		C._GetModel()._GetColumn(mc)._GetField(b);
 
 	// Converts a model XML into a Model Struct
 	// The given xml is expected to be the response from the bal.disp() server method
@@ -602,8 +753,7 @@ public partial class ModelController : Node {
 			AvailabilityFromRow(row),
 			CapacityFromRow(row),
 			DemandFromRow(row),
-			ModelCoherencyState.SHARED,
-			MS
+			ModelCoherencyState.SHARED
 		);
 	}
 

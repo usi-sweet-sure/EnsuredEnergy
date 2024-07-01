@@ -32,6 +32,7 @@ public partial class Context : Node {
 	private const float DEMAND_INC_W = 4;
 	private const float DEMAND_INIT_S = 122;
 	private const float DEMAND_INIT_W = 130;
+    private const int START_YEAR = 2022;
 
 	[Signal]
 	// Signals that the context has been updated by an external actor
@@ -60,9 +61,8 @@ public partial class Context : Node {
 	// The total number of turns
 	private int N_TURNS = 10;
 
-	// Internal representation of the most recent data retrieved from the model
-	private Model MSummer;
-	private Model MWinter;
+    // Internal representation of the most recent data retrieved from the model
+    private Model M;
 
 	// To estimate the demand
 	public (float, float) DemandEstimate; // (DemandWinter, DemandSummer)
@@ -83,9 +83,8 @@ public partial class Context : Node {
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		// Initialize models
-		MSummer = new Model(ModelSeason.SUMMER); 
-		MWinter = new Model(ModelSeason.WINTER);
+        // Initialize models
+        M = new (); 
 
 		// Initialize the language
 		Lang = Language.Type.EN;
@@ -96,11 +95,10 @@ public partial class Context : Node {
 
 	// ==================== Public API ====================
 
-	// Reset the context
-	public void _Reset() {
-		 // Initialize models
-		MSummer = new Model(ModelSeason.SUMMER); 
-		MWinter = new Model(ModelSeason.WINTER);
+    // Reset the context
+    public void _Reset() {
+         // Initialize models
+        M = new ();
 
 		// Initialize the language
 		_UpdateLanguage(Language.Type.EN);
@@ -151,62 +149,58 @@ public partial class Context : Node {
 		PPStats[b] = inc ? PPStats[b] + 1 : PPStats[b] - 1;
 	}
 
-	// Updates the internal model using data retrieved from the server
-	// This method should only be called from the ModelController directly
-	public void _UdpateModelFromServer(ModelSeason S, Availability A, Capacity C, Demand D) {
-		// Check which model needs to be updated using the given season
-		if(S == ModelSeason.WINTER) {
-			MWinter._UpdateFields(A, C, D, ModelCoherencyState.SHARED);
-		} else {
-			MSummer._UpdateFields(A, C, D, ModelCoherencyState.SHARED);
-		}
+    // Updates the internal model using data retrieved from the server
+    // This method should only be called from the ModelController directly
+    public void _UdpateModelFromServer(Availability A, Capacity C, Demand D) {
+        M._UpdateFields(A, C, D, ModelCoherencyState.SHARED);
 
 		// Signal that the context has been updated 
 		EmitSignal(SignalName.UpdateContext);
 	}
 
-	// Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method
-	public void _UdpateModelFromServer(Model new_M) {
-		_UdpateModelFromServer(new_M._Season, new_M._Availability, new_M._Capacity, new_M._Demand);
-	}
+    // Updates the locally stored capacity for a given building type
+    public void _UpdateModelCapacity(Building B, float cap) {
+        M._ModifyField(ModelCol.Type.CAP, B, cap);
+    }
 
-	// Sets a new value in the internal model struct and sets a modification to be sent to server
-	// This can only be done by adding or removing power plants
-	public void _UpdateModelFromClient(PowerPlant pp, bool inc=true) {
-		// Fetch the old value from the model
-		float cur_cap_w = MWinter._Capacity._GetField(pp.PlantType);
-		float cur_cap_s = MSummer._Capacity._GetField(pp.PlantType);
+    // Updates the locally stored global demand
+    public void _UpdateModelDemand(float demand)  {
+        M._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, demand);
+    }
 
-		// Compute the new capacity by suming the current one with the new addition
-		float added_cap = (inc ? 1.0f : -1.0f) * pp._GetCapacity();
-		float new_cap_w = cur_cap_w + added_cap;
-		float new_cap_s = cur_cap_s + added_cap;
+    // Wrapper for _UdpateModelFromServer that simply unfolds the model struct before calling the update method
+    public void _UdpateModelFromServer(Model new_M) {
+        _UdpateModelFromServer(new_M._Availability, new_M._Capacity, new_M._Demand);
+    }
 
-		// Only the capacity can be updated by player action
-		MWinter._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap_w);
-		MSummer._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap_w);
+    // Sets a new value in the internal model struct and sets a modification to be sent to server
+    // This can only be done by adding or removing power plants
+    public void _UpdateModelFromClient(PowerPlant pp, bool inc=true) {
+        // Fetch the old value from the model
+        float cur_cap = M._Capacity._GetField(pp.PlantType);
+
+        // Compute the new capacity by suming the current one with the new addition
+        float added_cap = (inc ? 1.0f : -1.0f) * pp._GetCapacity();
+        float new_cap = cur_cap + added_cap;
+
+        // Only the capacity can be updated by player action
+        M._ModifyField(ModelCol.Type.CAP, pp.PlantType, new_cap);
 
 		// Signal that the predictions need to be updated
 		EmitSignal(SignalName.UpdatePrediction);
 	}
 
-	// Updates the demand in the model manually
-	// Given a value, we either add or subtract said value to the current demand
-	public void _UpdateModelDemand(float v, bool inc=true, bool winter=true) {
-		// Check if it's winter or summer
-		if(winter) {
-			// Compute the new demand
-			float dem = MWinter._Demand.Base + ((inc ? -1 : 1) * v);
-			MWinter._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
-		} else {
-			// Compute the new demand
-			float dem = MSummer._Demand.Base + ((inc ? -1 : 1) * v);
-			MSummer._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
-		}
-
-		// Signal that the context has been updated 
-		EmitSignal(SignalName.UpdateContext);
-	}
+    // Updates the demand in the model manually
+    // Given a value, we either add or subtract said value to the current demand
+    public void _UpdateModelDemand(float v, bool inc=true, bool winter=true) {
+       
+        // Compute the new demand
+        float dem = M._Demand.Base + ((inc ? -1 : 1) * v);
+        M._ModifyField(ModelCol.Type.DEM, Building.Type.NONE, dem);
+    
+        // Signal that the context has been updated 
+        EmitSignal(SignalName.UpdateContext);
+    }
 
 	// Updates the current ID (should only be done once per game)
 	// Returns the internal value of the game id:
@@ -243,11 +237,10 @@ public partial class Context : Node {
 		// Don't do anything if the languages are the same
 	}
 
-	// Clear the modified columns in each model
-	public void _ClearModified() {
-		MWinter._ClearModified();
-		MSummer._ClearModified();
-	}
+    // Clear the modified columns in each model
+    public void _ClearModified() {
+        M._ClearModified();
+    }
 
 	// Increments the language
 	public void _NextLanguage() {
@@ -289,9 +282,8 @@ public partial class Context : Node {
 	// Getter for the resource manager
 	public ResourceManager _GetRM() => GL._GetRM();
 
-	// Returns whether or not the model is valid
-	public bool _GetModelValidity(ModelSeason S) => 
-		S == ModelSeason.WINTER ? MWinter._IsValid() : MSummer._IsValid();
+    // Returns whether or not the model is valid
+    public bool _GetModelValidity(ModelSeason S) => M._IsValid();
 
 	// Returns the current turn
 	public int _GetTurn() => Turn;
@@ -299,15 +291,14 @@ public partial class Context : Node {
 	// Returns the number of remaining turns
 	public int _GetRemainingTurns() => N_TURNS - Turn;
 
-	// Returns a reference to the game loop
-	public GameLoop _GetGL() => GL;
+    // Returns the current year
+    public int _GetYear() => START_YEAR + (Turn * 3);
 
-	// Returns the requested model
-	public Model _GetModel(ModelSeason S) => 
-		S == ModelSeason.WINTER ? MWinter : MSummer;
+    // Returns a reference to the game loop
+    public GameLoop _GetGL() => GL;
 
-	// Returns both models together (first winter then summer)
-	public (Model, Model) _GetModels() => (MWinter, MSummer);
+    // Returns the requested model
+    public Model _GetModel() => M;
 
 	// Toggles the online/offline modes
 	public bool _ToggleOffline() {
