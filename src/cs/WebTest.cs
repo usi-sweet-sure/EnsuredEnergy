@@ -15,12 +15,12 @@ public partial class WebTest : Node2D
 	private Button button;
 	private TextEdit TE;
 	
-	private Context C;
+	private ServerTest S;
 	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		C = GetNode<Context>("/root/Context");
+		S = GetNode<ServerTest>("/root/ServerTest"); 
 		
 		label = GetNode<Label>("Label");
 		button = GetNode<Button>("Button");
@@ -31,8 +31,6 @@ public partial class WebTest : Node2D
 	
 	private void _OnButtonPressed() {
 		label.Text = TE.Text;
-		C.test = TE.Text;
-		GD.Print(C.test);
 	}
 
 }
