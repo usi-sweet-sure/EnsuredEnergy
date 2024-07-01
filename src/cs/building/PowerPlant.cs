@@ -331,10 +331,7 @@ public partial class PowerPlant : Node2D {
 		MultiplierMax = mult.MaxElements;
 
 		// Check if the multiplier window should be shown
-		if(MultiplierMax <= 1) {
-			//Multiplier.Hide();
-		} else {
-			//Multiplier.Show();
+		if(MultiplierMax > 1) {
 			MultInc.Show();
 			MultDec.Hide();
 		}
@@ -346,7 +343,6 @@ public partial class PowerPlant : Node2D {
 			if(MouseButton.ButtonMask == MouseButtonMask.Left) {
 				Info.Hide();
 				ResRect.Hide();
-				//Multiplier.Hide();
 			}
 		}
 	}
@@ -707,7 +703,6 @@ public partial class PowerPlant : Node2D {
 
 			// Check if the multiplier window should be shown
 			if(MultiplierMax <= 1) {
-				//Multiplier.Hide();
 				HideMultInfo();
 			} else {
 				Multiplier.Show();
