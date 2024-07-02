@@ -2208,12 +2208,6 @@ libraries = {
 }
 autoplay = "Wind"
 
-[node name="Money" parent="World/BuildButton" index="13"]
-offset_left = -286.0
-offset_top = -132.5
-offset_right = -126.0
-offset_bottom = -43.5
-
 [node name="BuildButton2" parent="World" index="15"]
 offset_left = 624.0
 offset_top = 480.0
@@ -2283,12 +2277,6 @@ autoplay = "Sun"
 
 [node name="Hammer" parent="World/BuildButton9" index="0"]
 position = Vector2(308, 205)
-
-[node name="Money" parent="World/BuildButton9" index="13"]
-offset_left = -279.0
-offset_top = -124.0
-offset_right = -119.0
-offset_bottom = -35.0
 
 [node name="Hydro" parent="World" index="26" groups=["PP"]]
 position = Vector2(360, 1982)
