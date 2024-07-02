@@ -10,50 +10,82 @@ using System.Runtime.CompilerServices;
 
 public partial class WebTest : Node2D
 {
-	
-	private Label label1;
-	private Label label2;
-	private Label label3;
-	private Button button1;
 	private TextEdit text1;
 	private TextEdit text2;
+	private TextEdit text3;
+	private TextEdit text4;
+	private TextEdit text5;
 	
-	private ServerTest S;
+	private Button button1;
+	private Button button2;
+	private Button button3;
 	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		S = GetNode<ServerTest>("/root/ServerTest"); 
 		
-		label1 	= GetNode<Label>("Label1");
-		label2 	= GetNode<Label>("Label2");
-		label3 	= GetNode<Label>("Label3");
-		button1 = GetNode<Button>("Button1");
 		text1 	= GetNode<TextEdit>("TextEdit1");
 		text2 	= GetNode<TextEdit>("TextEdit2");
-
-		text1.Text = "2025";
-		text2.Text = "prm_imp_ele";
+		text3 	= GetNode<TextEdit>("TextEdit3");
+		text4 	= GetNode<TextEdit>("TextEdit4");
+		text5 	= GetNode<TextEdit>("TextEdit5");
 		
-		button1.Pressed += _OnButtonPressed;
+		button1 = GetNode<Button>("Button1");
+		button2 = GetNode<Button>("Button2");
+		button3 = GetNode<Button>("Button3");
+		
+		button1.Pressed += NewGame;
+		button2.Pressed += GetContext;
+		button3.Pressed += UpdateParam;
 	}
 	
-	private void _OnButtonPressed() {
+	private void NewGame() {
 
-		string yr = text1.Text;
-		string fld = text2.Text;
-
-		string url = $"https://sure.euler.usi.ch/res.php?mth=ctx&res_id=1&yr={yr}";
-		label1.Text = url;
+		string url = "https://sure.euler.usi.ch/res.php?mth=ins&xsl=0";
 		
 		XmlDocument xmldoc = new XmlDocument();
 		xmldoc.Load(url); 
 
-		XmlNode	row = xmldoc.DocumentElement.FirstChild.FirstChild;
+		XmlNode row = xmldoc.DocumentElement.FirstChild.FirstChild;
 
-		label1.Text = row.Attributes["yr"].Value;
-		label2.Text = row.Attributes[fld].Value;
-		label3.Text = row.OuterXml;
+		text1.Text = row.Attributes["res_id"].Value;
+		text2.Text = row.Attributes["yr"].Value;
+		
+		text5.Text = row.OuterXml;
+	}
+	
+
+	private void GetContext() {
+
+		string res_id 	= text1.Text;
+		string yr 		= text2.Text;
+	
+		string url = $"https://sure.euler.usi.ch/res.php?mth=ctx&res_id={res_id}&yr={yr}";
+		
+		XmlDocument xmldoc = new XmlDocument();
+		xmldoc.Load(url); 
+
+		XmlNode row = xmldoc.DocumentElement.FirstChild.FirstChild;
+
+		text5.Text = row.OuterXml;
+	}
+	
+	
+	private void UpdateParam() {
+
+		string res_id 	= text1.Text;
+		string yr 		= text2.Text;
+		string prm_id 	= text3.Text;
+		string tj 		= text4.Text;
+	
+		string url = $"https://sure.euler.usi.ch/prm.php?mth=ups&res_id={res_id}&yr={yr}&prm_id={prm_id}&tj={tj}&xsl=0";
+
+		XmlDocument xmldoc = new XmlDocument();
+		xmldoc.Load(url); 
+
+		XmlNode row = xmldoc.DocumentElement.FirstChild.FirstChild;
+
+		text5.Text = row.OuterXml;
 	}
 
 }
