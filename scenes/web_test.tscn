@@ -21,11 +21,11 @@ offset_bottom = 229.0
 text = "Click here"
 
 [node name="TextEdit1" type="TextEdit" parent="."]
-offset_left = 70.0
-offset_top = 89.0
-offset_right = 222.0
-offset_bottom = 151.0
-text = "2025"
+offset_left = 68.0
+offset_top = 57.0
+offset_right = 249.0
+offset_bottom = 107.0
+text = "TextEdit1"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 76.0
@@ -33,3 +33,17 @@ offset_top = 295.0
 offset_right = 240.0
 offset_bottom = 318.0
 text = "Label2"
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = 70.0
+offset_top = 123.0
+offset_right = 574.0
+offset_bottom = 173.0
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 78.0
+offset_top = 337.0
+offset_right = 1630.0
+offset_bottom = 799.0
+text = "Label3"
+autowrap_mode = 1
