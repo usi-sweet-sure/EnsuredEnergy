@@ -25,6 +25,8 @@ public partial class WebTest : Node2D
 		label = GetNode<Label>("Label");
 		button = GetNode<Button>("Button");
 		TE = GetNode<TextEdit>("TextEdit");
+
+		label.Text = "hello";
 		
 		button.Pressed += _OnButtonPressed;
 	}
