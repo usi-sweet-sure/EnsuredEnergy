@@ -18,6 +18,10 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Xml;
+using System.Xml.Linq;
+using System.Linq;
+using System.Collections.Generic; 
 
 // Represents a Power Plant object in the game
 public partial class PowerPlant : Node2D {
@@ -128,6 +132,9 @@ public partial class PowerPlant : Node2D {
 	private Color GREEN = new Color(0.3f, 1f, 0.1f, 1.0f);
 	
 	private string AnimName;
+	
+	private Dictionary<string, string> PlantNameToModel; 
+	private Dictionary<string, string> PlantNameToID; 
 
 	// Children Nodes
 	private Sprite2D Sprite;
@@ -263,6 +270,28 @@ public partial class PowerPlant : Node2D {
 		
 		// Fetch the text controller
 		TC = GetNode<TextController>("/root/TextController");
+		
+		PlantNameToModel = new Dictionary<string, string>(){{"gas", "cnv_gas_ele"},
+								{"nuclear", "cnv_nuc_ele"},
+								{"river", "cnv_riv_hyd"},
+								{"hydro", "cnv_res_hyd"},
+								{"waste", "cnv_wst_ele"},
+								{"biomass", "cnv_woo_ele"},
+								{"solar", "cnv_sol_ele"},
+								{"wind", "cnv_wnd_ele"},
+								{"pump", "cnv_pmp_ele"},
+								{"geothermal", "prm_dom_geo"}, }; 
+								
+		PlantNameToID = new Dictionary<string, string>(){{"gas", "186"},
+								{"nuclear", "151"},
+								{"river", "162"},
+								{"hydro", "163"},
+								{"waste", "189"},
+								{"biomass", "192"},
+								{"solar", "170"},
+								{"wind", "171"},
+								{"pump", "379"},
+								{"geothermal", "246"}, }; 
 
 		// the delete button should only be shown on new constructions
 		Delete.Hide();
@@ -400,6 +429,17 @@ public partial class PowerPlant : Node2D {
 			BiodiversityImpact *= mult.Biodiversity;
 			ProductionCost = (int)(ProductionCost * mult.ProductionCost);
 			EnergyCapacity += mult.Capacity;
+			
+			string model_att = PlantNameToModel[PlantType.ToString()];
+			string model_id = PlantNameToID[PlantType.ToString()];
+			XmlNode row = C.StartModelXML.DocumentElement.FirstChild.FirstChild;
+		
+		
+			float val = (float.Parse(row.Attributes[model_att].Value) + mult.Capacity * 1000);
+			if(PlantType.ToString() == "Hydro" || PlantType.ToString() == "River") {
+				val *= 2;
+			}
+			C.UpdateParam(model_id, val);
 
 			// Propagate update to the ui
 			_UpdatePlantData();
@@ -584,6 +624,8 @@ public partial class PowerPlant : Node2D {
 	public void _SetPlantFromConfig(Building bt) {
 		// Sanity check: only reset the plant if it's alive
 		if(IsAlive) {
+			
+			
 			// Read out the given plant's config
 			PowerPlantConfigData PPCD = (PowerPlantConfigData)CC._ReadConfig(Config.Type.POWER_PLANT, bt.ToString());
 
@@ -593,6 +635,33 @@ public partial class PowerPlant : Node2D {
 			// Propagate change to the UI
 			_UpdatePlantData();
 		}
+	}
+	
+	public int GetModelCapacity(Building pt) {
+		string res_id 	= "1";
+		string yr 		= "2022";
+	
+		//string url = $"https://sure.euler.usi.ch/res.php?mth=ctx&res_id={res_id}&yr={yr}";
+		
+		
+		//C.ModelXML.Load(url); 
+
+		XmlNode row = C.StartModelXML.DocumentElement.FirstChild.FirstChild;
+		GD.Print(pt);
+		if (PlantNameToModel.ContainsKey(pt.ToString())) {
+			string model_att = PlantNameToModel[pt.ToString()];
+			if(pt.ToString() == "nuclear") {
+				return (int)(float.Parse(row.Attributes[model_att].Value) / 1000 / 3);
+			}
+			if(pt.ToString() == "hydro" || pt.ToString() == "river") {
+				return (int)(float.Parse(row.Attributes[model_att].Value) / 1000 / 2);
+			}
+			GD.Print(float.Parse(row.Attributes[model_att].Value));
+			return (int)(float.Parse(row.Attributes[model_att].Value) / 1000);
+		} else {
+			return 0;
+		}
+		
 	}
 
 	// The availability of a plant is set from the data retrieved by the model
@@ -803,7 +872,7 @@ public partial class PowerPlant : Node2D {
 			true, 
 			PPCD.Pollution,
 			PPCD.ProductionCost,
-			PPCD.Capacity,
+			GetModelCapacity(PlantType),
 			PPCD.Availability_W,
 			PPCD.Availability_S
 		);
