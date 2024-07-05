@@ -159,13 +159,13 @@ Energy
             </text>
             <text id="money_good">Du hast eine Wirtschaftskrise verhindert</text>
             <text id="money_bad">Du hast die Wirtschaft zerstört</text>
-            <text id="money_loan">You had to take a loan</text>
+            <text id="money_loan">Du musstest einen Kredit aufnehmen</text>
             <text id="support">Finale Bevölkerungsunterstützung</text>
             <text id="pollution_good">Du hast im Jahr 2050 Netto-Null erreicht</text>
             <text id="pollution_bad">Du hast im Jahr 2050 Netto-Null nicht erreicht</text>
             <text id="env">Punktzahl Umwelt
                 
             </text>
-            <text id="import">of energy in Winter is imported</text>
+            <text id="import">der Energie im Winter wird importiert</text>
         </group>
 </db>

@@ -546,7 +546,7 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Float"
 libraries = {
 "": SubResource("AnimationLibrary_b6dub")
 }
+autoplay = "Float"

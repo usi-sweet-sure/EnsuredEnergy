@@ -303,6 +303,9 @@ public partial class ResourceManager : Node {
 				SM._UpdateSupport((int)e.Value);
 				Debug.Print("Support: " + SM._GetSupportValue().ToString());
 				break;
+			case ResourceType.GAS_UPGRADE:
+				C._GetGL()._ApplyEffect(e);
+				break;
 			default:
 			 return;
 		}

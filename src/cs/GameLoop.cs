@@ -125,6 +125,7 @@ public partial class GameLoop : Node2D {
 		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Geothermal"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Gas"));
 		
 
 		// Fill in build buttons
@@ -261,6 +262,11 @@ public partial class GameLoop : Node2D {
 				PP._OverloadBuildTime(MO.SolarBuildTime);
 			}
 		}
+		if(PP.PlantType.type == Building.Type.GAS) {
+			if(MO.GasUpgrade != -1) {
+				PP._OverloadUpgrade(MO.GasUpgrade);
+			}
+		}
 	}
 
 	// Applies a given effect
@@ -291,6 +297,9 @@ public partial class GameLoop : Node2D {
 			break;
 			case ResourceType.SOLAR_BUILD_TIME:
 				MO.SolarBuildTime = (int)e.Value;
+			break;
+			case ResourceType.GAS_UPGRADE:
+				MO.GasUpgrade = (int)e.Value;
 			break;
 
 			default:
@@ -756,6 +765,7 @@ public partial class GameLoop : Node2D {
 		PowerPlants.Add(GetNode<PowerPlant>("World/Solar"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Wind"));
 		PowerPlants.Add(GetNode<PowerPlant>("World/Geothermal"));
+		PowerPlants.Add(GetNode<PowerPlant>("World/Gas"));
 
 		// Fill in build buttons
 		BBs.Add(GetNode<BuildButton>("World/BuildButton"));

@@ -838,7 +838,6 @@ position = Vector2(-28, 0)
 texture = ExtResource("7_2qq7a")
 
 [node name="Multiplier" type="ColorRect" parent="BuildInfo/EnergyContainer"]
-visible = false
 z_index = 1
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -870,6 +869,7 @@ scale = Vector2(0.487402, 1)
 texture = ExtResource("5_prjon")
 
 [node name="Inc" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
+visible = false
 layout_mode = 0
 offset_left = 106.333
 offset_top = 33.0
@@ -900,6 +900,7 @@ position = Vector2(29.6667, 34)
 texture = ExtResource("17_8erhq")
 
 [node name="Dec" type="TextureButton" parent="BuildInfo/EnergyContainer/Multiplier"]
+visible = false
 layout_mode = 0
 offset_left = 104.5
 offset_top = 99.3333

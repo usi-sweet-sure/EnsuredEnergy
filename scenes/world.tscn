@@ -369,6 +369,9 @@ texture = ExtResource("19_tppcd")
 position = Vector2(3456, 1656)
 texture = ExtResource("20_0ha37")
 
+[node name="Gas" parent="." instance=ExtResource("7_6x5m2")]
+position = Vector2(2776, 160)
+
 [editable path="Nuclear3"]
 [editable path="Nuclear2"]
 [editable path="Nuclear"]

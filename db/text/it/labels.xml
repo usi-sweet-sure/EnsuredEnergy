@@ -159,7 +159,7 @@ Energy
             </text>
             <text id="money_good">Avete evitato una crisi economica</text>
             <text id="money_bad">Avete distrutto l'economia</text>
-            <text id="money_loan">You had to take a loan</text>
+            <text id="money_loan">Hai dovuto chiedere un prestito</text>
             <text id="support">Sostegno della popolazione finale
     
             </text>
@@ -168,6 +168,6 @@ Energy
             <text id="env">Punteggio ambientale
                 
             </text>
-            <text id="import">of energy in Winter is imported</text>
+            <text id="import">dell'energia in inverno è importata</text>
         </group>
 </db>

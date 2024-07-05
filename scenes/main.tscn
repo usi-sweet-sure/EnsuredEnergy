@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://g58p7rxvcdik"]
+[gd_scene load_steps=87 format=3 uid="uid://g58p7rxvcdik"]
 
 [ext_resource type="Script" path="res://src/cs/GameLoop.cs" id="1_4jam2"]
 [ext_resource type="PackedScene" uid="uid://ba56oxmvcxpos" path="res://scenes/world.tscn" id="1_prp6q"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://cbqebssavvctr" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0013_Geothermal.png" id="26_wcdn1"]
 [ext_resource type="Texture2D" uid="uid://bxet6f7y04qar" path="res://assets/new Power plants/Power plants/Power_Plants_4-water-Hydrolic-River-2.png" id="32_dhm8b"]
 [ext_resource type="Texture2D" uid="uid://8ayrv8fy7apy" path="res://assets/new Power plants/Power plants/Power_Plants_4-water-Hydrolic-River-3.png" id="33_1wxp6"]
+[ext_resource type="Texture2D" uid="uid://cigv4d5ij1ymx" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0011_Gas.png" id="34_jc6ff"]
 [ext_resource type="PackedScene" uid="uid://cuuj2s4h1588i" path="res://scenes/audio.tscn" id="34_smnob"]
 
 [sub_resource type="Animation" id="Animation_k4it7"]
@@ -1918,10 +1919,10 @@ HasAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Nuclear3" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_abmly")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Nuclear3" index="2"]
 texture = ExtResource("4_e6lsk")
@@ -1978,10 +1979,10 @@ HasAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Nuclear2" index="0"]
 root_node = NodePath("../Sprite/Smoke")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_1shh4")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Nuclear2" index="2"]
 texture = ExtResource("4_e6lsk")
@@ -2026,10 +2027,10 @@ HasAnimation = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Nuclear" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_3k1tp")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Nuclear" index="2"]
 texture = ExtResource("4_e6lsk")
@@ -2100,10 +2101,10 @@ _PlantType = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Waste" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_pvye6")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Waste" index="2"]
 texture = ExtResource("5_vx3tb")
@@ -2130,10 +2131,10 @@ _PlantType = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Biomass" index="0"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_tgvt4")
 }
+autoplay = "Smoke"
 
 [node name="Sprite" parent="World/Biomass" index="2"]
 texture = ExtResource("6_q3df2")
@@ -2203,10 +2204,10 @@ texture = SubResource("AtlasTexture_obbpa")
 offset = Vector2(3, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Wind" index="12"]
-autoplay = "Wind"
 libraries = {
 "": SubResource("AnimationLibrary_bm0fl")
 }
+autoplay = "Wind"
 
 [node name="BuildButton2" parent="World" index="15"]
 offset_left = 624.0
@@ -2270,13 +2271,19 @@ energy = 0.0
 texture = SubResource("GradientTexture2D_mhl0d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Solar" index="12"]
-autoplay = "Sun"
 libraries = {
 "": SubResource("AnimationLibrary_1rsdt")
 }
+autoplay = "Sun"
 
 [node name="Hammer" parent="World/BuildButton9" index="0"]
 position = Vector2(308, 205)
+
+[node name="Money" parent="World/BuildButton9" index="13"]
+offset_left = 57.0
+offset_top = 68.0
+offset_right = 217.0
+offset_bottom = 157.0
 
 [node name="Hydro" parent="World" index="26" groups=["PP"]]
 position = Vector2(360, 1982)
@@ -2343,10 +2350,10 @@ texture = ExtResource("24_xuhq5")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Hydro" index="19"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_7anxu")
 }
+autoplay = "Water"
 
 [node name="Pump" parent="World" index="29" groups=["PP"]]
 _PlantType = 0
@@ -2391,10 +2398,10 @@ texture = ExtResource("26_fkwhx")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/Pump" index="20"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_lb77a")
 }
+autoplay = "Water"
 
 [node name="River" parent="World" index="30" groups=["PP"]]
 HasAnimation = true
@@ -2452,10 +2459,10 @@ flip_h = true
 flip_v = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/River" index="17"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_5k73m")
 }
+autoplay = "Water"
 
 [node name="River2" parent="World" index="31" groups=["PP"]]
 scale = Vector2(0.8, 0.8)
@@ -2469,10 +2476,10 @@ texture = ExtResource("9_agn8w")
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="World/River2" index="14"]
-autoplay = "Water"
 libraries = {
 "": SubResource("AnimationLibrary_a8121")
 }
+autoplay = "Water"
 
 [node name="Water3" type="Sprite2D" parent="World/River2" index="15"]
 modulate = Color(1, 1, 1, 0.662745)
@@ -2497,6 +2504,18 @@ modulate = Color(1, 1, 1, 0.709804)
 position = Vector2(70.4502, 104.5)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("33_1wxp6")
+
+[node name="Sprite" parent="World/Gas" index="1"]
+texture = ExtResource("34_jc6ff")
+
+[node name="Multiplier" parent="World/Gas/BuildInfo/EnergyContainer" index="2"]
+visible = true
+
+[node name="Inc" parent="World/Gas/BuildInfo/EnergyContainer/Multiplier" index="1"]
+visible = false
+
+[node name="Dec" parent="World/Gas/BuildInfo/EnergyContainer/Multiplier" index="2"]
+visible = false
 
 [node name="UI" parent="." instance=ExtResource("2_d60f5")]
 follow_viewport_enabled = false
@@ -2590,4 +2609,5 @@ bus = &"Sound"
 [editable path="World/Pump"]
 [editable path="World/River"]
 [editable path="World/River2"]
+[editable path="World/Gas"]
 [editable path="Audio"]

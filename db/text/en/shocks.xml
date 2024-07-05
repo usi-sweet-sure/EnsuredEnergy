@@ -37,7 +37,7 @@
         <reaction id="1">
             <text>Turn on the spare gas plant 
 +10 Pollution 🏭</text>
-            <effect field="env" value="10"/>
+            <effect field="gas_upgrade" value="2"/>
         </reaction>
         <reaction id="2">
             <text>Import electricity from neighbouring countries 
@@ -66,7 +66,7 @@
         <reaction id="1">
             <text>Turn on the spare gas plant
 +10 Pollution 🏭</text>
-            <effect field="env" value="10"/>
+            <effect field="gas_upgrade" value="2"/>
         </reaction>
         <reaction id="2">
             <text>Import electricity from neighbouring countries 
