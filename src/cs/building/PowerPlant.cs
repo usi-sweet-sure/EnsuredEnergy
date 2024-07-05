@@ -637,17 +637,8 @@ public partial class PowerPlant : Node2D {
 		}
 	}
 	
+	// Get capacity from the model's xml
 	public int GetModelCapacity(Building pt) {
-		string res_id 	= "1";
-		string yr 		= "2022";
-	
-		//string url = $"https://sure.euler.usi.ch/res.php?mth=ctx&res_id={res_id}&yr={yr}";
-		
-		
-		//C.ModelXML.Load(url); 
-
-		XmlNode row = C.StartModelXML.DocumentElement.FirstChild.FirstChild;
-		GD.Print(pt);
 		if (PlantNameToModel.ContainsKey(pt.ToString())) {
 			string model_att = PlantNameToModel[pt.ToString()];
 			if(pt.ToString() == "nuclear") {
@@ -656,7 +647,6 @@ public partial class PowerPlant : Node2D {
 			if(pt.ToString() == "hydro" || pt.ToString() == "river") {
 				return (int)(float.Parse(row.Attributes[model_att].Value) / 1000 / 2);
 			}
-			GD.Print(float.Parse(row.Attributes[model_att].Value));
 			return (int)(float.Parse(row.Attributes[model_att].Value) / 1000);
 		} else {
 			return 0;

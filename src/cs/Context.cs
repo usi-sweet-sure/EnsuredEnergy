@@ -338,8 +338,8 @@ public partial class Context : Node {
 	// Getter for the demand
 	public (float, float) _GetDemand() => DemandEstimate;
 	
+	// Load the model's XML
 	private void _GetModelXML() {
-
 		string res_id 	= "1";
 		string yr 		= "2022";
 	
@@ -347,29 +347,18 @@ public partial class Context : Node {
 		
 		StartModelXML.Load(url); 
 		ModelXML.Load(url); 
-
-		XmlNode row = StartModelXML.DocumentElement.FirstChild.FirstChild;
-
-		//text5.Text = row.OuterXml;
 	}
 	
-	
+	// Update a parameter on the current turn
 	public void UpdateParam(string prm, float val) {
-
 		string res_id 	= "1";
-		GD.Print(Turn);
 		string yr 		= (2022 + ((Turn + 1) * 3)).ToString();
 		string prm_id 	= prm.ToString();
 		string tj 		= val.ToString();
 	
 		string url = $"https://sure.euler.usi.ch/prm.php?mth=ups&res_id={res_id}&yr={yr}&prm_id={prm_id}&tj={tj}&xsl=0";
 
-		
-		ModelXML.Load(url); 
-
-		XmlNode row = ModelXML.DocumentElement.FirstChild.FirstChild;
-
-		//text5.Text = row.OuterXml;
+		ModelXML.Load(url);
 	}
 	
 
