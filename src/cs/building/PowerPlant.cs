@@ -639,6 +639,8 @@ public partial class PowerPlant : Node2D {
 	
 	// Get capacity from the model's xml
 	public int GetModelCapacity(Building pt) {
+		XmlNode row = C.StartModelXML.DocumentElement.FirstChild.FirstChild;
+		
 		if (PlantNameToModel.ContainsKey(pt.ToString())) {
 			string model_att = PlantNameToModel[pt.ToString()];
 			if(pt.ToString() == "nuclear") {
