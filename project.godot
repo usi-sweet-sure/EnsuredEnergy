@@ -12,12 +12,16 @@ config_version=5
 
 config/name="Ensured_Energy"
 run/main_scene="res://scenes/main.tscn"
-config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://assets/UI Elements/Icon-Import.png"
 
 [audio]
 
 driver/mix_rate=48000
+
+[autoload]
+
+Context1="*res://src/gdscript/Context1.gd"
 
 [debug]
 
