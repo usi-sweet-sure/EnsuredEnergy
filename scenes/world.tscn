@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://ba56oxmvcxpos"]
+[gd_scene load_steps=21 format=3 uid="uid://ba56oxmvcxpos"]
 
 [ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/MAP-BG.png" id="1_prbrp"]
-[ext_resource type="Script" path="res://src/cs/building/BuildButton.cs" id="4_mo62v"]
 [ext_resource type="Texture2D" uid="uid://dnuq60vou7jic" path="res://assets/Mountains/MAP-mountains_0000_A.png" id="6_4yo2s"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="7_6x5m2"]
 [ext_resource type="Texture2D" uid="uid://dk8ammfufvvq8" path="res://assets/Mountains/MAP-mountains_0001_A.png" id="7_oigb5"]
@@ -47,9 +46,6 @@ texture = ExtResource("15_mndp2")
 
 [node name="Nuclear3" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(1241, -398)
-PlantName = "Nuclear"
-_PlantType = 4
-NUCLEAR_LIFE_SPAN = 9
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Nuclear3/PreviewInfo" index="3"]
@@ -65,9 +61,6 @@ grow_vertical = 1
 
 [node name="Nuclear2" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(1504, -103)
-PlantName = "Nuclear"
-_PlantType = 4
-NUCLEAR_LIFE_SPAN = 6
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Nuclear2/PreviewInfo" index="3"]
@@ -83,9 +76,6 @@ grow_vertical = 1
 
 [node name="Nuclear" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(953, 215)
-PlantName = "Nuclear"
-_PlantType = 4
-NUCLEAR_LIFE_SPAN = 3
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Nuclear/PreviewInfo" index="3"]
@@ -103,7 +93,6 @@ grow_vertical = 1
 
 [node name="Waste" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(184, 512)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Waste/PreviewInfo" index="3"]
@@ -123,7 +112,6 @@ texture = ExtResource("6_4yo2s")
 
 [node name="Biomass" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(-712, 1296)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Biomass/PreviewInfo" index="3"]
@@ -139,7 +127,6 @@ grow_vertical = 1
 
 [node name="Wind" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(-636, 439)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Wind/PreviewInfo" index="3"]
@@ -159,7 +146,6 @@ offset_top = -456.0
 offset_right = 2678.0
 offset_bottom = -55.0
 theme = SubResource("Theme_mklkc")
-script = ExtResource("4_mo62v")
 
 [node name="Mountain6" type="Sprite2D" parent="."]
 position = Vector2(2930, 777)
@@ -170,14 +156,12 @@ offset_left = 432.0
 offset_top = 456.0
 offset_right = 1118.0
 offset_bottom = 856.0
-script = ExtResource("4_mo62v")
 
 [node name="BuildButton3" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 1912.0
 offset_top = 568.0
 offset_right = 2598.0
 offset_bottom = 968.0
-script = ExtResource("4_mo62v")
 
 [node name="BuildButton4" parent="." instance=ExtResource("16_pnu0i")]
 visible = false
@@ -186,40 +170,33 @@ offset_top = 890.0
 offset_right = 3649.0
 offset_bottom = 1290.0
 texture_normal = ExtResource("11_3jxcs")
-script = ExtResource("4_mo62v")
-AllowHydro = true
 
 [node name="BuildButton5" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = -384.0
 offset_top = 800.0
 offset_right = 302.0
 offset_bottom = 1200.0
-script = ExtResource("4_mo62v")
 
 [node name="BuildButton6" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = -400.0
 offset_top = 1424.0
 offset_right = 286.0
 offset_bottom = 1824.0
-script = ExtResource("4_mo62v")
 
 [node name="BuildButton7" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 3168.0
 offset_top = 952.0
 offset_right = 3854.0
 offset_bottom = 1352.0
-script = ExtResource("4_mo62v")
 
 [node name="BuildButton8" parent="." instance=ExtResource("16_pnu0i")]
 offset_left = 1136.0
 offset_top = 848.0
 offset_right = 1822.0
 offset_bottom = 1248.0
-script = ExtResource("4_mo62v")
 
 [node name="Solar" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(2864, 1568)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Solar/PreviewInfo" index="3"]
@@ -250,8 +227,6 @@ pivot_offset = Vector2(300, 200)
 texture_normal = ExtResource("13_urnb4")
 texture_pressed = ExtResource("13_urnb4")
 texture_hover = ExtResource("13_urnb4")
-script = ExtResource("4_mo62v")
-AllowHydro = true
 
 [node name="BuildingInfo" parent="BuildButton9" index="6"]
 offset_left = -84.0
@@ -267,9 +242,14 @@ scale = Vector2(1, 1)
 position = Vector2(-314, -307)
 scale = Vector2(1, 1)
 
+[node name="Money" parent="BuildButton9" index="13"]
+offset_left = 57.0
+offset_top = 68.0
+offset_right = 217.0
+offset_bottom = 157.0
+
 [node name="Hydro" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(384, 1864)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Hydro/PreviewInfo" index="3"]
@@ -293,7 +273,6 @@ texture = ExtResource("10_c3oti")
 
 [node name="Pump" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(1757, 1602)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Pump/PreviewInfo" index="3"]
@@ -312,7 +291,6 @@ position = Vector2(42, -66)
 
 [node name="River" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(2096, 2088)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="River/PreviewInfo" index="3"]
@@ -328,7 +306,6 @@ grow_vertical = 1
 
 [node name="River2" parent="." instance=ExtResource("7_6x5m2")]
 position = Vector2(2816, 864)
-PlantName = "Gas"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="River2/PreviewInfo" index="3"]
@@ -355,7 +332,6 @@ offset_left = -344.0
 offset_top = 2400.0
 offset_right = 342.0
 offset_bottom = 2800.0
-script = ExtResource("4_mo62v")
 
 [node name="Forest6" type="Sprite2D" parent="."]
 position = Vector2(-627, 2385)
@@ -390,6 +366,16 @@ position = Vector2(2776, 160)
 [editable path="BuildButton9/Biomass"]
 [editable path="BuildButton9/River"]
 [editable path="BuildButton9/Pump"]
+[editable path="BuildButton9/BuildMenu"]
+[editable path="BuildButton9/BuildMenu/Container/Solar"]
+[editable path="BuildButton9/BuildMenu/Container/Wind"]
+[editable path="BuildButton9/BuildMenu/Container/Tree"]
+[editable path="BuildButton9/BuildMenu/Container/Hydro"]
+[editable path="BuildButton9/BuildMenu/Container/Gas"]
+[editable path="BuildButton9/BuildMenu/Container/Waste"]
+[editable path="BuildButton9/BuildMenu/Container/Biomass"]
+[editable path="BuildButton9/BuildMenu/Container/River"]
+[editable path="BuildButton9/BuildMenu/Container/Pump"]
 [editable path="Hydro"]
 [editable path="Pump"]
 [editable path="River"]

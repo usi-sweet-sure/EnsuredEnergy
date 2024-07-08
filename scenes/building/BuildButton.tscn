@@ -1,9 +1,10 @@
-[gd_scene load_steps=78 format=3 uid="uid://banvqdghwoj3p"]
+[gd_scene load_steps=80 format=3 uid="uid://banvqdghwoj3p"]
 
 [ext_resource type="Texture2D" uid="uid://cscbpxipqlaqj" path="res://assets/new Power plants/Power plants/Power_Plants_4-Free-Slot.png" id="1_h0npr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="1_wi5q3"]
 [ext_resource type="Texture2D" uid="uid://bjgxdwbo7ji5p" path="res://assets/UI Elements/Icon-Hammer.png" id="2_1brcf"]
 [ext_resource type="BitMap" uid="uid://ci6ene0gm5o8m" path="res://assets/new Power plants/Power plants/Power_Plants_4-Free-Slot_clickmask.png" id="2_m3jap"]
+[ext_resource type="Script" path="res://src/gdscript/building/BuildButton.gd" id="3_8jyvl"]
 [ext_resource type="Texture2D" uid="uid://blskwje2kl2w5" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0000_Smoke-1.png" id="4_xclwe"]
 [ext_resource type="Texture2D" uid="uid://cigv4d5ij1ymx" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0011_Gas.png" id="5_4jvt0"]
 [ext_resource type="Texture2D" uid="uid://cehdhadcxkehx" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0001_Smoke-2.png" id="5_s6f5j"]
@@ -39,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://ca5ev88u31iqa" path="res://assets/UI Elements/Icon-Solar.png" id="27_7gwym"]
 [ext_resource type="Texture2D" uid="uid://bbnupxdtp78l5" path="res://assets/UI Elements/Icon-Wind.png" id="28_unkh5"]
 [ext_resource type="AudioStream" uid="uid://bh4vh46r7qk7l" path="res://assets/Sounds/Build Loop 11.wav" id="29_8u4wm"]
+[ext_resource type="PackedScene" uid="uid://i802aa7uc538" path="res://scenes/building/BuildMenu.tscn" id="41_kwlf5"]
 
 [sub_resource type="Animation" id="Animation_q0r05"]
 length = 0.001
@@ -2057,6 +2059,7 @@ texture_hover = ExtResource("1_h0npr")
 texture_click_mask = ExtResource("2_m3jap")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("3_8jyvl")
 
 [node name="Hammer" type="Sprite2D" parent="."]
 position = Vector2(335, 217)
@@ -2067,7 +2070,6 @@ offset = Vector2(18, -15)
 [node name="Gas" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(369, 78)
-HasAnimation = true
 
 [node name="Price" parent="Gas/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2086,14 +2088,11 @@ texture = ExtResource("5_4jvt0")
 [node name="NameRect" parent="Gas" index="3"]
 visible = false
 
-[node name="HoverArea" parent="Gas" index="8"]
-visible = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gas"]
-autoplay = "smoke"
 libraries = {
 "": SubResource("AnimationLibrary_wuk7f")
 }
+autoplay = "smoke"
 
 [node name="Cloud" type="Sprite2D" parent="Gas"]
 modulate = Color(0.333333, 0.333333, 0.333333, 0.784314)
@@ -2135,8 +2134,6 @@ texture = ExtResource("6_3vcfd")
 [node name="Hydro" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(370, 80)
-HasAnimation = true
-_PlantType = 0
 
 [node name="Price" parent="Hydro/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2176,17 +2173,14 @@ position = Vector2(-34.224, 104.091)
 texture = ExtResource("11_4yjee")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hydro"]
-autoplay = "water"
 libraries = {
 "": SubResource("AnimationLibrary_dd3cj")
 }
+autoplay = "water"
 
 [node name="Solar" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(431, 151)
-HasAnimation = true
-HasMultSprite = true
-_PlantType = 2
 
 [node name="Price" parent="Solar/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2223,15 +2217,14 @@ texture = ExtResource("12_lwhr4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Solar"]
 root_node = NodePath("../Sprite")
-autoplay = "sun"
 libraries = {
 "": SubResource("AnimationLibrary_p040j")
 }
+autoplay = "sun"
 
 [node name="Tree" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(431, 151)
-_PlantType = 3
 
 [node name="Price" parent="Tree/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2250,9 +2243,6 @@ texture = ExtResource("13_buqe2")
 [node name="Wind" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(431, 151)
-HasAnimation = true
-HasMultSprite = true
-_PlantType = 5
 
 [node name="Price" parent="Wind/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2351,12 +2341,13 @@ position = Vector2(165, 13.75)
 texture = ExtResource("15_ipg12")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wind"]
-autoplay = "spin"
 libraries = {
 "": SubResource("AnimationLibrary_dcpmn")
 }
+autoplay = "spin"
 
 [node name="BuildingInfo" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -2488,9 +2479,6 @@ centered = false
 [node name="Waste" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(431, 151)
-HasAnimation = true
-PlantName = "Waste"
-_PlantType = 6
 
 [node name="Price" parent="Waste/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2538,16 +2526,14 @@ texture = ExtResource("6_3vcfd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Waste"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_5ewng")
 }
+autoplay = "Smoke"
 
 [node name="Biomass" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(431, 151)
-HasAnimation = true
-_PlantType = 7
 
 [node name="Price" parent="Biomass/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2590,16 +2576,14 @@ texture = ExtResource("5_s6f5j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Biomass"]
 root_node = NodePath("../Sprite")
-autoplay = "Smoke"
 libraries = {
 "": SubResource("AnimationLibrary_rrkkx")
 }
+autoplay = "Smoke"
 
 [node name="River" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(431, 151)
-HasAnimation = true
-_PlantType = 8
 
 [node name="Price" parent="River/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2637,15 +2621,14 @@ texture = ExtResource("21_g2ord")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="River"]
 root_node = NodePath("../Sprite")
-autoplay = "water"
 libraries = {
 "": SubResource("AnimationLibrary_flnhf")
 }
+autoplay = "water"
 
 [node name="Pump" parent="." instance=ExtResource("1_wi5q3")]
 visible = false
 position = Vector2(431, 151)
-_PlantType = 9
 
 [node name="Price" parent="Pump/PreviewInfo" index="3"]
 layout_mode = 0
@@ -2686,10 +2669,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = 68.0
-offset_right = 217.0
-offset_bottom = 157.0
+offset_left = -286.0
+offset_top = -132.5
+offset_right = -126.0
+offset_bottom = -43.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -2782,6 +2765,11 @@ position = Vector2(141.429, -150)
 scale = Vector2(1.84021, 1.6984)
 texture = ExtResource("6_3vcfd")
 
+[node name="BuildMenu" parent="." instance=ExtResource("41_kwlf5")]
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="BuildMenu/CloseButton" to="." method="_on_close_button_pressed"]
+
 [editable path="Gas"]
 [editable path="Hydro"]
 [editable path="Solar"]
@@ -2791,3 +2779,13 @@ texture = ExtResource("6_3vcfd")
 [editable path="Biomass"]
 [editable path="River"]
 [editable path="Pump"]
+[editable path="BuildMenu"]
+[editable path="BuildMenu/Container/Solar"]
+[editable path="BuildMenu/Container/Wind"]
+[editable path="BuildMenu/Container/Tree"]
+[editable path="BuildMenu/Container/Hydro"]
+[editable path="BuildMenu/Container/Gas"]
+[editable path="BuildMenu/Container/Waste"]
+[editable path="BuildMenu/Container/Biomass"]
+[editable path="BuildMenu/Container/River"]
+[editable path="BuildMenu/Container/Pump"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://ciphd0cmpslrn"]
 
-[ext_resource type="Script" path="res://src/cs/ui/Tutorial.cs" id="1_xyv1m"]
+[ext_resource type="Script" path="res://src/gdscript/hud/tutorial.gd" id="1_le0k1"]
 [ext_resource type="Texture2D" uid="uid://di8qa6b8ro5rr" path="res://assets/UI Elements/Paper-Small.png" id="2_ob33a"]
 [ext_resource type="Texture2D" uid="uid://03lloca0uata" path="res://assets/Elements/ARROW INFO – 1.png" id="3_xv1gs"]
 [ext_resource type="Texture2D" uid="uid://mwohu8ubla1b" path="res://assets/UpgradeSprite.png" id="4_yf1o7"]
@@ -48,7 +48,7 @@ _data = {
 }
 
 [node name="Tutorial" type="CanvasLayer"]
-script = ExtResource("1_xyv1m")
+script = ExtResource("1_le0k1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -57.0
@@ -539,7 +539,7 @@ text = "Congratulations ! You have been designated to [b]manage the power grid[/
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="NextButton" type="Button" parent="MarginContainer"]
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
@@ -550,3 +550,5 @@ libraries = {
 "": SubResource("AnimationLibrary_b6dub")
 }
 autoplay = "Float"
+
+[connection signal="pressed" from="MarginContainer/NextButton" to="." method="_on_next_button_pressed"]

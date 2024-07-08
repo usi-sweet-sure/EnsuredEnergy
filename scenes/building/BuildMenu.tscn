@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://i802aa7uc538"]
+[gd_scene load_steps=16 format=3 uid="uid://i802aa7uc538"]
 
-[ext_resource type="Script" path="res://src/cs/building/BuildMenu.cs" id="1_vbiqr"]
 [ext_resource type="PackedScene" uid="uid://ct4blqwh4y6ab" path="res://scenes/building/PowerPlant.tscn" id="2_236y8"]
 [ext_resource type="Texture2D" uid="uid://bgbm8t4r0m4a0" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0025_Solar-1.png" id="3_jhvum"]
 [ext_resource type="Texture2D" uid="uid://bh1jd2q534s57" path="res://assets/new Power plants/Power plants/230601_CH_SUREgame_Power-Plants.psd_0020_Wind-1.png" id="4_35oxp"]
@@ -52,8 +51,6 @@ _data = {
 }
 
 [node name="BuildMenu" type="CanvasLayer"]
-script = ExtResource("1_vbiqr")
-BuildingSpriteBase = Vector2(550, 190)
 
 [node name="CloseButton" type="Button" parent="."]
 offset_right = 1921.0
@@ -76,8 +73,6 @@ color = Color(0.180392, 0.180392, 0.180392, 0)
 [node name="Solar" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(194, 167)
 scale = Vector2(0.9, 0.9)
-PlantName = "Solar Plant"
-_PlantType = 2
 metadata/_edit_group_ = true
 
 [node name="Sprite" parent="Container/Solar" index="1"]
@@ -102,8 +97,6 @@ flat = true
 [node name="Wind" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(420, 167)
 scale = Vector2(0.9, 0.9)
-PlantName = "Wind"
-_PlantType = 5
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Wind/PreviewInfo" index="3"]
@@ -145,8 +138,6 @@ flat = true
 [node name="Tree" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(1322, 166)
 scale = Vector2(0.9, 0.9)
-PlantName = "Trees"
-_PlantType = 3
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Tree/PreviewInfo" index="3"]
@@ -179,8 +170,6 @@ flat = true
 [node name="Hydro" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(194, 167)
 scale = Vector2(0.9, 0.9)
-PlantName = "Hydro Plant"
-_PlantType = 0
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Hydro/PreviewInfo" index="3"]
@@ -216,7 +205,6 @@ flat = true
 [node name="Gas" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(647, 166)
 scale = Vector2(0.9, 0.9)
-PlantName = "Gas Plant"
 metadata/_edit_group_ = true
 
 [node name="Price" parent="Container/Gas/PreviewInfo" index="3"]
@@ -247,8 +235,6 @@ flat = true
 [node name="Waste" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(872.001, 166)
 scale = Vector2(0.9, 0.9)
-PlantName = "Waste"
-_PlantType = 6
 metadata/_edit_group_ = true
 
 [node name="PreviewInfo" parent="Container/Waste" index="0"]
@@ -305,7 +291,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Biomass" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(1097, 166)
 scale = Vector2(0.9, 0.9)
-_PlantType = 7
 metadata/_edit_group_ = true
 
 [node name="PreviewInfo" parent="Container/Biomass" index="0"]
@@ -363,7 +348,6 @@ metadata/_edit_use_anchors_ = true
 [node name="River" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(420, 167)
 scale = Vector2(0.9, 0.9)
-_PlantType = 8
 metadata/_edit_group_ = true
 
 [node name="PreviewInfo" parent="Container/River" index="0"]
@@ -424,7 +408,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Pump" parent="Container" instance=ExtResource("2_236y8")]
 position = Vector2(647, 166)
 scale = Vector2(0.9, 0.9)
-_PlantType = 9
 metadata/_edit_group_ = true
 
 [node name="PreviewInfo" parent="Container/Pump" index="0"]

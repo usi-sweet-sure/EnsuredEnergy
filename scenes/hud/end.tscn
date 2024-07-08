@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=3 uid="uid://cej4dlw11su6f"]
+[gd_scene load_steps=13 format=3 uid="uid://cej4dlw11su6f"]
 
-[ext_resource type="Script" path="res://src/cs/ui/End.cs" id="1_dvce5"]
 [ext_resource type="Texture2D" uid="uid://dyyio7rs1i1l6" path="res://assets/UI Elements/Import_energy-Bar-Metal.png" id="2_27rt7"]
 [ext_resource type="Texture2D" uid="uid://b4m67oni44dpg" path="res://assets/UI Elements/Button-normal.png" id="3_g4lp6"]
 [ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="4_wpw57"]
@@ -16,7 +15,6 @@
 [sub_resource type="Theme" id="Theme_yg7sq"]
 
 [node name="End" type="CanvasLayer"]
-script = ExtResource("1_dvce5")
 
 [node name="EndWindow" type="ColorRect" parent="."]
 anchors_preset = 15

@@ -1,11 +1,9 @@
-[gd_scene load_steps=43 format=3 uid="uid://ct4blqwh4y6ab"]
+[gd_scene load_steps=41 format=3 uid="uid://ct4blqwh4y6ab"]
 
-[ext_resource type="Script" path="res://src/cs/building/PowerPlant.cs" id="1_qsehc"]
 [ext_resource type="Texture2D" uid="uid://b60o54o5riav8" path="res://assets/UI Elements/Build_Menu_0005_Build-Menu-Metal.png" id="2_ambcb"]
 [ext_resource type="Texture2D" uid="uid://cf3amacrbvg0b" path="res://assets/Elements/ENERGY PLANT - ON.png" id="2_nry78"]
 [ext_resource type="Texture2D" uid="uid://behxblj10y4lm" path="res://assets/UI Elements/Build_Menu_0004_Build-Menu-Screen.png" id="3_d3qhq"]
 [ext_resource type="Texture2D" uid="uid://c7wjxue882i0r" path="res://assets/Elements/INFO ENVIORMENT.png" id="3_jv8ie"]
-[ext_resource type="Script" path="res://src/cs/utils/xml/ConfigController.cs" id="3_runxt"]
 [ext_resource type="Texture2D" uid="uid://bvjrf5k45j5m0" path="res://assets/Elements/ENERGY PLANT - INFO HOVER.png" id="3_sgdtt"]
 [ext_resource type="Texture2D" uid="uid://od33hjtqpm14" path="res://assets/UI Elements/Build_Menu_0003_Numbers-hole.png" id="4_ovnj6"]
 [ext_resource type="Texture2D" uid="uid://bobwaj4wxr0fj" path="res://assets/UI Elements/Build_Menu_0002_Numbers-counter-1.png" id="5_bit08"]
@@ -290,7 +288,6 @@ _data = {
 }
 
 [node name="PowerPlant" type="Node2D"]
-script = ExtResource("1_qsehc")
 
 [node name="PreviewInfo" type="Control" parent="."]
 layout_mode = 3
@@ -1193,9 +1190,9 @@ position = Vector2(-37, -4)
 texture = ExtResource("7_fjg03")
 
 [node name="ConfigController" type="Node" parent="."]
-script = ExtResource("3_runxt")
 
 [node name="Delete" type="Button" parent="."]
+visible = false
 z_index = 1
 offset_left = 143.0
 offset_top = -200.0

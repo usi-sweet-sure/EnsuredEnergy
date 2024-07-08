@@ -1,10 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://885lty3v1qbq"]
+[gd_scene load_steps=16 format=3 uid="uid://885lty3v1qbq"]
 
-[ext_resource type="Script" path="res://src/cs/windows/Shock.cs" id="1_jq3nm"]
 [ext_resource type="Texture2D" uid="uid://burmdec041k3k" path="res://assets/UI Elements/Shocks-Metal.png" id="2_37dlb"]
 [ext_resource type="Texture2D" uid="uid://dddi6bd53d7t" path="res://assets/Icons/ice.png" id="3_fweec"]
 [ext_resource type="Texture2D" uid="uid://djviaoys4utb" path="res://assets/UI Elements/Shocks-Screen.png" id="3_jcd22"]
-[ext_resource type="Script" path="res://src/cs/utils/xml/ShockController.cs" id="4_gcg7v"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="5_0qiv1"]
 [ext_resource type="Texture2D" uid="uid://d1or1v15j7r7u" path="res://assets/UI Elements/Shocks-Button-Hole.png" id="6_021ab"]
 [ext_resource type="Texture2D" uid="uid://bukhhwmu7717r" path="res://assets/UI Elements/Shocks-Button-normal.png" id="7_st5u1"]
@@ -54,7 +52,6 @@ _data = {
 }
 
 [node name="Shock" type="CanvasLayer"]
-script = ExtResource("1_jq3nm")
 
 [node name="ColorRect2" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -326,7 +323,6 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="ShockController" type="Node" parent="."]
-script = ExtResource("4_gcg7v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

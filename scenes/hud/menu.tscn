@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://pvoi2mcc3oc1"]
 
-[ext_resource type="Script" path="res://src/cs/ui/MainMenu.cs" id="1_acmck"]
+[ext_resource type="Script" path="res://src/gdscript/hud/menu.gd" id="1_2w7hu"]
 [ext_resource type="Texture2D" uid="uid://bdjbeos1j2wsr" path="res://assets/MAP-BG.png" id="2_rie33"]
 [ext_resource type="Theme" uid="uid://cj6gnnfa8ibb0" path="res://scenes/windows/label_themes.tres" id="3_l0e0n"]
 [ext_resource type="Texture2D" uid="uid://bfeet7msl5o2h" path="res://assets/UI Elements/Start_Menu_Base-01.png" id="4_hviw1"]
@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [node name="Menu" type="CanvasLayer"]
-script = ExtResource("1_acmck")
+script = ExtResource("1_2w7hu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -231,3 +231,5 @@ offset_right = 775.0
 offset_bottom = 535.0
 placeholder_text = "NAME"
 alignment = 1
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

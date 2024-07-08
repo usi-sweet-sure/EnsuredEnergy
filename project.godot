@@ -19,12 +19,6 @@ config/icon="res://assets/UI Elements/Icon-Import.png"
 
 driver/mix_rate=48000
 
-[autoload]
-
-Context="*res://src/cs/Context.cs"
-PolicyController="*res://src/cs/utils/xml/PolicyController.cs"
-TextController="*res://src/cs/utils/xml/TextController.cs"
-
 [debug]
 
 settings/stdout/print_fps=true

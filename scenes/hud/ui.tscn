@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://bs48lirfn2fp2"]
+[gd_scene load_steps=114 format=3 uid="uid://bs48lirfn2fp2"]
 
 [ext_resource type="Texture2D" uid="uid://dik8jskwri4ev" path="res://assets/UI Elements/Profil-metal.png" id="1_ooswe"]
 [ext_resource type="Texture2D" uid="uid://c3e2r6qjw4kti" path="res://assets/Gameplay_UI_Reference-03.jpg" id="1_rcpup"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d2hyunjbx7qb7" path="res://scenes/hud/energy_bar.tscn" id="3_fm1y6"]
 [ext_resource type="Texture2D" uid="uid://biq6v1m7nc6l" path="res://assets/UI Elements/Button-Next-Press.png" id="3_qtdni"]
 [ext_resource type="PackedScene" uid="uid://u1nvhv5ceok" path="res://scenes/hud/BarInfo.tscn" id="4_67rbh"]
-[ext_resource type="Script" path="res://src/cs/ui/InfoBar.cs" id="4_e5tgv"]
 [ext_resource type="Texture2D" uid="uid://c25aef4m4yd40" path="res://assets/UI Elements/Button-Next-Hover.png" id="4_mh4j1"]
 [ext_resource type="Texture2D" uid="uid://60dl810b25fd" path="res://assets/UI Elements/Button-press.png" id="5_hh5pc"]
 [ext_resource type="PackedScene" uid="uid://c81iji81uc4g7" path="res://scenes/hud/import.tscn" id="5_ps4b6"]
@@ -1231,7 +1230,6 @@ theme_override_font_sizes/font_size = 23
 theme_override_styles/background = SubResource("StyleBoxFlat_uqc36")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mru71")
 value = 60.0
-script = ExtResource("4_e5tgv")
 
 [node name="Target" type="Line2D" parent="Trust"]
 visible = false
@@ -1763,8 +1761,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ldrdn")
 value = 50.0
 fill_mode = 3
 show_percentage = false
-script = ExtResource("4_e5tgv")
-EnergyBar = false
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Env"]
@@ -1774,6 +1770,7 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Env" instance=ExtResource("4_67rbh")]
+visible = false
 layout_mode = 1
 offset_left = 415.0
 offset_top = -80.0
@@ -1845,8 +1842,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_dvfnp")
 value = 50.0
 fill_mode = 3
 show_percentage = false
-script = ExtResource("4_e5tgv")
-EnergyBar = false
 metadata/_edit_group_ = true
 
 [node name="Target" type="Line2D" parent="Poll"]
@@ -1856,6 +1851,7 @@ points = PackedVector2Array(332, 646, 332, 614)
 width = 1.0
 
 [node name="BarInfo" parent="Poll" instance=ExtResource("4_67rbh")]
+visible = false
 layout_mode = 1
 offset_left = 245.0
 offset_top = -80.0

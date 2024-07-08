@@ -1,6 +1,5 @@
-[gd_scene load_steps=29 format=3 uid="uid://jj476u8yn2g8"]
+[gd_scene load_steps=28 format=3 uid="uid://jj476u8yn2g8"]
 
-[ext_resource type="Script" path="res://src/cs/windows/PolicyWindow.cs" id="1_is3ep"]
 [ext_resource type="Texture2D" uid="uid://clbiqmgbfxn1r" path="res://assets/UI Elements/Policies-middle.png" id="2_5macm"]
 [ext_resource type="Texture2D" uid="uid://dnr3tvwn2pcnj" path="res://assets/UI Elements/Policies_Button_small_Hole.png" id="3_34k6p"]
 [ext_resource type="PackedScene" uid="uid://dna2006dnsx2x" path="res://scenes/windows/policy_button.tscn" id="3_wnx31"]
@@ -70,7 +69,6 @@ _data = {
 }
 
 [node name="Policy" type="CanvasLayer"]
-script = ExtResource("1_is3ep")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
